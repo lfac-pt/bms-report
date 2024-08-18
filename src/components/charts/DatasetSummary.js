@@ -11,7 +11,7 @@ function getDiversityTotal(dataset) {
     for (const sp of species) {
         const isSingleWord = sp.split(" ").length === 1;
         const isFamily = sp.endsWith("ae");
-        const hasSpeciesInSet = species.values().find((setSp) => {
+        const hasSpeciesInSet = Array.from(species).find((setSp) => {
           return setSp.split(" ").length === 2 && setSp.includes(sp);
         });
         const shouldBeCounted = !isSingleWord || (isSingleWord && !isFamily && !hasSpeciesInSet);

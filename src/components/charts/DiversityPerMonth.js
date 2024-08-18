@@ -31,7 +31,7 @@ function getDiversityPerMonthForSpecies(dataset) {
     for (const sp of set) {
       const isSingleWord = sp.split(" ").length === 1;
       const isFamily = sp.endsWith("ae");
-      const hasSpeciesInSet = set.values().find((setSp) => {
+      const hasSpeciesInSet = Array.from(set).find((setSp) => {
         return setSp.split(" ").length === 2 && setSp.includes(sp);
       });
       const shouldBeCounted = !isSingleWord || (isSingleWord && !isFamily && !hasSpeciesInSet);
