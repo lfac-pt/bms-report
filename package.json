@@ -8,6 +8,7 @@
     "@testing-library/user-event": "^13.5.0",
     "antd": "^5.20.1",
     "chart.js": "^4.4.3",
+    "gh-pages": "^6.1.1",
     "moment": "^2.30.1",
     "papaparse": "^5.4.1",
     "react": "^18.3.1",
@@ -17,7 +18,10 @@
     "react-scripts": "5.0.1",
     "web-vitals": "^2.1.4"
   },
+  "homepage": "https://lfac-pt.github.io/bms-report",
   "scripts": {
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
