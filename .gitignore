@@ -131,6 +131,3 @@ dist
 
 # OSX
 .DS_Store
-
-# Build
-build
