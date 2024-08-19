@@ -66,7 +66,7 @@ function DatasetSummary({ dataset }) {
                 </Card>
             </Col>
             <Col span={8}>
-                <Card title="Número de Visitas" bordered={false}>
+                <Card title="Número de visitas com registos" bordered={false}>
                     {metrics.visits_count}
                 </Card>
             </Col>
