@@ -52,7 +52,7 @@ function filterDataset(dataset, targetYear, targetTransect, targetSection) {
   return dataset.filter((entry) => {
     const date = moment(entry.Date, "DD-MM-YYYY");
 
-    return date.year() === targetYear && entry["Transect ID"] == targetTransect && (targetSection === null || targetSection === entry["Section Name"]);
+    return date.year() === targetYear && entry["Transect ID"] === targetTransect && (targetSection === null || targetSection === entry["Section Name"]);
   });
 }
 
