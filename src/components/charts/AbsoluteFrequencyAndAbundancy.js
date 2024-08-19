@@ -182,7 +182,7 @@ function AbsoluteFrequencyAndAbundancy({ dataset }) {
   
   return (
     <Card title={anundanciaPorMesTitle} size="small">
-        <Table dataSource={calculateRows(dataset)} columns={columns} />
+        <Table dataSource={calculateRows(dataset)} columns={columns} pagination={{showSizeChanger: true}} />
         <Alert message="Frenquência é a percentagem de visitas em que foi avistada. Abundância é o total de indivíduos contados." type="info" />
     </Card>
   );
