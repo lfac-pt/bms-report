@@ -1,10 +1,10 @@
 import { parse } from 'papaparse';
-import { Upload} from "antd";
+import { Upload } from "antd";
 import { InboxOutlined } from '@ant-design/icons';
 
 const { Dragger } = Upload;
 
-function Uploader({onUpload}) {
+function Uploader({ onUpload }) {
     const props = {
         name: 'file',
         accept: "csv",
@@ -12,7 +12,7 @@ function Uploader({onUpload}) {
         action: '',
         maxCount: 1,
         showUploadList: false,
-        customRequest({file}) {
+        customRequest({ file }) {
             parse(file, {
                 download: true,
                 complete: onUpload,
@@ -21,19 +21,18 @@ function Uploader({onUpload}) {
             });
         },
     };
-  
+
     return (
         <Dragger {...props}>
-        <p className="ant-upload-drag-icon">
-          <InboxOutlined />
-        </p>
-        <p className="ant-upload-text">Clique ou arraste ficheiros para esta área para começar</p>
-        <p className="ant-upload-hint">
-          Exporte o ficheiro na plataform butterfly-monitoring.net usando a opção "Download species ocurrences from transects (zipped CSV)". Ficheiros são só lidos localmente.
-        </p>
-      </Dragger>
+            <p className="ant-upload-drag-icon">
+                <InboxOutlined />
+            </p>
+            <p className="ant-upload-text">Clique ou arraste ficheiros para esta área para começar</p>
+            <p className="ant-upload-hint">
+                Exporte o ficheiro na plataform butterfly-monitoring.net usando a opção "Download species ocurrences from transects (zipped CSV)". Ficheiros são só lidos localmente.
+            </p>
+        </Dragger>
     );
-  }
-  
-  export default Uploader;
-  
+}
+
+export default Uploader;
