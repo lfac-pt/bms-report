@@ -2,6 +2,7 @@ import { Bar } from 'react-chartjs-2';
 import { useState } from 'react';
 import moment from 'moment';
 import { Select, Card, Alert } from "antd";
+import { getAllSpecies } from '../utils';
 
 export const options = {
     responsive: true,
@@ -14,20 +15,6 @@ export const options = {
 
 const LABELS_MONTHS = ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun', 'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dez'];
 const SERIES_COLORS = ["#ea5545", "#f46a9b", "#ef9b20", "#edbf33", "#ede15b", "#bdcf32", "#87bc45", "#27aeef", "#b33dc6"];
-
-function getAllSpecies(dataset) {
-    const speciesSet = new Set();
-
-    for (const entry of dataset) {
-        const species = entry['Preferred Species Name'];
-
-        if (species.split(" ").length === 2) {
-            speciesSet.add(species);
-        }
-    }
-
-    return [...speciesSet];
-}
 
 function getAbundancyPerMonthForSpecies(dataset, targetSpecies) {
     if (targetSpecies.length === 0) {
@@ -94,7 +81,7 @@ function getAbundancyPerMonthForSpecies(dataset, targetSpecies) {
     };
 }
 
-function AbundancyPerMonth({ dataset }) {
+function AbundancyPerMonth({ dataset, year }) {
     const [targetSpecies, setTargetSpecies] = useState([]);
 
     const speciesList = getAllSpecies(dataset);
@@ -110,7 +97,7 @@ function AbundancyPerMonth({ dataset }) {
         setTargetSpecies(newTargetSpecies);
     };
 
-    const anundanciaPorMesTitle = `Abundância média por visita`;
+    const anundanciaPorMesTitle = `Abundância média por visita (${year})`;
 
 
     return (

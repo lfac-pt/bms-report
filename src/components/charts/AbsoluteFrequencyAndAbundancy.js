@@ -61,8 +61,8 @@ function calculateRows(dataset) {
 	});
 }
 
-function AbsoluteFrequencyAndAbundancy({ dataset }) {
-	const anundanciaPorMesTitle = "Frequência e abundância";
+function AbsoluteFrequencyAndAbundancy({ dataset, year }) {
+	const anundanciaPorMesTitle = `Frequência e abundância (${year})`;
 	const [searchText, setSearchText] = useState('');
 	const [searchedColumn, setSearchedColumn] = useState('');
 	const searchInput = useRef(null);

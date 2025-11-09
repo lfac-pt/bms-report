@@ -54,8 +54,8 @@ function getDiversityPerMonthForSpecies(dataset) {
     };
 }
 
-function DiversityPerMonth({ dataset }) {
-    const anundanciaPorMesTitle = `Total de espécies por mês`;
+function DiversityPerMonth({ dataset, year }) {
+    const anundanciaPorMesTitle = `Total de espécies por mês (${year})`;
 
     return (
         <Card title={anundanciaPorMesTitle} size="small">

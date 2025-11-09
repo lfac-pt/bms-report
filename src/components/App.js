@@ -1,12 +1,13 @@
 import { useState } from 'react';
 import moment from 'moment';
 import { Space, theme } from "antd";
-import DatasetSummary from "./charts/DatasetSummary";
 import AbundancyPerMonth from "./charts/AbundancyPerMonth";
 import DiversityPerMonth from "./charts/DiversityPerMonth";
 import AbsoluteFrequencyAndAbundancy from "./charts/AbsoluteFrequencyAndAbundancy";
 import Uploader from './Uploader';
 import PageFilters from './PageFilters';
+import YearComparison from "./charts/YearComparison";
+import { filterDataset } from './utils';
 
 function getAllYears(dataset) {
     const yearsSet = new Set();
@@ -47,13 +48,7 @@ function getAllSections(dataset, transect) {
     });
 }
 
-function filterDataset(dataset, targetYear, targetTransect, targetSection) {
-    return dataset.filter((entry) => {
-        const date = moment(entry.Date, "DD-MM-YYYY");
 
-        return date.year() === targetYear && entry["Transect ID"] === targetTransect && (targetSection === null || targetSection === entry["Section Name"]);
-    });
-}
 
 function MyApp() {
     const [dataset, setDataset] = useState([]);
@@ -126,10 +121,10 @@ function MyApp() {
                     targetSection={targetSection}
                     onTargetSectionChange={onTargetSectionChange}
                 />
-                <DatasetSummary dataset={filteredDataset} />
-                <AbsoluteFrequencyAndAbundancy dataset={filteredDataset} />
-                <AbundancyPerMonth dataset={filteredDataset} />
-                <DiversityPerMonth dataset={filteredDataset} />
+                <YearComparison yearsList={yearsList} dataset={dataset} transect={targetTransect} section={targetSection} />
+                <AbsoluteFrequencyAndAbundancy dataset={filteredDataset} year={targetYear} />
+                <AbundancyPerMonth dataset={filteredDataset} year={targetYear} />
+                <DiversityPerMonth dataset={filteredDataset} year={targetYear} />
             </>) : null}
         </Space>
     );
