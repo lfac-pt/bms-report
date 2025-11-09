@@ -81,7 +81,7 @@ function MyApp() {
     const onUpload = (results) => {
         const allYears = getAllYears(results.data);
         setYearsList(allYears);
-        setTargetYear(allYears[allYears.length - 1]);
+        setTargetYear(allYears[0]);
 
         const allTransects = getAllTransects(results.data);
         setTransectsList(allTransects);

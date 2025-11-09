@@ -3,6 +3,7 @@ import {
   getVisitsCount,
   getDiversityTotal,
   getAllSpecies,
+  getAvgAbundancy
 } from "../utils";
 import { Card, Table, Tag, Tooltip } from "antd";
 
@@ -51,12 +52,15 @@ function calculateRows(dataset, yearsList, transect, section) {
     const filteredDataset = filterDataset(dataset, year, transect, section);
     const visitsCount = getVisitsCount(filteredDataset);
     const diversityTotal = getDiversityTotal(filteredDataset);
+    const avgAbundancy = getAvgAbundancy(filteredDataset);
+
     speciesListByYear[year] = getAllSpecies(filteredDataset);
 
     return {
       year,
       visitsCount,
       diversityTotal,
+      avgAbundancy
     };
   });
 
@@ -102,6 +106,11 @@ function YearComparison({ dataset, yearsList, transect, section }) {
       dataIndex: "newSpecies",
       key: "newSpecies",
       render: (_, { newSpecies }) => <TagList tags={newSpecies} />
+    },
+    {
+      title: "Abundância média p/ visita",
+      dataIndex: "avgAbundancy",
+      key: "avgAbundancy",
     },
   ];
 
