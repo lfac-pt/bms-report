@@ -13,7 +13,7 @@ export const options = {
     },
 };
 
-function AbundancyPerMonth({ dataset, year }) {
+function AbundancyPerMonth({ dataset, yearsList, targetTransect }) {
     const [targetSpecies, setTargetSpecies] = useState([]);
 
     const speciesList = getAllSpecies(dataset);
@@ -29,8 +29,7 @@ function AbundancyPerMonth({ dataset, year }) {
         setTargetSpecies(newTargetSpecies);
     };
 
-    const anundanciaPorMesTitle = `Abundância média por visita (${year})`;
-
+    const anundanciaPorMesTitle = `Abundância média por visita`;
 
     return (
         <Card title={anundanciaPorMesTitle} size="small">
@@ -43,7 +42,7 @@ function AbundancyPerMonth({ dataset, year }) {
                 placeholder="Por favor escolha"
                 defaultValue={targetSpecies}
             />
-            <Bar options={options} data={getAbundancyPerMonthForSpecies(dataset, targetSpecies)} />
+            <Bar options={options} data={getAbundancyPerMonthForSpecies(dataset, targetSpecies, yearsList, targetTransect)} />
             <Alert message="O total de indivíduos da a espécie no mês dividido por número de visitas" type="info" />
         </Card>
     );

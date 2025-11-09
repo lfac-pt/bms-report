@@ -79,19 +79,21 @@ function MyApp() {
     }
 
     const onUpload = (results) => {
-        const allYears = getAllYears(results.data);
-        setYearsList(allYears);
-        setTargetYear(allYears[0]);
+        const cleanData = results.data.filter((point) => point["Transect Sample ID"]);
 
-        const allTransects = getAllTransects(results.data);
+        const allYears = getAllYears(cleanData).toReversed();
+        setYearsList(allYears);
+        setTargetYear(allYears[allYears.length - 1]);
+
+        const allTransects = getAllTransects(cleanData);
         setTransectsList(allTransects);
         setTargetTransect(allTransects[allTransects.length - 1]);
 
-        const allSectionsForTransect = getAllSections(results.data, allTransects[allTransects.length - 1]);
+        const allSectionsForTransect = getAllSections(cleanData, allTransects[allTransects.length - 1]);
         setSectionsList(allSectionsForTransect);
         setTargetSection(null);
 
-        setDataset(results.data);
+        setDataset(cleanData);
     };
 
     const {
@@ -122,9 +124,9 @@ function MyApp() {
                     onTargetSectionChange={onTargetSectionChange}
                 />
                 <YearComparison yearsList={yearsList} dataset={dataset} transect={targetTransect} section={targetSection} />
-                <AbsoluteFrequencyAndAbundancy dataset={filteredDataset} year={targetYear} />
-                <AbundancyPerMonth dataset={filteredDataset} year={targetYear} />
+                <AbundancyPerMonth dataset={dataset} yearsList={yearsList} targetTransect={targetTransect} />
                 <DiversityPerMonth dataset={filteredDataset} year={targetYear} />
+                <AbsoluteFrequencyAndAbundancy dataset={filteredDataset} year={targetYear} />
             </>) : null}
         </Space>
     );
