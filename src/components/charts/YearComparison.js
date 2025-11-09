@@ -10,6 +10,10 @@ function getItemsNotInSet(list, set) {
   return list.filter(item => !set.has(item));
 }
 
+function sum(rows, attr) {
+  return rows.reduce((memo, row) => memo + row[attr], 0);
+}
+
 const TagList = ({ tags, maxVisible = 10 }) => {
   const visibleTags = tags.slice(0, maxVisible);
   const hiddenTags = tags.slice(maxVisible);
@@ -66,6 +70,13 @@ function calculateRows(dataset, yearsList, transect, section) {
     speciesListByYear[year].forEach(item => speciesSoFar.add(item));
   });
 
+  rows.unshift({
+    year: "Total",
+    visitsCount: sum(rows, "visitsCount"),
+    diversityTotal: speciesSoFar.size,
+    newSpecies: []
+  });
+
   return rows.toReversed();
 }
 
@@ -99,7 +110,7 @@ function YearComparison({ dataset, yearsList, transect, section }) {
       <Table
         dataSource={calculateRows(dataset, yearsList, transect, section)}
         columns={columns}
-        pagination={{ showSizeChanger: true }}
+        pagination={false}
       />
     </Card>
   );
