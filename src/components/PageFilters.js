@@ -3,10 +3,10 @@ import { Select } from "antd";
 
 function PageFilters({
     yearsList,
-    targetYear,
+    selectedYears,
     transectsList,
     targetTransect,
-    onTargetYearChange,
+    onSelectedYearsChange,
     onTargetTransectChange,
     sectionsList,
     targetSection,
@@ -36,10 +36,12 @@ function PageFilters({
     return (
         <>
             <Select
+                mode="multiple"
                 options={yearOptions}
-                value={targetYear}
-                onChange={onTargetYearChange}
-                style={{ /*width: '100%'*/ }}
+                value={selectedYears}
+                onChange={onSelectedYearsChange}
+                style={{ minWidth: 200 }}
+                placeholder="Selecione anos"
             />
             <Select
                 options={transectOptions}

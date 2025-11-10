@@ -54,7 +54,7 @@ function MyApp() {
     const [dataset, setDataset] = useState([]);
 
     const [yearsList, setYearsList] = useState([]);
-    const [targetYear, setTargetYear] = useState(null);
+    const [selectedYears, setSelectedYears] = useState([]);
 
     const [transectsList, setTransectsList] = useState([]);
     const [targetTransect, setTargetTransect] = useState(null);
@@ -62,8 +62,15 @@ function MyApp() {
     const [sectionsList, setSectionsList] = useState([]);
     const [targetSection, setTargetSection] = useState(null);
 
-    const onTargetYearChange = (newTargetYear) => {
-        setTargetYear(newTargetYear)
+    const onSelectedYearsChange = (newSelectedYears) => {
+        // Ensure at least one year is always selected
+        if (!newSelectedYears || newSelectedYears.length === 0) {
+            return; // Don't allow clearing all years
+        }
+
+        // Sort years in ascending order
+        const sortedYears = [...newSelectedYears].sort((a, b) => a - b);
+        setSelectedYears(sortedYears);
     };
 
     const onTargetTransectChange = (newTargetTransect) => {
@@ -83,7 +90,8 @@ function MyApp() {
 
         const allYears = getAllYears(cleanData).toReversed();
         setYearsList(allYears);
-        setTargetYear(allYears[allYears.length - 1]);
+        // Initialize with all years selected, sorted in ascending order
+        setSelectedYears([...allYears].sort((a, b) => a - b));
 
         const allTransects = getAllTransects(cleanData);
         setTransectsList(allTransects);
@@ -100,8 +108,6 @@ function MyApp() {
         token: { colorBgContainer, borderRadiusLG },
     } = theme.useToken();
 
-    const filteredDataset = filterDataset(dataset, targetYear, targetTransect, targetSection);
-
     return (
         <Space direction="vertical" size="middle" style={{
             display: 'flex',
@@ -113,20 +119,20 @@ function MyApp() {
 
             {dataset.length > 0 ? (<>
                 <PageFilters
-                    targetYear={targetYear}
+                    selectedYears={selectedYears}
                     yearsList={yearsList}
                     transectsList={transectsList}
                     targetTransect={targetTransect}
-                    onTargetYearChange={onTargetYearChange}
+                    onSelectedYearsChange={onSelectedYearsChange}
                     onTargetTransectChange={onTargetTransectChange}
                     sectionsList={sectionsList}
                     targetSection={targetSection}
                     onTargetSectionChange={onTargetSectionChange}
                 />
-                <YearComparison yearsList={yearsList} dataset={dataset} transect={targetTransect} section={targetSection} />
-                <AbundancyPerMonth dataset={dataset} yearsList={yearsList} targetTransect={targetTransect} targetSection={targetSection} />
-                <DiversityPerMonth dataset={dataset} yearsList={yearsList} targetTransect={targetTransect} targetSection={targetSection} />
-                <AbsoluteFrequencyAndAbundancy dataset={dataset} yearsList={yearsList} targetTransect={targetTransect} targetSection={targetSection} />
+                <YearComparison yearsList={selectedYears} dataset={dataset} transect={targetTransect} section={targetSection} />
+                <AbundancyPerMonth dataset={dataset} yearsList={selectedYears} targetTransect={targetTransect} targetSection={targetSection} />
+                <DiversityPerMonth dataset={dataset} yearsList={selectedYears} targetTransect={targetTransect} targetSection={targetSection} />
+                <AbsoluteFrequencyAndAbundancy dataset={dataset} yearsList={selectedYears} targetTransect={targetTransect} targetSection={targetSection} />
             </>) : null}
         </Space>
     );
