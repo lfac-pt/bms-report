@@ -3,11 +3,14 @@ import { SearchOutlined } from '@ant-design/icons';
 import Highlighter from 'react-highlight-words';
 import { Card, Table, Alert, Button, Input, Space } from "antd";
 
-function getVisitsCount(dataset) {
+function getVisitsCountByYear(dataset, year) {
 	const dates = new Set();
 
 	for (const entry of dataset) {
-		dates.add(entry.Date);
+		const entryYear = new Date(entry.Date).getFullYear();
+		if (entryYear === year) {
+			dates.add(entry.Date);
+		}
 	}
 
 	return dates.size;
@@ -28,41 +31,75 @@ function getAllSpecies(dataset) {
 	return [...speciesSet];
 }
 
-function calculateRows(dataset) {
-	const totalVisits = getVisitsCount(dataset);
+function calculateRows(dataset, yearsList) {
 	const allSpecies = getAllSpecies(dataset);
-	const frequencyMap = {};
-	const abundancyMap = {};
+	const dataByYear = {};
 
+	// Initialize data structure for each year
+	yearsList.forEach(year => {
+		dataByYear[year] = {
+			totalVisits: getVisitsCountByYear(dataset, year),
+			frequencyMap: {},
+			abundancyMap: {}
+		};
+	});
+
+	// Process dataset entries
 	for (const entry of dataset) {
 		const species = entry['Preferred Species Name'];
+		const entryYear = new Date(entry.Date).getFullYear();
 
-		if (!frequencyMap[species]) {
-			frequencyMap[species] = new Set();
+		if (dataByYear[entryYear]) {
+			// Track frequency (unique dates per species per year)
+			if (!dataByYear[entryYear].frequencyMap[species]) {
+				dataByYear[entryYear].frequencyMap[species] = new Set();
+			}
+			dataByYear[entryYear].frequencyMap[species].add(entry.Date);
+
+			// Track abundancy (total count per species per year)
+			if (!dataByYear[entryYear].abundancyMap[species]) {
+				dataByYear[entryYear].abundancyMap[species] = 0;
+			}
+			dataByYear[entryYear].abundancyMap[species] += entry["Abundance count"];
 		}
-
-		frequencyMap[species].add(entry.Date);
-
-		if (!abundancyMap[species]) {
-			abundancyMap[species] = 0;
-		}
-
-		abundancyMap[species] += entry["Abundance count"];
 	}
 
+	// Build rows with data for each species across all years
 	return allSpecies.map((species) => {
-		return {
+		const row = {
 			key: species,
 			species: species,
-			frequencyAbs: frequencyMap[species].size,
-			frequency: ((frequencyMap[species].size / totalVisits) * 100).toFixed(0) + "%",
-			abundancy: abundancyMap[species] ? abundancyMap[species] : 0,
 		};
+
+		// Add data for each year
+		yearsList.forEach(year => {
+			const yearData = dataByYear[year];
+			const frequencySet = yearData.frequencyMap[species];
+			const abundancy = yearData.abundancyMap[species] || 0;
+			const frequencyAbs = frequencySet ? frequencySet.size : 0;
+			const frequencyPercent = yearData.totalVisits > 0
+				? ((frequencyAbs / yearData.totalVisits) * 100).toFixed(0)
+				: 0;
+
+			row[year] = {
+				display: `${frequencyPercent}% / ${abundancy}`,
+				frequencyAbs: frequencyAbs,
+				abundancy: abundancy
+			};
+		});
+
+		return row;
 	});
 }
 
-function AbsoluteFrequencyAndAbundancy({ dataset, year }) {
-	const anundanciaPorMesTitle = `Frequência e abundância (${year})`;
+function AbsoluteFrequencyAndAbundancy({ dataset, yearsList, targetTransect, targetSection }) {
+	// Filter dataset by transect and section
+	const filteredDataset = dataset.filter(entry => {
+		const matchesTransect = !targetTransect || entry["Transect ID"] === targetTransect;
+		const matchesSection = !targetSection || entry["Section Name"] === targetSection;
+		return matchesTransect && matchesSection;
+	});
+	const anundanciaPorMesTitle = `Frequência e abundância`;
 	const [searchText, setSearchText] = useState('');
 	const [searchedColumn, setSearchedColumn] = useState('');
 	const searchInput = useRef(null);
@@ -159,6 +196,7 @@ function AbsoluteFrequencyAndAbundancy({ dataset, year }) {
 			),
 	});
 
+	// Build columns dynamically based on yearsList
 	const columns = [
 		{
 			title: 'Espécie',
@@ -166,24 +204,27 @@ function AbsoluteFrequencyAndAbundancy({ dataset, year }) {
 			key: 'species',
 			...getColumnSearchProps('species'),
 		},
-		{
-			title: 'Frequência',
-			dataIndex: 'frequency',
-			key: 'frequency',
-			sorter: (a, b) => a.frequencyAbs - b.frequencyAbs,
-		},
-		{
-			title: 'Abundância',
-			dataIndex: 'abundancy',
-			key: 'abundancy',
-			sorter: (a, b) => a.abundancy - b.abundancy,
-		},
+		...yearsList.map(year => ({
+			title: year.toString(),
+			dataIndex: year,
+			key: year,
+			render: (data) => data ? data.display : '0% / 0',
+			sorter: (a, b) => {
+				const aData = a[year] || { frequencyAbs: 0, abundancy: 0 };
+				const bData = b[year] || { frequencyAbs: 0, abundancy: 0 };
+				// Sort by frequency first, then by abundancy
+				if (aData.frequencyAbs !== bData.frequencyAbs) {
+					return aData.frequencyAbs - bData.frequencyAbs;
+				}
+				return aData.abundancy - bData.abundancy;
+			},
+		}))
 	];
 
 	return (
 		<Card title={anundanciaPorMesTitle} size="small">
-			<Table dataSource={calculateRows(dataset)} columns={columns} pagination={{ showSizeChanger: true }} />
-			<Alert message="Frenquência é a percentagem de visitas em que foi avistada. Abundância é o total de indivíduos contados." type="info" />
+			<Table dataSource={calculateRows(filteredDataset, yearsList)} columns={columns} pagination={{ showSizeChanger: true }} />
+			<Alert message="Frenquência é a percentagem de visitas em que foi avistada. Abundância é o total de indivíduos contados. Formato: Frequência% / Abundância" type="info" />
 		</Card>
 	);
 }

@@ -126,7 +126,7 @@ function MyApp() {
                 <YearComparison yearsList={yearsList} dataset={dataset} transect={targetTransect} section={targetSection} />
                 <AbundancyPerMonth dataset={dataset} yearsList={yearsList} targetTransect={targetTransect} targetSection={targetSection} />
                 <DiversityPerMonth dataset={dataset} yearsList={yearsList} targetTransect={targetTransect} targetSection={targetSection} />
-                <AbsoluteFrequencyAndAbundancy dataset={filteredDataset} year={targetYear} />
+                <AbsoluteFrequencyAndAbundancy dataset={dataset} yearsList={yearsList} targetTransect={targetTransect} targetSection={targetSection} />
             </>) : null}
         </Space>
     );
