@@ -91,10 +91,10 @@ const SERIES_COLORS = [
     "#b33dc6",
 ];
 
-function abundancyPerMonthAllSpecies(dataset, year, targetTransect, targetSpecies) {
+function abundancyPerMonthAllSpecies(dataset, year, targetTransect, targetSpecies, targetSection) {
     let abundancyPerMonth = LABELS_MONTHS.map(() => 0);
     let visitsPerMonth = LABELS_MONTHS.map(() => new Set());
-    const filteredDataset = filterDataset(dataset, year, targetTransect);
+    const filteredDataset = filterDataset(dataset, year, targetTransect, targetSection);
 
     for (const entry of filteredDataset) {
         const date = moment(entry.Date, "DD-MM-YYYY");
@@ -113,13 +113,13 @@ function abundancyPerMonthAllSpecies(dataset, year, targetTransect, targetSpecie
     });
 }
 
-export function getAbundancyPerMonthForSpecies(dataset, targetSpecies, yearsList, targetTransect) {
+export function getAbundancyPerMonthForSpecies(dataset, targetSpecies, yearsList, targetTransect, targetSection) {
     return {
             labels: LABELS_MONTHS,
             datasets: yearsList.map((year, index) => {
                 return {
                     label: year,
-                    data: abundancyPerMonthAllSpecies(dataset, year, targetTransect, targetSpecies),
+                    data: abundancyPerMonthAllSpecies(dataset, year, targetTransect, targetSpecies, targetSection),
                     backgroundColor: SERIES_COLORS[index],
                 };
             })

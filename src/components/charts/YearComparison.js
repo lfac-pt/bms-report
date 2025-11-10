@@ -74,14 +74,14 @@ function calculateRows(dataset, yearsList, transect, section) {
     speciesListByYear[year].forEach(item => speciesSoFar.add(item));
   });
 
-  rows.unshift({
+  rows.push({
     year: "Total",
     visitsCount: sum(rows, "visitsCount"),
     diversityTotal: speciesSoFar.size,
     newSpecies: []
   });
 
-  return rows.toReversed();
+  return rows;
 }
 
 function YearComparison({ dataset, yearsList, transect, section }) {

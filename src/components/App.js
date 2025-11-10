@@ -124,8 +124,8 @@ function MyApp() {
                     onTargetSectionChange={onTargetSectionChange}
                 />
                 <YearComparison yearsList={yearsList} dataset={dataset} transect={targetTransect} section={targetSection} />
-                <AbundancyPerMonth dataset={dataset} yearsList={yearsList} targetTransect={targetTransect} />
-                <DiversityPerMonth dataset={filteredDataset} year={targetYear} />
+                <AbundancyPerMonth dataset={dataset} yearsList={yearsList} targetTransect={targetTransect} targetSection={targetSection} />
+                <DiversityPerMonth dataset={dataset} yearsList={yearsList} targetTransect={targetTransect} targetSection={targetSection} />
                 <AbsoluteFrequencyAndAbundancy dataset={filteredDataset} year={targetYear} />
             </>) : null}
         </Space>

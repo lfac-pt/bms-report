@@ -1,6 +1,5 @@
 import { Bar } from 'react-chartjs-2';
 import { useState } from 'react';
-import moment from 'moment';
 import { Select, Card, Alert } from "antd";
 import { getAllSpecies, getAbundancyPerMonthForSpecies } from '../utils';
 
@@ -13,7 +12,7 @@ export const options = {
     },
 };
 
-function AbundancyPerMonth({ dataset, yearsList, targetTransect }) {
+function AbundancyPerMonth({ dataset, yearsList, targetTransect, targetSection }) {
     const [targetSpecies, setTargetSpecies] = useState([]);
 
     const speciesList = getAllSpecies(dataset);
@@ -42,7 +41,7 @@ function AbundancyPerMonth({ dataset, yearsList, targetTransect }) {
                 placeholder="Por favor escolha"
                 defaultValue={targetSpecies}
             />
-            <Bar options={options} data={getAbundancyPerMonthForSpecies(dataset, targetSpecies, yearsList, targetTransect)} />
+            <Bar options={options} data={getAbundancyPerMonthForSpecies(dataset, targetSpecies, yearsList, targetTransect, targetSection)} />
             <Alert message="O total de indivíduos da a espécie no mês dividido por número de visitas" type="info" />
         </Card>
     );
