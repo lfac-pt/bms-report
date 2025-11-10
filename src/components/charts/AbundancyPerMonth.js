@@ -26,7 +26,7 @@ function AbundancyPerMonth({ dataset, yearsList, targetTransect }) {
     });
 
     const onTargetSpeciesChange = (newTargetSpecies) => {
-        setTargetSpecies(newTargetSpecies);
+        setTargetSpecies(!newTargetSpecies ? [] : newTargetSpecies);
     };
 
     const anundanciaPorMesTitle = `Abundância média por visita`;
@@ -37,7 +37,7 @@ function AbundancyPerMonth({ dataset, yearsList, targetTransect }) {
                 options={speciesOptions}
                 value={targetSpecies}
                 onChange={onTargetSpeciesChange}
-                mode="multiple"
+                allowClear
                 style={{ width: '100%' }}
                 placeholder="Por favor escolha"
                 defaultValue={targetSpecies}

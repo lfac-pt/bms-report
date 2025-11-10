@@ -91,7 +91,7 @@ const SERIES_COLORS = [
     "#b33dc6",
 ];
 
-function abundancyPerMonthAllSpecies(dataset, year, targetTransect) {
+function abundancyPerMonthAllSpecies(dataset, year, targetTransect, targetSpecies) {
     let abundancyPerMonth = LABELS_MONTHS.map(() => 0);
     let visitsPerMonth = LABELS_MONTHS.map(() => new Set());
     const filteredDataset = filterDataset(dataset, year, targetTransect);
@@ -99,9 +99,11 @@ function abundancyPerMonthAllSpecies(dataset, year, targetTransect) {
     for (const entry of filteredDataset) {
         const date = moment(entry.Date, "DD-MM-YYYY");
 
-        visitsPerMonth[date.month()].add(entry.Date);
+        if (targetSpecies.length === 0 || targetSpecies.includes(entry["Preferred Species Name"])) {
+            visitsPerMonth[date.month()].add(entry.Date);
 
-        abundancyPerMonth[date.month()] += entry["Abundance count"];
+            abundancyPerMonth[date.month()] += entry["Abundance count"];
+        }
     }
 
     visitsPerMonth = visitsPerMonth.map(set => set.size);
@@ -112,58 +114,16 @@ function abundancyPerMonthAllSpecies(dataset, year, targetTransect) {
 }
 
 export function getAbundancyPerMonthForSpecies(dataset, targetSpecies, yearsList, targetTransect) {
-    if (targetSpecies.length === 0) {
-        
-
-        return {
+    return {
             labels: LABELS_MONTHS,
             datasets: yearsList.map((year, index) => {
                 return {
                     label: year,
-                    data: abundancyPerMonthAllSpecies(dataset, year, targetTransect),
+                    data: abundancyPerMonthAllSpecies(dataset, year, targetTransect, targetSpecies),
                     backgroundColor: SERIES_COLORS[index],
                 };
             })
         };
-    }
-
-    const datasetsForChat = targetSpecies.map((targetSp, index) => {
-        return {
-            label: targetSp,
-            data: LABELS_MONTHS.map(() => 0),
-            backgroundColor: SERIES_COLORS[index],
-        };
-    });
-
-    let visitsPerMonth = LABELS_MONTHS.map(() => new Set());
-
-    for (const entry of dataset) {
-        const date = moment(entry.Date, "DD-MM-YYYY");
-
-        visitsPerMonth[date.month()].add(entry.Date);
-
-        if (targetSpecies.includes(entry["Preferred Species Name"])) {
-            const targetSpIndex = targetSpecies.indexOf(
-                entry["Preferred Species Name"]
-            );
-
-            datasetsForChat[targetSpIndex].data[date.month()] +=
-                entry["Abundance count"];
-        }
-    }
-
-    visitsPerMonth = visitsPerMonth.map(set => set.size);
-
-    for (const species of datasetsForChat) {
-        species.data = species.data.map((count, index) => {
-            return count / visitsPerMonth[index];
-        });
-    }
-
-    return {
-        labels: LABELS_MONTHS,
-        datasets: datasetsForChat,
-    };
 }
 
 export function getAvgAbundancy(dataset) {
