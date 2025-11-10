@@ -46,9 +46,7 @@ const TagList = ({ tags, maxVisible = 10 }) => {
 function calculateRows(dataset, yearsList, transect, section) {
   const speciesListByYear = {};
 
-  const reversedYearsList = yearsList.toReversed();
-
-  const rows = reversedYearsList.map(year => {
+  const rows = yearsList.map(year => {
     const filteredDataset = filterDataset(dataset, year, transect, section);
     const visitsCount = getVisitsCount(filteredDataset);
     const diversityTotal = getDiversityTotal(filteredDataset);
@@ -66,7 +64,7 @@ function calculateRows(dataset, yearsList, transect, section) {
 
   const speciesSoFar = new Set();
 
-  reversedYearsList.forEach((year, index) => {
+  yearsList.forEach((year, index) => {
     const newSpecies = getItemsNotInSet(speciesListByYear[year], speciesSoFar);
 
     rows[index].newSpecies = newSpecies;
@@ -74,7 +72,7 @@ function calculateRows(dataset, yearsList, transect, section) {
     speciesListByYear[year].forEach(item => speciesSoFar.add(item));
   });
 
-  rows.push({
+  rows.reverse().push({
     year: "Total",
     visitsCount: sum(rows, "visitsCount"),
     diversityTotal: speciesSoFar.size,
