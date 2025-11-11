@@ -33,16 +33,30 @@ function AbundancyPerMonth({ dataset, yearsList, targetTransect, targetSection }
     return (
         <Card title={anundanciaPorMesTitle} size="small">
             <Select
+                mode="multiple"
                 options={speciesOptions}
                 value={targetSpecies}
                 onChange={onTargetSpeciesChange}
                 allowClear
-                style={{ width: '100%' }}
-                placeholder="Por favor escolha"
+                showSearch
+                filterOption={(input, option) =>
+                    (option?.value ?? '').toLowerCase().includes(input.toLowerCase())
+                }
+                style={{ width: '100%', marginBottom: '16px' }}
+                placeholder="Todas as espécies (ou escolha uma ou mais)"
                 defaultValue={targetSpecies}
             />
-            <Bar options={options} data={getAbundancyPerMonthForSpecies(dataset, targetSpecies, yearsList, targetTransect, targetSection)} />
-            <Alert message="O total de indivíduos da a espécie no mês dividido por número de visitas" type="info" />
+            {targetSpecies.length > 0 ? (
+                targetSpecies.map((species) => (
+                    <div key={species} style={{ marginBottom: '24px' }}>
+                        <h4>{species}</h4>
+                        <Bar options={options} data={getAbundancyPerMonthForSpecies(dataset, [species], yearsList, targetTransect, targetSection)} />
+                    </div>
+                ))
+            ) : (
+                <Bar options={options} data={getAbundancyPerMonthForSpecies(dataset, targetSpecies, yearsList, targetTransect, targetSection)} />
+            )}
+            <Alert message="O total de indivíduos da espécie no mês dividido por número de visitas" type="info" />
         </Card>
     );
 }
