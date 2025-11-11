@@ -1,5 +1,16 @@
 import { Select } from "antd";
 
+interface PageFiltersProps {
+    yearsList: number[];
+    selectedYears: number[];
+    transectsList: string[];
+    targetTransect: string | null;
+    onSelectedYearsChange: (years: number[]) => void;
+    onTargetTransectChange: (transect: string) => void;
+    sectionsList: string[];
+    targetSection: string | null;
+    onTargetSectionChange: (section: string | null) => void;
+}
 
 function PageFilters({
     yearsList,
@@ -11,7 +22,7 @@ function PageFilters({
     sectionsList,
     targetSection,
     onTargetSectionChange
-}) {
+}: PageFiltersProps) {
     const yearOptions = yearsList.map((year) => {
         return ({
             value: year,

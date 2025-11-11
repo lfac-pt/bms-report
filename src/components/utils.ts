@@ -1,24 +1,25 @@
 import moment from "moment";
+import { Dataset } from "../types/dataset";
 
 export function filterDataset(
-    dataset,
-    targetYear,
-    targetTransect,
-    targetSection
-) {
+    dataset: Dataset,
+    targetYear: number,
+    targetTransect: string | null,
+    targetSection: string | null
+): Dataset {
     return dataset.filter(entry => {
         const date = moment(entry.Date, "DD-MM-YYYY");
 
         return (
             date.year() === targetYear &&
-            entry["Transect ID"] === targetTransect &&
+            (!targetTransect || entry["Transect ID"] === targetTransect) &&
             (!targetSection || targetSection === entry["Section Name"])
         );
     });
 }
 
-export function getAllSpecies(dataset) {
-    const speciesSet = new Set();
+export function getAllSpecies(dataset: Dataset): string[] {
+    const speciesSet = new Set<string>();
 
     for (const entry of dataset) {
         const species = entry["Preferred Species Name"];
@@ -31,8 +32,8 @@ export function getAllSpecies(dataset) {
     return [...speciesSet];
 }
 
-export function getDiversityTotal(dataset) {
-    let species = new Set();
+export function getDiversityTotal(dataset: Dataset): number {
+    let species = new Set<string>();
 
     for (const entry of dataset) {
         species.add(entry["Preferred Species Name"]);
@@ -55,8 +56,8 @@ export function getDiversityTotal(dataset) {
     return species.size;
 }
 
-export function getVisitsCount(dataset) {
-    const dates = new Set();
+export function getVisitsCount(dataset: Dataset): number {
+    const dates = new Set<string>();
 
     for (const entry of dataset) {
         dates.add(entry.Date);
@@ -91,63 +92,75 @@ const SERIES_COLORS = [
     "#b33dc6",
 ];
 
-function abundancyPerMonthAllSpecies(dataset, year, targetTransect, targetSpecies, targetSection) {
+function abundancyPerMonthAllSpecies(
+    dataset: Dataset,
+    year: number,
+    targetTransect: string | null,
+    targetSpecies: string[],
+    targetSection: string | null
+): number[] {
     let abundancyPerMonth = LABELS_MONTHS.map(() => 0);
-    let visitsPerMonth = LABELS_MONTHS.map(() => new Set());
+    const visitsPerMonthSets = LABELS_MONTHS.map(() => new Set<string>());
     const filteredDataset = filterDataset(dataset, year, targetTransect, targetSection);
 
     for (const entry of filteredDataset) {
         const date = moment(entry.Date, "DD-MM-YYYY");
 
         if (targetSpecies.length === 0 || targetSpecies.includes(entry["Preferred Species Name"])) {
-            visitsPerMonth[date.month()].add(entry.Date);
+            visitsPerMonthSets[date.month()].add(entry.Date);
 
             abundancyPerMonth[date.month()] += entry["Abundance count"];
         }
     }
 
-    visitsPerMonth = visitsPerMonth.map(set => set.size);
+    const visitsPerMonth = visitsPerMonthSets.map(set => set.size);
 
     return abundancyPerMonth.map((count, index) => {
         return count / visitsPerMonth[index];
     });
 }
 
-export function getAbundancyPerMonthForSpecies(dataset, targetSpecies, yearsList, targetTransect, targetSection) {
+export function getAbundancyPerMonthForSpecies(
+    dataset: Dataset,
+    targetSpecies: string[],
+    yearsList: number[],
+    targetTransect: string | null,
+    targetSection: string | null
+) {
     return {
-            labels: LABELS_MONTHS,
-            datasets: yearsList.map((year, index) => {
-                return {
-                    label: year,
-                    data: abundancyPerMonthAllSpecies(dataset, year, targetTransect, targetSpecies, targetSection),
-                    backgroundColor: SERIES_COLORS[index],
-                };
-            })
-        };
+        labels: LABELS_MONTHS,
+        datasets: yearsList.map((year, index) => {
+            return {
+                label: year.toString(),
+                data: abundancyPerMonthAllSpecies(dataset, year, targetTransect, targetSpecies, targetSection),
+                backgroundColor: SERIES_COLORS[index],
+            };
+        })
+    };
 }
 
-export function getAvgAbundancy(dataset) {
+export function getAvgAbundancy(dataset: Dataset): string {
     let abundancyPerMonth = LABELS_MONTHS.map(() => 0);
-    let visitsPerMonth = LABELS_MONTHS.map(() => new Set());
+    const visitsPerMonthSets = LABELS_MONTHS.map(() => new Set<string>());
 
     for (const entry of dataset) {
         const date = moment(entry.Date, "DD-MM-YYYY");
 
-        visitsPerMonth[date.month()].add(entry.Date);
+        visitsPerMonthSets[date.month()].add(entry.Date);
 
         abundancyPerMonth[date.month()] += entry["Abundance count"];
     }
 
-    visitsPerMonth = visitsPerMonth.map(set => set.size);
+    const visitsPerMonth = visitsPerMonthSets.map(set => set.size);
 
-    abundancyPerMonth = abundancyPerMonth
+    const avgAbundancyPerMonth = abundancyPerMonth
         .map((count, index) => {
             return count / visitsPerMonth[index];
         })
         .filter(num => num >= 0);
 
     return (
-        abundancyPerMonth.reduce((memo, num) => memo + num, 0) /
-        abundancyPerMonth.length
+        avgAbundancyPerMonth.reduce((memo, num) => memo + num, 0) /
+        avgAbundancyPerMonth.length
     ).toFixed(1);
 }

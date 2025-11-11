@@ -1,10 +1,15 @@
-import { parse } from 'papaparse';
+import { parse, ParseResult } from 'papaparse';
 import { Upload } from "antd";
 import { InboxOutlined } from '@ant-design/icons';
+import { ButterflyRecord } from '../types/dataset';
 
 const { Dragger } = Upload;
 
-function Uploader({ onUpload }) {
+interface UploaderProps {
+    onUpload: (results: ParseResult<ButterflyRecord>) => void;
+}
+
+function Uploader({ onUpload }: UploaderProps) {
     const props = {
         name: 'file',
         accept: "csv",
@@ -12,8 +17,8 @@ function Uploader({ onUpload }) {
         action: '',
         maxCount: 1,
         showUploadList: false,
-        customRequest({ file }) {
-            parse(file, {
+        customRequest({ file }: { file: any }) {
+            parse<ButterflyRecord>(file, {
                 download: true,
                 complete: onUpload,
                 header: true,

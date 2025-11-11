@@ -2,12 +2,13 @@ import { Bar } from "react-chartjs-2";
 import moment from "moment";
 import { filterDataset } from "../utils";
 import { Card, Alert } from "antd";
+import { Dataset } from "../../types/dataset";
 
 export const options = {
     responsive: true,
     plugins: {
         legend: {
-            position: 'top',
+            position: 'top' as const,
         },
     },
 };
@@ -38,10 +39,10 @@ const SERIES_COLORS = [
     "#b33dc6",
 ];
 
-function getDiversityForYear(dataset, year, targetTransect, targetSection) {
+function getDiversityForYear(dataset: Dataset, year: number, targetTransect: string | null, targetSection: string | null): number[] {
     const filteredDataset = filterDataset(dataset, year, targetTransect, targetSection);
 
-    let diversityPerMonth = LABELS_MONTHS.map(() => new Set());
+    let diversityPerMonth = LABELS_MONTHS.map(() => new Set<string>());
 
     for (const entry of filteredDataset) {
         const date = moment(entry.Date, "DD-MM-YYYY");
@@ -71,12 +72,12 @@ function getDiversityForYear(dataset, year, targetTransect, targetSection) {
     });
 }
 
-function getDiversityPerMonthForSpecies(dataset, yearsList, targetTransect, targetSection) {
+function getDiversityPerMonthForSpecies(dataset: Dataset, yearsList: number[], targetTransect: string | null, targetSection: string | null) {
     return {
         labels: LABELS_MONTHS,
         datasets: yearsList.map((year, index) => {
             return {
-                label: year,
+                label: year.toString(),
                 data: getDiversityForYear(dataset, year, targetTransect, targetSection),
                 backgroundColor: SERIES_COLORS[index],
             };
@@ -84,7 +85,14 @@ function getDiversityPerMonthForSpecies(dataset, yearsList, targetTransect, targ
     };
 }
 
-function DiversityPerMonth({ dataset, yearsList, targetTransect, targetSection }) {
+interface DiversityPerMonthProps {
+    dataset: Dataset;
+    yearsList: number[];
+    targetTransect: string | null;
+    targetSection: string | null;
+}
+
+function DiversityPerMonth({ dataset, yearsList, targetTransect, targetSection }: DiversityPerMonthProps) {
     const anundanciaPorMesTitle = `Total de espécies por mês`;
 
     return (

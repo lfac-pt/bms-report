@@ -2,9 +2,10 @@ import React, { useRef, useState } from 'react';
 import { SearchOutlined } from '@ant-design/icons';
 import Highlighter from 'react-highlight-words';
 import { Card, Table, Alert, Button, Input, Space } from "antd";
+import { Dataset } from "../../types/dataset";
 
-function getVisitsCountByYear(dataset, year) {
-	const dates = new Set();
+function getVisitsCountByYear(dataset: Dataset, year: number): number {
+	const dates = new Set<string>();
 
 	for (const entry of dataset) {
 		const entryYear = new Date(entry.Date).getFullYear();
@@ -17,8 +18,8 @@ function getVisitsCountByYear(dataset, year) {
 }
 
 // Deduplicate
-function getAllSpecies(dataset) {
-	const speciesSet = new Set();
+function getAllSpecies(dataset: Dataset): string[] {
+	const speciesSet = new Set<string>();
 
 	for (const entry of dataset) {
 		const species = entry['Preferred Species Name'];
@@ -31,9 +32,25 @@ function getAllSpecies(dataset) {
 	return [...speciesSet];
 }
 
-function calculateRows(dataset, yearsList) {
+interface YearData {
+	display: string;
+	frequencyAbs: number;
+	abundancy: number;
+}
+
+interface DataRow {
+	key: string;
+	species: string;
+	[year: number]: YearData;
+}
+
+function calculateRows(dataset: Dataset, yearsList: number[]): DataRow[] {
 	const allSpecies = getAllSpecies(dataset);
-	const dataByYear = {};
+	const dataByYear: Record<number, {
+		totalVisits: number;
+		frequencyMap: Record<string, Set<string>>;
+		abundancyMap: Record<string, number>;
+	}> = {};
 
 	// Initialize data structure for each year
 	yearsList.forEach(year => {
@@ -66,7 +83,7 @@ function calculateRows(dataset, yearsList) {
 
 	// Build rows with data for each species across all years
 	return allSpecies.map((species) => {
-		const row = {
+		const row: any = {
 			key: species,
 			species: species,
 		};
@@ -92,7 +109,14 @@ function calculateRows(dataset, yearsList) {
 	});
 }
 
-function AbsoluteFrequencyAndAbundancy({ dataset, yearsList, targetTransect, targetSection }) {
+interface AbsoluteFrequencyAndAbundancyProps {
+	dataset: Dataset;
+	yearsList: number[];
+	targetTransect: string | null;
+	targetSection: string | null;
+}
+
+function AbsoluteFrequencyAndAbundancy({ dataset, yearsList, targetTransect, targetSection }: AbsoluteFrequencyAndAbundancyProps) {
 	// Filter dataset by transect and section
 	const filteredDataset = dataset.filter(entry => {
 		const matchesTransect = !targetTransect || entry["Transect ID"] === targetTransect;
@@ -100,27 +124,27 @@ function AbsoluteFrequencyAndAbundancy({ dataset, yearsList, targetTransect, tar
 		return matchesTransect && matchesSection;
 	});
 	const anundanciaPorMesTitle = `Frequência e abundância`;
-	const [searchText, setSearchText] = useState('');
-	const [searchedColumn, setSearchedColumn] = useState('');
-	const searchInput = useRef(null);
+	const [searchText, setSearchText] = useState<string>('');
+	const [searchedColumn, setSearchedColumn] = useState<string>('');
+	const searchInput = useRef<any>(null);
 
 	const handleSearch = (
-		selectedKeys,
-		confirm,
-		dataIndex,
+		selectedKeys: React.Key[],
+		confirm: () => void,
+		dataIndex: string,
 	) => {
 		confirm();
-		setSearchText(selectedKeys[0]);
+		setSearchText(selectedKeys[0] as string);
 		setSearchedColumn(dataIndex);
 	};
 
-	const handleReset = (clearFilters) => {
+	const handleReset = (clearFilters: () => void) => {
 		clearFilters();
 		setSearchText('');
 	};
 
-	const getColumnSearchProps = (dataIndex) => ({
-		filterDropdown: ({ setSelectedKeys, selectedKeys, confirm, clearFilters, close }) => (
+	const getColumnSearchProps = (dataIndex: string): any => ({
+		filterDropdown: ({ setSelectedKeys, selectedKeys, confirm, clearFilters, close }: any) => (
 			<div style={{ padding: 8 }} onKeyDown={(e) => e.stopPropagation()}>
 				<Input
 					ref={searchInput}
@@ -170,20 +194,20 @@ function AbsoluteFrequencyAndAbundancy({ dataset, yearsList, targetTransect, tar
 				</Space>
 			</div>
 		),
-		filterIcon: (filtered) => (
+		filterIcon: (filtered: boolean) => (
 			<SearchOutlined style={{ color: filtered ? '#1677ff' : undefined }} />
 		),
-		onFilter: (value, record) =>
+		onFilter: (value: any, record: any) =>
 			record[dataIndex]
 				.toString()
 				.toLowerCase()
 				.includes((value).toLowerCase()),
-		onFilterDropdownOpenChange: (visible) => {
+		onFilterDropdownOpenChange: (visible: boolean) => {
 			if (visible) {
 				setTimeout(() => searchInput.current?.select(), 100);
 			}
 		},
-		render: (text) =>
+		render: (text: any) =>
 			searchedColumn === dataIndex ? (
 				<Highlighter
 					highlightStyle={{ backgroundColor: '#ffc069', padding: 0 }}
@@ -197,7 +221,7 @@ function AbsoluteFrequencyAndAbundancy({ dataset, yearsList, targetTransect, tar
 	});
 
 	// Build columns dynamically based on yearsList
-	const columns = [
+	const columns: any[] = [
 		{
 			title: 'Espécie',
 			dataIndex: 'species',
@@ -206,10 +230,10 @@ function AbsoluteFrequencyAndAbundancy({ dataset, yearsList, targetTransect, tar
 		},
 		...yearsList.map(year => ({
 			title: year.toString(),
-			dataIndex: year,
-			key: year,
-			render: (data) => data ? data.display : '0% / 0',
-			sorter: (a, b) => {
+			dataIndex: year.toString(),
+			key: year.toString(),
+			render: (data: any) => data ? data.display : '0% / 0',
+			sorter: (a: any, b: any) => {
 				const aData = a[year] || { frequencyAbs: 0, abundancy: 0 };
 				const bData = b[year] || { frequencyAbs: 0, abundancy: 0 };
 				// Sort by frequency first, then by abundancy

@@ -6,16 +6,33 @@ import {
   getAvgAbundancy
 } from "../utils";
 import { Card, Table, Tag, Tooltip } from "antd";
+import { Dataset } from "../../types/dataset";
 
-function getItemsNotInSet(list, set) {
+function getItemsNotInSet(list: string[], set: Set<string>): string[] {
   return list.filter(item => !set.has(item));
 }
 
-function sum(rows, attr) {
-  return rows.reduce((memo, row) => memo + row[attr], 0);
+interface YearRow {
+  year: number | string;
+  visitsCount: number;
+  diversityTotal: number;
+  avgAbundancy?: string;
+  newSpecies: string[];
 }
 
-const TagList = ({ tags, maxVisible = 10 }) => {
+function sum(rows: YearRow[], attr: keyof YearRow): number {
+  return rows.reduce((memo, row) => {
+    const value = row[attr];
+    return memo + (typeof value === 'number' ? value : 0);
+  }, 0);
+}
+
+interface TagListProps {
+  tags: string[];
+  maxVisible?: number;
+}
+
+const TagList = ({ tags, maxVisible = 10 }: TagListProps) => {
   const visibleTags = tags.slice(0, maxVisible);
   const hiddenTags = tags.slice(maxVisible);
 
@@ -43,10 +60,10 @@ const TagList = ({ tags, maxVisible = 10 }) => {
   );
 };
 
-function calculateRows(dataset, yearsList, transect, section) {
-  const speciesListByYear = {};
+function calculateRows(dataset: Dataset, yearsList: number[], transect: string | null, section: string | null): YearRow[] {
+  const speciesListByYear: Record<number, string[]> = {};
 
-  const rows = yearsList.map(year => {
+  const rows: YearRow[] = yearsList.map(year => {
     const filteredDataset = filterDataset(dataset, year, transect, section);
     const visitsCount = getVisitsCount(filteredDataset);
     const diversityTotal = getDiversityTotal(filteredDataset);
@@ -58,11 +75,12 @@ function calculateRows(dataset, yearsList, transect, section) {
       year,
       visitsCount,
       diversityTotal,
-      avgAbundancy
+      avgAbundancy,
+      newSpecies: []
     };
   });
 
-  const speciesSoFar = new Set();
+  const speciesSoFar = new Set<string>();
 
   yearsList.forEach((year, index) => {
     const newSpecies = getItemsNotInSet(speciesListByYear[year], speciesSoFar);
@@ -82,7 +100,14 @@ function calculateRows(dataset, yearsList, transect, section) {
   return rows;
 }
 
-function YearComparison({ dataset, yearsList, transect, section }) {
+interface YearComparisonProps {
+  dataset: Dataset;
+  yearsList: number[];
+  transect: string | null;
+  section: string | null;
+}
+
+function YearComparison({ dataset, yearsList, transect, section }: YearComparisonProps) {
   const columns = [
     {
       title: "Ano",
@@ -103,7 +128,7 @@ function YearComparison({ dataset, yearsList, transect, section }) {
       title: "Espécies novas",
       dataIndex: "newSpecies",
       key: "newSpecies",
-      render: (_, { newSpecies }) => <TagList tags={newSpecies} />
+      render: (_: any, { newSpecies }: YearRow) => <TagList tags={newSpecies} />
     },
     {
       title: "Abundância média p/ visita",

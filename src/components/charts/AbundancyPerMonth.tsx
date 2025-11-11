@@ -2,18 +2,26 @@ import { Bar } from 'react-chartjs-2';
 import { useState } from 'react';
 import { Select, Card, Alert } from "antd";
 import { getAllSpecies, getAbundancyPerMonthForSpecies } from '../utils';
+import { Dataset } from '../../types/dataset';
 
 export const options = {
     responsive: true,
     plugins: {
         legend: {
-            position: 'top',
+            position: 'top' as const,
         },
     },
 };
 
-function AbundancyPerMonth({ dataset, yearsList, targetTransect, targetSection }) {
-    const [targetSpecies, setTargetSpecies] = useState([]);
+interface AbundancyPerMonthProps {
+    dataset: Dataset;
+    yearsList: number[];
+    targetTransect: string | null;
+    targetSection: string | null;
+}
+
+function AbundancyPerMonth({ dataset, yearsList, targetTransect, targetSection }: AbundancyPerMonthProps) {
+    const [targetSpecies, setTargetSpecies] = useState<string[]>([]);
 
     const speciesList = getAllSpecies(dataset);
 
@@ -24,7 +32,7 @@ function AbundancyPerMonth({ dataset, yearsList, targetTransect, targetSection }
         });
     });
 
-    const onTargetSpeciesChange = (newTargetSpecies) => {
+    const onTargetSpeciesChange = (newTargetSpecies: string[] | null) => {
         setTargetSpecies(!newTargetSpecies ? [] : newTargetSpecies);
     };
 
