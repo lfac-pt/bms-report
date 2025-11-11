@@ -7,7 +7,6 @@ import AbsoluteFrequencyAndAbundancy from "./charts/AbsoluteFrequencyAndAbundanc
 import Uploader from './Uploader';
 import PageFilters from './PageFilters';
 import YearComparison from "./charts/YearComparison";
-import { filterDataset } from './utils';
 
 function getAllYears(dataset) {
     const yearsSet = new Set();
