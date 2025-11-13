@@ -3,7 +3,7 @@ import {
   getVisitsCount,
   getDiversityTotal,
   getAllSpecies,
-  getAvgAbundancy
+  getAvgAbundancy,
 } from "../utils";
 import { Card, Table, Tag, Tooltip } from "antd";
 import { Dataset } from "../../types/dataset";
@@ -23,7 +23,7 @@ interface YearRow {
 function sum(rows: YearRow[], attr: keyof YearRow): number {
   return rows.reduce((memo, row) => {
     const value = row[attr];
-    return memo + (typeof value === 'number' ? value : 0);
+    return memo + (typeof value === "number" ? value : 0);
   }, 0);
 }
 
@@ -60,7 +60,12 @@ const TagList = ({ tags, maxVisible = 10 }: TagListProps) => {
   );
 };
 
-function calculateRows(dataset: Dataset, yearsList: number[], transect: string | null, section: string | null): YearRow[] {
+function calculateRows(
+  dataset: Dataset,
+  yearsList: number[],
+  transect: string | null,
+  section: string | null
+): YearRow[] {
   const speciesListByYear: Record<number, string[]> = {};
 
   const rows: YearRow[] = yearsList.map(year => {
@@ -76,7 +81,7 @@ function calculateRows(dataset: Dataset, yearsList: number[], transect: string |
       visitsCount,
       diversityTotal,
       avgAbundancy,
-      newSpecies: []
+      newSpecies: [],
     };
   });
 
@@ -94,7 +99,7 @@ function calculateRows(dataset: Dataset, yearsList: number[], transect: string |
     year: "Total",
     visitsCount: sum(rows, "visitsCount"),
     diversityTotal: speciesSoFar.size,
-    newSpecies: []
+    newSpecies: [],
   });
 
   return rows;
@@ -128,7 +133,7 @@ function YearComparison({ dataset, yearsList, transect, section }: YearCompariso
       title: "Espécies novas",
       dataIndex: "newSpecies",
       key: "newSpecies",
-      render: (_: any, { newSpecies }: YearRow) => <TagList tags={newSpecies} />
+      render: (_: any, { newSpecies }: YearRow) => <TagList tags={newSpecies} />,
     },
     {
       title: "Abundância média p/ visita",
