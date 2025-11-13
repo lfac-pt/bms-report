@@ -4,7 +4,7 @@ import Highlighter from "react-highlight-words";
 import { Card, Table, Alert, Button, Input, Space } from "antd";
 import { Dataset } from "../../types/dataset";
 
-function getVisitsCountByYear(dataset: Dataset, year: number): number {
+export function getVisitsCountByYear(dataset: Dataset, year: number): number {
   const dates = new Set<string>();
 
   for (const entry of dataset) {
@@ -18,7 +18,7 @@ function getVisitsCountByYear(dataset: Dataset, year: number): number {
 }
 
 // Deduplicate
-function getAllSpecies(dataset: Dataset): string[] {
+export function getAllSpecies(dataset: Dataset): string[] {
   const speciesSet = new Set<string>();
 
   for (const entry of dataset) {
@@ -32,28 +32,117 @@ function getAllSpecies(dataset: Dataset): string[] {
   return [...speciesSet];
 }
 
-interface YearData {
+export interface YearData {
   display: string;
   frequencyAbs: number;
   abundancy: number;
 }
 
-interface DataRow {
+export interface ChangeData {
+  display: string;
+  percentChange: number | null;
+}
+
+export interface DataRow {
   key: string;
   species: string;
+  abundancyChange?: ChangeData;
+  frequencyChange?: ChangeData;
   [year: number]: YearData;
 }
 
-function calculateRows(dataset: Dataset, yearsList: number[]): DataRow[] {
+interface YearDataBySpecies {
+  totalVisits: number;
+  frequencyMap: Record<string, Set<string>>;
+  abundancyMap: Record<string, number>;
+}
+
+export function calculateYearOverYearChanges(
+  species: string,
+  yearsList: number[],
+  dataByYear: Record<number, YearDataBySpecies>
+): { abundancyChange: ChangeData; frequencyChange: ChangeData } | null {
+  if (yearsList.length < 2) {
+    return null;
+  }
+
+  const currentYear = yearsList[yearsList.length - 1];
+  const previousYear = yearsList[yearsList.length - 2];
+
+  const currentAbundancy = dataByYear[currentYear].abundancyMap[species] || 0;
+  const previousAbundancy = dataByYear[previousYear].abundancyMap[species] || 0;
+
+  const currentFrequencySet = dataByYear[currentYear].frequencyMap[species];
+  const previousFrequencySet = dataByYear[previousYear].frequencyMap[species];
+  const currentFrequencyAbs = currentFrequencySet ? currentFrequencySet.size : 0;
+  const previousFrequencyAbs = previousFrequencySet ? previousFrequencySet.size : 0;
+
+  // Calculate frequency percentages for both years
+  const currentTotalVisits = dataByYear[currentYear].totalVisits;
+  const previousTotalVisits = dataByYear[previousYear].totalVisits;
+
+  const currentFrequencyPercent =
+    currentTotalVisits > 0 ? (currentFrequencyAbs / currentTotalVisits) * 100 : 0;
+  const previousFrequencyPercent =
+    previousTotalVisits > 0 ? (previousFrequencyAbs / previousTotalVisits) * 100 : 0;
+
+  // Calculate abundance change
+  let abundancyDisplay: string;
+  let abundancyPercentChange: number | null;
+
+  if (currentAbundancy === 0 && previousAbundancy === 0) {
+    abundancyDisplay = "NA";
+    abundancyPercentChange = null;
+  } else if (previousAbundancy === 0) {
+    abundancyDisplay = "NA";
+    abundancyPercentChange = null;
+  } else if (currentAbundancy === 0) {
+    abundancyDisplay = "-100%";
+    abundancyPercentChange = -100;
+  } else {
+    abundancyPercentChange = ((currentAbundancy - previousAbundancy) / previousAbundancy) * 100;
+    const sign = abundancyPercentChange > 0 ? "+" : "";
+    abundancyDisplay = `${sign}${abundancyPercentChange.toFixed(0)}%`;
+  }
+
+  // Calculate frequency change using absolute difference in percentage points
+  let frequencyDisplay: string;
+  let frequencyPercentChange: number | null;
+
+  if (currentFrequencyPercent === 0 && previousFrequencyPercent === 0) {
+    // Species not present in either year
+    frequencyDisplay = "NA";
+    frequencyPercentChange = null;
+  } else if (previousFrequencyPercent === 0) {
+    // Species only appears in current year
+    frequencyDisplay = "NA";
+    frequencyPercentChange = null;
+  } else if (currentFrequencyPercent === 0) {
+    // Species only appears in previous year (100% decrease)
+    frequencyDisplay = "-100%";
+    frequencyPercentChange = -100;
+  } else {
+    // Absolute difference in percentage points
+    frequencyPercentChange = currentFrequencyPercent - previousFrequencyPercent;
+    const sign = frequencyPercentChange > 0 ? "+" : "";
+    frequencyDisplay = `${sign}${frequencyPercentChange.toFixed(0)}%`;
+  }
+
+  return {
+    abundancyChange: {
+      display: abundancyDisplay,
+      percentChange: abundancyPercentChange,
+    },
+    frequencyChange: {
+      display: frequencyDisplay,
+      percentChange: frequencyPercentChange,
+    },
+  };
+}
+
+export function calculateRows(dataset: Dataset, yearsList: number[]): DataRow[] {
   const allSpecies = getAllSpecies(dataset);
-  const dataByYear: Record<
-    number,
-    {
-      totalVisits: number;
-      frequencyMap: Record<string, Set<string>>;
-      abundancyMap: Record<string, number>;
-    }
-  > = {};
+  const dataByYear: Record<number, YearDataBySpecies> = {};
 
   // Initialize data structure for each year
   yearsList.forEach(year => {
@@ -106,6 +195,13 @@ function calculateRows(dataset: Dataset, yearsList: number[]): DataRow[] {
         abundancy: abundancy,
       };
     });
+
+    // Calculate year-over-year changes if there are at least 2 years
+    const changes = calculateYearOverYearChanges(species, yearsList, dataByYear);
+    if (changes) {
+      row.abundancyChange = changes.abundancyChange;
+      row.frequencyChange = changes.frequencyChange;
+    }
 
     return row;
   });
@@ -243,6 +339,63 @@ function AbsoluteFrequencyAndAbundancy({
         return aData.abundancy - bData.abundancy;
       },
     })),
+    // Add year-over-year change columns if there are at least 2 years (as last columns)
+    ...(yearsList.length >= 2
+      ? [
+          {
+            title: "Dif. Frequência",
+            dataIndex: "frequencyChange",
+            key: "frequencyChange",
+            render: (data: any) => {
+              if (!data) return "-";
+              const { display, percentChange } = data;
+
+              // Apply color coding for changes > 10%
+              let style: React.CSSProperties = {};
+              if (percentChange !== null) {
+                if (percentChange > 10) {
+                  style = { color: "green", fontWeight: "bold" };
+                } else if (percentChange < -10) {
+                  style = { color: "red", fontWeight: "bold" };
+                }
+              }
+
+              return <span style={style}>{display}</span>;
+            },
+            sorter: (a: any, b: any) => {
+              const aChange = a.frequencyChange?.percentChange ?? 0;
+              const bChange = b.frequencyChange?.percentChange ?? 0;
+              return aChange - bChange;
+            },
+          },
+          {
+            title: "Var. Abundância",
+            dataIndex: "abundancyChange",
+            key: "abundancyChange",
+            render: (data: any) => {
+              if (!data) return "-";
+              const { display, percentChange } = data;
+
+              // Apply color coding for changes > 10%
+              let style: React.CSSProperties = {};
+              if (percentChange !== null) {
+                if (percentChange > 10) {
+                  style = { color: "green", fontWeight: "bold" };
+                } else if (percentChange < -10) {
+                  style = { color: "red", fontWeight: "bold" };
+                }
+              }
+
+              return <span style={style}>{display}</span>;
+            },
+            sorter: (a: any, b: any) => {
+              const aChange = a.abundancyChange?.percentChange ?? 0;
+              const bChange = b.abundancyChange?.percentChange ?? 0;
+              return aChange - bChange;
+            },
+          },
+        ]
+      : []),
   ];
 
   return (
