@@ -402,11 +402,13 @@ function AbsoluteFrequencyAndAbundancy({
 
   return (
     <Card title={anundanciaPorMesTitle} size="small">
-      <Table
-        dataSource={calculateRows(filteredDataset, yearsList)}
-        columns={columns}
-        pagination={{ showSizeChanger: true }}
-      />
+      <div data-table-export>
+        <Table
+          dataSource={calculateRows(filteredDataset, yearsList)}
+          columns={columns}
+          pagination={{ showSizeChanger: true, defaultPageSize: 50 }}
+        />
+      </div>
       <Alert
         message="Frenquência é a percentagem de visitas em que foi avistada. Abundância é o total de indivíduos contados. Formato: Frequência% / Abundância"
         type="info"

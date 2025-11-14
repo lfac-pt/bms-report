@@ -133,24 +133,30 @@ function MyApp() {
             targetSection={targetSection}
             onTargetSectionChange={onTargetSectionChange}
           />
-          <YearComparison
-            yearsList={selectedYears}
-            dataset={dataset}
-            transect={targetTransect}
-            section={targetSection}
-          />
-          <AbundancyPerMonth
-            dataset={dataset}
-            yearsList={selectedYears}
-            targetTransect={targetTransect}
-            targetSection={targetSection}
-          />
-          <DiversityPerMonth
-            dataset={dataset}
-            yearsList={selectedYears}
-            targetTransect={targetTransect}
-            targetSection={targetSection}
-          />
+          <div data-chart-export data-chart-title="Comparação entre Anos">
+            <YearComparison
+              yearsList={selectedYears}
+              dataset={dataset}
+              transect={targetTransect}
+              section={targetSection}
+            />
+          </div>
+          <div data-chart-export data-chart-title="Abundância por Mês">
+            <AbundancyPerMonth
+              dataset={dataset}
+              yearsList={selectedYears}
+              targetTransect={targetTransect}
+              targetSection={targetSection}
+            />
+          </div>
+          <div data-chart-export data-chart-title="Diversidade por Mês">
+            <DiversityPerMonth
+              dataset={dataset}
+              yearsList={selectedYears}
+              targetTransect={targetTransect}
+              targetSection={targetSection}
+            />
+          </div>
           <AbsoluteFrequencyAndAbundancy
             dataset={dataset}
             yearsList={selectedYears}
