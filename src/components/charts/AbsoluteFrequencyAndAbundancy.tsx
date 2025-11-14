@@ -2,13 +2,15 @@ import React, { useRef, useState } from "react";
 import { SearchOutlined } from "@ant-design/icons";
 import Highlighter from "react-highlight-words";
 import { Card, Table, Alert, Button, Input, Space } from "antd";
+import moment from "moment";
 import { Dataset } from "../../types/dataset";
 
 export function getVisitsCountByYear(dataset: Dataset, year: number): number {
   const dates = new Set<string>();
 
   for (const entry of dataset) {
-    const entryYear = new Date(entry.Date).getFullYear();
+    const date = moment(entry.Date, "DD/MM/YYYY");
+    const entryYear = date.year();
     if (entryYear === year) {
       dates.add(entry.Date);
     }
@@ -156,7 +158,7 @@ export function calculateRows(dataset: Dataset, yearsList: number[]): DataRow[] 
   // Process dataset entries
   for (const entry of dataset) {
     const species = entry["Preferred Species Name"];
-    const entryYear = new Date(entry.Date).getFullYear();
+    const entryYear = moment(entry.Date, "DD/MM/YYYY").year();
 
     if (dataByYear[entryYear]) {
       // Track frequency (unique dates per species per year)

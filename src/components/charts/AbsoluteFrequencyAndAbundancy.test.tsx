@@ -42,10 +42,10 @@ describe("AbsoluteFrequencyAndAbundancy", () => {
 
     it("should count unique dates for a given year", () => {
       const dataset: Dataset = [
-        createMockRecord("2023-01-01", "Pieris rapae", 5),
-        createMockRecord("2023-01-01", "Vanessa atalanta", 3),
-        createMockRecord("2023-01-02", "Pieris rapae", 2),
-        createMockRecord("2022-01-01", "Pieris rapae", 4),
+        createMockRecord("01/01/2023", "Pieris rapae", 5),
+        createMockRecord("01/01/2023", "Vanessa atalanta", 3),
+        createMockRecord("02/01/2023", "Pieris rapae", 2),
+        createMockRecord("01/01/2022", "Pieris rapae", 4),
       ];
 
       expect(getVisitsCountByYear(dataset, 2023)).toBe(2); // 2 unique dates in 2023
@@ -53,7 +53,7 @@ describe("AbsoluteFrequencyAndAbundancy", () => {
     });
 
     it("should return 0 for year with no data", () => {
-      const dataset: Dataset = [createMockRecord("2023-01-01", "Pieris rapae", 5)];
+      const dataset: Dataset = [createMockRecord("01/01/2023", "Pieris rapae", 5)];
       expect(getVisitsCountByYear(dataset, 2024)).toBe(0);
     });
   });
@@ -66,10 +66,10 @@ describe("AbsoluteFrequencyAndAbundancy", () => {
 
     it("should return unique species with binomial names only", () => {
       const dataset: Dataset = [
-        createMockRecord("2023-01-01", "Pieris rapae", 5),
-        createMockRecord("2023-01-01", "Pieris rapae", 3),
-        createMockRecord("2023-01-02", "Vanessa atalanta", 2),
-        createMockRecord("2023-01-03", "Single", 1), // Should be excluded (not binomial)
+        createMockRecord("01/01/2023", "Pieris rapae", 5),
+        createMockRecord("01/01/2023", "Pieris rapae", 3),
+        createMockRecord("02/01/2023", "Vanessa atalanta", 2),
+        createMockRecord("03/01/2023", "Single", 1), // Should be excluded (not binomial)
       ];
 
       const result = getAllSpecies(dataset);
@@ -81,9 +81,9 @@ describe("AbsoluteFrequencyAndAbundancy", () => {
 
     it("should deduplicate species", () => {
       const dataset: Dataset = [
-        createMockRecord("2023-01-01", "Pieris rapae", 5),
-        createMockRecord("2023-01-02", "Pieris rapae", 3),
-        createMockRecord("2023-01-03", "Pieris rapae", 2),
+        createMockRecord("01/01/2023", "Pieris rapae", 5),
+        createMockRecord("02/01/2023", "Pieris rapae", 3),
+        createMockRecord("03/01/2023", "Pieris rapae", 2),
       ];
 
       const result = getAllSpecies(dataset);
@@ -327,9 +327,9 @@ describe("AbsoluteFrequencyAndAbundancy", () => {
 
     it("should calculate frequency and abundancy for single year", () => {
       const dataset: Dataset = [
-        createMockRecord("2023-01-01", "Pieris rapae", 5),
-        createMockRecord("2023-01-01", "Vanessa atalanta", 3),
-        createMockRecord("2023-01-02", "Pieris rapae", 2),
+        createMockRecord("01/01/2023", "Pieris rapae", 5),
+        createMockRecord("01/01/2023", "Vanessa atalanta", 3),
+        createMockRecord("02/01/2023", "Pieris rapae", 2),
       ];
 
       const result = calculateRows(dataset, [2023]);
@@ -354,7 +354,7 @@ describe("AbsoluteFrequencyAndAbundancy", () => {
     });
 
     it("should not include change columns for single year", () => {
-      const dataset: Dataset = [createMockRecord("2023-01-01", "Pieris rapae", 5)];
+      const dataset: Dataset = [createMockRecord("01/01/2023", "Pieris rapae", 5)];
 
       const result = calculateRows(dataset, [2023]);
 
@@ -365,11 +365,11 @@ describe("AbsoluteFrequencyAndAbundancy", () => {
     it("should calculate year-over-year changes for multiple years", () => {
       const dataset: Dataset = [
         // Year 2022: Pieris rapae seen on 2 visits with total abundance 10
-        createMockRecord("2022-01-01", "Pieris rapae", 5),
-        createMockRecord("2022-01-02", "Pieris rapae", 5),
+        createMockRecord("01/01/2022", "Pieris rapae", 5),
+        createMockRecord("02/01/2022", "Pieris rapae", 5),
         // Year 2023: Pieris rapae seen on 2 visits with total abundance 20
-        createMockRecord("2023-01-01", "Pieris rapae", 10),
-        createMockRecord("2023-01-02", "Pieris rapae", 10),
+        createMockRecord("01/01/2023", "Pieris rapae", 10),
+        createMockRecord("02/01/2023", "Pieris rapae", 10),
       ];
 
       const result = calculateRows(dataset, [2022, 2023]);
@@ -388,9 +388,9 @@ describe("AbsoluteFrequencyAndAbundancy", () => {
 
     it("should show NA for species only in current year", () => {
       const dataset: Dataset = [
-        createMockRecord("2022-01-01", "Pieris rapae", 5),
-        createMockRecord("2023-01-01", "Pieris rapae", 5),
-        createMockRecord("2023-01-01", "Vanessa atalanta", 3), // New in 2023
+        createMockRecord("01/01/2022", "Pieris rapae", 5),
+        createMockRecord("01/01/2023", "Pieris rapae", 5),
+        createMockRecord("01/01/2023", "Vanessa atalanta", 3), // New in 2023
       ];
 
       const result = calculateRows(dataset, [2022, 2023]);
@@ -409,9 +409,9 @@ describe("AbsoluteFrequencyAndAbundancy", () => {
 
     it("should show -100% for species that disappeared", () => {
       const dataset: Dataset = [
-        createMockRecord("2022-01-01", "Pieris rapae", 5),
-        createMockRecord("2022-01-02", "Vanessa atalanta", 3), // Only in 2022
-        createMockRecord("2023-01-01", "Pieris rapae", 5),
+        createMockRecord("01/01/2022", "Pieris rapae", 5),
+        createMockRecord("02/01/2022", "Vanessa atalanta", 3), // Only in 2022
+        createMockRecord("01/01/2023", "Pieris rapae", 5),
       ];
 
       const result = calculateRows(dataset, [2022, 2023]);
@@ -431,27 +431,27 @@ describe("AbsoluteFrequencyAndAbundancy", () => {
     it("should calculate frequency change as absolute difference in percentage points", () => {
       const dataset: Dataset = [
         // Year 2022: 10 total visits, species seen on 5 visits (50%)
-        createMockRecord("2022-01-01", "Pieris rapae", 1),
-        createMockRecord("2022-01-02", "Pieris rapae", 1),
-        createMockRecord("2022-01-03", "Pieris rapae", 1),
-        createMockRecord("2022-01-04", "Pieris rapae", 1),
-        createMockRecord("2022-01-05", "Pieris rapae", 1),
-        createMockRecord("2022-01-06", "Vanessa atalanta", 1),
-        createMockRecord("2022-01-07", "Vanessa atalanta", 1),
-        createMockRecord("2022-01-08", "Vanessa atalanta", 1),
-        createMockRecord("2022-01-09", "Vanessa atalanta", 1),
-        createMockRecord("2022-01-10", "Vanessa atalanta", 1),
+        createMockRecord("01/01/2022", "Pieris rapae", 1),
+        createMockRecord("02/01/2022", "Pieris rapae", 1),
+        createMockRecord("03/01/2022", "Pieris rapae", 1),
+        createMockRecord("04/01/2022", "Pieris rapae", 1),
+        createMockRecord("05/01/2022", "Pieris rapae", 1),
+        createMockRecord("06/01/2022", "Vanessa atalanta", 1),
+        createMockRecord("07/01/2022", "Vanessa atalanta", 1),
+        createMockRecord("08/01/2022", "Vanessa atalanta", 1),
+        createMockRecord("09/01/2022", "Vanessa atalanta", 1),
+        createMockRecord("10/01/2022", "Vanessa atalanta", 1),
         // Year 2023: 10 total visits, species seen on 8 visits (80%)
-        createMockRecord("2023-01-01", "Pieris rapae", 1),
-        createMockRecord("2023-01-02", "Pieris rapae", 1),
-        createMockRecord("2023-01-03", "Pieris rapae", 1),
-        createMockRecord("2023-01-04", "Pieris rapae", 1),
-        createMockRecord("2023-01-05", "Pieris rapae", 1),
-        createMockRecord("2023-01-06", "Pieris rapae", 1),
-        createMockRecord("2023-01-07", "Pieris rapae", 1),
-        createMockRecord("2023-01-08", "Pieris rapae", 1),
-        createMockRecord("2023-01-09", "Vanessa atalanta", 1),
-        createMockRecord("2023-01-10", "Vanessa atalanta", 1),
+        createMockRecord("01/01/2023", "Pieris rapae", 1),
+        createMockRecord("02/01/2023", "Pieris rapae", 1),
+        createMockRecord("03/01/2023", "Pieris rapae", 1),
+        createMockRecord("04/01/2023", "Pieris rapae", 1),
+        createMockRecord("05/01/2023", "Pieris rapae", 1),
+        createMockRecord("06/01/2023", "Pieris rapae", 1),
+        createMockRecord("07/01/2023", "Pieris rapae", 1),
+        createMockRecord("08/01/2023", "Pieris rapae", 1),
+        createMockRecord("09/01/2023", "Vanessa atalanta", 1),
+        createMockRecord("10/01/2023", "Vanessa atalanta", 1),
       ];
 
       const result = calculateRows(dataset, [2022, 2023]);
@@ -468,27 +468,27 @@ describe("AbsoluteFrequencyAndAbundancy", () => {
     it("should handle negative frequency changes", () => {
       const dataset: Dataset = [
         // Year 2022: 10 visits, species seen on 8 (80%)
-        createMockRecord("2022-01-01", "Pieris rapae", 1),
-        createMockRecord("2022-01-02", "Pieris rapae", 1),
-        createMockRecord("2022-01-03", "Pieris rapae", 1),
-        createMockRecord("2022-01-04", "Pieris rapae", 1),
-        createMockRecord("2022-01-05", "Pieris rapae", 1),
-        createMockRecord("2022-01-06", "Pieris rapae", 1),
-        createMockRecord("2022-01-07", "Pieris rapae", 1),
-        createMockRecord("2022-01-08", "Pieris rapae", 1),
-        createMockRecord("2022-01-09", "Vanessa atalanta", 1),
-        createMockRecord("2022-01-10", "Vanessa atalanta", 1),
+        createMockRecord("01/01/2022", "Pieris rapae", 1),
+        createMockRecord("02/01/2022", "Pieris rapae", 1),
+        createMockRecord("03/01/2022", "Pieris rapae", 1),
+        createMockRecord("04/01/2022", "Pieris rapae", 1),
+        createMockRecord("05/01/2022", "Pieris rapae", 1),
+        createMockRecord("06/01/2022", "Pieris rapae", 1),
+        createMockRecord("07/01/2022", "Pieris rapae", 1),
+        createMockRecord("08/01/2022", "Pieris rapae", 1),
+        createMockRecord("09/01/2022", "Vanessa atalanta", 1),
+        createMockRecord("10/01/2022", "Vanessa atalanta", 1),
         // Year 2023: 10 visits, species seen on 5 (50%)
-        createMockRecord("2023-01-01", "Pieris rapae", 1),
-        createMockRecord("2023-01-02", "Pieris rapae", 1),
-        createMockRecord("2023-01-03", "Pieris rapae", 1),
-        createMockRecord("2023-01-04", "Pieris rapae", 1),
-        createMockRecord("2023-01-05", "Pieris rapae", 1),
-        createMockRecord("2023-01-06", "Vanessa atalanta", 1),
-        createMockRecord("2023-01-07", "Vanessa atalanta", 1),
-        createMockRecord("2023-01-08", "Vanessa atalanta", 1),
-        createMockRecord("2023-01-09", "Vanessa atalanta", 1),
-        createMockRecord("2023-01-10", "Vanessa atalanta", 1),
+        createMockRecord("01/01/2023", "Pieris rapae", 1),
+        createMockRecord("02/01/2023", "Pieris rapae", 1),
+        createMockRecord("03/01/2023", "Pieris rapae", 1),
+        createMockRecord("04/01/2023", "Pieris rapae", 1),
+        createMockRecord("05/01/2023", "Pieris rapae", 1),
+        createMockRecord("06/01/2023", "Vanessa atalanta", 1),
+        createMockRecord("07/01/2023", "Vanessa atalanta", 1),
+        createMockRecord("08/01/2023", "Vanessa atalanta", 1),
+        createMockRecord("09/01/2023", "Vanessa atalanta", 1),
+        createMockRecord("10/01/2023", "Vanessa atalanta", 1),
       ];
 
       const result = calculateRows(dataset, [2022, 2023]);
@@ -504,9 +504,9 @@ describe("AbsoluteFrequencyAndAbundancy", () => {
 
     it("should handle species with zero abundancy in previous year", () => {
       const dataset: Dataset = [
-        createMockRecord("2022-01-01", "Vanessa atalanta", 5),
-        createMockRecord("2023-01-01", "Pieris rapae", 10),
-        createMockRecord("2023-01-02", "Vanessa atalanta", 5),
+        createMockRecord("01/01/2022", "Vanessa atalanta", 5),
+        createMockRecord("01/01/2023", "Pieris rapae", 10),
+        createMockRecord("02/01/2023", "Vanessa atalanta", 5),
       ];
 
       const result = calculateRows(dataset, [2022, 2023]);
@@ -521,9 +521,9 @@ describe("AbsoluteFrequencyAndAbundancy", () => {
 
     it("should calculate data for multiple years correctly", () => {
       const dataset: Dataset = [
-        createMockRecord("2021-01-01", "Pieris rapae", 5),
-        createMockRecord("2022-01-01", "Pieris rapae", 10),
-        createMockRecord("2023-01-01", "Pieris rapae", 15),
+        createMockRecord("01/01/2021", "Pieris rapae", 5),
+        createMockRecord("01/01/2022", "Pieris rapae", 10),
+        createMockRecord("01/01/2023", "Pieris rapae", 15),
       ];
 
       const result = calculateRows(dataset, [2021, 2022, 2023]);
