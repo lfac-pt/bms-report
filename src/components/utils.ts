@@ -1,13 +1,15 @@
 import moment from "moment";
 import "moment/locale/pt";
 import { Dataset } from "../types/dataset";
+import endangeredSpeciesEurope from "../utils/endangered_eu";
+import endangeredSpeciesPT from "../utils/endangered_pt";
 
 // Set moment locale to Portuguese
 moment.locale("pt");
 
 export function filterDataset(
   dataset: Dataset,
-  targetYear: number,
+  targetYear: number | null,
   targetTransect: string | null,
   targetSection: string | null
 ): Dataset {
@@ -15,7 +17,7 @@ export function filterDataset(
     const date = moment(entry.Date, "DD-MM-YYYY");
 
     return (
-      date.year() === targetYear &&
+      (!targetYear || date.year() === targetYear) &&
       (!targetTransect || entry["Transect ID"] === targetTransect) &&
       (!targetSection || targetSection === entry["Section Name"])
     );
@@ -175,20 +177,9 @@ export function getAvgAbundancy(dataset: Dataset): string {
 
 export function getTransectFirstObservationDate(
   dataset: Dataset,
-  targetTransect: string | null,
-  targetSection: string | null
 ): string | null {
-  const filteredDataset = dataset.filter(entry => {
-    const matchesTransect = !targetTransect || entry["Transect ID"] === targetTransect;
-    const matchesSection = !targetSection || targetSection === entry["Section Name"];
-
-    return matchesTransect && matchesSection;
-  });
-
-  if (filteredDataset.length === 0) return null;
-
   let earliestDate: moment.Moment | null = null;
-  for (const entry of filteredDataset) {
+  for (const entry of dataset) {
     const date = moment(entry.Date, "DD-MM-YYYY");
     if (!earliestDate || date.isBefore(earliestDate)) {
       earliestDate = date;
@@ -199,21 +190,17 @@ export function getTransectFirstObservationDate(
 }
 
 export function getTransectYearsOfOperation(
-  dataset: Dataset,
-  targetTransect: string | null,
-  targetSection: string | null
+  dataset: Dataset
 ): number {
   // Count unique monitoring seasons (years with March-September records)
   const filteredDataset = dataset.filter(entry => {
-    const matchesTransect = !targetTransect || entry["Transect ID"] === targetTransect;
-    const matchesSection = !targetSection || targetSection === entry["Section Name"];
 
     // Only include records during monitoring season (March-September)
     const date = moment(entry.Date, "DD-MM-YYYY");
     const month = date.month();
     const inMonitoringSeason = month >= 2 && month <= 8;
 
-    return matchesTransect && matchesSection && inMonitoringSeason;
+    return inMonitoringSeason;
   });
 
   const seasonsSet = new Set<number>();
@@ -227,24 +214,20 @@ export function getTransectYearsOfOperation(
 
 export function getAverageVisitsPerYear(
   dataset: Dataset,
-  targetTransect: string | null,
-  targetSection: string | null
 ): number {
   // Only count visits during monitoring season (March-September)
   const filteredDataset = dataset.filter(entry => {
-    const matchesTransect = !targetTransect || entry["Transect ID"] === targetTransect;
-    const matchesSection = !targetSection || targetSection === entry["Section Name"];
 
     // Only include records during monitoring season
     const date = moment(entry.Date, "DD-MM-YYYY");
     const month = date.month();
     const inMonitoringSeason = month >= 2 && month <= 8;
 
-    return matchesTransect && matchesSection && inMonitoringSeason;
+    return inMonitoringSeason;
   });
 
   const totalVisits = getVisitsCount(filteredDataset);
-  const seasonsCount = getTransectYearsOfOperation(dataset, targetTransect, targetSection);
+  const seasonsCount = getTransectYearsOfOperation(dataset);
 
   return seasonsCount > 0 ? totalVisits / seasonsCount : 0;
 }
@@ -252,16 +235,12 @@ export function getAverageVisitsPerYear(
 export function getNewSpeciesCount(
   dataset: Dataset,
   targetYear: number,
-  targetTransect: string | null,
-  targetSection: string | null
 ): number {
   // Get all species from target year (all records, not just monitoring season)
   const currentYearDataset = dataset.filter(entry => {
     const date = moment(entry.Date, "DD-MM-YYYY");
     return (
-      date.year() === targetYear &&
-      (!targetTransect || entry["Transect ID"] === targetTransect) &&
-      (!targetSection || targetSection === entry["Section Name"])
+      date.year() === targetYear
     );
   });
   const currentYearSpecies = new Set(getAllSpecies(currentYearDataset));
@@ -271,9 +250,7 @@ export function getNewSpeciesCount(
   const previousYearsDataset = dataset.filter(entry => {
     const date = moment(entry.Date, "DD-MM-YYYY");
     return (
-      date.year() < targetYear &&
-      (!targetTransect || entry["Transect ID"] === targetTransect) &&
-      (!targetSection || targetSection === entry["Section Name"])
+      date.year() < targetYear
     );
   });
 
@@ -446,4 +423,30 @@ export function getBestMonthForAbundancy(
     month: LABELS_MONTHS[bestMonthIndex],
     abundance: maxAvgAbundance,
   };
+}
+
+export function endangeredSpeciesSummary(
+  dataset: Dataset,
+): any {
+  const allSpecies = getAllSpecies(dataset);
+
+  const endageredSpecies = [];
+
+  for (const species of allSpecies) {
+    if (endangeredSpeciesPT[species]) {
+        endageredSpecies.push({
+          species,
+          status: endangeredSpeciesPT[species],
+          geo: "eu"
+        });    
+    } else if (endangeredSpeciesEurope[species]) {
+      endageredSpecies.push({
+        species,
+        status: endangeredSpeciesEurope[species],
+        geo: "eu"
+      });    
+    }
+  }
+
+  return endageredSpecies;
 }

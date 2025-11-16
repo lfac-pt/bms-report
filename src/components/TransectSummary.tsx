@@ -13,6 +13,7 @@ import {
   getMostAbundantSpecies,
   getBestMonthForFrequency,
   getBestMonthForAbundancy,
+  endangeredSpeciesSummary,
 } from "./utils";
 
 const { Paragraph, Text } = Typography;
@@ -46,9 +47,9 @@ function TransectSummary({
 
   // Get basic metrics
   const totalSpecies = getAllSpecies(filteredDataset).length;
-  const firstObservationDate = getTransectFirstObservationDate(dataset, targetTransect, targetSection);
-  const yearsOfOperation = getTransectYearsOfOperation(dataset, targetTransect, targetSection);
-  const avgVisitsPerYear = getAverageVisitsPerYear(dataset, targetTransect, targetSection);
+  const firstObservationDate = getTransectFirstObservationDate(filteredDataset);
+  const yearsOfOperation = getTransectYearsOfOperation(filteredDataset);
+  const avgVisitsPerYear = getAverageVisitsPerYear(filteredDataset);
 
   // Get current and previous year for comparisons
   const sortedYears = [...selectedYears].sort((a, b) => b - a); // Descending order
@@ -56,11 +57,11 @@ function TransectSummary({
   const previousYear = sortedYears.length > 1 ? sortedYears[1] : null;
 
   // New species in current year
-  const newSpeciesCount = getNewSpeciesCount(dataset, currentYear, targetTransect, targetSection);
+  const newSpeciesCount = getNewSpeciesCount(filteredDataset, currentYear);
 
   // Average abundancy comparison
   const currentAvgAbundancy = getAverageAbundancyForYear(
-    dataset,
+    filteredDataset,
     currentYear,
     targetTransect,
     targetSection
@@ -117,16 +118,37 @@ function TransectSummary({
   // Paragraph 1: Basic info
   const paragraph1 = `O transecto ${transectName} conta com ${totalSpecies} espécies registadas desde ${firstObservationDate}, estando em funcionamento há ${yearsOfOperation} temporadas de monitorização, com uma média de ${avgVisitsPerYear.toFixed(1)} visitas por temporada.`;
 
-  // Paragraph 2: New species
+  // Paragraph 2: Endangered species
+  const endangeredSpecies = endangeredSpeciesSummary(filteredDataset);
   let paragraph2: React.ReactNode = "";
-  if (previousYear) {
-    paragraph2 = `Em ${currentYear}, foram encontradas ${newSpeciesCount} espécies novas em comparação com os anos anteriores.`;
-  } else {
-    paragraph2 = `Em ${currentYear}, foram encontradas ${newSpeciesCount} espécies novas.`;
+  if (endangeredSpecies.length > 0) {
+    const speciesList = endangeredSpecies.map((item: any, index: number) => {
+      const geoLabel = item.geo === "pt" ? "PT" : "UE";
+      return (
+        <React.Fragment key={item.species}>
+          {index > 0 && (index === endangeredSpecies.length - 1 ? " e " : ", ")}
+          <Text italic>{item.species}</Text> ({item.status} - {geoLabel})
+        </React.Fragment>
+      );
+    });
+
+    paragraph2 = (
+      <>
+        Neste transeto foram registadas {endangeredSpecies.length} espécie{endangeredSpecies.length > 1 ? "s" : ""} ameaçada{endangeredSpecies.length > 1 ? "s" : ""}: {speciesList}.
+      </>
+    );
   }
 
-  // Paragraph 3: Average abundancy
+  // Paragraph 3: New species
   let paragraph3: React.ReactNode = "";
+  if (previousYear) {
+    paragraph3 = `Em ${currentYear}, foram encontradas ${newSpeciesCount} espécies novas em comparação com os anos anteriores.`;
+  } else {
+    paragraph3 = `Em ${currentYear}, foram encontradas ${newSpeciesCount} espécies novas.`;
+  }
+
+  // Paragraph 4: Average abundancy
+  let paragraph4: React.ReactNode = "";
   if (previousAvgAbundancy !== null) {
     const abundancyChange = currentAvgAbundancy - previousAvgAbundancy;
     const percentChange = ((abundancyChange / previousAvgAbundancy) * 100).toFixed(0);
@@ -138,7 +160,7 @@ function TransectSummary({
         <ArrowDownOutlined style={{ color: "red" }} />
       );
 
-    paragraph3 = (
+    paragraph4 = (
       <>
         A abundância média foi de{" "}
         <Text strong>{currentAvgAbundancy.toFixed(1)} indivíduos por visita</Text> (ano anterior:{" "}
@@ -147,14 +169,14 @@ function TransectSummary({
       </>
     );
   } else {
-    paragraph3 = `A abundância média foi de ${currentAvgAbundancy.toFixed(1)} indivíduos por visita.`;
+    paragraph4 = `A abundância média foi de ${currentAvgAbundancy.toFixed(1)} indivíduos por visita.`;
   }
 
-  // Paragraph 4: Most frequent species
-  let paragraph4: React.ReactNode = "";
+  // Paragraph 5: Most frequent species
+  let paragraph5: React.ReactNode = "";
   if (currentMostFrequent) {
     if (previousMostFrequent) {
-      paragraph4 = (
+      paragraph5 = (
         <>
           A espécie mais frequente foi <Text italic>{currentMostFrequent.species}</Text> (
           {currentMostFrequent.frequency.toFixed(0)}%), no ano anterior foi{" "}
@@ -163,7 +185,7 @@ function TransectSummary({
         </>
       );
     } else {
-      paragraph4 = (
+      paragraph5 = (
         <>
           A espécie mais frequente foi <Text italic>{currentMostFrequent.species}</Text> (
           {currentMostFrequent.frequency.toFixed(0)}%).
@@ -172,11 +194,11 @@ function TransectSummary({
     }
   }
 
-  // Paragraph 5: Most abundant species
-  let paragraph5: React.ReactNode = "";
+  // Paragraph 6: Most abundant species
+  let paragraph6: React.ReactNode = "";
   if (currentMostAbundant) {
     if (previousMostAbundant) {
-      paragraph5 = (
+      paragraph6 = (
         <>
           A espécie mais abundante foi <Text italic>{currentMostAbundant.species}</Text> (
           {currentMostAbundant.abundance} indivíduos), no ano anterior foi{" "}
@@ -185,7 +207,7 @@ function TransectSummary({
         </>
       );
     } else {
-      paragraph5 = (
+      paragraph6 = (
         <>
           A espécie mais abundante foi <Text italic>{currentMostAbundant.species}</Text> (
           {currentMostAbundant.abundance} indivíduos).
@@ -194,13 +216,13 @@ function TransectSummary({
     }
   }
 
-  // Paragraph 6: Best months
-  let paragraph6 = "";
+  // Paragraph 7: Best months
+  let paragraph7 = "";
   if (currentBestMonthFreq && currentBestMonthAbund) {
     if (previousBestMonthFreq && previousBestMonthAbund) {
-      paragraph6 = `O melhor mês para diversidade foi ${currentBestMonthFreq.month} (${currentBestMonthFreq.speciesCount} espécies) e para abundância foi ${currentBestMonthAbund.month} (${currentBestMonthAbund.abundance.toFixed(1)} indivíduos/visita). No ano anterior: ${previousBestMonthFreq.month} (${previousBestMonthFreq.speciesCount} espécies) e ${previousBestMonthAbund.month} (${previousBestMonthAbund.abundance.toFixed(1)} indivíduos/visita), respectivamente.`;
+      paragraph7 = `O melhor mês para diversidade foi ${currentBestMonthFreq.month} (${currentBestMonthFreq.speciesCount} espécies) e para abundância foi ${currentBestMonthAbund.month} (${currentBestMonthAbund.abundance.toFixed(1)} indivíduos/visita). No ano anterior: ${previousBestMonthFreq.month} (${previousBestMonthFreq.speciesCount} espécies) e ${previousBestMonthAbund.month} (${previousBestMonthAbund.abundance.toFixed(1)} indivíduos/visita), respectivamente.`;
     } else {
-      paragraph6 = `O melhor mês para diversidade foi ${currentBestMonthFreq.month} (${currentBestMonthFreq.speciesCount} espécies) e para abundância foi ${currentBestMonthAbund.month} (${currentBestMonthAbund.abundance.toFixed(1)} indivíduos/visita).`;
+      paragraph7 = `O melhor mês para diversidade foi ${currentBestMonthFreq.month} (${currentBestMonthFreq.speciesCount} espécies) e para abundância foi ${currentBestMonthAbund.month} (${currentBestMonthAbund.abundance.toFixed(1)} indivíduos/visita).`;
     }
   }
 
@@ -208,11 +230,12 @@ function TransectSummary({
     <Card title="Sumário" size="small">
       <div data-chart-export data-export-as-text data-chart-export-title="Sumário">
         <Paragraph className="paragraph">{paragraph1}</Paragraph>
-        <Paragraph className="paragraph">{paragraph2}</Paragraph>
+        {paragraph2 && <Paragraph className="paragraph">{paragraph2}</Paragraph>}
         <Paragraph className="paragraph">{paragraph3}</Paragraph>
         {paragraph4 && <Paragraph className="paragraph">{paragraph4}</Paragraph>}
         {paragraph5 && <Paragraph className="paragraph">{paragraph5}</Paragraph>}
         {paragraph6 && <Paragraph className="paragraph">{paragraph6}</Paragraph>}
+        {paragraph7 && <Paragraph className="paragraph">{paragraph7}</Paragraph>}
       </div>
     </Card>
   );

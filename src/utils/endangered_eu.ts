@@ -1,4 +1,4 @@
-{
+const list: Record<string | number | symbol, String> = {
   "Papilio alexanor": "NT",
   "Archon apollinus": "VU",
   "Zerynthia cretica": "NT",
@@ -124,4 +124,6 @@
   "Erebia melas": "NT",
   "Erebia lefebvrei": "NT",
   "Erebia zapateri": "NT"
-}
+};
+
+export default list;
