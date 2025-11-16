@@ -8,6 +8,7 @@ import AbsoluteFrequencyAndAbundancy from "./charts/AbsoluteFrequencyAndAbundanc
 import Uploader from "./Uploader";
 import PageFilters from "./PageFilters";
 import YearComparison from "./charts/YearComparison";
+import TransectSummary from "./TransectSummary";
 import { Dataset, ButterflyRecord } from "../types/dataset";
 
 function getAllYears(dataset: Dataset): number[] {
@@ -167,7 +168,16 @@ function MyApp() {
             targetSection={targetSection}
             onTargetSectionChange={onTargetSectionChange}
           />
-          <div data-chart-export data-export-as-table>
+          <div id="pdf-summary">
+            <TransectSummary
+              dataset={dataset}
+              selectedYears={selectedYears}
+              targetTransect={targetTransect}
+              targetSection={targetSection}
+              targetTransectName={targetTransectName}
+            />
+          </div>
+          <div id="pdf-year-comparison">
             <YearComparison
               yearsList={selectedYears}
               dataset={dataset}
@@ -175,7 +185,7 @@ function MyApp() {
               section={targetSection}
             />
           </div>
-          <div>
+          <div id="pdf-abundancy-per-month">
             <AbundancyPerMonth
               dataset={dataset}
               yearsList={selectedYears}
@@ -183,7 +193,7 @@ function MyApp() {
               targetSection={targetSection}
             />
           </div>
-          <div>
+          <div id="pdf-diversity-per-month">
             <DiversityPerMonth
               dataset={dataset}
               yearsList={selectedYears}
@@ -191,12 +201,14 @@ function MyApp() {
               targetSection={targetSection}
             />
           </div>
-          <AbsoluteFrequencyAndAbundancy
-            dataset={dataset}
-            yearsList={selectedYears}
-            targetTransect={targetTransect}
-            targetSection={targetSection}
-          />
+          <div id="pdf-frequency-abundancy-table">
+            <AbsoluteFrequencyAndAbundancy
+              dataset={dataset}
+              yearsList={selectedYears}
+              targetTransect={targetTransect}
+              targetSection={targetSection}
+            />
+          </div>
         </>
       ) : null}
     </Space>

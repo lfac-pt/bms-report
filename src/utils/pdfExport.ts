@@ -44,55 +44,89 @@ export async function exportToPDF(options: ExportOptions): Promise<void> {
   pdf.text(`Gerado em: ${new Date().toLocaleString("pt-PT")}`, margin, yPosition);
   yPosition += 10;
 
-  // Export charts
-  const chartElements = document.querySelectorAll<HTMLElement>("[data-chart-export]");
-  for (let i = 0; i < chartElements.length; i++) {
-    const element = chartElements[i];
-    const exportAsTable = element.hasAttribute("data-export-as-table");
-    const chartExportTitle = element.getAttribute("data-chart-export-title");
+  // ===================================================================
+  // EXPORT REPORT SECTIONS
+  // Each section is explicitly handled for clarity and maintainability
+  // ===================================================================
 
-    // Add new page for the charts
-    if (i === 1) {
-      pdf.addPage();
-      yPosition = margin + 10;
-    }
+  // === SECTION 1: Summary (Text Export) ===
+  const summaryElement = document.querySelector<HTMLElement>("#pdf-summary");
+  if (summaryElement) {
+    pdf.setFontSize(14);
+    pdf.text("Sumário", margin, yPosition);
+    yPosition += 10;
 
-    // Add chart title if data-chart-export-title is present
-    if (chartExportTitle) {
-      pdf.setFontSize(14);
-      pdf.text(chartExportTitle, margin, yPosition);
-      yPosition += 10;
-    }
+    const paragraphs = summaryElement.querySelectorAll(".paragraph");
+    pdf.setFontSize(10);
 
-    if (exportAsTable) {
-      // Export as native table
-      const tableData = extractTableData(element);
+    for (const paragraph of paragraphs) {
+      const text = paragraph.textContent?.trim() || "";
+      if (text) {
+        const maxWidth = pageWidth - 2 * margin;
+        const lines = pdf.splitTextToSize(text, maxWidth);
+        const lineHeight = 7;
+        const textHeight = lines.length * lineHeight;
 
-      if (tableData.headers.length > 0 && tableData.rows.length > 0) {
-        autoTable(pdf, {
-          head: [tableData.headers],
-          body: tableData.rows,
-          startY: yPosition,
-          margin: { left: margin, right: margin },
-          styles: {
-            fontSize: 9,
-            cellPadding: 2,
-          },
-          headStyles: {
-            fillColor: [66, 139, 202],
-            textColor: 255,
-            fontStyle: "bold",
-            fontSize: 10,
-          },
-          theme: "grid",
-        });
+        if (yPosition + textHeight > pageHeight - margin) {
+          pdf.addPage();
+          yPosition = margin;
+        }
 
-        yPosition = (pdf as any).lastAutoTable.finalY + 10;
+        pdf.text(lines, margin, yPosition);
+        yPosition += textHeight + 3;
       }
-    } else {
-      // Export as image
+    }
+
+    yPosition += 7;
+  }
+
+  // === SECTION 2: Year Comparison (Table Export) ===
+  const yearComparisonElement = document.querySelector<HTMLElement>("#pdf-year-comparison");
+  if (yearComparisonElement) {
+    pdf.setFontSize(14);
+    pdf.text("Sumário por ano", margin, yPosition);
+    yPosition += 10;
+
+    const tableData = extractTableData(yearComparisonElement);
+    if (tableData.headers.length > 0 && tableData.rows.length > 0) {
+      autoTable(pdf, {
+        head: [tableData.headers],
+        body: tableData.rows,
+        startY: yPosition,
+        margin: { left: margin, right: margin },
+        styles: {
+          fontSize: 9,
+          cellPadding: 2,
+        },
+        headStyles: {
+          fillColor: [66, 139, 202],
+          textColor: 255,
+          fontStyle: "bold",
+          fontSize: 10,
+        },
+        theme: "grid",
+      });
+
+      yPosition = (pdf as any).lastAutoTable.finalY + 10;
+    }
+  }
+
+  // === SECTION 3: Abundancy Per Month (Image Export) ===
+  const abundancyElement = document.querySelector<HTMLElement>("#pdf-abundancy-per-month");
+  if (abundancyElement) {
+    const chartElement = abundancyElement.querySelector<HTMLElement>("[data-chart-export]");
+    if (chartElement) {
+      if (yPosition > margin + 20) {
+        pdf.addPage();
+        yPosition = margin + 10;
+      }
+
+      pdf.setFontSize(14);
+      pdf.text("Abundância média por visita", margin, yPosition);
+      yPosition += 10;
+
       try {
-        const canvas = await html2canvas(element, {
+        const canvas = await html2canvas(chartElement, {
           scale: 2,
           logging: false,
           backgroundColor: "#ffffff",
@@ -102,25 +136,62 @@ export async function exportToPDF(options: ExportOptions): Promise<void> {
         const imgWidth = pageWidth - 2 * margin;
         const imgHeight = (canvas.height * imgWidth) / canvas.width;
 
-        // Check if image fits on current page
         if (yPosition + imgHeight > pageHeight - margin) {
           pdf.addPage();
-          yPosition = margin;
+          yPosition = margin + 10;
         }
 
         pdf.addImage(imgData, "PNG", margin, yPosition, imgWidth, imgHeight);
         yPosition += imgHeight + 10;
       } catch (_error) {
-        // Error capturing chart
-        throw new Error(`Failed to capture chart ${i}`);
+        throw new Error("Failed to capture abundancy chart");
       }
     }
   }
 
-  // Export table - temporarily show all rows
-  const tableElement = document.querySelector<HTMLElement>("[data-table-export]");
-  if (tableElement) {
-    // Wait a bit for any rendering to complete
+  // === SECTION 4: Diversity Per Month (Image Export) ===
+  const diversityElement = document.querySelector<HTMLElement>("#pdf-diversity-per-month");
+  if (diversityElement) {
+    const chartElement = diversityElement.querySelector<HTMLElement>("[data-chart-export]");
+    if (chartElement) {
+      if (yPosition + 100 > pageHeight - margin) {
+        pdf.addPage();
+        yPosition = margin + 10;
+      }
+
+      pdf.setFontSize(14);
+      pdf.text("Total de espécies por mês", margin, yPosition);
+      yPosition += 10;
+
+      try {
+        const canvas = await html2canvas(chartElement, {
+          scale: 2,
+          logging: false,
+          backgroundColor: "#ffffff",
+        });
+
+        const imgData = canvas.toDataURL("image/png");
+        const imgWidth = pageWidth - 2 * margin;
+        const imgHeight = (canvas.height * imgWidth) / canvas.width;
+
+        if (yPosition + imgHeight > pageHeight - margin) {
+          pdf.addPage();
+          yPosition = margin + 10;
+        }
+
+        pdf.addImage(imgData, "PNG", margin, yPosition, imgWidth, imgHeight);
+        yPosition += imgHeight + 10;
+      } catch (_error) {
+        throw new Error("Failed to capture diversity chart");
+      }
+    }
+  }
+
+  // === SECTION 5: Frequency and Abundancy Table (Table Export) ===
+  const frequencyTableElement = document.querySelector<HTMLElement>(
+    "#pdf-frequency-abundancy-table [data-table-export]"
+  );
+  if (frequencyTableElement) {
     await new Promise(resolve => setTimeout(resolve, 500));
 
     pdf.addPage();
@@ -130,9 +201,7 @@ export async function exportToPDF(options: ExportOptions): Promise<void> {
     pdf.text("Frequência e Abundância", margin, yPosition);
     yPosition += 10;
 
-    // Extract table data
-    const tableData = extractTableData(tableElement);
-
+    const tableData = extractTableData(frequencyTableElement);
     if (tableData.headers.length > 0 && tableData.rows.length > 0) {
       autoTable(pdf, {
         head: [tableData.headers],
