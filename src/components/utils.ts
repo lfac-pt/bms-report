@@ -344,41 +344,35 @@ export function getBestMonthForFrequency(
   targetYear: number,
   targetTransect: string | null,
   targetSection: string | null
-): { month: string; frequency: number } | null {
+): { month: string; speciesCount: number } | null {
   const filteredDataset = filterDataset(dataset, targetYear, targetTransect, targetSection);
 
   if (filteredDataset.length === 0) return null;
 
-  const visitsPerMonth = LABELS_MONTHS.map(() => new Set<string>());
   const speciesPerMonth = LABELS_MONTHS.map(() => new Set<string>());
 
   for (const entry of filteredDataset) {
     const date = moment(entry.Date, "DD-MM-YYYY");
     const monthIndex = date.month();
 
-    visitsPerMonth[monthIndex].add(entry.Date);
     speciesPerMonth[monthIndex].add(entry["Preferred Species Name"]);
   }
 
-  let maxFrequency = 0;
+  let maxSpeciesCount = 0;
   let bestMonthIndex = 0;
 
   for (let i = 0; i < LABELS_MONTHS.length; i++) {
-    const visits = visitsPerMonth[i].size;
-    const species = speciesPerMonth[i].size;
+    const speciesCount = speciesPerMonth[i].size;
 
-    if (visits > 0) {
-      const frequency = species / visits;
-      if (frequency > maxFrequency) {
-        maxFrequency = frequency;
-        bestMonthIndex = i;
-      }
+    if (speciesCount > maxSpeciesCount) {
+      maxSpeciesCount = speciesCount;
+      bestMonthIndex = i;
     }
   }
 
   return {
     month: LABELS_MONTHS[bestMonthIndex],
-    frequency: maxFrequency,
+    speciesCount: maxSpeciesCount,
   };
 }
 

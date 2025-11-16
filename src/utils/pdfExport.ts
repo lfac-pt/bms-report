@@ -59,8 +59,6 @@ export async function exportToPDF(options: ExportOptions): Promise<void> {
     const paragraphs = summaryElement.querySelectorAll(".paragraph");
     pdf.setFontSize(10);
 
-    console.log(paragraphs);
-
     for (const paragraph of paragraphs) {
       const text = paragraph.textContent?.trim() || "";
       if (text) {

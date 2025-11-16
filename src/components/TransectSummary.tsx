@@ -174,9 +174,9 @@ function TransectSummary({
   let paragraph6 = "";
   if (currentBestMonthFreq && currentBestMonthAbund) {
     if (previousBestMonthFreq && previousBestMonthAbund) {
-      paragraph6 = `O melhor mês para frequência foi ${currentBestMonthFreq.month} e para abundância foi ${currentBestMonthAbund.month} (ano anterior: ${previousBestMonthFreq.month} e ${previousBestMonthAbund.month}, respectivamente).`;
+      paragraph6 = `O melhor mês para diversidade foi ${currentBestMonthFreq.month} (${currentBestMonthFreq.speciesCount} espécies) e para abundância foi ${currentBestMonthAbund.month} (${currentBestMonthAbund.abundance.toFixed(1)} indivíduos/visita). No ano anterior: ${previousBestMonthFreq.month} (${previousBestMonthFreq.speciesCount} espécies) e ${previousBestMonthAbund.month} (${previousBestMonthAbund.abundance.toFixed(1)} indivíduos/visita), respectivamente.`;
     } else {
-      paragraph6 = `O melhor mês para frequência foi ${currentBestMonthFreq.month} e para abundância foi ${currentBestMonthAbund.month}.`;
+      paragraph6 = `O melhor mês para diversidade foi ${currentBestMonthFreq.month} (${currentBestMonthFreq.speciesCount} espécies) e para abundância foi ${currentBestMonthAbund.month} (${currentBestMonthAbund.abundance.toFixed(1)} indivíduos/visita).`;
     }
   }
 
