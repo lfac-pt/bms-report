@@ -54,10 +54,12 @@ export async function exportToPDF(options: ExportOptions): Promise<void> {
   if (summaryElement) {
     pdf.setFontSize(14);
     pdf.text("Sumário", margin, yPosition);
-    yPosition += 10;
+    yPosition += 8;
 
     const paragraphs = summaryElement.querySelectorAll(".paragraph");
     pdf.setFontSize(10);
+
+    console.log(paragraphs);
 
     for (const paragraph of paragraphs) {
       const text = paragraph.textContent?.trim() || "";
@@ -65,7 +67,7 @@ export async function exportToPDF(options: ExportOptions): Promise<void> {
         const maxWidth = pageWidth - 2 * margin;
         const lines = pdf.splitTextToSize(text, maxWidth);
         const lineHeight = 7;
-        const textHeight = lines.length * lineHeight;
+        const textHeight = (lines.length - 1) * lineHeight * 0.5 + lineHeight;
 
         if (yPosition + textHeight > pageHeight - margin) {
           pdf.addPage();
@@ -73,11 +75,11 @@ export async function exportToPDF(options: ExportOptions): Promise<void> {
         }
 
         pdf.text(lines, margin, yPosition);
-        yPosition += textHeight + 3;
+        yPosition += textHeight;
       }
     }
 
-    yPosition += 7;
+    yPosition += 3;
   }
 
   // === SECTION 2: Year Comparison (Table Export) ===
