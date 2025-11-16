@@ -1,6 +1,6 @@
 import { Bar } from "react-chartjs-2";
 import moment from "moment";
-import { filterDataset } from "../utils";
+import { filterDataset, SERIES_COLORS, LABELS_MONTHS } from "../utils";
 import { Card, Alert } from "antd";
 import { Dataset } from "../../types/dataset";
 
@@ -12,32 +12,6 @@ export const options = {
     },
   },
 };
-
-const LABELS_MONTHS = [
-  "Jan",
-  "Fev",
-  "Mar",
-  "Abr",
-  "Mai",
-  "Jun",
-  "Jul",
-  "Ago",
-  "Set",
-  "Out",
-  "Nov",
-  "Dez",
-];
-const SERIES_COLORS = [
-  "#ea5545",
-  "#f46a9b",
-  "#ef9b20",
-  "#edbf33",
-  "#ede15b",
-  "#bdcf32",
-  "#87bc45",
-  "#27aeef",
-  "#b33dc6",
-];
 
 function getDiversityForYear(
   dataset: Dataset,

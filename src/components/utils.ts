@@ -65,7 +65,7 @@ export function getVisitsCount(dataset: Dataset): number {
   return dates.size;
 }
 
-const LABELS_MONTHS = [
+export const LABELS_MONTHS = [
   "Jan",
   "Fev",
   "Mar",
@@ -79,16 +79,16 @@ const LABELS_MONTHS = [
   "Nov",
   "Dez",
 ];
-const SERIES_COLORS = [
+export const SERIES_COLORS = [
   "#ea5545",
-  "#f46a9b",
-  "#ef9b20",
-  "#edbf33",
-  "#ede15b",
-  "#bdcf32",
-  "#87bc45",
   "#27aeef",
+  "#f46a9b",
+  "#bdcf32",
+  "#ef9b20",
   "#b33dc6",
+  "#edbf33",
+  "#87bc45",
+  "#ede15b",
 ];
 
 function abundancyPerMonthAllSpecies(
