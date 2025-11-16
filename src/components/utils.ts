@@ -255,13 +255,20 @@ export function getNewSpeciesCount(
   targetTransect: string | null,
   targetSection: string | null
 ): number {
-  // Get all species from target year
-  const currentYearDataset = filterDataset(dataset, targetYear, targetTransect, targetSection);
+  // Get all species from target year (all records, not just monitoring season)
+  const currentYearDataset = dataset.filter(entry => {
+    const date = moment(entry.Date, "DD-MM-YYYY");
+    return (
+      date.year() === targetYear &&
+      (!targetTransect || entry["Transect ID"] === targetTransect) &&
+      (!targetSection || targetSection === entry["Section Name"])
+    );
+  });
   const currentYearSpecies = new Set(getAllSpecies(currentYearDataset));
 
-  // Get all species from all previous years
+  // Get all species from all previous years (all records, not just monitoring season)
   const previousYearsSpecies = new Set<string>();
-  const filteredDataset = dataset.filter(entry => {
+  const previousYearsDataset = dataset.filter(entry => {
     const date = moment(entry.Date, "DD-MM-YYYY");
     return (
       date.year() < targetYear &&
@@ -270,11 +277,11 @@ export function getNewSpeciesCount(
     );
   });
 
-  for (const species of getAllSpecies(filteredDataset)) {
+  for (const species of getAllSpecies(previousYearsDataset)) {
     previousYearsSpecies.add(species);
   }
 
-  // Count species in current year that are not in previous years
+  // Count species in current year that are not in any previous year (all-time new species)
   let newSpeciesCount = 0;
   for (const species of currentYearSpecies) {
     if (!previousYearsSpecies.has(species)) {

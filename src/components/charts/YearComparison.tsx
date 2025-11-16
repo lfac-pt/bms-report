@@ -122,7 +122,7 @@ function YearComparison({ dataset, yearsList, transect, section }: YearCompariso
       key: "year",
     },
     {
-      title: "# Visitas",
+      title: "# Visitas (ano)",
       dataIndex: "visitsCount",
       key: "visitsCount",
     },

@@ -120,7 +120,7 @@ function TransectSummary({
   // Paragraph 2: New species
   let paragraph2: React.ReactNode = "";
   if (previousYear) {
-    paragraph2 = `Em ${currentYear}, foram encontradas ${newSpeciesCount} espécies novas em comparação com ${previousYear}.`;
+    paragraph2 = `Em ${currentYear}, foram encontradas ${newSpeciesCount} espécies novas em comparação com os anos anteriores.`;
   } else {
     paragraph2 = `Em ${currentYear}, foram encontradas ${newSpeciesCount} espécies novas.`;
   }
