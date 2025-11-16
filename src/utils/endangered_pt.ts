@@ -1,4 +1,4 @@
-const list: Record<string | number | symbol, String> = {
+const list: Record<string | number | symbol, string> = {
   "Pyrgus alveus": "CR",
   "Pyrgus serratulae": "EN",
   "Eumedonia eumedon": "EN",
@@ -10,7 +10,7 @@ const list: Record<string | number | symbol, String> = {
   "Brenthis ino": "VU",
   "Melitaea aetherie": "VU",
   "Euchloe tagis": "VU",
-  "Hamearis lucina": "VU"
+  "Hamearis lucina": "VU",
 };
 
 export default list;

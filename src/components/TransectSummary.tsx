@@ -134,7 +134,9 @@ function TransectSummary({
 
     paragraph2 = (
       <>
-        Neste transeto foram registadas {endangeredSpecies.length} espécie{endangeredSpecies.length > 1 ? "s" : ""} ameaçada{endangeredSpecies.length > 1 ? "s" : ""}: {speciesList}.
+        Neste transeto foram registadas {endangeredSpecies.length} espécie
+        {endangeredSpecies.length > 1 ? "s" : ""} ameaçada{endangeredSpecies.length > 1 ? "s" : ""}:{" "}
+        {speciesList}.
       </>
     );
   }
