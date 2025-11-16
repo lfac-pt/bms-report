@@ -33,7 +33,11 @@ function AbundancyPerMonth({
   const speciesOptions = speciesList.map(species => {
     return {
       value: species,
-      label: <span>{species}</span>,
+      label: (
+        <span>
+          <i>{species}</i>
+        </span>
+      ),
     };
   });
 

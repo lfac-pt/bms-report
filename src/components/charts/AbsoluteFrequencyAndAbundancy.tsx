@@ -325,6 +325,7 @@ function AbsoluteFrequencyAndAbundancy({
       dataIndex: "species",
       key: "species",
       ...getColumnSearchProps("species"),
+      render: (text: string) => <i>{text}</i>,
     },
     ...yearsList.map(year => ({
       title: year.toString(),

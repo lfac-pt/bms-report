@@ -39,7 +39,9 @@ const TagList = ({ tags, maxVisible = 10 }: TagListProps) => {
   return (
     <div data-content-for-pdf={tags.join(", ")}>
       {visibleTags.map((tag, index) => (
-        <Tag key={index}>{tag}</Tag>
+        <Tag key={index}>
+          <i>{tag}</i>
+        </Tag>
       ))}
       {hiddenTags.length > 0 && (
         <Tooltip
@@ -47,7 +49,7 @@ const TagList = ({ tags, maxVisible = 10 }: TagListProps) => {
             <div>
               {hiddenTags.map((tag, index) => (
                 <Tag key={index} style={{ marginBottom: 4 }}>
-                  {tag}
+                  <i>{tag}</i>
                 </Tag>
               ))}
             </div>

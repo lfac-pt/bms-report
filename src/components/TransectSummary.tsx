@@ -151,22 +151,46 @@ function TransectSummary({
   }
 
   // Paragraph 4: Most frequent species
-  let paragraph4 = "";
+  let paragraph4: React.ReactNode = "";
   if (currentMostFrequent) {
     if (previousMostFrequent) {
-      paragraph4 = `A espécie mais frequente foi ${currentMostFrequent.species} (${currentMostFrequent.frequency.toFixed(0)}%), no ano anterior foi ${previousMostFrequent.species} (${previousMostFrequent.frequency.toFixed(0)}%).`;
+      paragraph4 = (
+        <>
+          A espécie mais frequente foi <Text italic>{currentMostFrequent.species}</Text> (
+          {currentMostFrequent.frequency.toFixed(0)}%), no ano anterior foi{" "}
+          <Text italic>{previousMostFrequent.species}</Text> (
+          {previousMostFrequent.frequency.toFixed(0)}%).
+        </>
+      );
     } else {
-      paragraph4 = `A espécie mais frequente foi ${currentMostFrequent.species} (${currentMostFrequent.frequency.toFixed(0)}%).`;
+      paragraph4 = (
+        <>
+          A espécie mais frequente foi <Text italic>{currentMostFrequent.species}</Text> (
+          {currentMostFrequent.frequency.toFixed(0)}%).
+        </>
+      );
     }
   }
 
   // Paragraph 5: Most abundant species
-  let paragraph5 = "";
+  let paragraph5: React.ReactNode = "";
   if (currentMostAbundant) {
     if (previousMostAbundant) {
-      paragraph5 = `A espécie mais abundante foi ${currentMostAbundant.species} (${currentMostAbundant.abundance} indivíduos), no ano anterior foi ${previousMostAbundant.species} (${previousMostAbundant.abundance} indivíduos).`;
+      paragraph5 = (
+        <>
+          A espécie mais abundante foi <Text italic>{currentMostAbundant.species}</Text> (
+          {currentMostAbundant.abundance} indivíduos), no ano anterior foi{" "}
+          <Text italic>{previousMostAbundant.species}</Text> ({previousMostAbundant.abundance}{" "}
+          indivíduos).
+        </>
+      );
     } else {
-      paragraph5 = `A espécie mais abundante foi ${currentMostAbundant.species} (${currentMostAbundant.abundance} indivíduos).`;
+      paragraph5 = (
+        <>
+          A espécie mais abundante foi <Text italic>{currentMostAbundant.species}</Text> (
+          {currentMostAbundant.abundance} indivíduos).
+        </>
+      );
     }
   }
 
