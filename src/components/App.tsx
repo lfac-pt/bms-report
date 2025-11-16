@@ -49,6 +49,31 @@ function getAllSections(dataset: Dataset, transect: string): string[] {
   });
 }
 
+function getTransectNames(dataset: Dataset): Record<string, string> {
+  const transectNames: Record<string, string> = {};
+
+  for (const entry of dataset) {
+    const transectId = entry["Transect ID"];
+    const sectionName = entry["Section Name"];
+
+    // Skip if already processed or missing data
+    if (!transectId || !sectionName || transectNames[transectId]) {
+      continue;
+    }
+
+    // Extract transect name from section name (e.g., "Baldios de São Miguel de Poiares - S4" -> "Baldios de São Miguel de Poiares")
+    const lastDashIndex = sectionName.lastIndexOf(" - ");
+    if (lastDashIndex !== -1) {
+      transectNames[transectId] = sectionName.substring(0, lastDashIndex);
+    } else {
+      // Fallback to transect ID if pattern doesn't match
+      transectNames[transectId] = transectId;
+    }
+  }
+
+  return transectNames;
+}
+
 function MyApp() {
   const [dataset, setDataset] = useState<Dataset>([]);
 
@@ -56,7 +81,9 @@ function MyApp() {
   const [selectedYears, setSelectedYears] = useState<number[]>([]);
 
   const [transectsList, setTransectsList] = useState<string[]>([]);
+  const [transectNames, setTransectNames] = useState<Record<string, string>>({});
   const [targetTransect, setTargetTransect] = useState<string | null>(null);
+  const [targetTransectName, setTargetTransectName] = useState<string | null>(null);
 
   const [sectionsList, setSectionsList] = useState<string[]>([]);
   const [targetSection, setTargetSection] = useState<string | null>(null);
@@ -74,6 +101,7 @@ function MyApp() {
 
   const onTargetTransectChange = (newTargetTransect: string) => {
     setTargetTransect(newTargetTransect);
+    setTargetTransectName(transectNames[newTargetTransect] || newTargetTransect);
 
     const allSectionsForTransect = getAllSections(dataset, newTargetTransect);
     setSectionsList(allSectionsForTransect);
@@ -93,8 +121,12 @@ function MyApp() {
     setSelectedYears([...allYears].sort((a, b) => a - b));
 
     const allTransects = getAllTransects(cleanData);
+    const names = getTransectNames(cleanData);
     setTransectsList(allTransects);
-    setTargetTransect(allTransects[allTransects.length - 1]);
+    setTransectNames(names);
+    const initialTransect = allTransects[allTransects.length - 1];
+    setTargetTransect(initialTransect);
+    setTargetTransectName(names[initialTransect] || initialTransect);
 
     const allSectionsForTransect = getAllSections(cleanData, allTransects[allTransects.length - 1]);
     setSectionsList(allSectionsForTransect);
@@ -126,6 +158,8 @@ function MyApp() {
             selectedYears={selectedYears}
             yearsList={yearsList}
             transectsList={transectsList}
+            transectNames={transectNames}
+            targetTransectName={targetTransectName}
             targetTransect={targetTransect}
             onSelectedYearsChange={onSelectedYearsChange}
             onTargetTransectChange={onTargetTransectChange}

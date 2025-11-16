@@ -7,7 +7,9 @@ interface PageFiltersProps {
   yearsList: number[];
   selectedYears: number[];
   transectsList: string[];
+  transectNames: Record<string, string>;
   targetTransect: string | null;
+  targetTransectName: string | null;
   onSelectedYearsChange: (years: number[]) => void;
   onTargetTransectChange: (transect: string) => void;
   sectionsList: string[];
@@ -19,7 +21,9 @@ function PageFilters({
   yearsList,
   selectedYears,
   transectsList,
+  transectNames,
   targetTransect,
+  targetTransectName,
   onSelectedYearsChange,
   onTargetTransectChange,
   sectionsList,
@@ -36,7 +40,7 @@ function PageFilters({
   const transectOptions = transectsList.map(transect => {
     return {
       value: transect,
-      label: <span>{transect}</span>,
+      label: <span>{transectNames[transect] || transect}</span>,
     };
   });
 
@@ -56,6 +60,7 @@ function PageFilters({
         selectedYears,
         targetTransect,
         targetSection,
+        targetTransectName,
       });
       message.success("PDF exportado com sucesso!");
     } catch (_error) {

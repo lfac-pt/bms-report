@@ -7,10 +7,11 @@ interface ExportOptions {
   selectedYears: number[];
   targetTransect: string | null;
   targetSection: string | null;
+  targetTransectName: string | null;
 }
 
 export async function exportToPDF(options: ExportOptions): Promise<void> {
-  const { selectedYears, targetTransect, targetSection } = options;
+  const { selectedYears, targetTransect, targetSection, targetTransectName } = options;
 
   // Create PDF document
   const pdf = new jsPDF({
@@ -25,7 +26,7 @@ export async function exportToPDF(options: ExportOptions): Promise<void> {
 
   // Add header
   pdf.setFontSize(20);
-  pdf.text("Relatório BMS", margin, margin + 10);
+  pdf.text("Relatório BMS " + targetTransectName, margin, margin + 10);
 
   // Add filter information
   pdf.setFontSize(10);
@@ -33,11 +34,6 @@ export async function exportToPDF(options: ExportOptions): Promise<void> {
 
   pdf.text(`Anos: ${selectedYears.join(", ")}`, margin, yPosition);
   yPosition += 6;
-
-  if (targetTransect) {
-    pdf.text(`Transecto: ${targetTransect}`, margin, yPosition);
-    yPosition += 6;
-  }
 
   if (targetSection) {
     pdf.text(`Secção: ${targetSection}`, margin, yPosition);
@@ -58,7 +54,7 @@ export async function exportToPDF(options: ExportOptions): Promise<void> {
     // Add new page for the charts
     if (i === 1) {
       pdf.addPage();
-      yPosition = margin;
+      yPosition = margin + 10;
     }
 
     // Add chart title if data-chart-export-title is present
@@ -128,7 +124,7 @@ export async function exportToPDF(options: ExportOptions): Promise<void> {
     await new Promise(resolve => setTimeout(resolve, 500));
 
     pdf.addPage();
-    yPosition = margin;
+    yPosition = margin + 10;
 
     pdf.setFontSize(14);
     pdf.text("Frequência e Abundância", margin, yPosition);
