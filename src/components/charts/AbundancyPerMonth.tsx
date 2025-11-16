@@ -3,6 +3,7 @@ import { useState } from "react";
 import { Select, Card, Alert } from "antd";
 import { getAllSpecies, getAbundancyPerMonthForSpecies } from "../utils";
 import { Dataset } from "../../types/dataset";
+import { DatasetType } from "../../utils/datasetAdapter";
 
 export const options = {
   responsive: true,
@@ -18,6 +19,7 @@ interface AbundancyPerMonthProps {
   yearsList: number[];
   targetTransect: string | null;
   targetSection: string | null;
+  datasetType: DatasetType;
 }
 
 function AbundancyPerMonth({
@@ -25,8 +27,12 @@ function AbundancyPerMonth({
   yearsList,
   targetTransect,
   targetSection,
+  datasetType,
 }: AbundancyPerMonthProps) {
   const [targetSpecies, setTargetSpecies] = useState<string[]>([]);
+
+  const visitSingular = datasetType === "nocturnal" ? "sessão" : "visita";
+  const visitLabel = datasetType === "nocturnal" ? "sessões" : "visitas";
 
   const speciesList = getAllSpecies(dataset);
 
@@ -45,7 +51,7 @@ function AbundancyPerMonth({
     setTargetSpecies(!newTargetSpecies ? [] : newTargetSpecies);
   };
 
-  const anundanciaPorMesTitle = `Abundância média por visita`;
+  const anundanciaPorMesTitle = `Abundância média por ${visitSingular}`;
 
   return (
     <Card title={anundanciaPorMesTitle} size="small">
@@ -63,7 +69,7 @@ function AbundancyPerMonth({
         placeholder="Todas as espécies (ou escolha uma ou mais)"
         defaultValue={targetSpecies}
       />
-      <div data-chart-export data-chart-export-title="Abundância média por visita">
+      <div data-chart-export data-chart-export-title={`Abundância média por ${visitSingular}`}>
         {targetSpecies.length > 0 ? (
           targetSpecies.map(species => (
             <div key={species} style={{ marginBottom: "24px" }}>
@@ -93,7 +99,7 @@ function AbundancyPerMonth({
           />
         )}
         <Alert
-          message="O total de indivíduos da espécie no mês dividido por número de visitas"
+          message={`O total de indivíduos da espécie no mês dividido por número de ${visitLabel}`}
           type="info"
         />
       </div>

@@ -18,6 +18,7 @@ export interface ButterflyRecord {
   "Record substatus": string;
   Comments: string;
   "Occurrence comment": string;
+  Family?: string; // Optional field for nocturnal butterflies
 }
 
 export type Dataset = ButterflyRecord[];

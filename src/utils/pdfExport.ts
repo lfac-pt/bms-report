@@ -2,16 +2,20 @@
 import jsPDF from "jspdf";
 import html2canvas from "html2canvas";
 import autoTable from "jspdf-autotable";
+import { DatasetType } from "./datasetAdapter";
 
 interface ExportOptions {
   selectedYears: number[];
   targetTransect: string | null;
   targetSection: string | null;
   targetTransectName: string | null;
+  datasetType?: DatasetType;
 }
 
 export async function exportToPDF(options: ExportOptions): Promise<void> {
-  const { selectedYears, targetTransect, targetSection, targetTransectName } = options;
+  const { selectedYears, targetTransect, targetSection, targetTransectName, datasetType = "diurnal" } = options;
+
+  const visitSingular = datasetType === "nocturnal" ? "sessão" : "visita";
 
   // Create PDF document
   const pdf = new jsPDF({
@@ -25,8 +29,12 @@ export async function exportToPDF(options: ExportOptions): Promise<void> {
   const margin = 15;
 
   // Add header
+  const reportTitle = datasetType === "nocturnal"
+    ? `Relatório Borboletas Noturnas - ${targetTransectName}`
+    : `Relatório BMS - ${targetTransectName}`;
+
   pdf.setFontSize(20);
-  pdf.text("Relatório BMS " + targetTransectName, margin, margin + 10);
+  pdf.text(reportTitle, margin, margin + 10);
 
   // Add filter information
   pdf.setFontSize(10);
@@ -35,7 +43,7 @@ export async function exportToPDF(options: ExportOptions): Promise<void> {
   pdf.text(`Anos: ${selectedYears.join(", ")}`, margin, yPosition);
   yPosition += 6;
 
-  if (targetSection) {
+  if (targetSection && datasetType === "diurnal") {
     pdf.text(`Secção: ${targetSection}`, margin, yPosition);
     yPosition += 6;
   }
@@ -122,7 +130,7 @@ export async function exportToPDF(options: ExportOptions): Promise<void> {
       }
 
       pdf.setFontSize(14);
-      pdf.text("Abundância média por visita", margin, yPosition);
+      pdf.text(`Abundância média por ${visitSingular}`, margin, yPosition);
       yPosition += 10;
 
       try {
@@ -224,7 +232,7 @@ export async function exportToPDF(options: ExportOptions): Promise<void> {
         theme: "grid",
         didParseCell: function (data) {
           // Make change columns more prominent if they show significant changes
-          if (data.column.index >= tableData.headers.length - 2) {
+          if (tableData.headers.length > 3 && data.column.index >= tableData.headers.length - 2) {
             const cellText = data.cell.text[0];
             if (cellText && cellText.includes("%")) {
               const value = parseFloat(cellText.replace("%", ""));

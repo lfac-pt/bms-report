@@ -15,6 +15,7 @@ import {
   getBestMonthForAbundancy,
   endangeredSpeciesSummary,
 } from "./utils";
+import { DatasetType } from "../utils/datasetAdapter";
 
 const { Paragraph, Text } = Typography;
 
@@ -24,6 +25,7 @@ interface TransectSummaryProps {
   targetTransect: string | null;
   targetSection: string | null;
   targetTransectName: string | null;
+  datasetType: DatasetType;
 }
 
 function TransectSummary({
@@ -32,6 +34,7 @@ function TransectSummary({
   targetTransect,
   targetSection,
   targetTransectName,
+  datasetType,
 }: TransectSummaryProps) {
   // Filter dataset by transect and section
   const filteredDataset = dataset.filter(entry => {
@@ -113,10 +116,14 @@ function TransectSummary({
     : null;
 
   // Build summary text
-  const transectName = targetTransectName || targetTransect || "o transecto";
+  const locationLabel = datasetType === "nocturnal" ? "A estação" : "O transecto";
+  const locationArticle = datasetType === "nocturnal" ? "a" : "o";
+  const transectName = targetTransectName || targetTransect || `${locationArticle} ${datasetType === "nocturnal" ? "estação" : "transecto"}`;
+  const visitLabel = datasetType === "nocturnal" ? "sessões" : "visitas";
+  const visitSingular = datasetType === "nocturnal" ? "sessão" : "visita";
 
   // Paragraph 1: Basic info
-  const paragraph1 = `O transecto ${transectName} conta com ${totalSpecies} espécies registadas desde ${firstObservationDate}, estando em funcionamento há ${yearsOfOperation} temporadas de monitorização, com uma média de ${avgVisitsPerYear.toFixed(1)} visitas por temporada.`;
+  const paragraph1 = `${locationLabel} ${transectName} conta com ${totalSpecies} espécies registadas desde ${firstObservationDate}, estando em funcionamento há ${yearsOfOperation} temporadas de monitorização, com uma média de ${avgVisitsPerYear.toFixed(1)} ${visitLabel} por temporada.`;
 
   // Paragraph 2: Endangered species
   const endangeredSpecies = endangeredSpeciesSummary(filteredDataset);
@@ -132,9 +139,10 @@ function TransectSummary({
       );
     });
 
+    const locationText = datasetType === "nocturnal" ? "Nesta estação" : "Neste transeto";
     paragraph2 = (
       <>
-        Neste transeto foram registadas {endangeredSpecies.length} espécie
+        {locationText} foram registadas {endangeredSpecies.length} espécie
         {endangeredSpecies.length > 1 ? "s" : ""} ameaçada{endangeredSpecies.length > 1 ? "s" : ""}:{" "}
         {speciesList}.
       </>
@@ -165,13 +173,13 @@ function TransectSummary({
     paragraph4 = (
       <>
         A abundância média foi de{" "}
-        <Text strong>{currentAvgAbundancy.toFixed(1)} indivíduos por visita</Text> (ano anterior:{" "}
+        <Text strong>{currentAvgAbundancy.toFixed(1)} indivíduos por {visitSingular}</Text> (ano anterior:{" "}
         {previousAvgAbundancy.toFixed(1)}, {changeDirection} de{" "}
         {Math.abs(parseFloat(percentChange))}% {changeIcon}).
       </>
     );
   } else {
-    paragraph4 = `A abundância média foi de ${currentAvgAbundancy.toFixed(1)} indivíduos por visita.`;
+    paragraph4 = `A abundância média foi de ${currentAvgAbundancy.toFixed(1)} indivíduos por ${visitSingular}.`;
   }
 
   // Paragraph 5: Most frequent species
@@ -222,9 +230,9 @@ function TransectSummary({
   let paragraph7 = "";
   if (currentBestMonthFreq && currentBestMonthAbund) {
     if (previousBestMonthFreq && previousBestMonthAbund) {
-      paragraph7 = `O melhor mês para diversidade foi ${currentBestMonthFreq.month} (${currentBestMonthFreq.speciesCount} espécies) e para abundância foi ${currentBestMonthAbund.month} (${currentBestMonthAbund.abundance.toFixed(1)} indivíduos/visita). No ano anterior: ${previousBestMonthFreq.month} (${previousBestMonthFreq.speciesCount} espécies) e ${previousBestMonthAbund.month} (${previousBestMonthAbund.abundance.toFixed(1)} indivíduos/visita), respectivamente.`;
+      paragraph7 = `O melhor mês para diversidade foi ${currentBestMonthFreq.month} (${currentBestMonthFreq.speciesCount} espécies) e para abundância foi ${currentBestMonthAbund.month} (${currentBestMonthAbund.abundance.toFixed(1)} indivíduos/${visitSingular}). No ano anterior: ${previousBestMonthFreq.month} (${previousBestMonthFreq.speciesCount} espécies) e ${previousBestMonthAbund.month} (${previousBestMonthAbund.abundance.toFixed(1)} indivíduos/${visitSingular}), respectivamente.`;
     } else {
-      paragraph7 = `O melhor mês para diversidade foi ${currentBestMonthFreq.month} (${currentBestMonthFreq.speciesCount} espécies) e para abundância foi ${currentBestMonthAbund.month} (${currentBestMonthAbund.abundance.toFixed(1)} indivíduos/visita).`;
+      paragraph7 = `O melhor mês para diversidade foi ${currentBestMonthFreq.month} (${currentBestMonthFreq.speciesCount} espécies) e para abundância foi ${currentBestMonthAbund.month} (${currentBestMonthAbund.abundance.toFixed(1)} indivíduos/${visitSingular}).`;
     }
   }
 

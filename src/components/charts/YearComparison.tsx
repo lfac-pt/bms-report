@@ -7,6 +7,7 @@ import {
 } from "../utils";
 import { Card, Table, Tag, Tooltip } from "antd";
 import { Dataset } from "../../types/dataset";
+import { DatasetType } from "../../utils/datasetAdapter";
 
 function getItemsNotInSet(list: string[], set: Set<string>): string[] {
   return list.filter(item => !set.has(item));
@@ -112,9 +113,13 @@ interface YearComparisonProps {
   yearsList: number[];
   transect: string | null;
   section: string | null;
+  datasetType: DatasetType;
 }
 
-function YearComparison({ dataset, yearsList, transect, section }: YearComparisonProps) {
+function YearComparison({ dataset, yearsList, transect, section, datasetType }: YearComparisonProps) {
+  const visitLabel = datasetType === "nocturnal" ? "Sessões" : "Visitas";
+  const visitSingular = datasetType === "nocturnal" ? "sessão" : "visita";
+
   const columns = [
     {
       title: "Ano",
@@ -122,7 +127,7 @@ function YearComparison({ dataset, yearsList, transect, section }: YearCompariso
       key: "year",
     },
     {
-      title: "# Visitas (ano)",
+      title: `# ${visitLabel} (ano)`,
       dataIndex: "visitsCount",
       key: "visitsCount",
     },
@@ -138,7 +143,7 @@ function YearComparison({ dataset, yearsList, transect, section }: YearCompariso
       render: (_: any, { newSpecies }: YearRow) => <TagList tags={newSpecies} />,
     },
     {
-      title: "Abundância média p/ visita",
+      title: `Abundância média p/ ${visitSingular}`,
       dataIndex: "avgAbundancy",
       key: "avgAbundancy",
     },

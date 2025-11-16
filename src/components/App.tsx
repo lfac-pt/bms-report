@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import moment from "moment";
 import { Space, theme } from "antd";
 import { ParseResult } from "papaparse";
@@ -10,6 +10,9 @@ import PageFilters from "./PageFilters";
 import YearComparison from "./charts/YearComparison";
 import TransectSummary from "./TransectSummary";
 import { Dataset, ButterflyRecord } from "../types/dataset";
+import { NocturnalButterflyRecord } from "../types/nocturnalDataset";
+import { adaptNocturnalDataset, DatasetType } from "../utils/datasetAdapter";
+import { useDatasetType } from "../contexts/DatasetTypeContext";
 
 function getAllYears(dataset: Dataset): number[] {
   const yearsSet = new Set<number>();
@@ -50,25 +53,36 @@ function getAllSections(dataset: Dataset, transect: string): string[] {
   });
 }
 
-function getTransectNames(dataset: Dataset): Record<string, string> {
+function getTransectNames(dataset: Dataset, datasetType: DatasetType): Record<string, string> {
   const transectNames: Record<string, string> = {};
 
   for (const entry of dataset) {
     const transectId = entry["Transect ID"];
-    const sectionName = entry["Section Name"];
 
     // Skip if already processed or missing data
-    if (!transectId || !sectionName || transectNames[transectId]) {
+    if (!transectId || transectNames[transectId]) {
       continue;
     }
 
-    // Extract transect name from section name (e.g., "Baldios de São Miguel de Poiares - S4" -> "Baldios de São Miguel de Poiares")
-    const lastDashIndex = sectionName.lastIndexOf(" - ");
-    if (lastDashIndex !== -1) {
-      transectNames[transectId] = sectionName.substring(0, lastDashIndex);
+    if (datasetType === "nocturnal") {
+      // For nocturnal data, Location field contains the full station name directly
+      transectNames[transectId] = transectId; // Location is already the name
     } else {
-      // Fallback to transect ID if pattern doesn't match
-      transectNames[transectId] = transectId;
+      // For diurnal data, extract transect name from section name
+      const sectionName = entry["Section Name"];
+      if (!sectionName) {
+        transectNames[transectId] = transectId;
+        continue;
+      }
+
+      // Extract transect name from section name (e.g., "Baldios de São Miguel de Poiares - S4" -> "Baldios de São Miguel de Poiares")
+      const lastDashIndex = sectionName.lastIndexOf(" - ");
+      if (lastDashIndex !== -1) {
+        transectNames[transectId] = sectionName.substring(0, lastDashIndex);
+      } else {
+        // Fallback to transect ID if pattern doesn't match
+        transectNames[transectId] = transectId;
+      }
     }
   }
 
@@ -76,6 +90,7 @@ function getTransectNames(dataset: Dataset): Record<string, string> {
 }
 
 function MyApp() {
+  const { datasetType } = useDatasetType();
   const [dataset, setDataset] = useState<Dataset>([]);
 
   const [yearsList, setYearsList] = useState<number[]>([]);
@@ -88,6 +103,18 @@ function MyApp() {
 
   const [sectionsList, setSectionsList] = useState<string[]>([]);
   const [targetSection, setTargetSection] = useState<string | null>(null);
+
+  // Clear dataset when dataset type changes
+  useEffect(() => {
+    setDataset([]);
+    setYearsList([]);
+    setSelectedYears([]);
+    setTransectsList([]);
+    setTargetTransect(null);
+    setTargetTransectName(null);
+    setSectionsList([]);
+    setTargetSection(null);
+  }, [datasetType]);
 
   const onSelectedYearsChange = (newSelectedYears: number[]) => {
     // Ensure at least one year is always selected
@@ -113,8 +140,24 @@ function MyApp() {
     setTargetSection(newTargetSection ? newTargetSection : null);
   };
 
-  const onUpload = (results: ParseResult<ButterflyRecord>) => {
-    const cleanData = results.data.filter(point => point["Transect Sample ID"]);
+  const onUpload = (
+    results: ParseResult<ButterflyRecord | NocturnalButterflyRecord>,
+    type: DatasetType
+  ) => {
+    let cleanData: Dataset;
+
+    if (type === "nocturnal") {
+      // Adapt nocturnal data to diurnal format
+      const nocturnalData = (results.data as NocturnalButterflyRecord[]).filter(
+        point => point["Sample ID"]
+      );
+      cleanData = adaptNocturnalDataset(nocturnalData);
+    } else {
+      // Use diurnal data as-is
+      cleanData = (results.data as ButterflyRecord[]).filter(
+        point => point["Transect Sample ID"]
+      );
+    }
 
     const allYears = getAllYears(cleanData).toReversed();
     setYearsList(allYears);
@@ -122,7 +165,7 @@ function MyApp() {
     setSelectedYears([...allYears].sort((a, b) => a - b));
 
     const allTransects = getAllTransects(cleanData);
-    const names = getTransectNames(cleanData);
+    const names = getTransectNames(cleanData, type);
     setTransectsList(allTransects);
     setTransectNames(names);
     const initialTransect = allTransects[allTransects.length - 1];
@@ -151,7 +194,7 @@ function MyApp() {
         borderRadius: borderRadiusLG,
       }}
     >
-      <Uploader onUpload={onUpload} />
+      <Uploader onUpload={onUpload} datasetType={datasetType} />
 
       {dataset.length > 0 ? (
         <>
@@ -167,6 +210,7 @@ function MyApp() {
             sectionsList={sectionsList}
             targetSection={targetSection}
             onTargetSectionChange={onTargetSectionChange}
+            datasetType={datasetType}
           />
           <div id="pdf-summary">
             <TransectSummary
@@ -175,6 +219,7 @@ function MyApp() {
               targetTransect={targetTransect}
               targetSection={targetSection}
               targetTransectName={targetTransectName}
+              datasetType={datasetType}
             />
           </div>
           <div id="pdf-year-comparison">
@@ -183,6 +228,7 @@ function MyApp() {
               dataset={dataset}
               transect={targetTransect}
               section={targetSection}
+              datasetType={datasetType}
             />
           </div>
           <div id="pdf-abundancy-per-month">
@@ -191,6 +237,7 @@ function MyApp() {
               yearsList={selectedYears}
               targetTransect={targetTransect}
               targetSection={targetSection}
+              datasetType={datasetType}
             />
           </div>
           <div id="pdf-diversity-per-month">
@@ -207,6 +254,7 @@ function MyApp() {
               yearsList={selectedYears}
               targetTransect={targetTransect}
               targetSection={targetSection}
+              datasetType={datasetType}
             />
           </div>
         </>

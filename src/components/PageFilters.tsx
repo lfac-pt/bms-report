@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Select, Button, message } from "antd";
 import { DownloadOutlined } from "@ant-design/icons";
 import { exportToPDF } from "../utils/pdfExport";
+import { DatasetType } from "../utils/datasetAdapter";
 
 interface PageFiltersProps {
   yearsList: number[];
@@ -15,6 +16,7 @@ interface PageFiltersProps {
   sectionsList: string[];
   targetSection: string | null;
   onTargetSectionChange: (section: string | null) => void;
+  datasetType: DatasetType;
 }
 
 function PageFilters({
@@ -29,6 +31,7 @@ function PageFilters({
   sectionsList,
   targetSection,
   onTargetSectionChange,
+  datasetType,
 }: PageFiltersProps) {
   const yearOptions = yearsList.map(year => {
     return {
@@ -61,6 +64,7 @@ function PageFilters({
         targetTransect,
         targetSection,
         targetTransectName,
+        datasetType,
       });
       message.success("PDF exportado com sucesso!");
     } catch (_error) {
@@ -71,6 +75,8 @@ function PageFilters({
       setIsExporting(false);
     }
   };
+
+  const transectLabel = datasetType === "nocturnal" ? "Estação" : "Transecto";
 
   return (
     <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", gap: 8 }}>
@@ -87,28 +93,31 @@ function PageFilters({
           options={transectOptions}
           value={targetTransect}
           onChange={onTargetTransectChange}
+          placeholder={`Selecione ${transectLabel.toLowerCase()}`}
           style={
             {
               /*width: '100%'*/
             }
           }
         />
-        <Select
-          options={sectionOptions}
-          value={targetSection}
-          onChange={onTargetSectionChange}
-          style={
-            {
-              /*width: '100%'*/
+        {datasetType === "diurnal" && (
+          <Select
+            options={sectionOptions}
+            value={targetSection}
+            onChange={onTargetSectionChange}
+            style={
+              {
+                /*width: '100%'*/
+              }
             }
-          }
-          allowClear
-          placeholder="Todas as secções"
-          optionFilterProp="value"
-          filterSort={(optionA, optionB) =>
-            (optionA.value ?? "").toLowerCase().localeCompare((optionB?.value ?? "").toLowerCase())
-          }
-        />
+            allowClear
+            placeholder="Todas as secções"
+            optionFilterProp="value"
+            filterSort={(optionA, optionB) =>
+              (optionA.value ?? "").toLowerCase().localeCompare((optionB?.value ?? "").toLowerCase())
+            }
+          />
+        )}
       </div>
       <Button
         type="primary"

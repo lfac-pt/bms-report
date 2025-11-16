@@ -4,6 +4,7 @@ import Highlighter from "react-highlight-words";
 import { Card, Table, Alert, Button, Input, Space } from "antd";
 import moment from "moment";
 import { Dataset } from "../../types/dataset";
+import { DatasetType } from "../../utils/datasetAdapter";
 
 export function getVisitsCountByYear(dataset: Dataset, year: number): number {
   const dates = new Set<string>();
@@ -48,6 +49,7 @@ export interface ChangeData {
 export interface DataRow {
   key: string;
   species: string;
+  family?: string;
   abundancyChange?: ChangeData;
   frequencyChange?: ChangeData;
   [year: number]: YearData;
@@ -145,6 +147,7 @@ export function calculateYearOverYearChanges(
 export function calculateRows(dataset: Dataset, yearsList: number[]): DataRow[] {
   const allSpecies = getAllSpecies(dataset);
   const dataByYear: Record<number, YearDataBySpecies> = {};
+  const speciesFamilyMap: Record<string, string> = {}; // Track family per species
 
   // Initialize data structure for each year
   yearsList.forEach(year => {
@@ -159,6 +162,11 @@ export function calculateRows(dataset: Dataset, yearsList: number[]): DataRow[] 
   for (const entry of dataset) {
     const species = entry["Preferred Species Name"];
     const entryYear = moment(entry.Date, "DD/MM/YYYY").year();
+
+    // Track family for this species (if available)
+    if (entry.Family && !speciesFamilyMap[species]) {
+      speciesFamilyMap[species] = entry.Family;
+    }
 
     if (dataByYear[entryYear]) {
       // Track frequency (unique dates per species per year)
@@ -180,6 +188,7 @@ export function calculateRows(dataset: Dataset, yearsList: number[]): DataRow[] 
     const row: any = {
       key: species,
       species: species,
+      family: speciesFamilyMap[species] || "", // Add family if available
     };
 
     // Add data for each year
@@ -214,6 +223,7 @@ interface AbsoluteFrequencyAndAbundancyProps {
   yearsList: number[];
   targetTransect: string | null;
   targetSection: string | null;
+  datasetType: DatasetType;
 }
 
 function AbsoluteFrequencyAndAbundancy({
@@ -221,6 +231,7 @@ function AbsoluteFrequencyAndAbundancy({
   yearsList,
   targetTransect,
   targetSection,
+  datasetType,
 }: AbsoluteFrequencyAndAbundancyProps) {
   // Filter dataset by transect and section
   const filteredDataset = dataset.filter(entry => {
@@ -228,6 +239,8 @@ function AbsoluteFrequencyAndAbundancy({
     const matchesSection = !targetSection || entry["Section Name"] === targetSection;
     return matchesTransect && matchesSection;
   });
+  const visitLabel = datasetType === "nocturnal" ? "sessões" : "visitas";
+
   const anundanciaPorMesTitle = `Frequência e abundância`;
   const [searchText, setSearchText] = useState<string>("");
   const [searchedColumn, setSearchedColumn] = useState<string>("");
@@ -327,6 +340,17 @@ function AbsoluteFrequencyAndAbundancy({
       ...getColumnSearchProps("species"),
       render: (text: string) => <i>{text}</i>,
     },
+    // Add Family column for nocturnal datasets
+    ...(datasetType === "nocturnal"
+      ? [
+          {
+            title: "Família",
+            dataIndex: "family",
+            key: "family",
+            ...getColumnSearchProps("family"),
+          },
+        ]
+      : []),
     ...yearsList.map(year => ({
       title: year.toString(),
       dataIndex: year.toString(),
@@ -411,7 +435,7 @@ function AbsoluteFrequencyAndAbundancy({
         />
       </div>
       <Alert
-        message="Frenquência é a percentagem de visitas em que foi avistada. Abundância é o total de indivíduos contados. Formato: Frequência% / Abundância"
+        message={`Frenquência é a percentagem de ${visitLabel} em que foi avistada. Abundância é o total de indivíduos contados. Formato: Frequência% / Abundância`}
         type="info"
       />
     </Card>
