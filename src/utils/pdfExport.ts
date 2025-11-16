@@ -13,7 +13,13 @@ interface ExportOptions {
 }
 
 export async function exportToPDF(options: ExportOptions): Promise<void> {
-  const { selectedYears, targetTransect, targetSection, targetTransectName, datasetType = "diurnal" } = options;
+  const {
+    selectedYears,
+    targetTransect,
+    targetSection,
+    targetTransectName,
+    datasetType = "diurnal",
+  } = options;
 
   const visitSingular = datasetType === "nocturnal" ? "sessão" : "visita";
 
@@ -29,9 +35,10 @@ export async function exportToPDF(options: ExportOptions): Promise<void> {
   const margin = 15;
 
   // Add header
-  const reportTitle = datasetType === "nocturnal"
-    ? `Relatório Borboletas Noturnas - ${targetTransectName}`
-    : `Relatório BMS - ${targetTransectName}`;
+  const reportTitle =
+    datasetType === "nocturnal"
+      ? `Relatório Borboletas Noturnas - ${targetTransectName}`
+      : `Relatório BMS - ${targetTransectName}`;
 
   pdf.setFontSize(20);
   pdf.text(reportTitle, margin, margin + 10);

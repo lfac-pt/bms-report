@@ -116,7 +116,13 @@ interface YearComparisonProps {
   datasetType: DatasetType;
 }
 
-function YearComparison({ dataset, yearsList, transect, section, datasetType }: YearComparisonProps) {
+function YearComparison({
+  dataset,
+  yearsList,
+  transect,
+  section,
+  datasetType,
+}: YearComparisonProps) {
   const visitLabel = datasetType === "nocturnal" ? "Sessões" : "Visitas";
   const visitSingular = datasetType === "nocturnal" ? "sessão" : "visita";
 

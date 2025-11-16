@@ -8,22 +8,22 @@ import { NocturnalDataset } from "../types/nocturnalDataset";
  */
 export function adaptNocturnalDataset(nocturnalData: NocturnalDataset): Dataset {
   // Filter to only include records with substatus "Correct"
-  const correctRecords = nocturnalData.filter(
-    (record) => record["Record substatus"] === "Correct"
-  );
+  const correctRecords = nocturnalData.filter(record => record["Record substatus"] === "Correct");
 
   return correctRecords.map((record): ButterflyRecord => {
     // Calculate total abundance from inside and outside counts
-    const countInside = typeof record["Count inside"] === "number"
-      ? record["Count inside"]
-      : parseInt(record["Count inside"] || "0", 10);
+    const countInside =
+      typeof record["Count inside"] === "number"
+        ? record["Count inside"]
+        : parseInt(record["Count inside"] || "0", 10);
 
-    const countOutside = typeof record["Count outside"] === "number"
-      ? record["Count outside"]
-      : parseInt(record["Count outside"] || "0", 10);
+    const countOutside =
+      typeof record["Count outside"] === "number"
+        ? record["Count outside"]
+        : parseInt(record["Count outside"] || "0", 10);
 
-    const totalAbundance = (isNaN(countInside) ? 0 : countInside) +
-                           (isNaN(countOutside) ? 0 : countOutside);
+    const totalAbundance =
+      (isNaN(countInside) ? 0 : countInside) + (isNaN(countOutside) ? 0 : countOutside);
 
     return {
       "Transect Sample ID": record["Sample ID"],

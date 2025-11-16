@@ -8,12 +8,14 @@ import { DatasetType } from "../utils/datasetAdapter";
 const { Dragger } = Upload;
 
 interface UploaderProps {
-  onUpload: (results: ParseResult<ButterflyRecord | NocturnalButterflyRecord>, type: DatasetType) => void;
+  onUpload: (
+    results: ParseResult<ButterflyRecord | NocturnalButterflyRecord>,
+    type: DatasetType
+  ) => void;
   datasetType: DatasetType;
 }
 
 function Uploader({ onUpload, datasetType }: UploaderProps) {
-
   const props = {
     name: "file",
     accept: "csv",
@@ -25,14 +27,14 @@ function Uploader({ onUpload, datasetType }: UploaderProps) {
       if (datasetType === "nocturnal") {
         parse<NocturnalButterflyRecord>(file, {
           download: true,
-          complete: (results) => onUpload(results, "nocturnal"),
+          complete: results => onUpload(results, "nocturnal"),
           header: true,
           dynamicTyping: true,
         });
       } else {
         parse<ButterflyRecord>(file, {
           download: true,
-          complete: (results) => onUpload(results, "diurnal"),
+          complete: results => onUpload(results, "diurnal"),
           header: true,
           dynamicTyping: true,
         });
@@ -50,11 +52,13 @@ function Uploader({ onUpload, datasetType }: UploaderProps) {
         {datasetType === "diurnal" ? (
           <>
             Exporte o ficheiro na plataforma butterfly-monitoring.net usando a opção &quot;Download
-            species occurrences from transects (zipped CSV)&quot;. Ficheiros são só lidos localmente.
+            species occurrences from transects (zipped CSV)&quot;. Ficheiros são só lidos
+            localmente.
           </>
         ) : (
           <>
-            Exporte o ficheiro na plataforma butterfly-monitoring.net usando a opção &quot;Download moth trap occurrences&quot;. Ficheiros são só lidos localmente.
+            Exporte o ficheiro na plataforma butterfly-monitoring.net usando a opção &quot;Download
+            moth trap occurrences&quot;. Ficheiros são só lidos localmente.
           </>
         )}
       </p>

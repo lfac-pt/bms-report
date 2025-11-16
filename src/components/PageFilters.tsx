@@ -114,7 +114,9 @@ function PageFilters({
             placeholder="Todas as secções"
             optionFilterProp="value"
             filterSort={(optionA, optionB) =>
-              (optionA.value ?? "").toLowerCase().localeCompare((optionB?.value ?? "").toLowerCase())
+              (optionA.value ?? "")
+                .toLowerCase()
+                .localeCompare((optionB?.value ?? "").toLowerCase())
             }
           />
         )}

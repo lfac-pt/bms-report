@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import moment from "moment";
 import { Space, theme } from "antd";
 import { ParseResult } from "papaparse";
@@ -104,18 +104,6 @@ function MyApp() {
   const [sectionsList, setSectionsList] = useState<string[]>([]);
   const [targetSection, setTargetSection] = useState<string | null>(null);
 
-  // Clear dataset when dataset type changes
-  useEffect(() => {
-    setDataset([]);
-    setYearsList([]);
-    setSelectedYears([]);
-    setTransectsList([]);
-    setTargetTransect(null);
-    setTargetTransectName(null);
-    setSectionsList([]);
-    setTargetSection(null);
-  }, [datasetType]);
-
   const onSelectedYearsChange = (newSelectedYears: number[]) => {
     // Ensure at least one year is always selected
     if (!newSelectedYears || newSelectedYears.length === 0) {
@@ -154,9 +142,7 @@ function MyApp() {
       cleanData = adaptNocturnalDataset(nocturnalData);
     } else {
       // Use diurnal data as-is
-      cleanData = (results.data as ButterflyRecord[]).filter(
-        point => point["Transect Sample ID"]
-      );
+      cleanData = (results.data as ButterflyRecord[]).filter(point => point["Transect Sample ID"]);
     }
 
     const allYears = getAllYears(cleanData).toReversed();

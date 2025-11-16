@@ -118,7 +118,10 @@ function TransectSummary({
   // Build summary text
   const locationLabel = datasetType === "nocturnal" ? "A estação" : "O transecto";
   const locationArticle = datasetType === "nocturnal" ? "a" : "o";
-  const transectName = targetTransectName || targetTransect || `${locationArticle} ${datasetType === "nocturnal" ? "estação" : "transecto"}`;
+  const transectName =
+    targetTransectName ||
+    targetTransect ||
+    `${locationArticle} ${datasetType === "nocturnal" ? "estação" : "transecto"}`;
   const visitLabel = datasetType === "nocturnal" ? "sessões" : "visitas";
   const visitSingular = datasetType === "nocturnal" ? "sessão" : "visita";
 
@@ -173,8 +176,10 @@ function TransectSummary({
     paragraph4 = (
       <>
         A abundância média foi de{" "}
-        <Text strong>{currentAvgAbundancy.toFixed(1)} indivíduos por {visitSingular}</Text> (ano anterior:{" "}
-        {previousAvgAbundancy.toFixed(1)}, {changeDirection} de{" "}
+        <Text strong>
+          {currentAvgAbundancy.toFixed(1)} indivíduos por {visitSingular}
+        </Text>{" "}
+        (ano anterior: {previousAvgAbundancy.toFixed(1)}, {changeDirection} de{" "}
         {Math.abs(parseFloat(percentChange))}% {changeIcon}).
       </>
     );

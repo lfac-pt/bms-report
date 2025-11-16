@@ -1,3 +1,4 @@
+/* global URLSearchParams */
 import { createContext, useContext, useState, useEffect, ReactNode } from "react";
 import { DatasetType } from "../utils/datasetAdapter";
 

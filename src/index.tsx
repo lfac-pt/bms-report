@@ -28,7 +28,7 @@ function AppHeader() {
       <div style={{ color: "white", fontSize: "40px" }}>Relatório BMS</div>
       <Radio.Group
         value={datasetType}
-        onChange={(e) => setDatasetType(e.target.value)}
+        onChange={e => setDatasetType(e.target.value)}
         buttonStyle="solid"
       >
         <Radio.Button value="diurnal">Borboletas Diurnas</Radio.Button>
@@ -36,6 +36,12 @@ function AppHeader() {
       </Radio.Group>
     </Header>
   );
+}
+
+function AppContent() {
+  const { datasetType } = useDatasetType();
+
+  return <MyApp key={datasetType} />;
 }
 
 const rootElement = document.getElementById("root");
@@ -48,7 +54,7 @@ root.render(
         <Layout>
           <AppHeader />
           <Content style={{ padding: "0 48px" }}>
-            <MyApp />
+            <AppContent />
           </Content>
           <Footer style={{ textAlign: "center" }}>Luís Cardoso ©{new Date().getFullYear()}</Footer>
         </Layout>
