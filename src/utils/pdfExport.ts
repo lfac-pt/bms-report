@@ -52,41 +52,72 @@ export async function exportToPDF(options: ExportOptions): Promise<void> {
   const chartElements = document.querySelectorAll<HTMLElement>("[data-chart-export]");
   for (let i = 0; i < chartElements.length; i++) {
     const element = chartElements[i];
-    const chartTitle = element.getAttribute("data-chart-title") || `Gráfico ${i + 1}`;
+    const exportAsTable = element.hasAttribute("data-export-as-table");
+    const chartExportTitle = element.getAttribute("data-chart-export-title");
 
-    // Add new page for each chart (except first one which uses the header page)
-    if (i > 0 || yPosition > margin + 50) {
+    // Add new page for the charts
+    if (i === 1) {
       pdf.addPage();
       yPosition = margin;
     }
 
-    // Add chart title
-    pdf.setFontSize(14);
-    pdf.text(chartTitle, margin, yPosition);
-    yPosition += 10;
+    // Add chart title if data-chart-export-title is present
+    if (chartExportTitle) {
+      pdf.setFontSize(14);
+      pdf.text(chartExportTitle, margin, yPosition);
+      yPosition += 10;
+    }
 
-    try {
-      const canvas = await html2canvas(element, {
-        scale: 2,
-        logging: false,
-        backgroundColor: "#ffffff",
-      });
+    if (exportAsTable) {
+      // Export as native table
+      const tableData = extractTableData(element);
 
-      const imgData = canvas.toDataURL("image/png");
-      const imgWidth = pageWidth - 2 * margin;
-      const imgHeight = (canvas.height * imgWidth) / canvas.width;
+      if (tableData.headers.length > 0 && tableData.rows.length > 0) {
+        autoTable(pdf, {
+          head: [tableData.headers],
+          body: tableData.rows,
+          startY: yPosition,
+          margin: { left: margin, right: margin },
+          styles: {
+            fontSize: 9,
+            cellPadding: 2,
+          },
+          headStyles: {
+            fillColor: [66, 139, 202],
+            textColor: 255,
+            fontStyle: "bold",
+            fontSize: 10,
+          },
+          theme: "grid",
+        });
 
-      // Check if image fits on current page
-      if (yPosition + imgHeight > pageHeight - margin) {
-        pdf.addPage();
-        yPosition = margin;
+        yPosition = (pdf as any).lastAutoTable.finalY + 10;
       }
+    } else {
+      // Export as image
+      try {
+        const canvas = await html2canvas(element, {
+          scale: 2,
+          logging: false,
+          backgroundColor: "#ffffff",
+        });
 
-      pdf.addImage(imgData, "PNG", margin, yPosition, imgWidth, imgHeight);
-      yPosition += imgHeight + 10;
-    } catch (_error) {
-      // Error capturing chart
-      throw new Error(`Failed to capture chart ${i}`);
+        const imgData = canvas.toDataURL("image/png");
+        const imgWidth = pageWidth - 2 * margin;
+        const imgHeight = (canvas.height * imgWidth) / canvas.width;
+
+        // Check if image fits on current page
+        if (yPosition + imgHeight > pageHeight - margin) {
+          pdf.addPage();
+          yPosition = margin;
+        }
+
+        pdf.addImage(imgData, "PNG", margin, yPosition, imgWidth, imgHeight);
+        yPosition += imgHeight + 10;
+      } catch (_error) {
+        // Error capturing chart
+        throw new Error(`Failed to capture chart ${i}`);
+      }
     }
   }
 
@@ -128,7 +159,7 @@ export async function exportToPDF(options: ExportOptions): Promise<void> {
         theme: "grid",
         didParseCell: function (data) {
           // Make change columns more prominent if they show significant changes
-          if (data.column.index > 1) {
+          if (data.column.index >= tableData.headers.length - 2) {
             const cellText = data.cell.text[0];
             if (cellText && cellText.includes("%")) {
               const value = parseFloat(cellText.replace("%", ""));
@@ -165,7 +196,13 @@ function extractTableData(tableElement: Element): {
   // Extract headers
   const headerCells = tableElement.querySelectorAll("thead th");
   headerCells.forEach(cell => {
-    headers.push(cell.textContent?.trim() || "");
+    // Check for data-content-for-pdf attribute
+    const pdfContentElement = cell.querySelector("[data-content-for-pdf]");
+    if (pdfContentElement) {
+      headers.push(pdfContentElement.getAttribute("data-content-for-pdf") || "");
+    } else {
+      headers.push(cell.textContent?.trim() || "");
+    }
   });
 
   // Extract rows
@@ -175,7 +212,13 @@ function extractTableData(tableElement: Element): {
     const cells = row.querySelectorAll("td");
 
     cells.forEach(cell => {
-      rowData.push(cell.textContent?.trim() || "");
+      // Check for data-content-for-pdf attribute
+      const pdfContentElement = cell.querySelector("[data-content-for-pdf]");
+      if (pdfContentElement) {
+        rowData.push(pdfContentElement.getAttribute("data-content-for-pdf") || "");
+      } else {
+        rowData.push(cell.textContent?.trim() || "");
+      }
     });
 
     if (rowData.length > 0) {

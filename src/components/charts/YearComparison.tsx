@@ -37,7 +37,7 @@ const TagList = ({ tags, maxVisible = 10 }: TagListProps) => {
   const hiddenTags = tags.slice(maxVisible);
 
   return (
-    <div>
+    <div data-content-for-pdf={tags.join(", ")}>
       {visibleTags.map((tag, index) => (
         <Tag key={index}>{tag}</Tag>
       ))}

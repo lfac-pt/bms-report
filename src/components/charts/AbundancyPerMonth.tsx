@@ -59,38 +59,40 @@ function AbundancyPerMonth({
         placeholder="Todas as espécies (ou escolha uma ou mais)"
         defaultValue={targetSpecies}
       />
-      {targetSpecies.length > 0 ? (
-        targetSpecies.map(species => (
-          <div key={species} style={{ marginBottom: "24px" }}>
-            <h4>{species}</h4>
-            <Bar
-              options={options}
-              data={getAbundancyPerMonthForSpecies(
-                dataset,
-                [species],
-                yearsList,
-                targetTransect,
-                targetSection
-              )}
-            />
-          </div>
-        ))
-      ) : (
-        <Bar
-          options={options}
-          data={getAbundancyPerMonthForSpecies(
-            dataset,
-            targetSpecies,
-            yearsList,
-            targetTransect,
-            targetSection
-          )}
+      <div data-chart-export data-chart-export-title="Abundância média por visita">
+        {targetSpecies.length > 0 ? (
+          targetSpecies.map(species => (
+            <div key={species} style={{ marginBottom: "24px" }}>
+              <h4>{species}</h4>
+              <Bar
+                options={options}
+                data={getAbundancyPerMonthForSpecies(
+                  dataset,
+                  [species],
+                  yearsList,
+                  targetTransect,
+                  targetSection
+                )}
+              />
+            </div>
+          ))
+        ) : (
+          <Bar
+            options={options}
+            data={getAbundancyPerMonthForSpecies(
+              dataset,
+              targetSpecies,
+              yearsList,
+              targetTransect,
+              targetSection
+            )}
+          />
+        )}
+        <Alert
+          message="O total de indivíduos da espécie no mês dividido por número de visitas"
+          type="info"
         />
-      )}
-      <Alert
-        message="O total de indivíduos da espécie no mês dividido por número de visitas"
-        type="info"
-      />
+      </div>
     </Card>
   );
 }

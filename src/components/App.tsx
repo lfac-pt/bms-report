@@ -133,7 +133,7 @@ function MyApp() {
             targetSection={targetSection}
             onTargetSectionChange={onTargetSectionChange}
           />
-          <div data-chart-export data-chart-title="Comparação entre Anos">
+          <div data-chart-export data-export-as-table>
             <YearComparison
               yearsList={selectedYears}
               dataset={dataset}
@@ -141,7 +141,7 @@ function MyApp() {
               section={targetSection}
             />
           </div>
-          <div data-chart-export data-chart-title="Abundância por Mês">
+          <div>
             <AbundancyPerMonth
               dataset={dataset}
               yearsList={selectedYears}
@@ -149,7 +149,7 @@ function MyApp() {
               targetSection={targetSection}
             />
           </div>
-          <div data-chart-export data-chart-title="Diversidade por Mês">
+          <div>
             <DiversityPerMonth
               dataset={dataset}
               yearsList={selectedYears}

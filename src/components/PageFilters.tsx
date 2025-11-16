@@ -60,6 +60,7 @@ function PageFilters({
       message.success("PDF exportado com sucesso!");
     } catch (_error) {
       message.error("Erro ao exportar PDF. Por favor, tente novamente.");
+      console.error(_error);
     } finally {
       setIsExporting(false);
     }

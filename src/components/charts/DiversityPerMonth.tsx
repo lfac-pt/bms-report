@@ -110,14 +110,16 @@ function DiversityPerMonth({
 
   return (
     <Card title={anundanciaPorMesTitle} size="small">
-      <Bar
-        options={options}
-        data={getDiversityPerMonthForSpecies(dataset, yearsList, targetTransect, targetSection)}
-      />
-      <Alert
-        message="Observações só com o género são consideradas caso não hajam registos mais específicos. Acima disso nada é considerado."
-        type="info"
-      />
+      <div data-chart-export data-chart-export-title="Total de espécies por mês">
+        <Bar
+          options={options}
+          data={getDiversityPerMonthForSpecies(dataset, yearsList, targetTransect, targetSection)}
+        />
+        <Alert
+          message="Observações só com o género são consideradas caso não hajam registos mais específicos. Acima disso nada é considerado."
+          type="info"
+        />
+      </div>
     </Card>
   );
 }
