@@ -4,7 +4,7 @@ import { ArrowUpOutlined, ArrowDownOutlined } from "@ant-design/icons";
 import { Dataset } from "../types/dataset";
 import {
   getAllSpecies,
-  getTransectStartYear,
+  getTransectFirstObservationDate,
   getTransectYearsOfOperation,
   getAverageVisitsPerYear,
   getNewSpeciesCount,
@@ -46,7 +46,7 @@ function TransectSummary({
 
   // Get basic metrics
   const totalSpecies = getAllSpecies(filteredDataset).length;
-  const startYear = getTransectStartYear(dataset, targetTransect, targetSection);
+  const firstObservationDate = getTransectFirstObservationDate(dataset, targetTransect, targetSection);
   const yearsOfOperation = getTransectYearsOfOperation(dataset, targetTransect, targetSection);
   const avgVisitsPerYear = getAverageVisitsPerYear(dataset, targetTransect, targetSection);
 
@@ -115,7 +115,7 @@ function TransectSummary({
   const transectName = targetTransectName || targetTransect || "o transecto";
 
   // Paragraph 1: Basic info
-  const paragraph1 = `O transecto ${transectName} conta com ${totalSpecies} espécies registadas desde ${startYear}, estando em funcionamento há ${yearsOfOperation} anos, com uma média de ${avgVisitsPerYear.toFixed(1)} visitas por ano.`;
+  const paragraph1 = `O transecto ${transectName} conta com ${totalSpecies} espécies registadas desde ${firstObservationDate}, estando em funcionamento há ${yearsOfOperation} temporadas de monitorização, com uma média de ${avgVisitsPerYear.toFixed(1)} visitas por temporada.`;
 
   // Paragraph 2: New species
   let paragraph2: React.ReactNode = "";

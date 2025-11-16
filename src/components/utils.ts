@@ -1,5 +1,9 @@
 import moment from "moment";
+import "moment/locale/pt";
 import { Dataset } from "../types/dataset";
+
+// Set moment locale to Portuguese
+moment.locale("pt");
 
 export function filterDataset(
   dataset: Dataset,
@@ -169,30 +173,29 @@ export function getAvgAbundancy(dataset: Dataset): string {
   ).toFixed(1);
 }
 
-export function getTransectStartYear(
+export function getTransectFirstObservationDate(
   dataset: Dataset,
   targetTransect: string | null,
   targetSection: string | null
-): number | null {
+): string | null {
   const filteredDataset = dataset.filter(entry => {
-    return (
-      (!targetTransect || entry["Transect ID"] === targetTransect) &&
-      (!targetSection || targetSection === entry["Section Name"])
-    );
+    const matchesTransect = !targetTransect || entry["Transect ID"] === targetTransect;
+    const matchesSection = !targetSection || targetSection === entry["Section Name"];
+
+    return matchesTransect && matchesSection;
   });
 
   if (filteredDataset.length === 0) return null;
 
-  let minYear = Infinity;
+  let earliestDate: moment.Moment | null = null;
   for (const entry of filteredDataset) {
     const date = moment(entry.Date, "DD-MM-YYYY");
-    const year = date.year();
-    if (year < minYear) {
-      minYear = year;
+    if (!earliestDate || date.isBefore(earliestDate)) {
+      earliestDate = date;
     }
   }
 
-  return minYear === Infinity ? null : minYear;
+  return earliestDate ? earliestDate.format("D [de] MMMM [de] YYYY") : null;
 }
 
 export function getTransectYearsOfOperation(
@@ -200,11 +203,26 @@ export function getTransectYearsOfOperation(
   targetTransect: string | null,
   targetSection: string | null
 ): number {
-  const startYear = getTransectStartYear(dataset, targetTransect, targetSection);
-  if (!startYear) return 0;
+  // Count unique monitoring seasons (years with March-September records)
+  const filteredDataset = dataset.filter(entry => {
+    const matchesTransect = !targetTransect || entry["Transect ID"] === targetTransect;
+    const matchesSection = !targetSection || targetSection === entry["Section Name"];
 
-  const currentYear = new Date().getFullYear();
-  return currentYear - startYear + 1;
+    // Only include records during monitoring season (March-September)
+    const date = moment(entry.Date, "DD-MM-YYYY");
+    const month = date.month();
+    const inMonitoringSeason = month >= 2 && month <= 8;
+
+    return matchesTransect && matchesSection && inMonitoringSeason;
+  });
+
+  const seasonsSet = new Set<number>();
+  for (const entry of filteredDataset) {
+    const date = moment(entry.Date, "DD-MM-YYYY");
+    seasonsSet.add(date.year());
+  }
+
+  return seasonsSet.size;
 }
 
 export function getAverageVisitsPerYear(
@@ -212,17 +230,23 @@ export function getAverageVisitsPerYear(
   targetTransect: string | null,
   targetSection: string | null
 ): number {
+  // Only count visits during monitoring season (March-September)
   const filteredDataset = dataset.filter(entry => {
-    return (
-      (!targetTransect || entry["Transect ID"] === targetTransect) &&
-      (!targetSection || targetSection === entry["Section Name"])
-    );
+    const matchesTransect = !targetTransect || entry["Transect ID"] === targetTransect;
+    const matchesSection = !targetSection || targetSection === entry["Section Name"];
+
+    // Only include records during monitoring season
+    const date = moment(entry.Date, "DD-MM-YYYY");
+    const month = date.month();
+    const inMonitoringSeason = month >= 2 && month <= 8;
+
+    return matchesTransect && matchesSection && inMonitoringSeason;
   });
 
   const totalVisits = getVisitsCount(filteredDataset);
-  const yearsOfOperation = getTransectYearsOfOperation(dataset, targetTransect, targetSection);
+  const seasonsCount = getTransectYearsOfOperation(dataset, targetTransect, targetSection);
 
-  return yearsOfOperation > 0 ? totalVisits / yearsOfOperation : 0;
+  return seasonsCount > 0 ? totalVisits / seasonsCount : 0;
 }
 
 export function getNewSpeciesCount(
