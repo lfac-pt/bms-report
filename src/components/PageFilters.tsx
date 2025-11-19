@@ -60,6 +60,7 @@ function PageFilters({
           {name} <span style={{ color: "#999", fontSize: "0.9em" }}>({recordCount})</span>
         </span>
       ),
+      searchLabel: name, // Add searchable text for filtering
     };
   });
 
@@ -111,6 +112,11 @@ function PageFilters({
           onChange={onTargetTransectChange}
           placeholder={`Selecione ${transectLabel.toLowerCase()}`}
           style={{ minWidth: 450 }}
+          showSearch
+          filterOption={(input, option) => {
+            const searchLabel = String((option as any)?.searchLabel || "");
+            return searchLabel.toLowerCase().includes(input.toLowerCase());
+          }}
         />
         {datasetType === "diurnal" && (
           <Select

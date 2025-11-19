@@ -161,11 +161,25 @@ function MyApp() {
     const names = getTransectNames(cleanData, type);
     setTransectsList(allTransects);
     setTransectNames(names);
-    const initialTransect = allTransects[allTransects.length - 1];
+
+    // Count records per transect and select the one with most observations
+    const transectRecordCounts: Record<string, number> = {};
+    cleanData.forEach(entry => {
+      const transectId = entry["Transect ID"];
+      transectRecordCounts[transectId] = (transectRecordCounts[transectId] || 0) + 1;
+    });
+
+    // Find transect with most records
+    const initialTransect = allTransects.reduce((maxTransect, transect) => {
+      return (transectRecordCounts[transect] || 0) > (transectRecordCounts[maxTransect] || 0)
+        ? transect
+        : maxTransect;
+    }, allTransects[0]);
+
     setTargetTransect(initialTransect);
     setTargetTransectName(names[initialTransect] || initialTransect);
 
-    const allSectionsForTransect = getAllSections(cleanData, allTransects[allTransects.length - 1]);
+    const allSectionsForTransect = getAllSections(cleanData, initialTransect);
     setSectionsList(allSectionsForTransect);
     setTargetSection(null);
 
