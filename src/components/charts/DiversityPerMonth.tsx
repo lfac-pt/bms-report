@@ -1,6 +1,6 @@
 import { Bar } from "react-chartjs-2";
 import moment from "moment";
-import { filterDataset, SERIES_COLORS, LABELS_MONTHS } from "../utils";
+import { filterDataset, SERIES_COLORS, LABELS_MONTHS } from "../../utils/utils";
 import { Card, Alert } from "antd";
 import { Dataset } from "../../types/dataset";
 

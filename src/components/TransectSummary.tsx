@@ -14,7 +14,7 @@ import {
   getBestMonthForFrequency,
   getBestMonthForAbundancy,
   endangeredSpeciesSummary,
-} from "./utils";
+} from "../utils/utils";
 import { DatasetType } from "../utils/datasetAdapter";
 
 const { Paragraph, Text } = Typography;

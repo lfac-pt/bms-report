@@ -4,7 +4,7 @@ import {
   getDiversityTotal,
   getAllSpecies,
   getAvgAbundancy,
-} from "../utils";
+} from "../../utils/utils";
 import { Card, Table, Tag, Tooltip } from "antd";
 import { Dataset } from "../../types/dataset";
 import { DatasetType } from "../../utils/datasetAdapter";

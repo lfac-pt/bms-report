@@ -1,7 +1,7 @@
 import { Bar } from "react-chartjs-2";
 import { useState } from "react";
 import { Select, Card, Alert } from "antd";
-import { getAllSpecies, getAbundancyPerMonthForSpecies } from "../utils";
+import { getAllSpecies, getAbundancyPerMonthForSpecies } from "../../utils/utils";
 import { Dataset } from "../../types/dataset";
 import { DatasetType } from "../../utils/datasetAdapter";
 

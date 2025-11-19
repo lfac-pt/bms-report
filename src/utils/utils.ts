@@ -1,8 +1,8 @@
 import moment from "moment";
 import "moment/locale/pt";
 import { Dataset } from "../types/dataset";
-import endangeredSpeciesEurope from "../utils/endangered_eu";
-import endangeredSpeciesPT from "../utils/endangered_pt";
+import endangeredSpeciesEurope from "./endangered_eu";
+import endangeredSpeciesPT from "./endangered_pt";
 
 // Set moment locale to Portuguese
 moment.locale("pt");
