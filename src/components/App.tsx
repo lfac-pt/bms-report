@@ -180,7 +180,7 @@ function MyApp() {
         borderRadius: borderRadiusLG,
       }}
     >
-      <Uploader onUpload={onUpload} datasetType={datasetType} />
+      <Uploader key={datasetType} onUpload={onUpload} datasetType={datasetType} />
 
       {dataset.length > 0 ? (
         <>
