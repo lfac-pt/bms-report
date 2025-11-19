@@ -8,6 +8,8 @@ test("renders learn react link", () => {
       <App />
     </DatasetTypeProvider>
   );
-  const linkElement = screen.getByText(/Clique ou arraste ficheiros para esta área para começar/i);
+  const linkElement = screen.getByText(
+    /Clique ou arraste um ou mais ficheiros para esta área para começar/i
+  );
   expect(linkElement).toBeInTheDocument();
 });
