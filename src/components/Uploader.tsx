@@ -32,28 +32,27 @@ function Uploader({ onUpload, datasetType }: UploaderProps) {
 
   // Merge and upload whenever uploadedFiles changes
   useEffect(() => {
-    if (uploadedFiles.size > 0) {
-      // Merge all file data into a single dataset
-      const mergedData: (ButterflyRecord | NocturnalButterflyRecord)[] = [];
-      uploadedFiles.forEach(data => {
-        mergedData.push(...data);
-      });
+    // Merge all file data into a single dataset (or empty if no files)
+    const mergedData: (ButterflyRecord | NocturnalButterflyRecord)[] = [];
+    uploadedFiles.forEach(data => {
+      mergedData.push(...data);
+    });
 
-      // Create a ParseResult with the merged data
-      const mergedResult: ParseResult<ButterflyRecord | NocturnalButterflyRecord> = {
-        data: mergedData,
-        errors: [],
-        meta: {
-          delimiter: ",",
-          linebreak: "\n",
-          aborted: false,
-          truncated: false,
-          cursor: 0,
-        },
-      };
+    // Create a ParseResult with the merged data
+    const mergedResult: ParseResult<ButterflyRecord | NocturnalButterflyRecord> = {
+      data: mergedData,
+      errors: [],
+      meta: {
+        delimiter: ",",
+        linebreak: "\n",
+        aborted: false,
+        truncated: false,
+        cursor: 0,
+      },
+    };
 
-      onUploadRef.current(mergedResult, datasetTypeRef.current);
-    }
+    // Always call onUpload, even with empty data to clear the app when all files removed
+    onUploadRef.current(mergedResult, datasetTypeRef.current);
   }, [uploadedFiles]);
 
   const props = {
