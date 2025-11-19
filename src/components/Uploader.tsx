@@ -30,6 +30,19 @@ function Uploader({ onUpload, datasetType }: UploaderProps) {
     datasetTypeRef.current = datasetType;
   });
 
+  // Normalize column names to handle CSV export format variations
+  const normalizeColumnNames = (data: any[]): any[] => {
+    return data.map(record => {
+      const normalized: any = { ...record };
+      // Handle "Abundance Count" vs "Abundance count"
+      if ("Abundance Count" in record) {
+        normalized["Abundance count"] = record["Abundance Count"];
+        delete normalized["Abundance Count"];
+      }
+      return normalized;
+    });
+  };
+
   // Merge and upload whenever uploadedFiles changes
   useEffect(() => {
     // Merge all file data into a single dataset (or empty if no files)
@@ -66,9 +79,10 @@ function Uploader({ onUpload, datasetType }: UploaderProps) {
         parse<NocturnalButterflyRecord>(file, {
           download: true,
           complete: results => {
+            const normalizedData = normalizeColumnNames(results.data);
             setUploadedFiles(prevFiles => {
               const newFiles = new Map(prevFiles);
-              newFiles.set(file.name, results.data);
+              newFiles.set(file.name, normalizedData);
               return newFiles;
             });
             if (onSuccess) onSuccess("ok");
@@ -80,9 +94,10 @@ function Uploader({ onUpload, datasetType }: UploaderProps) {
         parse<ButterflyRecord>(file, {
           download: true,
           complete: results => {
+            const normalizedData = normalizeColumnNames(results.data);
             setUploadedFiles(prevFiles => {
               const newFiles = new Map(prevFiles);
-              newFiles.set(file.name, results.data);
+              newFiles.set(file.name, normalizedData);
               return newFiles;
             });
             if (onSuccess) onSuccess("ok");

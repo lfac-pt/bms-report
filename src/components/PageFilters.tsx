@@ -3,6 +3,7 @@ import { Select, Button, message } from "antd";
 import { DownloadOutlined } from "@ant-design/icons";
 import { exportToPDF } from "../utils/pdfExport";
 import { DatasetType } from "../utils/datasetAdapter";
+import { Dataset } from "../types/dataset";
 
 interface PageFiltersProps {
   yearsList: number[];
@@ -17,6 +18,7 @@ interface PageFiltersProps {
   targetSection: string | null;
   onTargetSectionChange: (section: string | null) => void;
   datasetType: DatasetType;
+  dataset: Dataset;
 }
 
 function PageFilters({
@@ -32,6 +34,7 @@ function PageFilters({
   targetSection,
   onTargetSectionChange,
   datasetType,
+  dataset,
 }: PageFiltersProps) {
   const yearOptions = yearsList.map(year => {
     return {
@@ -40,10 +43,23 @@ function PageFilters({
     };
   });
 
+  // Count records per transect
+  const transectRecordCounts: Record<string, number> = {};
+  dataset.forEach(entry => {
+    const transectId = entry["Transect ID"];
+    transectRecordCounts[transectId] = (transectRecordCounts[transectId] || 0) + 1;
+  });
+
   const transectOptions = transectsList.map(transect => {
+    const recordCount = transectRecordCounts[transect] || 0;
+    const name = transectNames[transect] || transect;
     return {
       value: transect,
-      label: <span>{transectNames[transect] || transect}</span>,
+      label: (
+        <span>
+          {name} <span style={{ color: "#999", fontSize: "0.9em" }}>({recordCount})</span>
+        </span>
+      ),
     };
   });
 
@@ -94,11 +110,7 @@ function PageFilters({
           value={targetTransect}
           onChange={onTargetTransectChange}
           placeholder={`Selecione ${transectLabel.toLowerCase()}`}
-          style={
-            {
-              /*width: '100%'*/
-            }
-          }
+          style={{ minWidth: 450 }}
         />
         {datasetType === "diurnal" && (
           <Select

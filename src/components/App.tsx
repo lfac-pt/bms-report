@@ -122,6 +122,13 @@ function MyApp() {
     const allSectionsForTransect = getAllSections(dataset, newTargetTransect);
     setSectionsList(allSectionsForTransect);
     setTargetSection(null);
+
+    // Get years with data for this transect
+    const transectData = dataset.filter(entry => entry["Transect ID"] === newTargetTransect);
+    const availableYears = getAllYears(transectData);
+
+    // Update selected years to only include years with data in this transect
+    setSelectedYears(availableYears.sort((a, b) => a - b));
   };
 
   const onTargetSectionChange = (newTargetSection: string | null) => {
@@ -197,6 +204,7 @@ function MyApp() {
             targetSection={targetSection}
             onTargetSectionChange={onTargetSectionChange}
             datasetType={datasetType}
+            dataset={dataset}
           />
           <div id="pdf-summary">
             <TransectSummary
