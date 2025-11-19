@@ -161,6 +161,7 @@ function YearComparison({
         dataSource={calculateRows(dataset, yearsList, transect, section)}
         columns={columns}
         pagination={false}
+        rowKey="year"
       />
     </Card>
   );

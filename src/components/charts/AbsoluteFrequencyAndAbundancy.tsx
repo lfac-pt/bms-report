@@ -432,6 +432,7 @@ function AbsoluteFrequencyAndAbundancy({
           dataSource={calculateRows(filteredDataset, yearsList)}
           columns={columns}
           pagination={{ showSizeChanger: true, defaultPageSize: 50 }}
+          rowKey="key"
         />
       </div>
       <Alert
