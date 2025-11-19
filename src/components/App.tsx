@@ -18,7 +18,7 @@ function getAllYears(dataset: Dataset): number[] {
   const yearsSet = new Set<number>();
 
   for (const entry of dataset) {
-    const date = moment(entry.Date, "DD-MM-YYYY");
+    const date = moment(entry.Date, "DD/MM/YYYY");
     yearsSet.add(date.year());
   }
 

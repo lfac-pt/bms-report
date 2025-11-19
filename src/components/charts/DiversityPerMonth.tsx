@@ -24,7 +24,7 @@ function getDiversityForYear(
   let diversityPerMonth = LABELS_MONTHS.map(() => new Set<string>());
 
   for (const entry of filteredDataset) {
-    const date = moment(entry.Date, "DD-MM-YYYY");
+    const date = moment(entry.Date, "DD/MM/YYYY");
 
     const sp = entry["Preferred Species Name"];
 

@@ -14,7 +14,7 @@ export function filterDataset(
   targetSection: string | null
 ): Dataset {
   return dataset.filter(entry => {
-    const date = moment(entry.Date, "DD-MM-YYYY");
+    const date = moment(entry.Date, "DD/MM/YYYY");
 
     return (
       (!targetYear || date.year() === targetYear) &&
@@ -109,7 +109,7 @@ function abundancyPerMonthAllSpecies(
   const filteredDataset = filterDataset(dataset, year, targetTransect, targetSection);
 
   for (const entry of filteredDataset) {
-    const date = moment(entry.Date, "DD-MM-YYYY");
+    const date = moment(entry.Date, "DD/MM/YYYY");
 
     if (targetSpecies.length === 0 || targetSpecies.includes(entry["Preferred Species Name"])) {
       visitsPerMonthSets[date.month()].add(entry.Date);
@@ -155,7 +155,7 @@ export function getAvgAbundancy(dataset: Dataset): string {
   const visitsPerMonthSets = LABELS_MONTHS.map(() => new Set<string>());
 
   for (const entry of dataset) {
-    const date = moment(entry.Date, "DD-MM-YYYY");
+    const date = moment(entry.Date, "DD/MM/YYYY");
 
     visitsPerMonthSets[date.month()].add(entry.Date);
 
@@ -178,7 +178,7 @@ export function getAvgAbundancy(dataset: Dataset): string {
 export function getTransectFirstObservationDate(dataset: Dataset): string | null {
   let earliestDate: moment.Moment | null = null;
   for (const entry of dataset) {
-    const date = moment(entry.Date, "DD-MM-YYYY");
+    const date = moment(entry.Date, "DD/MM/YYYY");
     if (!earliestDate || date.isBefore(earliestDate)) {
       earliestDate = date;
     }
@@ -191,7 +191,7 @@ export function getTransectYearsOfOperation(dataset: Dataset): number {
   // Count unique monitoring seasons (years with March-September records)
   const filteredDataset = dataset.filter(entry => {
     // Only include records during monitoring season (March-September)
-    const date = moment(entry.Date, "DD-MM-YYYY");
+    const date = moment(entry.Date, "DD/MM/YYYY");
     const month = date.month();
     const inMonitoringSeason = month >= 2 && month <= 8;
 
@@ -200,7 +200,7 @@ export function getTransectYearsOfOperation(dataset: Dataset): number {
 
   const seasonsSet = new Set<number>();
   for (const entry of filteredDataset) {
-    const date = moment(entry.Date, "DD-MM-YYYY");
+    const date = moment(entry.Date, "DD/MM/YYYY");
     seasonsSet.add(date.year());
   }
 
@@ -211,7 +211,7 @@ export function getAverageVisitsPerYear(dataset: Dataset): number {
   // Only count visits during monitoring season (March-September)
   const filteredDataset = dataset.filter(entry => {
     // Only include records during monitoring season
-    const date = moment(entry.Date, "DD-MM-YYYY");
+    const date = moment(entry.Date, "DD/MM/YYYY");
     const month = date.month();
     const inMonitoringSeason = month >= 2 && month <= 8;
 
@@ -227,7 +227,7 @@ export function getAverageVisitsPerYear(dataset: Dataset): number {
 export function getNewSpeciesCount(dataset: Dataset, targetYear: number): number {
   // Get all species from target year (all records, not just monitoring season)
   const currentYearDataset = dataset.filter(entry => {
-    const date = moment(entry.Date, "DD-MM-YYYY");
+    const date = moment(entry.Date, "DD/MM/YYYY");
     return date.year() === targetYear;
   });
   const currentYearSpecies = new Set(getAllSpecies(currentYearDataset));
@@ -235,7 +235,7 @@ export function getNewSpeciesCount(dataset: Dataset, targetYear: number): number
   // Get all species from all previous years (all records, not just monitoring season)
   const previousYearsSpecies = new Set<string>();
   const previousYearsDataset = dataset.filter(entry => {
-    const date = moment(entry.Date, "DD-MM-YYYY");
+    const date = moment(entry.Date, "DD/MM/YYYY");
     return date.year() < targetYear;
   });
 
@@ -345,7 +345,7 @@ export function getBestMonthForFrequency(
   const speciesPerMonth = LABELS_MONTHS.map(() => new Set<string>());
 
   for (const entry of filteredDataset) {
-    const date = moment(entry.Date, "DD-MM-YYYY");
+    const date = moment(entry.Date, "DD/MM/YYYY");
     const monthIndex = date.month();
 
     speciesPerMonth[monthIndex].add(entry["Preferred Species Name"]);
@@ -383,7 +383,7 @@ export function getBestMonthForAbundancy(
   const visitsPerMonth = LABELS_MONTHS.map(() => new Set<string>());
 
   for (const entry of filteredDataset) {
-    const date = moment(entry.Date, "DD-MM-YYYY");
+    const date = moment(entry.Date, "DD/MM/YYYY");
     const monthIndex = date.month();
 
     visitsPerMonth[monthIndex].add(entry.Date);
