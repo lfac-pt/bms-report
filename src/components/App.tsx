@@ -1,6 +1,6 @@
 import { useState } from "react";
-import moment from "moment";
 import { Space, theme } from "antd";
+import { getYearFromDateString } from "../utils/fastDateParser";
 import { ParseResult } from "papaparse";
 import AbundancyPerMonth from "./charts/AbundancyPerMonth";
 import DiversityPerMonth from "./charts/DiversityPerMonth";
@@ -18,8 +18,8 @@ function getAllYears(dataset: Dataset): number[] {
   const yearsSet = new Set<number>();
 
   for (const entry of dataset) {
-    const date = moment(entry.Date, "DD/MM/YYYY");
-    yearsSet.add(date.year());
+    const year = getYearFromDateString(entry.Date);
+    yearsSet.add(year);
   }
 
   return [...yearsSet].filter(year => {

@@ -2,16 +2,15 @@ import React, { useRef, useState } from "react";
 import { SearchOutlined } from "@ant-design/icons";
 import Highlighter from "react-highlight-words";
 import { Card, Table, Alert, Button, Input, Space } from "antd";
-import moment from "moment";
 import { Dataset } from "../../types/dataset";
 import { DatasetType } from "../../utils/datasetAdapter";
+import { getYearFromDateString } from "../../utils/fastDateParser";
 
 export function getVisitsCountByYear(dataset: Dataset, year: number): number {
   const dates = new Set<string>();
 
   for (const entry of dataset) {
-    const date = moment(entry.Date, "DD/MM/YYYY");
-    const entryYear = date.year();
+    const entryYear = getYearFromDateString(entry.Date);
     if (entryYear === year) {
       dates.add(entry.Date);
     }
@@ -161,7 +160,7 @@ export function calculateRows(dataset: Dataset, yearsList: number[]): DataRow[] 
   // Process dataset entries
   for (const entry of dataset) {
     const species = entry["Preferred Species Name"];
-    const entryYear = moment(entry.Date, "DD/MM/YYYY").year();
+    const entryYear = getYearFromDateString(entry.Date);
 
     // Track family for this species (if available)
     if (entry.Family && !speciesFamilyMap[species]) {

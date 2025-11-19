@@ -1,10 +1,14 @@
-import { render, screen, waitFor } from "@testing-library/react";
+import { render, screen } from "@testing-library/react";
 import { DatasetTypeProvider } from "../contexts/DatasetTypeContext";
 import App from "./App";
 import Papa from "papaparse";
 import fs from "fs";
 import path from "path";
-import { calculateRows, getAllSpecies, getVisitsCountByYear } from "./charts/AbsoluteFrequencyAndAbundancy";
+import {
+  calculateRows,
+  getAllSpecies,
+  getVisitsCountByYear,
+} from "./charts/AbsoluteFrequencyAndAbundancy";
 import { Dataset } from "../types/dataset";
 
 // Mock window.matchMedia for Ant Design components
@@ -262,7 +266,7 @@ describe("App Smoke Test - Full Application Workflow", () => {
       const parseResult = Papa.parse(testDatasetCSV, { header: true, skipEmptyLines: true });
       const data = parseResult.data as any[];
 
-      data.forEach((row: any, index: number) => {
+      data.forEach((row: any) => {
         const dateRegex = /^\d{2}\/\d{2}\/\d{4}$/;
         expect(row.Date).toMatch(dateRegex);
 

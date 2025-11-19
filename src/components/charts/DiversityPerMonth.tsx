@@ -1,8 +1,8 @@
 import { Bar } from "react-chartjs-2";
-import moment from "moment";
 import { filterDataset, SERIES_COLORS, LABELS_MONTHS } from "../../utils/utils";
 import { Card, Alert } from "antd";
 import { Dataset } from "../../types/dataset";
+import { getMonthFromDateString } from "../../utils/fastDateParser";
 
 export const options = {
   responsive: true,
@@ -24,11 +24,11 @@ function getDiversityForYear(
   let diversityPerMonth = LABELS_MONTHS.map(() => new Set<string>());
 
   for (const entry of filteredDataset) {
-    const date = moment(entry.Date, "DD/MM/YYYY");
+    const monthIndex = getMonthFromDateString(entry.Date);
 
     const sp = entry["Preferred Species Name"];
 
-    diversityPerMonth[date.month()].add(sp);
+    diversityPerMonth[monthIndex].add(sp);
   }
 
   return diversityPerMonth.map(set => {

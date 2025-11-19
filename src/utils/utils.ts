@@ -1,11 +1,12 @@
-import moment from "moment";
-import "moment/locale/pt";
 import { Dataset } from "../types/dataset";
 import endangeredSpeciesEurope from "./endangered_eu";
 import endangeredSpeciesPT from "./endangered_pt";
-
-// Set moment locale to Portuguese
-moment.locale("pt");
+import {
+  getYearFromDateString,
+  getMonthFromDateString,
+  formatDatePortuguese,
+  isDateBefore,
+} from "./fastDateParser";
 
 export function filterDataset(
   dataset: Dataset,
@@ -14,10 +15,10 @@ export function filterDataset(
   targetSection: string | null
 ): Dataset {
   return dataset.filter(entry => {
-    const date = moment(entry.Date, "DD/MM/YYYY");
+    const entryYear = getYearFromDateString(entry.Date);
 
     return (
-      (!targetYear || date.year() === targetYear) &&
+      (!targetYear || entryYear === targetYear) &&
       (!targetTransect || entry["Transect ID"] === targetTransect) &&
       (!targetSection || targetSection === entry["Section Name"])
     );
@@ -109,12 +110,12 @@ function abundancyPerMonthAllSpecies(
   const filteredDataset = filterDataset(dataset, year, targetTransect, targetSection);
 
   for (const entry of filteredDataset) {
-    const date = moment(entry.Date, "DD/MM/YYYY");
+    const monthIndex = getMonthFromDateString(entry.Date);
 
     if (targetSpecies.length === 0 || targetSpecies.includes(entry["Preferred Species Name"])) {
-      visitsPerMonthSets[date.month()].add(entry.Date);
+      visitsPerMonthSets[monthIndex].add(entry.Date);
 
-      abundancyPerMonth[date.month()] += entry["Abundance count"];
+      abundancyPerMonth[monthIndex] += entry["Abundance count"];
     }
   }
 
@@ -155,11 +156,11 @@ export function getAvgAbundancy(dataset: Dataset): string {
   const visitsPerMonthSets = LABELS_MONTHS.map(() => new Set<string>());
 
   for (const entry of dataset) {
-    const date = moment(entry.Date, "DD/MM/YYYY");
+    const monthIndex = getMonthFromDateString(entry.Date);
 
-    visitsPerMonthSets[date.month()].add(entry.Date);
+    visitsPerMonthSets[monthIndex].add(entry.Date);
 
-    abundancyPerMonth[date.month()] += entry["Abundance count"];
+    abundancyPerMonth[monthIndex] += entry["Abundance count"];
   }
 
   const visitsPerMonth = visitsPerMonthSets.map(set => set.size);
@@ -176,23 +177,22 @@ export function getAvgAbundancy(dataset: Dataset): string {
 }
 
 export function getTransectFirstObservationDate(dataset: Dataset): string | null {
-  let earliestDate: moment.Moment | null = null;
+  let earliestDateString: string | null = null;
   for (const entry of dataset) {
-    const date = moment(entry.Date, "DD/MM/YYYY");
-    if (!earliestDate || date.isBefore(earliestDate)) {
-      earliestDate = date;
+    const dateString = entry.Date;
+    if (!earliestDateString || isDateBefore(dateString, earliestDateString)) {
+      earliestDateString = dateString;
     }
   }
 
-  return earliestDate ? earliestDate.format("D [de] MMMM [de] YYYY") : null;
+  return earliestDateString ? formatDatePortuguese(earliestDateString) : null;
 }
 
 export function getTransectYearsOfOperation(dataset: Dataset): number {
   // Count unique monitoring seasons (years with March-September records)
   const filteredDataset = dataset.filter(entry => {
     // Only include records during monitoring season (March-September)
-    const date = moment(entry.Date, "DD/MM/YYYY");
-    const month = date.month();
+    const month = getMonthFromDateString(entry.Date);
     const inMonitoringSeason = month >= 2 && month <= 8;
 
     return inMonitoringSeason;
@@ -200,8 +200,8 @@ export function getTransectYearsOfOperation(dataset: Dataset): number {
 
   const seasonsSet = new Set<number>();
   for (const entry of filteredDataset) {
-    const date = moment(entry.Date, "DD/MM/YYYY");
-    seasonsSet.add(date.year());
+    const year = getYearFromDateString(entry.Date);
+    seasonsSet.add(year);
   }
 
   return seasonsSet.size;
@@ -211,8 +211,7 @@ export function getAverageVisitsPerYear(dataset: Dataset): number {
   // Only count visits during monitoring season (March-September)
   const filteredDataset = dataset.filter(entry => {
     // Only include records during monitoring season
-    const date = moment(entry.Date, "DD/MM/YYYY");
-    const month = date.month();
+    const month = getMonthFromDateString(entry.Date);
     const inMonitoringSeason = month >= 2 && month <= 8;
 
     return inMonitoringSeason;
@@ -227,16 +226,16 @@ export function getAverageVisitsPerYear(dataset: Dataset): number {
 export function getNewSpeciesCount(dataset: Dataset, targetYear: number): number {
   // Get all species from target year (all records, not just monitoring season)
   const currentYearDataset = dataset.filter(entry => {
-    const date = moment(entry.Date, "DD/MM/YYYY");
-    return date.year() === targetYear;
+    const year = getYearFromDateString(entry.Date);
+    return year === targetYear;
   });
   const currentYearSpecies = new Set(getAllSpecies(currentYearDataset));
 
   // Get all species from all previous years (all records, not just monitoring season)
   const previousYearsSpecies = new Set<string>();
   const previousYearsDataset = dataset.filter(entry => {
-    const date = moment(entry.Date, "DD/MM/YYYY");
-    return date.year() < targetYear;
+    const year = getYearFromDateString(entry.Date);
+    return year < targetYear;
   });
 
   for (const species of getAllSpecies(previousYearsDataset)) {
@@ -345,8 +344,7 @@ export function getBestMonthForFrequency(
   const speciesPerMonth = LABELS_MONTHS.map(() => new Set<string>());
 
   for (const entry of filteredDataset) {
-    const date = moment(entry.Date, "DD/MM/YYYY");
-    const monthIndex = date.month();
+    const monthIndex = getMonthFromDateString(entry.Date);
 
     speciesPerMonth[monthIndex].add(entry["Preferred Species Name"]);
   }
@@ -383,8 +381,7 @@ export function getBestMonthForAbundancy(
   const visitsPerMonth = LABELS_MONTHS.map(() => new Set<string>());
 
   for (const entry of filteredDataset) {
-    const date = moment(entry.Date, "DD/MM/YYYY");
-    const monthIndex = date.month();
+    const monthIndex = getMonthFromDateString(entry.Date);
 
     visitsPerMonth[monthIndex].add(entry.Date);
     abundancyPerMonth[monthIndex] += entry["Abundance count"];

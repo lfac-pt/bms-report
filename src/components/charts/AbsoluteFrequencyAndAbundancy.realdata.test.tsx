@@ -7,7 +7,7 @@ import { Dataset } from "../../types/dataset";
 import { parse } from "papaparse";
 import * as fs from "fs";
 import * as path from "path";
-import moment from "moment";
+import { getYearFromDateString } from "../../utils/fastDateParser";
 
 describe("AbsoluteFrequencyAndAbundancy with real test dataset", () => {
   let testDataset: Dataset;
@@ -43,8 +43,7 @@ describe("AbsoluteFrequencyAndAbundancy with real test dataset", () => {
 
     it("should contain only 2025 data", () => {
       const years = testDataset.map(record => {
-        const date = moment(record.Date, "DD/MM/YYYY");
-        return date.year();
+        return getYearFromDateString(record.Date);
       });
 
       const uniqueYears = [...new Set(years)];
