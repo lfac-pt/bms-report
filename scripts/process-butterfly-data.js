@@ -158,6 +158,17 @@ function getYearFromDate(dateString) {
 }
 
 /**
+ * Parse a date string in DD/MM/YYYY format and extract the month (0-indexed)
+ */
+function getMonthFromDate(dateString) {
+  if (!dateString || typeof dateString !== 'string') return null;
+  const parts = dateString.split('/');
+  if (parts.length !== 3) return null;
+  const month = parseInt(parts[1], 10) - 1; // Convert to 0-indexed (0 = Jan, 1 = Feb, etc.)
+  return isNaN(month) ? null : month;
+}
+
+/**
  * Read and parse a CSV file
  */
 function readCSV(filePath) {
@@ -208,18 +219,25 @@ function calculateTransectStats(transectId, allData, metadata) {
 
   // Get unique dates and years
   const datesSet = new Set();
-  const yearsSet = new Set();
-  const validDates = [];
-
   transectData.forEach(row => {
     const date = row['Date'];
     if (date && date.trim()) {
       datesSet.add(date.trim());
-      const year = getYearFromDate(date);
-      if (year) {
-        yearsSet.add(year);
-        validDates.push(year);
-      }
+    }
+  });
+
+  // Calculate years active and first monitoring year using only monitoring season data
+  // Monitoring season is March-September (months 2-8 in 0-indexed)
+  const monitoringSeasonData = transectData.filter(row => {
+    const month = getMonthFromDate(row['Date']);
+    return month !== null && month >= 2 && month <= 8;
+  });
+
+  const monitoringYearsSet = new Set();
+  monitoringSeasonData.forEach(row => {
+    const year = getYearFromDate(row['Date']);
+    if (year) {
+      monitoringYearsSet.add(year);
     }
   });
 
@@ -235,8 +253,9 @@ function calculateTransectStats(transectId, allData, metadata) {
   // Calculate statistics
   const totalSpecies = speciesSet.size;
   const totalVisits = datesSet.size;
-  const yearsActive = yearsSet.size;
-  const firstMonitoringYear = validDates.length > 0 ? Math.min(...validDates) : null;
+  const yearsActive = monitoringYearsSet.size;
+  const firstMonitoringYear = monitoringYearsSet.size > 0 ? Math.min(...monitoringYearsSet) : null;
+  const lastMonitoringYear = monitoringYearsSet.size > 0 ? Math.max(...monitoringYearsSet) : null;
   const avgVisitsPerYear = yearsActive > 0 ? totalVisits / yearsActive : 0;
   const avgButterfliesPerVisit = totalVisits > 0 ? totalAbundance / totalVisits : 0;
 
@@ -251,6 +270,7 @@ function calculateTransectStats(transectId, allData, metadata) {
     avgButterfliesPerVisit: Math.round(avgButterfliesPerVisit * 10) / 10, // Round to 1 decimal
     yearsActive,
     firstMonitoringYear,
+    lastMonitoringYear,
     // List of species observed in this transect
     speciesList: [...speciesSet].sort(),
     // Additional metadata
@@ -286,6 +306,25 @@ function processData() {
     }
   });
 
+  // Track filtered species (those not in the whitelist)
+  const filteredSpeciesSet = new Set();
+  const validTransectIds = new Set(Object.keys(metadataMap));
+
+  // Collect all species that were filtered out from valid transects
+  allData.forEach(row => {
+    const transectId = row['Transect ID'];
+    if (!validTransectIds.has(transectId)) return; // Skip invalid transects
+
+    const species = row['Preferred Species Name'];
+    if (!species || !species.trim()) return;
+
+    const trimmedSpecies = species.trim();
+    // Check if it's a valid binomial name but NOT in the whitelist
+    if (trimmedSpecies.split(' ').length === 2 && !VALID_SPECIES.has(trimmedSpecies)) {
+      filteredSpeciesSet.add(trimmedSpecies);
+    }
+  });
+
   // Calculate statistics for each valid transect
   console.log('\nCalculating statistics for each transect...');
   const results = [];
@@ -309,6 +348,21 @@ function processData() {
   // Sort by transect name
   results.sort((a, b) => a.transectName.localeCompare(b.transectName));
 
+  // Prepare filtered species list
+  const filteredSpeciesList = Array.from(filteredSpeciesSet).sort();
+
+  // Create output object with transects and metadata
+  const output = {
+    transects: results,
+    metadata: {
+      totalValidTransects: results.length,
+      activeTransects: results.filter(t => t.isActive).length,
+      inactiveTransects: results.filter(t => !t.isActive).length,
+      filteredSpeciesCount: filteredSpeciesList.length,
+      filteredSpecies: filteredSpeciesList,
+    },
+  };
+
   // Ensure output directory exists
   if (!fs.existsSync(OUTPUT_DIR)) {
     fs.mkdirSync(OUTPUT_DIR, { recursive: true });
@@ -316,13 +370,14 @@ function processData() {
 
   // Write to JSON file
   console.log(`\nWriting results to ${OUTPUT_FILE}...`);
-  fs.writeFileSync(OUTPUT_FILE, JSON.stringify(results, null, 2), 'utf-8');
+  fs.writeFileSync(OUTPUT_FILE, JSON.stringify(output, null, 2), 'utf-8');
 
   console.log('\n✓ Processing complete!');
   console.log(`\nSummary:`);
   console.log(`  - Total valid transects: ${results.length}`);
   console.log(`  - Active transects: ${results.filter(t => t.isActive).length}`);
   console.log(`  - Inactive transects: ${results.filter(t => !t.isActive).length}`);
+  console.log(`  - Filtered species: ${filteredSpeciesList.length}`);
   console.log(`  - Output file: ${OUTPUT_FILE}`);
   console.log(`  - File size: ${(fs.statSync(OUTPUT_FILE).size / 1024).toFixed(2)} KB`);
 }

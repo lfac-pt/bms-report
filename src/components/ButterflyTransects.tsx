@@ -1,7 +1,6 @@
 import { useState, useEffect } from "react";
 import {
   Table,
-  Tag,
   Input,
   Space,
   Typography,
@@ -11,31 +10,51 @@ import {
   Card,
   Popover,
   List,
+  Alert,
+  Button,
+  Dropdown,
+  Checkbox,
 } from "antd";
 import type { ColumnsType } from "antd/es/table";
-import { TransectStats } from "../types/transectStats";
+import type { MenuProps } from "antd";
+import { TransectStats, TransectData, ProcessingMetadata } from "../types/transectStats";
 import {
   SearchOutlined,
-  CheckCircleOutlined,
-  CloseCircleOutlined,
   BarChartOutlined,
   InfoCircleOutlined,
+  WarningOutlined,
+  SettingOutlined,
 } from "@ant-design/icons";
 
 const { Title } = Typography;
 
 function ButterflyTransects() {
   const [data, setData] = useState<TransectStats[]>([]);
+  const [metadata, setMetadata] = useState<ProcessingMetadata | null>(null);
   const [loading, setLoading] = useState(true);
   const [searchText, setSearchText] = useState("");
+
+  // Column visibility state - Entidade and Concelho hidden by default
+  const [visibleColumns, setVisibleColumns] = useState<Record<string, boolean>>({
+    transectName: true,
+    totalSpecies: true,
+    totalVisits: true,
+    avgVisitsPerYear: true,
+    avgButterfliesPerVisit: true,
+    yearsActive: true,
+    entidade: false, // Hidden by default
+    lastMonitoringYear: true,
+    concelho: false, // Hidden by default
+  });
 
   useEffect(() => {
     // Load processed transects data
     window
       .fetch("/data/processed-transects.json")
       .then(response => response.json())
-      .then((jsonData: TransectStats[]) => {
-        setData(jsonData);
+      .then((jsonData: TransectData) => {
+        setData(jsonData.transects);
+        setMetadata(jsonData.metadata);
         setLoading(false);
       })
       .catch(() => {
@@ -72,33 +91,6 @@ function ButterflyTransects() {
       defaultSortOrder: "ascend",
     },
     {
-      title: "Código",
-      dataIndex: "transectCode",
-      key: "transectCode",
-      width: 150,
-    },
-    {
-      title: "Estado",
-      dataIndex: "isActive",
-      key: "isActive",
-      width: 120,
-      render: (isActive: boolean) =>
-        isActive ? (
-          <Tag icon={<CheckCircleOutlined />} color="success">
-            Ativo
-          </Tag>
-        ) : (
-          <Tag icon={<CloseCircleOutlined />} color="default">
-            Inativo
-          </Tag>
-        ),
-      filters: [
-        { text: "Ativo", value: true },
-        { text: "Inativo", value: false },
-      ],
-      onFilter: (value, record) => record.isActive === value,
-    },
-    {
       title: "Espécies",
       dataIndex: "totalSpecies",
       key: "totalSpecies",
@@ -122,6 +114,13 @@ function ButterflyTransects() {
       align: "right",
       sorter: (a, b) => a.avgVisitsPerYear - b.avgVisitsPerYear,
       render: (value: number) => value.toFixed(1),
+      filters: [
+        { text: "Mais de 10", value: ">10" },
+      ],
+      onFilter: (value, record) => {
+        if (value === ">10") return record.avgVisitsPerYear > 10;
+        return true;
+      },
     },
     {
       title: "Borboletas/Visita",
@@ -136,28 +135,14 @@ function ButterflyTransects() {
       title: "Anos Ativos",
       dataIndex: "yearsActive",
       key: "yearsActive",
-      width: 130,
+      width: 160,
       align: "right",
-      sorter: (a, b) => a.yearsActive - b.yearsActive,
-    },
-    {
-      title: "Primeira Época",
-      dataIndex: "firstMonitoringYear",
-      key: "firstMonitoringYear",
-      width: 140,
-      align: "right",
-      sorter: (a, b) => (a.firstMonitoringYear || 0) - (b.firstMonitoringYear || 0),
-    },
-    {
-      title: "Concelho",
-      dataIndex: "concelho",
-      key: "concelho",
-      width: 150,
-      filters: Array.from(new Set(data.map(t => t.concelho)))
-        .filter(c => c)
-        .sort()
-        .map(c => ({ text: c, value: c })),
-      onFilter: (value, record) => record.concelho === value,
+      render: (yearsActive: number, record: TransectStats) =>
+        record.firstMonitoringYear ? `${yearsActive} (${record.firstMonitoringYear})` : yearsActive,
+      filters: Array.from(new Set(data.map(t => t.yearsActive)))
+        .sort((a, b) => b - a)
+        .map(years => ({ text: years.toString(), value: years })),
+      onFilter: (value, record) => record.yearsActive === value,
     },
     {
       title: "Entidade",
@@ -170,7 +155,71 @@ function ButterflyTransects() {
         .map(e => ({ text: e, value: e })),
       onFilter: (value, record) => record.entidade === value,
     },
+    {
+      title: "Última Temporada",
+      dataIndex: "lastMonitoringYear",
+      key: "lastMonitoringYear",
+      width: 150,
+      align: "right",
+      filters: Array.from(new Set(data.map(t => t.lastMonitoringYear).filter(y => y !== null)))
+        .sort((a, b) => (b as number) - (a as number))
+        .map(year => ({ text: year!.toString(), value: year as number })),
+      onFilter: (value, record) => record.lastMonitoringYear === value,
+    },
+    {
+      title: "Concelho",
+      dataIndex: "concelho",
+      key: "concelho",
+      width: 150,
+      filters: Array.from(new Set(data.map(t => t.concelho)))
+        .filter(c => c)
+        .sort()
+        .map(c => ({ text: c, value: c })),
+      onFilter: (value, record) => record.concelho === value,
+    },
   ];
+
+  // Filter columns based on visibility
+  const visibleColumnsArray = columns.filter(col => {
+    const key = col.key as string;
+    return visibleColumns[key] !== false;
+  });
+
+  // Column configuration menu
+  const columnLabels: Record<string, string> = {
+    transectName: "Transecto",
+    totalSpecies: "Espécies",
+    totalVisits: "Visitas",
+    avgVisitsPerYear: "Visitas/Ano",
+    avgButterfliesPerVisit: "Borboletas/Visita",
+    yearsActive: "Anos Ativos",
+    entidade: "Entidade",
+    lastMonitoringYear: "Última Temporada",
+    concelho: "Concelho",
+  };
+
+  const toggleColumn = (columnKey: string) => {
+    setVisibleColumns(prev => ({
+      ...prev,
+      [columnKey]: !prev[columnKey],
+    }));
+  };
+
+  const columnConfigMenu: MenuProps = {
+    items: Object.keys(columnLabels).map(key => ({
+      key,
+      label: (
+        <Checkbox
+          checked={visibleColumns[key]}
+          onChange={() => toggleColumn(key)}
+          onClick={e => e.stopPropagation()}
+        >
+          {columnLabels[key]}
+        </Checkbox>
+      ),
+      onClick: e => e.domEvent.stopPropagation(),
+    })),
+  };
 
   return (
     <Space direction="vertical" size="large" style={{ width: "100%", marginTop: 24 }}>
@@ -253,19 +302,24 @@ function ButterflyTransects() {
         </Col>
       </Row>
 
-      {/* Search */}
-      <Input
-        placeholder="Procurar por nome do transecto..."
-        prefix={<SearchOutlined />}
-        value={searchText}
-        onChange={e => setSearchText(e.target.value)}
-        style={{ width: 400 }}
-        allowClear
-      />
+      {/* Search and Column Configuration */}
+      <Space>
+        <Input
+          placeholder="Procurar por nome do transecto..."
+          prefix={<SearchOutlined />}
+          value={searchText}
+          onChange={e => setSearchText(e.target.value)}
+          style={{ width: 400 }}
+          allowClear
+        />
+        <Dropdown menu={columnConfigMenu} trigger={["click"]} placement="bottomRight">
+          <Button icon={<SettingOutlined />}>Configurar Colunas</Button>
+        </Dropdown>
+      </Space>
 
       {/* Table */}
       <Table
-        columns={columns}
+        columns={visibleColumnsArray}
         dataSource={filteredData}
         rowKey="transectId"
         loading={loading}
@@ -277,6 +331,53 @@ function ButterflyTransects() {
         scroll={{ x: 1500 }}
         size="small"
       />
+
+      {/* Warning about filtered species */}
+      {metadata && metadata.filteredSpeciesCount > 0 && (
+        <Alert
+          message={
+            <span>
+              <WarningOutlined /> Registos Ignorados
+            </span>
+          }
+          description={
+            <span>
+              {metadata.filteredSpeciesCount} espécie(s) foram ignoradas por não estarem na lista
+              de espécies válidas.{" "}
+              <Popover
+                content={
+                  <div style={{ maxHeight: 400, overflowY: "auto", width: 300 }}>
+                    <List
+                      size="small"
+                      header={
+                        <strong>Espécies Ignoradas ({metadata.filteredSpeciesCount})</strong>
+                      }
+                      dataSource={metadata.filteredSpecies}
+                      renderItem={item => (
+                        <List.Item style={{ padding: "4px 0" }}>
+                          <Typography.Text style={{ fontSize: 12, fontStyle: "italic" }}>
+                            {item}
+                          </Typography.Text>
+                        </List.Item>
+                      )}
+                    />
+                  </div>
+                }
+                title="Espécies Não Válidas"
+                trigger="click"
+                placement="top"
+              >
+                <Typography.Link style={{ cursor: "pointer" }}>
+                  Clique para ver a lista completa
+                </Typography.Link>
+              </Popover>
+            </span>
+          }
+          type="warning"
+          showIcon
+          style={{ marginTop: 16 }}
+        />
+      )}
     </Space>
   );
 }
