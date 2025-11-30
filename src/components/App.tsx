@@ -9,6 +9,7 @@ import Uploader from "./Uploader";
 import PageFilters from "./PageFilters";
 import YearComparison from "./charts/YearComparison";
 import TransectSummary from "./TransectSummary";
+import ButterflyTransects from "./ButterflyTransects";
 import { Dataset, ButterflyRecord } from "../types/dataset";
 import { NocturnalButterflyRecord } from "../types/nocturnalDataset";
 import { adaptNocturnalDataset, DatasetType } from "../utils/datasetAdapter";
@@ -190,6 +191,25 @@ function MyApp() {
     token: { colorBgContainer, borderRadiusLG },
   } = theme.useToken();
 
+  // If transects section is selected, show the pre-processed transects table
+  if (datasetType === "transects") {
+    return (
+      <Space
+        direction="vertical"
+        size="middle"
+        style={{
+          display: "flex",
+          background: colorBgContainer,
+          padding: 24,
+          borderRadius: borderRadiusLG,
+        }}
+      >
+        <ButterflyTransects />
+      </Space>
+    );
+  }
+
+  // Otherwise, show the upload-based interface for diurnal/nocturnal
   return (
     <Space
       direction="vertical"
