@@ -89,10 +89,7 @@ function DiversityPerMonth({
           options={options}
           data={getDiversityPerMonthForSpecies(dataset, yearsList, targetTransect, targetSection)}
         />
-        <Alert
-          message="Observações só com o género são consideradas caso não hajam registos mais específicos. Acima disso nada é considerado."
-          type="info"
-        />
+        <Alert message="São só consideradas observações ao nível da espécie." type="info" />
       </div>
     </Card>
   );

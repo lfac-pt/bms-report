@@ -40,6 +40,10 @@ export function getAllSpecies(dataset: Dataset): string[] {
 }
 
 export function getDiversityTotal(dataset: Dataset): number {
+  return getAllSpecies(dataset).length;
+}
+
+export function getDiversityTotalWithGenus(dataset: Dataset): number {
   let species = new Set<string>();
 
   for (const entry of dataset) {
