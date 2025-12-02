@@ -47,7 +47,7 @@
       ],
       "tipologia": "Rede Natura",
       "concelho": "Portimão",
-      "distrito": "Faro",
+      "distrito": "",
       "responsavel": "Paula Canha",
       "entidade": "ONGA"
     },
@@ -95,7 +95,7 @@
       ],
       "tipologia": "Rede Natura",
       "concelho": "Portimão",
-      "distrito": "Faro",
+      "distrito": "",
       "responsavel": "Paula Canha",
       "entidade": "ONGA"
     },
@@ -132,7 +132,7 @@
       ],
       "tipologia": "",
       "concelho": "Paredes",
-      "distrito": "Porto",
+      "distrito": "",
       "responsavel": "",
       "entidade": "Particular"
     },
@@ -182,7 +182,7 @@
       ],
       "tipologia": "Área Protegida",
       "concelho": "Esposende",
-      "distrito": "Braga",
+      "distrito": "",
       "responsavel": "Luis Gaifan",
       "entidade": "ONGA"
     },
@@ -224,7 +224,7 @@
       ],
       "tipologia": "",
       "concelho": "Avis",
-      "distrito": "Portalegre",
+      "distrito": "",
       "responsavel": "",
       "entidade": "Particular"
     },
@@ -277,7 +277,7 @@
       ],
       "tipologia": "?",
       "concelho": "Avis",
-      "distrito": "Portalegre",
+      "distrito": "",
       "responsavel": "Antóno Xeria",
       "entidade": "Particular"
     },
@@ -327,7 +327,7 @@
       ],
       "tipologia": "",
       "concelho": "Vila Nova de Poiares",
-      "distrito": "Coimbra",
+      "distrito": "",
       "responsavel": "",
       "entidade": ""
     },
@@ -389,7 +389,7 @@
       ],
       "tipologia": "",
       "concelho": "Lamego",
-      "distrito": "Viseu",
+      "distrito": "",
       "responsavel": "",
       "entidade": "Particular"
     },
@@ -430,7 +430,7 @@
       ],
       "tipologia": "Campus Universitário",
       "concelho": "Braga",
-      "distrito": "Braga",
+      "distrito": "",
       "responsavel": "Rafael Pinto",
       "entidade": "Universidade de Braga"
     },
@@ -474,7 +474,7 @@
       ],
       "tipologia": "Baldio",
       "concelho": "Loures",
-      "distrito": "Lisboa",
+      "distrito": "",
       "responsavel": "Paula Coelho",
       "entidade": "Particular"
     },
@@ -501,8 +501,8 @@
         "Vanessa cardui"
       ],
       "tipologia": "Baldio",
-      "concelho": "Amora",
-      "distrito": "Setúbal",
+      "concelho": "Seixal",
+      "distrito": "",
       "responsavel": "Rui Laureano",
       "entidade": "Particular"
     },
@@ -551,7 +551,7 @@
       ],
       "tipologia": "?",
       "concelho": "Abrantes",
-      "distrito": "Santarém",
+      "distrito": "",
       "responsavel": "Paulo Alves",
       "entidade": "Particular"
     },
@@ -589,7 +589,7 @@
       ],
       "tipologia": "?",
       "concelho": "Vila Nova de Famalicão",
-      "distrito": "Braga",
+      "distrito": "",
       "responsavel": "Rafael Pinto",
       "entidade": "Particular"
     },
@@ -633,7 +633,7 @@
       ],
       "tipologia": "Área Protegida",
       "concelho": "Cascais",
-      "distrito": "Lisboa",
+      "distrito": "",
       "responsavel": "Diogo Silva",
       "entidade": "Município"
     },
@@ -695,7 +695,7 @@
       ],
       "tipologia": "Rede Natura",
       "concelho": "Pombal",
-      "distrito": "Leiria",
+      "distrito": "",
       "responsavel": "Isa Teixeira",
       "entidade": "Particular"
     },
@@ -726,7 +726,7 @@
       ],
       "tipologia": "Área Verde Urbana",
       "concelho": "Lisboa",
-      "distrito": "Lisboa",
+      "distrito": "",
       "responsavel": "Julieta Costa",
       "entidade": "Particular"
     },
@@ -789,7 +789,7 @@
       ],
       "tipologia": "",
       "concelho": "Bragança",
-      "distrito": "Bragança",
+      "distrito": "",
       "responsavel": "",
       "entidade": "Município"
     },
@@ -831,7 +831,7 @@
       ],
       "tipologia": "Baldio",
       "concelho": "Setúbal",
-      "distrito": "Setúbal",
+      "distrito": "",
       "responsavel": "Sílvia Pina",
       "entidade": "Particular"
     },
@@ -896,7 +896,7 @@
       ],
       "tipologia": "",
       "concelho": "Penela",
-      "distrito": "Coimbra",
+      "distrito": "",
       "responsavel": "Luis Cardoso",
       "entidade": "Particular"
     },
@@ -945,7 +945,7 @@
       ],
       "tipologia": "?",
       "concelho": "Évora",
-      "distrito": "Évora",
+      "distrito": "",
       "responsavel": "André Oliveira",
       "entidade": "Universidade de Évora"
     },
@@ -1009,7 +1009,7 @@
       ],
       "tipologia": "Área Protegida",
       "concelho": "Nisa",
-      "distrito": "Portalegre",
+      "distrito": "",
       "responsavel": "Ana Cavaco",
       "entidade": "ICNF"
     },
@@ -1051,7 +1051,7 @@
       ],
       "tipologia": "Área Protegida",
       "concelho": "Coimbra",
-      "distrito": "Coimbra",
+      "distrito": "",
       "responsavel": "Diogo Mina",
       "entidade": "ICNF"
     },
@@ -1093,7 +1093,7 @@
       ],
       "tipologia": "Área Protegida",
       "concelho": "Setúbal",
-      "distrito": "Setúbal",
+      "distrito": "",
       "responsavel": "",
       "entidade": "ICNF"
     },
@@ -1153,7 +1153,7 @@
       ],
       "tipologia": "Área Protegida",
       "concelho": "Palmela",
-      "distrito": "Setúbal",
+      "distrito": "",
       "responsavel": "Ana Sofia Palma",
       "entidade": "ICNF"
     },
@@ -1236,7 +1236,7 @@
       ],
       "tipologia": "Área Protegida",
       "concelho": "Vila Real",
-      "distrito": "Vila Real",
+      "distrito": "",
       "responsavel": "João Pargana",
       "entidade": "ICNF"
     },
@@ -1313,7 +1313,7 @@
       ],
       "tipologia": "Área Protegida",
       "concelho": "Vila Real",
-      "distrito": "Vila Real",
+      "distrito": "",
       "responsavel": "Helena Paulino",
       "entidade": "ICNF"
     },
@@ -1383,7 +1383,7 @@
       ],
       "tipologia": "Área Protegida",
       "concelho": "Mogadouro",
-      "distrito": "Bragança",
+      "distrito": "",
       "responsavel": "Carlos Santos",
       "entidade": "ICNF"
     },
@@ -1459,7 +1459,7 @@
       ],
       "tipologia": "Área Protegida",
       "concelho": "Mogadouro",
-      "distrito": "Bragança",
+      "distrito": "",
       "responsavel": "Carlos Santos",
       "entidade": "ICNF"
     },
@@ -1506,7 +1506,7 @@
       ],
       "tipologia": "Área Protegida",
       "concelho": "Esposende",
-      "distrito": "Braga",
+      "distrito": "",
       "responsavel": "Belmiro Viana",
       "entidade": "ICNF"
     },
@@ -1550,7 +1550,7 @@
       ],
       "tipologia": "Área Protegida",
       "concelho": "Bragança",
-      "distrito": "Bragança",
+      "distrito": "",
       "responsavel": "Ema Veiga",
       "entidade": "ICNF"
     },
@@ -1592,7 +1592,7 @@
       ],
       "tipologia": "Área Protegida",
       "concelho": "Bragança",
-      "distrito": "Bragança",
+      "distrito": "",
       "responsavel": "Ema Veiga",
       "entidade": "ICNF"
     },
@@ -1654,7 +1654,7 @@
       ],
       "tipologia": "Área Protegida",
       "concelho": "Terras de Bouro",
-      "distrito": "Braga",
+      "distrito": "",
       "responsavel": "PNPG Vidoeiro",
       "entidade": "ICNF"
     },
@@ -1679,7 +1679,7 @@
       ],
       "tipologia": "",
       "concelho": "Terras de Bouro",
-      "distrito": "Braga",
+      "distrito": "",
       "responsavel": "",
       "entidade": ""
     },
@@ -1709,7 +1709,7 @@
       ],
       "tipologia": "Área Protegida",
       "concelho": "Olhão",
-      "distrito": "Faro",
+      "distrito": "",
       "responsavel": "Armando Moura",
       "entidade": "ICNF"
     },
@@ -1769,7 +1769,7 @@
       ],
       "tipologia": "Área Protegida",
       "concelho": "Rio Maior",
-      "distrito": "Santarém",
+      "distrito": "",
       "responsavel": "Florbela Queirós",
       "entidade": "ICNF"
     },
@@ -1836,8 +1836,8 @@
         "Zizeeria knysna"
       ],
       "tipologia": "Área Protegida",
-      "concelho": "Minde",
-      "distrito": "Santarém",
+      "concelho": "Alcanena",
+      "distrito": "",
       "responsavel": "Sofia Quaresma",
       "entidade": "ICNF"
     },
@@ -1892,7 +1892,7 @@
       ],
       "tipologia": "Área Protegida",
       "concelho": "Odemira",
-      "distrito": "Beja",
+      "distrito": "",
       "responsavel": "Pedro Alverca",
       "entidade": "ICNF"
     },
@@ -1956,7 +1956,7 @@
       ],
       "tipologia": "Área Protegida",
       "concelho": "Lagos",
-      "distrito": "Faro",
+      "distrito": "",
       "responsavel": "Alexandre Cabrita",
       "entidade": "ICNF"
     },
@@ -2002,7 +2002,7 @@
       ],
       "tipologia": "Área Protegida",
       "concelho": "Odemira",
-      "distrito": "Beja",
+      "distrito": "",
       "responsavel": "Ana Macedo",
       "entidade": "ICNF"
     },
@@ -2064,8 +2064,8 @@
         "Zizeeria knysna"
       ],
       "tipologia": "Área Protegida",
-      "concelho": "Vila Nova de Milfontes",
-      "distrito": "Beja",
+      "concelho": "Odemira",
+      "distrito": "",
       "responsavel": "Pedro Alverca",
       "entidade": "ICNF"
     },
@@ -2132,7 +2132,7 @@
       ],
       "tipologia": "Área Protegida",
       "concelho": "Seia",
-      "distrito": "Guarda",
+      "distrito": "",
       "responsavel": "Henrique Domingues",
       "entidade": "ICNF"
     },
@@ -2201,7 +2201,7 @@
       ],
       "tipologia": "Área Protegida",
       "concelho": "Manteigas",
-      "distrito": "Guarda",
+      "distrito": "",
       "responsavel": "Henrique Domingues",
       "entidade": "ICNF"
     },
@@ -2265,7 +2265,7 @@
       ],
       "tipologia": "Área Protegida",
       "concelho": "Manteigas",
-      "distrito": "Guarda",
+      "distrito": "",
       "responsavel": "",
       "entidade": "ICNF"
     },
@@ -2331,7 +2331,7 @@
       ],
       "tipologia": "Área Protegida",
       "concelho": "Portalegre",
-      "distrito": "Portalegre",
+      "distrito": "",
       "responsavel": "Conceição Conde",
       "entidade": "ICNF"
     },
@@ -2389,7 +2389,7 @@
       ],
       "tipologia": "Área Protegida",
       "concelho": "Arronches",
-      "distrito": "Portalegre",
+      "distrito": "",
       "responsavel": "Ana Cavaco",
       "entidade": "ICNF"
     },
@@ -2438,7 +2438,7 @@
       ],
       "tipologia": "Área Protegida",
       "concelho": "Mértola",
-      "distrito": "Beja",
+      "distrito": "",
       "responsavel": "Beatriz Machado",
       "entidade": "ICNF"
     },
@@ -2483,7 +2483,7 @@
       ],
       "tipologia": "Área Protegida",
       "concelho": "Almada",
-      "distrito": "Setúbal",
+      "distrito": "",
       "responsavel": "Teresa Morais",
       "entidade": "ICNF"
     },
@@ -2540,7 +2540,7 @@
       ],
       "tipologia": "Área Protegida",
       "concelho": "Arganil",
-      "distrito": "Coimbra",
+      "distrito": "",
       "responsavel": "",
       "entidade": "ICNF"
     },
@@ -2596,7 +2596,7 @@
       ],
       "tipologia": "Área Protegida",
       "concelho": "Cadaval",
-      "distrito": "Lisboa",
+      "distrito": "",
       "responsavel": "Sofia Quaresma",
       "entidade": "ICNF"
     },
@@ -2639,7 +2639,7 @@
       ],
       "tipologia": "Área Protegida",
       "concelho": "Aveiro",
-      "distrito": "Aveiro",
+      "distrito": "",
       "responsavel": "Rosa Serôdio",
       "entidade": "ICNF"
     },
@@ -2685,7 +2685,7 @@
       ],
       "tipologia": "Área Protegida",
       "concelho": "Setúbal",
-      "distrito": "Setúbal",
+      "distrito": "",
       "responsavel": "Maria do Céu Guerra",
       "entidade": "ICNF"
     },
@@ -2745,8 +2745,8 @@
         "Zizeeria knysna"
       ],
       "tipologia": "Área Protegida",
-      "concelho": "Santo André",
-      "distrito": "Setúbal",
+      "concelho": "Santiago do Cacém",
+      "distrito": "",
       "responsavel": "Isa Figueiras",
       "entidade": "ICNF"
     },
@@ -2789,7 +2789,7 @@
       ],
       "tipologia": "Área Protegida",
       "concelho": "Torres Novas",
-      "distrito": "Santarém",
+      "distrito": "",
       "responsavel": "Sónia Casemiro",
       "entidade": "ICNF"
     },
@@ -2829,7 +2829,7 @@
       ],
       "tipologia": "Área Protegida",
       "concelho": "Castro Marim",
-      "distrito": "Faro",
+      "distrito": "",
       "responsavel": "Pedro Castelão",
       "entidade": "ICNF"
     },
@@ -2891,7 +2891,7 @@
       ],
       "tipologia": "Área Protegida",
       "concelho": "Sabugal",
-      "distrito": "Guarda",
+      "distrito": "",
       "responsavel": "Henrique Furriel",
       "entidade": "ICNF"
     },
@@ -2937,7 +2937,7 @@
       ],
       "tipologia": "Rede Natura",
       "concelho": "Torres Vedras",
-      "distrito": "Lisboa",
+      "distrito": "",
       "responsavel": "Isa Teixeira",
       "entidade": "ICNF"
     },
@@ -2975,7 +2975,7 @@
       ],
       "tipologia": "Parque Urbano",
       "concelho": "Lisboa",
-      "distrito": "Lisboa",
+      "distrito": "",
       "responsavel": "Albano Soares",
       "entidade": "Particular"
     },
@@ -3019,7 +3019,7 @@
       ],
       "tipologia": "?",
       "concelho": "Sintra",
-      "distrito": "Lisboa",
+      "distrito": "",
       "responsavel": "Orkhan Abbasov",
       "entidade": "Particular"
     },
@@ -3074,7 +3074,7 @@
       ],
       "tipologia": "Parque Urbano",
       "concelho": "Tomar",
-      "distrito": "Santarém",
+      "distrito": "",
       "responsavel": "Filipa Coelho",
       "entidade": "ONGA"
     },
@@ -3117,7 +3117,7 @@
       ],
       "tipologia": "Baldio",
       "concelho": "Oeiras",
-      "distrito": "Lisboa",
+      "distrito": "",
       "responsavel": "Francisco Aguilar",
       "entidade": "Particular"
     },
@@ -3152,7 +3152,7 @@
       ],
       "tipologia": "",
       "concelho": "Beja",
-      "distrito": "Beja",
+      "distrito": "",
       "responsavel": "",
       "entidade": ""
     },
@@ -3222,7 +3222,7 @@
       ],
       "tipologia": "",
       "concelho": "Lamego",
-      "distrito": "Viseu",
+      "distrito": "",
       "responsavel": "",
       "entidade": "Particular"
     },
@@ -3261,7 +3261,7 @@
       ],
       "tipologia": "?",
       "concelho": "Tomar",
-      "distrito": "Santarém",
+      "distrito": "",
       "responsavel": "Pedro Borges",
       "entidade": "ONGA"
     },
@@ -3297,7 +3297,7 @@
       ],
       "tipologia": "?",
       "concelho": "Chaves",
-      "distrito": "Vila Real",
+      "distrito": "",
       "responsavel": "Daniele Cataldo",
       "entidade": "Particular"
     },
@@ -3355,7 +3355,7 @@
       ],
       "tipologia": "Parque Ambiental",
       "concelho": "Constância",
-      "distrito": "Santarém",
+      "distrito": "",
       "responsavel": "Sónia Mendes",
       "entidade": "Município"
     },
@@ -3403,7 +3403,7 @@
       ],
       "tipologia": "Parque Urbano",
       "concelho": "Vila Nova de Gaia",
-      "distrito": "Porto",
+      "distrito": "",
       "responsavel": "Jorge Gomes",
       "entidade": "Município"
     },
@@ -3441,7 +3441,7 @@
       ],
       "tipologia": "Parque Urbano",
       "concelho": "Vila Nova de Gaia",
-      "distrito": "Porto",
+      "distrito": "",
       "responsavel": "Jorge Gomes",
       "entidade": "Município"
     },
@@ -3482,7 +3482,7 @@
       ],
       "tipologia": "Parque Urbano",
       "concelho": "Guimarães",
-      "distrito": "Braga",
+      "distrito": "",
       "responsavel": "Guimarães",
       "entidade": "Município"
     },
@@ -3523,7 +3523,7 @@
       ],
       "tipologia": "Parque Florestal",
       "concelho": "Lisboa",
-      "distrito": "Lisboa",
+      "distrito": "",
       "responsavel": "Eva Monteiro",
       "entidade": "Particular"
     },
@@ -3561,7 +3561,7 @@
       ],
       "tipologia": "Parque Urbano",
       "concelho": "Vila Real",
-      "distrito": "Vila Real",
+      "distrito": "",
       "responsavel": "Darinka Gonçalves",
       "entidade": "Município"
     },
@@ -3608,8 +3608,8 @@
         "Zizeeria knysna"
       ],
       "tipologia": "Parque Urbano",
-      "concelho": "Quinta do Conde",
-      "distrito": "Setúbal",
+      "concelho": "Sesimbra",
+      "distrito": "",
       "responsavel": "Fernando Pinto",
       "entidade": "Município"
     },
@@ -3644,7 +3644,7 @@
       ],
       "tipologia": "Parque Urbano",
       "concelho": "Braga",
-      "distrito": "Braga",
+      "distrito": "",
       "responsavel": "Letícia Figueiredo",
       "entidade": "Particular"
     },
@@ -3683,7 +3683,7 @@
       ],
       "tipologia": "Parque Urbano",
       "concelho": "Lisboa",
-      "distrito": "Lisboa",
+      "distrito": "",
       "responsavel": "Julieta Costa",
       "entidade": "ONGA"
     },
@@ -3753,7 +3753,7 @@
       ],
       "tipologia": "",
       "concelho": "Lamego",
-      "distrito": "Viseu",
+      "distrito": "",
       "responsavel": "",
       "entidade": "Particular"
     },
@@ -3799,7 +3799,7 @@
       ],
       "tipologia": "?",
       "concelho": "Vila Nova de Poiares",
-      "distrito": "Coimbra",
+      "distrito": "",
       "responsavel": "Scott Forbes",
       "entidade": "Particular"
     },
@@ -3847,7 +3847,7 @@
       ],
       "tipologia": "Parque Urbano",
       "concelho": "Viana do Castelo",
-      "distrito": "Viana do Castelo",
+      "distrito": "",
       "responsavel": "Soraia Castro",
       "entidade": "Município"
     },
@@ -3889,7 +3889,7 @@
       ],
       "tipologia": "",
       "concelho": "Ansião",
-      "distrito": "Leiria",
+      "distrito": "",
       "responsavel": "",
       "entidade": "Particular"
     },
@@ -3931,7 +3931,7 @@
       ],
       "tipologia": "?",
       "concelho": "Lourinhã",
-      "distrito": "Lisboa",
+      "distrito": "",
       "responsavel": "Hélder Cardoso",
       "entidade": "ONGA"
     },
@@ -3987,7 +3987,7 @@
       ],
       "tipologia": "N/A",
       "concelho": "Sintra",
-      "distrito": "Lisboa",
+      "distrito": "",
       "responsavel": "Luis Jordão",
       "entidade": "Particular"
     },
@@ -4039,7 +4039,7 @@
       ],
       "tipologia": "Área Protegida",
       "concelho": "Cascais",
-      "distrito": "Lisboa",
+      "distrito": "",
       "responsavel": "Diogo Silva",
       "entidade": "Município"
     },
@@ -4093,7 +4093,7 @@
       ],
       "tipologia": "Área Protegida",
       "concelho": "Cascais",
-      "distrito": "Lisboa",
+      "distrito": "",
       "responsavel": "Diogo Silva",
       "entidade": "Município"
     },
@@ -4150,7 +4150,7 @@
       ],
       "tipologia": "Área Protegida",
       "concelho": "Cascais",
-      "distrito": "Lisboa",
+      "distrito": "",
       "responsavel": "Diogo Silva",
       "entidade": "Município"
     },
@@ -4199,7 +4199,7 @@
       ],
       "tipologia": "Área Protegida",
       "concelho": "Cascais",
-      "distrito": "Lisboa",
+      "distrito": "",
       "responsavel": "Diogo Silva",
       "entidade": "Município"
     },
@@ -4252,7 +4252,7 @@
       ],
       "tipologia": "Área Protegida",
       "concelho": "Cascais",
-      "distrito": "Lisboa",
+      "distrito": "",
       "responsavel": "Diogo Silva",
       "entidade": "Município"
     },
@@ -4297,7 +4297,7 @@
       ],
       "tipologia": "Área Protegida",
       "concelho": "Olhão",
-      "distrito": "Faro",
+      "distrito": "",
       "responsavel": "",
       "entidade": "ONGA"
     },
@@ -4349,7 +4349,7 @@
       ],
       "tipologia": "?",
       "concelho": "Sousel",
-      "distrito": "Portalegre",
+      "distrito": "",
       "responsavel": "Joaquim Pífano",
       "entidade": "Particular"
     },
@@ -4398,7 +4398,7 @@
       ],
       "tipologia": "?",
       "concelho": "Sousel",
-      "distrito": "Portalegre",
+      "distrito": "",
       "responsavel": "Joaquim Pífano",
       "entidade": "Particular"
     },
@@ -4444,7 +4444,7 @@
       ],
       "tipologia": "",
       "concelho": "Vila do Bispo",
-      "distrito": "Faro",
+      "distrito": "",
       "responsavel": "",
       "entidade": "Empresa"
     },
@@ -4469,8 +4469,8 @@
         "Vanessa atalanta"
       ],
       "tipologia": "Baldio",
-      "concelho": "Costa da Caparica",
-      "distrito": "Setúbal",
+      "concelho": "Almada",
+      "distrito": "",
       "responsavel": "Joana Barata",
       "entidade": "Particular"
     },
@@ -4555,7 +4555,7 @@
       ],
       "tipologia": "Rede Natura",
       "concelho": "Vimioso",
-      "distrito": "Bragança",
+      "distrito": "",
       "responsavel": "Ângela Cordeiro",
       "entidade": "Município"
     },
@@ -4610,7 +4610,7 @@
       ],
       "tipologia": "Parque Florestal",
       "concelho": "Sintra",
-      "distrito": "Lisboa",
+      "distrito": "",
       "responsavel": "Raquel Eiró",
       "entidade": "Particular"
     },
@@ -4645,7 +4645,7 @@
       ],
       "tipologia": "",
       "concelho": "Valongo",
-      "distrito": "Porto",
+      "distrito": "",
       "responsavel": "",
       "entidade": "Particular"
     },
@@ -4693,7 +4693,7 @@
       ],
       "tipologia": "",
       "concelho": "Gondomar",
-      "distrito": "Porto",
+      "distrito": "",
       "responsavel": "",
       "entidade": "Particular"
     },
@@ -4750,7 +4750,7 @@
       ],
       "tipologia": "Parque Urbano",
       "concelho": "Braga",
-      "distrito": "Braga",
+      "distrito": "",
       "responsavel": "Armindo Paulo Salvador",
       "entidade": "Particular"
     },
@@ -4785,7 +4785,7 @@
       ],
       "tipologia": "Área Verde Urbana",
       "concelho": "Lisboa",
-      "distrito": "Lisboa",
+      "distrito": "",
       "responsavel": "Julieta Costa",
       "entidade": "Particular"
     },
@@ -4835,7 +4835,7 @@
       ],
       "tipologia": "",
       "concelho": "Lamego",
-      "distrito": "Viseu",
+      "distrito": "",
       "responsavel": "",
       "entidade": "Particular"
     },
@@ -4876,7 +4876,7 @@
       ],
       "tipologia": "?",
       "concelho": "Bombarral",
-      "distrito": "Leiria",
+      "distrito": "",
       "responsavel": "Hélder Cardoso",
       "entidade": "ONGA"
     },
@@ -4922,7 +4922,7 @@
       ],
       "tipologia": "?",
       "concelho": "Sintra",
-      "distrito": "Lisboa",
+      "distrito": "",
       "responsavel": "Orkhan Abbasov",
       "entidade": "Particular"
     },
@@ -4994,7 +4994,7 @@
       ],
       "tipologia": "Rede Natura",
       "concelho": "Vimioso",
-      "distrito": "Bragança",
+      "distrito": "",
       "responsavel": "Isabel Sá",
       "entidade": "ONGA"
     }

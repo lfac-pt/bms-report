@@ -93,6 +93,9 @@ function ButterflyTransects() {
   const [loading, setLoading] = useState(true);
   const [searchText, setSearchText] = useState("");
   const [yearsActiveFilters, setYearsActiveFilters] = useState<(string | number)[]>([]);
+  const [concelhoFilters, setConcelhoFilters] = useState<string[]>([]);
+  const [distritoFilters, setDistritoFilters] = useState<string[]>([]);
+  const [entidadeFilters, setEntidadeFilters] = useState<string[]>([]);
   const [pageSize, setPageSize] = useState(20);
   const [currentPage, setCurrentPage] = useState(1);
 
@@ -124,7 +127,7 @@ function ButterflyTransects() {
       });
   }, []);
 
-  // Filter data based on search and yearsActive filters with AND logic
+  // Filter data based on search and all active filters
   const filteredData = data.filter(transect => {
     // Search filter
     if (!transect.transectName.toLowerCase().includes(searchText.toLowerCase())) {
@@ -151,6 +154,27 @@ function ButterflyTransects() {
         if (!yearCounts.includes(transect.yearsActive)) {
           return false;
         }
+      }
+    }
+
+    // Concelho filter
+    if (concelhoFilters.length > 0) {
+      if (!concelhoFilters.includes(transect.concelho)) {
+        return false;
+      }
+    }
+
+    // Distrito filter
+    if (distritoFilters.length > 0) {
+      if (!distritoFilters.includes(transect.distrito)) {
+        return false;
+      }
+    }
+
+    // Entidade filter
+    if (entidadeFilters.length > 0) {
+      if (!entidadeFilters.includes(transect.entidade)) {
+        return false;
       }
     }
 
@@ -292,7 +316,7 @@ function ButterflyTransects() {
         .filter(e => e)
         .sort()
         .map(e => ({ text: e, value: e })),
-      onFilter: (value, record) => record.entidade === value,
+      filteredValue: entidadeFilters,
     },
     {
       title: "Concelho",
@@ -303,7 +327,7 @@ function ButterflyTransects() {
         .filter(c => c)
         .sort()
         .map(c => ({ text: c, value: c })),
-      onFilter: (value, record) => record.concelho === value,
+      filteredValue: concelhoFilters,
     },
     {
       title: "Distrito",
@@ -314,7 +338,7 @@ function ButterflyTransects() {
         .filter(d => d)
         .sort()
         .map(d => ({ text: d, value: d })),
-      onFilter: (value, record) => record.distrito === value,
+      filteredValue: distritoFilters,
     },
   ];
 
@@ -482,13 +506,25 @@ function ButterflyTransects() {
             setCurrentPage(1); // Reset to first page when page size changes
           }
 
-          // Update yearsActive filters when they change
-          if (filters.yearsActive) {
-            setYearsActiveFilters(filters.yearsActive as (string | number)[]);
-            setCurrentPage(1); // Reset to first page when filters change
-          } else if (filters.yearsActive === null) {
-            setYearsActiveFilters([]);
-            setCurrentPage(1); // Reset to first page when filters are cleared
+          // Update all filter states
+          if (filters.yearsActive !== undefined) {
+            setYearsActiveFilters(filters.yearsActive ? (filters.yearsActive as (string | number)[]) : []);
+            setCurrentPage(1);
+          }
+
+          if (filters.concelho !== undefined) {
+            setConcelhoFilters(filters.concelho ? (filters.concelho as string[]) : []);
+            setCurrentPage(1);
+          }
+
+          if (filters.distrito !== undefined) {
+            setDistritoFilters(filters.distrito ? (filters.distrito as string[]) : []);
+            setCurrentPage(1);
+          }
+
+          if (filters.entidade !== undefined) {
+            setEntidadeFilters(filters.entidade ? (filters.entidade as string[]) : []);
+            setCurrentPage(1);
           }
         }}
       />

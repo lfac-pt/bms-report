@@ -255,6 +255,19 @@ function reverseGeocode(lat, lon) {
 }
 
 /**
+ * Known mapping of localities/freguesias to their correct concelhos
+ */
+const LOCALITY_TO_CONCELHO = {
+  'Amora': 'Seixal',
+  'Costa da Caparica': 'Almada',
+  'Minde': 'Alcanena',
+  'Quinta do Conde': 'Sesimbra',
+  'Santo André': 'Santiago do Cacém',
+  'Vila Nova de Milfontes': 'Odemira',
+  'Azeitão': 'Setúbal',
+};
+
+/**
  * Extract Concelho and Distrito from Nominatim response
  */
 function extractLocation(nominatimResponse) {
@@ -264,11 +277,16 @@ function extractLocation(nominatimResponse) {
 
   const addr = nominatimResponse.address;
 
-  // Concelho can be in municipality, city, town, or village
-  const concelho = addr.municipality || addr.city || addr.town || addr.village || '';
+  // Try municipality first, then fallback to city/town/village
+  let concelho = addr.municipality || addr.city || addr.town || addr.village || '';
 
-  // Distrito is in state or county
-  const distrito = addr.state || addr.county || '';
+  // Check if this is a known locality that should be mapped to a different concelho
+  if (LOCALITY_TO_CONCELHO[concelho]) {
+    concelho = LOCALITY_TO_CONCELHO[concelho];
+  }
+
+  // Distrito is in state
+  const distrito = addr.state || '';
 
   return { concelho, distrito };
 }
