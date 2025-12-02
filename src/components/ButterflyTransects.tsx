@@ -88,6 +88,78 @@ function SpeciesList({
   );
 }
 
+// Component for geographic coverage details
+function GeographicCoverageDetails({
+  concelhosWithTransects,
+  distritosWithTransects,
+  distritosWithoutTransects,
+  totalConcelhos,
+}: {
+  concelhosWithTransects: string[];
+  distritosWithTransects: string[];
+  distritosWithoutTransects: string[];
+  totalConcelhos: number;
+}) {
+  return (
+    <div style={{ width: 400, maxHeight: 500, overflowY: "auto" }}>
+      <div style={{ marginBottom: 16 }}>
+        <Typography.Text strong style={{ display: "block", marginBottom: 8, color: "#1890ff" }}>
+          Concelhos com Transectos Ativos ({concelhosWithTransects.length})
+        </Typography.Text>
+        <List
+          size="small"
+          dataSource={concelhosWithTransects}
+          renderItem={item => (
+            <List.Item style={{ padding: "4px 0", border: "none" }}>
+              <Typography.Text style={{ fontSize: 12 }}>{item}</Typography.Text>
+            </List.Item>
+          )}
+        />
+        <Typography.Text style={{ fontSize: 11, color: "#8c8c8c", fontStyle: "italic" }}>
+          {totalConcelhos - concelhosWithTransects.length} concelhos sem transectos ativos
+        </Typography.Text>
+      </div>
+
+      <Divider />
+
+      <div style={{ marginBottom: 16 }}>
+        <Typography.Text strong style={{ display: "block", marginBottom: 8, color: "#722ed1" }}>
+          Distritos com Transectos Ativos ({distritosWithTransects.length})
+        </Typography.Text>
+        <List
+          size="small"
+          dataSource={distritosWithTransects}
+          renderItem={item => (
+            <List.Item style={{ padding: "4px 0", border: "none" }}>
+              <Typography.Text style={{ fontSize: 12 }}>{item}</Typography.Text>
+            </List.Item>
+          )}
+        />
+      </div>
+
+      {distritosWithoutTransects.length > 0 && (
+        <>
+          <Divider />
+          <div>
+            <Typography.Text strong style={{ display: "block", marginBottom: 8, color: "#ff4d4f" }}>
+              Distritos sem Transectos Ativos ({distritosWithoutTransects.length})
+            </Typography.Text>
+            <List
+              size="small"
+              dataSource={distritosWithoutTransects}
+              renderItem={item => (
+                <List.Item style={{ padding: "4px 0", border: "none" }}>
+                  <Typography.Text style={{ fontSize: 12 }}>{item}</Typography.Text>
+                </List.Item>
+              )}
+            />
+          </div>
+        </>
+      )}
+    </div>
+  );
+}
+
 function ButterflyTransects() {
   const [data, setData] = useState<TransectStats[]>([]);
   const [metadata, setMetadata] = useState<ProcessingMetadata | null>(null);
@@ -222,6 +294,26 @@ function ButterflyTransects() {
   // Calculate totals across all transects
   const totalButterflies = data.reduce((sum, t) => sum + t.totalAbundance, 0);
   const totalVisitsAll = data.reduce((sum, t) => sum + t.totalVisits, 0);
+
+  // All distritos in mainland Portugal
+  const allDistritosMainland = [
+    "Aveiro", "Beja", "Braga", "Bragança", "Castelo Branco", "Coimbra",
+    "Évora", "Faro", "Guarda", "Leiria", "Lisboa", "Portalegre",
+    "Porto", "Santarém", "Setúbal", "Viana do Castelo", "Vila Real", "Viseu"
+  ];
+
+  // Calculate unique concelhos and distritos with transects active in last season
+  const activeTransectsLastSeason = mostRecentYear
+    ? data.filter(t => t.lastMonitoringYear === mostRecentYear)
+    : [];
+  const concelhosWithTransects = Array.from(new Set(activeTransectsLastSeason.map(t => t.concelho).filter(c => c))).sort();
+  const distritosWithTransects = Array.from(new Set(activeTransectsLastSeason.map(t => t.distrito).filter(d => d))).sort();
+  const distritosWithoutTransects = allDistritosMainland.filter(d => !distritosWithTransects.includes(d)).sort();
+
+  const uniqueConcelhos = concelhosWithTransects.length;
+  const uniqueDistritos = distritosWithTransects.length;
+  const totalConcelhos = 278; // Total concelhos in mainland Portugal (excluding Azores and Madeira)
+  const totalDistritos = 18; // Total distritos in mainland Portugal
 
   const columns: ColumnsType<TransectStats> = [
     {
@@ -399,19 +491,17 @@ function ButterflyTransects() {
   };
 
   return (
-    <Space direction="vertical" size="large" style={{ width: "100%", marginTop: 24 }}>
-      <div>
-        <Title level={2}>
-          <BarChartOutlined /> Estatísticas BMS Diurnas Portugal
-        </Title>
-      </div>
+    <Space direction="vertical" size="large" style={{ width: "100%", marginTop: 0 }}>
+      <Title level={2}>
+        <BarChartOutlined /> BMS Diurnas Portugal Continental
+      </Title>
 
       {/* Summary Statistics */}
       <Row gutter={16}>
         <Col span={4}>
           <Card>
             <Statistic
-              title="Dados de Qualidade a Longo Prazo"
+              title="Transectos com Dados Robustos"
               value={longTermQualityTransects}
               valueStyle={{ color: "#1890ff" }}
             />
@@ -420,10 +510,61 @@ function ButterflyTransects() {
         <Col span={4}>
           <Card>
             <Statistic
-              title={`Ativos em ${mostRecentYear || "—"}`}
+              title={`Transectos Ativos em ${mostRecentYear || "—"}`}
               value={transectsInLastSeason}
               valueStyle={{ color: "#52c41a" }}
             />
+            <div style={{ marginTop: 8, fontSize: 12, color: "#8c8c8c" }}>
+              <span>Ganhos/Perdidos: </span>
+              <span style={{ color: "#52c41a" }}>+{transectsGained}</span>
+              <span style={{ margin: "0 4px" }}>/</span>
+              <span style={{ color: "#ff4d4f" }}>-{transectsLost}</span>
+            </div>
+          </Card>
+        </Col>
+        <Col span={4}>
+          <Card>
+            <Popover
+              content={
+                <GeographicCoverageDetails
+                  concelhosWithTransects={concelhosWithTransects}
+                  distritosWithTransects={distritosWithTransects}
+                  distritosWithoutTransects={distritosWithoutTransects}
+                  totalConcelhos={totalConcelhos}
+                />
+              }
+              title="Detalhes de Cobertura Geográfica"
+              trigger="click"
+              placement="bottom"
+            >
+              <div style={{ cursor: "pointer" }}>
+                <Statistic
+                  title={
+                    <span>
+                      Cobertura Geográfica <InfoCircleOutlined style={{ fontSize: 12 }} />
+                    </span>
+                  }
+                  value={0}
+                  formatter={() => (
+                    <div>
+                      <div style={{ fontSize: 20, lineHeight: 1.4, display: "flex", alignItems: "baseline" }}>
+                        <span style={{ color: "#1890ff", fontWeight: 600 }}>{uniqueConcelhos}</span>
+                        <span style={{ color: "#8c8c8c", fontWeight: 600, fontSize: 14 }}> / {totalConcelhos}</span>
+                        <span style={{ fontSize: 12, color: "#8c8c8c", marginLeft: 8 }}>Concelhos</span>
+                      </div>
+                      <div style={{ fontSize: 20, lineHeight: 1.4, marginTop: 8, display: "flex", alignItems: "baseline" }}>
+                        <span style={{ color: "#722ed1", fontWeight: 600 }}>{uniqueDistritos}</span>
+                        <span style={{ color: "#8c8c8c", fontWeight: 600, fontSize: 14 }}> / {totalDistritos}</span>
+                        <span style={{ fontSize: 12, color: "#8c8c8c", marginLeft: 8 }}>Distritos</span>
+                      </div>
+                    </div>
+                  )}
+                />
+                <div style={{ marginTop: 8, fontSize: 11, color: "#8c8c8c", fontStyle: "italic" }}>
+                  Apenas transectos ativos em {mostRecentYear || "—"}
+                </div>
+              </div>
+            </Popover>
           </Card>
         </Col>
         <Col span={4}>
@@ -446,21 +587,6 @@ function ButterflyTransects() {
                 />
               </div>
             </Popover>
-          </Card>
-        </Col>
-        <Col span={4}>
-          <Card>
-            <Statistic
-              title={`Transetos Ganhos/Perdidos em ${mostRecentYear || "—"}`}
-              value={0}
-              formatter={() => (
-                <span>
-                  <span style={{ color: "#52c41a" }}>+{transectsGained}</span>
-                  <span style={{ color: "#8c8c8c", margin: "0 4px" }}>/</span>
-                  <span style={{ color: "#ff4d4f" }}>-{transectsLost}</span>
-                </span>
-              )}
-            />
           </Card>
         </Col>
         <Col span={4}>
