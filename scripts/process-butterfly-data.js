@@ -290,9 +290,24 @@ function processData() {
   // Read metadata
   const metadataRows = readCSV(METADATA_FILE);
 
-  // Filter for valid transects only
-  const validTransects = metadataRows.filter(row => row['Situação'] === 'Válido');
-  console.log(`\nFound ${validTransects.length} valid transects (out of ${metadataRows.length} total)\n`);
+  // Check for the specific transect the user is looking for
+  const targetTransect = metadataRows.find(row =>
+    row['Transect Name'] && row['Transect Name'].includes('Baldios de São Miguel de Poiares')
+  );
+  if (targetTransect) {
+    console.log(`\nFound target transect: ${targetTransect['Transect Name']}`);
+    console.log(`  ID: ${targetTransect['Transect ID']}`);
+    console.log(`  Situação: ${targetTransect['Situação']}`);
+  } else {
+    console.log(`\nTarget transect "Baldios de São Miguel de Poiares" not found in metadata`);
+  }
+
+  // Filter for valid and new transects (trim to handle trailing spaces)
+  const validTransects = metadataRows.filter(row => {
+    const situacao = (row['Situação'] || '').trim();
+    return situacao === 'Válido' || situacao === 'Novo';
+  });
+  console.log(`\nFound ${validTransects.length} valid/new transects (out of ${metadataRows.length} total)\n`);
 
   // Read all butterfly observation data
   const allData = readCSV(ALL_DATA_FILE);
@@ -329,6 +344,7 @@ function processData() {
   console.log('\nCalculating statistics for each transect...');
   const results = [];
   let processedCount = 0;
+  const skippedTransects = [];
 
   Object.entries(metadataMap).forEach(([transectId, metadata]) => {
     const stats = calculateTransectStats(transectId, allData, metadata);
@@ -340,10 +356,23 @@ function processData() {
       if (processedCount % 20 === 0) {
         console.log(`  Processed ${processedCount} transects...`);
       }
+    } else {
+      skippedTransects.push({
+        id: transectId,
+        name: metadata['Transect Name'] || 'Unknown',
+        situacao: metadata['Situação'] || 'Unknown',
+      });
     }
   });
 
   console.log(`\nSuccessfully calculated statistics for ${results.length} transects`);
+
+  if (skippedTransects.length > 0) {
+    console.log(`\nSkipped ${skippedTransects.length} transects (no valid observation data):`);
+    skippedTransects.forEach(t => {
+      console.log(`  - ${t.name} (ID: ${t.id}, Situação: ${t.situacao})`);
+    });
+  }
 
   // Sort by transect name
   results.sort((a, b) => a.transectName.localeCompare(b.transectName));

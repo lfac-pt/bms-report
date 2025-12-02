@@ -33,6 +33,9 @@ function ButterflyTransects() {
   const [metadata, setMetadata] = useState<ProcessingMetadata | null>(null);
   const [loading, setLoading] = useState(true);
   const [searchText, setSearchText] = useState("");
+  const [yearsActiveFilters, setYearsActiveFilters] = useState<(string | number)[]>([]);
+  const [pageSize, setPageSize] = useState(20);
+  const [currentPage, setCurrentPage] = useState(1);
 
   // Column visibility state - Entidade and Concelho hidden by default
   const [visibleColumns, setVisibleColumns] = useState<Record<string, boolean>>({
@@ -43,7 +46,6 @@ function ButterflyTransects() {
     avgButterfliesPerVisit: true,
     yearsActive: true,
     entidade: false, // Hidden by default
-    lastMonitoringYear: true,
     concelho: false, // Hidden by default
   });
 
@@ -62,15 +64,66 @@ function ButterflyTransects() {
       });
   }, []);
 
-  // Filter data based on search
-  const filteredData = data.filter(transect =>
-    transect.transectName.toLowerCase().includes(searchText.toLowerCase())
-  );
+  // Filter data based on search and yearsActive filters with AND logic
+  const filteredData = data.filter(transect => {
+    // Search filter
+    if (!transect.transectName.toLowerCase().includes(searchText.toLowerCase())) {
+      return false;
+    }
+
+    // Anos Ativos filters with AND logic
+    if (yearsActiveFilters.length > 0) {
+      const hasLastSeason = yearsActiveFilters.includes("lastSeason");
+      const yearCounts = yearsActiveFilters.filter(f => f !== "lastSeason") as number[];
+
+      // If "lastSeason" is selected, check if transect was active in the most recent year
+      if (hasLastSeason) {
+        const mostRecentYear = Math.max(
+          ...data.map(t => t.lastMonitoringYear || 0).filter(y => y > 0)
+        );
+        if (transect.lastMonitoringYear !== mostRecentYear) {
+          return false;
+        }
+      }
+
+      // If year counts are selected, check if transect matches ANY of them
+      if (yearCounts.length > 0) {
+        if (!yearCounts.includes(transect.yearsActive)) {
+          return false;
+        }
+      }
+    }
+
+    return true;
+  });
 
   // Calculate summary statistics
-  const totalTransects = data.length;
-  const activeTransects = data.filter(t => t.isActive).length;
-  const totalVisits = data.reduce((sum, t) => sum + t.totalVisits, 0);
+  const mostRecentYear = data.length > 0
+    ? Math.max(...data.map(t => t.lastMonitoringYear || 0).filter(y => y > 0))
+    : null;
+
+  // Transects active in last season
+  const transectsInLastSeason = mostRecentYear
+    ? data.filter(t => t.lastMonitoringYear === mostRecentYear).length
+    : 0;
+
+  // Long-term quality data transects: active in last season, 5+ years, 10+ avg visits/year
+  const longTermQualityTransects = mostRecentYear
+    ? data.filter(
+        t =>
+          t.lastMonitoringYear === mostRecentYear &&
+          t.yearsActive >= 5 &&
+          t.avgVisitsPerYear > 10
+      ).length
+    : 0;
+
+  // Transects gained (started in last season) and lost (stopped before last season)
+  const transectsGained = mostRecentYear
+    ? data.filter(t => t.firstMonitoringYear === mostRecentYear).length
+    : 0;
+  const transectsLost = mostRecentYear
+    ? data.filter(t => t.lastMonitoringYear && t.lastMonitoringYear < mostRecentYear).length
+    : 0;
 
   // Calculate total unique species across all transects
   const allSpeciesSet = new Set<string>();
@@ -135,14 +188,24 @@ function ButterflyTransects() {
       title: "Anos Ativos",
       dataIndex: "yearsActive",
       key: "yearsActive",
-      width: 160,
+      width: 200,
       align: "right",
-      render: (yearsActive: number, record: TransectStats) =>
-        record.firstMonitoringYear ? `${yearsActive} (${record.firstMonitoringYear})` : yearsActive,
-      filters: Array.from(new Set(data.map(t => t.yearsActive)))
-        .sort((a, b) => b - a)
-        .map(years => ({ text: years.toString(), value: years })),
-      onFilter: (value, record) => record.yearsActive === value,
+      render: (yearsActive: number, record: TransectStats) => {
+        if (record.firstMonitoringYear && record.lastMonitoringYear) {
+          return `${yearsActive} (${record.firstMonitoringYear}-${record.lastMonitoringYear})`;
+        }
+        return yearsActive;
+      },
+      filters: [
+        {
+          text: "Ativos na última época",
+          value: "lastSeason",
+        },
+        ...Array.from(new Set(data.map(t => t.yearsActive)))
+          .sort((a, b) => b - a)
+          .map(years => ({ text: years.toString(), value: years })),
+      ],
+      filteredValue: yearsActiveFilters,
     },
     {
       title: "Entidade",
@@ -154,17 +217,6 @@ function ButterflyTransects() {
         .sort()
         .map(e => ({ text: e, value: e })),
       onFilter: (value, record) => record.entidade === value,
-    },
-    {
-      title: "Última Temporada",
-      dataIndex: "lastMonitoringYear",
-      key: "lastMonitoringYear",
-      width: 150,
-      align: "right",
-      filters: Array.from(new Set(data.map(t => t.lastMonitoringYear).filter(y => y !== null)))
-        .sort((a, b) => (b as number) - (a as number))
-        .map(year => ({ text: year!.toString(), value: year as number })),
-      onFilter: (value, record) => record.lastMonitoringYear === value,
     },
     {
       title: "Concelho",
@@ -194,7 +246,6 @@ function ButterflyTransects() {
     avgButterfliesPerVisit: "Borboletas/Visita",
     yearsActive: "Anos Ativos",
     entidade: "Entidade",
-    lastMonitoringYear: "Última Temporada",
     concelho: "Concelho",
   };
 
@@ -228,8 +279,8 @@ function ButterflyTransects() {
           <BarChartOutlined /> Estatísticas dos Transectos de Borboletas
         </Title>
         <Typography.Paragraph>
-          Dados pré-processados de {totalTransects} transectos válidos do projeto EBMS Portugal.
-          Apenas transectos com estado &quot;Válido&quot; estão incluídos.
+          Dados pré-processados de {data.length} transectos do projeto EBMS Portugal.
+          Apenas transectos com estado &quot;Válido&quot; ou &quot;Novo&quot; estão incluídos.
         </Typography.Paragraph>
       </div>
 
@@ -238,19 +289,20 @@ function ButterflyTransects() {
         <Col span={6}>
           <Card>
             <Statistic
-              title="Total de Transectos"
-              value={totalTransects}
+              title="Dados de Qualidade a Longo Prazo"
+              value={longTermQualityTransects}
               valueStyle={{ color: "#1890ff" }}
+              suffix={`transectos`}
             />
           </Card>
         </Col>
         <Col span={6}>
           <Card>
             <Statistic
-              title="Transectos Ativos"
-              value={activeTransects}
+              title={`Ativos em ${mostRecentYear || "—"}`}
+              value={transectsInLastSeason}
               valueStyle={{ color: "#52c41a" }}
-              suffix={`/ ${totalTransects}`}
+              suffix="transectos"
             />
           </Card>
         </Col>
@@ -294,9 +346,15 @@ function ButterflyTransects() {
         <Col span={6}>
           <Card>
             <Statistic
-              title="Total de Visitas"
-              value={totalVisits}
-              valueStyle={{ color: "#fa8c16" }}
+              title={`Ganhos/Perdidos em ${mostRecentYear || "—"}`}
+              value={0}
+              formatter={() => (
+                <span>
+                  <span style={{ color: "#52c41a" }}>+{transectsGained}</span>
+                  <span style={{ color: "#8c8c8c", margin: "0 4px" }}>/</span>
+                  <span style={{ color: "#ff4d4f" }}>-{transectsLost}</span>
+                </span>
+              )}
             />
           </Card>
         </Col>
@@ -324,12 +382,30 @@ function ButterflyTransects() {
         rowKey="transectId"
         loading={loading}
         pagination={{
-          pageSize: 20,
+          current: currentPage,
+          pageSize: pageSize,
           showSizeChanger: true,
           showTotal: (total, range) => `${range[0]}-${range[1]} de ${total} transectos`,
         }}
         scroll={{ x: 1500 }}
         size="small"
+        onChange={(pagination, filters) => {
+          // Update pagination state
+          if (pagination.current) setCurrentPage(pagination.current);
+          if (pagination.pageSize) {
+            setPageSize(pagination.pageSize);
+            setCurrentPage(1); // Reset to first page when page size changes
+          }
+
+          // Update yearsActive filters when they change
+          if (filters.yearsActive) {
+            setYearsActiveFilters(filters.yearsActive as (string | number)[]);
+            setCurrentPage(1); // Reset to first page when filters change
+          } else if (filters.yearsActive === null) {
+            setYearsActiveFilters([]);
+            setCurrentPage(1); // Reset to first page when filters are cleared
+          }
+        }}
       />
 
       {/* Warning about filtered species */}
