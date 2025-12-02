@@ -1,11 +1,13 @@
 const fs = require('fs');
 const path = require('path');
 const Papa = require('papaparse');
+const https = require('https');
 
 // File paths
 const RAW_DATA_DIR = path.join(__dirname, '../raw-data');
 const METADATA_FILE = path.join(RAW_DATA_DIR, 'metadata.csv');
 const ALL_DATA_FILE = path.join(RAW_DATA_DIR, 'all.csv');
+const GEOCODE_CACHE_FILE = path.join(RAW_DATA_DIR, 'geocode-cache.json');
 const OUTPUT_DIR = path.join(__dirname, '../public/data');
 const OUTPUT_FILE = path.join(OUTPUT_DIR, 'processed-transects.json');
 
@@ -169,6 +171,142 @@ function getMonthFromDate(dateString) {
 }
 
 /**
+ * Parse coordinates from the Spatial Reference field
+ * Handles multiple formats:
+ * - "latitude, longitude" (comma-separated)
+ * - "latitude longitude" (space-separated)
+ * - "39.41647N 9.5088W" or "40.068639N, 8.391275W" (with N/S/E/W notation)
+ */
+function parseCoordinates(spatialRef) {
+  if (!spatialRef || typeof spatialRef !== 'string') return null;
+
+  const original = spatialRef.trim();
+
+  // Handle N/S/E/W notation (e.g., "39.41647N 9.5088W" or "40.068639N, 8.391275W")
+  if (/[NSEW]/i.test(original)) {
+    const match = original.match(/([\d.]+)\s*([NS])\s*,?\s*([\d.]+)\s*([EW])/i);
+    if (match) {
+      let lat = parseFloat(match[1]);
+      let lon = parseFloat(match[3]);
+
+      if (match[2].toUpperCase() === 'S') lat = -lat;
+      if (match[4].toUpperCase() === 'W') lon = -lon;
+
+      if (!isNaN(lat) && !isNaN(lon)) {
+        return { lat, lon };
+      }
+    }
+    return null;
+  }
+
+  // Try to split by comma first, then by space
+  let parts;
+  if (original.includes(',')) {
+    // Comma-separated: clean up spaces around minus sign, then split by comma
+    const cleaned = original.replace(/\s*-\s*/g, '-');
+    parts = cleaned.split(',').map(p => p.trim());
+  } else {
+    // Space-separated: split by whitespace first, then clean each part
+    parts = original.trim().split(/\s+/);
+  }
+
+  if (parts.length !== 2) return null;
+
+  const lat = parseFloat(parts[0]);
+  const lon = parseFloat(parts[1]);
+
+  if (isNaN(lat) || isNaN(lon)) return null;
+
+  return { lat, lon };
+}
+
+/**
+ * Reverse geocode coordinates to get location information using Nominatim
+ */
+function reverseGeocode(lat, lon) {
+  return new Promise((resolve, reject) => {
+    const url = `https://nominatim.openstreetmap.org/reverse?format=json&lat=${lat}&lon=${lon}&zoom=10&addressdetails=1`;
+
+    const options = {
+      headers: {
+        'User-Agent': 'BMS-Portugal-Report/1.0'
+      }
+    };
+
+    https.get(url, options, (res) => {
+      let data = '';
+
+      res.on('data', (chunk) => {
+        data += chunk;
+      });
+
+      res.on('end', () => {
+        try {
+          const result = JSON.parse(data);
+          resolve(result);
+        } catch (error) {
+          reject(error);
+        }
+      });
+    }).on('error', (error) => {
+      reject(error);
+    });
+  });
+}
+
+/**
+ * Extract Concelho and Distrito from Nominatim response
+ */
+function extractLocation(nominatimResponse) {
+  if (!nominatimResponse || !nominatimResponse.address) {
+    return { concelho: '', distrito: '' };
+  }
+
+  const addr = nominatimResponse.address;
+
+  // Concelho can be in municipality, city, town, or village
+  const concelho = addr.municipality || addr.city || addr.town || addr.village || '';
+
+  // Distrito is in state or county
+  const distrito = addr.state || addr.county || '';
+
+  return { concelho, distrito };
+}
+
+/**
+ * Sleep for a specified number of milliseconds
+ */
+function sleep(ms) {
+  return new Promise(resolve => setTimeout(resolve, ms));
+}
+
+/**
+ * Load geocode cache from file
+ */
+function loadGeocodeCache() {
+  try {
+    if (fs.existsSync(GEOCODE_CACHE_FILE)) {
+      const cacheData = fs.readFileSync(GEOCODE_CACHE_FILE, 'utf-8');
+      return JSON.parse(cacheData);
+    }
+  } catch (error) {
+    console.warn('Warning: Failed to load geocode cache:', error.message);
+  }
+  return {};
+}
+
+/**
+ * Save geocode cache to file
+ */
+function saveGeocodeCache(cache) {
+  try {
+    fs.writeFileSync(GEOCODE_CACHE_FILE, JSON.stringify(cache, null, 2), 'utf-8');
+  } catch (error) {
+    console.warn('Warning: Failed to save geocode cache:', error.message);
+  }
+}
+
+/**
  * Read and parse a CSV file
  */
 function readCSV(filePath) {
@@ -191,7 +329,7 @@ function readCSV(filePath) {
 /**
  * Calculate statistics for a transect
  */
-function calculateTransectStats(transectId, allData, metadata) {
+function calculateTransectStats(transectId, allData, metadata, location = null) {
   // Filter data for this transect AND only include valid species
   const transectData = allData.filter(row => {
     if (row['Transect ID'] !== transectId) return false;
@@ -276,7 +414,8 @@ function calculateTransectStats(transectId, allData, metadata) {
     speciesList: [...speciesSet].sort(),
     // Additional metadata
     tipologia: metadata['Tipologia'] || '',
-    concelho: metadata['Concelho'] || '',
+    concelho: location ? location.concelho : (metadata['Concelho'] || ''),
+    distrito: location ? location.distrito : '',
     responsavel: metadata['Responsável'] || '',
     entidade: metadata['Entidade'] || '',
   };
@@ -285,7 +424,7 @@ function calculateTransectStats(transectId, allData, metadata) {
 /**
  * Main processing function
  */
-function processData() {
+async function processData() {
   console.log('Starting butterfly data processing...\n');
 
   // Read metadata
@@ -322,6 +461,94 @@ function processData() {
     }
   });
 
+  // Geocode transect coordinates to get Concelho and Distrito
+  console.log('\nGeocoding transect coordinates...');
+  const geocodeCache = loadGeocodeCache();
+  const locationMap = {};
+  let geocodedCount = 0;
+  let cachedCount = 0;
+  let failedCount = 0;
+  let apiCallCount = 0;
+  const failedTransects = [];
+
+  for (const [transectId, metadata] of Object.entries(metadataMap)) {
+    const coords = parseCoordinates(metadata['Spatial Refere']);
+
+    if (coords) {
+      const cacheKey = `${coords.lat.toFixed(5)},${coords.lon.toFixed(5)}`;
+
+      // Check cache first
+      if (geocodeCache[cacheKey]) {
+        locationMap[transectId] = geocodeCache[cacheKey];
+        cachedCount++;
+      } else {
+        try {
+          // Respect Nominatim's usage policy: max 1 request per second
+          await sleep(1000);
+
+          const result = await reverseGeocode(coords.lat, coords.lon);
+          const location = extractLocation(result);
+
+          if (location.concelho || location.distrito) {
+            locationMap[transectId] = location;
+            geocodeCache[cacheKey] = location; // Save to cache
+            geocodedCount++;
+            apiCallCount++;
+
+            // Log progress every 10 API calls
+            if (apiCallCount % 10 === 0) {
+              console.log(`  Made ${apiCallCount} API calls...`);
+            }
+          } else {
+            failedCount++;
+            failedTransects.push({
+              name: metadata['Transect Name'],
+              id: transectId,
+              reason: 'No concelho/distrito in response'
+            });
+          }
+        } catch (error) {
+          console.warn(`  Warning: Failed to geocode transect ${metadata['Transect Name']}: ${error.message}`);
+          failedCount++;
+          failedTransects.push({
+            name: metadata['Transect Name'],
+            id: transectId,
+            reason: error.message
+          });
+        }
+      }
+    } else {
+      failedCount++;
+      failedTransects.push({
+        name: metadata['Transect Name'],
+        id: transectId,
+        coords: metadata['Spatial Refere'],
+        reason: 'Invalid or missing coordinates'
+      });
+    }
+  }
+
+  // Save updated cache
+  if (apiCallCount > 0) {
+    saveGeocodeCache(geocodeCache);
+    console.log(`\nCache updated with ${apiCallCount} new entries`);
+  }
+
+  console.log(`\nGeocoding complete: ${geocodedCount} from API, ${cachedCount} from cache, ${failedCount} failed`);
+
+  if (failedTransects.length > 0) {
+    console.log(`\nFailed to geocode ${failedTransects.length} transects:`);
+    failedTransects.forEach(t => {
+      if (t.coords) {
+        console.log(`  - ${t.name} (ID: ${t.id})`);
+        console.log(`    Coordinates: "${t.coords}"`);
+        console.log(`    Reason: ${t.reason}`);
+      } else {
+        console.log(`  - ${t.name} (ID: ${t.id}) - ${t.reason}`);
+      }
+    });
+  }
+
   // Track filtered species (those not in the whitelist)
   const filteredSpeciesSet = new Set();
   const validTransectIds = new Set(Object.keys(metadataMap));
@@ -348,7 +575,8 @@ function processData() {
   const skippedTransects = [];
 
   Object.entries(metadataMap).forEach(([transectId, metadata]) => {
-    const stats = calculateTransectStats(transectId, allData, metadata);
+    const location = locationMap[transectId] || null;
+    const stats = calculateTransectStats(transectId, allData, metadata, location);
     if (stats) {
       results.push(stats);
       processedCount++;

@@ -15,6 +15,7 @@ export interface TransectStats {
   // Additional metadata
   tipologia: string;
   concelho: string;
+  distrito: string;
   responsavel: string;
   entidade: string;
 }

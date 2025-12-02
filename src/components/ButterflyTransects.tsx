@@ -96,7 +96,7 @@ function ButterflyTransects() {
   const [pageSize, setPageSize] = useState(20);
   const [currentPage, setCurrentPage] = useState(1);
 
-  // Column visibility state - Entidade and Concelho hidden by default
+  // Column visibility state - Entidade, Concelho, and Distrito hidden by default
   const [visibleColumns, setVisibleColumns] = useState<Record<string, boolean>>({
     transectName: true,
     totalSpecies: true,
@@ -106,6 +106,7 @@ function ButterflyTransects() {
     yearsActive: true,
     entidade: false, // Hidden by default
     concelho: false, // Hidden by default
+    distrito: false, // Hidden by default
   });
 
   useEffect(() => {
@@ -304,6 +305,17 @@ function ButterflyTransects() {
         .map(c => ({ text: c, value: c })),
       onFilter: (value, record) => record.concelho === value,
     },
+    {
+      title: "Distrito",
+      dataIndex: "distrito",
+      key: "distrito",
+      width: 150,
+      filters: Array.from(new Set(data.map(t => t.distrito)))
+        .filter(d => d)
+        .sort()
+        .map(d => ({ text: d, value: d })),
+      onFilter: (value, record) => record.distrito === value,
+    },
   ];
 
   // Filter columns based on visibility
@@ -322,6 +334,7 @@ function ButterflyTransects() {
     yearsActive: "Anos Ativos",
     entidade: "Entidade",
     concelho: "Concelho",
+    distrito: "Distrito",
   };
 
   const toggleColumn = (columnKey: string) => {
