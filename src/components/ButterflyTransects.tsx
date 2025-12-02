@@ -14,6 +14,7 @@ import {
   Button,
   Dropdown,
   Checkbox,
+  Divider,
 } from "antd";
 import type { ColumnsType } from "antd/es/table";
 import type { MenuProps } from "antd";
@@ -25,8 +26,66 @@ import {
   WarningOutlined,
   SettingOutlined,
 } from "@ant-design/icons";
+import { groupSpeciesByFamily } from "../utils/speciesFamilies";
 
 const { Title } = Typography;
+
+// Component for species list with search and family grouping
+function SpeciesList({
+  species,
+  title,
+}: {
+  species: string[];
+  title: string;
+}) {
+  const [searchText, setSearchText] = useState("");
+
+  // Filter species based on search
+  const filteredSpecies = species.filter(s =>
+    s.toLowerCase().includes(searchText.toLowerCase())
+  );
+
+  // Group by family
+  const groupedSpecies = groupSpeciesByFamily(filteredSpecies);
+  const families = Object.keys(groupedSpecies).sort();
+
+  return (
+    <div style={{ width: 350 }}>
+      <Input
+        placeholder="Procurar espécie..."
+        prefix={<SearchOutlined />}
+        value={searchText}
+        onChange={e => setSearchText(e.target.value)}
+        style={{ marginBottom: 12 }}
+        allowClear
+      />
+      <div style={{ maxHeight: 400, overflowY: "auto" }}>
+        <strong style={{ display: "block", marginBottom: 8 }}>
+          {title} ({filteredSpecies.length})
+        </strong>
+        {families.map(family => (
+          <div key={family} style={{ marginBottom: 12 }}>
+            <Typography.Text strong style={{ fontSize: 12, color: "#595959" }}>
+              {family} ({groupedSpecies[family].length})
+            </Typography.Text>
+            <Divider style={{ margin: "4px 0" }} />
+            <List
+              size="small"
+              dataSource={groupedSpecies[family]}
+              renderItem={item => (
+                <List.Item style={{ padding: "2px 0", border: "none" }}>
+                  <Typography.Text style={{ fontSize: 11, fontStyle: "italic" }}>
+                    {item}
+                  </Typography.Text>
+                </List.Item>
+              )}
+            />
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
 
 function ButterflyTransects() {
   const [data, setData] = useState<TransectStats[]>([]);
@@ -133,6 +192,10 @@ function ButterflyTransects() {
   const uniqueSpeciesList = Array.from(allSpeciesSet).sort();
   const totalUniqueSpecies = uniqueSpeciesList.length;
 
+  // Calculate totals across all transects
+  const totalButterflies = data.reduce((sum, t) => sum + t.totalAbundance, 0);
+  const totalVisitsAll = data.reduce((sum, t) => sum + t.totalVisits, 0);
+
   const columns: ColumnsType<TransectStats> = [
     {
       title: "Transecto",
@@ -150,6 +213,18 @@ function ButterflyTransects() {
       width: 120,
       align: "right",
       sorter: (a, b) => a.totalSpecies - b.totalSpecies,
+      render: (totalSpecies: number, record: TransectStats) => (
+        <Popover
+          content={<SpeciesList species={record.speciesList} title="Espécies" />}
+          title={`Espécies em ${record.transectName}`}
+          trigger="click"
+          placement="right"
+        >
+          <span style={{ cursor: "pointer", color: "#1890ff" }}>
+            {totalSpecies} <InfoCircleOutlined style={{ fontSize: 10 }} />
+          </span>
+        </Popover>
+      ),
     },
     {
       title: "Visitas",
@@ -276,55 +351,34 @@ function ButterflyTransects() {
     <Space direction="vertical" size="large" style={{ width: "100%", marginTop: 24 }}>
       <div>
         <Title level={2}>
-          <BarChartOutlined /> Estatísticas dos Transectos de Borboletas
+          <BarChartOutlined /> Estatísticas BMS Diurnas Portugal
         </Title>
-        <Typography.Paragraph>
-          Dados pré-processados de {data.length} transectos do projeto EBMS Portugal.
-          Apenas transectos com estado &quot;Válido&quot; ou &quot;Novo&quot; estão incluídos.
-        </Typography.Paragraph>
       </div>
 
       {/* Summary Statistics */}
       <Row gutter={16}>
-        <Col span={6}>
+        <Col span={4}>
           <Card>
             <Statistic
               title="Dados de Qualidade a Longo Prazo"
               value={longTermQualityTransects}
               valueStyle={{ color: "#1890ff" }}
-              suffix={`transectos`}
             />
           </Card>
         </Col>
-        <Col span={6}>
+        <Col span={4}>
           <Card>
             <Statistic
               title={`Ativos em ${mostRecentYear || "—"}`}
               value={transectsInLastSeason}
               valueStyle={{ color: "#52c41a" }}
-              suffix="transectos"
             />
           </Card>
         </Col>
-        <Col span={6}>
+        <Col span={4}>
           <Card>
             <Popover
-              content={
-                <div style={{ maxHeight: 400, overflowY: "auto", width: 300 }}>
-                  <List
-                    size="small"
-                    header={<strong>Espécies Registadas ({totalUniqueSpecies})</strong>}
-                    dataSource={uniqueSpeciesList}
-                    renderItem={item => (
-                      <List.Item style={{ padding: "4px 0" }}>
-                        <Typography.Text style={{ fontSize: 12, fontStyle: "italic" }}>
-                          {item}
-                        </Typography.Text>
-                      </List.Item>
-                    )}
-                  />
-                </div>
-              }
+              content={<SpeciesList species={uniqueSpeciesList} title="Espécies Registadas" />}
               title="Lista Completa de Espécies"
               trigger="click"
               placement="bottom"
@@ -343,10 +397,10 @@ function ButterflyTransects() {
             </Popover>
           </Card>
         </Col>
-        <Col span={6}>
+        <Col span={4}>
           <Card>
             <Statistic
-              title={`Ganhos/Perdidos em ${mostRecentYear || "—"}`}
+              title={`Transetos Ganhos/Perdidos em ${mostRecentYear || "—"}`}
               value={0}
               formatter={() => (
                 <span>
@@ -355,6 +409,24 @@ function ButterflyTransects() {
                   <span style={{ color: "#ff4d4f" }}>-{transectsLost}</span>
                 </span>
               )}
+            />
+          </Card>
+        </Col>
+        <Col span={4}>
+          <Card>
+            <Statistic
+              title="Total de Borboletas Contadas"
+              value={totalButterflies}
+              valueStyle={{ color: "#fa8c16" }}
+            />
+          </Card>
+        </Col>
+        <Col span={4}>
+          <Card>
+            <Statistic
+              title="Total de Visitas"
+              value={totalVisitsAll}
+              valueStyle={{ color: "#13c2c2" }}
             />
           </Card>
         </Col>

@@ -5,6 +5,7 @@ export interface TransectStats {
   isActive: boolean;
   totalSpecies: number;
   totalVisits: number;
+  totalAbundance: number;
   avgVisitsPerYear: number;
   avgButterfliesPerVisit: number;
   yearsActive: number;
