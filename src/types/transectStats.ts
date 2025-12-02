@@ -18,6 +18,8 @@ export interface TransectStats {
   distrito: string;
   responsavel: string;
   entidade: string;
+  // Fuzzy coordinates for privacy (approximate location)
+  coordinates: { lat: number; lon: number } | null;
 }
 
 export interface ProcessingMetadata {

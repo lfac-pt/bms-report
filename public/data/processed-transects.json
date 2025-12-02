@@ -49,7 +49,11 @@
       "concelho": "Portimão",
       "distrito": "Faro",
       "responsavel": "Paula Canha",
-      "entidade": "ONGA"
+      "entidade": "ONGA",
+      "coordinates": {
+        "lat": 37.14019096457094,
+        "lon": -8.612921001573348
+      }
     },
     {
       "transectId": "240222",
@@ -97,7 +101,11 @@
       "concelho": "Portimão",
       "distrito": "Faro",
       "responsavel": "Paula Canha",
-      "entidade": "ONGA"
+      "entidade": "ONGA",
+      "coordinates": {
+        "lat": 37.14083636157497,
+        "lon": -8.609101023886318
+      }
     },
     {
       "transectId": "336760",
@@ -134,7 +142,11 @@
       "concelho": "Paredes",
       "distrito": "Porto",
       "responsavel": "",
-      "entidade": "Particular"
+      "entidade": "Particular",
+      "coordinates": {
+        "lat": 41.120999735207164,
+        "lon": -8.444461743613642
+      }
     },
     {
       "transectId": "314210",
@@ -184,13 +196,17 @@
       "concelho": "Esposende",
       "distrito": "Braga",
       "responsavel": "Luis Gaifan",
-      "entidade": "ONGA"
+      "entidade": "ONGA",
+      "coordinates": {
+        "lat": 41.55196245016786,
+        "lon": -8.785854489417533
+      }
     },
     {
       "transectId": "341825",
       "transectCode": "EBMS:Portugal:153",
       "transectName": "Avis",
-      "isActive": false,
+      "isActive": true,
       "totalSpecies": 21,
       "totalVisits": 49,
       "totalAbundance": 809,
@@ -226,7 +242,11 @@
       "concelho": "Avis",
       "distrito": "Portalegre",
       "responsavel": "",
-      "entidade": "Particular"
+      "entidade": "Particular",
+      "coordinates": {
+        "lat": 39.044664494661816,
+        "lon": -7.888885304586869
+      }
     },
     {
       "transectId": "309311",
@@ -279,13 +299,17 @@
       "concelho": "Avis",
       "distrito": "Portalegre",
       "responsavel": "Antóno Xeria",
-      "entidade": "Particular"
+      "entidade": "Particular",
+      "coordinates": {
+        "lat": 39.04560785582617,
+        "lon": -7.815351544364038
+      }
     },
     {
       "transectId": "362532",
       "transectCode": "EBMS:Portugal:159",
       "transectName": "Baldios de São Miguel de Poiares",
-      "isActive": false,
+      "isActive": true,
       "totalSpecies": 29,
       "totalVisits": 24,
       "totalAbundance": 741,
@@ -329,13 +353,17 @@
       "concelho": "Vila Nova de Poiares",
       "distrito": "Coimbra",
       "responsavel": "",
-      "entidade": ""
+      "entidade": "",
+      "coordinates": {
+        "lat": 40.225892459644584,
+        "lon": -8.209991470895671
+      }
     },
     {
       "transectId": "340155",
       "transectCode": "EBMS:Portugal:148",
       "transectName": "Barragem de Petrarouca",
-      "isActive": false,
+      "isActive": true,
       "totalSpecies": 41,
       "totalVisits": 11,
       "totalAbundance": 2167,
@@ -391,7 +419,11 @@
       "concelho": "Lamego",
       "distrito": "Viseu",
       "responsavel": "",
-      "entidade": "Particular"
+      "entidade": "Particular",
+      "coordinates": {
+        "lat": 41.03422769945883,
+        "lon": -7.88604911007854
+      }
     },
     {
       "transectId": "316845",
@@ -432,13 +464,17 @@
       "concelho": "Braga",
       "distrito": "Braga",
       "responsavel": "Rafael Pinto",
-      "entidade": "Universidade de Braga"
+      "entidade": "Universidade de Braga",
+      "coordinates": {
+        "lat": 41.55912264503244,
+        "lon": -8.396522207423985
+      }
     },
     {
       "transectId": "315938",
       "transectCode": "EBMS:Portugal:127",
       "transectName": "Casal de Pipa",
-      "isActive": true,
+      "isActive": false,
       "totalSpecies": 23,
       "totalVisits": 14,
       "totalAbundance": 245,
@@ -476,7 +512,11 @@
       "concelho": "Loures",
       "distrito": "Lisboa",
       "responsavel": "Paula Coelho",
-      "entidade": "Particular"
+      "entidade": "Particular",
+      "coordinates": {
+        "lat": 38.81212377421439,
+        "lon": -9.177891683498764
+      }
     },
     {
       "transectId": "227871",
@@ -504,7 +544,11 @@
       "concelho": "Seixal",
       "distrito": "Setúbal",
       "responsavel": "Rui Laureano",
-      "entidade": "Particular"
+      "entidade": "Particular",
+      "coordinates": {
+        "lat": 38.63364815589553,
+        "lon": -9.119678211917421
+      }
     },
     {
       "transectId": "254989",
@@ -553,7 +597,11 @@
       "concelho": "Abrantes",
       "distrito": "Santarém",
       "responsavel": "Paulo Alves",
-      "entidade": "Particular"
+      "entidade": "Particular",
+      "coordinates": {
+        "lat": 39.45921097407229,
+        "lon": -8.076518978054922
+      }
     },
     {
       "transectId": "303737",
@@ -591,7 +639,11 @@
       "concelho": "Vila Nova de Famalicão",
       "distrito": "Braga",
       "responsavel": "Rafael Pinto",
-      "entidade": "Particular"
+      "entidade": "Particular",
+      "coordinates": {
+        "lat": 41.37998355634767,
+        "lon": -8.415583766415592
+      }
     },
     {
       "transectId": "228038",
@@ -635,7 +687,11 @@
       "concelho": "Cascais",
       "distrito": "Lisboa",
       "responsavel": "Diogo Silva",
-      "entidade": "Município"
+      "entidade": "Município",
+      "coordinates": {
+        "lat": 38.720954039907035,
+        "lon": -9.466119334446082
+      }
     },
     {
       "transectId": "267250",
@@ -697,7 +753,11 @@
       "concelho": "Pombal",
       "distrito": "Leiria",
       "responsavel": "Isa Teixeira",
-      "entidade": "Particular"
+      "entidade": "Particular",
+      "coordinates": {
+        "lat": 39.98409357896847,
+        "lon": -8.556506384760981
+      }
     },
     {
       "transectId": "216729",
@@ -728,13 +788,17 @@
       "concelho": "Lisboa",
       "distrito": "Lisboa",
       "responsavel": "Julieta Costa",
-      "entidade": "Particular"
+      "entidade": "Particular",
+      "coordinates": {
+        "lat": 38.757410780310174,
+        "lon": -9.170551818628486
+      }
     },
     {
       "transectId": "336687",
       "transectCode": "EBMS:Portugal:139",
       "transectName": "Fervença",
-      "isActive": false,
+      "isActive": true,
       "totalSpecies": 42,
       "totalVisits": 20,
       "totalAbundance": 692,
@@ -791,7 +855,11 @@
       "concelho": "Bragança",
       "distrito": "Bragança",
       "responsavel": "",
-      "entidade": "Município"
+      "entidade": "Município",
+      "coordinates": {
+        "lat": 41.798928902919236,
+        "lon": -6.751094310538111
+      }
     },
     {
       "transectId": "218046",
@@ -833,13 +901,17 @@
       "concelho": "Setúbal",
       "distrito": "Setúbal",
       "responsavel": "Sílvia Pina",
-      "entidade": "Particular"
+      "entidade": "Particular",
+      "coordinates": {
+        "lat": 38.53220510011781,
+        "lon": -9.0084026242827
+      }
     },
     {
       "transectId": "330931",
       "transectCode": "EBMS:Portugal:137",
       "transectName": "Gateira",
-      "isActive": false,
+      "isActive": true,
       "totalSpecies": 44,
       "totalVisits": 105,
       "totalAbundance": 3187,
@@ -898,7 +970,11 @@
       "concelho": "Penela",
       "distrito": "Coimbra",
       "responsavel": "Luis Cardoso",
-      "entidade": "Particular"
+      "entidade": "Particular",
+      "coordinates": {
+        "lat": 40.06525622852307,
+        "lon": -8.392338926069169
+      }
     },
     {
       "transectId": "309105",
@@ -947,7 +1023,11 @@
       "concelho": "Évora",
       "distrito": "Évora",
       "responsavel": "André Oliveira",
-      "entidade": "Universidade de Évora"
+      "entidade": "Universidade de Évora",
+      "coordinates": {
+        "lat": 38.52058777191306,
+        "lon": -8.022223102171543
+      }
     },
     {
       "transectId": "243747",
@@ -1011,13 +1091,17 @@
       "concelho": "Nisa",
       "distrito": "Portalegre",
       "responsavel": "Ana Cavaco",
-      "entidade": "ICNF"
+      "entidade": "ICNF",
+      "coordinates": {
+        "lat": 39.63800065776548,
+        "lon": -7.688400944361949
+      }
     },
     {
       "transectId": "254955",
       "transectCode": "EBMS:Portugal:64",
       "transectName": "ICNF Paul de Arzila",
-      "isActive": true,
+      "isActive": false,
       "totalSpecies": 21,
       "totalVisits": 4,
       "totalAbundance": 148,
@@ -1053,13 +1137,17 @@
       "concelho": "Coimbra",
       "distrito": "Coimbra",
       "responsavel": "Diogo Mina",
-      "entidade": "ICNF"
+      "entidade": "ICNF",
+      "coordinates": {
+        "lat": 40.18429209300931,
+        "lon": -8.547110273462662
+      }
     },
     {
       "transectId": "338236",
       "transectCode": "EBMS:Portugal:147",
       "transectName": "ICNF PNA Portinho",
-      "isActive": false,
+      "isActive": true,
       "totalSpecies": 21,
       "totalVisits": 36,
       "totalAbundance": 640,
@@ -1095,7 +1183,11 @@
       "concelho": "Setúbal",
       "distrito": "Setúbal",
       "responsavel": "",
-      "entidade": "ICNF"
+      "entidade": "ICNF",
+      "coordinates": {
+        "lat": 38.47517464375675,
+        "lon": -8.986374166102916
+      }
     },
     {
       "transectId": "256572",
@@ -1155,7 +1247,11 @@
       "concelho": "Palmela",
       "distrito": "Setúbal",
       "responsavel": "Ana Sofia Palma",
-      "entidade": "ICNF"
+      "entidade": "ICNF",
+      "coordinates": {
+        "lat": 38.57073648141124,
+        "lon": -8.920187032962561
+      }
     },
     {
       "transectId": "255860",
@@ -1238,13 +1334,17 @@
       "concelho": "Vila Real",
       "distrito": "Vila Real",
       "responsavel": "João Pargana",
-      "entidade": "ICNF"
+      "entidade": "ICNF",
+      "coordinates": {
+        "lat": 41.33490236530837,
+        "lon": -7.800751853506904
+      }
     },
     {
       "transectId": "228413",
       "transectCode": "EBMS:Portugal:35",
       "transectName": "ICNF PNAL Lamas de Olo",
-      "isActive": false,
+      "isActive": true,
       "totalSpecies": 56,
       "totalVisits": 48,
       "totalAbundance": 3452,
@@ -1315,7 +1415,11 @@
       "concelho": "Vila Real",
       "distrito": "Vila Real",
       "responsavel": "Helena Paulino",
-      "entidade": "ICNF"
+      "entidade": "ICNF",
+      "coordinates": {
+        "lat": 41.37283011002994,
+        "lon": -7.803721657924628
+      }
     },
     {
       "transectId": "244448",
@@ -1385,7 +1489,11 @@
       "concelho": "Mogadouro",
       "distrito": "Bragança",
       "responsavel": "Carlos Santos",
-      "entidade": "ICNF"
+      "entidade": "ICNF",
+      "coordinates": {
+        "lat": 41.31819243668718,
+        "lon": -6.523547193995195
+      }
     },
     {
       "transectId": "265806",
@@ -1461,7 +1569,11 @@
       "concelho": "Mogadouro",
       "distrito": "Bragança",
       "responsavel": "Carlos Santos",
-      "entidade": "ICNF"
+      "entidade": "ICNF",
+      "coordinates": {
+        "lat": 41.31975730171797,
+        "lon": -6.589475553298159
+      }
     },
     {
       "transectId": "242415",
@@ -1508,13 +1620,17 @@
       "concelho": "Esposende",
       "distrito": "Braga",
       "responsavel": "Belmiro Viana",
-      "entidade": "ICNF"
+      "entidade": "ICNF",
+      "coordinates": {
+        "lat": 41.51641761497747,
+        "lon": -8.754439106278705
+      }
     },
     {
       "transectId": "322535",
       "transectCode": "EBMS:Portugal:136",
       "transectName": "ICNF PNM Baçal",
-      "isActive": true,
+      "isActive": false,
       "totalSpecies": 23,
       "totalVisits": 9,
       "totalAbundance": 123,
@@ -1552,13 +1668,17 @@
       "concelho": "Bragança",
       "distrito": "Bragança",
       "responsavel": "Ema Veiga",
-      "entidade": "ICNF"
+      "entidade": "ICNF",
+      "coordinates": {
+        "lat": 41.83633320982792,
+        "lon": -6.743453720607973
+      }
     },
     {
       "transectId": "321934",
       "transectCode": "EBMS:Portugal:135",
       "transectName": "ICNF PNM Grandais",
-      "isActive": true,
+      "isActive": false,
       "totalSpecies": 21,
       "totalVisits": 13,
       "totalAbundance": 292,
@@ -1594,13 +1714,17 @@
       "concelho": "Bragança",
       "distrito": "Bragança",
       "responsavel": "Ema Veiga",
-      "entidade": "ICNF"
+      "entidade": "ICNF",
+      "coordinates": {
+        "lat": 41.82385123911903,
+        "lon": -6.813237611211342
+      }
     },
     {
       "transectId": "227678",
       "transectCode": "EBMS:Portugal:25",
       "transectName": "ICNF PNPG Ramil",
-      "isActive": true,
+      "isActive": false,
       "totalSpecies": 41,
       "totalVisits": 33,
       "totalAbundance": 1543,
@@ -1656,13 +1780,17 @@
       "concelho": "Terras de Bouro",
       "distrito": "Braga",
       "responsavel": "PNPG Vidoeiro",
-      "entidade": "ICNF"
+      "entidade": "ICNF",
+      "coordinates": {
+        "lat": 41.7423765781973,
+        "lon": -8.20458653474228
+      }
     },
     {
       "transectId": "363446",
       "transectCode": "EBMS:Portugal:160",
       "transectName": "ICNF PNPG Ramil II",
-      "isActive": false,
+      "isActive": true,
       "totalSpecies": 4,
       "totalVisits": 1,
       "totalAbundance": 17,
@@ -1681,13 +1809,17 @@
       "concelho": "Terras de Bouro",
       "distrito": "Braga",
       "responsavel": "",
-      "entidade": ""
+      "entidade": "",
+      "coordinates": {
+        "lat": 41.74019851348127,
+        "lon": -8.205921727836287
+      }
     },
     {
       "transectId": "305023",
       "transectCode": "EBMS:Portugal:108",
       "transectName": "ICNF PNRF Quinta de Marim",
-      "isActive": true,
+      "isActive": false,
       "totalSpecies": 9,
       "totalVisits": 10,
       "totalAbundance": 154,
@@ -1711,7 +1843,11 @@
       "concelho": "Olhão",
       "distrito": "Faro",
       "responsavel": "Armando Moura",
-      "entidade": "ICNF"
+      "entidade": "ICNF",
+      "coordinates": {
+        "lat": 37.02551258477423,
+        "lon": -7.814842279475845
+      }
     },
     {
       "transectId": "265814",
@@ -1771,7 +1907,11 @@
       "concelho": "Rio Maior",
       "distrito": "Santarém",
       "responsavel": "Florbela Queirós",
-      "entidade": "ICNF"
+      "entidade": "ICNF",
+      "coordinates": {
+        "lat": 39.366822497502994,
+        "lon": -8.955326776130226
+      }
     },
     {
       "transectId": "265795",
@@ -1839,7 +1979,11 @@
       "concelho": "Alcanena",
       "distrito": "Santarém",
       "responsavel": "Sofia Quaresma",
-      "entidade": "ICNF"
+      "entidade": "ICNF",
+      "coordinates": {
+        "lat": 39.513193007456884,
+        "lon": -8.697998835404158
+      }
     },
     {
       "transectId": "241710",
@@ -1894,7 +2038,11 @@
       "concelho": "Odemira",
       "distrito": "Beja",
       "responsavel": "Pedro Alverca",
-      "entidade": "ICNF"
+      "entidade": "ICNF",
+      "coordinates": {
+        "lat": 37.6964718962758,
+        "lon": -8.687074074102023
+      }
     },
     {
       "transectId": "255958",
@@ -1958,7 +2106,11 @@
       "concelho": "Lagos",
       "distrito": "Faro",
       "responsavel": "Alexandre Cabrita",
-      "entidade": "ICNF"
+      "entidade": "ICNF",
+      "coordinates": {
+        "lat": 37.18572690789862,
+        "lon": -8.694355896945186
+      }
     },
     {
       "transectId": "242632",
@@ -2004,7 +2156,11 @@
       "concelho": "Odemira",
       "distrito": "Beja",
       "responsavel": "Ana Macedo",
-      "entidade": "ICNF"
+      "entidade": "ICNF",
+      "coordinates": {
+        "lat": 37.638808530941276,
+        "lon": -8.614763267207932
+      }
     },
     {
       "transectId": "241707",
@@ -2067,7 +2223,11 @@
       "concelho": "Odemira",
       "distrito": "Beja",
       "responsavel": "Pedro Alverca",
-      "entidade": "ICNF"
+      "entidade": "ICNF",
+      "coordinates": {
+        "lat": 37.74666961835917,
+        "lon": -8.712615782396881
+      }
     },
     {
       "transectId": "295724",
@@ -2134,7 +2294,11 @@
       "concelho": "Seia",
       "distrito": "Guarda",
       "responsavel": "Henrique Domingues",
-      "entidade": "ICNF"
+      "entidade": "ICNF",
+      "coordinates": {
+        "lat": 40.391785127318265,
+        "lon": -7.70378039372956
+      }
     },
     {
       "transectId": "298076",
@@ -2203,13 +2367,17 @@
       "concelho": "Manteigas",
       "distrito": "Guarda",
       "responsavel": "Henrique Domingues",
-      "entidade": "ICNF"
+      "entidade": "ICNF",
+      "coordinates": {
+        "lat": 40.39646826865088,
+        "lon": -7.562170785582783
+      }
     },
     {
       "transectId": "304132",
       "transectCode": "EBMS:Portugal:107",
       "transectName": "ICNF PNSE Vale do Zêzere",
-      "isActive": false,
+      "isActive": true,
       "totalSpecies": 43,
       "totalVisits": 20,
       "totalAbundance": 963,
@@ -2267,7 +2435,11 @@
       "concelho": "Manteigas",
       "distrito": "Guarda",
       "responsavel": "",
-      "entidade": "ICNF"
+      "entidade": "ICNF",
+      "coordinates": {
+        "lat": 40.35388614986911,
+        "lon": -7.562555619873228
+      }
     },
     {
       "transectId": "216760",
@@ -2333,7 +2505,11 @@
       "concelho": "Portalegre",
       "distrito": "Portalegre",
       "responsavel": "Conceição Conde",
-      "entidade": "ICNF"
+      "entidade": "ICNF",
+      "coordinates": {
+        "lat": 39.35776870136843,
+        "lon": -7.423961168915864
+      }
     },
     {
       "transectId": "243847",
@@ -2391,7 +2567,11 @@
       "concelho": "Arronches",
       "distrito": "Portalegre",
       "responsavel": "Ana Cavaco",
-      "entidade": "ICNF"
+      "entidade": "ICNF",
+      "coordinates": {
+        "lat": 39.185860830904744,
+        "lon": -7.267078069359102
+      }
     },
     {
       "transectId": "254837",
@@ -2440,7 +2620,11 @@
       "concelho": "Mértola",
       "distrito": "Beja",
       "responsavel": "Beatriz Machado",
-      "entidade": "ICNF"
+      "entidade": "ICNF",
+      "coordinates": {
+        "lat": 37.492206675810436,
+        "lon": -7.707836136710235
+      }
     },
     {
       "transectId": "256583",
@@ -2485,13 +2669,17 @@
       "concelho": "Almada",
       "distrito": "Setúbal",
       "responsavel": "Teresa Morais",
-      "entidade": "ICNF"
+      "entidade": "ICNF",
+      "coordinates": {
+        "lat": 38.55673065677704,
+        "lon": -9.190206397198377
+      }
     },
     {
       "transectId": "345334",
       "transectCode": "EBMS:Portugal:156",
       "transectName": "ICNF PPSA Mata da Margaraça",
-      "isActive": false,
+      "isActive": true,
       "totalSpecies": 36,
       "totalVisits": 9,
       "totalAbundance": 280,
@@ -2542,7 +2730,11 @@
       "concelho": "Arganil",
       "distrito": "Coimbra",
       "responsavel": "",
-      "entidade": "ICNF"
+      "entidade": "ICNF",
+      "coordinates": {
+        "lat": 40.21110559869813,
+        "lon": -7.928382855870739
+      }
     },
     {
       "transectId": "291783",
@@ -2598,7 +2790,11 @@
       "concelho": "Cadaval",
       "distrito": "Lisboa",
       "responsavel": "Sofia Quaresma",
-      "entidade": "ICNF"
+      "entidade": "ICNF",
+      "coordinates": {
+        "lat": 39.18727633901509,
+        "lon": -9.055567131742833
+      }
     },
     {
       "transectId": "256525",
@@ -2641,7 +2837,11 @@
       "concelho": "Aveiro",
       "distrito": "Aveiro",
       "responsavel": "Rosa Serôdio",
-      "entidade": "ICNF"
+      "entidade": "ICNF",
+      "coordinates": {
+        "lat": 40.694809494181804,
+        "lon": -8.725192299054005
+      }
     },
     {
       "transectId": "272901",
@@ -2687,7 +2887,11 @@
       "concelho": "Setúbal",
       "distrito": "Setúbal",
       "responsavel": "Maria do Céu Guerra",
-      "entidade": "ICNF"
+      "entidade": "ICNF",
+      "coordinates": {
+        "lat": 38.547796681322225,
+        "lon": -8.787824707093328
+      }
     },
     {
       "transectId": "240324",
@@ -2748,7 +2952,11 @@
       "concelho": "Santiago do Cacém",
       "distrito": "Setúbal",
       "responsavel": "Isa Figueiras",
-      "entidade": "ICNF"
+      "entidade": "ICNF",
+      "coordinates": {
+        "lat": 38.07490930692589,
+        "lon": -8.780753950752164
+      }
     },
     {
       "transectId": "307951",
@@ -2791,7 +2999,11 @@
       "concelho": "Torres Novas",
       "distrito": "Santarém",
       "responsavel": "Sónia Casemiro",
-      "entidade": "ICNF"
+      "entidade": "ICNF",
+      "coordinates": {
+        "lat": 39.41302372588805,
+        "lon": -8.526860386945902
+      }
     },
     {
       "transectId": "316058",
@@ -2831,7 +3043,11 @@
       "concelho": "Castro Marim",
       "distrito": "Faro",
       "responsavel": "Pedro Castelão",
-      "entidade": "ICNF"
+      "entidade": "ICNF",
+      "coordinates": {
+        "lat": 37.22500410910092,
+        "lon": -7.422401992238497
+      }
     },
     {
       "transectId": "270599",
@@ -2893,7 +3109,11 @@
       "concelho": "Sabugal",
       "distrito": "Guarda",
       "responsavel": "Henrique Furriel",
-      "entidade": "ICNF"
+      "entidade": "ICNF",
+      "coordinates": {
+        "lat": 40.28616420258045,
+        "lon": -6.98554280278799
+      }
     },
     {
       "transectId": "265800",
@@ -2939,7 +3159,11 @@
       "concelho": "Torres Vedras",
       "distrito": "Lisboa",
       "responsavel": "Isa Teixeira",
-      "entidade": "ICNF"
+      "entidade": "ICNF",
+      "coordinates": {
+        "lat": 39.17570692287282,
+        "lon": -9.350593507700449
+      }
     },
     {
       "transectId": "216730",
@@ -2977,13 +3201,17 @@
       "concelho": "Lisboa",
       "distrito": "Lisboa",
       "responsavel": "Albano Soares",
-      "entidade": "Particular"
+      "entidade": "Particular",
+      "coordinates": {
+        "lat": 38.75424151426993,
+        "lon": -9.13171412693093
+      }
     },
     {
       "transectId": "321815",
       "transectCode": "EBMS:Portugal:134",
       "transectName": "Mata de Belas (Fonteireira) - Aqueduto do Castanheiro - Topo Rochoso",
-      "isActive": true,
+      "isActive": false,
       "totalSpecies": 23,
       "totalVisits": 4,
       "totalAbundance": 151,
@@ -3021,7 +3249,11 @@
       "concelho": "Sintra",
       "distrito": "Lisboa",
       "responsavel": "Orkhan Abbasov",
-      "entidade": "Particular"
+      "entidade": "Particular",
+      "coordinates": {
+        "lat": 38.78269657929321,
+        "lon": -9.266986192752826
+      }
     },
     {
       "transectId": "243008",
@@ -3076,7 +3308,11 @@
       "concelho": "Tomar",
       "distrito": "Santarém",
       "responsavel": "Filipa Coelho",
-      "entidade": "ONGA"
+      "entidade": "ONGA",
+      "coordinates": {
+        "lat": 39.59672404505201,
+        "lon": -8.41157523422203
+      }
     },
     {
       "transectId": "319947",
@@ -3119,13 +3355,17 @@
       "concelho": "Oeiras",
       "distrito": "Lisboa",
       "responsavel": "Francisco Aguilar",
-      "entidade": "Particular"
+      "entidade": "Particular",
+      "coordinates": {
+        "lat": 38.7303125300551,
+        "lon": -9.311264608504885
+      }
     },
     {
       "transectId": "340894",
       "transectCode": "EBMS:Portugal:152",
       "transectName": "Monte da Juliana",
-      "isActive": false,
+      "isActive": true,
       "totalSpecies": 14,
       "totalVisits": 8,
       "totalAbundance": 106,
@@ -3154,13 +3394,17 @@
       "concelho": "Beja",
       "distrito": "Beja",
       "responsavel": "",
-      "entidade": ""
+      "entidade": "",
+      "coordinates": {
+        "lat": 37.90415410918448,
+        "lon": -8.03538272013235
+      }
     },
     {
       "transectId": "340178",
       "transectCode": "EBMS:Portugal:150",
       "transectName": "Monte da Póvoa",
-      "isActive": false,
+      "isActive": true,
       "totalSpecies": 49,
       "totalVisits": 14,
       "totalAbundance": 1776,
@@ -3224,7 +3468,11 @@
       "concelho": "Lamego",
       "distrito": "Viseu",
       "responsavel": "",
-      "entidade": "Particular"
+      "entidade": "Particular",
+      "coordinates": {
+        "lat": 41.058137811241004,
+        "lon": -7.841073058300523
+      }
     },
     {
       "transectId": "247984",
@@ -3263,13 +3511,17 @@
       "concelho": "Tomar",
       "distrito": "Santarém",
       "responsavel": "Pedro Borges",
-      "entidade": "ONGA"
+      "entidade": "ONGA",
+      "coordinates": {
+        "lat": 39.62507875587908,
+        "lon": -8.39508126414313
+      }
     },
     {
       "transectId": "257109",
       "transectCode": "EBMS:Portugal:77",
       "transectName": "Outeiro Seco",
-      "isActive": true,
+      "isActive": false,
       "totalSpecies": 15,
       "totalVisits": 30,
       "totalAbundance": 64,
@@ -3299,7 +3551,11 @@
       "concelho": "Chaves",
       "distrito": "Vila Real",
       "responsavel": "Daniele Cataldo",
-      "entidade": "Particular"
+      "entidade": "Particular",
+      "coordinates": {
+        "lat": 41.763276694203746,
+        "lon": -7.437639401082453
+      }
     },
     {
       "transectId": "240301",
@@ -3357,7 +3613,11 @@
       "concelho": "Constância",
       "distrito": "Santarém",
       "responsavel": "Sónia Mendes",
-      "entidade": "Município"
+      "entidade": "Município",
+      "coordinates": {
+        "lat": 39.44603915846337,
+        "lon": -8.311522152943127
+      }
     },
     {
       "transectId": "306541",
@@ -3405,7 +3665,11 @@
       "concelho": "Vila Nova de Gaia",
       "distrito": "Porto",
       "responsavel": "Jorge Gomes",
-      "entidade": "Município"
+      "entidade": "Município",
+      "coordinates": {
+        "lat": 41.09705837521838,
+        "lon": -8.550847013080334
+      }
     },
     {
       "transectId": "306547",
@@ -3443,7 +3707,11 @@
       "concelho": "Vila Nova de Gaia",
       "distrito": "Porto",
       "responsavel": "Jorge Gomes",
-      "entidade": "Município"
+      "entidade": "Município",
+      "coordinates": {
+        "lat": 41.104735830872805,
+        "lon": -8.556387642002077
+      }
     },
     {
       "transectId": "243024",
@@ -3484,13 +3752,17 @@
       "concelho": "Guimarães",
       "distrito": "Braga",
       "responsavel": "Guimarães",
-      "entidade": "Município"
+      "entidade": "Município",
+      "coordinates": {
+        "lat": 41.45202359652788,
+        "lon": -8.286197397767847
+      }
     },
     {
       "transectId": "216727",
       "transectCode": "EBMS:Portugal:4",
       "transectName": "Parque do Calhau",
-      "isActive": true,
+      "isActive": false,
       "totalSpecies": 20,
       "totalVisits": 43,
       "totalAbundance": 616,
@@ -3525,13 +3797,17 @@
       "concelho": "Lisboa",
       "distrito": "Lisboa",
       "responsavel": "Eva Monteiro",
-      "entidade": "Particular"
+      "entidade": "Particular",
+      "coordinates": {
+        "lat": 38.73449749383936,
+        "lon": -9.171619728056198
+      }
     },
     {
       "transectId": "308543",
       "transectCode": "EBMS:Portugal:118",
       "transectName": "Parque do Corgo",
-      "isActive": true,
+      "isActive": false,
       "totalSpecies": 17,
       "totalVisits": 5,
       "totalAbundance": 135,
@@ -3563,7 +3839,11 @@
       "concelho": "Vila Real",
       "distrito": "Vila Real",
       "responsavel": "Darinka Gonçalves",
-      "entidade": "Município"
+      "entidade": "Município",
+      "coordinates": {
+        "lat": 41.29314761576493,
+        "lon": -7.7431755260418145
+      }
     },
     {
       "transectId": "243659",
@@ -3611,7 +3891,11 @@
       "concelho": "Sesimbra",
       "distrito": "Setúbal",
       "responsavel": "Fernando Pinto",
-      "entidade": "Município"
+      "entidade": "Município",
+      "coordinates": {
+        "lat": 38.57267670783841,
+        "lon": -9.028422639839022
+      }
     },
     {
       "transectId": "303743",
@@ -3646,7 +3930,11 @@
       "concelho": "Braga",
       "distrito": "Braga",
       "responsavel": "Letícia Figueiredo",
-      "entidade": "Particular"
+      "entidade": "Particular",
+      "coordinates": {
+        "lat": 41.55339970150395,
+        "lon": -8.390111879352341
+      }
     },
     {
       "transectId": "308808",
@@ -3685,13 +3973,17 @@
       "concelho": "Lisboa",
       "distrito": "Lisboa",
       "responsavel": "Julieta Costa",
-      "entidade": "ONGA"
+      "entidade": "ONGA",
+      "coordinates": {
+        "lat": 38.74999848242739,
+        "lon": -9.136561939159108
+      }
     },
     {
       "transectId": "340164",
       "transectCode": "EBMS:Portugal:149",
       "transectName": "Penude",
-      "isActive": false,
+      "isActive": true,
       "totalSpecies": 49,
       "totalVisits": 17,
       "totalAbundance": 1809,
@@ -3755,13 +4047,17 @@
       "concelho": "Lamego",
       "distrito": "Viseu",
       "responsavel": "",
-      "entidade": "Particular"
+      "entidade": "Particular",
+      "coordinates": {
+        "lat": 41.087498175397904,
+        "lon": -7.848465589899229
+      }
     },
     {
       "transectId": "292171",
       "transectCode": "EBMS:Portugal:101",
       "transectName": "Pereiro de Além",
-      "isActive": true,
+      "isActive": false,
       "totalSpecies": 25,
       "totalVisits": 44,
       "totalAbundance": 946,
@@ -3801,7 +4097,11 @@
       "concelho": "Vila Nova de Poiares",
       "distrito": "Coimbra",
       "responsavel": "Scott Forbes",
-      "entidade": "Particular"
+      "entidade": "Particular",
+      "coordinates": {
+        "lat": 40.222262320848685,
+        "lon": -8.286345889270528
+      }
     },
     {
       "transectId": "218548",
@@ -3849,13 +4149,17 @@
       "concelho": "Viana do Castelo",
       "distrito": "Viana do Castelo",
       "responsavel": "Soraia Castro",
-      "entidade": "Município"
+      "entidade": "Município",
+      "coordinates": {
+        "lat": 41.700711878177955,
+        "lon": -8.811887520274533
+      }
     },
     {
       "transectId": "337718",
       "transectCode": "EBMS:Portugal:146",
       "transectName": "Pinheiro",
-      "isActive": false,
+      "isActive": true,
       "totalSpecies": 21,
       "totalVisits": 32,
       "totalAbundance": 218,
@@ -3891,13 +4195,17 @@
       "concelho": "Ansião",
       "distrito": "Leiria",
       "responsavel": "",
-      "entidade": "Particular"
+      "entidade": "Particular",
+      "coordinates": {
+        "lat": 39.919826656489576,
+        "lon": -8.452161245889261
+      }
     },
     {
       "transectId": "241125",
       "transectCode": "EBMS:Portugal:43",
       "transectName": "Planalto das Cortes",
-      "isActive": true,
+      "isActive": false,
       "totalSpecies": 21,
       "totalVisits": 10,
       "totalAbundance": 282,
@@ -3933,7 +4241,11 @@
       "concelho": "Lourinhã",
       "distrito": "Lisboa",
       "responsavel": "Hélder Cardoso",
-      "entidade": "ONGA"
+      "entidade": "ONGA",
+      "coordinates": {
+        "lat": 39.304136544288376,
+        "lon": -9.221406545009907
+      }
     },
     {
       "transectId": "241378",
@@ -3989,13 +4301,17 @@
       "concelho": "Sintra",
       "distrito": "Lisboa",
       "responsavel": "Luis Jordão",
-      "entidade": "Particular"
+      "entidade": "Particular",
+      "coordinates": {
+        "lat": 38.79389468930588,
+        "lon": -9.37083850382394
+      }
     },
     {
       "transectId": "227933",
       "transectCode": "EBMS:Portugal:31",
       "transectName": "Qta_PeninhaT1",
-      "isActive": true,
+      "isActive": false,
       "totalSpecies": 31,
       "totalVisits": 34,
       "totalAbundance": 2310,
@@ -4041,13 +4357,17 @@
       "concelho": "Cascais",
       "distrito": "Lisboa",
       "responsavel": "Diogo Silva",
-      "entidade": "Município"
+      "entidade": "Município",
+      "coordinates": {
+        "lat": 38.76203262900267,
+        "lon": -9.46849408399361
+      }
     },
     {
       "transectId": "228032",
       "transectCode": "EBMS:Portugal:32",
       "transectName": "Qta_PeninhaT2",
-      "isActive": true,
+      "isActive": false,
       "totalSpecies": 33,
       "totalVisits": 36,
       "totalAbundance": 2582,
@@ -4095,7 +4415,11 @@
       "concelho": "Cascais",
       "distrito": "Lisboa",
       "responsavel": "Diogo Silva",
-      "entidade": "Município"
+      "entidade": "Município",
+      "coordinates": {
+        "lat": 38.76693712618853,
+        "lon": -9.454547888058757
+      }
     },
     {
       "transectId": "227915",
@@ -4152,7 +4476,11 @@
       "concelho": "Cascais",
       "distrito": "Lisboa",
       "responsavel": "Diogo Silva",
-      "entidade": "Município"
+      "entidade": "Município",
+      "coordinates": {
+        "lat": 38.75610962914263,
+        "lon": -9.418903898629452
+      }
     },
     {
       "transectId": "227921",
@@ -4201,7 +4529,11 @@
       "concelho": "Cascais",
       "distrito": "Lisboa",
       "responsavel": "Diogo Silva",
-      "entidade": "Município"
+      "entidade": "Município",
+      "coordinates": {
+        "lat": 38.75370814786313,
+        "lon": -9.419368474008074
+      }
     },
     {
       "transectId": "227927",
@@ -4254,7 +4586,11 @@
       "concelho": "Cascais",
       "distrito": "Lisboa",
       "responsavel": "Diogo Silva",
-      "entidade": "Município"
+      "entidade": "Município",
+      "coordinates": {
+        "lat": 38.7568755516193,
+        "lon": -9.419968838063552
+      }
     },
     {
       "transectId": "252885",
@@ -4299,7 +4635,11 @@
       "concelho": "Olhão",
       "distrito": "Faro",
       "responsavel": "",
-      "entidade": "ONGA"
+      "entidade": "ONGA",
+      "coordinates": {
+        "lat": 37.047247228830706,
+        "lon": -7.816796406185445
+      }
     },
     {
       "transectId": "316954",
@@ -4351,7 +4691,11 @@
       "concelho": "Sousel",
       "distrito": "Portalegre",
       "responsavel": "Joaquim Pífano",
-      "entidade": "Particular"
+      "entidade": "Particular",
+      "coordinates": {
+        "lat": 38.92170953394926,
+        "lon": -7.802668900595613
+      }
     },
     {
       "transectId": "308805",
@@ -4400,13 +4744,17 @@
       "concelho": "Sousel",
       "distrito": "Portalegre",
       "responsavel": "Joaquim Pífano",
-      "entidade": "Particular"
+      "entidade": "Particular",
+      "coordinates": {
+        "lat": 38.91110725827817,
+        "lon": -7.792895594115626
+      }
     },
     {
       "transectId": "344392",
       "transectCode": "EBMS:Portugal:155",
       "transectName": "Salema Eco Camp",
-      "isActive": false,
+      "isActive": true,
       "totalSpecies": 25,
       "totalVisits": 47,
       "totalAbundance": 888,
@@ -4446,13 +4794,17 @@
       "concelho": "Vila do Bispo",
       "distrito": "Faro",
       "responsavel": "",
-      "entidade": "Empresa"
+      "entidade": "Empresa",
+      "coordinates": {
+        "lat": 37.072822132619415,
+        "lon": -8.824388431255091
+      }
     },
     {
       "transectId": "316842",
       "transectCode": "EBMS:Portugal:129",
       "transectName": "Santo António da Caparica",
-      "isActive": true,
+      "isActive": false,
       "totalSpecies": 5,
       "totalVisits": 5,
       "totalAbundance": 76,
@@ -4472,13 +4824,17 @@
       "concelho": "Almada",
       "distrito": "Setúbal",
       "responsavel": "Joana Barata",
-      "entidade": "Particular"
+      "entidade": "Particular",
+      "coordinates": {
+        "lat": 38.64829541470751,
+        "lon": -9.23843941802223
+      }
     },
     {
       "transectId": "220698",
       "transectCode": "EBMS:Portugal:13",
       "transectName": "Serapicos",
-      "isActive": true,
+      "isActive": false,
       "totalSpecies": 64,
       "totalVisits": 60,
       "totalAbundance": 2584,
@@ -4557,13 +4913,17 @@
       "concelho": "Vimioso",
       "distrito": "Bragança",
       "responsavel": "Ângela Cordeiro",
-      "entidade": "Município"
+      "entidade": "Município",
+      "coordinates": {
+        "lat": 41.636299538201,
+        "lon": -6.456449694764788
+      }
     },
     {
       "transectId": "216761",
       "transectCode": "EBMS:Portugal:5",
       "transectName": "Serra da Carregueira",
-      "isActive": true,
+      "isActive": false,
       "totalSpecies": 34,
       "totalVisits": 48,
       "totalAbundance": 1322,
@@ -4612,7 +4972,11 @@
       "concelho": "Sintra",
       "distrito": "Lisboa",
       "responsavel": "Raquel Eiró",
-      "entidade": "Particular"
+      "entidade": "Particular",
+      "coordinates": {
+        "lat": 38.78172331225854,
+        "lon": -9.264153939510223
+      }
     },
     {
       "transectId": "336731",
@@ -4647,13 +5011,17 @@
       "concelho": "Valongo",
       "distrito": "Porto",
       "responsavel": "",
-      "entidade": "Particular"
+      "entidade": "Particular",
+      "coordinates": {
+        "lat": 41.1520770128178,
+        "lon": -8.478847974000363
+      }
     },
     {
       "transectId": "336745",
       "transectCode": "EBMS:Portugal:142",
       "transectName": "Serra do Castiçal",
-      "isActive": false,
+      "isActive": true,
       "totalSpecies": 27,
       "totalVisits": 11,
       "totalAbundance": 362,
@@ -4695,7 +5063,11 @@
       "concelho": "Gondomar",
       "distrito": "Porto",
       "responsavel": "",
-      "entidade": "Particular"
+      "entidade": "Particular",
+      "coordinates": {
+        "lat": 41.12407955479704,
+        "lon": -8.480150282484642
+      }
     },
     {
       "transectId": "222006",
@@ -4752,7 +5124,11 @@
       "concelho": "Braga",
       "distrito": "Braga",
       "responsavel": "Armindo Paulo Salvador",
-      "entidade": "Particular"
+      "entidade": "Particular",
+      "coordinates": {
+        "lat": 41.57686441477006,
+        "lon": -8.401339788033262
+      }
     },
     {
       "transectId": "216728",
@@ -4787,13 +5163,17 @@
       "concelho": "Lisboa",
       "distrito": "Lisboa",
       "responsavel": "Julieta Costa",
-      "entidade": "Particular"
+      "entidade": "Particular",
+      "coordinates": {
+        "lat": 38.75498015522,
+        "lon": -9.15942818634915
+      }
     },
     {
       "transectId": "342048",
       "transectCode": "EBMS:Portugal:154",
       "transectName": "Trilho do Sacarrabos",
-      "isActive": false,
+      "isActive": true,
       "totalSpecies": 29,
       "totalVisits": 10,
       "totalAbundance": 565,
@@ -4837,13 +5217,17 @@
       "concelho": "Lamego",
       "distrito": "Viseu",
       "responsavel": "",
-      "entidade": "Particular"
+      "entidade": "Particular",
+      "coordinates": {
+        "lat": 41.080982555275675,
+        "lon": -7.829230475012006
+      }
     },
     {
       "transectId": "241113",
       "transectCode": "EBMS:Portugal:42",
       "transectName": "Vale da Fonte Quente",
-      "isActive": true,
+      "isActive": false,
       "totalSpecies": 20,
       "totalVisits": 10,
       "totalAbundance": 217,
@@ -4878,13 +5262,17 @@
       "concelho": "Bombarral",
       "distrito": "Leiria",
       "responsavel": "Hélder Cardoso",
-      "entidade": "ONGA"
+      "entidade": "ONGA",
+      "coordinates": {
+        "lat": 39.31172620445929,
+        "lon": -9.21693700249493
+      }
     },
     {
       "transectId": "320613",
       "transectCode": "EBMS:Portugal:133",
       "transectName": "Venda Seca - Moinhos da Miraldina na Serra da Carregueira via Rua de Bomjardim",
-      "isActive": true,
+      "isActive": false,
       "totalSpecies": 25,
       "totalVisits": 7,
       "totalAbundance": 458,
@@ -4924,13 +5312,17 @@
       "concelho": "Sintra",
       "distrito": "Lisboa",
       "responsavel": "Orkhan Abbasov",
-      "entidade": "Particular"
+      "entidade": "Particular",
+      "coordinates": {
+        "lat": 38.7874234511841,
+        "lon": -9.273332730677614
+      }
     },
     {
       "transectId": "255969",
       "transectCode": "EBMS:Portugal:72",
       "transectName": "Vila Chã",
-      "isActive": true,
+      "isActive": false,
       "totalSpecies": 51,
       "totalVisits": 31,
       "totalAbundance": 1095,
@@ -4996,13 +5388,17 @@
       "concelho": "Vimioso",
       "distrito": "Bragança",
       "responsavel": "Isabel Sá",
-      "entidade": "ONGA"
+      "entidade": "ONGA",
+      "coordinates": {
+        "lat": 41.53167290529242,
+        "lon": -6.51078165861962
+      }
     }
   ],
   "metadata": {
     "totalValidTransects": 99,
-    "activeTransects": 70,
-    "inactiveTransects": 29,
+    "activeTransects": 67,
+    "inactiveTransects": 32,
     "filteredSpeciesCount": 99,
     "filteredSpecies": [
       "Acontia lucida",

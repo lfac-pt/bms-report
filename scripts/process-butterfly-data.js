@@ -345,9 +345,25 @@ function readCSV(filePath) {
 }
 
 /**
+ * Add random offset to coordinates for privacy (approximately 500-1000 meters)
+ */
+function fuzzyCoordinates(coords) {
+  if (!coords) return null;
+
+  // Add random offset of ~0.005 to 0.01 degrees (roughly 500-1000 meters)
+  const offsetLat = (Math.random() - 0.5) * 0.015;
+  const offsetLon = (Math.random() - 0.5) * 0.015;
+
+  return {
+    lat: coords.lat + offsetLat,
+    lon: coords.lon + offsetLon,
+  };
+}
+
+/**
  * Calculate statistics for a transect
  */
-function calculateTransectStats(transectId, allData, metadata, location = null) {
+function calculateTransectStats(transectId, allData, metadata, location = null, coords = null) {
   // Filter data for this transect AND only include valid species
   const transectData = allData.filter(row => {
     if (row['Transect ID'] !== transectId) return false;
@@ -415,11 +431,13 @@ function calculateTransectStats(transectId, allData, metadata, location = null) 
   const avgVisitsPerYear = yearsActive > 0 ? totalVisits / yearsActive : 0;
   const avgButterfliesPerVisit = totalVisits > 0 ? totalAbundance / totalVisits : 0;
 
+  // Note: isActive will be determined later based on the most recent year across all transects
+
   return {
     transectId: transectId,
     transectCode: metadata['Transect Code'] || '',
     transectName: metadata['Transect Name'] || '',
-    isActive: metadata['Estado'] === 'Ativo',
+    isActive: false, // Will be updated based on most recent year
     totalSpecies,
     totalVisits,
     totalAbundance,
@@ -436,6 +454,8 @@ function calculateTransectStats(transectId, allData, metadata, location = null) 
     distrito: location ? location.distrito : '',
     responsavel: metadata['Responsável'] || '',
     entidade: metadata['Entidade'] || '',
+    // Fuzzy coordinates for privacy (approximate location only)
+    coordinates: coords,
   };
 }
 
@@ -483,6 +503,7 @@ async function processData() {
   console.log('\nGeocoding transect coordinates...');
   const geocodeCache = loadGeocodeCache();
   const locationMap = {};
+  const coordinatesMap = {}; // Store fuzzy coordinates for privacy
   let geocodedCount = 0;
   let cachedCount = 0;
   let failedCount = 0;
@@ -491,6 +512,11 @@ async function processData() {
 
   for (const [transectId, metadata] of Object.entries(metadataMap)) {
     const coords = parseCoordinates(metadata['Spatial Refere']);
+
+    // Store fuzzy coordinates for map display (privacy protection)
+    if (coords) {
+      coordinatesMap[transectId] = fuzzyCoordinates(coords);
+    }
 
     if (coords) {
       const cacheKey = `${coords.lat.toFixed(5)},${coords.lon.toFixed(5)}`;
@@ -594,7 +620,8 @@ async function processData() {
 
   Object.entries(metadataMap).forEach(([transectId, metadata]) => {
     const location = locationMap[transectId] || null;
-    const stats = calculateTransectStats(transectId, allData, metadata, location);
+    const coords = coordinatesMap[transectId] || null;
+    const stats = calculateTransectStats(transectId, allData, metadata, location, coords);
     if (stats) {
       results.push(stats);
       processedCount++;
@@ -613,6 +640,20 @@ async function processData() {
   });
 
   console.log(`\nSuccessfully calculated statistics for ${results.length} transects`);
+
+  // Determine the most recent year across all transects
+  const mostRecentYear = results.length > 0
+    ? Math.max(...results.map(t => t.lastMonitoringYear || 0).filter(y => y > 0))
+    : null;
+
+  // Update isActive flag based on most recent year
+  if (mostRecentYear) {
+    results.forEach(transect => {
+      transect.isActive = transect.lastMonitoringYear === mostRecentYear;
+    });
+    console.log(`Most recent monitoring year: ${mostRecentYear}`);
+    console.log(`Active transects (monitored in ${mostRecentYear}): ${results.filter(t => t.isActive).length}`);
+  }
 
   if (skippedTransects.length > 0) {
     console.log(`\nSkipped ${skippedTransects.length} transects (no valid observation data):`);

@@ -27,6 +27,7 @@ import {
   SettingOutlined,
 } from "@ant-design/icons";
 import { groupSpeciesByFamily } from "../utils/speciesFamilies";
+import TransectMap from "./TransectMap";
 
 const { Title } = Typography;
 
@@ -93,17 +94,18 @@ function ButterflyTransects() {
   const [loading, setLoading] = useState(true);
   const [searchText, setSearchText] = useState("");
   const [yearsActiveFilters, setYearsActiveFilters] = useState<(string | number)[]>([]);
+  const [avgVisitsPerYearFilters, setAvgVisitsPerYearFilters] = useState<string[]>([]);
   const [concelhoFilters, setConcelhoFilters] = useState<string[]>([]);
   const [distritoFilters, setDistritoFilters] = useState<string[]>([]);
   const [entidadeFilters, setEntidadeFilters] = useState<string[]>([]);
   const [pageSize, setPageSize] = useState(20);
   const [currentPage, setCurrentPage] = useState(1);
 
-  // Column visibility state - Entidade, Concelho, and Distrito hidden by default
+  // Column visibility state - Entidade, Concelho, Distrito, and Visitas hidden by default
   const [visibleColumns, setVisibleColumns] = useState<Record<string, boolean>>({
     transectName: true,
     totalSpecies: true,
-    totalVisits: true,
+    totalVisits: false, // Hidden by default
     avgVisitsPerYear: true,
     avgButterfliesPerVisit: true,
     yearsActive: true,
@@ -227,7 +229,7 @@ function ButterflyTransects() {
       dataIndex: "transectName",
       key: "transectName",
       fixed: "left",
-      width: 250,
+      width: 120,
       sorter: (a, b) => a.transectName.localeCompare(b.transectName),
       defaultSortOrder: "ascend",
     },
@@ -235,7 +237,7 @@ function ButterflyTransects() {
       title: "Espécies",
       dataIndex: "totalSpecies",
       key: "totalSpecies",
-      width: 120,
+      width: 60,
       align: "right",
       sorter: (a, b) => a.totalSpecies - b.totalSpecies,
       render: (totalSpecies: number, record: TransectStats) => (
@@ -255,7 +257,7 @@ function ButterflyTransects() {
       title: "Visitas",
       dataIndex: "totalVisits",
       key: "totalVisits",
-      width: 120,
+      width: 60,
       align: "right",
       sorter: (a, b) => a.totalVisits - b.totalVisits,
     },
@@ -263,23 +265,24 @@ function ButterflyTransects() {
       title: "Visitas/Ano",
       dataIndex: "avgVisitsPerYear",
       key: "avgVisitsPerYear",
-      width: 130,
+      width: 80,
       align: "right",
       sorter: (a, b) => a.avgVisitsPerYear - b.avgVisitsPerYear,
       render: (value: number) => value.toFixed(1),
       filters: [
         { text: "Mais de 10", value: ">10" },
       ],
+      filteredValue: avgVisitsPerYearFilters,
       onFilter: (value, record) => {
         if (value === ">10") return record.avgVisitsPerYear > 10;
         return true;
       },
     },
     {
-      title: "Borboletas/Visita",
+      title: "Borbole./Visita",
       dataIndex: "avgButterfliesPerVisit",
       key: "avgButterfliesPerVisit",
-      width: 160,
+      width: 80,
       align: "right",
       sorter: (a, b) => a.avgButterfliesPerVisit - b.avgButterfliesPerVisit,
       render: (value: number) => value.toFixed(1),
@@ -288,7 +291,7 @@ function ButterflyTransects() {
       title: "Anos Ativos",
       dataIndex: "yearsActive",
       key: "yearsActive",
-      width: 200,
+      width: 60,
       align: "right",
       render: (yearsActive: number, record: TransectStats) => {
         if (record.firstMonitoringYear && record.lastMonitoringYear) {
@@ -347,6 +350,17 @@ function ButterflyTransects() {
     const key = col.key as string;
     return visibleColumns[key] !== false;
   });
+
+  // Default visible columns (for determining if horizontal scroll is needed)
+  const defaultVisibleColumns = ['transectName', 'totalSpecies', 'avgVisitsPerYear', 'avgButterfliesPerVisit', 'yearsActive'];
+
+  // Count extra columns beyond the default
+  const extraColumnsVisible = Object.keys(visibleColumns).filter(
+    key => visibleColumns[key] && !defaultVisibleColumns.includes(key)
+  ).length;
+
+  // Only enable horizontal scroll when extra columns are visible
+  const tableScroll = extraColumnsVisible > 0 ? { x: 'max-content' } : undefined;
 
   // Column configuration menu
   const columnLabels: Record<string, string> = {
@@ -484,50 +498,88 @@ function ButterflyTransects() {
         </Dropdown>
       </Space>
 
-      {/* Table */}
-      <Table
+      {/* Table and Map Side by Side */}
+      <Row gutter={16}>
+        <Col span={16}>
+          <Table
         columns={visibleColumnsArray}
         dataSource={filteredData}
         rowKey="transectId"
         loading={loading}
+        scroll={tableScroll}
         pagination={{
           current: currentPage,
           pageSize: pageSize,
           showSizeChanger: true,
           showTotal: (total, range) => `${range[0]}-${range[1]} de ${total} transectos`,
         }}
-        scroll={{ x: 1500 }}
         size="small"
         onChange={(pagination, filters) => {
-          // Update pagination state
-          if (pagination.current) setCurrentPage(pagination.current);
-          if (pagination.pageSize) {
-            setPageSize(pagination.pageSize);
-            setCurrentPage(1); // Reset to first page when page size changes
+          // Track if any filters actually changed
+          let filtersChanged = false;
+
+          // Update all filter states and check if they changed
+          if (filters.yearsActive !== undefined) {
+            const newFilters = filters.yearsActive ? (filters.yearsActive as (string | number)[]) : [];
+            const changed = JSON.stringify(newFilters.sort()) !== JSON.stringify([...yearsActiveFilters].sort());
+            if (changed) {
+              setYearsActiveFilters(newFilters);
+              filtersChanged = true;
+            }
           }
 
-          // Update all filter states
-          if (filters.yearsActive !== undefined) {
-            setYearsActiveFilters(filters.yearsActive ? (filters.yearsActive as (string | number)[]) : []);
-            setCurrentPage(1);
+          if (filters.avgVisitsPerYear !== undefined) {
+            const newFilters = filters.avgVisitsPerYear ? (filters.avgVisitsPerYear as string[]) : [];
+            const changed = JSON.stringify(newFilters.sort()) !== JSON.stringify([...avgVisitsPerYearFilters].sort());
+            if (changed) {
+              setAvgVisitsPerYearFilters(newFilters);
+              filtersChanged = true;
+            }
           }
 
           if (filters.concelho !== undefined) {
-            setConcelhoFilters(filters.concelho ? (filters.concelho as string[]) : []);
-            setCurrentPage(1);
+            const newFilters = filters.concelho ? (filters.concelho as string[]) : [];
+            const changed = JSON.stringify(newFilters.sort()) !== JSON.stringify([...concelhoFilters].sort());
+            if (changed) {
+              setConcelhoFilters(newFilters);
+              filtersChanged = true;
+            }
           }
 
           if (filters.distrito !== undefined) {
-            setDistritoFilters(filters.distrito ? (filters.distrito as string[]) : []);
-            setCurrentPage(1);
+            const newFilters = filters.distrito ? (filters.distrito as string[]) : [];
+            const changed = JSON.stringify(newFilters.sort()) !== JSON.stringify([...distritoFilters].sort());
+            if (changed) {
+              setDistritoFilters(newFilters);
+              filtersChanged = true;
+            }
           }
 
           if (filters.entidade !== undefined) {
-            setEntidadeFilters(filters.entidade ? (filters.entidade as string[]) : []);
-            setCurrentPage(1);
+            const newFilters = filters.entidade ? (filters.entidade as string[]) : [];
+            const changed = JSON.stringify(newFilters.sort()) !== JSON.stringify([...entidadeFilters].sort());
+            if (changed) {
+              setEntidadeFilters(newFilters);
+              filtersChanged = true;
+            }
+          }
+
+          // Update pagination state
+          if (pagination.pageSize && pagination.pageSize !== pageSize) {
+            setPageSize(pagination.pageSize);
+            setCurrentPage(1); // Reset to first page when page size changes
+          } else if (filtersChanged) {
+            setCurrentPage(1); // Reset to first page when filters change
+          } else if (pagination.current) {
+            setCurrentPage(pagination.current); // Update page normally
           }
         }}
       />
+        </Col>
+        <Col span={8}>
+          <TransectMap transects={filteredData} />
+        </Col>
+      </Row>
 
       {/* Warning about filtered species */}
       {metadata && metadata.filteredSpeciesCount > 0 && (
