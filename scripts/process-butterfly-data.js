@@ -285,8 +285,8 @@ function extractLocation(nominatimResponse) {
     concelho = LOCALITY_TO_CONCELHO[concelho];
   }
 
-  // Distrito is in state
-  const distrito = addr.state || '';
+  // Distrito is in county field for Portugal
+  const distrito = addr.county || '';
 
   return { concelho, distrito };
 }
