@@ -32,19 +32,11 @@ import TransectMap from "./TransectMap";
 const { Title } = Typography;
 
 // Component for species list with search and family grouping
-function SpeciesList({
-  species,
-  title,
-}: {
-  species: string[];
-  title: string;
-}) {
+function SpeciesList({ species, title }: { species: string[]; title: string }) {
   const [searchText, setSearchText] = useState("");
 
   // Filter species based on search
-  const filteredSpecies = species.filter(s =>
-    s.toLowerCase().includes(searchText.toLowerCase())
-  );
+  const filteredSpecies = species.filter(s => s.toLowerCase().includes(searchText.toLowerCase()));
 
   // Group by family
   const groupedSpecies = groupSpeciesByFamily(filteredSpecies);
@@ -256,9 +248,10 @@ function ButterflyTransects() {
   });
 
   // Calculate summary statistics
-  const mostRecentYear = data.length > 0
-    ? Math.max(...data.map(t => t.lastMonitoringYear || 0).filter(y => y > 0))
-    : null;
+  const mostRecentYear =
+    data.length > 0
+      ? Math.max(...data.map(t => t.lastMonitoringYear || 0).filter(y => y > 0))
+      : null;
 
   // Transects active in last season
   const transectsInLastSeason = mostRecentYear
@@ -269,9 +262,7 @@ function ButterflyTransects() {
   const longTermQualityTransects = mostRecentYear
     ? data.filter(
         t =>
-          t.lastMonitoringYear === mostRecentYear &&
-          t.yearsActive >= 5 &&
-          t.avgVisitsPerYear > 10
+          t.lastMonitoringYear === mostRecentYear && t.yearsActive >= 5 && t.avgVisitsPerYear > 10
       ).length
     : 0;
 
@@ -297,18 +288,39 @@ function ButterflyTransects() {
 
   // All distritos in mainland Portugal
   const allDistritosMainland = [
-    "Aveiro", "Beja", "Braga", "Bragança", "Castelo Branco", "Coimbra",
-    "Évora", "Faro", "Guarda", "Leiria", "Lisboa", "Portalegre",
-    "Porto", "Santarém", "Setúbal", "Viana do Castelo", "Vila Real", "Viseu"
+    "Aveiro",
+    "Beja",
+    "Braga",
+    "Bragança",
+    "Castelo Branco",
+    "Coimbra",
+    "Évora",
+    "Faro",
+    "Guarda",
+    "Leiria",
+    "Lisboa",
+    "Portalegre",
+    "Porto",
+    "Santarém",
+    "Setúbal",
+    "Viana do Castelo",
+    "Vila Real",
+    "Viseu",
   ];
 
   // Calculate unique concelhos and distritos with transects active in last season
   const activeTransectsLastSeason = mostRecentYear
     ? data.filter(t => t.lastMonitoringYear === mostRecentYear)
     : [];
-  const concelhosWithTransects = Array.from(new Set(activeTransectsLastSeason.map(t => t.concelho).filter(c => c))).sort();
-  const distritosWithTransects = Array.from(new Set(activeTransectsLastSeason.map(t => t.distrito).filter(d => d))).sort();
-  const distritosWithoutTransects = allDistritosMainland.filter(d => !distritosWithTransects.includes(d)).sort();
+  const concelhosWithTransects = Array.from(
+    new Set(activeTransectsLastSeason.map(t => t.concelho).filter(c => c))
+  ).sort();
+  const distritosWithTransects = Array.from(
+    new Set(activeTransectsLastSeason.map(t => t.distrito).filter(d => d))
+  ).sort();
+  const distritosWithoutTransects = allDistritosMainland
+    .filter(d => !distritosWithTransects.includes(d))
+    .sort();
 
   const uniqueConcelhos = concelhosWithTransects.length;
   const uniqueDistritos = distritosWithTransects.length;
@@ -361,9 +373,7 @@ function ButterflyTransects() {
       align: "right",
       sorter: (a, b) => a.avgVisitsPerYear - b.avgVisitsPerYear,
       render: (value: number) => value.toFixed(1),
-      filters: [
-        { text: "Mais de 10", value: ">10" },
-      ],
+      filters: [{ text: "Mais de 10", value: ">10" }],
       filteredValue: avgVisitsPerYearFilters,
       onFilter: (value, record) => {
         if (value === ">10") return record.avgVisitsPerYear > 10;
@@ -444,7 +454,13 @@ function ButterflyTransects() {
   });
 
   // Default visible columns (for determining if horizontal scroll is needed)
-  const defaultVisibleColumns = ['transectName', 'totalSpecies', 'avgVisitsPerYear', 'avgButterfliesPerVisit', 'yearsActive'];
+  const defaultVisibleColumns = [
+    "transectName",
+    "totalSpecies",
+    "avgVisitsPerYear",
+    "avgButterfliesPerVisit",
+    "yearsActive",
+  ];
 
   // Count extra columns beyond the default
   const extraColumnsVisible = Object.keys(visibleColumns).filter(
@@ -452,7 +468,7 @@ function ButterflyTransects() {
   ).length;
 
   // Only enable horizontal scroll when extra columns are visible
-  const tableScroll = extraColumnsVisible > 0 ? { x: 'max-content' } : undefined;
+  const tableScroll = extraColumnsVisible > 0 ? { x: "max-content" } : undefined;
 
   // Column configuration menu
   const columnLabels: Record<string, string> = {
@@ -547,15 +563,40 @@ function ButterflyTransects() {
                   value={0}
                   formatter={() => (
                     <div>
-                      <div style={{ fontSize: 20, lineHeight: 1.4, display: "flex", alignItems: "baseline" }}>
+                      <div
+                        style={{
+                          fontSize: 20,
+                          lineHeight: 1.4,
+                          display: "flex",
+                          alignItems: "baseline",
+                        }}
+                      >
                         <span style={{ color: "#1890ff", fontWeight: 600 }}>{uniqueConcelhos}</span>
-                        <span style={{ color: "#8c8c8c", fontWeight: 600, fontSize: 14 }}> / {totalConcelhos}</span>
-                        <span style={{ fontSize: 12, color: "#8c8c8c", marginLeft: 8 }}>Concelhos</span>
+                        <span style={{ color: "#8c8c8c", fontWeight: 600, fontSize: 14 }}>
+                          {" "}
+                          / {totalConcelhos}
+                        </span>
+                        <span style={{ fontSize: 12, color: "#8c8c8c", marginLeft: 8 }}>
+                          Concelhos
+                        </span>
                       </div>
-                      <div style={{ fontSize: 20, lineHeight: 1.4, marginTop: 8, display: "flex", alignItems: "baseline" }}>
+                      <div
+                        style={{
+                          fontSize: 20,
+                          lineHeight: 1.4,
+                          marginTop: 8,
+                          display: "flex",
+                          alignItems: "baseline",
+                        }}
+                      >
                         <span style={{ color: "#722ed1", fontWeight: 600 }}>{uniqueDistritos}</span>
-                        <span style={{ color: "#8c8c8c", fontWeight: 600, fontSize: 14 }}> / {totalDistritos}</span>
-                        <span style={{ fontSize: 12, color: "#8c8c8c", marginLeft: 8 }}>Distritos</span>
+                        <span style={{ color: "#8c8c8c", fontWeight: 600, fontSize: 14 }}>
+                          {" "}
+                          / {totalDistritos}
+                        </span>
+                        <span style={{ fontSize: 12, color: "#8c8c8c", marginLeft: 8 }}>
+                          Distritos
+                        </span>
                       </div>
                     </div>
                   )}
@@ -628,79 +669,90 @@ function ButterflyTransects() {
       <Row gutter={16}>
         <Col span={16}>
           <Table
-        columns={visibleColumnsArray}
-        dataSource={filteredData}
-        rowKey="transectId"
-        loading={loading}
-        scroll={tableScroll}
-        pagination={{
-          current: currentPage,
-          pageSize: pageSize,
-          showSizeChanger: true,
-          showTotal: (total, range) => `${range[0]}-${range[1]} de ${total} transectos`,
-        }}
-        size="small"
-        onChange={(pagination, filters) => {
-          // Track if any filters actually changed
-          let filtersChanged = false;
+            columns={visibleColumnsArray}
+            dataSource={filteredData}
+            rowKey="transectId"
+            loading={loading}
+            scroll={tableScroll}
+            pagination={{
+              current: currentPage,
+              pageSize: pageSize,
+              showSizeChanger: true,
+              showTotal: (total, range) => `${range[0]}-${range[1]} de ${total} transectos`,
+            }}
+            size="small"
+            onChange={(pagination, filters) => {
+              // Track if any filters actually changed
+              let filtersChanged = false;
 
-          // Update all filter states and check if they changed
-          if (filters.yearsActive !== undefined) {
-            const newFilters = filters.yearsActive ? (filters.yearsActive as (string | number)[]) : [];
-            const changed = JSON.stringify(newFilters.sort()) !== JSON.stringify([...yearsActiveFilters].sort());
-            if (changed) {
-              setYearsActiveFilters(newFilters);
-              filtersChanged = true;
-            }
-          }
+              // Update all filter states and check if they changed
+              if (filters.yearsActive !== undefined) {
+                const newFilters = filters.yearsActive
+                  ? (filters.yearsActive as (string | number)[])
+                  : [];
+                const changed =
+                  JSON.stringify(newFilters.sort()) !==
+                  JSON.stringify([...yearsActiveFilters].sort());
+                if (changed) {
+                  setYearsActiveFilters(newFilters);
+                  filtersChanged = true;
+                }
+              }
 
-          if (filters.avgVisitsPerYear !== undefined) {
-            const newFilters = filters.avgVisitsPerYear ? (filters.avgVisitsPerYear as string[]) : [];
-            const changed = JSON.stringify(newFilters.sort()) !== JSON.stringify([...avgVisitsPerYearFilters].sort());
-            if (changed) {
-              setAvgVisitsPerYearFilters(newFilters);
-              filtersChanged = true;
-            }
-          }
+              if (filters.avgVisitsPerYear !== undefined) {
+                const newFilters = filters.avgVisitsPerYear
+                  ? (filters.avgVisitsPerYear as string[])
+                  : [];
+                const changed =
+                  JSON.stringify(newFilters.sort()) !==
+                  JSON.stringify([...avgVisitsPerYearFilters].sort());
+                if (changed) {
+                  setAvgVisitsPerYearFilters(newFilters);
+                  filtersChanged = true;
+                }
+              }
 
-          if (filters.concelho !== undefined) {
-            const newFilters = filters.concelho ? (filters.concelho as string[]) : [];
-            const changed = JSON.stringify(newFilters.sort()) !== JSON.stringify([...concelhoFilters].sort());
-            if (changed) {
-              setConcelhoFilters(newFilters);
-              filtersChanged = true;
-            }
-          }
+              if (filters.concelho !== undefined) {
+                const newFilters = filters.concelho ? (filters.concelho as string[]) : [];
+                const changed =
+                  JSON.stringify(newFilters.sort()) !== JSON.stringify([...concelhoFilters].sort());
+                if (changed) {
+                  setConcelhoFilters(newFilters);
+                  filtersChanged = true;
+                }
+              }
 
-          if (filters.distrito !== undefined) {
-            const newFilters = filters.distrito ? (filters.distrito as string[]) : [];
-            const changed = JSON.stringify(newFilters.sort()) !== JSON.stringify([...distritoFilters].sort());
-            if (changed) {
-              setDistritoFilters(newFilters);
-              filtersChanged = true;
-            }
-          }
+              if (filters.distrito !== undefined) {
+                const newFilters = filters.distrito ? (filters.distrito as string[]) : [];
+                const changed =
+                  JSON.stringify(newFilters.sort()) !== JSON.stringify([...distritoFilters].sort());
+                if (changed) {
+                  setDistritoFilters(newFilters);
+                  filtersChanged = true;
+                }
+              }
 
-          if (filters.entidade !== undefined) {
-            const newFilters = filters.entidade ? (filters.entidade as string[]) : [];
-            const changed = JSON.stringify(newFilters.sort()) !== JSON.stringify([...entidadeFilters].sort());
-            if (changed) {
-              setEntidadeFilters(newFilters);
-              filtersChanged = true;
-            }
-          }
+              if (filters.entidade !== undefined) {
+                const newFilters = filters.entidade ? (filters.entidade as string[]) : [];
+                const changed =
+                  JSON.stringify(newFilters.sort()) !== JSON.stringify([...entidadeFilters].sort());
+                if (changed) {
+                  setEntidadeFilters(newFilters);
+                  filtersChanged = true;
+                }
+              }
 
-          // Update pagination state
-          if (pagination.pageSize && pagination.pageSize !== pageSize) {
-            setPageSize(pagination.pageSize);
-            setCurrentPage(1); // Reset to first page when page size changes
-          } else if (filtersChanged) {
-            setCurrentPage(1); // Reset to first page when filters change
-          } else if (pagination.current) {
-            setCurrentPage(pagination.current); // Update page normally
-          }
-        }}
-      />
+              // Update pagination state
+              if (pagination.pageSize && pagination.pageSize !== pageSize) {
+                setPageSize(pagination.pageSize);
+                setCurrentPage(1); // Reset to first page when page size changes
+              } else if (filtersChanged) {
+                setCurrentPage(1); // Reset to first page when filters change
+              } else if (pagination.current) {
+                setCurrentPage(pagination.current); // Update page normally
+              }
+            }}
+          />
         </Col>
         <Col span={8}>
           <TransectMap transects={filteredData} />
@@ -717,16 +769,14 @@ function ButterflyTransects() {
           }
           description={
             <span>
-              {metadata.filteredSpeciesCount} espécie(s) foram ignoradas por não estarem na lista
-              de espécies válidas.{" "}
+              {metadata.filteredSpeciesCount} espécie(s) foram ignoradas por não estarem na lista de
+              espécies válidas.{" "}
               <Popover
                 content={
                   <div style={{ maxHeight: 400, overflowY: "auto", width: 300 }}>
                     <List
                       size="small"
-                      header={
-                        <strong>Espécies Ignoradas ({metadata.filteredSpeciesCount})</strong>
-                      }
+                      header={<strong>Espécies Ignoradas ({metadata.filteredSpeciesCount})</strong>}
                       dataSource={metadata.filteredSpecies}
                       renderItem={item => (
                         <List.Item style={{ padding: "4px 0" }}>
