@@ -48,13 +48,50 @@ export function filterTimelineByTransects(
     return { year, transectCount: filteredCount };
   });
 
-  // Filter butterfly frequency - keep data as-is for now
-  // Note: This shows global frequency across all transects for the filtered years
-  const butterflyFrequencyByYear: Record<number, ButterflyFrequencyData[]> =
-    {};
+  // Recalculate butterfly frequency for filtered transects
+  const butterflyFrequencyByYear: Record<number, ButterflyFrequencyData[]> = {};
   relevantYears.forEach((year) => {
-    butterflyFrequencyByYear[year] =
-      timelineData.butterflyFrequencyByYear[year] || [];
+    const observationsByDate = timelineData.observationsByYearDate[year] || {};
+
+    // Get all dates that have observations from the filtered transects
+    const relevantDates = new Set<string>();
+    Object.entries(observationsByDate).forEach(([date, observations]) => {
+      // Check if any observation on this date is from a filtered transect
+      const hasFilteredTransect = observations.some(([transectId]) =>
+        transectIdSet.has(transectId)
+      );
+      if (hasFilteredTransect) {
+        relevantDates.add(date);
+      }
+    });
+
+    const totalVisits = relevantDates.size;
+
+    // Count species frequency across filtered transects and dates
+    const speciesVisitsMap = new Map<string, Set<string>>();
+    Object.entries(observationsByDate).forEach(([date, observations]) => {
+      if (!relevantDates.has(date)) return;
+
+      // For this date, collect species from filtered transects only
+      observations.forEach(([transectId, species]) => {
+        if (!transectIdSet.has(transectId)) return;
+
+        if (!speciesVisitsMap.has(species)) {
+          speciesVisitsMap.set(species, new Set());
+        }
+        speciesVisitsMap.get(species)!.add(date);
+      });
+    });
+
+    // Calculate frequency for each species
+    butterflyFrequencyByYear[year] = Array.from(speciesVisitsMap.entries())
+      .map(([species, dateSet]) => ({
+        species,
+        frequency: (dateSet.size / totalVisits) * 100,
+        visitCount: dateSet.size,
+        totalVisits
+      }))
+      .sort((a, b) => b.frequency - a.frequency);
   });
 
   // Filter and enrich diversity data

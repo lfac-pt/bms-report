@@ -470,7 +470,8 @@ function processTimelineData(allData) {
     years: [],
     transectsByYear: {},
     butterflyFrequencyByYear: {},
-    transectDiversityByYear: {}
+    transectDiversityByYear: {},
+    observationsByYearDate: {}  // For filtering butterfly frequency by transect
   };
 
   // Extract unique years from monitoring season (March-September)
@@ -565,6 +566,23 @@ function processTimelineData(allData) {
         speciesList: Array.from(speciesSet).sort()
       }))
       .sort((a, b) => b.diversityCount - a.diversityCount);
+
+    // 4. Store observations by date for butterfly frequency filtering
+    const observationsByDate = {};
+    yearData.forEach(row => {
+      const date = row['Date'];
+      const transectId = row['Transect ID'];
+      const species = row['Preferred Species Name'].trim();
+
+      if (!observationsByDate[date]) {
+        observationsByDate[date] = [];
+      }
+
+      // Store as compact array [transectId, species]
+      observationsByDate[date].push([transectId, species]);
+    });
+
+    timelineData.observationsByYearDate[year] = observationsByDate;
   });
 
   console.log(`  ✓ Timeline data processed for ${timelineData.years.length} years`);
