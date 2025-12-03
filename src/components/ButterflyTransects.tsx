@@ -19,6 +19,7 @@ import {
 import type { ColumnsType } from "antd/es/table";
 import type { MenuProps } from "antd";
 import { TransectStats, TransectData, ProcessingMetadata } from "../types/transectStats";
+import { TimelineData } from "../types/timelineData";
 import {
   SearchOutlined,
   BarChartOutlined,
@@ -28,6 +29,7 @@ import {
 } from "@ant-design/icons";
 import { groupSpeciesByFamily } from "../utils/speciesFamilies";
 import TransectMap from "./TransectMap";
+import TransectTimeline from "./TransectTimeline";
 
 const { Title } = Typography;
 
@@ -165,6 +167,10 @@ function ButterflyTransects() {
   const [pageSize, setPageSize] = useState(20);
   const [currentPage, setCurrentPage] = useState(1);
 
+  // Timeline data state
+  const [timelineData, setTimelineData] = useState<TimelineData | null>(null);
+  const [timelineLoading, setTimelineLoading] = useState(true);
+
   // Column visibility state - Entidade, Concelho, Distrito, and Visitas hidden by default
   const [visibleColumns, setVisibleColumns] = useState<Record<string, boolean>>({
     transectName: true,
@@ -190,6 +196,20 @@ function ButterflyTransects() {
       })
       .catch(() => {
         setLoading(false);
+      });
+  }, []);
+
+  useEffect(() => {
+    // Load timeline data
+    window
+      .fetch("/data/timeline-data.json")
+      .then(response => response.json())
+      .then((data: TimelineData) => {
+        setTimelineData(data);
+        setTimelineLoading(false);
+      })
+      .catch(() => {
+        setTimelineLoading(false);
       });
   }, []);
 
@@ -758,6 +778,15 @@ function ButterflyTransects() {
           <TransectMap transects={filteredData} />
         </Col>
       </Row>
+
+      {/* Timeline Section */}
+      {timelineData && (
+        <TransectTimeline
+          timelineData={timelineData}
+          filteredTransects={filteredData}
+          loading={timelineLoading}
+        />
+      )}
 
       {/* Warning about filtered species */}
       {metadata && metadata.filteredSpeciesCount > 0 && (

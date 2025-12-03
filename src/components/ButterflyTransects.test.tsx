@@ -1,4 +1,3 @@
-import React from "react";
 import { render, screen, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import ButterflyTransects from "./ButterflyTransects";
@@ -7,6 +6,12 @@ import ButterflyTransects from "./ButterflyTransects";
 jest.mock("./TransectMap", () => ({
   __esModule: true,
   default: () => <div data-testid="transect-map">Map Component</div>,
+}));
+
+// Mock TransectTimeline to avoid timeline data loading in tests
+jest.mock("./TransectTimeline", () => ({
+  __esModule: true,
+  default: () => <div data-testid="transect-timeline">Timeline Component</div>,
 }));
 
 // Mock data

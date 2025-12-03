@@ -10,6 +10,7 @@ const ALL_DATA_FILE = path.join(RAW_DATA_DIR, 'all.csv');
 const GEOCODE_CACHE_FILE = path.join(RAW_DATA_DIR, 'geocode-cache.json');
 const OUTPUT_DIR = path.join(__dirname, '../public/data');
 const OUTPUT_FILE = path.join(OUTPUT_DIR, 'processed-transects.json');
+const TIMELINE_OUTPUT_FILE = path.join(OUTPUT_DIR, 'timeline-data.json');
 
 // Valid species whitelist - only these species should be considered
 const VALID_SPECIES = new Set([
@@ -460,6 +461,117 @@ function calculateTransectStats(transectId, allData, metadata, location = null, 
 }
 
 /**
+ * Process timeline data for all transects and years
+ */
+function processTimelineData(allData) {
+  console.log('\nProcessing timeline data...');
+
+  const timelineData = {
+    years: [],
+    transectsByYear: {},
+    butterflyFrequencyByYear: {},
+    transectDiversityByYear: {}
+  };
+
+  // Extract unique years from monitoring season (March-September)
+  const yearsSet = new Set();
+  allData.forEach(row => {
+    const date = row['Date'];
+    if (!date) return;
+
+    // Parse date DD/MM/YYYY
+    const parts = date.split('/');
+    if (parts.length !== 3) return;
+    const year = parseInt(parts[2], 10);
+    const month = parseInt(parts[1], 10);
+
+    // Filter to monitoring season (March-September)
+    if (month >= 3 && month <= 9) {
+      yearsSet.add(year);
+    }
+  });
+
+  timelineData.years = Array.from(yearsSet).sort((a, b) => a - b);
+  console.log(`  Found ${timelineData.years.length} years: ${timelineData.years.join(', ')}`);
+
+  // Process each year
+  timelineData.years.forEach(year => {
+    // Filter data for this year (monitoring season only)
+    const yearData = allData.filter(row => {
+      const date = row['Date'];
+      if (!date) return false;
+
+      const parts = date.split('/');
+      if (parts.length !== 3) return false;
+
+      const rowYear = parseInt(parts[2], 10);
+      const month = parseInt(parts[1], 10);
+      const species = row['Preferred Species Name'];
+
+      return rowYear === year &&
+             month >= 3 && month <= 9 &&
+             species &&
+             VALID_SPECIES.has(species.trim());
+    });
+
+    console.log(`  Processing year ${year}: ${yearData.length} observations`);
+
+    // 1. Transects active this year
+    const transectsThisYear = new Set();
+    yearData.forEach(row => {
+      transectsThisYear.add(row['Transect ID']);
+    });
+    timelineData.transectsByYear[year] = Array.from(transectsThisYear);
+
+    // 2. Butterfly frequency
+    const allDatesThisYear = new Set();
+    yearData.forEach(row => allDatesThisYear.add(row['Date']));
+    const totalVisits = allDatesThisYear.size;
+
+    const speciesVisitsMap = new Map();
+    yearData.forEach(row => {
+      const species = row['Preferred Species Name'].trim();
+      if (!speciesVisitsMap.has(species)) {
+        speciesVisitsMap.set(species, new Set());
+      }
+      speciesVisitsMap.get(species).add(row['Date']);
+    });
+
+    timelineData.butterflyFrequencyByYear[year] = Array.from(speciesVisitsMap.entries())
+      .map(([species, dateSet]) => ({
+        species,
+        frequency: (dateSet.size / totalVisits) * 100,
+        visitCount: dateSet.size,
+        totalVisits
+      }))
+      .sort((a, b) => b.frequency - a.frequency);
+
+    // 3. Diversity per transect
+    const transectSpeciesMap = new Map();
+    yearData.forEach(row => {
+      const transectId = row['Transect ID'];
+      const species = row['Preferred Species Name'].trim();
+
+      if (!transectSpeciesMap.has(transectId)) {
+        transectSpeciesMap.set(transectId, new Set());
+      }
+      transectSpeciesMap.get(transectId).add(species);
+    });
+
+    timelineData.transectDiversityByYear[year] = Array.from(transectSpeciesMap.entries())
+      .map(([transectId, speciesSet]) => ({
+        transectId,
+        diversityCount: speciesSet.size,
+        speciesList: Array.from(speciesSet).sort()
+      }))
+      .sort((a, b) => b.diversityCount - a.diversityCount);
+  });
+
+  console.log(`  ✓ Timeline data processed for ${timelineData.years.length} years`);
+  return timelineData;
+}
+
+/**
  * Main processing function
  */
 async function processData() {
@@ -688,6 +800,12 @@ async function processData() {
   // Write to JSON file
   console.log(`\nWriting results to ${OUTPUT_FILE}...`);
   fs.writeFileSync(OUTPUT_FILE, JSON.stringify(output, null, 2), 'utf-8');
+
+  // Process and save timeline data
+  const timelineData = processTimelineData(allData);
+  console.log(`\nWriting timeline data to ${TIMELINE_OUTPUT_FILE}...`);
+  fs.writeFileSync(TIMELINE_OUTPUT_FILE, JSON.stringify(timelineData, null, 2), 'utf-8');
+  console.log(`Timeline data saved (${(fs.statSync(TIMELINE_OUTPUT_FILE).size / 1024).toFixed(2)} KB)`);
 
   console.log('\n✓ Processing complete!');
   console.log(`\nSummary:`);
