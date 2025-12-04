@@ -12,6 +12,13 @@ export interface SpeciesTransectData {
   lon: number;
 }
 
+export interface MonthlyAbundance {
+  month: number;
+  monthName: string;
+  averageAbundance: number;
+  visitCount: number;
+}
+
 /**
  * Calculate species presence and abundance per transect for a given year
  */
@@ -45,7 +52,7 @@ export function calculateSpeciesPresenceByYear(
   // Count total visits per transect
   const transectVisits = new Map<string, Set<string>>();
   Object.entries(observationsByDate).forEach(([date, observations]) => {
-    observations.forEach(([transectId]) => {
+    observations.forEach(([transectId, , ]) => {
       if (!transectVisits.has(transectId)) {
         transectVisits.set(transectId, new Set());
       }
@@ -62,13 +69,11 @@ export function calculateSpeciesPresenceByYear(
   });
 
   // Process observations to find species presence and count abundance
-  // Note: observationsByDate contains [transectId, species] pairs
-  // We need to calculate abundance from the original data
-  // For now, we'll track visits where species was seen
+  // observationsByDate contains [transectId, species, abundance] tuples
   const speciesVisitsByTransect = new Map<string, Set<string>>();
 
   Object.entries(observationsByDate).forEach(([date, observations]) => {
-    observations.forEach(([transectId, species]) => {
+    observations.forEach(([transectId, species, ]) => {
       if (species === speciesName) {
         const data = transectDataMap.get(transectId);
         if (data) {
@@ -119,4 +124,67 @@ export function calculateSpeciesPresenceByYear(
       };
     })
     .filter((item): item is SpeciesTransectData => item !== null);
+}
+
+/**
+ * Calculate monthly average abundance for a species at a specific transect
+ */
+export function calculateMonthlyAbundance(
+  speciesName: string,
+  transectId: string,
+  year: number,
+  timelineData: TimelineData
+): MonthlyAbundance[] {
+  const observationsByDate = timelineData.observationsByYearDate[year] || {};
+
+  const monthNames = [
+    "Jan", "Fev", "Mar", "Abr", "Mai", "Jun",
+    "Jul", "Ago", "Set", "Out", "Nov", "Dez"
+  ];
+
+  // Initialize monthly data for all months
+  const monthlyData: Record<number, { totalAbundance: number; visitCount: number }> = {};
+  for (let month = 1; month <= 12; month++) {
+    monthlyData[month] = { totalAbundance: 0, visitCount: 0 };
+  }
+
+  // Process observations
+  Object.entries(observationsByDate).forEach(([date, observations]) => {
+    // Parse date DD/MM/YYYY
+    const parts = date.split('/');
+    if (parts.length !== 3) return;
+    const month = parseInt(parts[1], 10);
+
+    // Check if this transect was visited on this date
+    let transectVisited = false;
+    let speciesAbundance = 0;
+
+    observations.forEach(([obsTransectId, species, abundance]) => {
+      if (obsTransectId === transectId) {
+        transectVisited = true;
+        if (species === speciesName) {
+          speciesAbundance += abundance;
+        }
+      }
+    });
+
+    // If transect was visited, count it (even if species abundance is 0)
+    if (transectVisited) {
+      monthlyData[month].totalAbundance += speciesAbundance;
+      monthlyData[month].visitCount += 1;
+    }
+  });
+
+  // Calculate averages
+  return Object.entries(monthlyData)
+    .map(([monthStr, data]) => {
+      const month = parseInt(monthStr, 10);
+      return {
+        month,
+        monthName: monthNames[month - 1],
+        averageAbundance: data.visitCount > 0 ? data.totalAbundance / data.visitCount : 0,
+        visitCount: data.visitCount,
+      };
+    })
+    .filter(m => m.visitCount > 0); // Only include months with visits
 }

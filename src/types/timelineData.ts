@@ -16,5 +16,5 @@ export interface TimelineData {
   transectsByYear: Record<number, string[]>;
   butterflyFrequencyByYear: Record<number, ButterflyFrequencyData[]>;
   transectDiversityByYear: Record<number, TransectDiversityData[]>;
-  observationsByYearDate: Record<number, Record<string, [string, string][]>>; // year -> date -> [transectId, species][]
+  observationsByYearDate: Record<number, Record<string, [string, string, number][]>>; // year -> date -> [transectId, species, abundance][]
 }

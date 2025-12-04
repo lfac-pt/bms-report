@@ -39,7 +39,7 @@ function SpeciesPage() {
   }, []);
 
   const handleGoBack = () => {
-    navigate(-1);
+    navigate("/transects");
   };
 
   const handleSpeciesChange = (selectedSpecies: string) => {
@@ -51,7 +51,7 @@ function SpeciesPage() {
   if (timelineData) {
     Object.values(timelineData.observationsByYearDate).forEach(yearData => {
       Object.values(yearData).forEach(observations => {
-        observations.forEach(([, species]) => {
+        observations.forEach(([, species, ]) => {
           speciesWithRecords.add(species);
         });
       });
@@ -150,7 +150,12 @@ function SpeciesPage() {
                   title={`${year} (${withSpecies} de ${totalTransects} transectos)`}
                   size="small"
                 >
-                  <SpeciesMap transects={speciesData} />
+                  <SpeciesMap
+                    transects={speciesData}
+                    speciesName={decodedSpeciesName}
+                    year={year}
+                    timelineData={timelineData}
+                  />
                 </Card>
               </Col>
             );

@@ -1,12 +1,59 @@
 import { MapContainer, TileLayer, CircleMarker, Popup } from "react-leaflet";
-import { SpeciesTransectData } from "../utils/speciesMapUtils";
+import { Bar } from "react-chartjs-2";
+import { SpeciesTransectData, MonthlyAbundance, calculateMonthlyAbundance } from "../utils/speciesMapUtils";
+import { TimelineData } from "../types/timelineData";
 import "leaflet/dist/leaflet.css";
 
 interface SpeciesMapProps {
   transects: SpeciesTransectData[];
+  speciesName: string;
+  year: number;
+  timelineData: TimelineData;
 }
 
-function SpeciesMap({ transects }: SpeciesMapProps) {
+interface MonthlyChartProps {
+  monthlyData: MonthlyAbundance[];
+}
+
+function MonthlyAbundanceChart({ monthlyData }: MonthlyChartProps) {
+  if (monthlyData.length === 0) {
+    return <div style={{ fontSize: 12, color: "#8c8c8c" }}>Sem dados mensais</div>;
+  }
+
+  const chartData = {
+    labels: monthlyData.map(m => m.monthName),
+    datasets: [{
+      label: "Abundância média/visita",
+      data: monthlyData.map(m => m.averageAbundance),
+      backgroundColor: "#1890ff",
+    }]
+  };
+
+  const options = {
+    responsive: true,
+    maintainAspectRatio: false,
+    plugins: {
+      legend: { display: false },
+    },
+    scales: {
+      y: {
+        beginAtZero: true,
+        title: { display: false },
+      },
+      x: {
+        title: { display: false },
+      }
+    }
+  };
+
+  return (
+    <div style={{ height: 120, marginTop: 12 }}>
+      <Bar data={chartData} options={options} />
+    </div>
+  );
+}
+
+function SpeciesMap({ transects, speciesName, year, timelineData }: SpeciesMapProps) {
   if (transects.length === 0) {
     return <div style={{ padding: 20, textAlign: "center" }}>Sem dados para este ano</div>;
   }
@@ -43,6 +90,11 @@ function SpeciesMap({ transects }: SpeciesMapProps) {
           }
         }
 
+        // Calculate monthly abundance data for this transect
+        const monthlyData = transect.hasSpecies
+          ? calculateMonthlyAbundance(speciesName, transect.transectId, year, timelineData)
+          : [];
+
         return (
           <CircleMarker
             key={transect.transectId}
@@ -66,6 +118,7 @@ function SpeciesMap({ transects }: SpeciesMapProps) {
                     <div>
                       Frequência: {((transect.visitCount / transect.totalVisits) * 100).toFixed(1)}%
                     </div>
+                    <MonthlyAbundanceChart monthlyData={monthlyData} />
                   </>
                 ) : (
                   <div style={{ color: "#8c8c8c" }}>Espécie não avistada</div>

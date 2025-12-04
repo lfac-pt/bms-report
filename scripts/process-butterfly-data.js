@@ -567,19 +567,20 @@ function processTimelineData(allData) {
       }))
       .sort((a, b) => b.diversityCount - a.diversityCount);
 
-    // 4. Store observations by date for butterfly frequency filtering
+    // 4. Store observations by date for butterfly frequency filtering and abundance
     const observationsByDate = {};
     yearData.forEach(row => {
       const date = row['Date'];
       const transectId = row['Transect ID'];
       const species = row['Preferred Species Name'].trim();
+      const abundance = parseInt(row['Abundance Count'], 10) || 0;
 
       if (!observationsByDate[date]) {
         observationsByDate[date] = [];
       }
 
-      // Store as compact array [transectId, species]
-      observationsByDate[date].push([transectId, species]);
+      // Store as compact array [transectId, species, abundance]
+      observationsByDate[date].push([transectId, species, abundance]);
     });
 
     timelineData.observationsByYearDate[year] = observationsByDate;
