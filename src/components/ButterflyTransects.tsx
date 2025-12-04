@@ -164,6 +164,7 @@ function ButterflyTransects() {
   const [avgVisitsPerYearFilters, setAvgVisitsPerYearFilters] = useState<string[]>([]);
   const [concelhoFilters, setConcelhoFilters] = useState<string[]>([]);
   const [distritoFilters, setDistritoFilters] = useState<string[]>([]);
+  const [climaticRegionFilters, setClimaticRegionFilters] = useState<string[]>([]);
   const [entidadeFilters, setEntidadeFilters] = useState<string[]>([]);
   const [pageSize, setPageSize] = useState(20);
   const [currentPage, setCurrentPage] = useState(1);
@@ -254,6 +255,13 @@ function ButterflyTransects() {
     // Distrito filter
     if (distritoFilters.length > 0) {
       if (!distritoFilters.includes(transect.distrito)) {
+        return false;
+      }
+    }
+
+    // Climatic Region filter
+    if (climaticRegionFilters.length > 0) {
+      if (!climaticRegionFilters.includes(transect.climaticRegion)) {
         return false;
       }
     }
@@ -465,6 +473,17 @@ function ButterflyTransects() {
         .sort()
         .map(d => ({ text: d, value: d })),
       filteredValue: distritoFilters,
+    },
+    {
+      title: "Região Climática",
+      dataIndex: "climaticRegion",
+      key: "climaticRegion",
+      width: 180,
+      filters: Array.from(new Set(data.map(t => t.climaticRegion)))
+        .filter(r => r)
+        .sort()
+        .map(r => ({ text: r, value: r })),
+      filteredValue: climaticRegionFilters,
     },
   ];
 
@@ -749,6 +768,16 @@ function ButterflyTransects() {
                   JSON.stringify(newFilters.sort()) !== JSON.stringify([...distritoFilters].sort());
                 if (changed) {
                   setDistritoFilters(newFilters);
+                  filtersChanged = true;
+                }
+              }
+
+              if (filters.climaticRegion !== undefined) {
+                const newFilters = filters.climaticRegion ? (filters.climaticRegion as string[]) : [];
+                const changed =
+                  JSON.stringify(newFilters.sort()) !== JSON.stringify([...climaticRegionFilters].sort());
+                if (changed) {
+                  setClimaticRegionFilters(newFilters);
                   filtersChanged = true;
                 }
               }

@@ -48,11 +48,12 @@
       "tipologia": "Rede Natura",
       "concelho": "Portimão",
       "distrito": "Faro",
+      "climaticRegion": "Algarve",
       "responsavel": "Paula Canha",
       "entidade": "ONGA",
       "coordinates": {
-        "lat": 37.142226120824965,
-        "lon": -8.602407025899764
+        "lat": 37.14242451834402,
+        "lon": -8.614448834364172
       }
     },
     {
@@ -100,11 +101,12 @@
       "tipologia": "Rede Natura",
       "concelho": "Portimão",
       "distrito": "Faro",
+      "climaticRegion": "Algarve",
       "responsavel": "Paula Canha",
       "entidade": "ONGA",
       "coordinates": {
-        "lat": 37.1451268803259,
-        "lon": -8.604402779050476
+        "lat": 37.146829258145864,
+        "lon": -8.60121826495348
       }
     },
     {
@@ -141,11 +143,12 @@
       "tipologia": "",
       "concelho": "Paredes",
       "distrito": "Porto",
+      "climaticRegion": "Norte",
       "responsavel": "",
       "entidade": "Particular",
       "coordinates": {
-        "lat": 41.122246565193485,
-        "lon": -8.441227111296422
+        "lat": 41.13036715344804,
+        "lon": -8.442670361325552
       }
     },
     {
@@ -195,11 +198,12 @@
       "tipologia": "Área Protegida",
       "concelho": "Esposende",
       "distrito": "Braga",
+      "climaticRegion": "Norte",
       "responsavel": "Luis Gaifan",
       "entidade": "ONGA",
       "coordinates": {
-        "lat": 41.544787504628744,
-        "lon": -8.795273908401132
+        "lat": 41.546972208506155,
+        "lon": -8.785809759710935
       }
     },
     {
@@ -241,11 +245,12 @@
       "tipologia": "",
       "concelho": "Avis",
       "distrito": "Portalegre",
+      "climaticRegion": "Alentejo",
       "responsavel": "",
       "entidade": "Particular",
       "coordinates": {
-        "lat": 39.05490373048012,
-        "lon": -7.884499707996169
+        "lat": 39.04743995666173,
+        "lon": -7.897882896800309
       }
     },
     {
@@ -298,11 +303,12 @@
       "tipologia": "?",
       "concelho": "Avis",
       "distrito": "Portalegre",
+      "climaticRegion": "Alentejo",
       "responsavel": "Antóno Xeria",
       "entidade": "Particular",
       "coordinates": {
-        "lat": 39.04539171493328,
-        "lon": -7.820036139280449
+        "lat": 39.04944532022176,
+        "lon": -7.816853610632523
       }
     },
     {
@@ -352,11 +358,12 @@
       "tipologia": "",
       "concelho": "Vila Nova de Poiares",
       "distrito": "Coimbra",
+      "climaticRegion": "Centro",
       "responsavel": "",
       "entidade": "",
       "coordinates": {
-        "lat": 40.2195388780357,
-        "lon": -8.214131572095958
+        "lat": 40.220753406488974,
+        "lon": -8.217376832209888
       }
     },
     {
@@ -418,11 +425,12 @@
       "tipologia": "",
       "concelho": "Lamego",
       "distrito": "Viseu",
+      "climaticRegion": "Centro",
       "responsavel": "",
       "entidade": "Particular",
       "coordinates": {
-        "lat": 41.035810369930914,
-        "lon": -7.88805249402074
+        "lat": 41.02991677108399,
+        "lon": -7.895835854051158
       }
     },
     {
@@ -463,11 +471,12 @@
       "tipologia": "Campus Universitário",
       "concelho": "Braga",
       "distrito": "Braga",
+      "climaticRegion": "Norte",
       "responsavel": "Rafael Pinto",
       "entidade": "Universidade de Braga",
       "coordinates": {
-        "lat": 41.56517189890045,
-        "lon": -8.403184758142174
+        "lat": 41.55435127625256,
+        "lon": -8.402605560061225
       }
     },
     {
@@ -511,11 +520,12 @@
       "tipologia": "Baldio",
       "concelho": "Loures",
       "distrito": "Lisboa",
+      "climaticRegion": "Lisboa e Vale do Tejo",
       "responsavel": "Paula Coelho",
       "entidade": "Particular",
       "coordinates": {
-        "lat": 38.82312943459461,
-        "lon": -9.17374411773861
+        "lat": 38.817587319693004,
+        "lon": -9.177286569610661
       }
     },
     {
@@ -543,11 +553,12 @@
       "tipologia": "Baldio",
       "concelho": "Seixal",
       "distrito": "Setúbal",
+      "climaticRegion": "Lisboa e Vale do Tejo",
       "responsavel": "Rui Laureano",
       "entidade": "Particular",
       "coordinates": {
-        "lat": 38.63315017293459,
-        "lon": -9.127790000598582
+        "lat": 38.63229082258868,
+        "lon": -9.12536979515218
       }
     },
     {
@@ -596,11 +607,12 @@
       "tipologia": "?",
       "concelho": "Abrantes",
       "distrito": "Santarém",
+      "climaticRegion": "Lisboa e Vale do Tejo",
       "responsavel": "Paulo Alves",
       "entidade": "Particular",
       "coordinates": {
-        "lat": 39.45301531803353,
-        "lon": -8.075209556556782
+        "lat": 39.44881763972224,
+        "lon": -8.068387962619136
       }
     },
     {
@@ -638,11 +650,12 @@
       "tipologia": "?",
       "concelho": "Vila Nova de Famalicão",
       "distrito": "Braga",
+      "climaticRegion": "Norte",
       "responsavel": "Rafael Pinto",
       "entidade": "Particular",
       "coordinates": {
-        "lat": 41.38706901803449,
-        "lon": -8.411744006466328
+        "lat": 41.38452582763634,
+        "lon": -8.416386971667134
       }
     },
     {
@@ -686,11 +699,12 @@
       "tipologia": "Área Protegida",
       "concelho": "Cascais",
       "distrito": "Lisboa",
+      "climaticRegion": "Lisboa e Vale do Tejo",
       "responsavel": "Diogo Silva",
       "entidade": "Município",
       "coordinates": {
-        "lat": 38.72696092475926,
-        "lon": -9.468524852052326
+        "lat": 38.72072244141214,
+        "lon": -9.471068735675711
       }
     },
     {
@@ -752,11 +766,12 @@
       "tipologia": "Rede Natura",
       "concelho": "Pombal",
       "distrito": "Leiria",
+      "climaticRegion": "Centro",
       "responsavel": "Isa Teixeira",
       "entidade": "Particular",
       "coordinates": {
-        "lat": 39.987239445026766,
-        "lon": -8.555440413353137
+        "lat": 39.98697587608282,
+        "lon": -8.562524077069092
       }
     },
     {
@@ -787,11 +802,12 @@
       "tipologia": "Área Verde Urbana",
       "concelho": "Lisboa",
       "distrito": "Lisboa",
+      "climaticRegion": "Lisboa e Vale do Tejo",
       "responsavel": "Julieta Costa",
       "entidade": "Particular",
       "coordinates": {
-        "lat": 38.76256574668073,
-        "lon": -9.16689927289658
+        "lat": 38.761971313479044,
+        "lon": -9.172102685556116
       }
     },
     {
@@ -854,11 +870,12 @@
       "tipologia": "",
       "concelho": "Bragança",
       "distrito": "Bragança",
+      "climaticRegion": "Norte",
       "responsavel": "",
       "entidade": "Município",
       "coordinates": {
-        "lat": 41.804731780544806,
-        "lon": -6.751459630850292
+        "lat": 41.806161310844615,
+        "lon": -6.756003883177808
       }
     },
     {
@@ -900,11 +917,12 @@
       "tipologia": "Baldio",
       "concelho": "Setúbal",
       "distrito": "Setúbal",
+      "climaticRegion": "Lisboa e Vale do Tejo",
       "responsavel": "Sílvia Pina",
       "entidade": "Particular",
       "coordinates": {
-        "lat": 38.52623191373306,
-        "lon": -8.999716315991304
+        "lat": 38.538949812415446,
+        "lon": -9.00467770719198
       }
     },
     {
@@ -969,11 +987,12 @@
       "tipologia": "",
       "concelho": "Penela",
       "distrito": "Coimbra",
+      "climaticRegion": "Centro",
       "responsavel": "Luis Cardoso",
       "entidade": "Particular",
       "coordinates": {
-        "lat": 40.0645177996479,
-        "lon": -8.38576184567857
+        "lat": 40.07590847224377,
+        "lon": -8.39071463518615
       }
     },
     {
@@ -1022,11 +1041,12 @@
       "tipologia": "?",
       "concelho": "Évora",
       "distrito": "Évora",
+      "climaticRegion": "Alentejo",
       "responsavel": "André Oliveira",
       "entidade": "Universidade de Évora",
       "coordinates": {
-        "lat": 38.52739925508802,
-        "lon": -8.02270817238931
+        "lat": 38.5214633516098,
+        "lon": -8.019568374002304
       }
     },
     {
@@ -1090,11 +1110,12 @@
       "tipologia": "Área Protegida",
       "concelho": "Nisa",
       "distrito": "Portalegre",
+      "climaticRegion": "Alentejo",
       "responsavel": "Ana Cavaco",
       "entidade": "ICNF",
       "coordinates": {
-        "lat": 39.63604528443236,
-        "lon": -7.69631619994827
+        "lat": 39.63267550541802,
+        "lon": -7.689079525393118
       }
     },
     {
@@ -1136,11 +1157,12 @@
       "tipologia": "Área Protegida",
       "concelho": "Coimbra",
       "distrito": "Coimbra",
+      "climaticRegion": "Centro",
       "responsavel": "Diogo Mina",
       "entidade": "ICNF",
       "coordinates": {
-        "lat": 40.173531179690045,
-        "lon": -8.54737493742181
+        "lat": 40.18317885051277,
+        "lon": -8.554274311922025
       }
     },
     {
@@ -1182,11 +1204,12 @@
       "tipologia": "Área Protegida",
       "concelho": "Setúbal",
       "distrito": "Setúbal",
+      "climaticRegion": "Lisboa e Vale do Tejo",
       "responsavel": "",
       "entidade": "ICNF",
       "coordinates": {
-        "lat": 38.47314911832876,
-        "lon": -8.979348083844013
+        "lat": 38.473058831572736,
+        "lon": -8.981420721195791
       }
     },
     {
@@ -1246,11 +1269,12 @@
       "tipologia": "Área Protegida",
       "concelho": "Palmela",
       "distrito": "Setúbal",
+      "climaticRegion": "Lisboa e Vale do Tejo",
       "responsavel": "Ana Sofia Palma",
       "entidade": "ICNF",
       "coordinates": {
-        "lat": 38.55872769694216,
-        "lon": -8.914134910612628
+        "lat": 38.57074327866345,
+        "lon": -8.90824517719333
       }
     },
     {
@@ -1333,11 +1357,12 @@
       "tipologia": "Área Protegida",
       "concelho": "Vila Real",
       "distrito": "Vila Real",
+      "climaticRegion": "Norte",
       "responsavel": "João Pargana",
       "entidade": "ICNF",
       "coordinates": {
-        "lat": 41.33191664847441,
-        "lon": -7.814596318513015
+        "lat": 41.32657937340661,
+        "lon": -7.806980758587554
       }
     },
     {
@@ -1414,11 +1439,12 @@
       "tipologia": "Área Protegida",
       "concelho": "Vila Real",
       "distrito": "Vila Real",
+      "climaticRegion": "Norte",
       "responsavel": "Helena Paulino",
       "entidade": "ICNF",
       "coordinates": {
-        "lat": 41.37491772082488,
-        "lon": -7.807144640844198
+        "lat": 41.37003428912828,
+        "lon": -7.803728287529296
       }
     },
     {
@@ -1488,11 +1514,12 @@
       "tipologia": "Área Protegida",
       "concelho": "Mogadouro",
       "distrito": "Bragança",
+      "climaticRegion": "Norte",
       "responsavel": "Carlos Santos",
       "entidade": "ICNF",
       "coordinates": {
-        "lat": 41.316097762673984,
-        "lon": -6.524688900729206
+        "lat": 41.32051440753317,
+        "lon": -6.52236869721106
       }
     },
     {
@@ -1568,11 +1595,12 @@
       "tipologia": "Área Protegida",
       "concelho": "Mogadouro",
       "distrito": "Bragança",
+      "climaticRegion": "Norte",
       "responsavel": "Carlos Santos",
       "entidade": "ICNF",
       "coordinates": {
-        "lat": 41.32407565509178,
-        "lon": -6.598723028777914
+        "lat": 41.3242003174023,
+        "lon": -6.5978695787769865
       }
     },
     {
@@ -1619,11 +1647,12 @@
       "tipologia": "Área Protegida",
       "concelho": "Esposende",
       "distrito": "Braga",
+      "climaticRegion": "Norte",
       "responsavel": "Belmiro Viana",
       "entidade": "ICNF",
       "coordinates": {
-        "lat": 41.50417218250234,
-        "lon": -8.763238209351682
+        "lat": 41.50872760430633,
+        "lon": -8.763745560490868
       }
     },
     {
@@ -1667,11 +1696,12 @@
       "tipologia": "Área Protegida",
       "concelho": "Bragança",
       "distrito": "Bragança",
+      "climaticRegion": "Norte",
       "responsavel": "Ema Veiga",
       "entidade": "ICNF",
       "coordinates": {
-        "lat": 41.83829194491803,
-        "lon": -6.736315400811298
+        "lat": 41.84587807375391,
+        "lon": -6.735914514551568
       }
     },
     {
@@ -1713,11 +1743,12 @@
       "tipologia": "Área Protegida",
       "concelho": "Bragança",
       "distrito": "Bragança",
+      "climaticRegion": "Norte",
       "responsavel": "Ema Veiga",
       "entidade": "ICNF",
       "coordinates": {
-        "lat": 41.81925413872283,
-        "lon": -6.820821077866618
+        "lat": 41.81189916233538,
+        "lon": -6.809677273645682
       }
     },
     {
@@ -1779,11 +1810,12 @@
       "tipologia": "Área Protegida",
       "concelho": "Terras de Bouro",
       "distrito": "Braga",
+      "climaticRegion": "Norte",
       "responsavel": "PNPG Vidoeiro",
       "entidade": "ICNF",
       "coordinates": {
-        "lat": 41.739700302780506,
-        "lon": -8.199411978257444
+        "lat": 41.745664837782435,
+        "lon": -8.195276061591768
       }
     },
     {
@@ -1808,11 +1840,12 @@
       "tipologia": "",
       "concelho": "Terras de Bouro",
       "distrito": "Braga",
+      "climaticRegion": "Norte",
       "responsavel": "",
       "entidade": "",
       "coordinates": {
-        "lat": 41.74549557430493,
-        "lon": -8.19839086643917
+        "lat": 41.74842553004732,
+        "lon": -8.198623713354602
       }
     },
     {
@@ -1842,11 +1875,12 @@
       "tipologia": "Área Protegida",
       "concelho": "Olhão",
       "distrito": "Faro",
+      "climaticRegion": "Algarve",
       "responsavel": "Armando Moura",
       "entidade": "ICNF",
       "coordinates": {
-        "lat": 37.03137167573666,
-        "lon": -7.816514244385519
+        "lat": 37.027646110380786,
+        "lon": -7.815532827678721
       }
     },
     {
@@ -1906,11 +1940,12 @@
       "tipologia": "Área Protegida",
       "concelho": "Rio Maior",
       "distrito": "Santarém",
+      "climaticRegion": "Lisboa e Vale do Tejo",
       "responsavel": "Florbela Queirós",
       "entidade": "ICNF",
       "coordinates": {
-        "lat": 39.3658073361956,
-        "lon": -8.95681117427853
+        "lat": 39.36433886124209,
+        "lon": -8.94410409705073
       }
     },
     {
@@ -1978,11 +2013,12 @@
       "tipologia": "Área Protegida",
       "concelho": "Alcanena",
       "distrito": "Santarém",
+      "climaticRegion": "Lisboa e Vale do Tejo",
       "responsavel": "Sofia Quaresma",
       "entidade": "ICNF",
       "coordinates": {
-        "lat": 39.512698694291934,
-        "lon": -8.701943616563751
+        "lat": 39.51955115068171,
+        "lon": -8.69766543830097
       }
     },
     {
@@ -2037,11 +2073,12 @@
       "tipologia": "Área Protegida",
       "concelho": "Odemira",
       "distrito": "Beja",
+      "climaticRegion": "Alentejo",
       "responsavel": "Pedro Alverca",
       "entidade": "ICNF",
       "coordinates": {
-        "lat": 37.69643467913546,
-        "lon": -8.687089840712247
+        "lat": 37.69019145900468,
+        "lon": -8.681648406409
       }
     },
     {
@@ -2105,11 +2142,12 @@
       "tipologia": "Área Protegida",
       "concelho": "Lagos",
       "distrito": "Faro",
+      "climaticRegion": "Algarve",
       "responsavel": "Alexandre Cabrita",
       "entidade": "ICNF",
       "coordinates": {
-        "lat": 37.188538161461416,
-        "lon": -8.692402050236655
+        "lat": 37.18838404560019,
+        "lon": -8.697746364422638
       }
     },
     {
@@ -2155,11 +2193,12 @@
       "tipologia": "Área Protegida",
       "concelho": "Odemira",
       "distrito": "Beja",
+      "climaticRegion": "Alentejo",
       "responsavel": "Ana Macedo",
       "entidade": "ICNF",
       "coordinates": {
-        "lat": 37.6488735085973,
-        "lon": -8.6166803366676
+        "lat": 37.64880254236237,
+        "lon": -8.61731205936177
       }
     },
     {
@@ -2222,11 +2261,12 @@
       "tipologia": "Área Protegida",
       "concelho": "Odemira",
       "distrito": "Beja",
+      "climaticRegion": "Alentejo",
       "responsavel": "Pedro Alverca",
       "entidade": "ICNF",
       "coordinates": {
-        "lat": 37.748382005057,
-        "lon": -8.72310327145204
+        "lat": 37.76048188744784,
+        "lon": -8.715190326032275
       }
     },
     {
@@ -2293,11 +2333,12 @@
       "tipologia": "Área Protegida",
       "concelho": "Seia",
       "distrito": "Guarda",
+      "climaticRegion": "Centro",
       "responsavel": "Henrique Domingues",
       "entidade": "ICNF",
       "coordinates": {
-        "lat": 40.39555716783968,
-        "lon": -7.708886269967758
+        "lat": 40.38280038232843,
+        "lon": -7.702602598507491
       }
     },
     {
@@ -2366,11 +2407,12 @@
       "tipologia": "Área Protegida",
       "concelho": "Manteigas",
       "distrito": "Guarda",
+      "climaticRegion": "Centro",
       "responsavel": "Henrique Domingues",
       "entidade": "ICNF",
       "coordinates": {
-        "lat": 40.4037404265841,
-        "lon": -7.571622946077266
+        "lat": 40.39793254809581,
+        "lon": -7.573606426515437
       }
     },
     {
@@ -2434,11 +2476,12 @@
       "tipologia": "Área Protegida",
       "concelho": "Manteigas",
       "distrito": "Guarda",
+      "climaticRegion": "Centro",
       "responsavel": "",
       "entidade": "ICNF",
       "coordinates": {
-        "lat": 40.357402992007245,
-        "lon": -7.558742452570972
+        "lat": 40.3504927240502,
+        "lon": -7.562269178172796
       }
     },
     {
@@ -2504,11 +2547,12 @@
       "tipologia": "Área Protegida",
       "concelho": "Portalegre",
       "distrito": "Portalegre",
+      "climaticRegion": "Alentejo",
       "responsavel": "Conceição Conde",
       "entidade": "ICNF",
       "coordinates": {
-        "lat": 39.36203990865272,
-        "lon": -7.418126905334525
+        "lat": 39.36961530776236,
+        "lon": -7.418122958646296
       }
     },
     {
@@ -2566,11 +2610,12 @@
       "tipologia": "Área Protegida",
       "concelho": "Arronches",
       "distrito": "Portalegre",
+      "climaticRegion": "Alentejo",
       "responsavel": "Ana Cavaco",
       "entidade": "ICNF",
       "coordinates": {
-        "lat": 39.1918655225868,
-        "lon": -7.268985740453866
+        "lat": 39.1886028164644,
+        "lon": -7.265201436985839
       }
     },
     {
@@ -2619,11 +2664,12 @@
       "tipologia": "Área Protegida",
       "concelho": "Mértola",
       "distrito": "Beja",
+      "climaticRegion": "Alentejo",
       "responsavel": "Beatriz Machado",
       "entidade": "ICNF",
       "coordinates": {
-        "lat": 37.50558601549819,
-        "lon": -7.70666696380373
+        "lat": 37.50005524647565,
+        "lon": -7.705541086330189
       }
     },
     {
@@ -2668,11 +2714,12 @@
       "tipologia": "Área Protegida",
       "concelho": "Almada",
       "distrito": "Setúbal",
+      "climaticRegion": "Lisboa e Vale do Tejo",
       "responsavel": "Teresa Morais",
       "entidade": "ICNF",
       "coordinates": {
-        "lat": 38.55828487515978,
-        "lon": -9.186358105884386
+        "lat": 38.55770967226303,
+        "lon": -9.191534205888821
       }
     },
     {
@@ -2729,11 +2776,12 @@
       "tipologia": "Área Protegida",
       "concelho": "Arganil",
       "distrito": "Coimbra",
+      "climaticRegion": "Centro",
       "responsavel": "",
       "entidade": "ICNF",
       "coordinates": {
-        "lat": 40.21445987224948,
-        "lon": -7.9313033849126535
+        "lat": 40.21319225128972,
+        "lon": -7.931618482979127
       }
     },
     {
@@ -2789,11 +2837,12 @@
       "tipologia": "Área Protegida",
       "concelho": "Cadaval",
       "distrito": "Lisboa",
+      "climaticRegion": "Lisboa e Vale do Tejo",
       "responsavel": "Sofia Quaresma",
       "entidade": "ICNF",
       "coordinates": {
-        "lat": 39.182049779701494,
-        "lon": -9.049711096816655
+        "lat": 39.18012479172928,
+        "lon": -9.042740382205688
       }
     },
     {
@@ -2836,11 +2885,12 @@
       "tipologia": "Área Protegida",
       "concelho": "Aveiro",
       "distrito": "Aveiro",
+      "climaticRegion": "Centro",
       "responsavel": "Rosa Serôdio",
       "entidade": "ICNF",
       "coordinates": {
-        "lat": 40.68646437785714,
-        "lon": -8.722695635071974
+        "lat": 40.696830704007034,
+        "lon": -8.718514082871216
       }
     },
     {
@@ -2886,11 +2936,12 @@
       "tipologia": "Área Protegida",
       "concelho": "Setúbal",
       "distrito": "Setúbal",
+      "climaticRegion": "Lisboa e Vale do Tejo",
       "responsavel": "Maria do Céu Guerra",
       "entidade": "ICNF",
       "coordinates": {
-        "lat": 38.560341637222194,
-        "lon": -8.781039181669826
+        "lat": 38.55130415638803,
+        "lon": -8.786208605755403
       }
     },
     {
@@ -2951,11 +3002,12 @@
       "tipologia": "Área Protegida",
       "concelho": "Santiago do Cacém",
       "distrito": "Setúbal",
+      "climaticRegion": "Lisboa e Vale do Tejo",
       "responsavel": "Isa Figueiras",
       "entidade": "ICNF",
       "coordinates": {
-        "lat": 38.085811381111036,
-        "lon": -8.770871046003654
+        "lat": 38.072700049015154,
+        "lon": -8.776017685142016
       }
     },
     {
@@ -2998,11 +3050,12 @@
       "tipologia": "Área Protegida",
       "concelho": "Torres Novas",
       "distrito": "Santarém",
+      "climaticRegion": "Lisboa e Vale do Tejo",
       "responsavel": "Sónia Casemiro",
       "entidade": "ICNF",
       "coordinates": {
-        "lat": 39.40947622037721,
-        "lon": -8.53187375371178
+        "lat": 39.401114599026755,
+        "lon": -8.529401990288113
       }
     },
     {
@@ -3042,11 +3095,12 @@
       "tipologia": "Área Protegida",
       "concelho": "Castro Marim",
       "distrito": "Faro",
+      "climaticRegion": "Algarve",
       "responsavel": "Pedro Castelão",
       "entidade": "ICNF",
       "coordinates": {
-        "lat": 37.237101122392325,
-        "lon": -7.419338388036453
+        "lat": 37.2325813587619,
+        "lon": -7.423856036645437
       }
     },
     {
@@ -3108,11 +3162,12 @@
       "tipologia": "Área Protegida",
       "concelho": "Sabugal",
       "distrito": "Guarda",
+      "climaticRegion": "Centro",
       "responsavel": "Henrique Furriel",
       "entidade": "ICNF",
       "coordinates": {
-        "lat": 40.293360412635046,
-        "lon": -6.986523735995794
+        "lat": 40.28607344615816,
+        "lon": -6.978536812151223
       }
     },
     {
@@ -3158,11 +3213,12 @@
       "tipologia": "Rede Natura",
       "concelho": "Torres Vedras",
       "distrito": "Lisboa",
+      "climaticRegion": "Lisboa e Vale do Tejo",
       "responsavel": "Isa Teixeira",
       "entidade": "ICNF",
       "coordinates": {
-        "lat": 39.17651716923058,
-        "lon": -9.350546597780818
+        "lat": 39.16774751250857,
+        "lon": -9.34869079448532
       }
     },
     {
@@ -3200,11 +3256,12 @@
       "tipologia": "Parque Urbano",
       "concelho": "Lisboa",
       "distrito": "Lisboa",
+      "climaticRegion": "Lisboa e Vale do Tejo",
       "responsavel": "Albano Soares",
       "entidade": "Particular",
       "coordinates": {
-        "lat": 38.75188452431396,
-        "lon": -9.132462580859835
+        "lat": 38.75011525573491,
+        "lon": -9.131201611149732
       }
     },
     {
@@ -3248,11 +3305,12 @@
       "tipologia": "?",
       "concelho": "Sintra",
       "distrito": "Lisboa",
+      "climaticRegion": "Lisboa e Vale do Tejo",
       "responsavel": "Orkhan Abbasov",
       "entidade": "Particular",
       "coordinates": {
-        "lat": 38.78547156629703,
-        "lon": -9.258009036488643
+        "lat": 38.79128176955744,
+        "lon": -9.262005967449829
       }
     },
     {
@@ -3307,11 +3365,12 @@
       "tipologia": "Parque Urbano",
       "concelho": "Tomar",
       "distrito": "Santarém",
+      "climaticRegion": "Lisboa e Vale do Tejo",
       "responsavel": "Filipa Coelho",
       "entidade": "ONGA",
       "coordinates": {
-        "lat": 39.60389014991586,
-        "lon": -8.41955578383013
+        "lat": 39.60122136119392,
+        "lon": -8.41930820305062
       }
     },
     {
@@ -3354,11 +3413,12 @@
       "tipologia": "Baldio",
       "concelho": "Oeiras",
       "distrito": "Lisboa",
+      "climaticRegion": "Lisboa e Vale do Tejo",
       "responsavel": "Francisco Aguilar",
       "entidade": "Particular",
       "coordinates": {
-        "lat": 38.72672350594957,
-        "lon": -9.313829337890821
+        "lat": 38.72191154112146,
+        "lon": -9.302115949117576
       }
     },
     {
@@ -3393,11 +3453,12 @@
       "tipologia": "",
       "concelho": "Beja",
       "distrito": "Beja",
+      "climaticRegion": "Alentejo",
       "responsavel": "",
       "entidade": "",
       "coordinates": {
-        "lat": 37.91330255993621,
-        "lon": -8.032032366014713
+        "lat": 37.90424317932454,
+        "lon": -8.032950301011248
       }
     },
     {
@@ -3467,11 +3528,12 @@
       "tipologia": "",
       "concelho": "Lamego",
       "distrito": "Viseu",
+      "climaticRegion": "Centro",
       "responsavel": "",
       "entidade": "Particular",
       "coordinates": {
-        "lat": 41.0594691347239,
-        "lon": -7.839913776170759
+        "lat": 41.049560969875074,
+        "lon": -7.838853982136284
       }
     },
     {
@@ -3510,11 +3572,12 @@
       "tipologia": "?",
       "concelho": "Tomar",
       "distrito": "Santarém",
+      "climaticRegion": "Lisboa e Vale do Tejo",
       "responsavel": "Pedro Borges",
       "entidade": "ONGA",
       "coordinates": {
-        "lat": 39.614518838829696,
-        "lon": -8.38384642398518
+        "lat": 39.61508976229832,
+        "lon": -8.394514097983402
       }
     },
     {
@@ -3550,11 +3613,12 @@
       "tipologia": "?",
       "concelho": "Chaves",
       "distrito": "Vila Real",
+      "climaticRegion": "Norte",
       "responsavel": "Daniele Cataldo",
       "entidade": "Particular",
       "coordinates": {
-        "lat": 41.761257344465065,
-        "lon": -7.447346646933846
+        "lat": 41.77013901096683,
+        "lon": -7.444946114178417
       }
     },
     {
@@ -3612,11 +3676,12 @@
       "tipologia": "Parque Ambiental",
       "concelho": "Constância",
       "distrito": "Santarém",
+      "climaticRegion": "Lisboa e Vale do Tejo",
       "responsavel": "Sónia Mendes",
       "entidade": "Município",
       "coordinates": {
-        "lat": 39.43887236309033,
-        "lon": -8.31154417886176
+        "lat": 39.44649873558353,
+        "lon": -8.322853926010703
       }
     },
     {
@@ -3664,11 +3729,12 @@
       "tipologia": "Parque Urbano",
       "concelho": "Vila Nova de Gaia",
       "distrito": "Porto",
+      "climaticRegion": "Norte",
       "responsavel": "Jorge Gomes",
       "entidade": "Município",
       "coordinates": {
-        "lat": 41.0921639343844,
-        "lon": -8.560266609605986
+        "lat": 41.098183171145074,
+        "lon": -8.564238731937946
       }
     },
     {
@@ -3706,11 +3772,12 @@
       "tipologia": "Parque Urbano",
       "concelho": "Vila Nova de Gaia",
       "distrito": "Porto",
+      "climaticRegion": "Norte",
       "responsavel": "Jorge Gomes",
       "entidade": "Município",
       "coordinates": {
-        "lat": 41.10361033014882,
-        "lon": -8.552082852066466
+        "lat": 41.093270349933455,
+        "lon": -8.549564918190152
       }
     },
     {
@@ -3751,11 +3818,12 @@
       "tipologia": "Parque Urbano",
       "concelho": "Guimarães",
       "distrito": "Braga",
+      "climaticRegion": "Norte",
       "responsavel": "Guimarães",
       "entidade": "Município",
       "coordinates": {
-        "lat": 41.44133470151699,
-        "lon": -8.28148573097233
+        "lat": 41.44013052274339,
+        "lon": -8.284694035599026
       }
     },
     {
@@ -3796,11 +3864,12 @@
       "tipologia": "Parque Florestal",
       "concelho": "Lisboa",
       "distrito": "Lisboa",
+      "climaticRegion": "Lisboa e Vale do Tejo",
       "responsavel": "Eva Monteiro",
       "entidade": "Particular",
       "coordinates": {
-        "lat": 38.72879601492851,
-        "lon": -9.176766761152985
+        "lat": 38.73632139347097,
+        "lon": -9.174749958818117
       }
     },
     {
@@ -3838,11 +3907,12 @@
       "tipologia": "Parque Urbano",
       "concelho": "Vila Real",
       "distrito": "Vila Real",
+      "climaticRegion": "Norte",
       "responsavel": "Darinka Gonçalves",
       "entidade": "Município",
       "coordinates": {
-        "lat": 41.29673867012936,
-        "lon": -7.735416952095906
+        "lat": 41.30365532899965,
+        "lon": -7.7376115658759
       }
     },
     {
@@ -3890,11 +3960,12 @@
       "tipologia": "Parque Urbano",
       "concelho": "Sesimbra",
       "distrito": "Setúbal",
+      "climaticRegion": "Lisboa e Vale do Tejo",
       "responsavel": "Fernando Pinto",
       "entidade": "Município",
       "coordinates": {
-        "lat": 38.56067764170584,
-        "lon": -9.037863899067533
+        "lat": 38.562024766332414,
+        "lon": -9.036230919137367
       }
     },
     {
@@ -3929,11 +4000,12 @@
       "tipologia": "Parque Urbano",
       "concelho": "Braga",
       "distrito": "Braga",
+      "climaticRegion": "Norte",
       "responsavel": "Letícia Figueiredo",
       "entidade": "Particular",
       "coordinates": {
-        "lat": 41.5615502163465,
-        "lon": -8.39126610964281
+        "lat": 41.55995575591019,
+        "lon": -8.397054337419746
       }
     },
     {
@@ -3972,11 +4044,12 @@
       "tipologia": "Parque Urbano",
       "concelho": "Lisboa",
       "distrito": "Lisboa",
+      "climaticRegion": "Lisboa e Vale do Tejo",
       "responsavel": "Julieta Costa",
       "entidade": "ONGA",
       "coordinates": {
-        "lat": 38.74378878211915,
-        "lon": -9.122818499782465
+        "lat": 38.74541366933863,
+        "lon": -9.127872061100613
       }
     },
     {
@@ -4046,11 +4119,12 @@
       "tipologia": "",
       "concelho": "Lamego",
       "distrito": "Viseu",
+      "climaticRegion": "Centro",
       "responsavel": "",
       "entidade": "Particular",
       "coordinates": {
-        "lat": 41.08469821322293,
-        "lon": -7.852971454247138
+        "lat": 41.0776939955176,
+        "lon": -7.848644947012183
       }
     },
     {
@@ -4096,11 +4170,12 @@
       "tipologia": "?",
       "concelho": "Vila Nova de Poiares",
       "distrito": "Coimbra",
+      "climaticRegion": "Centro",
       "responsavel": "Scott Forbes",
       "entidade": "Particular",
       "coordinates": {
-        "lat": 40.22040691983684,
-        "lon": -8.284667390918665
+        "lat": 40.222109495964716,
+        "lon": -8.286934899748276
       }
     },
     {
@@ -4148,11 +4223,12 @@
       "tipologia": "Parque Urbano",
       "concelho": "Viana do Castelo",
       "distrito": "Viana do Castelo",
+      "climaticRegion": "Norte",
       "responsavel": "Soraia Castro",
       "entidade": "Município",
       "coordinates": {
-        "lat": 41.70241065840987,
-        "lon": -8.81690693310978
+        "lat": 41.706745668259494,
+        "lon": -8.818175896744528
       }
     },
     {
@@ -4194,11 +4270,12 @@
       "tipologia": "",
       "concelho": "Ansião",
       "distrito": "Leiria",
+      "climaticRegion": "Centro",
       "responsavel": "",
       "entidade": "Particular",
       "coordinates": {
-        "lat": 39.92548219426885,
-        "lon": -8.457912078288471
+        "lat": 39.92622457556917,
+        "lon": -8.457520442234783
       }
     },
     {
@@ -4240,11 +4317,12 @@
       "tipologia": "?",
       "concelho": "Lourinhã",
       "distrito": "Lisboa",
+      "climaticRegion": "Lisboa e Vale do Tejo",
       "responsavel": "Hélder Cardoso",
       "entidade": "ONGA",
       "coordinates": {
-        "lat": 39.29826229045298,
-        "lon": -9.218492208073238
+        "lat": 39.29522814008739,
+        "lon": -9.219498314056876
       }
     },
     {
@@ -4300,11 +4378,12 @@
       "tipologia": "N/A",
       "concelho": "Sintra",
       "distrito": "Lisboa",
+      "climaticRegion": "Lisboa e Vale do Tejo",
       "responsavel": "Luis Jordão",
       "entidade": "Particular",
       "coordinates": {
-        "lat": 38.793848132717756,
-        "lon": -9.37232029139335
+        "lat": 38.802639658620514,
+        "lon": -9.379881490390916
       }
     },
     {
@@ -4356,11 +4435,12 @@
       "tipologia": "Área Protegida",
       "concelho": "Cascais",
       "distrito": "Lisboa",
+      "climaticRegion": "Lisboa e Vale do Tejo",
       "responsavel": "Diogo Silva",
       "entidade": "Município",
       "coordinates": {
-        "lat": 38.772436945895215,
-        "lon": -9.46943969143025
+        "lat": 38.75994391235316,
+        "lon": -9.465503220137906
       }
     },
     {
@@ -4414,11 +4494,12 @@
       "tipologia": "Área Protegida",
       "concelho": "Cascais",
       "distrito": "Lisboa",
+      "climaticRegion": "Lisboa e Vale do Tejo",
       "responsavel": "Diogo Silva",
       "entidade": "Município",
       "coordinates": {
-        "lat": 38.762400091285336,
-        "lon": -9.46054646079142
+        "lat": 38.75985523751237,
+        "lon": -9.454453314339997
       }
     },
     {
@@ -4475,11 +4556,12 @@
       "tipologia": "Área Protegida",
       "concelho": "Cascais",
       "distrito": "Lisboa",
+      "climaticRegion": "Lisboa e Vale do Tejo",
       "responsavel": "Diogo Silva",
       "entidade": "Município",
       "coordinates": {
-        "lat": 38.749411614886405,
-        "lon": -9.423428635345395
+        "lat": 38.74523224336408,
+        "lon": -9.416016661325056
       }
     },
     {
@@ -4528,11 +4610,12 @@
       "tipologia": "Área Protegida",
       "concelho": "Cascais",
       "distrito": "Lisboa",
+      "climaticRegion": "Lisboa e Vale do Tejo",
       "responsavel": "Diogo Silva",
       "entidade": "Município",
       "coordinates": {
-        "lat": 38.751420842577474,
-        "lon": -9.412669497313388
+        "lat": 38.74315828746848,
+        "lon": -9.416099529098059
       }
     },
     {
@@ -4585,11 +4668,12 @@
       "tipologia": "Área Protegida",
       "concelho": "Cascais",
       "distrito": "Lisboa",
+      "climaticRegion": "Lisboa e Vale do Tejo",
       "responsavel": "Diogo Silva",
       "entidade": "Município",
       "coordinates": {
-        "lat": 38.76291682476684,
-        "lon": -9.418046791826663
+        "lat": 38.75526132871696,
+        "lon": -9.41596158387584
       }
     },
     {
@@ -4634,11 +4718,12 @@
       "tipologia": "Área Protegida",
       "concelho": "Olhão",
       "distrito": "Faro",
+      "climaticRegion": "Algarve",
       "responsavel": "",
       "entidade": "ONGA",
       "coordinates": {
-        "lat": 37.04389528131374,
-        "lon": -7.815817530783582
+        "lat": 37.04407368743193,
+        "lon": -7.8099814815554796
       }
     },
     {
@@ -4690,11 +4775,12 @@
       "tipologia": "?",
       "concelho": "Sousel",
       "distrito": "Portalegre",
+      "climaticRegion": "Alentejo",
       "responsavel": "Joaquim Pífano",
       "entidade": "Particular",
       "coordinates": {
-        "lat": 38.928410026054,
-        "lon": -7.811088909796627
+        "lat": 38.918208993290015,
+        "lon": -7.799067858711665
       }
     },
     {
@@ -4743,11 +4829,12 @@
       "tipologia": "?",
       "concelho": "Sousel",
       "distrito": "Portalegre",
+      "climaticRegion": "Alentejo",
       "responsavel": "Joaquim Pífano",
       "entidade": "Particular",
       "coordinates": {
-        "lat": 38.90197677536727,
-        "lon": -7.791869648798663
+        "lat": 38.91405519200898,
+        "lon": -7.790215093852519
       }
     },
     {
@@ -4793,11 +4880,12 @@
       "tipologia": "",
       "concelho": "Vila do Bispo",
       "distrito": "Faro",
+      "climaticRegion": "Algarve",
       "responsavel": "",
       "entidade": "Empresa",
       "coordinates": {
-        "lat": 37.069132002065366,
-        "lon": -8.835456277612046
+        "lat": 37.075068524821155,
+        "lon": -8.829999054363507
       }
     },
     {
@@ -4823,11 +4911,12 @@
       "tipologia": "Baldio",
       "concelho": "Almada",
       "distrito": "Setúbal",
+      "climaticRegion": "Lisboa e Vale do Tejo",
       "responsavel": "Joana Barata",
       "entidade": "Particular",
       "coordinates": {
-        "lat": 38.65114277814951,
-        "lon": -9.232559302839826
+        "lat": 38.650609104359894,
+        "lon": -9.243516960630972
       }
     },
     {
@@ -4912,11 +5001,12 @@
       "tipologia": "Rede Natura",
       "concelho": "Vimioso",
       "distrito": "Bragança",
+      "climaticRegion": "Norte",
       "responsavel": "Ângela Cordeiro",
       "entidade": "Município",
       "coordinates": {
-        "lat": 41.63401027508381,
-        "lon": -6.451421382705992
+        "lat": 41.63375371874757,
+        "lon": -6.459841726577577
       }
     },
     {
@@ -4971,11 +5061,12 @@
       "tipologia": "Parque Florestal",
       "concelho": "Sintra",
       "distrito": "Lisboa",
+      "climaticRegion": "Lisboa e Vale do Tejo",
       "responsavel": "Raquel Eiró",
       "entidade": "Particular",
       "coordinates": {
-        "lat": 38.784314593362964,
-        "lon": -9.26858608161827
+        "lat": 38.79474323800357,
+        "lon": -9.263294476443308
       }
     },
     {
@@ -5010,11 +5101,12 @@
       "tipologia": "",
       "concelho": "Valongo",
       "distrito": "Porto",
+      "climaticRegion": "Norte",
       "responsavel": "",
       "entidade": "Particular",
       "coordinates": {
-        "lat": 41.15395369636007,
-        "lon": -8.480215875683557
+        "lat": 41.153566554227496,
+        "lon": -8.485973581685355
       }
     },
     {
@@ -5062,11 +5154,12 @@
       "tipologia": "",
       "concelho": "Gondomar",
       "distrito": "Porto",
+      "climaticRegion": "Norte",
       "responsavel": "",
       "entidade": "Particular",
       "coordinates": {
-        "lat": 41.12978870473711,
-        "lon": -8.485269340639084
+        "lat": 41.12680781668086,
+        "lon": -8.477946384444522
       }
     },
     {
@@ -5123,11 +5216,12 @@
       "tipologia": "Parque Urbano",
       "concelho": "Braga",
       "distrito": "Braga",
+      "climaticRegion": "Norte",
       "responsavel": "Armindo Paulo Salvador",
       "entidade": "Particular",
       "coordinates": {
-        "lat": 41.573138363536046,
-        "lon": -8.408855808850694
+        "lat": 41.56912065806514,
+        "lon": -8.400485515881128
       }
     },
     {
@@ -5162,11 +5256,12 @@
       "tipologia": "Área Verde Urbana",
       "concelho": "Lisboa",
       "distrito": "Lisboa",
+      "climaticRegion": "Lisboa e Vale do Tejo",
       "responsavel": "Julieta Costa",
       "entidade": "Particular",
       "coordinates": {
-        "lat": 38.75494451631594,
-        "lon": -9.166237514198313
+        "lat": 38.76624986795965,
+        "lon": -9.169576141172541
       }
     },
     {
@@ -5216,11 +5311,12 @@
       "tipologia": "",
       "concelho": "Lamego",
       "distrito": "Viseu",
+      "climaticRegion": "Centro",
       "responsavel": "",
       "entidade": "Particular",
       "coordinates": {
-        "lat": 41.075208955245316,
-        "lon": -7.826080928318249
+        "lat": 41.074901997105144,
+        "lon": -7.834503801909045
       }
     },
     {
@@ -5261,11 +5357,12 @@
       "tipologia": "?",
       "concelho": "Bombarral",
       "distrito": "Leiria",
+      "climaticRegion": "Centro",
       "responsavel": "Hélder Cardoso",
       "entidade": "ONGA",
       "coordinates": {
-        "lat": 39.30967342904331,
-        "lon": -9.218591401347847
+        "lat": 39.29768191059466,
+        "lon": -9.222562134150344
       }
     },
     {
@@ -5311,11 +5408,12 @@
       "tipologia": "?",
       "concelho": "Sintra",
       "distrito": "Lisboa",
+      "climaticRegion": "Lisboa e Vale do Tejo",
       "responsavel": "Orkhan Abbasov",
       "entidade": "Particular",
       "coordinates": {
-        "lat": 38.78880296520445,
-        "lon": -9.269680272208719
+        "lat": 38.78445929005994,
+        "lon": -9.271594576222261
       }
     },
     {
@@ -5387,11 +5485,12 @@
       "tipologia": "Rede Natura",
       "concelho": "Vimioso",
       "distrito": "Bragança",
+      "climaticRegion": "Norte",
       "responsavel": "Isabel Sá",
       "entidade": "ONGA",
       "coordinates": {
-        "lat": 41.53594506597662,
-        "lon": -6.507693160678357
+        "lat": 41.529231970591646,
+        "lon": -6.509576641136258
       }
     }
   ],

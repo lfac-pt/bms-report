@@ -16,6 +16,7 @@ export interface TransectStats {
   tipologia: string;
   concelho: string;
   distrito: string;
+  climaticRegion: string;
   responsavel: string;
   entidade: string;
   // Fuzzy coordinates for privacy (approximate location)

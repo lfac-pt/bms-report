@@ -269,6 +269,47 @@ const LOCALITY_TO_CONCELHO = {
 };
 
 /**
+ * Mapping of distritos to climatic regions
+ * Based on Portugal's geographic and climatic divisions
+ */
+const DISTRITO_TO_CLIMATIC_REGION = {
+  // Norte (North) - Atlantic climate
+  'Viana do Castelo': 'Norte',
+  'Braga': 'Norte',
+  'Porto': 'Norte',
+  'Vila Real': 'Norte',
+  'Bragança': 'Norte',
+
+  // Centro (Center) - Transition zone
+  'Aveiro': 'Centro',
+  'Viseu': 'Centro',
+  'Guarda': 'Centro',
+  'Coimbra': 'Centro',
+  'Castelo Branco': 'Centro',
+  'Leiria': 'Centro',
+
+  // Lisboa e Vale do Tejo - Mediterranean influence
+  'Lisboa': 'Lisboa e Vale do Tejo',
+  'Santarém': 'Lisboa e Vale do Tejo',
+  'Setúbal': 'Lisboa e Vale do Tejo',
+
+  // Alentejo - Mediterranean/Continental
+  'Portalegre': 'Alentejo',
+  'Évora': 'Alentejo',
+  'Beja': 'Alentejo',
+
+  // Algarve - Mediterranean
+  'Faro': 'Algarve',
+};
+
+/**
+ * Get climatic region from distrito
+ */
+function getClimaticRegion(distrito) {
+  return DISTRITO_TO_CLIMATIC_REGION[distrito] || 'Desconhecido';
+}
+
+/**
  * Extract Concelho and Distrito from Nominatim response
  */
 function extractLocation(nominatimResponse) {
@@ -453,6 +494,7 @@ function calculateTransectStats(transectId, allData, metadata, location = null, 
     tipologia: metadata['Tipologia'] || '',
     concelho: location ? location.concelho : (metadata['Concelho'] || ''),
     distrito: location ? location.distrito : '',
+    climaticRegion: getClimaticRegion(location ? location.distrito : ''),
     responsavel: metadata['Responsável'] || '',
     entidade: metadata['Entidade'] || '',
     // Fuzzy coordinates for privacy (approximate location only)
