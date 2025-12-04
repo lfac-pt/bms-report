@@ -30,6 +30,7 @@ import {
 import { groupSpeciesByFamily } from "../utils/speciesFamilies";
 import TransectMap from "./TransectMap";
 import TransectTimeline from "./TransectTimeline";
+import SpeciesLink from "./SpeciesLink";
 
 const { Title } = Typography;
 
@@ -69,9 +70,9 @@ function SpeciesList({ species, title }: { species: string[]; title: string }) {
               dataSource={groupedSpecies[family]}
               renderItem={item => (
                 <List.Item style={{ padding: "2px 0", border: "none" }}>
-                  <Typography.Text style={{ fontSize: 11, fontStyle: "italic" }}>
-                    {item}
-                  </Typography.Text>
+                  <div style={{ fontSize: 11 }}>
+                    <SpeciesLink species={item} />
+                  </div>
                 </List.Item>
               )}
             />

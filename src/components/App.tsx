@@ -13,7 +13,6 @@ import ButterflyTransects from "./ButterflyTransects";
 import { Dataset, ButterflyRecord } from "../types/dataset";
 import { NocturnalButterflyRecord } from "../types/nocturnalDataset";
 import { adaptNocturnalDataset, DatasetType } from "../utils/datasetAdapter";
-import { useDatasetType } from "../contexts/DatasetTypeContext";
 
 function getAllYears(dataset: Dataset): number[] {
   const yearsSet = new Set<number>();
@@ -90,8 +89,11 @@ function getTransectNames(dataset: Dataset, datasetType: DatasetType): Record<st
   return transectNames;
 }
 
-function MyApp() {
-  const { datasetType } = useDatasetType();
+interface MyAppProps {
+  datasetType: DatasetType;
+}
+
+function MyApp({ datasetType }: MyAppProps) {
   const [dataset, setDataset] = useState<Dataset>([]);
 
   const [yearsList, setYearsList] = useState<number[]>([]);

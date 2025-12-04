@@ -1,21 +1,12 @@
 import { useMemo } from "react";
-import {
-  Card,
-  Tabs,
-  Table,
-  Alert,
-  Space,
-  Spin,
-  Popover,
-  List,
-  Typography,
-} from "antd";
+import { Card, Tabs, Table, Alert, Space, Spin, Popover, List } from "antd";
 import { Bar } from "react-chartjs-2";
 import { InfoCircleOutlined } from "@ant-design/icons";
 import { TimelineData } from "../types/timelineData";
 import { TransectStats } from "../types/transectStats";
 import { SERIES_COLORS } from "../utils/utils";
 import { filterTimelineByTransects } from "../utils/timelineUtils";
+import SpeciesLink from "./SpeciesLink";
 
 interface TransectTimelineProps {
   timelineData: TimelineData;
@@ -23,11 +14,7 @@ interface TransectTimelineProps {
   loading: boolean;
 }
 
-function TransectTimeline({
-  timelineData,
-  filteredTransects,
-  loading,
-}: TransectTimelineProps) {
+function TransectTimeline({ timelineData, filteredTransects, loading }: TransectTimelineProps) {
   // Filter timeline data based on selected transects
   const filteredTimelineData = useMemo(() => {
     return filterTimelineByTransects(timelineData, filteredTransects);
@@ -36,15 +23,11 @@ function TransectTimeline({
   // Tab 1: Transects Per Year Chart
   const TransectsTab = () => {
     const chartData = {
-      labels: filteredTimelineData.transectsPerYear.map((d) =>
-        d.year.toString()
-      ),
+      labels: filteredTimelineData.transectsPerYear.map(d => d.year.toString()),
       datasets: [
         {
           label: "Número de Transectos",
-          data: filteredTimelineData.transectsPerYear.map(
-            (d) => d.transectCount
-          ),
+          data: filteredTimelineData.transectsPerYear.map(d => d.transectCount),
           backgroundColor: SERIES_COLORS[0],
         },
       ],
@@ -81,10 +64,8 @@ function TransectTimeline({
   // Tab 2: Top 10 Butterflies Per Year
   const ButterfliesTab = () => (
     <Space direction="vertical" size="large" style={{ width: "100%" }}>
-      {[...filteredTimelineData.years].reverse().map((year) => {
-        const top10 = (
-          filteredTimelineData.butterflyFrequencyByYear[year] || []
-        ).slice(0, 10);
+      {[...filteredTimelineData.years].reverse().map(year => {
+        const top10 = (filteredTimelineData.butterflyFrequencyByYear[year] || []).slice(0, 10);
 
         return (
           <Card key={year} type="inner" title={`Ano ${year}`} size="small">
@@ -96,7 +77,7 @@ function TransectTimeline({
                   dataIndex: "species",
                   key: "species",
                   width: 300,
-                  render: (text) => <i>{text}</i>,
+                  render: text => <SpeciesLink species={text} />,
                 },
                 {
                   title: "Frequência",
@@ -123,7 +104,7 @@ function TransectTimeline({
   // Tab 3: Top 5 Diverse Transects Per Year
   const DiversityTab = () => (
     <Space direction="vertical" size="large" style={{ width: "100%" }}>
-      {[...filteredTimelineData.years].reverse().map((year) => {
+      {[...filteredTimelineData.years].reverse().map(year => {
         const top5 = filteredTimelineData.transectDiversityByYear[year] || [];
 
         return (
@@ -150,11 +131,9 @@ function TransectTimeline({
                           <List
                             size="small"
                             dataSource={record.speciesList}
-                            renderItem={(species) => (
+                            renderItem={species => (
                               <List.Item style={{ padding: "2px 0" }}>
-                                <Typography.Text italic>
-                                  {species}
-                                </Typography.Text>
+                                <SpeciesLink species={species} />
                               </List.Item>
                             )}
                           />
@@ -230,9 +209,7 @@ function TransectTimeline({
     );
   }
 
-  return (
-    <Tabs items={items} defaultActiveKey="transects" style={{ marginTop: 16 }} />
-  );
+  return <Tabs items={items} defaultActiveKey="transects" style={{ marginTop: 16 }} />;
 }
 
 export default TransectTimeline;

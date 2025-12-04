@@ -1,5 +1,4 @@
 import { render, screen } from "@testing-library/react";
-import { DatasetTypeProvider } from "../contexts/DatasetTypeContext";
 import App from "./App";
 import Papa from "papaparse";
 import fs from "fs";
@@ -210,11 +209,7 @@ describe("App Smoke Test - Full Application Workflow", () => {
 
   describe("Component Rendering", () => {
     it("should render the application without crashing", () => {
-      render(
-        <DatasetTypeProvider>
-          <App />
-        </DatasetTypeProvider>
-      );
+      render(<App datasetType="diurnal" />);
 
       expect(
         screen.getByText(/Clique ou arraste um ou mais ficheiros para esta área para começar/i)
@@ -222,11 +217,7 @@ describe("App Smoke Test - Full Application Workflow", () => {
     });
 
     it("should render initial upload state with correct message", () => {
-      render(
-        <DatasetTypeProvider>
-          <App />
-        </DatasetTypeProvider>
-      );
+      render(<App datasetType="diurnal" />);
 
       // Should show uploader initially
       expect(screen.getByText(/para esta área para começar/i)).toBeInTheDocument();

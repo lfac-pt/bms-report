@@ -1,8 +1,4 @@
-import {
-  TimelineData,
-  ButterflyFrequencyData,
-  TransectDiversityData,
-} from "../types/timelineData";
+import { TimelineData, ButterflyFrequencyData, TransectDiversityData } from "../types/timelineData";
 import { TransectStats } from "../types/transectStats";
 
 export interface TransectsPerYearData {
@@ -28,29 +24,25 @@ export function filterTimelineByTransects(
   butterflyFrequencyByYear: Record<number, ButterflyFrequencyData[]>;
   transectDiversityByYear: Record<number, EnrichedTransectDiversityData[]>;
 } {
-  const transectIdSet = new Set(filteredTransects.map((t) => t.transectId));
-  const metadataMap = new Map(
-    filteredTransects.map((t) => [t.transectId, t])
-  );
+  const transectIdSet = new Set(filteredTransects.map(t => t.transectId));
+  const metadataMap = new Map(filteredTransects.map(t => [t.transectId, t]));
 
   // Filter years to only those with matching transects
-  const relevantYears = timelineData.years.filter((year) => {
+  const relevantYears = timelineData.years.filter(year => {
     const transectsThisYear = timelineData.transectsByYear[year] || [];
-    return transectsThisYear.some((id) => transectIdSet.has(id));
+    return transectsThisYear.some(id => transectIdSet.has(id));
   });
 
   // Count transects per year (only filtered ones)
-  const transectsPerYear = relevantYears.map((year) => {
+  const transectsPerYear = relevantYears.map(year => {
     const transectsThisYear = timelineData.transectsByYear[year] || [];
-    const filteredCount = transectsThisYear.filter((id) =>
-      transectIdSet.has(id)
-    ).length;
+    const filteredCount = transectsThisYear.filter(id => transectIdSet.has(id)).length;
     return { year, transectCount: filteredCount };
   });
 
   // Recalculate butterfly frequency for filtered transects
   const butterflyFrequencyByYear: Record<number, ButterflyFrequencyData[]> = {};
-  relevantYears.forEach((year) => {
+  relevantYears.forEach(year => {
     const observationsByDate = timelineData.observationsByYearDate[year] || {};
 
     // Get all dates that have observations from the filtered transects
@@ -89,22 +81,18 @@ export function filterTimelineByTransects(
         species,
         frequency: (dateSet.size / totalVisits) * 100,
         visitCount: dateSet.size,
-        totalVisits
+        totalVisits,
       }))
       .sort((a, b) => b.frequency - a.frequency);
   });
 
   // Filter and enrich diversity data
-  const transectDiversityByYear: Record<
-    number,
-    EnrichedTransectDiversityData[]
-  > = {};
-  relevantYears.forEach((year) => {
-    const diversityThisYear =
-      timelineData.transectDiversityByYear[year] || [];
+  const transectDiversityByYear: Record<number, EnrichedTransectDiversityData[]> = {};
+  relevantYears.forEach(year => {
+    const diversityThisYear = timelineData.transectDiversityByYear[year] || [];
     transectDiversityByYear[year] = diversityThisYear
-      .filter((d) => transectIdSet.has(d.transectId))
-      .map((d) => {
+      .filter(d => transectIdSet.has(d.transectId))
+      .map(d => {
         const metadata = metadataMap.get(d.transectId);
         return {
           ...d,
