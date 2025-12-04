@@ -567,9 +567,26 @@ function processTimelineData(allData) {
       }))
       .sort((a, b) => b.diversityCount - a.diversityCount);
 
-    // 4. Store observations by date for butterfly frequency filtering and abundance
+    // 4. Store observations by date for abundance (include ALL species, not just valid ones)
+    // For abundance calculations, we want to count all butterflies, not just validated species
+    const yearDataAllSpecies = allData.filter(row => {
+      const date = row['Date'];
+      if (!date) return false;
+
+      const parts = date.split('/');
+      if (parts.length !== 3) return false;
+
+      const rowYear = parseInt(parts[2], 10);
+      const month = parseInt(parts[1], 10);
+      const species = row['Preferred Species Name'];
+
+      return rowYear === year &&
+             month >= 3 && month <= 9 &&
+             species;  // Only check that species exists, don't filter by VALID_SPECIES
+    });
+
     const observationsByDate = {};
-    yearData.forEach(row => {
+    yearDataAllSpecies.forEach(row => {
       const date = row['Date'];
       const transectId = row['Transect ID'];
       const species = row['Preferred Species Name'].trim();

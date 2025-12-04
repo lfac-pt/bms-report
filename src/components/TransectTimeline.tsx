@@ -175,6 +175,155 @@ function TransectTimeline({ timelineData, filteredTransects, loading }: Transect
     </Space>
   );
 
+  // Tab 4: Monthly Average Abundance
+  const MonthlyAbundanceTab = () => {
+    const transectIdSet = new Set(filteredTransects.map(t => t.transectId));
+    const monthNames = [
+      "Jan",
+      "Fev",
+      "Mar",
+      "Abr",
+      "Mai",
+      "Jun",
+      "Jul",
+      "Ago",
+      "Set",
+      "Out",
+      "Nov",
+      "Dez",
+    ];
+
+    // Calculate monthly data for a specific year
+    const calculateMonthlyDataForYear = (year: number) => {
+      const observationsByDate = timelineData.observationsByYearDate[year] || {};
+
+      // Initialize data for monitoring season months (March to September)
+      const monthlyStats: Record<
+        number,
+        { totalAbundance: number; visitCount: number }
+      > = {};
+      for (let month = 3; month <= 9; month++) {
+        monthlyStats[month] = { totalAbundance: 0, visitCount: 0 };
+      }
+
+      Object.entries(observationsByDate).forEach(([date, observations]) => {
+        // Parse date DD/MM/YYYY
+        const parts = date.split("/");
+        if (parts.length !== 3) return;
+        const month = parseInt(parts[1], 10);
+
+        // Only process monitoring season months
+        if (month < 3 || month > 9) return;
+
+        // Group observations by transect and sum abundances per transect
+        const transectAbundances = new Map<string, number>();
+
+        observations.forEach(([transectId, , abundance]) => {
+          if (transectIdSet.has(transectId)) {
+            const current = transectAbundances.get(transectId) || 0;
+            transectAbundances.set(transectId, current + abundance);
+          }
+        });
+
+        // Count each transect visit separately
+        transectAbundances.forEach((totalAbundance) => {
+          monthlyStats[month].totalAbundance += totalAbundance;
+          monthlyStats[month].visitCount += 1;
+        });
+      });
+
+      // Calculate averages for monitoring season months
+      return Object.entries(monthlyStats)
+        .map(([monthStr, stats]) => {
+          const month = parseInt(monthStr, 10);
+          return {
+            month,
+            monthName: monthNames[month - 1],
+            averageAbundance:
+              stats.visitCount > 0 ? stats.totalAbundance / stats.visitCount : 0,
+            visitCount: stats.visitCount,
+          };
+        })
+        .sort((a, b) => a.month - b.month); // Sort by month number
+    };
+
+    // Calculate data for all years and find the maximum value for consistent y-axis
+    const allYearsData = filteredTimelineData.years.map(year => ({
+      year,
+      data: calculateMonthlyDataForYear(year),
+    }));
+
+    const maxAbundance = Math.max(
+      ...allYearsData.flatMap(yearData =>
+        yearData.data.map(m => m.averageAbundance)
+      ),
+      0
+    );
+
+    // Add some padding to the max value (10%)
+    const yAxisMax = maxAbundance * 1.1;
+
+    return (
+      <Space direction="vertical" size="large" style={{ width: "100%" }}>
+        {[...allYearsData].reverse().map(({ year, data: monthlyData }) => {
+          // Check if there's any data (any month with visits)
+          const hasData = monthlyData.some(m => m.visitCount > 0);
+
+          if (!hasData) {
+            return (
+              <Card key={year} type="inner" title={`Ano ${year}`} size="small">
+                <div style={{ padding: 20, textAlign: "center", color: "#8c8c8c" }}>
+                  Sem dados para este ano
+                </div>
+              </Card>
+            );
+          }
+
+          const chartData = {
+            labels: monthlyData.map(m => m.monthName),
+            datasets: [
+              {
+                label: "Abundância média/visita",
+                data: monthlyData.map(m => m.averageAbundance),
+                backgroundColor: SERIES_COLORS[0],
+              },
+            ],
+          };
+
+          const options = {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+              legend: { display: false },
+            },
+            scales: {
+              y: {
+                beginAtZero: true,
+                max: yAxisMax,
+                title: { display: false },
+              },
+              x: {
+                title: { display: false },
+              },
+            },
+          };
+
+          return (
+            <Card key={year} type="inner" title={`Ano ${year}`} size="small">
+              <div style={{ height: 200 }}>
+                <Bar data={chartData} options={options} />
+              </div>
+            </Card>
+          );
+        })}
+        <Alert
+          message="Mostra a abundância média por visita para cada mês, para os transectos selecionados."
+          type="info"
+        />
+      </Space>
+    );
+  };
+
   // Main tabs
   const items = [
     {
@@ -191,6 +340,11 @@ function TransectTimeline({ timelineData, filteredTransects, loading }: Transect
       key: "diversity",
       label: "Top 5 Transectos Diversos",
       children: <DiversityTab />,
+    },
+    {
+      key: "monthly",
+      label: "Abundância Mensal",
+      children: <MonthlyAbundanceTab />,
     },
   ];
 
