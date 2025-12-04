@@ -7,6 +7,7 @@ import { TransectStats } from "../types/transectStats";
 import { SERIES_COLORS } from "../utils/utils";
 import { filterTimelineByTransects } from "../utils/timelineUtils";
 import SpeciesLink from "./SpeciesLink";
+import { SPECIES_FAMILIES } from "../utils/speciesFamilies";
 
 interface TransectTimelineProps {
   timelineData: TimelineData;
@@ -175,7 +176,167 @@ function TransectTimeline({ timelineData, filteredTransects, loading }: Transect
     </Space>
   );
 
-  // Tab 4: Monthly Average Abundance
+  // Tab 4: Monthly Diversity (Average species per visit)
+  const MonthlyDiversityTab = () => {
+    const transectIdSet = new Set(filteredTransects.map(t => t.transectId));
+    const monthNames = [
+      "Jan",
+      "Fev",
+      "Mar",
+      "Abr",
+      "Mai",
+      "Jun",
+      "Jul",
+      "Ago",
+      "Set",
+      "Out",
+      "Nov",
+      "Dez",
+    ];
+
+    // Calculate monthly diversity for a specific year
+    const calculateMonthlyDiversityForYear = (year: number) => {
+      const observationsByDate = timelineData.observationsByYearDate[year] || {};
+
+      // Initialize data for monitoring season months (March to September)
+      // Track unique species per transect per month
+      const monthlyTransectSpecies: Record<
+        number,
+        Map<string, Set<string>>
+      > = {};
+      for (let month = 3; month <= 9; month++) {
+        monthlyTransectSpecies[month] = new Map();
+      }
+
+      Object.entries(observationsByDate).forEach(([date, observations]) => {
+        // Parse date DD/MM/YYYY
+        const parts = date.split("/");
+        if (parts.length !== 3) return;
+        const month = parseInt(parts[1], 10);
+
+        // Only process monitoring season months
+        if (month < 3 || month > 9) return;
+
+        // Collect unique VALID species per transect for this month
+        observations.forEach(([transectId, species]) => {
+          if (transectIdSet.has(transectId) && SPECIES_FAMILIES[species]) {
+            if (!monthlyTransectSpecies[month].has(transectId)) {
+              monthlyTransectSpecies[month].set(transectId, new Set());
+            }
+            monthlyTransectSpecies[month].get(transectId)!.add(species);
+          }
+        });
+      });
+
+      // Calculate average diversity per transect for each month
+      return Object.entries(monthlyTransectSpecies)
+        .map(([monthStr, transectMap]) => {
+          const month = parseInt(monthStr, 10);
+
+          if (transectMap.size === 0) {
+            return {
+              month,
+              monthName: monthNames[month - 1],
+              averageDiversity: 0,
+              visitCount: 0,
+            };
+          }
+
+          // Calculate total unique species per transect, then average
+          const diversityCounts = Array.from(transectMap.values()).map(
+            speciesSet => speciesSet.size
+          );
+          const totalDiversity = diversityCounts.reduce((sum, count) => sum + count, 0);
+          const averageDiversity = totalDiversity / diversityCounts.length;
+
+          return {
+            month,
+            monthName: monthNames[month - 1],
+            averageDiversity,
+            visitCount: transectMap.size,
+          };
+        })
+        .sort((a, b) => a.month - b.month); // Sort by month number
+    };
+
+    // Calculate data for all years and find the maximum value for consistent y-axis
+    const allYearsData = filteredTimelineData.years.map(year => ({
+      year,
+      data: calculateMonthlyDiversityForYear(year),
+    }));
+
+    const maxDiversity = Math.max(
+      ...allYearsData.flatMap(yearData =>
+        yearData.data.map(m => m.averageDiversity)
+      ),
+      0
+    );
+
+    // Add some padding to the max value (10%)
+    const yAxisMax = maxDiversity * 1.1;
+
+    return (
+      <Space direction="vertical" size="large" style={{ width: "100%" }}>
+        {[...allYearsData].reverse().map(({ year, data: monthlyData }) => {
+          // Check if there's any data (any month with visits)
+          const hasData = monthlyData.some(m => m.visitCount > 0);
+
+          if (!hasData) {
+            return (
+              <Card key={year} type="inner" title={`Ano ${year}`} size="small">
+                <div style={{ padding: 20, textAlign: "center", color: "#8c8c8c" }}>
+                  Sem dados para este ano
+                </div>
+              </Card>
+            );
+          }
+
+          const chartData = {
+            labels: monthlyData.map(m => m.monthName),
+            datasets: [
+              {
+                label: "Diversidade média",
+                data: monthlyData.map(m => m.averageDiversity),
+                backgroundColor: SERIES_COLORS[1],
+              },
+            ],
+          };
+
+          const options = {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+              legend: { display: false },
+            },
+            scales: {
+              y: {
+                beginAtZero: true,
+                max: yAxisMax,
+                title: { display: false },
+              },
+              x: {
+                title: { display: false },
+              },
+            },
+          };
+
+          return (
+            <Card key={year} type="inner" title={`Ano ${year}`} size="small">
+              <div style={{ height: 200 }}>
+                <Bar data={chartData} options={options} />
+              </div>
+            </Card>
+          );
+        })}
+        <Alert
+          message="Mostra o número médio de espécies observadas por visita para cada mês, para os transectos selecionados."
+          type="info"
+        />
+      </Space>
+    );
+  };
+
+  // Tab 5: Monthly Average Abundance
   const MonthlyAbundanceTab = () => {
     const transectIdSet = new Set(filteredTransects.map(t => t.transectId));
     const monthNames = [
@@ -342,7 +503,12 @@ function TransectTimeline({ timelineData, filteredTransects, loading }: Transect
       children: <DiversityTab />,
     },
     {
-      key: "monthly",
+      key: "monthly-diversity",
+      label: "Diversidade Mensal",
+      children: <MonthlyDiversityTab />,
+    },
+    {
+      key: "monthly-abundance",
       label: "Abundância Mensal",
       children: <MonthlyAbundanceTab />,
     },

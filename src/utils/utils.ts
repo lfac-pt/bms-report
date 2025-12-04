@@ -7,6 +7,7 @@ import {
   formatDatePortuguese,
   isDateBefore,
 } from "./fastDateParser";
+import { SPECIES_FAMILIES } from "./speciesFamilies";
 
 export function filterDataset(
   dataset: Dataset,
@@ -31,7 +32,8 @@ export function getAllSpecies(dataset: Dataset): string[] {
   for (const entry of dataset) {
     const species = entry["Preferred Species Name"];
 
-    if (species.split(" ").length === 2) {
+    // Only include species that are in the validated species families list
+    if (SPECIES_FAMILIES[species]) {
       speciesSet.add(species);
     }
   }
@@ -349,8 +351,12 @@ export function getBestMonthForFrequency(
 
   for (const entry of filteredDataset) {
     const monthIndex = getMonthFromDateString(entry.Date);
+    const species = entry["Preferred Species Name"];
 
-    speciesPerMonth[monthIndex].add(entry["Preferred Species Name"]);
+    // Only count species that are in the validated species families list
+    if (SPECIES_FAMILIES[species]) {
+      speciesPerMonth[monthIndex].add(species);
+    }
   }
 
   let maxSpeciesCount = 0;
