@@ -30,6 +30,18 @@ function TransectMap({ transects }: TransectMapProps) {
     return "#ff4d4f"; // Red for inactive
   };
 
+  // Helper function to calculate marker radius based on species count
+  const getMarkerRadius = (transect: TransectStats) => {
+    const speciesCount = transect.totalSpecies || 0;
+    // Scale radius between 2.5 (minimum) and 40 (maximum)
+    // Using square root for better visual scaling
+    const minRadius = 2.5;
+    const maxRadius = 50;
+    const scaleFactor = 1.3; // Adjust this to control how aggressively size scales
+
+    return Math.min(maxRadius, minRadius + Math.sqrt(speciesCount) * scaleFactor);
+  };
+
   // Calculate center and bounds
   const center: [number, number] =
     transectsWithCoords.length > 0
@@ -58,7 +70,7 @@ function TransectMap({ transects }: TransectMapProps) {
             <CircleMarker
               key={transect.transectId}
               center={[transect.coordinates!.lat, transect.coordinates!.lon]}
-              radius={6}
+              radius={getMarkerRadius(transect)}
               pathOptions={{
                 fillColor: getMarkerColor(transect),
                 color: "#fff",
