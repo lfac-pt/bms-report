@@ -1,0 +1,444 @@
+{
+  "metadata": {
+    "baselineYear": 2021,
+    "grasslandSpecies": [
+      {
+        "scientificName": "Anthocharis cardamines",
+        "type": "widespread"
+      },
+      {
+        "scientificName": "Coenonympha pamphilus",
+        "type": "widespread"
+      },
+      {
+        "scientificName": "Lasiommata megera",
+        "type": "widespread"
+      },
+      {
+        "scientificName": "Lycaena phlaeas",
+        "type": "widespread"
+      },
+      {
+        "scientificName": "Maniola jurtina",
+        "type": "widespread"
+      },
+      {
+        "scientificName": "Ochlodes sylvanus",
+        "type": "widespread"
+      },
+      {
+        "scientificName": "Polyommatus icarus",
+        "type": "widespread"
+      },
+      {
+        "scientificName": "Cupido minimus",
+        "type": "specialist"
+      },
+      {
+        "scientificName": "Erynnis tages",
+        "type": "specialist"
+      },
+      {
+        "scientificName": "Euphydryas aurinia",
+        "type": "specialist"
+      },
+      {
+        "scientificName": "Lysandra bellargus",
+        "type": "specialist"
+      },
+      {
+        "scientificName": "Spialia sertorius",
+        "type": "specialist"
+      },
+      {
+        "scientificName": "Thymelicus acteon",
+        "type": "specialist"
+      }
+    ],
+    "qualityCriteria": {
+      "minYearsActive": 5,
+      "minVisitsPerYear": 10
+    },
+    "transectsUsed": [
+      {
+        "transectId": "240215",
+        "transectName": "A Rocha Cruzinha I"
+      },
+      {
+        "transectId": "240222",
+        "transectName": "A Rocha Cruzinha II"
+      },
+      {
+        "transectId": "267250",
+        "transectName": "EBIO Vale de Poios"
+      },
+      {
+        "transectId": "243747",
+        "transectName": "ICNF MNPR Trilho da Mina de Ouro no Conhal"
+      },
+      {
+        "transectId": "256572",
+        "transectName": "ICNF PNA Serra do Louro"
+      },
+      {
+        "transectId": "244448",
+        "transectName": "ICNF PNDI Lamoso"
+      },
+      {
+        "transectId": "265806",
+        "transectName": "ICNF PNDI Vila Ala"
+      },
+      {
+        "transectId": "242415",
+        "transectName": "ICNF PNLN"
+      },
+      {
+        "transectId": "255958",
+        "transectName": "ICNF PNSACV EBIO Barragem da Bravura"
+      },
+      {
+        "transectId": "216760",
+        "transectName": "ICNF PNSSM Cerejeirinha - Marvão"
+      },
+      {
+        "transectId": "243847",
+        "transectName": "ICNF PNSSM SUL Mosteiros"
+      },
+      {
+        "transectId": "272901",
+        "transectName": "ICNF RNES Gambia"
+      },
+      {
+        "transectId": "240324",
+        "transectName": "ICNF RNLSAS Salgueiral da Galiza"
+      },
+      {
+        "transectId": "243008",
+        "transectName": "Mata dos Sete Montes"
+      },
+      {
+        "transectId": "240301",
+        "transectName": "Parque Ambiental de Santa Margarida"
+      },
+      {
+        "transectId": "243659",
+        "transectName": "Parque Ecológico da Várzea da Quinta do Conde"
+      },
+      {
+        "transectId": "241378",
+        "transectName": "Portela de Sintra"
+      },
+      {
+        "transectId": "222006",
+        "transectName": "Sete Fontes - Braga"
+      }
+    ],
+    "calculationMethod": "European GBI (geometric mean of log-linear trends)"
+  },
+  "gbiByYear": {
+    "2021": {
+      "year": 2021,
+      "gbiValue": 100,
+      "speciesIndices": {
+        "Anthocharis cardamines": 100,
+        "Coenonympha pamphilus": 100,
+        "Lasiommata megera": 100,
+        "Lycaena phlaeas": 100,
+        "Maniola jurtina": 100,
+        "Polyommatus icarus": 100,
+        "Euphydryas aurinia": 100,
+        "Lysandra bellargus": 100,
+        "Spialia sertorius": 100,
+        "Thymelicus acteon": 100
+      },
+      "dataQuality": {
+        "transectCount": 18,
+        "totalVisits": 139,
+        "speciesWithData": 10
+      }
+    },
+    "2022": {
+      "year": 2022,
+      "gbiValue": 90.8,
+      "speciesIndices": {
+        "Anthocharis cardamines": 115.21851218624471,
+        "Coenonympha pamphilus": 85.62613176182072,
+        "Lasiommata megera": 112.55826935192879,
+        "Lycaena phlaeas": 105.61516161059853,
+        "Maniola jurtina": 111.58978343149177,
+        "Polyommatus icarus": 58.48374697366542,
+        "Euphydryas aurinia": 86.71147108846647,
+        "Lysandra bellargus": 96.92084505298034,
+        "Spialia sertorius": 72.85464452433791,
+        "Thymelicus acteon": 81.28787251815565
+      },
+      "dataQuality": {
+        "transectCount": 17,
+        "totalVisits": 143,
+        "speciesWithData": 10
+      }
+    },
+    "2023": {
+      "year": 2023,
+      "gbiValue": 82.45,
+      "speciesIndices": {
+        "Anthocharis cardamines": 132.7530555041182,
+        "Coenonympha pamphilus": 73.31834440492683,
+        "Lasiommata megera": 126.69363999501353,
+        "Lycaena phlaeas": 111.5456236203285,
+        "Maniola jurtina": 124.52279766287235,
+        "Polyommatus icarus": 34.20348660079719,
+        "Euphydryas aurinia": 75.18879218325958,
+        "Lysandra bellargus": 93.93650205783824,
+        "Spialia sertorius": 53.0779922876764,
+        "Thymelicus acteon": 66.07718218527924
+      },
+      "dataQuality": {
+        "transectCount": 18,
+        "totalVisits": 151,
+        "speciesWithData": 10
+      }
+    },
+    "2024": {
+      "year": 2024,
+      "gbiValue": 74.86,
+      "speciesIndices": {
+        "Anthocharis cardamines": 152.95609543362465,
+        "Coenonympha pamphilus": 62.77966218574815,
+        "Lasiommata megera": 142.6041685573503,
+        "Lycaena phlaeas": 117.80909065615992,
+        "Maniola jurtina": 138.95472023483396,
+        "Polyommatus icarus": 20.003480559781785,
+        "Euphydryas aurinia": 65.19730779575427,
+        "Lysandra bellargus": 91.04405160766709,
+        "Spialia sertorius": 38.66978260184213,
+        "Thymelicus acteon": 53.71273561835924
+      },
+      "dataQuality": {
+        "transectCount": 18,
+        "totalVisits": 137,
+        "speciesWithData": 10
+      }
+    },
+    "2025": {
+      "year": 2025,
+      "gbiValue": 67.97,
+      "speciesIndices": {
+        "Anthocharis cardamines": 176.2337374567949,
+        "Coenonympha pamphilus": 53.755796262794654,
+        "Lasiommata megera": 160.5127841518609,
+        "Lycaena phlaeas": 124.42426148847983,
+        "Maniola jurtina": 155.05927137788646,
+        "Polyommatus icarus": 11.69878495650913,
+        "Euphydryas aurinia": 56.53354469977396,
+        "Lysandra bellargus": 88.24066418862246,
+        "Spialia sertorius": 28.17273265290635,
+        "Thymelicus acteon": 43.661940055465834
+      },
+      "dataQuality": {
+        "transectCount": 18,
+        "totalVisits": 128,
+        "speciesWithData": 10
+      }
+    }
+  },
+  "speciesTrends": {
+    "Anthocharis cardamines": {
+      "species": "Anthocharis cardamines",
+      "type": "widespread",
+      "slope": 0.14166024542462252,
+      "yearsWithData": [
+        2021,
+        2022,
+        2023,
+        2024,
+        2025
+      ],
+      "annualIndices": {
+        "2021": 100,
+        "2022": 115.21851218624471,
+        "2023": 132.7530555041182,
+        "2024": 152.95609543362465,
+        "2025": 176.2337374567949
+      }
+    },
+    "Coenonympha pamphilus": {
+      "species": "Coenonympha pamphilus",
+      "type": "widespread",
+      "slope": -0.1551796718367541,
+      "yearsWithData": [
+        2021,
+        2022,
+        2023,
+        2024,
+        2025
+      ],
+      "annualIndices": {
+        "2021": 100,
+        "2022": 85.62613176182072,
+        "2023": 73.31834440492683,
+        "2024": 62.77966218574815,
+        "2025": 53.755796262794654
+      }
+    },
+    "Lasiommata megera": {
+      "species": "Lasiommata megera",
+      "type": "widespread",
+      "slope": 0.11830085136161017,
+      "yearsWithData": [
+        2021,
+        2022,
+        2023,
+        2024,
+        2025
+      ],
+      "annualIndices": {
+        "2021": 100,
+        "2022": 112.55826935192879,
+        "2023": 126.69363999501353,
+        "2024": 142.6041685573503,
+        "2025": 160.5127841518609
+      }
+    },
+    "Lycaena phlaeas": {
+      "species": "Lycaena phlaeas",
+      "type": "widespread",
+      "slope": 0.05463175083598344,
+      "yearsWithData": [
+        2021,
+        2022,
+        2023,
+        2024,
+        2025
+      ],
+      "annualIndices": {
+        "2021": 100,
+        "2022": 105.61516161059853,
+        "2023": 111.5456236203285,
+        "2024": 117.80909065615992,
+        "2025": 124.42426148847983
+      }
+    },
+    "Maniola jurtina": {
+      "species": "Maniola jurtina",
+      "type": "widespread",
+      "slope": 0.10965931345570197,
+      "yearsWithData": [
+        2021,
+        2022,
+        2023,
+        2024,
+        2025
+      ],
+      "annualIndices": {
+        "2021": 100,
+        "2022": 111.58978343149177,
+        "2023": 124.52279766287235,
+        "2024": 138.95472023483396,
+        "2025": 155.05927137788646
+      }
+    },
+    "Polyommatus icarus": {
+      "species": "Polyommatus icarus",
+      "type": "widespread",
+      "slope": -0.5364212998620417,
+      "yearsWithData": [
+        2021,
+        2022,
+        2023,
+        2024,
+        2025
+      ],
+      "annualIndices": {
+        "2021": 100,
+        "2022": 58.48374697366542,
+        "2023": 34.20348660079719,
+        "2024": 20.003480559781785,
+        "2025": 11.69878495650913
+      }
+    },
+    "Euphydryas aurinia": {
+      "species": "Euphydryas aurinia",
+      "type": "specialist",
+      "slope": -0.14258400312805405,
+      "yearsWithData": [
+        2021,
+        2022,
+        2023,
+        2024,
+        2025
+      ],
+      "annualIndices": {
+        "2021": 100,
+        "2022": 86.71147108846647,
+        "2023": 75.18879218325958,
+        "2024": 65.19730779575427,
+        "2025": 56.53354469977396
+      }
+    },
+    "Lysandra bellargus": {
+      "species": "Lysandra bellargus",
+      "type": "specialist",
+      "slope": -0.03127557100039041,
+      "yearsWithData": [
+        2021,
+        2022,
+        2023,
+        2024,
+        2025
+      ],
+      "annualIndices": {
+        "2021": 100,
+        "2022": 96.92084505298034,
+        "2023": 93.93650205783824,
+        "2024": 91.04405160766709,
+        "2025": 88.24066418862246
+      }
+    },
+    "Spialia sertorius": {
+      "species": "Spialia sertorius",
+      "type": "specialist",
+      "slope": -0.31670390075539845,
+      "yearsWithData": [
+        2021,
+        2022,
+        2023,
+        2024,
+        2025
+      ],
+      "annualIndices": {
+        "2021": 100,
+        "2022": 72.85464452433791,
+        "2023": 53.0779922876764,
+        "2024": 38.66978260184213,
+        "2025": 28.17273265290635
+      }
+    },
+    "Thymelicus acteon": {
+      "species": "Thymelicus acteon",
+      "type": "specialist",
+      "slope": -0.20717335007958637,
+      "yearsWithData": [
+        2021,
+        2022,
+        2023,
+        2024,
+        2025
+      ],
+      "annualIndices": {
+        "2021": 100,
+        "2022": 81.28787251815565,
+        "2023": 66.07718218527924,
+        "2024": 53.71273561835924,
+        "2025": 43.661940055465834
+      }
+    }
+  },
+  "years": [
+    2021,
+    2022,
+    2023,
+    2024,
+    2025
+  ]
+}

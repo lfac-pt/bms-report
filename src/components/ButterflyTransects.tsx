@@ -20,6 +20,7 @@ import type { ColumnsType } from "antd/es/table";
 import type { MenuProps } from "antd";
 import { TransectStats, TransectData, ProcessingMetadata } from "../types/transectStats";
 import { TimelineData } from "../types/timelineData";
+import { GBIData } from "../types/gbiData";
 import {
   SearchOutlined,
   BarChartOutlined,
@@ -31,6 +32,7 @@ import { groupSpeciesByFamily } from "../utils/speciesFamilies";
 import TransectMap from "./TransectMap";
 import TransectTimeline from "./TransectTimeline";
 import SpeciesLink from "./SpeciesLink";
+import GrasslandButterflyIndex from "./charts/GrasslandButterflyIndex";
 
 const { Title } = Typography;
 
@@ -188,6 +190,10 @@ function ButterflyTransects() {
   const [timelineData, setTimelineData] = useState<TimelineData | null>(null);
   const [timelineLoading, setTimelineLoading] = useState(true);
 
+  // GBI data state
+  const [gbiData, setGbiData] = useState<GBIData | null>(null);
+  const [gbiLoading, setGbiLoading] = useState(true);
+
   // Column visibility state - Entidade, Concelho, Distrito, and Visitas hidden by default
   const [visibleColumns, setVisibleColumns] = useState<Record<string, boolean>>({
     transectName: true,
@@ -227,6 +233,20 @@ function ButterflyTransects() {
       })
       .catch(() => {
         setTimelineLoading(false);
+      });
+  }, []);
+
+  useEffect(() => {
+    // Load GBI data
+    window
+      .fetch("/data/gbi-data.json")
+      .then(response => response.json())
+      .then((data: GBIData) => {
+        setGbiData(data);
+        setGbiLoading(false);
+      })
+      .catch(() => {
+        setGbiLoading(false);
       });
   }, []);
 
@@ -766,6 +786,11 @@ function ButterflyTransects() {
           </Card>
         </Col>
       </Row>
+
+      {/* Grassland Butterfly Index Chart */}
+      <div style={{ marginTop: 24 }}>
+        <GrasslandButterflyIndex gbiData={gbiData} loading={gbiLoading} />
+      </div>
 
       {/* Search and Column Configuration */}
       <Space>
