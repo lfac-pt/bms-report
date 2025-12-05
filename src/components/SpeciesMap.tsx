@@ -1,6 +1,10 @@
 import { MapContainer, TileLayer, CircleMarker, Popup } from "react-leaflet";
 import { Bar } from "react-chartjs-2";
-import { SpeciesTransectData, MonthlyAbundance, calculateMonthlyAbundance } from "../utils/speciesMapUtils";
+import {
+  SpeciesTransectData,
+  MonthlyAbundance,
+  calculateMonthlyAbundance,
+} from "../utils/speciesMapUtils";
 import { TimelineData } from "../types/timelineData";
 import "leaflet/dist/leaflet.css";
 
@@ -22,11 +26,13 @@ function MonthlyAbundanceChart({ monthlyData }: MonthlyChartProps) {
 
   const chartData = {
     labels: monthlyData.map(m => m.monthName),
-    datasets: [{
-      label: "Abundância média/visita",
-      data: monthlyData.map(m => m.averageAbundance),
-      backgroundColor: "#1890ff",
-    }]
+    datasets: [
+      {
+        label: "Abundância média/visita",
+        data: monthlyData.map(m => m.averageAbundance),
+        backgroundColor: "#1890ff",
+      },
+    ],
   };
 
   const options = {
@@ -42,8 +48,8 @@ function MonthlyAbundanceChart({ monthlyData }: MonthlyChartProps) {
       },
       x: {
         title: { display: false },
-      }
-    }
+      },
+    },
   };
 
   return (
@@ -64,70 +70,69 @@ function SpeciesMap({ transects, speciesName, year, timelineData }: SpeciesMapPr
 
   return (
     <div>
-      <MapContainer
-        center={[avgLat, avgLon]}
-        zoom={6}
-        style={{ height: "300px", width: "100%" }}
-      >
-      <TileLayer
-        attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-        url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-      />
-      {transects.map(transect => {
-        // Grey for absent, blue for present
-        const color = transect.hasSpecies ? "#1890ff" : "#d9d9d9";
+      <MapContainer center={[avgLat, avgLon]} zoom={6} style={{ height: "300px", width: "100%" }}>
+        <TileLayer
+          attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+          url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+        />
+        {transects.map(transect => {
+          // Grey for absent, blue for present
+          const color = transect.hasSpecies ? "#1890ff" : "#d9d9d9";
 
-        // Calculate radius based on average abundance
-        // Absent species: small grey circle (radius 5)
-        // Present species with <10 visits: minimum size (radius 8)
-        // Present species with >=10 visits: radius based on abundance (min 8, max 25)
-        let radius = 5;
-        if (transect.hasSpecies) {
-          if (transect.totalVisits < 10) {
-            radius = 8; // Minimum size for low sample size
-          } else {
-            radius = Math.max(8, Math.min(25, 8 + transect.averageAbundance * 1.5));
+          // Calculate radius based on average abundance
+          // Absent species: small grey circle (radius 5)
+          // Present species with <10 visits: minimum size (radius 8)
+          // Present species with >=10 visits: radius based on abundance (min 8, max 25)
+          let radius = 5;
+          if (transect.hasSpecies) {
+            if (transect.totalVisits < 10) {
+              radius = 8; // Minimum size for low sample size
+            } else {
+              radius = Math.max(8, Math.min(25, 8 + transect.averageAbundance * 1.5));
+            }
           }
-        }
 
-        // Calculate monthly abundance data for this transect
-        const monthlyData = transect.hasSpecies
-          ? calculateMonthlyAbundance(speciesName, transect.transectId, year, timelineData)
-          : [];
+          // Calculate monthly abundance data for this transect
+          const monthlyData = transect.hasSpecies
+            ? calculateMonthlyAbundance(speciesName, transect.transectId, year, timelineData)
+            : [];
 
-        return (
-          <CircleMarker
-            key={transect.transectId}
-            center={[transect.lat, transect.lon]}
-            radius={radius}
-            pathOptions={{
-              color: color,
-              fillColor: color,
-              fillOpacity: transect.hasSpecies ? 0.6 : 0.3,
-              weight: 2,
-            }}
-          >
-            <Popup>
-              <div style={{ minWidth: 200 }}>
-                <strong>{transect.transectName}</strong>
-                <br />
-                <br />
-                {transect.hasSpecies ? (
-                  <>
-                    <div>Avistada em {transect.visitCount} de {transect.totalVisits} visitas</div>
-                    <div>
-                      Frequência: {((transect.visitCount / transect.totalVisits) * 100).toFixed(1)}%
-                    </div>
-                    <MonthlyAbundanceChart monthlyData={monthlyData} />
-                  </>
-                ) : (
-                  <div style={{ color: "#8c8c8c" }}>Espécie não avistada</div>
-                )}
-              </div>
-            </Popup>
-          </CircleMarker>
-        );
-      })}
+          return (
+            <CircleMarker
+              key={transect.transectId}
+              center={[transect.lat, transect.lon]}
+              radius={radius}
+              pathOptions={{
+                color: color,
+                fillColor: color,
+                fillOpacity: transect.hasSpecies ? 0.6 : 0.3,
+                weight: 2,
+              }}
+            >
+              <Popup>
+                <div style={{ minWidth: 200 }}>
+                  <strong>{transect.transectName}</strong>
+                  <br />
+                  <br />
+                  {transect.hasSpecies ? (
+                    <>
+                      <div>
+                        Avistada em {transect.visitCount} de {transect.totalVisits} visitas
+                      </div>
+                      <div>
+                        Frequência:{" "}
+                        {((transect.visitCount / transect.totalVisits) * 100).toFixed(1)}%
+                      </div>
+                      <MonthlyAbundanceChart monthlyData={monthlyData} />
+                    </>
+                  ) : (
+                    <div style={{ color: "#8c8c8c" }}>Espécie não avistada</div>
+                  )}
+                </div>
+              </Popup>
+            </CircleMarker>
+          );
+        })}
       </MapContainer>
     </div>
   );

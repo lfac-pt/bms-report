@@ -35,13 +35,7 @@ import SpeciesLink from "./SpeciesLink";
 const { Title } = Typography;
 
 // Define the canonical family order
-const FAMILY_ORDER = [
-  "Hesperiidae",
-  "Papilionidae",
-  "Pieridae",
-  "Nymphalidae",
-  "Lycaenidae",
-];
+const FAMILY_ORDER = ["Hesperiidae", "Papilionidae", "Pieridae", "Nymphalidae", "Lycaenidae"];
 
 // Component for species list with search and family grouping
 function SpeciesList({ species, title }: { species: string[]; title: string }) {
@@ -794,9 +788,12 @@ function ButterflyTransects() {
               }
 
               if (filters.climaticRegion !== undefined) {
-                const newFilters = filters.climaticRegion ? (filters.climaticRegion as string[]) : [];
+                const newFilters = filters.climaticRegion
+                  ? (filters.climaticRegion as string[])
+                  : [];
                 const changed =
-                  JSON.stringify(newFilters.sort()) !== JSON.stringify([...climaticRegionFilters].sort());
+                  JSON.stringify(newFilters.sort()) !==
+                  JSON.stringify([...climaticRegionFilters].sort());
                 if (changed) {
                   setClimaticRegionFilters(newFilters);
                   filtersChanged = true;

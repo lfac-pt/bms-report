@@ -49,7 +49,7 @@ export function filterTimelineByTransects(
     const relevantDates = new Set<string>();
     Object.entries(observationsByDate).forEach(([date, observations]) => {
       // Check if any observation on this date is from a filtered transect
-      const hasFilteredTransect = observations.some(([transectId, , ]) =>
+      const hasFilteredTransect = observations.some(([transectId, ,]) =>
         transectIdSet.has(transectId)
       );
       if (hasFilteredTransect) {
@@ -65,7 +65,7 @@ export function filterTimelineByTransects(
       if (!relevantDates.has(date)) return;
 
       // For this date, collect species from filtered transects only
-      observations.forEach(([transectId, species, ]) => {
+      observations.forEach(([transectId, species]) => {
         if (!transectIdSet.has(transectId)) return;
 
         if (!speciesVisitsMap.has(species)) {

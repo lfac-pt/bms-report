@@ -32,12 +32,15 @@ export function calculateSpeciesPresenceByYear(
   const transectsThisYear = new Set(timelineData.transectsByYear[year] || []);
 
   // Create a map to store data per transect
-  const transectDataMap = new Map<string, {
-    hasSpecies: boolean;
-    totalAbundance: number;
-    visitCount: number;
-    totalVisits: number;
-  }>();
+  const transectDataMap = new Map<
+    string,
+    {
+      hasSpecies: boolean;
+      totalAbundance: number;
+      visitCount: number;
+      totalVisits: number;
+    }
+  >();
 
   // Initialize all transects that were active this year
   transectsThisYear.forEach(transectId => {
@@ -52,7 +55,7 @@ export function calculateSpeciesPresenceByYear(
   // Count total visits per transect
   const transectVisits = new Map<string, Set<string>>();
   Object.entries(observationsByDate).forEach(([date, observations]) => {
-    observations.forEach(([transectId, , ]) => {
+    observations.forEach(([transectId, ,]) => {
       if (!transectVisits.has(transectId)) {
         transectVisits.set(transectId, new Set());
       }
@@ -73,7 +76,7 @@ export function calculateSpeciesPresenceByYear(
   const speciesVisitsByTransect = new Map<string, Set<string>>();
 
   Object.entries(observationsByDate).forEach(([date, observations]) => {
-    observations.forEach(([transectId, species, ]) => {
+    observations.forEach(([transectId, species]) => {
       if (species === speciesName) {
         const data = transectDataMap.get(transectId);
         if (data) {
@@ -108,9 +111,10 @@ export function calculateSpeciesPresenceByYear(
 
       // Calculate average abundance (for now, we'll use visit frequency as a proxy)
       // A better approach would be to process actual abundance counts from raw data
-      const averageAbundance = data.totalVisits > 0
-        ? (data.visitCount / data.totalVisits) * 10 // Scale to make circles visible
-        : 0;
+      const averageAbundance =
+        data.totalVisits > 0
+          ? (data.visitCount / data.totalVisits) * 10 // Scale to make circles visible
+          : 0;
 
       return {
         transectId,
@@ -138,8 +142,18 @@ export function calculateMonthlyAbundance(
   const observationsByDate = timelineData.observationsByYearDate[year] || {};
 
   const monthNames = [
-    "Jan", "Fev", "Mar", "Abr", "Mai", "Jun",
-    "Jul", "Ago", "Set", "Out", "Nov", "Dez"
+    "Jan",
+    "Fev",
+    "Mar",
+    "Abr",
+    "Mai",
+    "Jun",
+    "Jul",
+    "Ago",
+    "Set",
+    "Out",
+    "Nov",
+    "Dez",
   ];
 
   // Initialize monthly data for all months
@@ -151,7 +165,7 @@ export function calculateMonthlyAbundance(
   // Process observations
   Object.entries(observationsByDate).forEach(([date, observations]) => {
     // Parse date DD/MM/YYYY
-    const parts = date.split('/');
+    const parts = date.split("/");
     if (parts.length !== 3) return;
     const month = parseInt(parts[1], 10);
 

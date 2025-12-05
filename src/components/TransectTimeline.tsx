@@ -200,10 +200,7 @@ function TransectTimeline({ timelineData, filteredTransects, loading }: Transect
 
       // Initialize data for monitoring season months (March to September)
       // Track unique species per transect per month
-      const monthlyTransectSpecies: Record<
-        number,
-        Map<string, Set<string>>
-      > = {};
+      const monthlyTransectSpecies: Record<number, Map<string, Set<string>>> = {};
       for (let month = 3; month <= 9; month++) {
         monthlyTransectSpecies[month] = new Map();
       }
@@ -266,9 +263,7 @@ function TransectTimeline({ timelineData, filteredTransects, loading }: Transect
     }));
 
     const maxDiversity = Math.max(
-      ...allYearsData.flatMap(yearData =>
-        yearData.data.map(m => m.averageDiversity)
-      ),
+      ...allYearsData.flatMap(yearData => yearData.data.map(m => m.averageDiversity)),
       0
     );
 
@@ -359,10 +354,7 @@ function TransectTimeline({ timelineData, filteredTransects, loading }: Transect
       const observationsByDate = timelineData.observationsByYearDate[year] || {};
 
       // Initialize data for monitoring season months (March to September)
-      const monthlyStats: Record<
-        number,
-        { totalAbundance: number; visitCount: number }
-      > = {};
+      const monthlyStats: Record<number, { totalAbundance: number; visitCount: number }> = {};
       for (let month = 3; month <= 9; month++) {
         monthlyStats[month] = { totalAbundance: 0, visitCount: 0 };
       }
@@ -387,7 +379,7 @@ function TransectTimeline({ timelineData, filteredTransects, loading }: Transect
         });
 
         // Count each transect visit separately
-        transectAbundances.forEach((totalAbundance) => {
+        transectAbundances.forEach(totalAbundance => {
           monthlyStats[month].totalAbundance += totalAbundance;
           monthlyStats[month].visitCount += 1;
         });
@@ -400,8 +392,7 @@ function TransectTimeline({ timelineData, filteredTransects, loading }: Transect
           return {
             month,
             monthName: monthNames[month - 1],
-            averageAbundance:
-              stats.visitCount > 0 ? stats.totalAbundance / stats.visitCount : 0,
+            averageAbundance: stats.visitCount > 0 ? stats.totalAbundance / stats.visitCount : 0,
             visitCount: stats.visitCount,
           };
         })
@@ -415,9 +406,7 @@ function TransectTimeline({ timelineData, filteredTransects, loading }: Transect
     }));
 
     const maxAbundance = Math.max(
-      ...allYearsData.flatMap(yearData =>
-        yearData.data.map(m => m.averageAbundance)
-      ),
+      ...allYearsData.flatMap(yearData => yearData.data.map(m => m.averageAbundance)),
       0
     );
 

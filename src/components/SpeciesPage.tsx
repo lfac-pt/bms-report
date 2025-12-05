@@ -15,13 +15,7 @@ import endangeredSpeciesEurope from "../utils/endangered_eu";
 const { Title, Text } = Typography;
 
 // Define the canonical family order
-const FAMILY_ORDER = [
-  "Hesperiidae",
-  "Papilionidae",
-  "Pieridae",
-  "Nymphalidae",
-  "Lycaenidae",
-];
+const FAMILY_ORDER = ["Hesperiidae", "Papilionidae", "Pieridae", "Nymphalidae", "Lycaenidae"];
 
 // Helper function to get full endangerment description
 function getEndangermentDescription(status: string): string {
@@ -70,7 +64,20 @@ function SpeciesPage() {
   const regionalMonthlyData = useMemo(() => {
     if (!timelineData || !transectData) return {};
 
-    const monthNames = ["Jan", "Fev", "Mar", "Abr", "Mai", "Jun", "Jul", "Ago", "Set", "Out", "Nov", "Dez"];
+    const monthNames = [
+      "Jan",
+      "Fev",
+      "Mar",
+      "Abr",
+      "Mai",
+      "Jun",
+      "Jul",
+      "Ago",
+      "Set",
+      "Out",
+      "Nov",
+      "Dez",
+    ];
 
     // Filter years to exclude 2019
     const filteredYears = timelineData.years.filter(y => y !== 2019);
@@ -198,7 +205,8 @@ function SpeciesPage() {
                 .map(([monthStr, stats]) => ({
                   month: parseInt(monthStr, 10),
                   monthName: monthNames[parseInt(monthStr, 10) - 1],
-                  averageAbundance: stats.visitCount > 0 ? stats.totalAbundance / stats.visitCount : 0,
+                  averageAbundance:
+                    stats.visitCount > 0 ? stats.totalAbundance / stats.visitCount : 0,
                 }))
                 .sort((a, b) => a.month - b.month),
             };
@@ -223,7 +231,7 @@ function SpeciesPage() {
   if (timelineData) {
     Object.values(timelineData.observationsByYearDate).forEach(yearData => {
       Object.values(yearData).forEach(observations => {
-        observations.forEach(([, species, ]) => {
+        observations.forEach(([, species]) => {
           speciesWithRecords.add(species);
         });
       });
@@ -323,7 +331,8 @@ function SpeciesPage() {
           <Text strong style={{ fontSize: 16 }}>
             Família: {family}
           </Text>
-          {(endangeredSpeciesPT[decodedSpeciesName] || endangeredSpeciesEurope[decodedSpeciesName]) && (
+          {(endangeredSpeciesPT[decodedSpeciesName] ||
+            endangeredSpeciesEurope[decodedSpeciesName]) && (
             <Alert
               message={
                 endangeredSpeciesPT[decodedSpeciesName]
@@ -378,7 +387,11 @@ function SpeciesPage() {
               const { data } = regionData as { transectCount: number; data: any };
 
               if (yearViewMode === "combined") {
-                const monthlyData = data as Array<{ month: number; monthName: string; averageAbundance: number }>;
+                const monthlyData = data as Array<{
+                  month: number;
+                  monthName: string;
+                  averageAbundance: number;
+                }>;
                 return monthlyData.some(m => m.averageAbundance > 0);
               } else {
                 const yearlyData = data as Array<{
@@ -405,7 +418,11 @@ function SpeciesPage() {
                 const { data } = regionData as { transectCount: number; data: any };
 
                 if (yearViewMode === "combined") {
-                  const monthlyData = data as Array<{ month: number; monthName: string; averageAbundance: number }>;
+                  const monthlyData = data as Array<{
+                    month: number;
+                    monthName: string;
+                    averageAbundance: number;
+                  }>;
                   return monthlyData.map(m => m.averageAbundance);
                 } else {
                   const yearlyData = data as Array<{
@@ -423,11 +440,11 @@ function SpeciesPage() {
 
             // Define geographical order (north to south)
             const regionOrder: Record<string, number> = {
-              "Norte": 1,
-              "Centro": 2,
+              Norte: 1,
+              Centro: 2,
               "Lisboa e Vale do Tejo": 3,
-              "Alentejo": 4,
-              "Algarve": 5,
+              Alentejo: 4,
+              Algarve: 5,
             };
 
             return (
@@ -450,98 +467,112 @@ function SpeciesPage() {
                     };
 
                     if (yearViewMode === "combined") {
-                      const monthlyData = data as Array<{ month: number; monthName: string; averageAbundance: number }>;
+                      const monthlyData = data as Array<{
+                        month: number;
+                        monthName: string;
+                        averageAbundance: number;
+                      }>;
 
                       if (monthlyData.every(m => m.averageAbundance === 0)) {
                         return null; // Skip regions with no data
                       }
 
-                const chartData = {
-                  labels: monthlyData.map(m => m.monthName),
-                  datasets: [
-                    {
-                      label: "Abundância média/visita",
-                      data: monthlyData.map(m => m.averageAbundance),
-                      backgroundColor: SERIES_COLORS[0],
-                    },
-                  ],
-                };
+                      const chartData = {
+                        labels: monthlyData.map(m => m.monthName),
+                        datasets: [
+                          {
+                            label: "Abundância média/visita",
+                            data: monthlyData.map(m => m.averageAbundance),
+                            backgroundColor: SERIES_COLORS[0],
+                          },
+                        ],
+                      };
 
-                const options = {
-                  responsive: true,
-                  maintainAspectRatio: false,
-                  plugins: {
-                    legend: { display: false },
-                  },
-                  scales: {
-                    y: {
-                      beginAtZero: true,
-                      max: yAxisMax,
-                      title: { display: false },
-                    },
-                    x: {
-                      title: { display: false },
-                    },
-                  },
-                };
+                      const options = {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        plugins: {
+                          legend: { display: false },
+                        },
+                        scales: {
+                          y: {
+                            beginAtZero: true,
+                            max: yAxisMax,
+                            title: { display: false },
+                          },
+                          x: {
+                            title: { display: false },
+                          },
+                        },
+                      };
 
-                return (
-                  <Card key={region} type="inner" title={`${region} (${transectCount} transectos)`} size="small">
-                    <div style={{ height: 250 }}>
-                      <Bar data={chartData} options={options} />
-                    </div>
-                  </Card>
-                );
-              } else {
-                // Separate years
-                const yearlyData = data as Array<{
-                  year: number;
-                  data: Array<{ month: number; monthName: string; averageAbundance: number }>;
-                }>;
+                      return (
+                        <Card
+                          key={region}
+                          type="inner"
+                          title={`${region} (${transectCount} transectos)`}
+                          size="small"
+                        >
+                          <div style={{ height: 250 }}>
+                            <Bar data={chartData} options={options} />
+                          </div>
+                        </Card>
+                      );
+                    } else {
+                      // Separate years
+                      const yearlyData = data as Array<{
+                        year: number;
+                        data: Array<{ month: number; monthName: string; averageAbundance: number }>;
+                      }>;
 
-                if (yearlyData.every(yd => yd.data.every(m => m.averageAbundance === 0))) {
-                  return null; // Skip regions with no data
-                }
+                      if (yearlyData.every(yd => yd.data.every(m => m.averageAbundance === 0))) {
+                        return null; // Skip regions with no data
+                      }
 
-                const monthNames = yearlyData[0]?.data.map(m => m.monthName) || [];
-                const datasets = yearlyData.map((yd, idx) => ({
-                  label: yd.year.toString(),
-                  data: yd.data.map(m => m.averageAbundance),
-                  backgroundColor: SERIES_COLORS[idx % SERIES_COLORS.length],
-                }));
+                      const monthNames = yearlyData[0]?.data.map(m => m.monthName) || [];
+                      const datasets = yearlyData.map((yd, idx) => ({
+                        label: yd.year.toString(),
+                        data: yd.data.map(m => m.averageAbundance),
+                        backgroundColor: SERIES_COLORS[idx % SERIES_COLORS.length],
+                      }));
 
-                const chartData = {
-                  labels: monthNames,
-                  datasets,
-                };
+                      const chartData = {
+                        labels: monthNames,
+                        datasets,
+                      };
 
-                const options = {
-                  responsive: true,
-                  maintainAspectRatio: false,
-                  plugins: {
-                    legend: { display: true, position: "top" as const },
-                  },
-                  scales: {
-                    y: {
-                      beginAtZero: true,
-                      max: yAxisMax,
-                      title: { display: true, text: "Abundância média/visita" },
-                    },
-                    x: {
-                      title: { display: false },
-                    },
-                  },
-                };
+                      const options = {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        plugins: {
+                          legend: { display: true, position: "top" as const },
+                        },
+                        scales: {
+                          y: {
+                            beginAtZero: true,
+                            max: yAxisMax,
+                            title: { display: true, text: "Abundância média/visita" },
+                          },
+                          x: {
+                            title: { display: false },
+                          },
+                        },
+                      };
 
-                return (
-                  <Card key={region} type="inner" title={`${region} (${transectCount} transectos)`} size="small">
-                    <div style={{ height: 250 }}>
-                      <Bar data={chartData} options={options} />
-                    </div>
-                  </Card>
-                );
-              }
-            })}
+                      return (
+                        <Card
+                          key={region}
+                          type="inner"
+                          title={`${region} (${transectCount} transectos)`}
+                          size="small"
+                        >
+                          <div style={{ height: 250 }}>
+                            <Bar data={chartData} options={options} />
+                          </div>
+                        </Card>
+                      );
+                    }
+                  })}
                 <Alert
                   message="Os gráficos mostram apenas dados de transectos com critérios de qualidade: pelo menos 10 visitas por época, observações no ano mais recente e pelo menos 5 anos de dados. Os dados de 2019 foram excluídos."
                   type="info"
