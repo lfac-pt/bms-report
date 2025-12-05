@@ -310,12 +310,12 @@ function ButterflyTransects() {
       ).length
     : 0;
 
-  // Transects gained (started in last season) and lost (stopped before last season)
+  // Transects gained (started in last season) and lost (active in year before last, but not in last)
   const transectsGainedList = mostRecentYear
     ? data.filter(t => t.firstMonitoringYear === mostRecentYear)
     : [];
   const transectsLostList = mostRecentYear
-    ? data.filter(t => t.lastMonitoringYear && t.lastMonitoringYear < mostRecentYear)
+    ? data.filter(t => t.lastMonitoringYear === mostRecentYear - 1)
     : [];
   const transectsGained = transectsGainedList.length;
   const transectsLost = transectsLostList.length;
