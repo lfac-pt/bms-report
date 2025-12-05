@@ -1,12 +1,14 @@
-import { useState, useEffect } from "react";
-import { Button, Card, Space, Typography, Spin, Alert, Row, Col, Select } from "antd";
+import { useState, useEffect, useMemo } from "react";
+import { Button, Card, Space, Typography, Spin, Alert, Row, Col, Select, Radio } from "antd";
 import { ArrowLeftOutlined } from "@ant-design/icons";
 import { useParams, useNavigate } from "react-router-dom";
+import { Bar } from "react-chartjs-2";
 import { SPECIES_FAMILIES } from "../utils/speciesFamilies";
 import { TimelineData } from "../types/timelineData";
 import { TransectData } from "../types/transectStats";
 import { calculateSpeciesPresenceByYear } from "../utils/speciesMapUtils";
 import SpeciesMap from "./SpeciesMap";
+import { SERIES_COLORS } from "../utils/utils";
 
 const { Title, Text } = Typography;
 
@@ -17,6 +19,7 @@ function SpeciesPage() {
   const [timelineData, setTimelineData] = useState<TimelineData | null>(null);
   const [transectData, setTransectData] = useState<TransectData | null>(null);
   const [loading, setLoading] = useState(true);
+  const [yearViewMode, setYearViewMode] = useState<"combined" | "separate">("combined");
 
   // Decode the species name from URL
   const decodedSpeciesName = speciesName ? decodeURIComponent(speciesName) : "";
@@ -37,6 +40,137 @@ function SpeciesPage() {
         setLoading(false);
       });
   }, []);
+
+  // Calculate monthly abundance per climatic region
+  // IMPORTANT: This must be called before any conditional returns
+  const regionalMonthlyData = useMemo(() => {
+    if (!timelineData || !transectData) return {};
+
+    const monthNames = ["Jan", "Fev", "Mar", "Abr", "Mai", "Jun", "Jul", "Ago", "Set", "Out", "Nov", "Dez"];
+
+    // Filter years to exclude 2019
+    const filteredYears = timelineData.years.filter(y => y !== 2019);
+    const mostRecentYear = Math.max(...filteredYears);
+
+    // Filter transects based on quality criteria:
+    // - At least 10 visits per season (year)
+    // - Had observations in the most recent year
+    // - At least 5 years of data
+    const qualityTransects = transectData.transects.filter(t => {
+      // Check if has at least 5 years
+      if (t.yearsActive < 5) return false;
+
+      // Check if monitored in most recent year
+      if (t.lastMonitoringYear !== mostRecentYear) return false;
+
+      // Check average visits per year (should be >= 10)
+      if (t.avgVisitsPerYear < 10) return false;
+
+      return true;
+    });
+
+    // Group quality transects by climatic region
+    const transectsByRegion = new Map<string, Set<string>>();
+    qualityTransects.forEach(t => {
+      if (!transectsByRegion.has(t.climaticRegion)) {
+        transectsByRegion.set(t.climaticRegion, new Set());
+      }
+      transectsByRegion.get(t.climaticRegion)!.add(t.transectId);
+    });
+
+    const result: Record<string, any> = {};
+
+    transectsByRegion.forEach((transectIds, region) => {
+      if (yearViewMode === "combined") {
+        // All years combined
+        const monthlyStats: Record<number, { totalAbundance: number; visitCount: number }> = {};
+        for (let month = 3; month <= 9; month++) {
+          monthlyStats[month] = { totalAbundance: 0, visitCount: 0 };
+        }
+
+        filteredYears.forEach(year => {
+          const observationsByDate = timelineData.observationsByYearDate[year] || {};
+
+          Object.entries(observationsByDate).forEach(([date, observations]) => {
+            const parts = date.split("/");
+            if (parts.length !== 3) return;
+            const month = parseInt(parts[1], 10);
+            if (month < 3 || month > 9) return;
+
+            const transectAbundances = new Map<string, number>();
+            observations.forEach(([transectId, species, abundance]) => {
+              if (transectIds.has(transectId) && species === decodedSpeciesName) {
+                const current = transectAbundances.get(transectId) || 0;
+                transectAbundances.set(transectId, current + abundance);
+              }
+            });
+
+            transectAbundances.forEach(totalAbundance => {
+              monthlyStats[month].totalAbundance += totalAbundance;
+              monthlyStats[month].visitCount += 1;
+            });
+          });
+        });
+
+        result[region] = {
+          transectCount: transectIds.size,
+          data: Object.entries(monthlyStats)
+            .map(([monthStr, stats]) => ({
+              month: parseInt(monthStr, 10),
+              monthName: monthNames[parseInt(monthStr, 10) - 1],
+              averageAbundance: stats.visitCount > 0 ? stats.totalAbundance / stats.visitCount : 0,
+            }))
+            .sort((a, b) => a.month - b.month),
+        };
+      } else {
+        // Separate years
+        result[region] = {
+          transectCount: transectIds.size,
+          data: filteredYears.map(year => {
+            const monthlyStats: Record<number, { totalAbundance: number; visitCount: number }> = {};
+            for (let month = 3; month <= 9; month++) {
+              monthlyStats[month] = { totalAbundance: 0, visitCount: 0 };
+            }
+
+            const observationsByDate = timelineData.observationsByYearDate[year] || {};
+
+            Object.entries(observationsByDate).forEach(([date, observations]) => {
+              const parts = date.split("/");
+              if (parts.length !== 3) return;
+              const month = parseInt(parts[1], 10);
+              if (month < 3 || month > 9) return;
+
+              const transectAbundances = new Map<string, number>();
+              observations.forEach(([transectId, species, abundance]) => {
+                if (transectIds.has(transectId) && species === decodedSpeciesName) {
+                  const current = transectAbundances.get(transectId) || 0;
+                  transectAbundances.set(transectId, current + abundance);
+                }
+              });
+
+              transectAbundances.forEach(totalAbundance => {
+                monthlyStats[month].totalAbundance += totalAbundance;
+                monthlyStats[month].visitCount += 1;
+              });
+            });
+
+            return {
+              year,
+              data: Object.entries(monthlyStats)
+                .map(([monthStr, stats]) => ({
+                  month: parseInt(monthStr, 10),
+                  monthName: monthNames[parseInt(monthStr, 10) - 1],
+                  averageAbundance: stats.visitCount > 0 ? stats.totalAbundance / stats.visitCount : 0,
+                }))
+                .sort((a, b) => a.month - b.month),
+            };
+          }),
+        };
+      }
+    });
+
+    return result;
+  }, [timelineData, transectData, decodedSpeciesName, yearViewMode]);
 
   const handleGoBack = () => {
     navigate("/transects");
@@ -161,6 +295,123 @@ function SpeciesPage() {
             );
           })}
         </Row>
+      </Card>
+
+      <Card title="Abundância Mensal por Região Climática">
+        <Space direction="vertical" size="large" style={{ width: "100%" }}>
+          <Radio.Group
+            value={yearViewMode}
+            onChange={e => setYearViewMode(e.target.value)}
+            buttonStyle="solid"
+          >
+            <Radio.Button value="combined">Todos os Anos</Radio.Button>
+            <Radio.Button value="separate">Por Ano</Radio.Button>
+          </Radio.Group>
+
+          {Object.entries(regionalMonthlyData)
+            .sort(([a], [b]) => a.localeCompare(b))
+            .map(([region, regionData]) => {
+              const { transectCount, data } = regionData as {
+                transectCount: number;
+                data: any;
+              };
+
+              if (yearViewMode === "combined") {
+                const monthlyData = data as Array<{ month: number; monthName: string; averageAbundance: number }>;
+
+                if (monthlyData.every(m => m.averageAbundance === 0)) {
+                  return null; // Skip regions with no data
+                }
+
+                const chartData = {
+                  labels: monthlyData.map(m => m.monthName),
+                  datasets: [
+                    {
+                      label: "Abundância média/visita",
+                      data: monthlyData.map(m => m.averageAbundance),
+                      backgroundColor: SERIES_COLORS[0],
+                    },
+                  ],
+                };
+
+                const options = {
+                  responsive: true,
+                  maintainAspectRatio: false,
+                  plugins: {
+                    legend: { display: false },
+                  },
+                  scales: {
+                    y: {
+                      beginAtZero: true,
+                      title: { display: false },
+                    },
+                    x: {
+                      title: { display: false },
+                    },
+                  },
+                };
+
+                return (
+                  <Card key={region} type="inner" title={`${region} (${transectCount} transectos)`} size="small">
+                    <div style={{ height: 250 }}>
+                      <Bar data={chartData} options={options} />
+                    </div>
+                  </Card>
+                );
+              } else {
+                // Separate years
+                const yearlyData = data as Array<{
+                  year: number;
+                  data: Array<{ month: number; monthName: string; averageAbundance: number }>;
+                }>;
+
+                if (yearlyData.every(yd => yd.data.every(m => m.averageAbundance === 0))) {
+                  return null; // Skip regions with no data
+                }
+
+                const monthNames = yearlyData[0]?.data.map(m => m.monthName) || [];
+                const datasets = yearlyData.map((yd, idx) => ({
+                  label: yd.year.toString(),
+                  data: yd.data.map(m => m.averageAbundance),
+                  backgroundColor: SERIES_COLORS[idx % SERIES_COLORS.length],
+                }));
+
+                const chartData = {
+                  labels: monthNames,
+                  datasets,
+                };
+
+                const options = {
+                  responsive: true,
+                  maintainAspectRatio: false,
+                  plugins: {
+                    legend: { display: true, position: "top" as const },
+                  },
+                  scales: {
+                    y: {
+                      beginAtZero: true,
+                      title: { display: true, text: "Abundância média/visita" },
+                    },
+                    x: {
+                      title: { display: false },
+                    },
+                  },
+                };
+
+                return (
+                  <Card key={region} type="inner" title={`${region} (${transectCount} transectos)`} size="small">
+                    <div style={{ height: 250 }}>
+                      <Bar data={chartData} options={options} />
+                    </div>
+                  </Card>
+                );
+              }
+            })}
+          <Alert
+            message="Os gráficos mostram apenas dados de transectos com critérios de qualidade: pelo menos 10 visitas por época, observações no ano mais recente e pelo menos 5 anos de dados. Os dados de 2019 foram excluídos."
+            type="info"
+          />
+        </Space>
       </Card>
     </Space>
   );
