@@ -386,6 +386,15 @@ function SpeciesPage() {
             // Add 10% padding to the max value
             const yAxisMax = maxAbundance * 1.1;
 
+            // Define geographical order (north to south)
+            const regionOrder: Record<string, number> = {
+              "Norte": 1,
+              "Centro": 2,
+              "Lisboa e Vale do Tejo": 3,
+              "Alentejo": 4,
+              "Algarve": 5,
+            };
+
             return (
               <>
                 <Radio.Group
@@ -398,7 +407,7 @@ function SpeciesPage() {
                 </Radio.Group>
 
                 {Object.entries(regionalMonthlyData)
-                  .sort(([a], [b]) => a.localeCompare(b))
+                  .sort(([a], [b]) => (regionOrder[a] || 999) - (regionOrder[b] || 999))
                   .map(([region, regionData]) => {
                     const { transectCount, data } = regionData as {
                       transectCount: number;
@@ -480,6 +489,7 @@ function SpeciesPage() {
                   scales: {
                     y: {
                       beginAtZero: true,
+                      max: yAxisMax,
                       title: { display: true, text: "Abundância média/visita" },
                     },
                     x: {
