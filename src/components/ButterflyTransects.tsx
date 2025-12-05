@@ -475,7 +475,7 @@ function ButterflyTransects() {
       filteredValue: distritoFilters,
     },
     {
-      title: "Região Climática",
+      title: "Região",
       dataIndex: "climaticRegion",
       key: "climaticRegion",
       width: 180,

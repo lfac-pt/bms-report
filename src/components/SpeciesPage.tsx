@@ -112,7 +112,20 @@ function SpeciesPage() {
             const month = parseInt(parts[1], 10);
             if (month < 3 || month > 9) return;
 
+            // Get all transects that visited on this date (from quality transects)
+            const transectsOnThisDate = new Set<string>();
+            observations.forEach(([transectId]) => {
+              if (transectIds.has(transectId)) {
+                transectsOnThisDate.add(transectId);
+              }
+            });
+
+            // Calculate abundance for each transect (0 if species not observed)
             const transectAbundances = new Map<string, number>();
+            transectsOnThisDate.forEach(transectId => {
+              transectAbundances.set(transectId, 0); // Initialize with 0
+            });
+
             observations.forEach(([transectId, species, abundance]) => {
               if (transectIds.has(transectId) && species === decodedSpeciesName) {
                 const current = transectAbundances.get(transectId) || 0;
@@ -120,6 +133,7 @@ function SpeciesPage() {
               }
             });
 
+            // Count ALL transect visits, including those with 0 abundance
             transectAbundances.forEach(totalAbundance => {
               monthlyStats[month].totalAbundance += totalAbundance;
               monthlyStats[month].visitCount += 1;
@@ -335,7 +349,7 @@ function SpeciesPage() {
         </Row>
       </Card>
 
-      <Card title="Abundância Mensal por Região Climática">
+      <Card title="Abundância Mensal por Região">
         <Space direction="vertical" size="large" style={{ width: "100%" }}>
           {(() => {
             // Check if there's any data across all regions
@@ -357,7 +371,7 @@ function SpeciesPage() {
             if (!hasAnyData) {
               return (
                 <Alert
-                  message="Sem dados disponíveis para esta espécie nas regiões climáticas monitorizadas."
+                  message="Sem dados disponíveis para esta espécie nas regiões monitorizadas."
                   type="info"
                   showIcon
                 />
