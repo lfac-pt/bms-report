@@ -9,8 +9,23 @@ import { TransectData } from "../types/transectStats";
 import { calculateSpeciesPresenceByYear } from "../utils/speciesMapUtils";
 import SpeciesMap from "./SpeciesMap";
 import { SERIES_COLORS } from "../utils/utils";
+import endangeredSpeciesPT from "../utils/endangered_pt";
+import endangeredSpeciesEurope from "../utils/endangered_eu";
 
 const { Title, Text } = Typography;
+
+// Helper function to get full endangerment description
+function getEndangermentDescription(status: string): string {
+  const descriptions: Record<string, string> = {
+    CR: "Criticamente em Perigo",
+    EN: "Em Perigo",
+    VU: "Vulnerável",
+    NT: "Quase Ameaçada",
+    DD: "Dados Insuficientes",
+    LC: "Pouco Preocupante",
+  };
+  return descriptions[status] || status;
+}
 
 function SpeciesPage() {
   const { speciesName } = useParams<{ speciesName: string }>();
@@ -207,8 +222,20 @@ function SpeciesPage() {
     label: family,
     options: speciesByFamily[family].sort().map(species => {
       const hasRecords = speciesWithRecords.has(species);
+
+      // Check if species is endangered
+      let endangeredLabel = "";
+      if (endangeredSpeciesPT[species]) {
+        endangeredLabel = ` (${endangeredSpeciesPT[species]} - PT)`;
+      } else if (endangeredSpeciesEurope[species]) {
+        endangeredLabel = ` (${endangeredSpeciesEurope[species]} - UE)`;
+      }
+
+      const recordsLabel = hasRecords ? "" : " (sem registos)";
+      const label = `${species}${endangeredLabel}${recordsLabel}`;
+
       return {
-        label: hasRecords ? species : `${species} (sem registos)`,
+        label,
         value: species,
       };
     }),
@@ -244,7 +271,7 @@ function SpeciesPage() {
           value={decodedSpeciesName}
           onChange={handleSpeciesChange}
           placeholder="Escolher espécie..."
-          style={{ width: 300 }}
+          style={{ width: 450 }}
           size="large"
           filterOption={(input, option) =>
             (option?.label ?? "").toLowerCase().includes(input.toLowerCase())
@@ -261,6 +288,17 @@ function SpeciesPage() {
           <Text strong style={{ fontSize: 16 }}>
             Família: {family}
           </Text>
+          {(endangeredSpeciesPT[decodedSpeciesName] || endangeredSpeciesEurope[decodedSpeciesName]) && (
+            <Alert
+              message={
+                endangeredSpeciesPT[decodedSpeciesName]
+                  ? `Espécie Ameaçada: ${endangeredSpeciesPT[decodedSpeciesName]} (${getEndangermentDescription(endangeredSpeciesPT[decodedSpeciesName])}) em Portugal.`
+                  : `Espécie Ameaçada: ${endangeredSpeciesEurope[decodedSpeciesName]} (${getEndangermentDescription(endangeredSpeciesEurope[decodedSpeciesName])}) na União Europeia.`
+              }
+              type="warning"
+              showIcon
+            />
+          )}
         </Space>
       </Card>
 
