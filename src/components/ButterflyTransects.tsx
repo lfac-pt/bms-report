@@ -311,12 +311,14 @@ function ButterflyTransects() {
     : 0;
 
   // Transects gained (started in last season) and lost (stopped before last season)
-  const transectsGained = mostRecentYear
-    ? data.filter(t => t.firstMonitoringYear === mostRecentYear).length
-    : 0;
-  const transectsLost = mostRecentYear
-    ? data.filter(t => t.lastMonitoringYear && t.lastMonitoringYear < mostRecentYear).length
-    : 0;
+  const transectsGainedList = mostRecentYear
+    ? data.filter(t => t.firstMonitoringYear === mostRecentYear)
+    : [];
+  const transectsLostList = mostRecentYear
+    ? data.filter(t => t.lastMonitoringYear && t.lastMonitoringYear < mostRecentYear)
+    : [];
+  const transectsGained = transectsGainedList.length;
+  const transectsLost = transectsLostList.length;
 
   // Calculate total unique species across all transects
   const allSpeciesSet = new Set<string>();
@@ -580,17 +582,77 @@ function ButterflyTransects() {
         </Col>
         <Col span={4}>
           <Card>
-            <Statistic
-              title={`Transectos Ativos em ${mostRecentYear || "—"}`}
-              value={transectsInLastSeason}
-              valueStyle={{ color: "#52c41a" }}
-            />
-            <div style={{ marginTop: 8, fontSize: 12, color: "#8c8c8c" }}>
-              <span>Ganhos/Perdidos: </span>
-              <span style={{ color: "#52c41a" }}>+{transectsGained}</span>
-              <span style={{ margin: "0 4px" }}>/</span>
-              <span style={{ color: "#ff4d4f" }}>-{transectsLost}</span>
-            </div>
+            <Popover
+              content={
+                <div style={{ maxWidth: 400, maxHeight: 400, overflowY: "auto" }}>
+                  {transectsGainedList.length > 0 && (
+                    <div style={{ marginBottom: 16 }}>
+                      <Typography.Text
+                        strong
+                        style={{ display: "block", marginBottom: 8, color: "#52c41a" }}
+                      >
+                        Transectos Ganhos ({transectsGained})
+                      </Typography.Text>
+                      <List
+                        size="small"
+                        dataSource={transectsGainedList}
+                        renderItem={transect => (
+                          <List.Item style={{ padding: "4px 0" }}>
+                            {transect.transectName}
+                          </List.Item>
+                        )}
+                      />
+                    </div>
+                  )}
+                  {transectsLostList.length > 0 && (
+                    <div>
+                      <Typography.Text
+                        strong
+                        style={{ display: "block", marginBottom: 8, color: "#ff4d4f" }}
+                      >
+                        Transectos Perdidos ({transectsLost})
+                      </Typography.Text>
+                      <List
+                        size="small"
+                        dataSource={transectsLostList}
+                        renderItem={transect => (
+                          <List.Item style={{ padding: "4px 0" }}>
+                            {transect.transectName}
+                          </List.Item>
+                        )}
+                      />
+                    </div>
+                  )}
+                  {transectsGainedList.length === 0 && transectsLostList.length === 0 && (
+                    <Typography.Text type="secondary">
+                      Sem alterações em relação ao ano anterior
+                    </Typography.Text>
+                  )}
+                </div>
+              }
+              title="Alterações nos Transectos"
+              trigger="click"
+              placement="bottom"
+            >
+              <div style={{ cursor: "pointer" }}>
+                <Statistic
+                  title={
+                    <span>
+                      Transectos Ativos em {mostRecentYear || "—"}{" "}
+                      <InfoCircleOutlined style={{ fontSize: 12 }} />
+                    </span>
+                  }
+                  value={transectsInLastSeason}
+                  valueStyle={{ color: "#52c41a" }}
+                />
+                <div style={{ marginTop: 8, fontSize: 12, color: "#8c8c8c" }}>
+                  <span>Ganhos/Perdidos: </span>
+                  <span style={{ color: "#52c41a" }}>+{transectsGained}</span>
+                  <span style={{ margin: "0 4px" }}>/</span>
+                  <span style={{ color: "#ff4d4f" }}>-{transectsLost}</span>
+                </div>
+              </div>
+            </Popover>
           </Card>
         </Col>
         <Col span={4}>

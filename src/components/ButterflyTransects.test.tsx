@@ -65,10 +65,26 @@ const mockTransectsData = {
       distrito: "Faro",
       entidade: "Entity A",
     },
+    {
+      transectId: "4",
+      transectName: "Transect D (New)",
+      totalSpecies: 20,
+      totalVisits: 15,
+      totalAbundance: 100,
+      avgVisitsPerYear: 15.0,
+      avgButterfliesPerVisit: 6.7,
+      yearsActive: 1,
+      firstMonitoringYear: 2025,
+      lastMonitoringYear: 2025,
+      speciesList: ["Species 6"],
+      concelho: "Braga",
+      distrito: "Braga",
+      entidade: "Entity C",
+    },
   ],
   metadata: {
     processedAt: "2025-01-01T00:00:00.000Z",
-    totalTransects: 3,
+    totalTransects: 4,
     filteredSpeciesCount: 0,
     filteredSpecies: [],
   },
@@ -110,6 +126,7 @@ describe("ButterflyTransects - Smoke Tests", () => {
         expect(screen.getByText("Transect A")).toBeInTheDocument();
         expect(screen.getByText("Transect B")).toBeInTheDocument();
         expect(screen.getByText("Transect C")).toBeInTheDocument();
+        expect(screen.getByText("Transect D (New)")).toBeInTheDocument();
       });
     });
 
@@ -144,7 +161,7 @@ describe("ButterflyTransects - Smoke Tests", () => {
     it("displays pagination information", async () => {
       render(<ButterflyTransects />);
       await waitFor(() => {
-        expect(screen.getByText(/1-3 de 3 transectos/i)).toBeInTheDocument();
+        expect(screen.getByText(/1-4 de 4 transectos/i)).toBeInTheDocument();
       });
     });
 
@@ -215,6 +232,71 @@ describe("ButterflyTransects - Smoke Tests", () => {
       render(<ButterflyTransects />);
       await waitFor(() => {
         expect(screen.getByTestId("transect-map")).toBeInTheDocument();
+      });
+    });
+  });
+
+  describe("Transects gained/lost popover", () => {
+    it("displays transects active card with gained/lost counts", async () => {
+      render(<ButterflyTransects />);
+      await waitFor(() => {
+        const activeTransectsElements = screen.getAllByText(/Transectos Ativos em 2025/i);
+        expect(activeTransectsElements.length).toBeGreaterThan(0);
+        expect(screen.getByText(/Ganhos\/Perdidos:/i)).toBeInTheDocument();
+      });
+    });
+
+    it("shows popover with lists of gained and lost transects when clicked", async () => {
+      render(<ButterflyTransects />);
+
+      await waitFor(() => {
+        const activeTransectsElements = screen.getAllByText(/Transectos Ativos em 2025/i);
+        expect(activeTransectsElements.length).toBeGreaterThan(0);
+      });
+
+      // Find the clickable card (it's wrapped in a div with cursor: pointer)
+      const activeTransectsElements = screen.getAllByText(/Transectos Ativos em 2025/i);
+      const clickableCard = activeTransectsElements[0].closest("div[style*='cursor: pointer']");
+
+      if (clickableCard) {
+        await userEvent.click(clickableCard);
+
+        // Wait for popover to appear
+        await waitFor(() => {
+          expect(screen.getByText("Alterações nos Transectos")).toBeInTheDocument();
+        });
+
+        // Check for gained transects section
+        await waitFor(() => {
+          expect(screen.getByText(/Transectos Ganhos \(1\)/i)).toBeInTheDocument();
+          // Verify that "Transect D (New)" appears at least twice (once in table, once in popover)
+          const transectDElements = screen.getAllByText("Transect D (New)");
+          expect(transectDElements.length).toBeGreaterThanOrEqual(2);
+        });
+
+        // Check for lost transects section
+        await waitFor(() => {
+          expect(screen.getByText(/Transectos Perdidos \(1\)/i)).toBeInTheDocument();
+          // Verify that "Transect B" appears at least twice (once in table, once in popover)
+          const transectBElements = screen.getAllByText("Transect B");
+          expect(transectBElements.length).toBeGreaterThanOrEqual(2);
+        });
+      }
+    });
+
+    it("correctly identifies transects gained in most recent year", async () => {
+      render(<ButterflyTransects />);
+
+      await waitFor(() => {
+        expect(screen.getByText(/\+1/i)).toBeInTheDocument(); // +1 gained
+      });
+    });
+
+    it("correctly identifies transects lost before most recent year", async () => {
+      render(<ButterflyTransects />);
+
+      await waitFor(() => {
+        expect(screen.getByText(/-1/i)).toBeInTheDocument(); // -1 lost
       });
     });
   });
