@@ -337,29 +337,80 @@ function SpeciesPage() {
 
       <Card title="Abundância Mensal por Região Climática">
         <Space direction="vertical" size="large" style={{ width: "100%" }}>
-          <Radio.Group
-            value={yearViewMode}
-            onChange={e => setYearViewMode(e.target.value)}
-            buttonStyle="solid"
-          >
-            <Radio.Button value="combined">Todos os Anos</Radio.Button>
-            <Radio.Button value="separate">Por Ano</Radio.Button>
-          </Radio.Group>
-
-          {Object.entries(regionalMonthlyData)
-            .sort(([a], [b]) => a.localeCompare(b))
-            .map(([region, regionData]) => {
-              const { transectCount, data } = regionData as {
-                transectCount: number;
-                data: any;
-              };
+          {(() => {
+            // Check if there's any data across all regions
+            const hasAnyData = Object.values(regionalMonthlyData).some(regionData => {
+              const { data } = regionData as { transectCount: number; data: any };
 
               if (yearViewMode === "combined") {
                 const monthlyData = data as Array<{ month: number; monthName: string; averageAbundance: number }>;
+                return monthlyData.some(m => m.averageAbundance > 0);
+              } else {
+                const yearlyData = data as Array<{
+                  year: number;
+                  data: Array<{ month: number; monthName: string; averageAbundance: number }>;
+                }>;
+                return yearlyData.some(yd => yd.data.some(m => m.averageAbundance > 0));
+              }
+            });
 
-                if (monthlyData.every(m => m.averageAbundance === 0)) {
-                  return null; // Skip regions with no data
+            if (!hasAnyData) {
+              return (
+                <Alert
+                  message="Sem dados disponíveis para esta espécie nas regiões climáticas monitorizadas."
+                  type="info"
+                  showIcon
+                />
+              );
+            }
+
+            // Calculate max abundance across all regions for consistent y-axis
+            const maxAbundance = Math.max(
+              ...Object.values(regionalMonthlyData).flatMap(regionData => {
+                const { data } = regionData as { transectCount: number; data: any };
+
+                if (yearViewMode === "combined") {
+                  const monthlyData = data as Array<{ month: number; monthName: string; averageAbundance: number }>;
+                  return monthlyData.map(m => m.averageAbundance);
+                } else {
+                  const yearlyData = data as Array<{
+                    year: number;
+                    data: Array<{ month: number; monthName: string; averageAbundance: number }>;
+                  }>;
+                  return yearlyData.flatMap(yd => yd.data.map(m => m.averageAbundance));
                 }
+              }),
+              0
+            );
+
+            // Add 10% padding to the max value
+            const yAxisMax = maxAbundance * 1.1;
+
+            return (
+              <>
+                <Radio.Group
+                  value={yearViewMode}
+                  onChange={e => setYearViewMode(e.target.value)}
+                  buttonStyle="solid"
+                >
+                  <Radio.Button value="combined">Todos os Anos</Radio.Button>
+                  <Radio.Button value="separate">Por Ano</Radio.Button>
+                </Radio.Group>
+
+                {Object.entries(regionalMonthlyData)
+                  .sort(([a], [b]) => a.localeCompare(b))
+                  .map(([region, regionData]) => {
+                    const { transectCount, data } = regionData as {
+                      transectCount: number;
+                      data: any;
+                    };
+
+                    if (yearViewMode === "combined") {
+                      const monthlyData = data as Array<{ month: number; monthName: string; averageAbundance: number }>;
+
+                      if (monthlyData.every(m => m.averageAbundance === 0)) {
+                        return null; // Skip regions with no data
+                      }
 
                 const chartData = {
                   labels: monthlyData.map(m => m.monthName),
@@ -381,6 +432,7 @@ function SpeciesPage() {
                   scales: {
                     y: {
                       beginAtZero: true,
+                      max: yAxisMax,
                       title: { display: false },
                     },
                     x: {
@@ -445,10 +497,13 @@ function SpeciesPage() {
                 );
               }
             })}
-          <Alert
-            message="Os gráficos mostram apenas dados de transectos com critérios de qualidade: pelo menos 10 visitas por época, observações no ano mais recente e pelo menos 5 anos de dados. Os dados de 2019 foram excluídos."
-            type="info"
-          />
+                <Alert
+                  message="Os gráficos mostram apenas dados de transectos com critérios de qualidade: pelo menos 10 visitas por época, observações no ano mais recente e pelo menos 5 anos de dados. Os dados de 2019 foram excluídos."
+                  type="info"
+                />
+              </>
+            );
+          })()}
         </Space>
       </Card>
     </Space>
