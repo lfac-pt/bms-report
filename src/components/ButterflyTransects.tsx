@@ -34,6 +34,15 @@ import SpeciesLink from "./SpeciesLink";
 
 const { Title } = Typography;
 
+// Define the canonical family order
+const FAMILY_ORDER = [
+  "Hesperiidae",
+  "Papilionidae",
+  "Pieridae",
+  "Nymphalidae",
+  "Lycaenidae",
+];
+
 // Component for species list with search and family grouping
 function SpeciesList({ species, title }: { species: string[]; title: string }) {
   const [searchText, setSearchText] = useState("");
@@ -43,7 +52,19 @@ function SpeciesList({ species, title }: { species: string[]; title: string }) {
 
   // Group by family
   const groupedSpecies = groupSpeciesByFamily(filteredSpecies);
-  const families = Object.keys(groupedSpecies).sort();
+  const families = Object.keys(groupedSpecies).sort((a, b) => {
+    const indexA = FAMILY_ORDER.indexOf(a);
+    const indexB = FAMILY_ORDER.indexOf(b);
+    // If both families are in the order list, sort by their index
+    if (indexA !== -1 && indexB !== -1) {
+      return indexA - indexB;
+    }
+    // If only one is in the list, prioritize it
+    if (indexA !== -1) return -1;
+    if (indexB !== -1) return 1;
+    // If neither is in the list, sort alphabetically
+    return a.localeCompare(b);
+  });
 
   return (
     <div style={{ width: 350 }}>

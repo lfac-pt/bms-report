@@ -14,6 +14,15 @@ import endangeredSpeciesEurope from "../utils/endangered_eu";
 
 const { Title, Text } = Typography;
 
+// Define the canonical family order
+const FAMILY_ORDER = [
+  "Hesperiidae",
+  "Papilionidae",
+  "Pieridae",
+  "Nymphalidae",
+  "Lycaenidae",
+];
+
 // Helper function to get full endangerment description
 function getEndangermentDescription(status: string): string {
   const descriptions: Record<string, string> = {
@@ -230,8 +239,20 @@ function SpeciesPage() {
     speciesByFamily[family].push(species);
   });
 
-  // Sort families and species within each family
-  const sortedFamilies = Object.keys(speciesByFamily).sort();
+  // Sort families by canonical order and species within each family
+  const sortedFamilies = Object.keys(speciesByFamily).sort((a, b) => {
+    const indexA = FAMILY_ORDER.indexOf(a);
+    const indexB = FAMILY_ORDER.indexOf(b);
+    // If both families are in the order list, sort by their index
+    if (indexA !== -1 && indexB !== -1) {
+      return indexA - indexB;
+    }
+    // If only one is in the list, prioritize it
+    if (indexA !== -1) return -1;
+    if (indexB !== -1) return 1;
+    // If neither is in the list, sort alphabetically
+    return a.localeCompare(b);
+  });
   const speciesOptions = sortedFamilies.map(family => ({
     label: family,
     options: speciesByFamily[family].sort().map(species => {
