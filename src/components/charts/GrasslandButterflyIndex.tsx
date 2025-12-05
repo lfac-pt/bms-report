@@ -141,18 +141,18 @@ function GrasslandButterflyIndex({ gbiData, loading }: GrasslandButterflyIndexPr
         label: "GBI (Todas as Espécies)",
         data: gbiValues,
         borderColor: "#1890ff",
-        backgroundColor: "rgba(24, 144, 255, 0.1)",
+        backgroundColor: "#1890ff",
         borderWidth: 3,
         pointRadius: 5,
         pointHoverRadius: 7,
         tension: 0.2,
-        fill: true,
+        fill: false,
       },
       {
         label: "Generalistas",
         data: generalistIndices,
         borderColor: "#52c41a",
-        backgroundColor: "rgba(82, 196, 26, 0.1)",
+        backgroundColor: "#52c41a",
         borderWidth: 3,
         pointRadius: 4,
         pointHoverRadius: 6,
@@ -163,7 +163,7 @@ function GrasslandButterflyIndex({ gbiData, loading }: GrasslandButterflyIndexPr
         label: "Especialistas",
         data: specialistIndices,
         borderColor: "#722ed1",
-        backgroundColor: "rgba(114, 46, 209, 0.1)",
+        backgroundColor: "#722ed1",
         borderWidth: 3,
         pointRadius: 4,
         pointHoverRadius: 6,
@@ -188,12 +188,12 @@ function GrasslandButterflyIndex({ gbiData, loading }: GrasslandButterflyIndexPr
         label: "GBI (Todas as Espécies)",
         data: gbiValues,
         borderColor: "#1890ff",
-        backgroundColor: "rgba(24, 144, 255, 0.1)",
+        backgroundColor: "#1890ff",
         borderWidth: 3,
         pointRadius: 5,
         pointHoverRadius: 7,
         tension: 0.2,
-        fill: true,
+        fill: false,
       },
       // Add individual species datasets
       ...selectedSpecies.map((species, index) => {
@@ -245,12 +245,20 @@ function GrasslandButterflyIndex({ gbiData, loading }: GrasslandButterflyIndexPr
   // Get species with valid trends for highlighting
   const speciesWithTrends = new Set(Object.keys(gbiData.speciesTrends));
 
+  const gbiCardTitleTooltip = `Este índice rastreia a saúde das populações de borboletas de pastagens em Portugal
+              usando uma média geométrica de tendências log-lineares de ${speciesCount} espécies (
+              ${metadata.grasslandSpecies.filter(s => s.type === "widespread").length} generalistas,${" "}
+              ${metadata.grasslandSpecies.filter(s => s.type === "specialist").length} especialistas)
+              de ${transectCount} transectos de alta qualidade. Ano base ${metadata.baselineYear} =
+              100. Os valores acima de 100 indicam crescimento populacional; abaixo de 100 indicam
+              declínio.`
+
   return (
     <Card
       title={
         <Space>
           Índice de Borboletas de Pastagens (GBI)
-          <Tooltip title="O Índice de Borboletas de Pastagens rastreia tendências populacionais de espécies de borboletas de pastagens usando média geométrica de tendências log-lineares de espécies.">
+          <Tooltip title={gbiCardTitleTooltip}>
             <InfoCircleOutlined style={{ color: "#1890ff" }} />
           </Tooltip>
         </Space>
@@ -409,99 +417,71 @@ function GrasslandButterflyIndex({ gbiData, loading }: GrasslandButterflyIndexPr
         </Col>
       </Row>
 
-      <div style={{ marginBottom: "16px" }}>
-        <div style={{ marginBottom: "8px" }}>
-          <Space>
-            <Switch
-              checked={showGroupComparison}
-              onChange={setShowGroupComparison}
-            />
-            <Typography.Text>Comparar generalistas vs. especialistas</Typography.Text>
-          </Space>
-        </div>
-
-        <div style={{ display: "flex", gap: "8px" }}>
-          <Select
-            mode="multiple"
-            placeholder="Selecione espécies individuais para comparar"
-            value={selectedSpecies}
-            onChange={setSelectedSpecies}
-            style={{ flex: 1 }}
-            allowClear
-            showSearch
-            disabled={showGroupComparison}
-            filterOption={(input, option) =>
-              (option?.label ?? "").toLowerCase().includes(input.toLowerCase())
-            }
-            options={Object.keys(speciesTrends)
-              .sort()
-              .map(species => ({
-                value: species,
-                label: species,
-              }))}
+      <div style={{ marginBottom: "16px", display: "flex", gap: "8px", alignItems: "center" }}>
+        <Space>
+          <Switch
+            checked={showGroupComparison}
+            onChange={setShowGroupComparison}
           />
-          <Button
-            size="middle"
-            disabled={showGroupComparison}
-            onClick={() => {
-              const generalists = metadata.grasslandSpecies
-                .filter(s => s.type === "widespread" && speciesTrends[s.scientificName])
-                .map(s => s.scientificName)
-                .sort();
-              setSelectedSpecies(generalists);
-            }}
-          >
-            Generalistas
-          </Button>
-          <Button
-            size="middle"
-            disabled={showGroupComparison}
-            onClick={() => {
-              const specialists = metadata.grasslandSpecies
-                .filter(s => s.type === "specialist" && speciesTrends[s.scientificName])
-                .map(s => s.scientificName)
-                .sort();
-              setSelectedSpecies(specialists);
-            }}
-          >
-            Especialistas
-          </Button>
-          <Button
-            size="middle"
-            disabled={showGroupComparison}
-            onClick={() => setSelectedSpecies(Object.keys(speciesTrends).sort())}
-          >
-            Todas
-          </Button>
-        </div>
+          <Typography.Text style={{ whiteSpace: "nowrap" }}>Generalistas vs. especialistas</Typography.Text>
+        </Space>
+        <Select
+          mode="multiple"
+          placeholder="Selecione espécies individuais para comparar"
+          value={selectedSpecies}
+          onChange={setSelectedSpecies}
+          style={{ flex: 1 }}
+          allowClear
+          showSearch
+          disabled={showGroupComparison}
+          filterOption={(input, option) =>
+            (option?.label ?? "").toLowerCase().includes(input.toLowerCase())
+          }
+          options={Object.keys(speciesTrends)
+            .sort()
+            .map(species => ({
+              value: species,
+              label: species,
+            }))}
+        />
+        <Button
+          size="middle"
+          disabled={showGroupComparison}
+          onClick={() => {
+            const generalists = metadata.grasslandSpecies
+              .filter(s => s.type === "widespread" && speciesTrends[s.scientificName])
+              .map(s => s.scientificName)
+              .sort();
+            setSelectedSpecies(generalists);
+          }}
+        >
+          Generalistas
+        </Button>
+        <Button
+          size="middle"
+          disabled={showGroupComparison}
+          onClick={() => {
+            const specialists = metadata.grasslandSpecies
+              .filter(s => s.type === "specialist" && speciesTrends[s.scientificName])
+              .map(s => s.scientificName)
+              .sort();
+            setSelectedSpecies(specialists);
+          }}
+        >
+          Especialistas
+        </Button>
+        <Button
+          size="middle"
+          disabled={showGroupComparison}
+          onClick={() => setSelectedSpecies(Object.keys(speciesTrends).sort())}
+        >
+          Todas
+        </Button>
       </div>
 
       <div style={{ height: "400px", marginBottom: "16px" }}>
         <Line options={chartOptions} data={chartData} />
       </div>
-
-      <Alert
-        message="Sobre o Índice de Borboletas de Pastagens"
-        description={
-          <div>
-            <p>
-              Este índice rastreia a saúde das populações de borboletas de pastagens em Portugal
-              usando {speciesCount} espécies (
-              {metadata.grasslandSpecies.filter(s => s.type === "widespread").length} generalistas,{" "}
-              {metadata.grasslandSpecies.filter(s => s.type === "specialist").length} especialistas)
-              de {transectCount} transectos de alta qualidade (5+ anos ativos, 10+ visitas/ano).
-            </p>
-            <p style={{ marginBottom: 0 }}>
-              <strong>Metodologia:</strong> Índice Europeu de Borboletas de Pastagens (média
-              geométrica de tendências log-lineares de espécies). Ano base {metadata.baselineYear} =
-              100. Os valores acima de 100 indicam crescimento populacional; abaixo de 100 indicam
-              declínio.
-            </p>
-          </div>
-        }
-        type="info"
-        showIcon
-      />
     </Card>
   );
 }
