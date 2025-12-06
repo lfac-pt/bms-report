@@ -159,18 +159,18 @@
     },
     "2022": {
       "year": 2022,
-      "gbiValue": 93.96,
+      "gbiValue": 93.48,
       "speciesIndices": {
-        "Anthocharis cardamines": 426.098,
-        "Coenonympha pamphilus": 67.0873,
-        "Lasiommata megera": 72.3844,
-        "Lycaena phlaeas": 111.0982,
-        "Maniola jurtina": 74.3978,
-        "Polyommatus icarus": 121.0473,
-        "Euphydryas aurinia": 66.601,
-        "Lysandra bellargus": 151.5093,
-        "Spialia sertorius": 30.6212,
-        "Thymelicus acteon": 83.8164
+        "Anthocharis cardamines": 446.6414,
+        "Coenonympha pamphilus": 66.2112,
+        "Lasiommata megera": 74.449,
+        "Lycaena phlaeas": 114.3934,
+        "Maniola jurtina": 74.9873,
+        "Polyommatus icarus": 119.8199,
+        "Euphydryas aurinia": 60.5179,
+        "Lysandra bellargus": 156.0424,
+        "Spialia sertorius": 27.5849,
+        "Thymelicus acteon": 86.4188
       },
       "dataQuality": {
         "transectCount": 45,
@@ -180,18 +180,18 @@
     },
     "2023": {
       "year": 2023,
-      "gbiValue": 55.77,
+      "gbiValue": 58.85,
       "speciesIndices": {
-        "Anthocharis cardamines": 248.2899,
-        "Coenonympha pamphilus": 33.5299,
-        "Lasiommata megera": 98.9704,
-        "Lycaena phlaeas": 149.0767,
-        "Maniola jurtina": 53.4548,
-        "Polyommatus icarus": 4.5317,
-        "Euphydryas aurinia": 47.7462,
-        "Lysandra bellargus": 85.4139,
-        "Spialia sertorius": 31.0964,
-        "Thymelicus acteon": 77.1916
+        "Anthocharis cardamines": 350.821,
+        "Coenonympha pamphilus": 34.0186,
+        "Lasiommata megera": 100.0276,
+        "Lycaena phlaeas": 150.2339,
+        "Maniola jurtina": 52.9597,
+        "Polyommatus icarus": 4.4221,
+        "Euphydryas aurinia": 44.6294,
+        "Lysandra bellargus": 109.4181,
+        "Spialia sertorius": 30.9494,
+        "Thymelicus acteon": 78.547
       },
       "dataQuality": {
         "transectCount": 70,
@@ -201,18 +201,18 @@
     },
     "2024": {
       "year": 2024,
-      "gbiValue": 81.5,
+      "gbiValue": 80.9,
       "speciesIndices": {
-        "Anthocharis cardamines": 206.2219,
-        "Coenonympha pamphilus": 33.067,
-        "Lasiommata megera": 182.6509,
-        "Lycaena phlaeas": 124.9317,
-        "Maniola jurtina": 59.6339,
-        "Polyommatus icarus": 35.0857,
-        "Euphydryas aurinia": 89.9648,
-        "Lysandra bellargus": 153.5934,
-        "Spialia sertorius": 34.9745,
-        "Thymelicus acteon": 82.1765
+        "Anthocharis cardamines": 239.5329,
+        "Coenonympha pamphilus": 31.4965,
+        "Lasiommata megera": 182.5864,
+        "Lycaena phlaeas": 126.2707,
+        "Maniola jurtina": 59.0675,
+        "Polyommatus icarus": 35.3684,
+        "Euphydryas aurinia": 79.5035,
+        "Lysandra bellargus": 153.6555,
+        "Spialia sertorius": 34.6959,
+        "Thymelicus acteon": 77.965
       },
       "dataQuality": {
         "transectCount": 77,
@@ -222,18 +222,18 @@
     },
     "2025": {
       "year": 2025,
-      "gbiValue": 65.42,
+      "gbiValue": 63.45,
       "speciesIndices": {
-        "Anthocharis cardamines": 307.8599,
-        "Coenonympha pamphilus": 65.635,
-        "Lasiommata megera": 99.0702,
-        "Lycaena phlaeas": 120.4075,
-        "Maniola jurtina": 177.2731,
-        "Polyommatus icarus": 9.7303,
-        "Euphydryas aurinia": 56.1409,
-        "Lysandra bellargus": 70.1166,
-        "Spialia sertorius": 13.7411,
-        "Thymelicus acteon": 63.8347
+        "Anthocharis cardamines": 345.4121,
+        "Coenonympha pamphilus": 62.2879,
+        "Lasiommata megera": 98.1593,
+        "Lycaena phlaeas": 119.5767,
+        "Maniola jurtina": 175.2256,
+        "Polyommatus icarus": 9.4124,
+        "Euphydryas aurinia": 47.6349,
+        "Lysandra bellargus": 70.123,
+        "Spialia sertorius": 12.7022,
+        "Thymelicus acteon": 59.8732
       },
       "dataQuality": {
         "transectCount": 72,
@@ -246,7 +246,7 @@
     "Anthocharis cardamines": {
       "species": "Anthocharis cardamines",
       "type": "widespread",
-      "slope": 0.1523232653489333,
+      "slope": 0.18560707633398238,
       "yearsWithData": [
         2021,
         2022,
@@ -256,14 +256,14 @@
       ],
       "annualIndices": {
         "2021": 100,
-        "2022": 426.098,
-        "2023": 248.2899,
-        "2024": 206.2219,
-        "2025": 307.8599
+        "2022": 446.6414,
+        "2023": 350.821,
+        "2024": 239.5329,
+        "2025": 345.4121
       },
       "dataQuality": {
         "site_count": 18,
-        "total_visits": 1400,
+        "total_visits": 1381,
         "total_counts": 43,
         "years_with_data": 5,
         "flight_curve_r2": 0,
@@ -275,7 +275,7 @@
     "Coenonympha pamphilus": {
       "species": "Coenonympha pamphilus",
       "type": "widespread",
-      "slope": -0.1549581141565585,
+      "slope": -0.16897792055096772,
       "yearsWithData": [
         2021,
         2022,
@@ -285,15 +285,15 @@
       ],
       "annualIndices": {
         "2021": 100,
-        "2022": 67.0873,
-        "2023": 33.5299,
-        "2024": 33.067,
-        "2025": 65.635
+        "2022": 66.2112,
+        "2023": 34.0186,
+        "2024": 31.4965,
+        "2025": 62.2879
       },
       "dataQuality": {
         "site_count": 18,
-        "total_visits": 1400,
-        "total_counts": 233,
+        "total_visits": 1381,
+        "total_counts": 231,
         "years_with_data": 5,
         "flight_curve_r2": 0,
         "imputation_success": true,
@@ -304,7 +304,7 @@
     "Lasiommata megera": {
       "species": "Lasiommata megera",
       "type": "widespread",
-      "slope": 0.09069028816633647,
+      "slope": 0.08599521247931989,
       "yearsWithData": [
         2021,
         2022,
@@ -314,15 +314,15 @@
       ],
       "annualIndices": {
         "2021": 100,
-        "2022": 72.3844,
-        "2023": 98.9704,
-        "2024": 182.6509,
-        "2025": 99.0702
+        "2022": 74.449,
+        "2023": 100.0276,
+        "2024": 182.5864,
+        "2025": 98.1593
       },
       "dataQuality": {
         "site_count": 18,
-        "total_visits": 1400,
-        "total_counts": 271,
+        "total_visits": 1381,
+        "total_counts": 270,
         "years_with_data": 5,
         "flight_curve_r2": 0,
         "imputation_success": true,
@@ -333,7 +333,7 @@
     "Lycaena phlaeas": {
       "species": "Lycaena phlaeas",
       "type": "widespread",
-      "slope": 0.04887759676879341,
+      "slope": 0.045636027112936975,
       "yearsWithData": [
         2021,
         2022,
@@ -343,15 +343,15 @@
       ],
       "annualIndices": {
         "2021": 100,
-        "2022": 111.0982,
-        "2023": 149.0767,
-        "2024": 124.9317,
-        "2025": 120.4075
+        "2022": 114.3934,
+        "2023": 150.2339,
+        "2024": 126.2707,
+        "2025": 119.5767
       },
       "dataQuality": {
         "site_count": 18,
-        "total_visits": 1400,
-        "total_counts": 432,
+        "total_visits": 1381,
+        "total_counts": 428,
         "years_with_data": 5,
         "flight_curve_r2": 0,
         "imputation_success": true,
@@ -362,7 +362,7 @@
     "Maniola jurtina": {
       "species": "Maniola jurtina",
       "type": "widespread",
-      "slope": 0.09238404234738481,
+      "slope": 0.08831702930137453,
       "yearsWithData": [
         2021,
         2022,
@@ -372,15 +372,15 @@
       ],
       "annualIndices": {
         "2021": 100,
-        "2022": 74.3978,
-        "2023": 53.4548,
-        "2024": 59.6339,
-        "2025": 177.2731
+        "2022": 74.9873,
+        "2023": 52.9597,
+        "2024": 59.0675,
+        "2025": 175.2256
       },
       "dataQuality": {
         "site_count": 18,
-        "total_visits": 1400,
-        "total_counts": 747,
+        "total_visits": 1381,
+        "total_counts": 744,
         "years_with_data": 5,
         "flight_curve_r2": 0,
         "imputation_success": true,
@@ -391,7 +391,7 @@
     "Polyommatus icarus": {
       "species": "Polyommatus icarus",
       "type": "widespread",
-      "slope": -0.589823865382836,
+      "slope": -0.594645545012878,
       "yearsWithData": [
         2021,
         2022,
@@ -401,14 +401,14 @@
       ],
       "annualIndices": {
         "2021": 100,
-        "2022": 121.0473,
-        "2023": 4.5317,
-        "2024": 35.0857,
-        "2025": 9.7303
+        "2022": 119.8199,
+        "2023": 4.4221,
+        "2024": 35.3684,
+        "2025": 9.4124
       },
       "dataQuality": {
         "site_count": 18,
-        "total_visits": 1400,
+        "total_visits": 1381,
         "total_counts": 108,
         "years_with_data": 5,
         "flight_curve_r2": 0,
@@ -420,7 +420,7 @@
     "Euphydryas aurinia": {
       "species": "Euphydryas aurinia",
       "type": "specialist",
-      "slope": -0.0853912277398706,
+      "slope": -0.12103471434532992,
       "yearsWithData": [
         2021,
         2022,
@@ -430,14 +430,14 @@
       ],
       "annualIndices": {
         "2021": 100,
-        "2022": 66.601,
-        "2023": 47.7462,
-        "2024": 89.9648,
-        "2025": 56.1409
+        "2022": 60.5179,
+        "2023": 44.6294,
+        "2024": 79.5035,
+        "2025": 47.6349
       },
       "dataQuality": {
         "site_count": 18,
-        "total_visits": 1400,
+        "total_visits": 1381,
         "total_counts": 46,
         "years_with_data": 5,
         "flight_curve_r2": 0,
@@ -449,7 +449,7 @@
     "Lysandra bellargus": {
       "species": "Lysandra bellargus",
       "type": "specialist",
-      "slope": -0.06963593889964273,
+      "slope": -0.0725253367718625,
       "yearsWithData": [
         2021,
         2022,
@@ -459,14 +459,14 @@
       ],
       "annualIndices": {
         "2021": 100,
-        "2022": 151.5093,
-        "2023": 85.4139,
-        "2024": 153.5934,
-        "2025": 70.1166
+        "2022": 156.0424,
+        "2023": 109.4181,
+        "2024": 153.6555,
+        "2025": 70.123
       },
       "dataQuality": {
         "site_count": 18,
-        "total_visits": 1400,
+        "total_visits": 1381,
         "total_counts": 34,
         "years_with_data": 5,
         "flight_curve_r2": 0,
@@ -478,7 +478,7 @@
     "Spialia sertorius": {
       "species": "Spialia sertorius",
       "type": "specialist",
-      "slope": -0.383663104335821,
+      "slope": -0.3897436955565706,
       "yearsWithData": [
         2021,
         2022,
@@ -488,14 +488,14 @@
       ],
       "annualIndices": {
         "2021": 100,
-        "2022": 30.6212,
-        "2023": 31.0964,
-        "2024": 34.9745,
-        "2025": 13.7411
+        "2022": 27.5849,
+        "2023": 30.9494,
+        "2024": 34.6959,
+        "2025": 12.7022
       },
       "dataQuality": {
         "site_count": 18,
-        "total_visits": 1400,
+        "total_visits": 1381,
         "total_counts": 39,
         "years_with_data": 5,
         "flight_curve_r2": 0,
@@ -507,7 +507,7 @@
     "Thymelicus acteon": {
       "species": "Thymelicus acteon",
       "type": "specialist",
-      "slope": -0.09175058319733181,
+      "slope": -0.11288276233746843,
       "yearsWithData": [
         2021,
         2022,
@@ -517,14 +517,14 @@
       ],
       "annualIndices": {
         "2021": 100,
-        "2022": 83.8164,
-        "2023": 77.1916,
-        "2024": 82.1765,
-        "2025": 63.8347
+        "2022": 86.4188,
+        "2023": 78.547,
+        "2024": 77.965,
+        "2025": 59.8732
       },
       "dataQuality": {
         "site_count": 18,
-        "total_visits": 1400,
+        "total_visits": 1381,
         "total_counts": 62,
         "years_with_data": 5,
         "flight_curve_r2": 0,

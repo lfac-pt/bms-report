@@ -99,7 +99,7 @@ ts_season <- rbms::ts_monit_season(
   Anchor = TRUE,
   AnchorLength = 2,
   AnchorLag = 2,
-  TimeUnit = "d"  # daily
+  TimeUnit = "w"  # weekly
 )
 
 # Step 2: Create complete time-series structure using rbms functions
@@ -149,7 +149,7 @@ tryCatch({
     SpeedGam = TRUE,  # Faster computation
     CompltSeason = TRUE,
     SelectYear = NULL,
-    TimeUnit = "d"
+    TimeUnit = "w"
   )
 
   flight_curve_success <- TRUE
@@ -195,7 +195,7 @@ if (flight_curve_success && !is.null(ts_flight_curve)) {
       ts_season_count = m_count,
       ts_flight_curve = ts_flight_curve,
       YearLimit = NULL,
-      TimeUnit = "d"
+      TimeUnit = "w"
     )
     imputation_success <- TRUE
     cat("Imputation successful\n")

@@ -33,6 +33,33 @@ function convertDateFormat(dateStr) {
 }
 
 /**
+ * Get ISO week number and year for a date
+ * @param {Date} date - JavaScript Date object
+ * @returns {Object} Object with {year, week}
+ */
+function getISOWeek(date) {
+  const d = new Date(Date.UTC(date.getFullYear(), date.getMonth(), date.getDate()));
+  const dayNum = d.getUTCDay() || 7; // Sunday = 7
+  d.setUTCDate(d.getUTCDate() + 4 - dayNum);
+  const yearStart = new Date(Date.UTC(d.getUTCFullYear(), 0, 1));
+  const weekNo = Math.ceil((((d - yearStart) / 86400000) + 1) / 7);
+  return {
+    year: d.getUTCFullYear(),
+    week: weekNo
+  };
+}
+
+/**
+ * Parse DD/MM/YYYY date string to Date object
+ * @param {string} dateStr - Date in DD/MM/YYYY format
+ * @returns {Date} JavaScript Date object
+ */
+function parseDate(dateStr) {
+  const [day, month, year] = dateStr.split('/');
+  return new Date(parseInt(year), parseInt(month) - 1, parseInt(day));
+}
+
+/**
  * Sanitize species name for use in filenames
  * @param {string} speciesName - Scientific name
  * @returns {string} Sanitized filename-safe string
@@ -45,44 +72,45 @@ function sanitizeFilename(speciesName) {
 }
 
 /**
- * Extract and transform data for a single species
+ * Extract and transform data for a single species, aggregated by week
  * @param {Array} allData - Complete butterfly observation data
  * @param {Array<string>} transectIds - List of quality filtered transect IDs
  * @param {string} speciesName - Scientific name of species
- * @returns {Object} Object with visits and counts arrays
+ * @returns {Object} Object with visits and counts arrays (weekly aggregated)
  */
 function extractSpeciesData(allData, transectIds, speciesName) {
   const transectSet = new Set(transectIds);
-  const visitsMap = new Map(); // Key: transectId_date, Value: visit info
-  let countsArray = [];
+  const visitsMap = new Map(); // Key: transectId_year_week, Value: visit info (first date of week)
+  const countsMap = new Map(); // Key: transectId_year_week, Value: total count for week
 
-  // First pass: Build visits map from ALL data at these transects (not species-specific)
-  // This gives us all monitoring dates regardless of what was observed
+  // First pass: Build weekly visits map from ALL data at these transects
+  // Aggregate to one visit per site-week (using first monitoring date of that week)
   allData.forEach(row => {
     const month = parseInt(row.month);
     if (!transectSet.has(row.transectId) || month < 3 || month > 9) {
       return; // Skip non-quality transects and out-of-season data
     }
 
-    const visitKey = `${row.transectId}_${row.date}`;
+    try {
+      const dateObj = parseDate(row.date);
+      const { year, week } = getISOWeek(dateObj);
+      const visitKey = `${row.transectId}_${year}_${week}`;
 
-    if (!visitsMap.has(visitKey)) {
-      try {
+      if (!visitsMap.has(visitKey)) {
         const dateYMD = convertDateFormat(row.date);
         visitsMap.set(visitKey, {
           site_id: row.transectId,
-          date: dateYMD,
-          year: row.year
+          date: dateYMD, // First date we saw this site-week
+          year: year
         });
-      } catch (err) {
-        console.warn(`Skipping invalid date ${row.date}`);
       }
+    } catch (err) {
+      console.warn(`Skipping invalid date ${row.date}`);
     }
   });
 
-  // Second pass: Build counts array for this specific species only
-  const countsMap = new Map(); // Key: site_date, Value: total count
-
+  // Second pass: Build weekly counts for this specific species
+  // Sum all counts within each site-week
   allData.forEach(row => {
     const month = parseInt(row.month);
     if (
@@ -97,16 +125,25 @@ function extractSpeciesData(allData, transectIds, speciesName) {
     const count = parseInt(row.count) || 0;
     if (count > 0) {
       try {
-        const dateYMD = convertDateFormat(row.date);
-        const key = `${row.transectId}_${dateYMD}`;
+        const dateObj = parseDate(row.date);
+        const { year, week } = getISOWeek(dateObj);
+        const countKey = `${row.transectId}_${year}_${week}`;
 
-        // Aggregate counts by site and date
-        if (countsMap.has(key)) {
-          countsMap.get(key).count += count;
+        // Get the visit date for this site-week
+        const visit = visitsMap.get(countKey);
+        if (!visit) {
+          // No visit recorded for this week (shouldn't happen)
+          console.warn(`No visit found for count at ${row.transectId} week ${year}-${week}`);
+          return;
+        }
+
+        // Aggregate counts by site-week
+        if (countsMap.has(countKey)) {
+          countsMap.get(countKey).count += count;
         } else {
-          countsMap.set(key, {
+          countsMap.set(countKey, {
             site_id: row.transectId,
-            date: dateYMD,
+            date: visit.date, // Use same date as visit
             count: count
           });
         }
@@ -123,7 +160,7 @@ function extractSpeciesData(allData, transectIds, speciesName) {
   });
 
   // Convert counts map to array and sort
-  countsArray = Array.from(countsMap.values()).sort((a, b) => {
+  const countsArray = Array.from(countsMap.values()).sort((a, b) => {
     if (a.site_id !== b.site_id) return a.site_id.localeCompare(b.site_id);
     return a.date.localeCompare(b.date);
   });
@@ -286,6 +323,8 @@ function validateRbmsOutput(output, speciesName, expectedYears) {
 
 module.exports = {
   convertDateFormat,
+  getISOWeek,
+  parseDate,
   sanitizeFilename,
   extractSpeciesData,
   writeCSV,
