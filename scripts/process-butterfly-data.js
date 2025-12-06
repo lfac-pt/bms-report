@@ -2,12 +2,14 @@ const fs = require('fs');
 const path = require('path');
 const Papa = require('papaparse');
 const https = require('https');
+const rbmsUtils = require('./rbms-utils');
 
 // File paths
 const RAW_DATA_DIR = path.join(__dirname, '../raw-data');
 const METADATA_FILE = path.join(RAW_DATA_DIR, 'metadata.csv');
 const ALL_DATA_FILE = path.join(RAW_DATA_DIR, 'all.csv');
 const GEOCODE_CACHE_FILE = path.join(RAW_DATA_DIR, 'geocode-cache.json');
+const TEMP_RBMS_DIR = path.join(RAW_DATA_DIR, 'temp-rbms');
 const OUTPUT_DIR = path.join(__dirname, '../public/data');
 const OUTPUT_FILE = path.join(OUTPUT_DIR, 'processed-transects.json');
 const TIMELINE_OUTPUT_FILE = path.join(OUTPUT_DIR, 'timeline-data.json');
@@ -636,15 +638,15 @@ function calculateGeometricMean(values) {
 /**
  * Main GBI calculation function
  */
-function calculateGBI(allData, transects, baselineYear = 2020) {
-  console.log('\nCalculating Grassland Butterfly Index (GBI)...');
+async function calculateGBI(allData, transects, baselineYear = 2021) {
+  console.log('\nCalculating Grassland Butterfly Index (GBI) using rbms...');
 
   // Step 1: Filter quality transects
   const qualityTransects = getQualityFilteredTransects(transects);
 
   // Filter to only include transects active in the most recent year
   const activeQualityTransects = qualityTransects.filter(t => t.isActive);
-  const qualityTransectIds = new Set(activeQualityTransects.map(t => t.transectId));
+  const qualityTransectIds = activeQualityTransects.map(t => t.transectId);
 
   console.log(`  Quality transects: ${qualityTransects.length} (5+ years, 10+ visits/year)`);
   console.log(`  Active in most recent year: ${activeQualityTransects.length}`);
@@ -654,76 +656,179 @@ function calculateGBI(allData, transects, baselineYear = 2020) {
     return null;
   }
 
-  // Step 2: Calculate abundance by year and species
-  const abundanceByYearSpecies = calculateSpeciesAbundanceByYear(allData, qualityTransectIds);
-  const allYears = Object.keys(abundanceByYearSpecies)
-    .map(Number)
-    .filter(year => year >= 2021) // Start from 2021 for consistent transect count
-    .sort((a, b) => a - b);
+  // Step 2: Prepare temporary directory for rbms data exchange
+  if (!fs.existsSync(TEMP_RBMS_DIR)) {
+    fs.mkdirSync(TEMP_RBMS_DIR, { recursive: true });
+  }
 
+  // Step 3: Transform data for rbms
+  // rbms expects: transectId, date (YYYY-MM-DD), year, species, count
+  const transformedData = allData
+    .filter(row => {
+      const month = getMonthFromDate(row['Date']);
+      return month !== null && month >= 3 && month <= 9; // Monitoring season
+    })
+    .map(row => ({
+      transectId: row['Transect ID'],
+      date: row['Date'], // Still in DD/MM/YYYY, will convert per-species
+      year: getYearFromDate(row['Date']),
+      month: getMonthFromDate(row['Date']),
+      species: row['Preferred Species Name'],
+      count: parseInt(row['Abundance Count']) || 0
+    }))
+    .filter(row => row.year >= 2021); // Start from 2021
+
+  console.log(`  Transformed ${transformedData.length} observations for rbms`);
+
+  // Get all years
+  const allYears = Array.from(new Set(transformedData.map(row => row.year))).sort((a, b) => a - b);
   console.log(`  Years with data: ${allYears.join(', ')}`);
 
-  if (allYears.length === 0) {
-    console.warn('  Warning: No data found for GBI calculation');
+  if (allYears.length < 3) {
+    console.warn(`  Warning: Insufficient years of data: ${allYears.length}`);
     return null;
   }
 
-  // Step 3: Calculate trends for each grassland species
+  // Step 4: Process each grassland species with rbms
   const speciesTrends = {};
   const allSpecies = Array.from(ALL_GRASSLAND_SPECIES);
+  const rScriptPath = path.join(__dirname, 'rbms-collated-index.R');
 
-  allSpecies.forEach(species => {
-    // Get yearly abundance for this species
-    const yearlyAbundance = {};
-    allYears.forEach(year => {
-      if (abundanceByYearSpecies[year] && abundanceByYearSpecies[year][species]) {
-        yearlyAbundance[year] = abundanceByYearSpecies[year][species];
-      }
-    });
+  console.log(`  Processing ${allSpecies.length} grassland species with rbms...`);
 
-    const yearsWithData = Object.keys(yearlyAbundance).map(Number);
-
-    if (yearsWithData.length < 3) {
-      console.log(`  ${species}: Insufficient data (${yearsWithData.length} years)`);
-      return;
+  // Debug: Check what species we actually have in the data
+  const speciesInData = new Set(transformedData.map(row => row.species));
+  console.log(`  Species found in data (${speciesInData.size}):`);
+  console.log(`  All species: ${Array.from(speciesInData).sort().join(', ')}`);
+  console.log(`  Grassland species in data:`);
+  Array.from(speciesInData).sort().forEach(sp => {
+    if (ALL_GRASSLAND_SPECIES.has(sp)) {
+      const count = transformedData.filter(r => r.species === sp).length;
+      console.log(`    - ${sp}: ${count} observations`);
     }
-
-    // Calculate log-linear trend
-    const trend = calculateLogLinearTrend(yearlyAbundance, baselineYear);
-
-    if (!trend) {
-      console.log(`  ${species}: Trend calculation failed`);
-      return;
-    }
-
-    // Calculate indices for all years
-    const annualIndices = {};
-    allYears.forEach(year => {
-      annualIndices[year] = calculateSpeciesIndex(trend.slope, year, baselineYear);
-    });
-
-    const speciesType = GRASSLAND_SPECIES.widespread.has(species) ? 'widespread' : 'specialist';
-
-    speciesTrends[species] = {
-      species,
-      type: speciesType,
-      slope: trend.slope,
-      yearsWithData,
-      annualIndices
-    };
-
-    console.log(`  ${species}: slope=${trend.slope.toFixed(4)}, years=${yearsWithData.length}`);
   });
 
+  // Check first few rows of transformedData
+  console.log(`  Sample transformed data (first 3 rows):`);
+  transformedData.slice(0, 3).forEach(row => {
+    console.log(`    ${JSON.stringify(row)}`);
+  });
+
+  for (const species of allSpecies) {
+    try {
+      console.log(`\n  Processing: ${species}`);
+
+      // Extract data for this species
+      const speciesData = rbmsUtils.extractSpeciesData(
+        transformedData,
+        qualityTransectIds,
+        species
+      );
+
+      console.log(`    Found: ${speciesData.visits.length} visits, ${speciesData.counts.length} counts`);
+
+      if (speciesData.visits.length < 10) {
+        console.log(`    Skipping: insufficient visits (${speciesData.visits.length})`);
+        continue;
+      }
+
+      if (speciesData.counts.length < 5) {
+        console.log(`    Skipping: insufficient counts (${speciesData.counts.length})`);
+        continue;
+      }
+
+      // Create safe filename
+      const speciesSafe = rbmsUtils.sanitizeFilename(species);
+
+      // Write CSV files
+      const visitsFile = path.join(TEMP_RBMS_DIR, `visits_${speciesSafe}.csv`);
+      const countsFile = path.join(TEMP_RBMS_DIR, `counts_${speciesSafe}.csv`);
+      const outputFile = path.join(TEMP_RBMS_DIR, `output_${speciesSafe}.json`);
+
+      rbmsUtils.writeCSV(visitsFile, speciesData.visits, ['site_id', 'date', 'year']);
+      rbmsUtils.writeCSV(countsFile, speciesData.counts, ['site_id', 'date', 'count']);
+
+      console.log(`    Visits: ${speciesData.visits.length}, Counts: ${speciesData.counts.length}`);
+
+      // Call R script with extended timeout (2 minutes per species)
+      const args = [visitsFile, countsFile, outputFile, species, baselineYear.toString()];
+
+      try {
+        await rbmsUtils.callRbms(rScriptPath, args, 120000); // 2 minute timeout
+
+        // Read and validate results
+        if (!fs.existsSync(outputFile)) {
+          throw new Error('R script did not produce output file');
+        }
+
+        const outputJSON = fs.readFileSync(outputFile, 'utf8');
+        const rbmsOutput = JSON.parse(outputJSON);
+
+        // Validate output
+        rbmsUtils.validateRbmsOutput(rbmsOutput, species, allYears);
+
+        // Check if we got valid indices
+        if (Object.keys(rbmsOutput.collated_indices).length < 3) {
+          throw new Error(`Insufficient years with rbms indices: ${Object.keys(rbmsOutput.collated_indices).length}`);
+        }
+
+        // Store species trend
+        const speciesType = GRASSLAND_SPECIES.widespread.has(species) ? 'widespread' : 'specialist';
+        const yearsWithData = Object.keys(rbmsOutput.collated_indices).map(Number);
+
+        // Calculate slope from indices (log-linear regression for metadata)
+        const indices = yearsWithData.map(year => rbmsOutput.collated_indices[year]);
+        const years = yearsWithData.map(year => year - baselineYear);
+        const logIndices = indices.map(idx => Math.log(idx));
+        const n = years.length;
+        const sumX = years.reduce((a, b) => a + b, 0);
+        const sumY = logIndices.reduce((a, b) => a + b, 0);
+        const sumXY = years.reduce((sum, x, i) => sum + x * logIndices[i], 0);
+        const sumX2 = years.reduce((sum, x) => sum + x * x, 0);
+        const slope = (n * sumXY - sumX * sumY) / (n * sumX2 - sumX * sumX);
+
+        speciesTrends[species] = {
+          species,
+          type: speciesType,
+          slope: slope,
+          yearsWithData,
+          annualIndices: rbmsOutput.collated_indices,
+          dataQuality: rbmsOutput.data_quality,
+          method: 'rbms'
+        };
+
+        console.log(`    ✓ rbms success: ${yearsWithData.length} years, R²=${rbmsOutput.data_quality.flight_curve_r2}`);
+
+        // Clean up temp files
+        try {
+          fs.unlinkSync(visitsFile);
+          fs.unlinkSync(countsFile);
+          fs.unlinkSync(outputFile);
+        } catch (cleanupErr) {
+          // Ignore cleanup errors
+        }
+
+      } catch (rbmsError) {
+        console.log(`    rbms failed: ${rbmsError.message.split('\n')[0]}`);
+        console.log(`    Species excluded from GBI`);
+        continue;
+      }
+
+    } catch (err) {
+      console.log(`    Error: ${err.message}`);
+      continue;
+    }
+  }
+
   const speciesWithTrends = Object.keys(speciesTrends);
-  console.log(`  Species with valid trends: ${speciesWithTrends.length}/${allSpecies.length}`);
+  console.log(`\n  Species successfully processed: ${speciesWithTrends.length}/${allSpecies.length}`);
 
   if (speciesWithTrends.length === 0) {
     console.warn('  Warning: No species trends calculated');
     return null;
   }
 
-  // Step 4: Calculate GBI for each year
+  // Step 5: Calculate GBI for each year using geometric mean
   const gbiByYear = {};
 
   allYears.forEach(year => {
@@ -732,27 +837,23 @@ function calculateGBI(allData, transects, baselineYear = 2020) {
 
     speciesWithTrends.forEach(species => {
       const index = speciesTrends[species].annualIndices[year];
-      speciesIndicesThisYear[species] = index;
-      indicesForGBI.push(index);
+      if (index !== undefined && index > 0) {
+        speciesIndicesThisYear[species] = index;
+        indicesForGBI.push(index);
+      }
     });
+
+    if (indicesForGBI.length === 0) {
+      console.warn(`  Warning: No species indices for year ${year}`);
+      return;
+    }
 
     const gbiValue = calculateGeometricMean(indicesForGBI);
 
     // Count transects and visits for this year
-    const yearData = allData.filter(row => {
-      const rowYear = getYearFromDate(row['Date']);
-      const month = getMonthFromDate(row['Date']);
-      return rowYear === year &&
-             month !== null && month >= 2 && month <= 8 &&
-             qualityTransectIds.has(row['Transect ID']);
-    });
-
-    const transectsThisYear = new Set();
-    const datesThisYear = new Set();
-    yearData.forEach(row => {
-      transectsThisYear.add(row['Transect ID']);
-      datesThisYear.add(row['Date']);
-    });
+    const yearData = transformedData.filter(row => row.year === year);
+    const transectsThisYear = new Set(yearData.map(row => row.transectId));
+    const datesThisYear = new Set(yearData.map(row => row.date));
 
     gbiByYear[year] = {
       year,
@@ -761,14 +862,14 @@ function calculateGBI(allData, transects, baselineYear = 2020) {
       dataQuality: {
         transectCount: transectsThisYear.size,
         totalVisits: datesThisYear.size,
-        speciesWithData: speciesWithTrends.length
+        speciesWithData: Object.keys(speciesIndicesThisYear).length
       }
     };
 
-    console.log(`  ${year}: GBI=${gbiValue.toFixed(2)}, transects=${transectsThisYear.size}, visits=${datesThisYear.size}`);
+    console.log(`  ${year}: GBI=${gbiValue.toFixed(2)}, species=${Object.keys(speciesIndicesThisYear).length}`);
   });
 
-  // Step 5: Compile metadata
+  // Step 6: Compile metadata
   const grasslandSpeciesList = allSpecies.map(species => ({
     scientificName: species,
     type: GRASSLAND_SPECIES.widespread.has(species) ? 'widespread' : 'specialist'
@@ -787,10 +888,10 @@ function calculateGBI(allData, transects, baselineYear = 2020) {
       minVisitsPerYear: 10
     },
     transectsUsed: transectsUsedList,
-    calculationMethod: 'European GBI (geometric mean of log-linear trends)'
+    calculationMethod: 'rbms (GAM flight curves + GLM collated indices + geometric mean)'
   };
 
-  console.log(`  ✓ GBI calculated for ${allYears.length} years`);
+  console.log(`  ✓ GBI calculated for ${Object.keys(gbiByYear).length} years using rbms`);
 
   return {
     metadata,
@@ -1184,7 +1285,7 @@ async function processData() {
   console.log(`Timeline data saved (${(fs.statSync(TIMELINE_OUTPUT_FILE).size / 1024).toFixed(2)} KB)`);
 
   // Calculate and save GBI data
-  const gbiData = calculateGBI(allData, results, 2021);
+  const gbiData = await calculateGBI(allData, results, 2021);
   if (gbiData) {
     const GBI_OUTPUT_FILE = path.join(OUTPUT_DIR, 'gbi-data.json');
     console.log(`\nWriting GBI data to ${GBI_OUTPUT_FILE}...`);
