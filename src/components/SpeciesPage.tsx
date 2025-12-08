@@ -2,7 +2,7 @@ import { useState, useEffect, useMemo } from "react";
 import { Button, Card, Space, Typography, Spin, Alert, Row, Col, Select, Radio } from "antd";
 import { ArrowLeftOutlined } from "@ant-design/icons";
 import { useParams, useNavigate } from "react-router-dom";
-import { Bar } from "react-chartjs-2";
+import { Bar, Line } from "react-chartjs-2";
 import { SPECIES_FAMILIES } from "../utils/speciesFamilies";
 import { TimelineData } from "../types/timelineData";
 import { TransectData } from "../types/transectStats";
@@ -36,22 +36,28 @@ function SpeciesPage() {
 
   const [timelineData, setTimelineData] = useState<TimelineData | null>(null);
   const [transectData, setTransectData] = useState<TransectData | null>(null);
+  const [flightCurvesData, setFlightCurvesData] = useState<any>(null);
   const [loading, setLoading] = useState(true);
   const [yearViewMode, setYearViewMode] = useState<"combined" | "separate">("combined");
+  const [dataViewMode, setDataViewMode] = useState<"abundance" | "flightCurves">("abundance");
 
   // Decode the species name from URL
   const decodedSpeciesName = speciesName ? decodeURIComponent(speciesName) : "";
   const family = SPECIES_FAMILIES[decodedSpeciesName] || "Informação não disponível";
 
-  // Load timeline and transect data
+  // Load timeline, transect, and flight curves data
   useEffect(() => {
     Promise.all([
       fetch("/data/timeline-data.json").then(res => res.json()),
       fetch("/data/processed-transects.json").then(res => res.json()),
+      fetch("/data/flight-curves-data.json")
+        .then(res => res.json())
+        .catch(() => null),
     ])
-      .then(([timeline, transects]) => {
+      .then(([timeline, transects, flightCurves]) => {
         setTimelineData(timeline);
         setTransectData(transects);
+        setFlightCurvesData(flightCurves);
         setLoading(false);
       })
       .catch(() => {
@@ -381,9 +387,120 @@ function SpeciesPage() {
 
       <Card title="Abundância Mensal por Região">
         <Space direction="vertical" size="large" style={{ width: "100%" }}>
-          {(() => {
-            // Check if there's any data across all regions
-            const hasAnyData = Object.values(regionalMonthlyData).some(regionData => {
+          {/* Data view mode switcher */}
+          <Radio.Group
+            value={dataViewMode}
+            onChange={e => setDataViewMode(e.target.value)}
+            buttonStyle="solid"
+          >
+            <Radio.Button value="abundance">Abundância Mensal</Radio.Button>
+            <Radio.Button value="flightCurves" disabled={!flightCurvesData?.species?.[decodedSpeciesName]}>
+              Curvas de Voo (rbms)
+            </Radio.Button>
+          </Radio.Group>
+
+          {dataViewMode === "flightCurves" ? (
+            // Flight Curves View
+            (() => {
+              const speciesData = flightCurvesData?.species?.[decodedSpeciesName];
+
+              if (!speciesData) {
+                return (
+                  <Alert
+                    message="Curvas de voo não disponíveis"
+                    description="Esta espécie não tem dados suficientes para calcular curvas de voo (mínimo 20 contagens em 3 anos)."
+                    type="info"
+                    showIcon
+                  />
+                );
+              }
+
+              const years = Object.keys(speciesData.collatedIndices).map(Number).sort();
+              const indices = years.map(year => speciesData.collatedIndices[year]);
+
+              const chartData = {
+                labels: years.map(String),
+                datasets: [
+                  {
+                    label: "Índice Populacional (2021 = 100)",
+                    data: indices,
+                    borderColor: SERIES_COLORS[0],
+                    backgroundColor: SERIES_COLORS[0] + "33",
+                    fill: true,
+                    tension: 0.3,
+                  },
+                ],
+              };
+
+              const options = {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                  legend: { display: true, position: "top" as const },
+                  tooltip: {
+                    callbacks: {
+                      label: (context: any) => {
+                        return `Índice: ${context.parsed.y.toFixed(2)}`;
+                      },
+                    },
+                  },
+                },
+                scales: {
+                  y: {
+                    beginAtZero: false,
+                    title: {
+                      display: true,
+                      text: "Índice Populacional",
+                    },
+                  },
+                  x: {
+                    title: {
+                      display: true,
+                      text: "Ano",
+                    },
+                  },
+                },
+              };
+
+              return (
+                <>
+                  <Alert
+                    message="Sobre as Curvas de Voo"
+                    description={
+                      <>
+                        <p style={{ marginBottom: 8 }}>
+                          As curvas de voo são calculadas usando a biblioteca <strong>rbms</strong> (Regional
+                          Butterfly Monitoring Scheme) com modelos GAM (Generalized Additive Models) e GLM
+                          (Generalized Linear Models).
+                        </p>
+                        <p style={{ marginBottom: 8 }}>
+                          <strong>Dados utilizados:</strong>
+                        </p>
+                        <ul style={{ marginBottom: 0, paddingLeft: 20 }}>
+                          <li>{speciesData.dataQuality.site_count} transectos de qualidade (5+ anos, 10+ visitas/ano)</li>
+                          <li>{speciesData.dataQuality.total_counts} contagens ao longo de {speciesData.dataQuality.years_with_data} anos</li>
+                          <li>Baseline: {speciesData.dataQuality.baseline_year} = 100</li>
+                          <li>Imputação: {speciesData.dataQuality.imputation_success ? "Sim" : "Não"}</li>
+                        </ul>
+                      </>
+                    }
+                    type="info"
+                    showIcon
+                    style={{ marginBottom: 16 }}
+                  />
+                  <Card type="inner" title="Tendência Populacional">
+                    <div style={{ height: 400 }}>
+                      <Line data={chartData} options={options} />
+                    </div>
+                  </Card>
+                </>
+              );
+            })()
+          ) : (
+            // Monthly Abundance View (existing code)
+            (() => {
+              // Check if there's any data across all regions
+              const hasAnyData = Object.values(regionalMonthlyData).some(regionData => {
               const { data } = regionData as { transectCount: number; data: any };
 
               if (yearViewMode === "combined") {
@@ -579,7 +696,8 @@ function SpeciesPage() {
                 />
               </>
             );
-          })()}
+          })()
+          )}
         </Space>
       </Card>
     </Space>

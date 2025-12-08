@@ -902,6 +902,176 @@ async function calculateGBI(allData, transects, baselineYear = 2021) {
 }
 
 /**
+ * Calculate flight curves for all species with sufficient data using rbms
+ * @param {Array} allData - Raw butterfly observation data
+ * @param {Array} transects - Transect metadata
+ * @param {number} baselineYear - Baseline year for index normalization
+ * @returns {Object|null} Flight curve data for all species
+ */
+async function calculateAllFlightCurves(allData, transects, baselineYear = 2021) {
+  console.log('\nCalculating flight curves for all species using rbms...');
+
+  // Step 1: Use same quality transect filtering as GBI
+  const qualityTransects = getQualityFilteredTransects(transects);
+  const activeQualityTransects = qualityTransects.filter(t => t.isActive);
+  const qualityTransectIds = activeQualityTransects.map(t => t.transectId);
+
+  console.log(`  Quality transects: ${qualityTransects.length} (5+ years, 10+ visits/year)`);
+  console.log(`  Active in most recent year: ${activeQualityTransects.length}`);
+
+  if (activeQualityTransects.length === 0) {
+    console.warn('  Warning: No active quality transects found');
+    return null;
+  }
+
+  // Step 2: Prepare temporary directory for rbms data exchange
+  if (!fs.existsSync(TEMP_RBMS_DIR)) {
+    fs.mkdirSync(TEMP_RBMS_DIR, { recursive: true });
+  }
+
+  // Step 3: Transform data for rbms
+  const transformedData = allData
+    .filter(row => {
+      const month = getMonthFromDate(row['Date']);
+      return month !== null && month >= 3 && month <= 9; // Monitoring season
+    })
+    .map(row => ({
+      transectId: row['Transect ID'],
+      date: row['Date'],
+      year: getYearFromDate(row['Date']),
+      month: getMonthFromDate(row['Date']),
+      species: row['Preferred Species Name'],
+      count: parseInt(row['Abundance Count']) || 0
+    }))
+    .filter(row => row.year >= 2021); // Start from 2021
+
+  console.log(`  Transformed ${transformedData.length} observations for rbms`);
+
+  // Get all years
+  const allYears = Array.from(new Set(transformedData.map(row => row.year))).sort((a, b) => a - b);
+  console.log(`  Years with data: ${allYears.join(', ')}`);
+
+  if (allYears.length < 3) {
+    console.warn(`  Warning: Insufficient years of data: ${allYears.length}`);
+    return null;
+  }
+
+  // Step 4: Get all species with sufficient data
+  const speciesCounts = new Map();
+  transformedData.forEach(row => {
+    if (!qualityTransectIds.includes(row.transectId)) return;
+
+    const current = speciesCounts.get(row.species) || { observations: 0, counts: 0, years: new Set() };
+    current.observations++;
+    if (row.count > 0) current.counts++;
+    current.years.add(row.year);
+    speciesCounts.set(row.species, current);
+  });
+
+  // Filter to species with sufficient data AND in the whitelist
+  const eligibleSpecies = Array.from(speciesCounts.entries())
+    .filter(([species, stats]) => {
+      return VALID_SPECIES.has(species) &&
+             stats.counts >= 20 &&
+             stats.years.size >= 3; // At least 20 counts across 3 years
+    })
+    .map(([species]) => species)
+    .sort();
+
+  console.log(`  Found ${eligibleSpecies.length} species in whitelist with sufficient data (20+ counts, 3+ years)`);
+
+  // Step 5: Process each species with rbms
+  const speciesResults = {};
+  const rScriptPath = path.join(__dirname, 'rbms-collated-index.R');
+  let successCount = 0;
+
+  for (const species of eligibleSpecies) {
+    try {
+      // Extract data for this species
+      const speciesData = rbmsUtils.extractSpeciesData(
+        transformedData,
+        qualityTransectIds,
+        species
+      );
+
+      if (speciesData.visits.length < 10 || speciesData.counts.length < 5) {
+        continue; // Skip silently
+      }
+
+      // Prepare temporary files
+      const sanitized = rbmsUtils.sanitizeFilename(species);
+      const visitsFile = path.join(TEMP_RBMS_DIR, `visits_${sanitized}.csv`);
+      const countsFile = path.join(TEMP_RBMS_DIR, `counts_${sanitized}.csv`);
+      const outputFile = path.join(TEMP_RBMS_DIR, `output_${sanitized}.json`);
+
+      rbmsUtils.writeCSV(visitsFile, speciesData.visits, ['site_id', 'date', 'year']);
+      rbmsUtils.writeCSV(countsFile, speciesData.counts, ['site_id', 'date', 'count']);
+
+      const args = [visitsFile, countsFile, outputFile, species, baselineYear.toString()];
+
+      // Call rbms R script
+      await rbmsUtils.callRbms(rScriptPath, args, 120000);
+
+      // Read and validate results
+      const outputJSON = fs.readFileSync(outputFile, 'utf8');
+      const rbmsOutput = JSON.parse(outputJSON);
+      rbmsUtils.validateRbmsOutput(rbmsOutput, species, allYears);
+
+      // Store results
+      speciesResults[species] = {
+        collatedIndices: rbmsOutput.collated_indices,
+        dataQuality: rbmsOutput.data_quality,
+        processingInfo: rbmsOutput.processing_info
+      };
+
+      successCount++;
+
+      // Clean up temp files
+      fs.unlinkSync(visitsFile);
+      fs.unlinkSync(countsFile);
+      fs.unlinkSync(outputFile);
+
+    } catch (error) {
+      // Skip species that fail - don't log to keep output clean
+      continue;
+    }
+  }
+
+  console.log(`  ✓ Successfully processed ${successCount}/${eligibleSpecies.length} species`);
+
+  if (successCount === 0) {
+    console.warn('  Warning: No species successfully processed');
+    return null;
+  }
+
+  // Step 6: Compile metadata
+  const transectsUsedList = activeQualityTransects.map(t => ({
+    transectId: t.transectId,
+    transectName: t.transectName
+  })).sort((a, b) => a.transectName.localeCompare(b.transectName));
+
+  const metadata = {
+    processingDate: new Date().toISOString(),
+    baselineYear,
+    qualityCriteria: {
+      minYearsActive: 5,
+      minVisitsPerYear: 10,
+      minCountsPerSpecies: 20,
+      minYearsPerSpecies: 3
+    },
+    transectsUsed: transectsUsedList,
+    method: 'rbms (GAM flight curves + GLM collated indices)'
+  };
+
+  return {
+    metadata,
+    species: speciesResults,
+    speciesList: Object.keys(speciesResults).sort(),
+    years: allYears
+  };
+}
+
+/**
  * Process timeline data for all transects and years
  */
 function processTimelineData(allData) {
@@ -1293,6 +1463,18 @@ async function processData() {
     console.log(`GBI data saved (${(fs.statSync(GBI_OUTPUT_FILE).size / 1024).toFixed(2)} KB)`);
   } else {
     console.warn('\nWarning: GBI calculation failed or returned no data');
+  }
+
+  // Calculate and save flight curves for all species
+  const flightCurvesData = await calculateAllFlightCurves(allData, results, 2021);
+  if (flightCurvesData) {
+    const FLIGHT_CURVES_OUTPUT_FILE = path.join(OUTPUT_DIR, 'flight-curves-data.json');
+    console.log(`\nWriting flight curves data to ${FLIGHT_CURVES_OUTPUT_FILE}...`);
+    fs.writeFileSync(FLIGHT_CURVES_OUTPUT_FILE, JSON.stringify(flightCurvesData, null, 2), 'utf-8');
+    console.log(`Flight curves data saved (${(fs.statSync(FLIGHT_CURVES_OUTPUT_FILE).size / 1024).toFixed(2)} KB)`);
+    console.log(`  - Species with flight curves: ${flightCurvesData.speciesList.length}`);
+  } else {
+    console.warn('\nWarning: Flight curves calculation failed or returned no data');
   }
 
   console.log('\n✓ Processing complete!');
