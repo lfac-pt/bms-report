@@ -200,39 +200,6 @@ function SpeciesPage() {
         </Space>
       </Card>
 
-      <Card title="Distribuição por Ano">
-        <Row gutter={[16, 16]}>
-          {years.map(year => {
-            const speciesData = calculateSpeciesPresenceByYear(
-              decodedSpeciesName,
-              year,
-              timelineData,
-              transectData.transects
-            );
-
-            const withSpecies = speciesData.filter(t => t.hasSpecies).length;
-            const totalTransects = speciesData.length;
-
-            return (
-              <Col key={year} xs={24} sm={24} md={12} lg={8} xl={6}>
-                <Card
-                  type="inner"
-                  title={`${year} (${withSpecies} de ${totalTransects} transectos)`}
-                  size="small"
-                >
-                  <SpeciesMap
-                    transects={speciesData}
-                    speciesName={decodedSpeciesName}
-                    year={year}
-                    timelineData={timelineData}
-                  />
-                </Card>
-              </Col>
-            );
-          })}
-        </Row>
-      </Card>
-
       <Card title="Curvas de Voo">
         <Space direction="vertical" size="large" style={{ width: "100%" }}>
           {/* Data view mode switcher */}
@@ -369,6 +336,39 @@ function SpeciesPage() {
             })()
           )}
         </Space>
+      </Card>
+
+      <Card title="Distribuição por Ano">
+        <Row gutter={[16, 16]}>
+          {years.map(year => {
+            const speciesData = calculateSpeciesPresenceByYear(
+              decodedSpeciesName,
+              year,
+              timelineData,
+              transectData.transects
+            );
+
+            const withSpecies = speciesData.filter(t => t.hasSpecies).length;
+            const totalTransects = speciesData.length;
+
+            return (
+              <Col key={year} xs={24} sm={24} md={12} lg={8} xl={6}>
+                <Card
+                  type="inner"
+                  title={`${year} (${withSpecies} de ${totalTransects} transectos)`}
+                  size="small"
+                >
+                  <SpeciesMap
+                    transects={speciesData}
+                    speciesName={decodedSpeciesName}
+                    year={year}
+                    timelineData={timelineData}
+                  />
+                </Card>
+              </Col>
+            );
+          })}
+        </Row>
       </Card>
     </Space>
   );
