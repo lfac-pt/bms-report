@@ -137,6 +137,7 @@ print(head(m_count, 3))
 
 # Step 4: Calculate flight curves using GAM
 cat("Calculating GAM flight curves...\n")
+pheno_curves <- NULL  # Initialize for scope
 tryCatch({
   ts_flight_curve <- rbms::flight_curve(
     m_count,
@@ -179,11 +180,56 @@ tryCatch({
     }
   }
 
+  # Extract phenology curves (weekly abundance predictions)
+  if ("pheno" %in% names(ts_flight_curve) && nrow(ts_flight_curve$pheno) > 0) {
+    cat("Extracting phenology curves...\n")
+    pheno_df <- as.data.frame(ts_flight_curve$pheno)
+
+    # Check available columns
+    cat(paste("  Pheno columns:", paste(colnames(pheno_df), collapse = ", "), "\n"))
+
+    # Select relevant columns: year, week, and normalized abundance
+    # NM is the key column - normalized mean abundance prediction
+    required_cols <- c("M_YEAR", "WEEK", "NM")
+    if (all(required_cols %in% colnames(pheno_df))) {
+      # Filter to unique year-week combinations (avoid duplicates)
+      pheno_output <- pheno_df[, required_cols]
+      colnames(pheno_output) <- c("year", "week", "abundance")
+
+      # Remove duplicates if any (keep first occurrence per year-week)
+      pheno_output <- pheno_output[!duplicated(pheno_output[, c("year", "week")]), ]
+
+      # Convert to list structure grouped by year for easier JSON output
+      pheno_by_year <- split(pheno_output, pheno_output$year)
+      pheno_curves <- lapply(pheno_by_year, function(year_data) {
+        # Sort by week to ensure proper order
+        year_data <- year_data[order(year_data$week), ]
+
+        list(
+          year = unique(year_data$year),
+          weeks = as.list(year_data$week),
+          abundance = as.list(round(year_data$abundance, 4))
+        )
+      })
+      names(pheno_curves) <- sapply(pheno_curves, function(x) as.character(x$year))
+
+      cat(paste("  Extracted phenology for", length(pheno_curves), "years\n"))
+      cat(paste("  Weeks per year: ", paste(sapply(pheno_curves, function(x) length(x$weeks)), collapse = ", "), "\n"))
+    } else {
+      cat("  Warning: Required pheno columns not found\n")
+      pheno_curves <- NULL
+    }
+  } else {
+    cat("  No phenology data available\n")
+    pheno_curves <- NULL
+  }
+
 }, error = function(e) {
   cat(paste("Warning: Flight curve calculation failed:", e$message, "\n"))
   ts_flight_curve <<- NULL
   flight_curve_success <<- FALSE
   flight_curve_r2 <<- NA
+  pheno_curves <<- NULL
 })
 
 # Step 5: Impute missing counts using flight curves
@@ -336,6 +382,7 @@ data_quality <- list(
 output <- list(
   species = species_name,
   collated_indices = normalized_indices,
+  phenology_curves = pheno_curves,
   data_quality = data_quality,
   processing_info = list(
     method = "rbms (GAM flight curves + GLM collated index)",

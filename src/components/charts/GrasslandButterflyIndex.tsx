@@ -1,5 +1,19 @@
 import { Line } from "react-chartjs-2";
-import { Card, Alert, Row, Col, Statistic, Space, Tooltip, Popover, List, Typography, Select, Button, Switch } from "antd";
+import {
+  Card,
+  Alert,
+  Row,
+  Col,
+  Statistic,
+  Space,
+  Tooltip,
+  Popover,
+  List,
+  Typography,
+  Select,
+  Button,
+  Switch,
+} from "antd";
 import { InfoCircleOutlined, MinusCircleOutlined } from "@ant-design/icons";
 import { GBIData } from "../../types/gbiData";
 import SpeciesLink from "../SpeciesLink";
@@ -116,8 +130,16 @@ function GrasslandButterflyIndex({ gbiData, loading }: GrasslandButterflyIndexPr
 
   // Color palette for species
   const speciesColors = [
-    "#52c41a", "#fa8c16", "#722ed1", "#13c2c2", "#eb2f96",
-    "#faad14", "#a0d911", "#f5222d", "#2f54eb", "#fadb14"
+    "#52c41a",
+    "#fa8c16",
+    "#722ed1",
+    "#13c2c2",
+    "#eb2f96",
+    "#faad14",
+    "#a0d911",
+    "#f5222d",
+    "#2f54eb",
+    "#fadb14",
   ];
 
   // Create datasets based on mode
@@ -251,7 +273,7 @@ function GrasslandButterflyIndex({ gbiData, loading }: GrasslandButterflyIndexPr
               ${metadata.grasslandSpecies.filter(s => s.type === "specialist").length} especialistas)
               de ${transectCount} transectos de alta qualidade. Ano base ${metadata.baselineYear} =
               100. Os valores acima de 100 indicam crescimento populacional; abaixo de 100 indicam
-              declínio.`
+              declínio.`;
 
   return (
     <Card
@@ -303,7 +325,8 @@ function GrasslandButterflyIndex({ gbiData, loading }: GrasslandButterflyIndexPr
                     strong
                     style={{ display: "block", marginBottom: 8, color: "#52c41a" }}
                   >
-                    Generalistas ({metadata.grasslandSpecies.filter(s => s.type === "widespread").length})
+                    Generalistas (
+                    {metadata.grasslandSpecies.filter(s => s.type === "widespread").length})
                   </Typography.Text>
                   <List
                     size="small"
@@ -315,7 +338,14 @@ function GrasslandButterflyIndex({ gbiData, loading }: GrasslandButterflyIndexPr
                       const hasData = speciesWithTrends.has(species);
                       return (
                         <List.Item style={{ padding: "4px 0" }}>
-                          <div style={{ fontSize: 12, display: "flex", alignItems: "center", gap: "8px" }}>
+                          <div
+                            style={{
+                              fontSize: 12,
+                              display: "flex",
+                              alignItems: "center",
+                              gap: "8px",
+                            }}
+                          >
                             {!hasData && (
                               <MinusCircleOutlined
                                 style={{ color: "#ff4d4f", fontSize: 14, flexShrink: 0 }}
@@ -333,7 +363,8 @@ function GrasslandButterflyIndex({ gbiData, loading }: GrasslandButterflyIndexPr
                     strong
                     style={{ display: "block", marginBottom: 8, color: "#1890ff" }}
                   >
-                    Especialistas ({metadata.grasslandSpecies.filter(s => s.type === "specialist").length})
+                    Especialistas (
+                    {metadata.grasslandSpecies.filter(s => s.type === "specialist").length})
                   </Typography.Text>
                   <List
                     size="small"
@@ -345,7 +376,14 @@ function GrasslandButterflyIndex({ gbiData, loading }: GrasslandButterflyIndexPr
                       const hasData = speciesWithTrends.has(species);
                       return (
                         <List.Item style={{ padding: "4px 0" }}>
-                          <div style={{ fontSize: 12, display: "flex", alignItems: "center", gap: "8px" }}>
+                          <div
+                            style={{
+                              fontSize: 12,
+                              display: "flex",
+                              alignItems: "center",
+                              gap: "8px",
+                            }}
+                          >
                             {!hasData && (
                               <MinusCircleOutlined
                                 style={{ color: "#ff4d4f", fontSize: 14, flexShrink: 0 }}
@@ -384,7 +422,9 @@ function GrasslandButterflyIndex({ gbiData, loading }: GrasslandButterflyIndexPr
                 <Typography.Text strong style={{ display: "block", marginBottom: 8 }}>
                   Transectos Qualificados ({transectCount})
                 </Typography.Text>
-                <Typography.Text style={{ fontSize: 12, color: "#8c8c8c", display: "block", marginBottom: 8 }}>
+                <Typography.Text
+                  style={{ fontSize: 12, color: "#8c8c8c", display: "block", marginBottom: 8 }}
+                >
                   Critérios: 5+ anos ativos, 10+ visitas/ano
                 </Typography.Text>
                 <List
@@ -392,7 +432,9 @@ function GrasslandButterflyIndex({ gbiData, loading }: GrasslandButterflyIndexPr
                   dataSource={metadata.transectsUsed}
                   renderItem={transect => (
                     <List.Item style={{ padding: "4px 0" }}>
-                      <Typography.Text style={{ fontSize: 12 }}>{transect.transectName}</Typography.Text>
+                      <Typography.Text style={{ fontSize: 12 }}>
+                        {transect.transectName}
+                      </Typography.Text>
                     </List.Item>
                   )}
                 />
@@ -419,11 +461,10 @@ function GrasslandButterflyIndex({ gbiData, loading }: GrasslandButterflyIndexPr
 
       <div style={{ marginBottom: "16px", display: "flex", gap: "8px", alignItems: "center" }}>
         <Space>
-          <Switch
-            checked={showGroupComparison}
-            onChange={setShowGroupComparison}
-          />
-          <Typography.Text style={{ whiteSpace: "nowrap" }}>Generalistas vs. especialistas</Typography.Text>
+          <Switch checked={showGroupComparison} onChange={setShowGroupComparison} />
+          <Typography.Text style={{ whiteSpace: "nowrap" }}>
+            Generalistas vs. especialistas
+          </Typography.Text>
         </Space>
         <Select
           mode="multiple"

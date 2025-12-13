@@ -1020,6 +1020,7 @@ async function calculateAllFlightCurves(allData, transects, baselineYear = 2021)
       // Store results
       speciesResults[species] = {
         collatedIndices: rbmsOutput.collated_indices,
+        phenologyCurves: rbmsOutput.phenology_curves || null,
         dataQuality: rbmsOutput.data_quality,
         processingInfo: rbmsOutput.processing_info
       };
@@ -1068,6 +1069,205 @@ async function calculateAllFlightCurves(allData, transects, baselineYear = 2021)
     species: speciesResults,
     speciesList: Object.keys(speciesResults).sort(),
     years: allYears
+  };
+}
+
+/**
+ * Calculate phenology curves (weekly abundance predictions) by region using rbms
+ *
+ * @param {Array} allData - Raw observation data
+ * @param {Array} transects - All transect information
+ * @param {number} baselineYear - Baseline year for normalization
+ * @returns {Object} Phenology data organized by species and region
+ */
+async function calculateRegionalPhenology(allData, transects, baselineYear = 2021) {
+  console.log('\nCalculating regional phenology curves using rbms...');
+
+  // Step 1: Get quality transects (same criteria as GBI)
+  const qualityTransects = getQualityFilteredTransects(transects);
+  const activeQualityTransects = qualityTransects.filter(t => t.isActive);
+
+  console.log(`  Quality transects: ${qualityTransects.length} (5+ years, 10+ visits/year)`);
+  console.log(`  Active in most recent year: ${activeQualityTransects.length}`);
+
+  // Step 2: Group transects by climatic region
+  const transectsByRegion = {};
+  const REGIONS = ['Norte', 'Centro', 'Lisboa e Vale do Tejo', 'Alentejo', 'Algarve'];
+
+  REGIONS.forEach(region => {
+    transectsByRegion[region] = activeQualityTransects.filter(
+      t => t.climaticRegion === region
+    );
+  });
+
+  console.log('\n  Transects by region:');
+  REGIONS.forEach(region => {
+    console.log(`    ${region}: ${transectsByRegion[region].length} transects`);
+  });
+
+  // Step 3: Transform data for rbms
+  const transformedData = allData
+    .filter(row => {
+      const date = row['Date'];
+      if (!date) return false;
+
+      const parts = date.split('/');
+      if (parts.length !== 3) return false;
+
+      const month = parseInt(parts[1], 10);
+      const year = parseInt(parts[2], 10);
+      return month >= 3 && month <= 9 && year >= 2021; // Monitoring season, 2021+
+    })
+    .map(row => ({
+      transectId: row['Transect ID'],
+      date: row['Date'],
+      year: parseInt(row['Date'].split('/')[2], 10),
+      month: parseInt(row['Date'].split('/')[1], 10) - 1,
+      species: row['Preferred Species Name'].trim(),
+      count: parseInt(row['Abundance Count'], 10) || 0
+    }));
+
+  // Step 4: Identify species with sufficient data (using quality transects only)
+  const qualityTransectIds = new Set(activeQualityTransects.map(t => t.transectId));
+  const speciesCounts = new Map();
+
+  transformedData.forEach(row => {
+    if (!VALID_SPECIES.has(row.species)) return;
+    if (!qualityTransectIds.has(row.transectId)) return; // Only count from quality transects
+
+    if (!speciesCounts.has(row.species)) {
+      speciesCounts.set(row.species, {
+        counts: 0,
+        years: new Set()
+      });
+    }
+
+    const stats = speciesCounts.get(row.species);
+    stats.counts += row.count;
+    stats.years.add(row.year);
+  });
+
+  const eligibleSpecies = Array.from(speciesCounts.entries())
+    .filter(([species, stats]) => {
+      return stats.counts >= 20 && stats.years.size >= 3;
+    })
+    .map(([species]) => species)
+    .sort();
+
+  console.log(`\n  Found ${eligibleSpecies.length} species with sufficient data (20+ counts, 3+ years)`);
+
+  // Step 5: Process each species for each region
+  const regionalResults = {};
+  const rScriptPath = path.join(__dirname, 'rbms-collated-index.R');
+  let totalProcessed = 0;
+
+  for (const species of eligibleSpecies) {
+    console.log(`\n  Processing: ${species}`);
+    regionalResults[species] = {
+      regions: {}
+    };
+
+    for (const region of REGIONS) {
+      const regionTransects = transectsByRegion[region];
+
+      if (regionTransects.length < 2) {
+        console.log(`    ${region}: skipped (< 2 transects)`);
+        continue;
+      }
+
+      try {
+        // Extract data for this species in this region
+        const regionTransectIds = regionTransects.map(t => t.transectId);
+        const speciesData = rbmsUtils.extractSpeciesData(
+          transformedData,
+          regionTransectIds,
+          species
+        );
+
+        if (speciesData.visits.length < 10 || speciesData.counts.length < 5) {
+          console.log(`    ${region}: skipped (insufficient data)`);
+          continue;
+        }
+
+        // Prepare temporary files
+        const sanitized = rbmsUtils.sanitizeFilename(species);
+        const regionSanitized = region.replace(/\s+/g, '_').toLowerCase();
+        const visitsFile = path.join(TEMP_RBMS_DIR, `visits_${sanitized}_${regionSanitized}.csv`);
+        const countsFile = path.join(TEMP_RBMS_DIR, `counts_${sanitized}_${regionSanitized}.csv`);
+        const outputFile = path.join(TEMP_RBMS_DIR, `output_${sanitized}_${regionSanitized}.json`);
+
+        rbmsUtils.writeCSV(visitsFile, speciesData.visits, ['site_id', 'date', 'year']);
+        rbmsUtils.writeCSV(countsFile, speciesData.counts, ['site_id', 'date', 'count']);
+
+        const args = [visitsFile, countsFile, outputFile, species, baselineYear.toString()];
+
+        // Call rbms R script
+        await rbmsUtils.callRbms(rScriptPath, args, 120000);
+
+        // Read results
+        const outputJSON = fs.readFileSync(outputFile, 'utf8');
+        const rbmsOutput = JSON.parse(outputJSON);
+
+        // Store phenology curves for this region
+        if (rbmsOutput.phenology_curves) {
+          regionalResults[species].regions[region] = {
+            phenologyCurves: rbmsOutput.phenology_curves,
+            dataQuality: {
+              transectCount: regionTransects.length,
+              totalVisits: speciesData.visits.length,
+              totalCounts: speciesData.counts.length
+            }
+          };
+          console.log(`    ${region}: ✓ ${Object.keys(rbmsOutput.phenology_curves).length} years`);
+          totalProcessed++;
+        }
+
+        // Clean up temp files
+        fs.unlinkSync(visitsFile);
+        fs.unlinkSync(countsFile);
+        fs.unlinkSync(outputFile);
+
+      } catch (error) {
+        console.log(`    ${region}: failed (${error.message})`);
+        continue;
+      }
+    }
+
+    // If no regions succeeded, remove the species
+    if (Object.keys(regionalResults[species].regions).length === 0) {
+      delete regionalResults[species];
+    }
+  }
+
+  console.log(`\n  ✓ Successfully processed ${totalProcessed} species-region combinations`);
+
+  if (Object.keys(regionalResults).length === 0) {
+    console.warn('  Warning: No regional phenology curves calculated');
+    return null;
+  }
+
+  // Step 6: Compile metadata
+  const metadata = {
+    processingDate: new Date().toISOString(),
+    baselineYear,
+    regions: REGIONS,
+    transectsByRegion: Object.fromEntries(
+      REGIONS.map(region => [region, transectsByRegion[region].length])
+    ),
+    qualityCriteria: {
+      minYearsActive: 5,
+      minVisitsPerYear: 10,
+      minCountsPerSpecies: 20,
+      minYearsPerSpecies: 3,
+      minTransectsPerRegion: 2
+    },
+    method: 'rbms (GAM flight curves with regional filtering)'
+  };
+
+  return {
+    metadata,
+    species: regionalResults,
+    speciesList: Object.keys(regionalResults).sort()
   };
 }
 
@@ -1475,6 +1675,18 @@ async function processData() {
     console.log(`  - Species with flight curves: ${flightCurvesData.speciesList.length}`);
   } else {
     console.warn('\nWarning: Flight curves calculation failed or returned no data');
+  }
+
+  // Calculate and save regional phenology curves
+  const phenologyData = await calculateRegionalPhenology(allData, results, 2021);
+  if (phenologyData) {
+    const PHENOLOGY_OUTPUT_FILE = path.join(OUTPUT_DIR, 'phenology-curves-data.json');
+    console.log(`\nWriting regional phenology data to ${PHENOLOGY_OUTPUT_FILE}...`);
+    fs.writeFileSync(PHENOLOGY_OUTPUT_FILE, JSON.stringify(phenologyData, null, 2), 'utf-8');
+    console.log(`Phenology data saved (${(fs.statSync(PHENOLOGY_OUTPUT_FILE).size / 1024).toFixed(2)} KB)`);
+    console.log(`  - Species with regional phenology: ${phenologyData.speciesList.length}`);
+  } else {
+    console.warn('\nWarning: Regional phenology calculation failed or returned no data');
   }
 
   console.log('\n✓ Processing complete!');
