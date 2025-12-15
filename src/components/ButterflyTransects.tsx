@@ -260,14 +260,25 @@ function ButterflyTransects() {
     // Anos Ativos filters with AND logic
     if (yearsActiveFilters.length > 0) {
       const hasLastSeason = yearsActiveFilters.includes("lastSeason");
-      const yearCounts = yearsActiveFilters.filter(f => f !== "lastSeason") as number[];
+      const hasNotLastSeason = yearsActiveFilters.includes("notLastSeason");
+      const yearCounts = yearsActiveFilters.filter(
+        f => f !== "lastSeason" && f !== "notLastSeason"
+      ) as number[];
+
+      const mostRecentYear = Math.max(
+        ...data.map(t => t.lastMonitoringYear || 0).filter(y => y > 0)
+      );
 
       // If "lastSeason" is selected, check if transect was active in the most recent year
       if (hasLastSeason) {
-        const mostRecentYear = Math.max(
-          ...data.map(t => t.lastMonitoringYear || 0).filter(y => y > 0)
-        );
         if (transect.lastMonitoringYear !== mostRecentYear) {
+          return false;
+        }
+      }
+
+      // If "notLastSeason" is selected, check if transect was NOT active in the most recent year
+      if (hasNotLastSeason) {
+        if (transect.lastMonitoringYear === mostRecentYear) {
           return false;
         }
       }
@@ -471,6 +482,10 @@ function ButterflyTransects() {
         {
           text: "Ativos na última época",
           value: "lastSeason",
+        },
+        {
+          text: "Não ativos na última época",
+          value: "notLastSeason",
         },
         ...Array.from(new Set(data.map(t => t.yearsActive)))
           .sort((a, b) => b - a)

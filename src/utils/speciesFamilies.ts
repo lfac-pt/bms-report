@@ -43,7 +43,7 @@ export const SPECIES_FAMILIES: Record<string, string> = {
   "Plebejus argus": "Lycaenidae",
   "Polyommatus celina": "Lycaenidae",
   "Polyommatus icarus": "Lycaenidae",
-  "Polyommatus semiargus": "Lycaenidae",
+  "Cyaniris semiargus": "Lycaenidae",
   "Polyommatus thersites": "Lycaenidae",
   "Pseudophilotes abencerragus": "Lycaenidae",
   "Pseudophilotes baton": "Lycaenidae",

@@ -60,6 +60,7 @@ const VALID_SPECIES = new Set([
   'Polyommatus celina',
   'Polyommatus icarus',
   'Polyommatus semiargus',
+  'Cyaniris semiargus', // Synonym for Polyommatus semiargus
   'Polyommatus thersites',
   'Pseudophilotes abencerragus',
   'Pseudophilotes baton',
@@ -165,9 +166,10 @@ const GRASSLAND_SPECIES = {
     'Ochlodes sylvanus',
     'Polyommatus icarus',
   ]),
-  // Specialist species (6)
+  // Specialist species (7)
   specialist: new Set([
     'Cupido minimus',
+    'Cyaniris semiargus', // Also known as Polyommatus semiargus
     'Erynnis tages',
     'Euphydryas aurinia',
     'Lysandra bellargus',

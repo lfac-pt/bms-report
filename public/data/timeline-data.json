@@ -3936,6 +3936,12 @@
         "totalVisits": 179
       },
       {
+        "species": "Cyaniris semiargus",
+        "frequency": 0.5586592178770949,
+        "visitCount": 1,
+        "totalVisits": 179
+      },
+      {
         "species": "Satyrus actaea",
         "frequency": 0.5586592178770949,
         "visitCount": 1,
@@ -11806,7 +11812,7 @@
       },
       {
         "transectId": "340164",
-        "diversityCount": 39,
+        "diversityCount": 40,
         "speciesList": [
           "Aglais io",
           "Anthocharis cardamines",
@@ -11816,6 +11822,7 @@
           "Callophrys rubi",
           "Celastrina argiolus",
           "Colias crocea",
+          "Cyaniris semiargus",
           "Erynnis tages",
           "Euphydryas aurinia",
           "Favonius quercus",
