@@ -360,7 +360,9 @@ function ButterflyTransects() {
   const totalUniqueSpecies = uniqueSpeciesList.length;
 
   // Calculate totals across all transects
-  const totalButterflies = data.reduce((sum, t) => sum + t.totalAbundance, 0);
+  const totalButterfliesFiltered = filteredData.reduce((sum, t) => sum + t.totalAbundance, 0);
+  const totalButterfliesValidSpecies = metadata?.totalButterfliesValidSpecies || 0;
+  const totalButterfliesAllSpecies = metadata?.totalButterfliesAllSpecies || 0;
   const totalVisitsAll = data.reduce((sum, t) => sum + t.totalVisits, 0);
 
   // All distritos in mainland Portugal
@@ -784,11 +786,37 @@ function ButterflyTransects() {
         </Col>
         <Col span={4}>
           <Card>
-            <Statistic
-              title="Total de Borboletas Contadas"
-              value={totalButterflies}
-              valueStyle={{ color: "#fa8c16" }}
-            />
+            <Popover
+              content={
+                <div>
+                  <div>
+                    <strong>Total (todas as espécies):</strong> {totalButterfliesAllSpecies.toLocaleString()}
+                  </div>
+                  <div style={{ marginTop: 4, fontSize: '12px', color: '#666' }}>
+                    Total (espécies válidas): {totalButterfliesValidSpecies.toLocaleString()}
+                  </div>
+                  {totalButterfliesFiltered !== totalButterfliesValidSpecies && (
+                    <div style={{ marginTop: 4, fontSize: '12px', color: '#666' }}>
+                      Total (com filtros da tabela): {totalButterfliesFiltered.toLocaleString()}
+                    </div>
+                  )}
+                </div>
+              }
+              title="Total de Borboletas"
+              trigger="hover"
+            >
+              <div style={{ cursor: "pointer" }}>
+                <Statistic
+                  title={
+                    <span>
+                      Total de Borboletas Contadas <InfoCircleOutlined style={{ fontSize: 12 }} />
+                    </span>
+                  }
+                  value={totalButterfliesValidSpecies}
+                  valueStyle={{ color: "#fa8c16" }}
+                />
+              </div>
+            </Popover>
           </Card>
         </Col>
         <Col span={4}>

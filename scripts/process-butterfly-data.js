@@ -1629,6 +1629,15 @@ async function processData() {
   // Prepare filtered species list
   const filteredSpeciesList = Array.from(filteredSpeciesSet).sort();
 
+  // Calculate total butterflies with valid species only
+  const totalButterfliesValidSpecies = results.reduce((sum, t) => sum + t.totalAbundance, 0);
+
+  // Calculate total butterflies including all species (even invalid ones)
+  const totalButterfliesAllSpecies = allData.reduce((sum, row) => {
+    const count = parseInt(row['Abundance Count'], 10);
+    return sum + (isNaN(count) ? 0 : count);
+  }, 0);
+
   // Create output object with transects and metadata
   const output = {
     transects: results,
@@ -1638,6 +1647,8 @@ async function processData() {
       inactiveTransects: results.filter(t => !t.isActive).length,
       filteredSpeciesCount: filteredSpeciesList.length,
       filteredSpecies: filteredSpeciesList,
+      totalButterfliesValidSpecies,
+      totalButterfliesAllSpecies,
     },
   };
 

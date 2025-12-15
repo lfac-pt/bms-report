@@ -29,6 +29,8 @@ export interface ProcessingMetadata {
   inactiveTransects: number;
   filteredSpeciesCount: number;
   filteredSpecies: string[];
+  totalButterfliesValidSpecies: number;
+  totalButterfliesAllSpecies: number;
 }
 
 export interface TransectData {
