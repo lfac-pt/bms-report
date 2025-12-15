@@ -62,7 +62,6 @@ function AppHeader() {
       >
         <Radio.Button value="diurnal">Borboletas Diurnas</Radio.Button>
         <Radio.Button value="nocturnal">Borboletas Noturnas</Radio.Button>
-        <Radio.Button value="transects">Transectos</Radio.Button>
       </Radio.Group>
     </Header>
   );
