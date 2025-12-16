@@ -1,3 +1,4 @@
+/* eslint-env browser */
 import { useState, useEffect } from "react";
 import { Button, Card, Space, Typography, Spin, Alert, Row, Col, Select, Radio } from "antd";
 import { ArrowLeftOutlined } from "@ant-design/icons";
@@ -53,14 +54,19 @@ function SpeciesPage() {
   // Load timeline, transect, flight curves, phenology, and GBI data
   useEffect(() => {
     Promise.all([
+      // eslint-disable-next-line no-undef
       fetch("/data/timeline-data.json").then(res => res.json()),
+      // eslint-disable-next-line no-undef
       fetch("/data/processed-transects.json").then(res => res.json()),
+      // eslint-disable-next-line no-undef
       fetch("/data/flight-curves-data.json")
         .then(res => res.json())
         .catch(() => null),
+      // eslint-disable-next-line no-undef
       fetch("/data/phenology-curves-data.json")
         .then(res => res.json())
         .catch(() => null),
+      // eslint-disable-next-line no-undef
       fetch("/data/gbi-data.json")
         .then(res => res.json())
         .catch(() => null),

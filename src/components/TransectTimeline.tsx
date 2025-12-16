@@ -22,7 +22,7 @@ function TransectTimeline({ timelineData, filteredTransects, loading }: Transect
   }, [timelineData, filteredTransects]);
 
   // Tab 1: Transects Per Year Chart
-  const TransectsTab = () => {
+  const transectsTabContent = useMemo(() => {
     const chartData = {
       labels: filteredTimelineData.transectsPerYear.map(d => d.year.toString()),
       datasets: [
@@ -60,124 +60,130 @@ function TransectTimeline({ timelineData, filteredTransects, loading }: Transect
         <Bar data={chartData} options={options} />
       </Card>
     );
-  };
+  }, [filteredTimelineData]);
 
   // Tab 2: Top 10 Butterflies Per Year
-  const ButterfliesTab = () => (
-    <Space direction="vertical" size="large" style={{ width: "100%" }}>
-      {[...filteredTimelineData.years].reverse().map(year => {
-        const top10 = (filteredTimelineData.butterflyFrequencyByYear[year] || []).slice(0, 10);
+  const butterfliesTabContent = useMemo(
+    () => (
+      <Space direction="vertical" size="large" style={{ width: "100%" }}>
+        {[...filteredTimelineData.years].reverse().map(year => {
+          const top10 = (filteredTimelineData.butterflyFrequencyByYear[year] || []).slice(0, 10);
 
-        return (
-          <Card key={year} type="inner" title={`Ano ${year}`} size="small">
-            <Table
-              dataSource={top10}
-              columns={[
-                {
-                  title: "Espécie",
-                  dataIndex: "species",
-                  key: "species",
-                  width: 300,
-                  render: text => <SpeciesLink species={text} />,
-                },
-                {
-                  title: "Frequência",
-                  dataIndex: "frequency",
-                  key: "frequency",
-                  render: (freq, record) =>
-                    `${freq.toFixed(1)}% (${record.visitCount}/${record.totalVisits})`,
-                },
-              ]}
-              pagination={false}
-              size="small"
-              rowKey="species"
-            />
-          </Card>
-        );
-      })}
-      <Alert
-        message="Frequência é a percentagem de visitas em que a espécie foi avistada durante o ano."
-        type="info"
-      />
-    </Space>
+          return (
+            <Card key={year} type="inner" title={`Ano ${year}`} size="small">
+              <Table
+                dataSource={top10}
+                columns={[
+                  {
+                    title: "Espécie",
+                    dataIndex: "species",
+                    key: "species",
+                    width: 300,
+                    render: text => <SpeciesLink species={text} />,
+                  },
+                  {
+                    title: "Frequência",
+                    dataIndex: "frequency",
+                    key: "frequency",
+                    render: (freq, record) =>
+                      `${freq.toFixed(1)}% (${record.visitCount}/${record.totalVisits})`,
+                  },
+                ]}
+                pagination={false}
+                size="small"
+                rowKey="species"
+              />
+            </Card>
+          );
+        })}
+        <Alert
+          message="Frequência é a percentagem de visitas em que a espécie foi avistada durante o ano."
+          type="info"
+        />
+      </Space>
+    ),
+    [filteredTimelineData]
   );
 
   // Tab 3: Top 5 Diverse Transects Per Year
-  const DiversityTab = () => (
-    <Space direction="vertical" size="large" style={{ width: "100%" }}>
-      {[...filteredTimelineData.years].reverse().map(year => {
-        const top5 = filteredTimelineData.transectDiversityByYear[year] || [];
+  const diversityTabContent = useMemo(
+    () => (
+      <Space direction="vertical" size="large" style={{ width: "100%" }}>
+        {[...filteredTimelineData.years].reverse().map(year => {
+          const top5 = filteredTimelineData.transectDiversityByYear[year] || [];
 
-        return (
-          <Card key={year} type="inner" title={`Ano ${year}`} size="small">
-            <Table
-              dataSource={top5}
-              columns={[
-                {
-                  title: "Transecto",
-                  dataIndex: "transectName",
-                  key: "transectName",
-                  width: 250,
-                },
-                {
-                  title: "Diversidade",
-                  dataIndex: "diversityCount",
-                  key: "diversityCount",
-                  align: "right",
-                  width: 120,
-                  render: (count, record) => (
-                    <Popover
-                      content={
-                        <div style={{ maxHeight: 300, overflowY: "auto" }}>
-                          <List
-                            size="small"
-                            dataSource={record.speciesList}
-                            renderItem={species => (
-                              <List.Item style={{ padding: "2px 0" }}>
-                                <SpeciesLink species={species} />
-                              </List.Item>
-                            )}
-                          />
-                        </div>
-                      }
-                      title={`Espécies em ${record.transectName}`}
-                      trigger="click"
-                    >
-                      <span style={{ cursor: "pointer", color: "#1890ff" }}>
-                        {count} <InfoCircleOutlined style={{ fontSize: 10 }} />
-                      </span>
-                    </Popover>
-                  ),
-                },
-                {
-                  title: "Concelho",
-                  dataIndex: "concelho",
-                  key: "concelho",
-                  width: 150,
-                },
-                {
-                  title: "Distrito",
-                  dataIndex: "distrito",
-                  key: "distrito",
-                  width: 150,
-                },
-              ]}
-              pagination={false}
-              size="small"
-              rowKey="transectId"
-            />
-          </Card>
-        );
-      })}
-      <Alert
-        message="Diversidade é o número total de espécies únicas observadas no transecto durante o ano. Clique no número para ver a lista completa."
-        type="info"
-      />
-    </Space>
+          return (
+            <Card key={year} type="inner" title={`Ano ${year}`} size="small">
+              <Table
+                dataSource={top5}
+                columns={[
+                  {
+                    title: "Transecto",
+                    dataIndex: "transectName",
+                    key: "transectName",
+                    width: 250,
+                  },
+                  {
+                    title: "Diversidade",
+                    dataIndex: "diversityCount",
+                    key: "diversityCount",
+                    align: "right",
+                    width: 120,
+                    render: (count, record) => (
+                      <Popover
+                        content={
+                          <div style={{ maxHeight: 300, overflowY: "auto" }}>
+                            <List
+                              size="small"
+                              dataSource={record.speciesList}
+                              renderItem={species => (
+                                <List.Item style={{ padding: "2px 0" }}>
+                                  <SpeciesLink species={species} />
+                                </List.Item>
+                              )}
+                            />
+                          </div>
+                        }
+                        title={`Espécies em ${record.transectName}`}
+                        trigger="click"
+                      >
+                        <span style={{ cursor: "pointer", color: "#1890ff" }}>
+                          {count} <InfoCircleOutlined style={{ fontSize: 10 }} />
+                        </span>
+                      </Popover>
+                    ),
+                  },
+                  {
+                    title: "Concelho",
+                    dataIndex: "concelho",
+                    key: "concelho",
+                    width: 150,
+                  },
+                  {
+                    title: "Distrito",
+                    dataIndex: "distrito",
+                    key: "distrito",
+                    width: 150,
+                  },
+                ]}
+                pagination={false}
+                size="small"
+                rowKey="transectId"
+              />
+            </Card>
+          );
+        })}
+        <Alert
+          message="Diversidade é o número total de espécies únicas observadas no transecto durante o ano. Clique no número para ver a lista completa."
+          type="info"
+        />
+      </Space>
+    ),
+    [filteredTimelineData]
   );
 
   // Tab 4: Monthly Diversity (Average species per visit)
-  const MonthlyDiversityTab = () => {
+  const monthlyDiversityTabContent = useMemo(() => {
     const transectIdSet = new Set(filteredTransects.map(t => t.transectId));
     const monthNames = [
       "Jan",
@@ -329,10 +335,10 @@ function TransectTimeline({ timelineData, filteredTransects, loading }: Transect
         />
       </Space>
     );
-  };
+  }, [filteredTimelineData, timelineData, filteredTransects]);
 
   // Tab 5: Monthly Average Abundance
-  const MonthlyAbundanceTab = () => {
+  const monthlyAbundanceTabContent = useMemo(() => {
     const transectIdSet = new Set(filteredTransects.map(t => t.transectId));
     const monthNames = [
       "Jan",
@@ -472,34 +478,34 @@ function TransectTimeline({ timelineData, filteredTransects, loading }: Transect
         />
       </Space>
     );
-  };
+  }, [filteredTimelineData, timelineData, filteredTransects]);
 
   // Main tabs
   const items = [
     {
       key: "transects",
       label: "Transectos por Ano",
-      children: <TransectsTab />,
+      children: transectsTabContent,
     },
     {
       key: "butterflies",
       label: "Top 10 Borboletas",
-      children: <ButterfliesTab />,
+      children: butterfliesTabContent,
     },
     {
       key: "diversity",
       label: "Top 5 Transectos Diversos",
-      children: <DiversityTab />,
+      children: diversityTabContent,
     },
     {
       key: "monthly-diversity",
       label: "Diversidade Mensal",
-      children: <MonthlyDiversityTab />,
+      children: monthlyDiversityTabContent,
     },
     {
       key: "monthly-abundance",
       label: "Abundância Mensal",
-      children: <MonthlyAbundanceTab />,
+      children: monthlyAbundanceTabContent,
     },
   ];
 

@@ -96,6 +96,10 @@ const chartOptions = {
 };
 
 function GrasslandButterflyIndex({ gbiData, loading }: GrasslandButterflyIndexProps) {
+  // State for selected species - must be before any early returns
+  const [selectedSpecies, setSelectedSpecies] = useState<string[]>([]);
+  const [showGroupComparison, setShowGroupComparison] = useState(false);
+
   if (loading) {
     return (
       <Card title="Índice de Borboletas de Pastagens (GBI)" size="small" loading={true}>
@@ -118,10 +122,6 @@ function GrasslandButterflyIndex({ gbiData, loading }: GrasslandButterflyIndexPr
   }
 
   const { metadata, gbiByYear, years, speciesTrends } = gbiData;
-
-  // State for selected species
-  const [selectedSpecies, setSelectedSpecies] = useState<string[]>([]);
-  const [showGroupComparison, setShowGroupComparison] = useState(false);
 
   // Prepare chart data
   const labels = years.map(year => year.toString());

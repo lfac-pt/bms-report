@@ -1,3 +1,4 @@
+/* eslint-env browser, node */
 import { render, screen, waitFor } from "@testing-library/react";
 import { MemoryRouter, Route, Routes } from "react-router-dom";
 import SpeciesPage from "./SpeciesPage";
@@ -129,6 +130,7 @@ const mockTransectData = {
 };
 
 // Mock fetch
+// eslint-disable-next-line no-undef
 global.fetch = jest.fn(url => {
   if (url === "/data/timeline-data.json") {
     return Promise.resolve({
@@ -331,6 +333,7 @@ describe("SpeciesPage - Data Correctness", () => {
       renderSpeciesPage("Maniola jurtina");
 
       await waitFor(() => {
+        // eslint-disable-next-line no-undef
         expect(global.fetch).toHaveBeenCalledWith("/data/timeline-data.json");
       });
     });
@@ -339,6 +342,7 @@ describe("SpeciesPage - Data Correctness", () => {
       renderSpeciesPage("Maniola jurtina");
 
       await waitFor(() => {
+        // eslint-disable-next-line no-undef
         expect(global.fetch).toHaveBeenCalledWith("/data/processed-transects.json");
       });
     });
