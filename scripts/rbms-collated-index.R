@@ -278,10 +278,10 @@ tryCatch({
 })
 
 # Step 7: Generate bootstrap samples for confidence intervals
-cat("Generating bootstrap samples (n=100)...\n")
+cat("Generating bootstrap samples (n=500)...\n")
 set.seed(218795)  # For reproducibility
 bootsample <- tryCatch({
-  rbms::boot_sample(site_indices, boot_n = 100)
+  rbms::boot_sample(site_indices, boot_n = 500)
 }, error = function(e) {
   cat(paste("Warning: Bootstrap sampling failed:", e$message, "\n"))
   NULL
