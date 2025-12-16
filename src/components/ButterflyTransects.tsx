@@ -790,13 +790,14 @@ function ButterflyTransects() {
               content={
                 <div>
                   <div>
-                    <strong>Total (todas as espécies):</strong> {totalButterfliesAllSpecies.toLocaleString()}
+                    <strong>Total (todas as espécies):</strong>{" "}
+                    {totalButterfliesAllSpecies.toLocaleString()}
                   </div>
-                  <div style={{ marginTop: 4, fontSize: '12px', color: '#666' }}>
+                  <div style={{ marginTop: 4, fontSize: "12px", color: "#666" }}>
                     Total (espécies válidas): {totalButterfliesValidSpecies.toLocaleString()}
                   </div>
                   {totalButterfliesFiltered !== totalButterfliesValidSpecies && (
-                    <div style={{ marginTop: 4, fontSize: '12px', color: '#666' }}>
+                    <div style={{ marginTop: 4, fontSize: "12px", color: "#666" }}>
                       Total (com filtros da tabela): {totalButterfliesFiltered.toLocaleString()}
                     </div>
                   )}

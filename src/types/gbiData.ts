@@ -30,7 +30,7 @@ export interface TransectInfo {
  * Confidence interval metadata
  */
 export interface ConfidenceIntervalMetadata {
-  method: 'species_bootstrap';
+  method: "species_bootstrap";
   nIterations: number;
   confidenceLevel: number;
 }

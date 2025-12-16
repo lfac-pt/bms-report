@@ -18,11 +18,7 @@ const YEAR_COLORS = {
   "2025": "rgb(236, 72, 153)", // Pink
 };
 
-const FlightCurveChart: React.FC<FlightCurveChartProps> = ({
-  region,
-  regionalData,
-  yAxisMax,
-}) => {
+const FlightCurveChart: React.FC<FlightCurveChartProps> = ({ region, regionalData, yAxisMax }) => {
   const { phenologyCurves, dataQuality } = regionalData;
 
   if (!phenologyCurves || Object.keys(phenologyCurves).length === 0) {
@@ -217,7 +213,7 @@ export const FlightCurvesDisplay: React.FC<FlightCurvesDisplayProps> = ({
     Object.values(phenologyCurves).forEach(yearData => {
       if (yearData.abundance && Array.isArray(yearData.abundance)) {
         yearData.abundance.forEach(val => {
-          const numVal = typeof val === 'number' ? val : parseFloat(val as any);
+          const numVal = typeof val === "number" ? val : parseFloat(val as any);
           if (!isNaN(numVal)) {
             allAbundanceValues.push(numVal);
           }

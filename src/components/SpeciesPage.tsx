@@ -257,8 +257,20 @@ function SpeciesPage() {
               // Get CI data from GBI data if available
               const speciesTrend = gbiData?.speciesTrends?.[decodedSpeciesName];
               const hasCI = speciesTrend?.confidenceIntervals != null;
-              const ciLower = hasCI ? years.map(year => speciesTrend.confidenceIntervals![year]?.ci_lower ?? indices[years.indexOf(year)]) : [];
-              const ciUpper = hasCI ? years.map(year => speciesTrend.confidenceIntervals![year]?.ci_upper ?? indices[years.indexOf(year)]) : [];
+              const ciLower = hasCI
+                ? years.map(
+                    year =>
+                      speciesTrend.confidenceIntervals![year]?.ci_lower ??
+                      indices[years.indexOf(year)]
+                  )
+                : [];
+              const ciUpper = hasCI
+                ? years.map(
+                    year =>
+                      speciesTrend.confidenceIntervals![year]?.ci_upper ??
+                      indices[years.indexOf(year)]
+                  )
+                : [];
 
               const datasets = [];
 
@@ -266,10 +278,10 @@ function SpeciesPage() {
               if (hasCI) {
                 // CI Upper bound (hidden)
                 datasets.push({
-                  label: 'CI Upper',
+                  label: "CI Upper",
                   data: ciUpper,
-                  borderColor: 'transparent',
-                  backgroundColor: 'transparent',
+                  borderColor: "transparent",
+                  backgroundColor: "transparent",
                   borderWidth: 0,
                   pointRadius: 0,
                   fill: false,
@@ -278,13 +290,13 @@ function SpeciesPage() {
 
                 // CI Lower bound with fill
                 datasets.push({
-                  label: 'IC 95%',
+                  label: "IC 95%",
                   data: ciLower,
                   borderColor: `${SERIES_COLORS[0]}33`,
                   backgroundColor: `${SERIES_COLORS[0]}22`,
                   borderWidth: 1,
                   pointRadius: 0,
-                  fill: '-1',
+                  fill: "-1",
                   order: 3,
                 });
               }
@@ -315,7 +327,7 @@ function SpeciesPage() {
                     display: true,
                     position: "top" as const,
                     labels: {
-                      filter: (legendItem: any) => legendItem.text !== 'CI Upper',
+                      filter: (legendItem: any) => legendItem.text !== "CI Upper",
                     },
                   },
                   tooltip: {
@@ -325,10 +337,10 @@ function SpeciesPage() {
                         const year = years[context.dataIndex];
 
                         // Skip CI Upper
-                        if (datasetLabel === 'CI Upper') return undefined;
+                        if (datasetLabel === "CI Upper") return undefined;
 
                         // For CI band, show range
-                        if (datasetLabel === 'IC 95%' && hasCI) {
+                        if (datasetLabel === "IC 95%" && hasCI) {
                           const ci = speciesTrend.confidenceIntervals![year];
                           if (ci?.ci_lower != null && ci?.ci_upper != null) {
                             return `IC 95%: ${ci.ci_lower.toFixed(1)} - ${ci.ci_upper.toFixed(1)}`;
@@ -341,7 +353,9 @@ function SpeciesPage() {
                           if (hasCI) {
                             const ci = speciesTrend.confidenceIntervals![year];
                             if (ci?.ci_lower != null && ci?.ci_upper != null) {
-                              lines.push(`IC 95%: [${ci.ci_lower.toFixed(1)}, ${ci.ci_upper.toFixed(1)}]`);
+                              lines.push(
+                                `IC 95%: [${ci.ci_lower.toFixed(1)}, ${ci.ci_upper.toFixed(1)}]`
+                              );
                             }
                           }
                           return lines;
@@ -350,7 +364,7 @@ function SpeciesPage() {
                         return `${datasetLabel}: ${context.parsed.y.toFixed(2)}`;
                       },
                     },
-                    filter: (item: any) => item.dataset.label !== 'CI Upper',
+                    filter: (item: any) => item.dataset.label !== "CI Upper",
                   },
                 },
                 scales: {

@@ -34,7 +34,7 @@ const chartOptions = {
       labels: {
         filter: (legendItem: any) => {
           // Hide CI Upper from legend (technical dataset)
-          return legendItem.text !== 'CI Upper';
+          return legendItem.text !== "CI Upper";
         },
       },
     },
@@ -47,10 +47,10 @@ const chartOptions = {
           const yearData = context.chart.data.yearData?.[year];
 
           // Skip CI Upper in tooltip (technical dataset)
-          if (datasetLabel === 'CI Upper') return undefined;
+          if (datasetLabel === "CI Upper") return undefined;
 
           // For CI band, show range
-          if (datasetLabel === 'IC 95%' && yearData) {
+          if (datasetLabel === "IC 95%" && yearData) {
             if (yearData.ci_lower != null && yearData.ci_upper != null) {
               return `IC 95%: ${yearData.ci_lower.toFixed(1)} - ${yearData.ci_upper.toFixed(1)}`;
             }
@@ -59,11 +59,11 @@ const chartOptions = {
 
           // For the main GBI line, show detailed data quality info with CI
           if (datasetLabel === "GBI (Todas as Espécies)" && yearData) {
-            const lines = [
-              `${datasetLabel}: ${indexValue.toFixed(2)}`,
-            ];
+            const lines = [`${datasetLabel}: ${indexValue.toFixed(2)}`];
             if (yearData.ci_lower != null && yearData.ci_upper != null) {
-              lines.push(`IC 95%: [${yearData.ci_lower.toFixed(1)}, ${yearData.ci_upper.toFixed(1)}]`);
+              lines.push(
+                `IC 95%: [${yearData.ci_lower.toFixed(1)}, ${yearData.ci_upper.toFixed(1)}]`
+              );
             }
             lines.push(`Transectos: ${yearData.transectCount}`);
             lines.push(`Visitas: ${yearData.totalVisits}`);
@@ -75,7 +75,7 @@ const chartOptions = {
           return `${datasetLabel}: ${indexValue.toFixed(2)}`;
         },
       },
-      filter: (item: any) => item.dataset.label !== 'CI Upper',
+      filter: (item: any) => item.dataset.label !== "CI Upper",
     },
   },
   scales: {
@@ -128,10 +128,14 @@ function GrasslandButterflyIndex({ gbiData, loading }: GrasslandButterflyIndexPr
   const gbiValues = years.map(year => gbiByYear[year].gbiValue);
 
   // Prepare CI band data
-  const ciLowerData = years.map(year => gbiByYear[year]?.ci_lower ?? gbiByYear[year]?.gbiValue ?? 100);
-  const ciUpperData = years.map(year => gbiByYear[year]?.ci_upper ?? gbiByYear[year]?.gbiValue ?? 100);
-  const hasConfidenceIntervals = years.some(year =>
-    gbiByYear[year]?.ci_lower !== null && gbiByYear[year]?.ci_lower !== undefined
+  const ciLowerData = years.map(
+    year => gbiByYear[year]?.ci_lower ?? gbiByYear[year]?.gbiValue ?? 100
+  );
+  const ciUpperData = years.map(
+    year => gbiByYear[year]?.ci_upper ?? gbiByYear[year]?.gbiValue ?? 100
+  );
+  const hasConfidenceIntervals = years.some(
+    year => gbiByYear[year]?.ci_lower !== null && gbiByYear[year]?.ci_lower !== undefined
   );
 
   const yearData = years.reduce(
@@ -198,10 +202,10 @@ function GrasslandButterflyIndex({ gbiData, loading }: GrasslandButterflyIndexPr
     if (hasConfidenceIntervals) {
       // CI Upper bound (hidden line - serves as fill target)
       baseDatasets.push({
-        label: 'CI Upper',
+        label: "CI Upper",
         data: ciUpperData,
-        borderColor: 'transparent',
-        backgroundColor: 'transparent',
+        borderColor: "transparent",
+        backgroundColor: "transparent",
         borderWidth: 0,
         pointRadius: 0,
         pointHoverRadius: 0,
@@ -211,14 +215,14 @@ function GrasslandButterflyIndex({ gbiData, loading }: GrasslandButterflyIndexPr
 
       // CI Lower bound with fill to upper
       baseDatasets.push({
-        label: 'IC 95%',
+        label: "IC 95%",
         data: ciLowerData,
-        borderColor: 'rgba(24, 144, 255, 0.3)',
-        backgroundColor: 'rgba(24, 144, 255, 0.15)',
+        borderColor: "rgba(24, 144, 255, 0.3)",
+        backgroundColor: "rgba(24, 144, 255, 0.15)",
         borderWidth: 1,
         pointRadius: 0,
         pointHoverRadius: 0,
-        fill: '-1',  // Fill to previous dataset (CI Upper)
+        fill: "-1", // Fill to previous dataset (CI Upper)
         order: 4,
       });
     }
@@ -270,7 +274,7 @@ function GrasslandButterflyIndex({ gbiData, loading }: GrasslandButterflyIndexPr
         pointHoverRadius: 0,
         fill: false,
         order: 5,
-      },
+      }
     );
 
     datasets = baseDatasets;
@@ -282,10 +286,10 @@ function GrasslandButterflyIndex({ gbiData, loading }: GrasslandButterflyIndexPr
     if (hasConfidenceIntervals) {
       // CI Upper bound (hidden line - serves as fill target)
       baseDatasets.push({
-        label: 'CI Upper',
+        label: "CI Upper",
         data: ciUpperData,
-        borderColor: 'transparent',
-        backgroundColor: 'transparent',
+        borderColor: "transparent",
+        backgroundColor: "transparent",
         borderWidth: 0,
         pointRadius: 0,
         pointHoverRadius: 0,
@@ -295,14 +299,14 @@ function GrasslandButterflyIndex({ gbiData, loading }: GrasslandButterflyIndexPr
 
       // CI Lower bound with fill to upper
       baseDatasets.push({
-        label: 'IC 95%',
+        label: "IC 95%",
         data: ciLowerData,
-        borderColor: 'rgba(24, 144, 255, 0.3)',
-        backgroundColor: 'rgba(24, 144, 255, 0.15)',
+        borderColor: "rgba(24, 144, 255, 0.3)",
+        backgroundColor: "rgba(24, 144, 255, 0.15)",
         borderWidth: 1,
         pointRadius: 0,
         pointHoverRadius: 0,
-        fill: '-1',  // Fill to previous dataset (CI Upper)
+        fill: "-1", // Fill to previous dataset (CI Upper)
         order: 4,
       });
     }
@@ -322,24 +326,26 @@ function GrasslandButterflyIndex({ gbiData, loading }: GrasslandButterflyIndexPr
     });
 
     // Add individual species datasets
-    baseDatasets.push(...selectedSpecies.map((species, index) => {
-      const speciesTrend = speciesTrends[species];
-      const speciesData = years.map(year => speciesTrend.annualIndices[year]);
-      const color = speciesColors[index % speciesColors.length];
+    baseDatasets.push(
+      ...selectedSpecies.map((species, index) => {
+        const speciesTrend = speciesTrends[species];
+        const speciesData = years.map(year => speciesTrend.annualIndices[year]);
+        const color = speciesColors[index % speciesColors.length];
 
-      return {
-        label: species,
-        data: speciesData,
-        borderColor: color,
-        backgroundColor: color,
-        borderWidth: 2,
-        pointRadius: 3,
-        pointHoverRadius: 5,
-        tension: 0.2,
-        fill: false,
-        order: 2,
-      };
-    }));
+        return {
+          label: species,
+          data: speciesData,
+          borderColor: color,
+          backgroundColor: color,
+          borderWidth: 2,
+          pointRadius: 3,
+          pointHoverRadius: 5,
+          tension: 0.2,
+          fill: false,
+          order: 2,
+        };
+      })
+    );
 
     // Add baseline reference line at 100
     baseDatasets.push({
