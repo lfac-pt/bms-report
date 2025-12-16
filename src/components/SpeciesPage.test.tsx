@@ -249,7 +249,9 @@ describe("SpeciesPage - Data Correctness", () => {
       Object.values(mockTimelineData.observationsByYearDate).forEach(yearData => {
         Object.values(yearData).forEach(observations => {
           observations.forEach(([, species]) => {
-            speciesWithObservations.add(species);
+            if (typeof species === "string") {
+              speciesWithObservations.add(species);
+            }
           });
         });
       });
