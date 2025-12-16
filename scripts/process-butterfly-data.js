@@ -638,6 +638,158 @@ function calculateGeometricMean(values) {
 }
 
 /**
+ * Calculate percentile from sorted array using linear interpolation
+ * @param {number[]} sortedArray - Array sorted in ascending order
+ * @param {number} p - Percentile to calculate (0-100)
+ * @returns {number} Percentile value
+ */
+function percentile(sortedArray, p) {
+  if (sortedArray.length === 0) return 0;
+  if (sortedArray.length === 1) return sortedArray[0];
+
+  const index = (p / 100) * (sortedArray.length - 1);
+  const lower = Math.floor(index);
+  const upper = Math.ceil(index);
+  const weight = index - lower;
+
+  if (lower === upper) return sortedArray[lower];
+  return sortedArray[lower] * (1 - weight) + sortedArray[upper] * weight;
+}
+
+/**
+ * Calculate 95% confidence intervals for a log-linear regression
+ * Uses analytical approach based on regression standard error
+ *
+ * @param {number[]} indices - Array of index values
+ * @param {number[]} years - Array of years (relative to baseline, e.g., [0, 1, 2, 3, 4])
+ * @param {number} slope - Regression slope
+ * @param {number} baselineYear - Baseline year for output
+ * @returns {Object} CI bounds per year: { year: { ci_lower, ci_upper } }
+ */
+function calculateRegressionCI(indices, years, slope, baselineYear) {
+  const n = years.length;
+
+  // Can't calculate CI with fewer than 3 points
+  if (n < 3) {
+    const result = {};
+    years.forEach((year, i) => {
+      result[baselineYear + year] = { ci_lower: null, ci_upper: null };
+    });
+    return result;
+  }
+
+  // Log-transform indices
+  const logIndices = indices.map(idx => Math.log(idx));
+
+  // Calculate regression statistics
+  const meanX = years.reduce((a, b) => a + b, 0) / n;
+  const meanY = logIndices.reduce((a, b) => a + b, 0) / n;
+
+  // Calculate intercept
+  const intercept = meanY - slope * meanX;
+
+  // Calculate residual standard error
+  const fittedValues = years.map(x => intercept + slope * x);
+  const residuals = logIndices.map((y, i) => y - fittedValues[i]);
+  const sse = residuals.reduce((sum, r) => sum + r * r, 0);
+  const mse = sse / (n - 2); // degrees of freedom = n - 2 for simple linear regression
+  const se = Math.sqrt(mse);
+
+  // t-value for 95% CI with n-2 degrees of freedom
+  // Using approximation for t-distribution
+  const df = n - 2;
+  const tValue = df === 1 ? 12.706 :
+                 df === 2 ? 4.303 :
+                 df === 3 ? 3.182 :
+                 df === 4 ? 2.776 :
+                 df === 5 ? 2.571 :
+                 2.447; // >= 6 df, approximation
+
+  // Calculate Sxx for standard error of prediction
+  const sxx = years.reduce((sum, x) => sum + (x - meanX) * (x - meanX), 0);
+
+  // Calculate CI for each year
+  const result = {};
+  years.forEach((year, i) => {
+    const x = year;
+    const yFit = intercept + slope * x;
+
+    // Standard error of prediction
+    // SE = s * sqrt(1/n + (x - x̄)² / Sxx)
+    // Note: We use prediction interval formula without the "1+" term
+    // because we want CI for the mean, not prediction interval for new observation
+    const sePred = se * Math.sqrt(1/n + ((x - meanX) * (x - meanX)) / sxx);
+
+    // Calculate CI in log space
+    const ciLowerLog = yFit - tValue * sePred;
+    const ciUpperLog = yFit + tValue * sePred;
+
+    // Transform back to original scale
+    const ciLower = Math.exp(ciLowerLog);
+    const ciUpper = Math.exp(ciUpperLog);
+
+    result[baselineYear + year] = {
+      ci_lower: Math.round(ciLower * 100) / 100,
+      ci_upper: Math.round(ciUpper * 100) / 100
+    };
+  });
+
+  return result;
+}
+
+/**
+ * Calculate 95% bootstrap confidence intervals for GBI
+ * Uses species-level resampling (resample which species contribute to geometric mean)
+ *
+ * @param {Object} speciesTrends - Species trend data with annual indices
+ * @param {number[]} years - Array of years to calculate CI for
+ * @param {number} nBootstrap - Number of bootstrap iterations (default 1000)
+ * @returns {Object} CI bounds per year: { year: { ci_lower, ci_upper } }
+ */
+function calculateBootstrapCI(speciesTrends, years, nBootstrap = 1000) {
+  const speciesNames = Object.keys(speciesTrends);
+  const ciByYear = {};
+
+  console.log(`  Bootstrap: ${nBootstrap} iterations, ${speciesNames.length} species`);
+
+  for (const year of years) {
+    // Get valid indices for this year
+    const observedIndices = speciesNames
+      .map(sp => speciesTrends[sp].annualIndices[year])
+      .filter(idx => idx !== undefined && idx > 0);
+
+    if (observedIndices.length < 2) {
+      console.warn(`  Year ${year}: insufficient species for CI (${observedIndices.length})`);
+      ciByYear[year] = { ci_lower: null, ci_upper: null };
+      continue;
+    }
+
+    const n = observedIndices.length;
+
+    // Bootstrap resampling with replacement
+    const bootstrapGBIs = [];
+    for (let b = 0; b < nBootstrap; b++) {
+      const resampled = [];
+      for (let i = 0; i < n; i++) {
+        const randomIdx = Math.floor(Math.random() * n);
+        resampled.push(observedIndices[randomIdx]);
+      }
+      bootstrapGBIs.push(calculateGeometricMean(resampled));
+    }
+
+    // Sort and extract percentiles
+    bootstrapGBIs.sort((a, b) => a - b);
+
+    ciByYear[year] = {
+      ci_lower: Math.round(percentile(bootstrapGBIs, 2.5) * 100) / 100,
+      ci_upper: Math.round(percentile(bootstrapGBIs, 97.5) * 100) / 100
+    };
+  }
+
+  return ciByYear;
+}
+
+/**
  * Main GBI calculation function
  */
 async function calculateGBI(allData, transects, baselineYear = 2021) {
@@ -789,12 +941,16 @@ async function calculateGBI(allData, transects, baselineYear = 2021) {
         const sumX2 = years.reduce((sum, x) => sum + x * x, 0);
         const slope = (n * sumXY - sumX * sumY) / (n * sumX2 - sumX * sumX);
 
+        // Calculate 95% confidence intervals for the trend
+        const confidenceIntervals = calculateRegressionCI(indices, years, slope, baselineYear);
+
         speciesTrends[species] = {
           species,
           type: speciesType,
           slope: slope,
           yearsWithData,
           annualIndices: rbmsOutput.collated_indices,
+          confidenceIntervals: confidenceIntervals,
           dataQuality: rbmsOutput.data_quality,
           method: 'rbms'
         };
@@ -871,6 +1027,20 @@ async function calculateGBI(allData, transects, baselineYear = 2021) {
     console.log(`  ${year}: GBI=${gbiValue.toFixed(2)}, species=${Object.keys(speciesIndicesThisYear).length}`);
   });
 
+  // Step 5.5: Calculate bootstrap confidence intervals
+  console.log('  Calculating 95% bootstrap confidence intervals...');
+  const confidenceIntervals = calculateBootstrapCI(speciesTrends, allYears, 1000);
+
+  // Merge CI data into gbiByYear
+  allYears.forEach(year => {
+    if (gbiByYear[year] && confidenceIntervals[year]) {
+      gbiByYear[year].ci_lower = confidenceIntervals[year].ci_lower;
+      gbiByYear[year].ci_upper = confidenceIntervals[year].ci_upper;
+    }
+  });
+
+  console.log(`  CI calculated for ${allYears.length} years`);
+
   // Step 6: Compile metadata
   const grasslandSpeciesList = allSpecies.map(species => ({
     scientificName: species,
@@ -890,7 +1060,12 @@ async function calculateGBI(allData, transects, baselineYear = 2021) {
       minVisitsPerYear: 10
     },
     transectsUsed: transectsUsedList,
-    calculationMethod: 'rbms (GAM flight curves + GLM collated indices + geometric mean)'
+    calculationMethod: 'rbms (GAM flight curves + GLM collated indices + geometric mean)',
+    confidenceInterval: {
+      method: 'species_bootstrap',
+      nIterations: 1000,
+      confidenceLevel: 0.95
+    }
   };
 
   console.log(`  ✓ GBI calculated for ${Object.keys(gbiByYear).length} years using rbms`);

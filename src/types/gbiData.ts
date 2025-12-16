@@ -27,6 +27,15 @@ export interface TransectInfo {
 }
 
 /**
+ * Confidence interval metadata
+ */
+export interface ConfidenceIntervalMetadata {
+  method: 'species_bootstrap';
+  nIterations: number;
+  confidenceLevel: number;
+}
+
+/**
  * Metadata about the GBI calculation
  */
 export interface GBIMetadata {
@@ -35,6 +44,7 @@ export interface GBIMetadata {
   qualityCriteria: QualityCriteria;
   transectsUsed: TransectInfo[];
   calculationMethod: string;
+  confidenceInterval?: ConfidenceIntervalMetadata;
 }
 
 /**
@@ -52,6 +62,8 @@ export interface DataQuality {
 export interface YearlyGBI {
   year: number;
   gbiValue: number;
+  ci_lower: number | null;
+  ci_upper: number | null;
   speciesIndices: Record<string, number>;
   dataQuality: DataQuality;
 }
@@ -65,6 +77,7 @@ export interface SpeciesTrend {
   slope: number;
   yearsWithData: number[];
   annualIndices: Record<number, number>;
+  confidenceIntervals?: Record<number, { ci_lower: number | null; ci_upper: number | null }>;
 }
 
 /**

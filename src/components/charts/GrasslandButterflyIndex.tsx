@@ -31,6 +31,12 @@ const chartOptions = {
     legend: {
       display: true,
       position: "top" as const,
+      labels: {
+        filter: (legendItem: any) => {
+          // Hide CI Upper from legend (technical dataset)
+          return legendItem.text !== 'CI Upper';
+        },
+      },
     },
     tooltip: {
       callbacks: {
@@ -40,20 +46,36 @@ const chartOptions = {
           const indexValue = context.parsed.y;
           const yearData = context.chart.data.yearData?.[year];
 
-          // For the main GBI line, show detailed data quality info
+          // Skip CI Upper in tooltip (technical dataset)
+          if (datasetLabel === 'CI Upper') return undefined;
+
+          // For CI band, show range
+          if (datasetLabel === 'IC 95%' && yearData) {
+            if (yearData.ci_lower != null && yearData.ci_upper != null) {
+              return `IC 95%: ${yearData.ci_lower.toFixed(1)} - ${yearData.ci_upper.toFixed(1)}`;
+            }
+            return undefined;
+          }
+
+          // For the main GBI line, show detailed data quality info with CI
           if (datasetLabel === "GBI (Todas as Espécies)" && yearData) {
-            return [
+            const lines = [
               `${datasetLabel}: ${indexValue.toFixed(2)}`,
-              `Transectos: ${yearData.transectCount}`,
-              `Visitas: ${yearData.totalVisits}`,
-              `Espécies: ${yearData.speciesWithData}`,
             ];
+            if (yearData.ci_lower != null && yearData.ci_upper != null) {
+              lines.push(`IC 95%: [${yearData.ci_lower.toFixed(1)}, ${yearData.ci_upper.toFixed(1)}]`);
+            }
+            lines.push(`Transectos: ${yearData.transectCount}`);
+            lines.push(`Visitas: ${yearData.totalVisits}`);
+            lines.push(`Espécies: ${yearData.speciesWithData}`);
+            return lines;
           }
 
           // For individual species and baseline, show name and value
           return `${datasetLabel}: ${indexValue.toFixed(2)}`;
         },
       },
+      filter: (item: any) => item.dataset.label !== 'CI Upper',
     },
   },
   scales: {
@@ -104,9 +126,21 @@ function GrasslandButterflyIndex({ gbiData, loading }: GrasslandButterflyIndexPr
   // Prepare chart data
   const labels = years.map(year => year.toString());
   const gbiValues = years.map(year => gbiByYear[year].gbiValue);
+
+  // Prepare CI band data
+  const ciLowerData = years.map(year => gbiByYear[year]?.ci_lower ?? gbiByYear[year]?.gbiValue ?? 100);
+  const ciUpperData = years.map(year => gbiByYear[year]?.ci_upper ?? gbiByYear[year]?.gbiValue ?? 100);
+  const hasConfidenceIntervals = years.some(year =>
+    gbiByYear[year]?.ci_lower !== null && gbiByYear[year]?.ci_lower !== undefined
+  );
+
   const yearData = years.reduce(
     (acc, year) => {
-      acc[year] = gbiByYear[year].dataQuality;
+      acc[year] = {
+        ...gbiByYear[year].dataQuality,
+        ci_lower: gbiByYear[year].ci_lower,
+        ci_upper: gbiByYear[year].ci_upper,
+      };
       return acc;
     },
     {} as Record<number, any>
@@ -158,7 +192,38 @@ function GrasslandButterflyIndex({ gbiData, loading }: GrasslandButterflyIndexPr
     const generalistIndices = calculateGroupIndex(generalistSpecies);
     const specialistIndices = calculateGroupIndex(specialistSpecies);
 
-    datasets = [
+    const baseDatasets = [];
+
+    // Add CI band datasets if available
+    if (hasConfidenceIntervals) {
+      // CI Upper bound (hidden line - serves as fill target)
+      baseDatasets.push({
+        label: 'CI Upper',
+        data: ciUpperData,
+        borderColor: 'transparent',
+        backgroundColor: 'transparent',
+        borderWidth: 0,
+        pointRadius: 0,
+        pointHoverRadius: 0,
+        fill: false,
+        order: 4,
+      });
+
+      // CI Lower bound with fill to upper
+      baseDatasets.push({
+        label: 'IC 95%',
+        data: ciLowerData,
+        borderColor: 'rgba(24, 144, 255, 0.3)',
+        backgroundColor: 'rgba(24, 144, 255, 0.15)',
+        borderWidth: 1,
+        pointRadius: 0,
+        pointHoverRadius: 0,
+        fill: '-1',  // Fill to previous dataset (CI Upper)
+        order: 4,
+      });
+    }
+
+    baseDatasets.push(
       {
         label: "GBI (Todas as Espécies)",
         data: gbiValues,
@@ -169,6 +234,7 @@ function GrasslandButterflyIndex({ gbiData, loading }: GrasslandButterflyIndexPr
         pointHoverRadius: 7,
         tension: 0.2,
         fill: false,
+        order: 1,
       },
       {
         label: "Generalistas",
@@ -180,6 +246,7 @@ function GrasslandButterflyIndex({ gbiData, loading }: GrasslandButterflyIndexPr
         pointHoverRadius: 6,
         tension: 0.2,
         fill: false,
+        order: 2,
       },
       {
         label: "Especialistas",
@@ -191,6 +258,7 @@ function GrasslandButterflyIndex({ gbiData, loading }: GrasslandButterflyIndexPr
         pointHoverRadius: 6,
         tension: 0.2,
         fill: false,
+        order: 2,
       },
       {
         label: "Baseline 2021",
@@ -201,52 +269,92 @@ function GrasslandButterflyIndex({ gbiData, loading }: GrasslandButterflyIndexPr
         pointRadius: 0,
         pointHoverRadius: 0,
         fill: false,
+        order: 5,
       },
-    ];
+    );
+
+    datasets = baseDatasets;
   } else {
     // Manual selection mode
-    datasets = [
-      {
-        label: "GBI (Todas as Espécies)",
-        data: gbiValues,
-        borderColor: "#1890ff",
-        backgroundColor: "#1890ff",
-        borderWidth: 3,
-        pointRadius: 5,
-        pointHoverRadius: 7,
-        tension: 0.2,
-        fill: false,
-      },
-      // Add individual species datasets
-      ...selectedSpecies.map((species, index) => {
-        const speciesTrend = speciesTrends[species];
-        const speciesData = years.map(year => speciesTrend.annualIndices[year]);
-        const color = speciesColors[index % speciesColors.length];
+    const baseDatasets = [];
 
-        return {
-          label: species,
-          data: speciesData,
-          borderColor: color,
-          backgroundColor: color,
-          borderWidth: 2,
-          pointRadius: 3,
-          pointHoverRadius: 5,
-          tension: 0.2,
-          fill: false,
-        };
-      }),
-      // Add baseline reference line at 100
-      {
-        label: "Baseline 2021",
-        data: Array(years.length).fill(100),
-        borderColor: "#d9d9d9",
-        borderWidth: 2,
-        borderDash: [5, 5],
+    // Add CI band datasets if available
+    if (hasConfidenceIntervals) {
+      // CI Upper bound (hidden line - serves as fill target)
+      baseDatasets.push({
+        label: 'CI Upper',
+        data: ciUpperData,
+        borderColor: 'transparent',
+        backgroundColor: 'transparent',
+        borderWidth: 0,
         pointRadius: 0,
         pointHoverRadius: 0,
         fill: false,
-      },
-    ];
+        order: 4,
+      });
+
+      // CI Lower bound with fill to upper
+      baseDatasets.push({
+        label: 'IC 95%',
+        data: ciLowerData,
+        borderColor: 'rgba(24, 144, 255, 0.3)',
+        backgroundColor: 'rgba(24, 144, 255, 0.15)',
+        borderWidth: 1,
+        pointRadius: 0,
+        pointHoverRadius: 0,
+        fill: '-1',  // Fill to previous dataset (CI Upper)
+        order: 4,
+      });
+    }
+
+    // Main GBI line
+    baseDatasets.push({
+      label: "GBI (Todas as Espécies)",
+      data: gbiValues,
+      borderColor: "#1890ff",
+      backgroundColor: "#1890ff",
+      borderWidth: 3,
+      pointRadius: 5,
+      pointHoverRadius: 7,
+      tension: 0.2,
+      fill: false,
+      order: 1,
+    });
+
+    // Add individual species datasets
+    baseDatasets.push(...selectedSpecies.map((species, index) => {
+      const speciesTrend = speciesTrends[species];
+      const speciesData = years.map(year => speciesTrend.annualIndices[year]);
+      const color = speciesColors[index % speciesColors.length];
+
+      return {
+        label: species,
+        data: speciesData,
+        borderColor: color,
+        backgroundColor: color,
+        borderWidth: 2,
+        pointRadius: 3,
+        pointHoverRadius: 5,
+        tension: 0.2,
+        fill: false,
+        order: 2,
+      };
+    }));
+
+    // Add baseline reference line at 100
+    baseDatasets.push({
+      label: "Baseline 2021",
+      data: Array(years.length).fill(100),
+      borderColor: "#d9d9d9",
+      borderWidth: 2,
+      borderDash: [5, 5],
+      pointRadius: 0,
+      pointHoverRadius: 0,
+      fill: false,
+      order: 5,
+    });
+
+    datasets = baseDatasets;
   }
 
   const chartData = {

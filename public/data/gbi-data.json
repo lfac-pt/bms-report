@@ -137,7 +137,12 @@
         "transectName": "Sete Fontes - Braga"
       }
     ],
-    "calculationMethod": "rbms (GAM flight curves + GLM collated indices + geometric mean)"
+    "calculationMethod": "rbms (GAM flight curves + GLM collated indices + geometric mean)",
+    "confidenceInterval": {
+      "method": "species_bootstrap",
+      "nIterations": 1000,
+      "confidenceLevel": 0.95
+    }
   },
   "gbiByYear": {
     "2021": {
@@ -159,7 +164,9 @@
         "transectCount": 50,
         "totalVisits": 169,
         "speciesWithData": 10
-      }
+      },
+      "ci_lower": 100,
+      "ci_upper": 100
     },
     "2022": {
       "year": 2022,
@@ -180,7 +187,9 @@
         "transectCount": 45,
         "totalVisits": 174,
         "speciesWithData": 10
-      }
+      },
+      "ci_lower": 62.37,
+      "ci_upper": 151.58
     },
     "2023": {
       "year": 2023,
@@ -201,7 +210,9 @@
         "transectCount": 70,
         "totalVisits": 194,
         "speciesWithData": 10
-      }
+      },
+      "ci_lower": 28.01,
+      "ci_upper": 112.47
     },
     "2024": {
       "year": 2024,
@@ -222,7 +233,9 @@
         "transectCount": 77,
         "totalVisits": 187,
         "speciesWithData": 10
-      }
+      },
+      "ci_lower": 51.49,
+      "ci_upper": 123.32
     },
     "2025": {
       "year": 2025,
@@ -243,7 +256,9 @@
         "transectCount": 72,
         "totalVisits": 180,
         "speciesWithData": 10
-      }
+      },
+      "ci_lower": 33.72,
+      "ci_upper": 115.19
     }
   },
   "speciesTrends": {
@@ -264,6 +279,28 @@
         "2023": 350.821,
         "2024": 239.5329,
         "2025": 345.4121
+      },
+      "confidenceIntervals": {
+        "2021": {
+          "ci_lower": 42.86,
+          "ci_upper": 777.41
+        },
+        "2022": {
+          "ci_lower": 78.88,
+          "ci_upper": 612.26
+        },
+        "2023": {
+          "ci_lower": 114.61,
+          "ci_upper": 610.78
+        },
+        "2024": {
+          "ci_lower": 114.33,
+          "ci_upper": 887.47
+        },
+        "2025": {
+          "ci_lower": 90.04,
+          "ci_upper": 1633.37
+        }
       },
       "dataQuality": {
         "site_count": 18,
@@ -294,6 +331,28 @@
         "2024": 31.4965,
         "2025": 62.2879
       },
+      "confidenceIntervals": {
+        "2021": {
+          "ci_lower": 23.65,
+          "ci_upper": 238.72
+        },
+        "2022": {
+          "ci_lower": 28.02,
+          "ci_upper": 143.7
+        },
+        "2023": {
+          "ci_lower": 27.49,
+          "ci_upper": 104.45
+        },
+        "2024": {
+          "ci_lower": 19.98,
+          "ci_upper": 102.49
+        },
+        "2025": {
+          "ci_lower": 12.03,
+          "ci_upper": 121.44
+        }
+      },
       "dataQuality": {
         "site_count": 18,
         "total_visits": 1381,
@@ -322,6 +381,28 @@
         "2023": 100.0276,
         "2024": 182.5864,
         "2025": 98.1593
+      },
+      "confidenceIntervals": {
+        "2021": {
+          "ci_lower": 38.02,
+          "ci_upper": 209.32
+        },
+        "2022": {
+          "ci_lower": 53.19,
+          "ci_upper": 177.69
+        },
+        "2023": {
+          "ci_lower": 64.75,
+          "ci_upper": 173.36
+        },
+        "2024": {
+          "ci_lower": 63.17,
+          "ci_upper": 211.03
+        },
+        "2025": {
+          "ci_lower": 53.62,
+          "ci_upper": 295.25
+        }
       },
       "dataQuality": {
         "site_count": 18,
@@ -352,6 +433,28 @@
         "2024": 126.2707,
         "2025": 119.5767
       },
+      "confidenceIntervals": {
+        "2021": {
+          "ci_lower": 76.33,
+          "ci_upper": 159.84
+        },
+        "2022": {
+          "ci_lower": 89.02,
+          "ci_upper": 150.14
+        },
+        "2023": {
+          "ci_lower": 97.76,
+          "ci_upper": 149.79
+        },
+        "2024": {
+          "ci_lower": 97.53,
+          "ci_upper": 164.49
+        },
+        "2025": {
+          "ci_lower": 91.61,
+          "ci_upper": 191.85
+        }
+      },
       "dataQuality": {
         "site_count": 18,
         "total_visits": 1381,
@@ -380,6 +483,28 @@
         "2023": 52.9597,
         "2024": 59.0675,
         "2025": 175.2256
+      },
+      "confidenceIntervals": {
+        "2021": {
+          "ci_lower": 19,
+          "ci_upper": 259.04
+        },
+        "2022": {
+          "ci_lower": 30.43,
+          "ci_upper": 193
+        },
+        "2023": {
+          "ci_lower": 39.38,
+          "ci_upper": 177.95
+        },
+        "2024": {
+          "ci_lower": 36.31,
+          "ci_upper": 230.29
+        },
+        "2025": {
+          "ci_lower": 27.05,
+          "ci_upper": 368.8
+        }
       },
       "dataQuality": {
         "site_count": 18,
@@ -410,6 +535,28 @@
         "2024": 35.3684,
         "2025": 9.4124
       },
+      "confidenceIntervals": {
+        "2021": {
+          "ci_lower": 4.03,
+          "ci_upper": 2120.41
+        },
+        "2022": {
+          "ci_lower": 5.56,
+          "ci_upper": 467.36
+        },
+        "2023": {
+          "ci_lower": 4.61,
+          "ci_upper": 171.73
+        },
+        "2024": {
+          "ci_lower": 1.69,
+          "ci_upper": 142.28
+        },
+        "2025": {
+          "ci_lower": 0.37,
+          "ci_upper": 196.52
+        }
+      },
       "dataQuality": {
         "site_count": 18,
         "total_visits": 1381,
@@ -438,6 +585,28 @@
         "2023": 44.6294,
         "2024": 79.5035,
         "2025": 47.6349
+      },
+      "confidenceIntervals": {
+        "2021": {
+          "ci_lower": 36.12,
+          "ci_upper": 180.49
+        },
+        "2022": {
+          "ci_lower": 40.5,
+          "ci_upper": 126.35
+        },
+        "2023": {
+          "ci_lower": 39.83,
+          "ci_upper": 100.85
+        },
+        "2024": {
+          "ci_lower": 31.8,
+          "ci_upper": 99.18
+        },
+        "2025": {
+          "ci_lower": 22.26,
+          "ci_upper": 111.22
+        }
       },
       "dataQuality": {
         "site_count": 18,
@@ -468,6 +637,28 @@
         "2024": 153.6555,
         "2025": 70.123
       },
+      "confidenceIntervals": {
+        "2021": {
+          "ci_lower": 53.72,
+          "ci_upper": 317.48
+        },
+        "2022": {
+          "ci_lower": 64.81,
+          "ci_upper": 227.63
+        },
+        "2023": {
+          "ci_lower": 67.64,
+          "ci_upper": 188.66
+        },
+        "2024": {
+          "ci_lower": 56.06,
+          "ci_upper": 196.89
+        },
+        "2025": {
+          "ci_lower": 40.2,
+          "ci_upper": 237.54
+        }
+      },
       "dataQuality": {
         "site_count": 18,
         "total_visits": 1381,
@@ -497,6 +688,28 @@
         "2024": 34.6959,
         "2025": 12.7022
       },
+      "confidenceIntervals": {
+        "2021": {
+          "ci_lower": 22.47,
+          "ci_upper": 226.85
+        },
+        "2022": {
+          "ci_lower": 21.35,
+          "ci_upper": 109.5
+        },
+        "2023": {
+          "ci_lower": 16.8,
+          "ci_upper": 63.82
+        },
+        "2024": {
+          "ci_lower": 9.79,
+          "ci_upper": 50.22
+        },
+        "2025": {
+          "ci_lower": 4.73,
+          "ci_upper": 47.72
+        }
+      },
       "dataQuality": {
         "site_count": 18,
         "total_visits": 1381,
@@ -525,6 +738,28 @@
         "2023": 78.547,
         "2024": 77.965,
         "2025": 59.8732
+      },
+      "confidenceIntervals": {
+        "2021": {
+          "ci_lower": 84.63,
+          "ci_upper": 117.19
+        },
+        "2022": {
+          "ci_lower": 79.29,
+          "ci_upper": 99.81
+        },
+        "2023": {
+          "ci_lower": 72.34,
+          "ci_upper": 87.29
+        },
+        "2024": {
+          "ci_lower": 63.27,
+          "ci_upper": 79.64
+        },
+        "2025": {
+          "ci_lower": 53.88,
+          "ci_upper": 74.61
+        }
       },
       "dataQuality": {
         "site_count": 18,

@@ -6,6 +6,7 @@ import { Line } from "react-chartjs-2";
 import { SPECIES_FAMILIES } from "../utils/speciesFamilies";
 import { TimelineData } from "../types/timelineData";
 import { TransectData } from "../types/transectStats";
+import { GBIData } from "../types/gbiData";
 import { calculateSpeciesPresenceByYear } from "../utils/speciesMapUtils";
 import SpeciesMap from "./SpeciesMap";
 import { SERIES_COLORS } from "../utils/utils";
@@ -39,6 +40,7 @@ function SpeciesPage() {
   const [transectData, setTransectData] = useState<TransectData | null>(null);
   const [flightCurvesData, setFlightCurvesData] = useState<any>(null);
   const [phenologyData, setPhenologyData] = useState<any>(null);
+  const [gbiData, setGbiData] = useState<GBIData | null>(null);
   const [loading, setLoading] = useState(true);
   const [dataViewMode, setDataViewMode] = useState<"flightCurves" | "phenologyCurves">(
     "flightCurves"
@@ -48,7 +50,7 @@ function SpeciesPage() {
   const decodedSpeciesName = speciesName ? decodeURIComponent(speciesName) : "";
   const family = SPECIES_FAMILIES[decodedSpeciesName] || "Informação não disponível";
 
-  // Load timeline, transect, flight curves, and phenology data
+  // Load timeline, transect, flight curves, phenology, and GBI data
   useEffect(() => {
     Promise.all([
       fetch("/data/timeline-data.json").then(res => res.json()),
@@ -59,12 +61,16 @@ function SpeciesPage() {
       fetch("/data/phenology-curves-data.json")
         .then(res => res.json())
         .catch(() => null),
+      fetch("/data/gbi-data.json")
+        .then(res => res.json())
+        .catch(() => null),
     ])
-      .then(([timeline, transects, flightCurves, phenology]) => {
+      .then(([timeline, transects, flightCurves, phenology, gbi]) => {
         setTimelineData(timeline);
         setTransectData(transects);
         setFlightCurvesData(flightCurves);
         setPhenologyData(phenology);
+        setGbiData(gbi);
         setLoading(false);
       })
       .catch(() => {
@@ -248,31 +254,103 @@ function SpeciesPage() {
               const years = Object.keys(speciesData.collatedIndices).map(Number).sort();
               const indices = years.map(year => speciesData.collatedIndices[year]);
 
+              // Get CI data from GBI data if available
+              const speciesTrend = gbiData?.speciesTrends?.[decodedSpeciesName];
+              const hasCI = speciesTrend?.confidenceIntervals != null;
+              const ciLower = hasCI ? years.map(year => speciesTrend.confidenceIntervals![year]?.ci_lower ?? indices[years.indexOf(year)]) : [];
+              const ciUpper = hasCI ? years.map(year => speciesTrend.confidenceIntervals![year]?.ci_upper ?? indices[years.indexOf(year)]) : [];
+
+              const datasets = [];
+
+              // Add CI band if available
+              if (hasCI) {
+                // CI Upper bound (hidden)
+                datasets.push({
+                  label: 'CI Upper',
+                  data: ciUpper,
+                  borderColor: 'transparent',
+                  backgroundColor: 'transparent',
+                  borderWidth: 0,
+                  pointRadius: 0,
+                  fill: false,
+                  order: 3,
+                });
+
+                // CI Lower bound with fill
+                datasets.push({
+                  label: 'IC 95%',
+                  data: ciLower,
+                  borderColor: `${SERIES_COLORS[0]}33`,
+                  backgroundColor: `${SERIES_COLORS[0]}22`,
+                  borderWidth: 1,
+                  pointRadius: 0,
+                  fill: '-1',
+                  order: 3,
+                });
+              }
+
+              // Main trend line
+              datasets.push({
+                label: "Índice Populacional (2021 = 100)",
+                data: indices,
+                borderColor: SERIES_COLORS[0],
+                backgroundColor: SERIES_COLORS[0],
+                borderWidth: 3,
+                pointRadius: 4,
+                tension: 0.3,
+                fill: false,
+                order: 1,
+              });
+
               const chartData = {
                 labels: years.map(String),
-                datasets: [
-                  {
-                    label: "Índice Populacional (2021 = 100)",
-                    data: indices,
-                    borderColor: SERIES_COLORS[0],
-                    backgroundColor: SERIES_COLORS[0] + "33",
-                    fill: true,
-                    tension: 0.3,
-                  },
-                ],
+                datasets,
               };
 
               const options = {
                 responsive: true,
                 maintainAspectRatio: false,
                 plugins: {
-                  legend: { display: true, position: "top" as const },
+                  legend: {
+                    display: true,
+                    position: "top" as const,
+                    labels: {
+                      filter: (legendItem: any) => legendItem.text !== 'CI Upper',
+                    },
+                  },
                   tooltip: {
                     callbacks: {
                       label: (context: any) => {
-                        return `Índice: ${context.parsed.y.toFixed(2)}`;
+                        const datasetLabel = context.dataset.label || "";
+                        const year = years[context.dataIndex];
+
+                        // Skip CI Upper
+                        if (datasetLabel === 'CI Upper') return undefined;
+
+                        // For CI band, show range
+                        if (datasetLabel === 'IC 95%' && hasCI) {
+                          const ci = speciesTrend.confidenceIntervals![year];
+                          if (ci?.ci_lower != null && ci?.ci_upper != null) {
+                            return `IC 95%: ${ci.ci_lower.toFixed(1)} - ${ci.ci_upper.toFixed(1)}`;
+                          }
+                        }
+
+                        // For main line, show index with CI if available
+                        if (datasetLabel === "Índice Populacional (2021 = 100)") {
+                          const lines = [`Índice: ${context.parsed.y.toFixed(2)}`];
+                          if (hasCI) {
+                            const ci = speciesTrend.confidenceIntervals![year];
+                            if (ci?.ci_lower != null && ci?.ci_upper != null) {
+                              lines.push(`IC 95%: [${ci.ci_lower.toFixed(1)}, ${ci.ci_upper.toFixed(1)}]`);
+                            }
+                          }
+                          return lines;
+                        }
+
+                        return `${datasetLabel}: ${context.parsed.y.toFixed(2)}`;
                       },
                     },
+                    filter: (item: any) => item.dataset.label !== 'CI Upper',
                   },
                 },
                 scales: {
