@@ -210,7 +210,7 @@ function ButterflyTransects() {
   useEffect(() => {
     // Load processed transects data
     window
-      .fetch("/data/processed-transects.json")
+      .fetch("data/processed-transects.json")
       .then(response => response.json())
       .then((jsonData: TransectData) => {
         setData(jsonData.transects);
@@ -225,7 +225,7 @@ function ButterflyTransects() {
   useEffect(() => {
     // Load timeline data
     window
-      .fetch("/data/timeline-data.json")
+      .fetch("data/timeline-data.json")
       .then(response => response.json())
       .then((data: TimelineData) => {
         setTimelineData(data);
@@ -239,7 +239,7 @@ function ButterflyTransects() {
   useEffect(() => {
     // Load GBI data
     window
-      .fetch("/data/gbi-data.json")
+      .fetch("data/gbi-data.json")
       .then(response => response.json())
       .then((data: GBIData) => {
         setGbiData(data);
