@@ -124,6 +124,7 @@ function SpeciesPage() {
     label: family,
     options: speciesByFamily[family].sort().map(species => {
       const hasRecords = speciesWithRecords.has(species);
+      const hasFlightCurves = flightCurvesData?.species?.[species] != null;
 
       // Check if species is endangered
       let endangeredLabel = "";
@@ -134,7 +135,8 @@ function SpeciesPage() {
       }
 
       const recordsLabel = hasRecords ? "" : " (sem registos)";
-      const label = `${species}${endangeredLabel}${recordsLabel}`;
+      const flightCurvesLabel = hasFlightCurves ? " (curvas de voo)" : "";
+      const label = `${species}${endangeredLabel}${flightCurvesLabel}${recordsLabel}`;
 
       return {
         label,
