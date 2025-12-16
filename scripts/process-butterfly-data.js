@@ -1124,12 +1124,24 @@ async function calculateAllFlightCurves(allData, transects, baselineYear = 2021)
       const rbmsOutput = JSON.parse(outputJSON);
       rbmsUtils.validateRbmsOutput(rbmsOutput, species, allYears);
 
+      // Extract confidence intervals from rbms bootstrap
+      const confidenceIntervals = {};
+      if (rbmsOutput.confidence_intervals && Object.keys(rbmsOutput.confidence_intervals).length > 0) {
+        for (const [year, ci] of Object.entries(rbmsOutput.confidence_intervals)) {
+          confidenceIntervals[parseInt(year)] = {
+            ci_lower: ci.ci_lower,
+            ci_upper: ci.ci_upper
+          };
+        }
+      }
+
       // Store results
       speciesResults[species] = {
         collatedIndices: rbmsOutput.collated_indices,
         phenologyCurves: rbmsOutput.phenology_curves || null,
         dataQuality: rbmsOutput.data_quality,
-        processingInfo: rbmsOutput.processing_info
+        processingInfo: rbmsOutput.processing_info,
+        confidenceIntervals: confidenceIntervals
       };
 
       successCount++;

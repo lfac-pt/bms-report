@@ -1,6 +1,6 @@
 {
   "metadata": {
-    "processingDate": "2025-12-16T01:24:46.451Z",
+    "processingDate": "2025-12-16T16:03:26.786Z",
     "baselineYear": 2021,
     "qualityCriteria": {
       "minYearsActive": 5,
@@ -559,9 +559,31 @@
       },
       "processingInfo": {
         "method": "rbms (GAM flight curves + GLM collated index + bootstrap CI)",
-        "timestamp": "2025-12-16 01:20:59",
+        "timestamp": "2025-12-16 15:59:54",
         "rbms_version": "1.2.0",
         "bootstrap_iterations": 500
+      },
+      "confidenceIntervals": {
+        "2021": {
+          "ci_lower": 0,
+          "ci_upper": 374.29
+        },
+        "2022": {
+          "ci_lower": 56.55,
+          "ci_upper": 1133.39
+        },
+        "2023": {
+          "ci_lower": 43.68,
+          "ci_upper": 826.7
+        },
+        "2024": {
+          "ci_lower": 0,
+          "ci_upper": 590.53
+        },
+        "2025": {
+          "ci_lower": 26.36,
+          "ci_upper": 773.59
+        }
       }
     },
     "Argynnis pandora": {
@@ -1038,9 +1060,31 @@
       },
       "processingInfo": {
         "method": "rbms (GAM flight curves + GLM collated index + bootstrap CI)",
-        "timestamp": "2025-12-16 01:21:03",
+        "timestamp": "2025-12-16 15:59:58",
         "rbms_version": "1.2.0",
         "bootstrap_iterations": 500
+      },
+      "confidenceIntervals": {
+        "2021": {
+          "ci_lower": 24.81,
+          "ci_upper": 175.84
+        },
+        "2022": {
+          "ci_lower": 45.8,
+          "ci_upper": 1418.27
+        },
+        "2023": {
+          "ci_lower": 0,
+          "ci_upper": 922.92
+        },
+        "2024": {
+          "ci_lower": 70.17,
+          "ci_upper": 1185.06
+        },
+        "2025": {
+          "ci_lower": 0,
+          "ci_upper": 522.46
+        }
       }
     },
     "Aricia cramera": {
@@ -1619,9 +1663,31 @@
       },
       "processingInfo": {
         "method": "rbms (GAM flight curves + GLM collated index + bootstrap CI)",
-        "timestamp": "2025-12-16 01:21:07",
+        "timestamp": "2025-12-16 16:00:02",
         "rbms_version": "1.2.0",
         "bootstrap_iterations": 500
+      },
+      "confidenceIntervals": {
+        "2021": {
+          "ci_lower": 31.95,
+          "ci_upper": 176.85
+        },
+        "2022": {
+          "ci_lower": 23.41,
+          "ci_upper": 138.68
+        },
+        "2023": {
+          "ci_lower": 23.99,
+          "ci_upper": 105.82
+        },
+        "2024": {
+          "ci_lower": 28.78,
+          "ci_upper": 250.42
+        },
+        "2025": {
+          "ci_lower": 51.95,
+          "ci_upper": 617.09
+        }
       }
     },
     "Brintesia circe": {
@@ -2200,9 +2266,31 @@
       },
       "processingInfo": {
         "method": "rbms (GAM flight curves + GLM collated index + bootstrap CI)",
-        "timestamp": "2025-12-16 01:21:11",
+        "timestamp": "2025-12-16 16:00:06",
         "rbms_version": "1.2.0",
         "bootstrap_iterations": 500
+      },
+      "confidenceIntervals": {
+        "2021": {
+          "ci_lower": 0,
+          "ci_upper": 230.04
+        },
+        "2022": {
+          "ci_lower": 12.43,
+          "ci_upper": 131.8
+        },
+        "2023": {
+          "ci_lower": 0,
+          "ci_upper": 226.52
+        },
+        "2024": {
+          "ci_lower": 0,
+          "ci_upper": 221.89
+        },
+        "2025": {
+          "ci_lower": 0,
+          "ci_upper": 456.14
+        }
       }
     },
     "Cacyreus marshalli": {
@@ -2679,9 +2767,31 @@
       },
       "processingInfo": {
         "method": "rbms (GAM flight curves + GLM collated index + bootstrap CI)",
-        "timestamp": "2025-12-16 01:21:15",
+        "timestamp": "2025-12-16 16:00:09",
         "rbms_version": "1.2.0",
         "bootstrap_iterations": 500
+      },
+      "confidenceIntervals": {
+        "2021": {
+          "ci_lower": 19.17,
+          "ci_upper": 210.12
+        },
+        "2022": {
+          "ci_lower": 0,
+          "ci_upper": 61.61
+        },
+        "2023": {
+          "ci_lower": 10.14,
+          "ci_upper": 170.88
+        },
+        "2024": {
+          "ci_lower": 2.58,
+          "ci_upper": 85.2
+        },
+        "2025": {
+          "ci_lower": 0,
+          "ci_upper": 43.1
+        }
       }
     },
     "Callophrys rubi": {
@@ -3056,9 +3166,31 @@
       },
       "processingInfo": {
         "method": "rbms (GAM flight curves + GLM collated index + bootstrap CI)",
-        "timestamp": "2025-12-16 01:21:19",
+        "timestamp": "2025-12-16 16:00:13",
         "rbms_version": "1.2.0",
         "bootstrap_iterations": 500
+      },
+      "confidenceIntervals": {
+        "2021": {
+          "ci_lower": 0,
+          "ci_upper": 270.58
+        },
+        "2022": {
+          "ci_lower": 392.59,
+          "ci_upper": 2842.6
+        },
+        "2023": {
+          "ci_lower": 210.12,
+          "ci_upper": 1184.22
+        },
+        "2024": {
+          "ci_lower": 65.38,
+          "ci_upper": 872.27
+        },
+        "2025": {
+          "ci_lower": 117.48,
+          "ci_upper": 1633.6
+        }
       }
     },
     "Carcharodus alceae": {
@@ -3433,9 +3565,31 @@
       },
       "processingInfo": {
         "method": "rbms (GAM flight curves + GLM collated index + bootstrap CI)",
-        "timestamp": "2025-12-16 01:21:23",
+        "timestamp": "2025-12-16 16:00:17",
         "rbms_version": "1.2.0",
         "bootstrap_iterations": 500
+      },
+      "confidenceIntervals": {
+        "2021": {
+          "ci_lower": 17.34,
+          "ci_upper": 219.17
+        },
+        "2022": {
+          "ci_lower": 0,
+          "ci_upper": 118.17
+        },
+        "2023": {
+          "ci_lower": 33.33,
+          "ci_upper": 400.82
+        },
+        "2024": {
+          "ci_lower": 0,
+          "ci_upper": 272.19
+        },
+        "2025": {
+          "ci_lower": 0,
+          "ci_upper": 173.18
+        }
       }
     },
     "Celastrina argiolus": {
@@ -4014,9 +4168,31 @@
       },
       "processingInfo": {
         "method": "rbms (GAM flight curves + GLM collated index + bootstrap CI)",
-        "timestamp": "2025-12-16 01:21:27",
+        "timestamp": "2025-12-16 16:00:21",
         "rbms_version": "1.2.0",
         "bootstrap_iterations": 500
+      },
+      "confidenceIntervals": {
+        "2021": {
+          "ci_lower": 37.96,
+          "ci_upper": 164.39
+        },
+        "2022": {
+          "ci_lower": 29.39,
+          "ci_upper": 246.44
+        },
+        "2023": {
+          "ci_lower": 19.76,
+          "ci_upper": 515.11
+        },
+        "2024": {
+          "ci_lower": 36.18,
+          "ci_upper": 341.04
+        },
+        "2025": {
+          "ci_lower": 43.37,
+          "ci_upper": 211.48
+        }
       }
     },
     "Charaxes jasius": {
@@ -4595,9 +4771,31 @@
       },
       "processingInfo": {
         "method": "rbms (GAM flight curves + GLM collated index + bootstrap CI)",
-        "timestamp": "2025-12-16 01:21:31",
+        "timestamp": "2025-12-16 16:00:25",
         "rbms_version": "1.2.0",
         "bootstrap_iterations": 500
+      },
+      "confidenceIntervals": {
+        "2021": {
+          "ci_lower": 16.45,
+          "ci_upper": 248.97
+        },
+        "2022": {
+          "ci_lower": 0,
+          "ci_upper": 151.58
+        },
+        "2023": {
+          "ci_lower": 61.17,
+          "ci_upper": 419.81
+        },
+        "2024": {
+          "ci_lower": 40.65,
+          "ci_upper": 268.66
+        },
+        "2025": {
+          "ci_lower": 19.91,
+          "ci_upper": 151.84
+        }
       }
     },
     "Coenonympha pamphilus": {
@@ -5176,9 +5374,31 @@
       },
       "processingInfo": {
         "method": "rbms (GAM flight curves + GLM collated index + bootstrap CI)",
-        "timestamp": "2025-12-16 01:21:35",
+        "timestamp": "2025-12-16 16:00:29",
         "rbms_version": "1.2.0",
         "bootstrap_iterations": 500
+      },
+      "confidenceIntervals": {
+        "2021": {
+          "ci_lower": 25.29,
+          "ci_upper": 196.19
+        },
+        "2022": {
+          "ci_lower": 26.2,
+          "ci_upper": 110.69
+        },
+        "2023": {
+          "ci_lower": 10.08,
+          "ci_upper": 61.52
+        },
+        "2024": {
+          "ci_lower": 6.44,
+          "ci_upper": 64.22
+        },
+        "2025": {
+          "ci_lower": 18.15,
+          "ci_upper": 113.39
+        }
       }
     },
     "Colias crocea": {
@@ -5757,9 +5977,31 @@
       },
       "processingInfo": {
         "method": "rbms (GAM flight curves + GLM collated index + bootstrap CI)",
-        "timestamp": "2025-12-16 01:21:39",
+        "timestamp": "2025-12-16 16:00:32",
         "rbms_version": "1.2.0",
         "bootstrap_iterations": 500
+      },
+      "confidenceIntervals": {
+        "2021": {
+          "ci_lower": 60.89,
+          "ci_upper": 153.47
+        },
+        "2022": {
+          "ci_lower": 70.44,
+          "ci_upper": 160.77
+        },
+        "2023": {
+          "ci_lower": 71.83,
+          "ci_upper": 168.55
+        },
+        "2024": {
+          "ci_lower": 99.57,
+          "ci_upper": 166.66
+        },
+        "2025": {
+          "ci_lower": 61.62,
+          "ci_upper": 137.44
+        }
       }
     },
     "Danaus plexippus": {
@@ -6134,9 +6376,31 @@
       },
       "processingInfo": {
         "method": "rbms (GAM flight curves + GLM collated index + bootstrap CI)",
-        "timestamp": "2025-12-16 01:21:43",
+        "timestamp": "2025-12-16 16:00:36",
         "rbms_version": "1.2.0",
         "bootstrap_iterations": 500
+      },
+      "confidenceIntervals": {
+        "2021": {
+          "ci_lower": 0,
+          "ci_upper": 211.65
+        },
+        "2022": {
+          "ci_lower": 0,
+          "ci_upper": 133.98
+        },
+        "2023": {
+          "ci_lower": 0,
+          "ci_upper": 522019725700.93
+        },
+        "2024": {
+          "ci_lower": 0,
+          "ci_upper": 365028524121.49
+        },
+        "2025": {
+          "ci_lower": 0,
+          "ci_upper": 222484747006.05
+        }
       }
     },
     "Euchloe belemia": {
@@ -6715,9 +6979,31 @@
       },
       "processingInfo": {
         "method": "rbms (GAM flight curves + GLM collated index + bootstrap CI)",
-        "timestamp": "2025-12-16 01:21:47",
+        "timestamp": "2025-12-16 16:00:40",
         "rbms_version": "1.2.0",
         "bootstrap_iterations": 500
+      },
+      "confidenceIntervals": {
+        "2021": {
+          "ci_lower": 0,
+          "ci_upper": 229.62
+        },
+        "2022": {
+          "ci_lower": 0,
+          "ci_upper": 595.05
+        },
+        "2023": {
+          "ci_lower": 0,
+          "ci_upper": 3916.47
+        },
+        "2024": {
+          "ci_lower": 27.86,
+          "ci_upper": 3343.24
+        },
+        "2025": {
+          "ci_lower": 0,
+          "ci_upper": 909.87
+        }
       }
     },
     "Euchloe crameri": {
@@ -7296,9 +7582,31 @@
       },
       "processingInfo": {
         "method": "rbms (GAM flight curves + GLM collated index + bootstrap CI)",
-        "timestamp": "2025-12-16 01:21:52",
+        "timestamp": "2025-12-16 16:00:44",
         "rbms_version": "1.2.0",
         "bootstrap_iterations": 500
+      },
+      "confidenceIntervals": {
+        "2021": {
+          "ci_lower": 6.99,
+          "ci_upper": 310.8
+        },
+        "2022": {
+          "ci_lower": 9.59,
+          "ci_upper": 105.55
+        },
+        "2023": {
+          "ci_lower": 34.72,
+          "ci_upper": 239.52
+        },
+        "2024": {
+          "ci_lower": 15.91,
+          "ci_upper": 190.4
+        },
+        "2025": {
+          "ci_lower": 14.05,
+          "ci_upper": 224.41
+        }
       }
     },
     "Euphydryas aurinia": {
@@ -7877,9 +8185,31 @@
       },
       "processingInfo": {
         "method": "rbms (GAM flight curves + GLM collated index + bootstrap CI)",
-        "timestamp": "2025-12-16 01:21:56",
+        "timestamp": "2025-12-16 16:00:48",
         "rbms_version": "1.2.0",
         "bootstrap_iterations": 500
+      },
+      "confidenceIntervals": {
+        "2021": {
+          "ci_lower": 10.27,
+          "ci_upper": 260.67
+        },
+        "2022": {
+          "ci_lower": 0,
+          "ci_upper": 171.63
+        },
+        "2023": {
+          "ci_lower": 2.55,
+          "ci_upper": 101.74
+        },
+        "2024": {
+          "ci_lower": 8.17,
+          "ci_upper": 185.11
+        },
+        "2025": {
+          "ci_lower": 7.32,
+          "ci_upper": 111.44
+        }
       }
     },
     "Fabriciana niobe": {
@@ -8254,9 +8584,31 @@
       },
       "processingInfo": {
         "method": "rbms (GAM flight curves + GLM collated index + bootstrap CI)",
-        "timestamp": "2025-12-16 01:22:00",
+        "timestamp": "2025-12-16 16:00:51",
         "rbms_version": "1.2.0",
         "bootstrap_iterations": 500
+      },
+      "confidenceIntervals": {
+        "2021": {
+          "ci_lower": 0,
+          "ci_upper": 266.66
+        },
+        "2022": {
+          "ci_lower": 0,
+          "ci_upper": 99.99
+        },
+        "2023": {
+          "ci_lower": 0,
+          "ci_upper": 1933.07
+        },
+        "2024": {
+          "ci_lower": 0,
+          "ci_upper": 2083.05
+        },
+        "2025": {
+          "ci_lower": 0,
+          "ci_upper": 733.23
+        }
       }
     },
     "Favonius quercus": {
@@ -8835,9 +9187,31 @@
       },
       "processingInfo": {
         "method": "rbms (GAM flight curves + GLM collated index + bootstrap CI)",
-        "timestamp": "2025-12-16 01:22:03",
+        "timestamp": "2025-12-16 16:00:54",
         "rbms_version": "1.2.0",
         "bootstrap_iterations": 500
+      },
+      "confidenceIntervals": {
+        "2021": {
+          "ci_lower": 0,
+          "ci_upper": 282.61
+        },
+        "2022": {
+          "ci_lower": 0,
+          "ci_upper": 150.33
+        },
+        "2023": {
+          "ci_lower": 0,
+          "ci_upper": 156.52
+        },
+        "2024": {
+          "ci_lower": 0,
+          "ci_upper": 104.35
+        },
+        "2025": {
+          "ci_lower": 0,
+          "ci_upper": 254.67
+        }
       }
     },
     "Glaucopsyche melanops": {
@@ -9314,9 +9688,31 @@
       },
       "processingInfo": {
         "method": "rbms (GAM flight curves + GLM collated index + bootstrap CI)",
-        "timestamp": "2025-12-16 01:22:08",
+        "timestamp": "2025-12-16 16:00:58",
         "rbms_version": "1.2.0",
         "bootstrap_iterations": 500
+      },
+      "confidenceIntervals": {
+        "2021": {
+          "ci_lower": 0,
+          "ci_upper": 292.61
+        },
+        "2022": {
+          "ci_lower": 0,
+          "ci_upper": 28.13
+        },
+        "2023": {
+          "ci_lower": 29.41,
+          "ci_upper": 1505.95
+        },
+        "2024": {
+          "ci_lower": 10,
+          "ci_upper": 962.18
+        },
+        "2025": {
+          "ci_lower": 0,
+          "ci_upper": 270.06
+        }
       }
     },
     "Gonepteryx cleopatra": {
@@ -9895,9 +10291,31 @@
       },
       "processingInfo": {
         "method": "rbms (GAM flight curves + GLM collated index + bootstrap CI)",
-        "timestamp": "2025-12-16 01:22:12",
+        "timestamp": "2025-12-16 16:01:02",
         "rbms_version": "1.2.0",
         "bootstrap_iterations": 500
+      },
+      "confidenceIntervals": {
+        "2021": {
+          "ci_lower": 21.17,
+          "ci_upper": 201.54
+        },
+        "2022": {
+          "ci_lower": 10.76,
+          "ci_upper": 77.55
+        },
+        "2023": {
+          "ci_lower": 10.37,
+          "ci_upper": 146.43
+        },
+        "2024": {
+          "ci_lower": 21.42,
+          "ci_upper": 138.14
+        },
+        "2025": {
+          "ci_lower": 10.38,
+          "ci_upper": 74.1
+        }
       }
     },
     "Gonepteryx rhamni": {
@@ -10374,9 +10792,31 @@
       },
       "processingInfo": {
         "method": "rbms (GAM flight curves + GLM collated index + bootstrap CI)",
-        "timestamp": "2025-12-16 01:22:16",
+        "timestamp": "2025-12-16 16:01:06",
         "rbms_version": "1.2.0",
         "bootstrap_iterations": 500
+      },
+      "confidenceIntervals": {
+        "2021": {
+          "ci_lower": 23.99,
+          "ci_upper": 224.69
+        },
+        "2022": {
+          "ci_lower": 14.53,
+          "ci_upper": 131.1
+        },
+        "2023": {
+          "ci_lower": 8.27,
+          "ci_upper": 49.76
+        },
+        "2024": {
+          "ci_lower": 9.76,
+          "ci_upper": 67.22
+        },
+        "2025": {
+          "ci_lower": 0,
+          "ci_upper": 165.95
+        }
       }
     },
     "Hipparchia fidia": {
@@ -10955,9 +11395,31 @@
       },
       "processingInfo": {
         "method": "rbms (GAM flight curves + GLM collated index + bootstrap CI)",
-        "timestamp": "2025-12-16 01:22:20",
+        "timestamp": "2025-12-16 16:01:10",
         "rbms_version": "1.2.0",
         "bootstrap_iterations": 500
+      },
+      "confidenceIntervals": {
+        "2021": {
+          "ci_lower": 5.61,
+          "ci_upper": 242.55
+        },
+        "2022": {
+          "ci_lower": 0,
+          "ci_upper": 417.1
+        },
+        "2023": {
+          "ci_lower": 0,
+          "ci_upper": 344.44
+        },
+        "2024": {
+          "ci_lower": 0,
+          "ci_upper": 549.07
+        },
+        "2025": {
+          "ci_lower": 8.49,
+          "ci_upper": 557.31
+        }
       }
     },
     "Hipparchia statilinus": {
@@ -11536,9 +11998,31 @@
       },
       "processingInfo": {
         "method": "rbms (GAM flight curves + GLM collated index + bootstrap CI)",
-        "timestamp": "2025-12-16 01:22:24",
+        "timestamp": "2025-12-16 16:01:13",
         "rbms_version": "1.2.0",
         "bootstrap_iterations": 500
+      },
+      "confidenceIntervals": {
+        "2021": {
+          "ci_lower": 17.85,
+          "ci_upper": 207.58
+        },
+        "2022": {
+          "ci_lower": 10.52,
+          "ci_upper": 279.56
+        },
+        "2023": {
+          "ci_lower": 2.47,
+          "ci_upper": 102.99
+        },
+        "2024": {
+          "ci_lower": 10.2,
+          "ci_upper": 147.95
+        },
+        "2025": {
+          "ci_lower": 10.61,
+          "ci_upper": 223.57
+        }
       }
     },
     "Iphiclides feisthamelii": {
@@ -12117,9 +12601,31 @@
       },
       "processingInfo": {
         "method": "rbms (GAM flight curves + GLM collated index + bootstrap CI)",
-        "timestamp": "2025-12-16 01:22:28",
+        "timestamp": "2025-12-16 16:01:17",
         "rbms_version": "1.2.0",
         "bootstrap_iterations": 500
+      },
+      "confidenceIntervals": {
+        "2021": {
+          "ci_lower": 42.17,
+          "ci_upper": 165.52
+        },
+        "2022": {
+          "ci_lower": 81.21,
+          "ci_upper": 243.72
+        },
+        "2023": {
+          "ci_lower": 107.45,
+          "ci_upper": 368.79
+        },
+        "2024": {
+          "ci_lower": 79.81,
+          "ci_upper": 351.29
+        },
+        "2025": {
+          "ci_lower": 23.22,
+          "ci_upper": 156.63
+        }
       }
     },
     "Issoria lathonia": {
@@ -12596,9 +13102,31 @@
       },
       "processingInfo": {
         "method": "rbms (GAM flight curves + GLM collated index + bootstrap CI)",
-        "timestamp": "2025-12-16 01:22:32",
+        "timestamp": "2025-12-16 16:01:21",
         "rbms_version": "1.2.0",
         "bootstrap_iterations": 500
+      },
+      "confidenceIntervals": {
+        "2021": {
+          "ci_lower": 0,
+          "ci_upper": 357.16
+        },
+        "2022": {
+          "ci_lower": 0,
+          "ci_upper": 183.08
+        },
+        "2023": {
+          "ci_lower": 0,
+          "ci_upper": 134.39
+        },
+        "2024": {
+          "ci_lower": 0,
+          "ci_upper": 415.84
+        },
+        "2025": {
+          "ci_lower": 0,
+          "ci_upper": 81.65
+        }
       }
     },
     "Laeosopis roboris": {
@@ -13075,9 +13603,31 @@
       },
       "processingInfo": {
         "method": "rbms (GAM flight curves + GLM collated index + bootstrap CI)",
-        "timestamp": "2025-12-16 01:22:36",
+        "timestamp": "2025-12-16 16:01:25",
         "rbms_version": "1.2.0",
         "bootstrap_iterations": 500
+      },
+      "confidenceIntervals": {
+        "2021": {
+          "ci_lower": 6.94,
+          "ci_upper": 224.15
+        },
+        "2022": {
+          "ci_lower": 6.94,
+          "ci_upper": 84.2
+        },
+        "2023": {
+          "ci_lower": 6.94,
+          "ci_upper": 247.62
+        },
+        "2024": {
+          "ci_lower": 0,
+          "ci_upper": 134.07
+        },
+        "2025": {
+          "ci_lower": 0,
+          "ci_upper": 41.83
+        }
       }
     },
     "Lampides boeticus": {
@@ -13656,9 +14206,31 @@
       },
       "processingInfo": {
         "method": "rbms (GAM flight curves + GLM collated index + bootstrap CI)",
-        "timestamp": "2025-12-16 01:22:40",
+        "timestamp": "2025-12-16 16:01:29",
         "rbms_version": "1.2.0",
         "bootstrap_iterations": 500
+      },
+      "confidenceIntervals": {
+        "2021": {
+          "ci_lower": 14.84,
+          "ci_upper": 251.25
+        },
+        "2022": {
+          "ci_lower": 28.85,
+          "ci_upper": 287.34
+        },
+        "2023": {
+          "ci_lower": 31.78,
+          "ci_upper": 417.87
+        },
+        "2024": {
+          "ci_lower": 33.81,
+          "ci_upper": 279.25
+        },
+        "2025": {
+          "ci_lower": 7.66,
+          "ci_upper": 130.33
+        }
       }
     },
     "Lasiommata megera": {
@@ -14237,9 +14809,31 @@
       },
       "processingInfo": {
         "method": "rbms (GAM flight curves + GLM collated index + bootstrap CI)",
-        "timestamp": "2025-12-16 01:22:44",
+        "timestamp": "2025-12-16 16:01:32",
         "rbms_version": "1.2.0",
         "bootstrap_iterations": 500
+      },
+      "confidenceIntervals": {
+        "2021": {
+          "ci_lower": 49.58,
+          "ci_upper": 159.25
+        },
+        "2022": {
+          "ci_lower": 26.96,
+          "ci_upper": 145.53
+        },
+        "2023": {
+          "ci_lower": 23.56,
+          "ci_upper": 212.21
+        },
+        "2024": {
+          "ci_lower": 41.3,
+          "ci_upper": 415.4
+        },
+        "2025": {
+          "ci_lower": 32.83,
+          "ci_upper": 180.34
+        }
       }
     },
     "Leptidea sinapis": {
@@ -14818,9 +15412,31 @@
       },
       "processingInfo": {
         "method": "rbms (GAM flight curves + GLM collated index + bootstrap CI)",
-        "timestamp": "2025-12-16 01:22:48",
+        "timestamp": "2025-12-16 16:01:36",
         "rbms_version": "1.2.0",
         "bootstrap_iterations": 500
+      },
+      "confidenceIntervals": {
+        "2021": {
+          "ci_lower": 2.82,
+          "ci_upper": 274.37
+        },
+        "2022": {
+          "ci_lower": 0,
+          "ci_upper": 214.25
+        },
+        "2023": {
+          "ci_lower": 0,
+          "ci_upper": 93.3
+        },
+        "2024": {
+          "ci_lower": 0,
+          "ci_upper": 133.65
+        },
+        "2025": {
+          "ci_lower": 0,
+          "ci_upper": 161.5
+        }
       }
     },
     "Leptotes pirithous": {
@@ -15399,9 +16015,31 @@
       },
       "processingInfo": {
         "method": "rbms (GAM flight curves + GLM collated index + bootstrap CI)",
-        "timestamp": "2025-12-16 01:22:52",
+        "timestamp": "2025-12-16 16:01:40",
         "rbms_version": "1.2.0",
         "bootstrap_iterations": 500
+      },
+      "confidenceIntervals": {
+        "2021": {
+          "ci_lower": 15.17,
+          "ci_upper": 213.6
+        },
+        "2022": {
+          "ci_lower": 12.76,
+          "ci_upper": 223.03
+        },
+        "2023": {
+          "ci_lower": 39.92,
+          "ci_upper": 873.33
+        },
+        "2024": {
+          "ci_lower": 12.41,
+          "ci_upper": 512.08
+        },
+        "2025": {
+          "ci_lower": 6.07,
+          "ci_upper": 220.83
+        }
       }
     },
     "Lycaena bleusei": {
@@ -15878,9 +16516,31 @@
       },
       "processingInfo": {
         "method": "rbms (GAM flight curves + GLM collated index + bootstrap CI)",
-        "timestamp": "2025-12-16 01:22:56",
+        "timestamp": "2025-12-16 16:01:44",
         "rbms_version": "1.2.0",
         "bootstrap_iterations": 500
+      },
+      "confidenceIntervals": {
+        "2021": {
+          "ci_lower": 0,
+          "ci_upper": 250
+        },
+        "2022": {
+          "ci_lower": 0,
+          "ci_upper": 275
+        },
+        "2023": {
+          "ci_lower": 0,
+          "ci_upper": 225
+        },
+        "2024": {
+          "ci_lower": 0,
+          "ci_upper": 676.25
+        },
+        "2025": {
+          "ci_lower": 0,
+          "ci_upper": 1464.38
+        }
       }
     },
     "Lycaena phlaeas": {
@@ -16459,9 +17119,31 @@
       },
       "processingInfo": {
         "method": "rbms (GAM flight curves + GLM collated index + bootstrap CI)",
-        "timestamp": "2025-12-16 01:23:00",
+        "timestamp": "2025-12-16 16:01:47",
         "rbms_version": "1.2.0",
         "bootstrap_iterations": 500
+      },
+      "confidenceIntervals": {
+        "2021": {
+          "ci_lower": 54.73,
+          "ci_upper": 147.67
+        },
+        "2022": {
+          "ci_lower": 47.03,
+          "ci_upper": 210.96
+        },
+        "2023": {
+          "ci_lower": 65.85,
+          "ci_upper": 250.64
+        },
+        "2024": {
+          "ci_lower": 61.29,
+          "ci_upper": 209.62
+        },
+        "2025": {
+          "ci_lower": 43.63,
+          "ci_upper": 205.67
+        }
       }
     },
     "Lysandra bellargus": {
@@ -16938,9 +17620,31 @@
       },
       "processingInfo": {
         "method": "rbms (GAM flight curves + GLM collated index + bootstrap CI)",
-        "timestamp": "2025-12-16 01:23:04",
+        "timestamp": "2025-12-16 16:01:51",
         "rbms_version": "1.2.0",
         "bootstrap_iterations": 500
+      },
+      "confidenceIntervals": {
+        "2021": {
+          "ci_lower": 0,
+          "ci_upper": 344.99
+        },
+        "2022": {
+          "ci_lower": 50.17,
+          "ci_upper": 314.01
+        },
+        "2023": {
+          "ci_lower": 3.6,
+          "ci_upper": 256.85
+        },
+        "2024": {
+          "ci_lower": 22.51,
+          "ci_upper": 340.82
+        },
+        "2025": {
+          "ci_lower": 0,
+          "ci_upper": 192.92
+        }
       }
     },
     "Maniola jurtina": {
@@ -17519,9 +18223,31 @@
       },
       "processingInfo": {
         "method": "rbms (GAM flight curves + GLM collated index + bootstrap CI)",
-        "timestamp": "2025-12-16 01:23:08",
+        "timestamp": "2025-12-16 16:01:55",
         "rbms_version": "1.2.0",
         "bootstrap_iterations": 500
+      },
+      "confidenceIntervals": {
+        "2021": {
+          "ci_lower": 63.02,
+          "ci_upper": 147.29
+        },
+        "2022": {
+          "ci_lower": 45.29,
+          "ci_upper": 118.51
+        },
+        "2023": {
+          "ci_lower": 32.67,
+          "ci_upper": 77.16
+        },
+        "2024": {
+          "ci_lower": 33.09,
+          "ci_upper": 89.22
+        },
+        "2025": {
+          "ci_lower": 50.49,
+          "ci_upper": 376
+        }
       }
     },
     "Melanargia ines": {
@@ -18100,9 +18826,31 @@
       },
       "processingInfo": {
         "method": "rbms (GAM flight curves + GLM collated index + bootstrap CI)",
-        "timestamp": "2025-12-16 01:23:12",
+        "timestamp": "2025-12-16 16:01:59",
         "rbms_version": "1.2.0",
         "bootstrap_iterations": 500
+      },
+      "confidenceIntervals": {
+        "2021": {
+          "ci_lower": 0,
+          "ci_upper": 251.67
+        },
+        "2022": {
+          "ci_lower": 5.79,
+          "ci_upper": 223.13
+        },
+        "2023": {
+          "ci_lower": 1.74,
+          "ci_upper": 197
+        },
+        "2024": {
+          "ci_lower": 6.77,
+          "ci_upper": 115.78
+        },
+        "2025": {
+          "ci_lower": 5.92,
+          "ci_upper": 88.86
+        }
       }
     },
     "Melanargia lachesis": {
@@ -18681,9 +19429,31 @@
       },
       "processingInfo": {
         "method": "rbms (GAM flight curves + GLM collated index + bootstrap CI)",
-        "timestamp": "2025-12-16 01:23:16",
+        "timestamp": "2025-12-16 16:02:03",
         "rbms_version": "1.2.0",
         "bootstrap_iterations": 500
+      },
+      "confidenceIntervals": {
+        "2021": {
+          "ci_lower": 7.65,
+          "ci_upper": 266.5
+        },
+        "2022": {
+          "ci_lower": 12.21,
+          "ci_upper": 138.14
+        },
+        "2023": {
+          "ci_lower": 3.86,
+          "ci_upper": 140.78
+        },
+        "2024": {
+          "ci_lower": 4.75,
+          "ci_upper": 246.79
+        },
+        "2025": {
+          "ci_lower": 4.85,
+          "ci_upper": 151.36
+        }
       }
     },
     "Melitaea deione": {
@@ -19262,9 +20032,31 @@
       },
       "processingInfo": {
         "method": "rbms (GAM flight curves + GLM collated index + bootstrap CI)",
-        "timestamp": "2025-12-16 01:23:20",
+        "timestamp": "2025-12-16 16:02:06",
         "rbms_version": "1.2.0",
         "bootstrap_iterations": 500
+      },
+      "confidenceIntervals": {
+        "2021": {
+          "ci_lower": 0,
+          "ci_upper": 292.3
+        },
+        "2022": {
+          "ci_lower": 0,
+          "ci_upper": 116.04
+        },
+        "2023": {
+          "ci_lower": 0,
+          "ci_upper": 147.73
+        },
+        "2024": {
+          "ci_lower": 0,
+          "ci_upper": 26.68
+        },
+        "2025": {
+          "ci_lower": 0,
+          "ci_upper": 30.17
+        }
       }
     },
     "Nymphalis polychloros": {
@@ -19741,9 +20533,31 @@
       },
       "processingInfo": {
         "method": "rbms (GAM flight curves + GLM collated index + bootstrap CI)",
-        "timestamp": "2025-12-16 01:23:24",
+        "timestamp": "2025-12-16 16:02:10",
         "rbms_version": "1.2.0",
         "bootstrap_iterations": 500
+      },
+      "confidenceIntervals": {
+        "2021": {
+          "ci_lower": 25.6,
+          "ci_upper": 190.14
+        },
+        "2022": {
+          "ci_lower": 0,
+          "ci_upper": 216.33
+        },
+        "2023": {
+          "ci_lower": 0,
+          "ci_upper": 485.54
+        },
+        "2024": {
+          "ci_lower": 51.93,
+          "ci_upper": 426.74
+        },
+        "2025": {
+          "ci_lower": 0,
+          "ci_upper": 580.1
+        }
       }
     },
     "Papilio machaon": {
@@ -20322,9 +21136,31 @@
       },
       "processingInfo": {
         "method": "rbms (GAM flight curves + GLM collated index + bootstrap CI)",
-        "timestamp": "2025-12-16 01:23:28",
+        "timestamp": "2025-12-16 16:02:14",
         "rbms_version": "1.2.0",
         "bootstrap_iterations": 500
+      },
+      "confidenceIntervals": {
+        "2021": {
+          "ci_lower": 34.65,
+          "ci_upper": 200.71
+        },
+        "2022": {
+          "ci_lower": 31.44,
+          "ci_upper": 189.29
+        },
+        "2023": {
+          "ci_lower": 60.57,
+          "ci_upper": 236.1
+        },
+        "2024": {
+          "ci_lower": 42.75,
+          "ci_upper": 244.26
+        },
+        "2025": {
+          "ci_lower": 31.92,
+          "ci_upper": 130.55
+        }
       }
     },
     "Pararge aegeria": {
@@ -20903,9 +21739,31 @@
       },
       "processingInfo": {
         "method": "rbms (GAM flight curves + GLM collated index + bootstrap CI)",
-        "timestamp": "2025-12-16 01:23:32",
+        "timestamp": "2025-12-16 16:02:18",
         "rbms_version": "1.2.0",
         "bootstrap_iterations": 500
+      },
+      "confidenceIntervals": {
+        "2021": {
+          "ci_lower": 59.39,
+          "ci_upper": 154.54
+        },
+        "2022": {
+          "ci_lower": 36.44,
+          "ci_upper": 101.2
+        },
+        "2023": {
+          "ci_lower": 38.48,
+          "ci_upper": 108.56
+        },
+        "2024": {
+          "ci_lower": 85.23,
+          "ci_upper": 198.4
+        },
+        "2025": {
+          "ci_lower": 70.81,
+          "ci_upper": 148.56
+        }
       }
     },
     "Pieris brassicae": {
@@ -21484,9 +22342,31 @@
       },
       "processingInfo": {
         "method": "rbms (GAM flight curves + GLM collated index + bootstrap CI)",
-        "timestamp": "2025-12-16 01:23:36",
+        "timestamp": "2025-12-16 16:02:22",
         "rbms_version": "1.2.0",
         "bootstrap_iterations": 500
+      },
+      "confidenceIntervals": {
+        "2021": {
+          "ci_lower": 62.98,
+          "ci_upper": 161.65
+        },
+        "2022": {
+          "ci_lower": 91.31,
+          "ci_upper": 240.76
+        },
+        "2023": {
+          "ci_lower": 137.85,
+          "ci_upper": 503.77
+        },
+        "2024": {
+          "ci_lower": 128.46,
+          "ci_upper": 423.39
+        },
+        "2025": {
+          "ci_lower": 66.8,
+          "ci_upper": 182.93
+        }
       }
     },
     "Pieris napi": {
@@ -22065,9 +22945,31 @@
       },
       "processingInfo": {
         "method": "rbms (GAM flight curves + GLM collated index + bootstrap CI)",
-        "timestamp": "2025-12-16 01:23:40",
+        "timestamp": "2025-12-16 16:02:26",
         "rbms_version": "1.2.0",
         "bootstrap_iterations": 500
+      },
+      "confidenceIntervals": {
+        "2021": {
+          "ci_lower": 9.55,
+          "ci_upper": 236.34
+        },
+        "2022": {
+          "ci_lower": 10.86,
+          "ci_upper": 115.22
+        },
+        "2023": {
+          "ci_lower": 9.84,
+          "ci_upper": 101.28
+        },
+        "2024": {
+          "ci_lower": 9.87,
+          "ci_upper": 148.93
+        },
+        "2025": {
+          "ci_lower": 6.88,
+          "ci_upper": 150.3
+        }
       }
     },
     "Pieris rapae": {
@@ -22646,9 +23548,31 @@
       },
       "processingInfo": {
         "method": "rbms (GAM flight curves + GLM collated index + bootstrap CI)",
-        "timestamp": "2025-12-16 01:23:45",
+        "timestamp": "2025-12-16 16:02:29",
         "rbms_version": "1.2.0",
         "bootstrap_iterations": 500
+      },
+      "confidenceIntervals": {
+        "2021": {
+          "ci_lower": 53.62,
+          "ci_upper": 158.09
+        },
+        "2022": {
+          "ci_lower": 75.74,
+          "ci_upper": 189.01
+        },
+        "2023": {
+          "ci_lower": 116.19,
+          "ci_upper": 335.87
+        },
+        "2024": {
+          "ci_lower": 132.9,
+          "ci_upper": 364.4
+        },
+        "2025": {
+          "ci_lower": 37.53,
+          "ci_upper": 146.06
+        }
       }
     },
     "Polygonia c-album": {
@@ -23227,9 +24151,31 @@
       },
       "processingInfo": {
         "method": "rbms (GAM flight curves + GLM collated index + bootstrap CI)",
-        "timestamp": "2025-12-16 01:23:49",
+        "timestamp": "2025-12-16 16:02:33",
         "rbms_version": "1.2.0",
         "bootstrap_iterations": 500
+      },
+      "confidenceIntervals": {
+        "2021": {
+          "ci_lower": 0,
+          "ci_upper": 248.53
+        },
+        "2022": {
+          "ci_lower": 0,
+          "ci_upper": 241.77
+        },
+        "2023": {
+          "ci_lower": 0,
+          "ci_upper": 528.32
+        },
+        "2024": {
+          "ci_lower": 0,
+          "ci_upper": 138.04
+        },
+        "2025": {
+          "ci_lower": 0,
+          "ci_upper": 163.06
+        }
       }
     },
     "Polyommatus celina": {
@@ -23808,9 +24754,31 @@
       },
       "processingInfo": {
         "method": "rbms (GAM flight curves + GLM collated index + bootstrap CI)",
-        "timestamp": "2025-12-16 01:23:52",
+        "timestamp": "2025-12-16 16:02:37",
         "rbms_version": "1.2.0",
         "bootstrap_iterations": 500
+      },
+      "confidenceIntervals": {
+        "2021": {
+          "ci_lower": 0,
+          "ci_upper": 364.43
+        },
+        "2022": {
+          "ci_lower": 0,
+          "ci_upper": 144.08
+        },
+        "2023": {
+          "ci_lower": 0,
+          "ci_upper": 153.56
+        },
+        "2024": {
+          "ci_lower": 0,
+          "ci_upper": 115.83
+        },
+        "2025": {
+          "ci_lower": 0,
+          "ci_upper": 96.05
+        }
       }
     },
     "Polyommatus icarus": {
@@ -24389,9 +25357,31 @@
       },
       "processingInfo": {
         "method": "rbms (GAM flight curves + GLM collated index + bootstrap CI)",
-        "timestamp": "2025-12-16 01:23:56",
+        "timestamp": "2025-12-16 16:02:41",
         "rbms_version": "1.2.0",
         "bootstrap_iterations": 500
+      },
+      "confidenceIntervals": {
+        "2021": {
+          "ci_lower": 11.42,
+          "ci_upper": 354.62
+        },
+        "2022": {
+          "ci_lower": 16.86,
+          "ci_upper": 396.68
+        },
+        "2023": {
+          "ci_lower": 1.04,
+          "ci_upper": 9.26
+        },
+        "2024": {
+          "ci_lower": 9.36,
+          "ci_upper": 65.97
+        },
+        "2025": {
+          "ci_lower": 1.99,
+          "ci_upper": 17.32
+        }
       }
     },
     "Pontia daplidice": {
@@ -24766,9 +25756,31 @@
       },
       "processingInfo": {
         "method": "rbms (GAM flight curves + GLM collated index + bootstrap CI)",
-        "timestamp": "2025-12-16 01:24:01",
+        "timestamp": "2025-12-16 16:02:44",
         "rbms_version": "1.2.0",
         "bootstrap_iterations": 500
+      },
+      "confidenceIntervals": {
+        "2021": {
+          "ci_lower": 0,
+          "ci_upper": 272.12
+        },
+        "2022": {
+          "ci_lower": 0,
+          "ci_upper": 183.26
+        },
+        "2023": {
+          "ci_lower": 73.37,
+          "ci_upper": 458.04
+        },
+        "2024": {
+          "ci_lower": 0,
+          "ci_upper": 113.67
+        },
+        "2025": {
+          "ci_lower": 0,
+          "ci_upper": 190.98
+        }
       }
     },
     "Pyronia bathseba": {
@@ -25347,9 +26359,31 @@
       },
       "processingInfo": {
         "method": "rbms (GAM flight curves + GLM collated index + bootstrap CI)",
-        "timestamp": "2025-12-16 01:24:05",
+        "timestamp": "2025-12-16 16:02:48",
         "rbms_version": "1.2.0",
         "bootstrap_iterations": 500
+      },
+      "confidenceIntervals": {
+        "2021": {
+          "ci_lower": 33.27,
+          "ci_upper": 184.38
+        },
+        "2022": {
+          "ci_lower": 26.74,
+          "ci_upper": 156.76
+        },
+        "2023": {
+          "ci_lower": 11.65,
+          "ci_upper": 91.5
+        },
+        "2024": {
+          "ci_lower": 10.04,
+          "ci_upper": 90.97
+        },
+        "2025": {
+          "ci_lower": 7.02,
+          "ci_upper": 90.01
+        }
       }
     },
     "Pyronia cecilia": {
@@ -25928,9 +26962,31 @@
       },
       "processingInfo": {
         "method": "rbms (GAM flight curves + GLM collated index + bootstrap CI)",
-        "timestamp": "2025-12-16 01:24:09",
+        "timestamp": "2025-12-16 16:02:52",
         "rbms_version": "1.2.0",
         "bootstrap_iterations": 500
+      },
+      "confidenceIntervals": {
+        "2021": {
+          "ci_lower": 60.52,
+          "ci_upper": 143.05
+        },
+        "2022": {
+          "ci_lower": 47.41,
+          "ci_upper": 106.29
+        },
+        "2023": {
+          "ci_lower": 21.54,
+          "ci_upper": 62.85
+        },
+        "2024": {
+          "ci_lower": 30.89,
+          "ci_upper": 74.65
+        },
+        "2025": {
+          "ci_lower": 48.78,
+          "ci_upper": 137.98
+        }
       }
     },
     "Pyronia tithonus": {
@@ -26509,9 +27565,31 @@
       },
       "processingInfo": {
         "method": "rbms (GAM flight curves + GLM collated index + bootstrap CI)",
-        "timestamp": "2025-12-16 01:24:13",
+        "timestamp": "2025-12-16 16:02:56",
         "rbms_version": "1.2.0",
         "bootstrap_iterations": 500
+      },
+      "confidenceIntervals": {
+        "2021": {
+          "ci_lower": 12.87,
+          "ci_upper": 250.91
+        },
+        "2022": {
+          "ci_lower": 11.65,
+          "ci_upper": 147.65
+        },
+        "2023": {
+          "ci_lower": 11.65,
+          "ci_upper": 132.33
+        },
+        "2024": {
+          "ci_lower": 4.2,
+          "ci_upper": 120.83
+        },
+        "2025": {
+          "ci_lower": 16.56,
+          "ci_upper": 214.59
+        }
       }
     },
     "Satyrium esculi": {
@@ -27090,9 +28168,31 @@
       },
       "processingInfo": {
         "method": "rbms (GAM flight curves + GLM collated index + bootstrap CI)",
-        "timestamp": "2025-12-16 01:24:17",
+        "timestamp": "2025-12-16 16:03:00",
         "rbms_version": "1.2.0",
         "bootstrap_iterations": 500
+      },
+      "confidenceIntervals": {
+        "2021": {
+          "ci_lower": 36.29,
+          "ci_upper": 161.54
+        },
+        "2022": {
+          "ci_lower": 73.71,
+          "ci_upper": 209.49
+        },
+        "2023": {
+          "ci_lower": 45.01,
+          "ci_upper": 907.35
+        },
+        "2024": {
+          "ci_lower": 51.8,
+          "ci_upper": 341.52
+        },
+        "2025": {
+          "ci_lower": 58.17,
+          "ci_upper": 293.05
+        }
       }
     },
     "Satyrium spini": {
@@ -27671,9 +28771,31 @@
       },
       "processingInfo": {
         "method": "rbms (GAM flight curves + GLM collated index + bootstrap CI)",
-        "timestamp": "2025-12-16 01:24:21",
+        "timestamp": "2025-12-16 16:03:03",
         "rbms_version": "1.2.0",
         "bootstrap_iterations": 500
+      },
+      "confidenceIntervals": {
+        "2021": {
+          "ci_lower": 5.04,
+          "ci_upper": 255.04
+        },
+        "2022": {
+          "ci_lower": 0,
+          "ci_upper": 151.63
+        },
+        "2023": {
+          "ci_lower": 0,
+          "ci_upper": 328.6
+        },
+        "2024": {
+          "ci_lower": 0,
+          "ci_upper": 120.4
+        },
+        "2025": {
+          "ci_lower": 0,
+          "ci_upper": 47.95
+        }
       }
     },
     "Spialia sertorius": {
@@ -28252,9 +29374,31 @@
       },
       "processingInfo": {
         "method": "rbms (GAM flight curves + GLM collated index + bootstrap CI)",
-        "timestamp": "2025-12-16 01:24:25",
+        "timestamp": "2025-12-16 16:03:07",
         "rbms_version": "1.2.0",
         "bootstrap_iterations": 500
+      },
+      "confidenceIntervals": {
+        "2021": {
+          "ci_lower": 0,
+          "ci_upper": 236.09
+        },
+        "2022": {
+          "ci_lower": 0,
+          "ci_upper": 80.68
+        },
+        "2023": {
+          "ci_lower": 0,
+          "ci_upper": 87.48
+        },
+        "2024": {
+          "ci_lower": 0,
+          "ci_upper": 107.55
+        },
+        "2025": {
+          "ci_lower": 0,
+          "ci_upper": 34.52
+        }
       }
     },
     "Thymelicus acteon": {
@@ -28833,9 +29977,31 @@
       },
       "processingInfo": {
         "method": "rbms (GAM flight curves + GLM collated index + bootstrap CI)",
-        "timestamp": "2025-12-16 01:24:29",
+        "timestamp": "2025-12-16 16:03:11",
         "rbms_version": "1.2.0",
         "bootstrap_iterations": 500
+      },
+      "confidenceIntervals": {
+        "2021": {
+          "ci_lower": 19.54,
+          "ci_upper": 228.03
+        },
+        "2022": {
+          "ci_lower": 6.8,
+          "ci_upper": 204.02
+        },
+        "2023": {
+          "ci_lower": 1.57,
+          "ci_upper": 214.32
+        },
+        "2024": {
+          "ci_lower": 5.97,
+          "ci_upper": 191.11
+        },
+        "2025": {
+          "ci_lower": 4.36,
+          "ci_upper": 129.44
+        }
       }
     },
     "Thymelicus sylvestris": {
@@ -29312,9 +30478,31 @@
       },
       "processingInfo": {
         "method": "rbms (GAM flight curves + GLM collated index + bootstrap CI)",
-        "timestamp": "2025-12-16 01:24:34",
+        "timestamp": "2025-12-16 16:03:15",
         "rbms_version": "1.2.0",
         "bootstrap_iterations": 500
+      },
+      "confidenceIntervals": {
+        "2021": {
+          "ci_lower": 30.68,
+          "ci_upper": 180.1
+        },
+        "2022": {
+          "ci_lower": 24.44,
+          "ci_upper": 152.49
+        },
+        "2023": {
+          "ci_lower": 6.23,
+          "ci_upper": 96.68
+        },
+        "2024": {
+          "ci_lower": 7.87,
+          "ci_upper": 156.12
+        },
+        "2025": {
+          "ci_lower": 22.44,
+          "ci_upper": 298.44
+        }
       }
     },
     "Vanessa atalanta": {
@@ -29893,9 +31081,31 @@
       },
       "processingInfo": {
         "method": "rbms (GAM flight curves + GLM collated index + bootstrap CI)",
-        "timestamp": "2025-12-16 01:24:38",
+        "timestamp": "2025-12-16 16:03:19",
         "rbms_version": "1.2.0",
         "bootstrap_iterations": 500
+      },
+      "confidenceIntervals": {
+        "2021": {
+          "ci_lower": 39.12,
+          "ci_upper": 174.46
+        },
+        "2022": {
+          "ci_lower": 63.35,
+          "ci_upper": 138.19
+        },
+        "2023": {
+          "ci_lower": 43.42,
+          "ci_upper": 138.1
+        },
+        "2024": {
+          "ci_lower": 55.08,
+          "ci_upper": 138.64
+        },
+        "2025": {
+          "ci_lower": 59.18,
+          "ci_upper": 214.59
+        }
       }
     },
     "Vanessa cardui": {
@@ -30474,9 +31684,31 @@
       },
       "processingInfo": {
         "method": "rbms (GAM flight curves + GLM collated index + bootstrap CI)",
-        "timestamp": "2025-12-16 01:24:42",
+        "timestamp": "2025-12-16 16:03:22",
         "rbms_version": "1.2.0",
         "bootstrap_iterations": 500
+      },
+      "confidenceIntervals": {
+        "2021": {
+          "ci_lower": 55.95,
+          "ci_upper": 161.59
+        },
+        "2022": {
+          "ci_lower": 30.37,
+          "ci_upper": 143.83
+        },
+        "2023": {
+          "ci_lower": 15.68,
+          "ci_upper": 67.35
+        },
+        "2024": {
+          "ci_lower": 30.72,
+          "ci_upper": 264.41
+        },
+        "2025": {
+          "ci_lower": 36.5,
+          "ci_upper": 422.57
+        }
       }
     },
     "Zerynthia rumina": {
@@ -31055,9 +32287,31 @@
       },
       "processingInfo": {
         "method": "rbms (GAM flight curves + GLM collated index + bootstrap CI)",
-        "timestamp": "2025-12-16 01:24:46",
+        "timestamp": "2025-12-16 16:03:26",
         "rbms_version": "1.2.0",
         "bootstrap_iterations": 500
+      },
+      "confidenceIntervals": {
+        "2021": {
+          "ci_lower": 3.17,
+          "ci_upper": 244.51
+        },
+        "2022": {
+          "ci_lower": 16.45,
+          "ci_upper": 224.38
+        },
+        "2023": {
+          "ci_lower": 28.65,
+          "ci_upper": 599.92
+        },
+        "2024": {
+          "ci_lower": 47.59,
+          "ci_upper": 264.09
+        },
+        "2025": {
+          "ci_lower": 6.32,
+          "ci_upper": 180.98
+        }
       }
     }
   },

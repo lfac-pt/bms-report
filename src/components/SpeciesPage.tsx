@@ -7,7 +7,6 @@ import { Line } from "react-chartjs-2";
 import { SPECIES_FAMILIES } from "../utils/speciesFamilies";
 import { TimelineData } from "../types/timelineData";
 import { TransectData } from "../types/transectStats";
-import { GBIData } from "../types/gbiData";
 import { calculateSpeciesPresenceByYear } from "../utils/speciesMapUtils";
 import SpeciesMap from "./SpeciesMap";
 import { SERIES_COLORS } from "../utils/utils";
@@ -41,7 +40,6 @@ function SpeciesPage() {
   const [transectData, setTransectData] = useState<TransectData | null>(null);
   const [flightCurvesData, setFlightCurvesData] = useState<any>(null);
   const [phenologyData, setPhenologyData] = useState<any>(null);
-  const [gbiData, setGbiData] = useState<GBIData | null>(null);
   const [loading, setLoading] = useState(true);
   const [dataViewMode, setDataViewMode] = useState<"flightCurves" | "phenologyCurves">(
     "flightCurves"
@@ -51,7 +49,7 @@ function SpeciesPage() {
   const decodedSpeciesName = speciesName ? decodeURIComponent(speciesName) : "";
   const family = SPECIES_FAMILIES[decodedSpeciesName] || "Informação não disponível";
 
-  // Load timeline, transect, flight curves, phenology, and GBI data
+  // Load timeline, transect, flight curves, and phenology data
   useEffect(() => {
     Promise.all([
       // eslint-disable-next-line no-undef
@@ -66,17 +64,12 @@ function SpeciesPage() {
       fetch("data/phenology-curves-data.json")
         .then(res => res.json())
         .catch(() => null),
-      // eslint-disable-next-line no-undef
-      fetch("data/gbi-data.json")
-        .then(res => res.json())
-        .catch(() => null),
     ])
-      .then(([timeline, transects, flightCurves, phenology, gbi]) => {
+      .then(([timeline, transects, flightCurves, phenology]) => {
         setTimelineData(timeline);
         setTransectData(transects);
         setFlightCurvesData(flightCurves);
         setPhenologyData(phenology);
-        setGbiData(gbi);
         setLoading(false);
       })
       .catch(() => {
@@ -260,20 +253,19 @@ function SpeciesPage() {
               const years = Object.keys(speciesData.collatedIndices).map(Number).sort();
               const indices = years.map(year => speciesData.collatedIndices[year]);
 
-              // Get CI data from GBI data if available
-              const speciesTrend = gbiData?.speciesTrends?.[decodedSpeciesName];
-              const hasCI = speciesTrend?.confidenceIntervals != null;
+              // Get CI data from flight curves data
+              const hasCI = speciesData.confidenceIntervals != null;
               const ciLower = hasCI
                 ? years.map(
                     year =>
-                      speciesTrend.confidenceIntervals![year]?.ci_lower ??
+                      speciesData.confidenceIntervals![year]?.ci_lower ??
                       indices[years.indexOf(year)]
                   )
                 : [];
               const ciUpper = hasCI
                 ? years.map(
                     year =>
-                      speciesTrend.confidenceIntervals![year]?.ci_upper ??
+                      speciesData.confidenceIntervals![year]?.ci_upper ??
                       indices[years.indexOf(year)]
                   )
                 : [];
@@ -347,7 +339,7 @@ function SpeciesPage() {
 
                         // For CI band, show range
                         if (datasetLabel === "IC 95%" && hasCI) {
-                          const ci = speciesTrend.confidenceIntervals![year];
+                          const ci = speciesData.confidenceIntervals![year];
                           if (ci?.ci_lower != null && ci?.ci_upper != null) {
                             return `IC 95%: ${ci.ci_lower.toFixed(1)} - ${ci.ci_upper.toFixed(1)}`;
                           }
@@ -357,7 +349,7 @@ function SpeciesPage() {
                         if (datasetLabel === "Índice Populacional (2021 = 100)") {
                           const lines = [`Índice: ${context.parsed.y.toFixed(2)}`];
                           if (hasCI) {
-                            const ci = speciesTrend.confidenceIntervals![year];
+                            const ci = speciesData.confidenceIntervals![year];
                             if (ci?.ci_lower != null && ci?.ci_upper != null) {
                               lines.push(
                                 `IC 95%: [${ci.ci_lower.toFixed(1)}, ${ci.ci_upper.toFixed(1)}]`
