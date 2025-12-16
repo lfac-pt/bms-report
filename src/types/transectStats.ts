@@ -23,12 +23,18 @@ export interface TransectStats {
   coordinates: { lat: number; lon: number } | null;
 }
 
+export interface FilteredSpeciesEntry {
+  species: string;
+  recordCount: number;
+  totalIndividuals: number;
+}
+
 export interface ProcessingMetadata {
   totalValidTransects: number;
   activeTransects: number;
   inactiveTransects: number;
   filteredSpeciesCount: number;
-  filteredSpecies: string[];
+  filteredSpecies: FilteredSpeciesEntry[];
   totalButterfliesValidSpecies: number;
   totalButterfliesAllSpecies: number;
 }

@@ -1671,8 +1671,8 @@ async function processData() {
     });
   }
 
-  // Track filtered species (those not in the whitelist)
-  const filteredSpeciesSet = new Set();
+  // Track filtered species (those not in the whitelist) with record counts and total individuals
+  const filteredSpeciesMap = new Map();
   const validTransectIds = new Set(Object.keys(metadataMap));
 
   // Collect all species that were filtered out from valid transects
@@ -1686,7 +1686,12 @@ async function processData() {
     const trimmedSpecies = species.trim();
     // Check if it's a valid binomial name but NOT in the whitelist
     if (trimmedSpecies.split(' ').length === 2 && !VALID_SPECIES.has(trimmedSpecies)) {
-      filteredSpeciesSet.add(trimmedSpecies);
+      const count = parseInt(row['Abundance Count'], 10) || 0;
+      const existing = filteredSpeciesMap.get(trimmedSpecies) || { recordCount: 0, totalIndividuals: 0 };
+      filteredSpeciesMap.set(trimmedSpecies, {
+        recordCount: existing.recordCount + 1,
+        totalIndividuals: existing.totalIndividuals + count
+      });
     }
   });
 
@@ -1743,8 +1748,14 @@ async function processData() {
   // Sort by transect name
   results.sort((a, b) => a.transectName.localeCompare(b.transectName));
 
-  // Prepare filtered species list
-  const filteredSpeciesList = Array.from(filteredSpeciesSet).sort();
+  // Prepare filtered species list with record counts and total individuals
+  const filteredSpeciesList = Array.from(filteredSpeciesMap.entries())
+    .map(([species, data]) => ({
+      species,
+      recordCount: data.recordCount,
+      totalIndividuals: data.totalIndividuals
+    }))
+    .sort((a, b) => a.species.localeCompare(b.species));
 
   // Calculate total butterflies with valid species only
   const totalButterfliesValidSpecies = results.reduce((sum, t) => sum + t.totalAbundance, 0);

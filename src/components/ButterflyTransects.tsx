@@ -984,12 +984,18 @@ function ButterflyTransects() {
                   <div style={{ maxHeight: 400, overflowY: "auto", width: 300 }}>
                     <List
                       size="small"
-                      header={<strong>Espécies Ignoradas ({metadata.filteredSpeciesCount})</strong>}
+                      header={
+                        <strong>
+                          Espécies Ignoradas ({metadata.filteredSpeciesCount},{" "}
+                          {metadata.filteredSpecies.reduce((sum, s) => sum + s.totalIndividuals, 0)}{" "}
+                          indivíduos)
+                        </strong>
+                      }
                       dataSource={metadata.filteredSpecies}
                       renderItem={item => (
                         <List.Item style={{ padding: "4px 0" }}>
                           <Typography.Text style={{ fontSize: 12, fontStyle: "italic" }}>
-                            {item}
+                            {item.species} ({item.recordCount} {item.recordCount === 1 ? "registo" : "registos"}, {item.totalIndividuals} {item.totalIndividuals === 1 ? "indivíduo" : "indivíduos"})
                           </Typography.Text>
                         </List.Item>
                       )}
