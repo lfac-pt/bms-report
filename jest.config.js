@@ -8,6 +8,9 @@ module.exports = {
   moduleNameMapper: {
     "\\.(css|less|scss|sass)$": "identity-obj-proxy",
   },
+  transformIgnorePatterns: [
+    "node_modules/(?!(react-leaflet|@react-leaflet)/)",
+  ],
   collectCoverageFrom: [
     "src/**/*.{ts,tsx}",
     "!src/**/*.d.ts",
@@ -20,6 +23,15 @@ module.exports = {
       {
         tsconfig: {
           jsx: "react-jsx",
+        },
+      },
+    ],
+    "^.+\\.jsx?$": [
+      "ts-jest",
+      {
+        tsconfig: {
+          jsx: "react-jsx",
+          allowJs: true,
         },
       },
     ],

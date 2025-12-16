@@ -51,3 +51,27 @@ Object.defineProperty(window, "getComputedStyle", {
     boxSizing: "border-box",
   }),
 });
+
+// Suppress act() warnings from Ant Design internal components
+// eslint-disable-next-line no-console
+const originalError = console.error;
+beforeAll(() => {
+  // eslint-disable-next-line no-console, @typescript-eslint/no-explicit-any
+  console.error = (...args: any[]) => {
+    const message = args[0];
+    if (
+      typeof message === "string" &&
+      (message.includes("Warning: An update to") ||
+        message.includes("not wrapped in act(...)") ||
+        message.includes("Warning: `ReactDOMTestUtils.act` is deprecated"))
+    ) {
+      return;
+    }
+    originalError.call(console, ...args);
+  };
+});
+
+afterAll(() => {
+  // eslint-disable-next-line no-console
+  console.error = originalError;
+});

@@ -134,7 +134,7 @@ describe("ButterflyTransects - Smoke Tests", () => {
       render(<ButterflyTransects />);
       await waitFor(() => {
         // eslint-disable-next-line no-undef
-        expect(global.fetch).toHaveBeenCalledWith("/data/processed-transects.json");
+        expect(global.fetch).toHaveBeenCalledWith("data/processed-transects.json");
       });
     });
   });
