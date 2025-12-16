@@ -50,4 +50,4 @@ export function adaptNocturnalDataset(nocturnalData: NocturnalDataset): Dataset 
   });
 }
 
-export type DatasetType = "diurnal" | "nocturnal";
+export type DatasetType = "diurnal" | "nocturnal" | "transects";

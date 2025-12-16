@@ -1,6 +1,8 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
+import { BrowserRouter, Routes, Route, useNavigate, useLocation, Navigate } from "react-router-dom";
 import MyApp from "./components/App";
+import SpeciesPage from "./components/SpeciesPage";
 import reportWebVitals from "./reportWebVitals";
 import { App, Layout, Radio } from "antd";
 import {
@@ -8,27 +10,54 @@ import {
   CategoryScale,
   LinearScale,
   BarElement,
+  LineElement,
+  PointElement,
   Title,
   Tooltip,
   Legend,
+  Filler,
 } from "chart.js";
-import { DatasetTypeProvider, useDatasetType } from "./contexts/DatasetTypeContext";
 
 import "./index.css";
 
-ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend);
+ChartJS.register(
+  CategoryScale,
+  LinearScale,
+  BarElement,
+  LineElement,
+  PointElement,
+  Title,
+  Tooltip,
+  Legend,
+  Filler
+);
 
 const { Header, Content, Footer } = Layout;
 
 function AppHeader() {
-  const { datasetType, setDatasetType } = useDatasetType();
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  // Determine current route
+  const currentPath = location.pathname;
+  let currentValue = "diurnal";
+  if (currentPath === "/nocturnal" || currentPath.startsWith("/nocturnal/")) {
+    currentValue = "nocturnal";
+  } else if (currentPath === "/transects" || currentPath.startsWith("/transects/")) {
+    currentValue = "transects";
+  } else if (currentPath === "/diurnal" || currentPath.startsWith("/diurnal/")) {
+    currentValue = "diurnal";
+  }
 
   return (
     <Header style={{ display: "flex", alignItems: "center", justifyContent: "space-between" }}>
       <div style={{ color: "white", fontSize: "40px" }}>Relatório BMS</div>
       <Radio.Group
-        value={datasetType}
-        onChange={e => setDatasetType(e.target.value)}
+        value={currentValue}
+        onChange={e => {
+          const value = e.target.value;
+          navigate(`/${value}`);
+        }}
         buttonStyle="solid"
       >
         <Radio.Button value="diurnal">Borboletas Diurnas</Radio.Button>
@@ -39,9 +68,15 @@ function AppHeader() {
 }
 
 function AppContent() {
-  const { datasetType } = useDatasetType();
-
-  return <MyApp key={datasetType} />;
+  return (
+    <Routes>
+      <Route path="/" element={<Navigate to="/diurnal" replace />} />
+      <Route path="/diurnal" element={<MyApp datasetType="diurnal" />} />
+      <Route path="/nocturnal" element={<MyApp datasetType="nocturnal" />} />
+      <Route path="/transects" element={<MyApp datasetType="transects" />} />
+      <Route path="/species/:speciesName" element={<SpeciesPage />} />
+    </Routes>
+  );
 }
 
 const rootElement = document.getElementById("root");
@@ -49,8 +84,8 @@ if (!rootElement) throw new Error("Root element not found");
 const root = ReactDOM.createRoot(rootElement);
 root.render(
   <React.StrictMode>
-    <App>
-      <DatasetTypeProvider>
+    <BrowserRouter>
+      <App>
         <Layout>
           <AppHeader />
           <Content style={{ padding: "0 48px" }}>
@@ -58,8 +93,8 @@ root.render(
           </Content>
           <Footer style={{ textAlign: "center" }}>Luís Cardoso ©{new Date().getFullYear()}</Footer>
         </Layout>
-      </DatasetTypeProvider>
-    </App>
+      </App>
+    </BrowserRouter>
   </React.StrictMode>
 );
 

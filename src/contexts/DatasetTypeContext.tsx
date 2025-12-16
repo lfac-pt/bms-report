@@ -13,7 +13,9 @@ const DatasetTypeContext = createContext<DatasetTypeContextValue | undefined>(un
 function getDatasetTypeFromURL(): DatasetType {
   const params = new URLSearchParams(window.location.search);
   const type = params.get("type");
-  return type === "nocturnal" ? "nocturnal" : "diurnal";
+  if (type === "nocturnal") return "nocturnal";
+  if (type === "transects") return "transects";
+  return "diurnal";
 }
 
 function setDatasetTypeInURL(type: DatasetType): void {
