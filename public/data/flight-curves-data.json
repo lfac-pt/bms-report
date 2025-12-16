@@ -1,6 +1,6 @@
 {
   "metadata": {
-    "processingDate": "2025-12-16T00:26:58.039Z",
+    "processingDate": "2025-12-16T01:11:49.221Z",
     "baselineYear": 2021,
     "qualityCriteria": {
       "minYearsActive": 5,
@@ -558,9 +558,10 @@
         "baseline_year": 2021
       },
       "processingInfo": {
-        "method": "rbms (GAM flight curves + GLM collated index)",
-        "timestamp": "2025-12-16 00:26:22",
-        "rbms_version": "1.2.0"
+        "method": "rbms (GAM flight curves + GLM collated index + bootstrap CI)",
+        "timestamp": "2025-12-16 01:10:37",
+        "rbms_version": "1.2.0",
+        "bootstrap_iterations": 100
       }
     },
     "Argynnis pandora": {
@@ -1036,9 +1037,10 @@
         "baseline_year": 2021
       },
       "processingInfo": {
-        "method": "rbms (GAM flight curves + GLM collated index)",
-        "timestamp": "2025-12-16 00:26:23",
-        "rbms_version": "1.2.0"
+        "method": "rbms (GAM flight curves + GLM collated index + bootstrap CI)",
+        "timestamp": "2025-12-16 01:10:38",
+        "rbms_version": "1.2.0",
+        "bootstrap_iterations": 100
       }
     },
     "Aricia cramera": {
@@ -1616,9 +1618,10 @@
         "baseline_year": 2021
       },
       "processingInfo": {
-        "method": "rbms (GAM flight curves + GLM collated index)",
-        "timestamp": "2025-12-16 00:26:24",
-        "rbms_version": "1.2.0"
+        "method": "rbms (GAM flight curves + GLM collated index + bootstrap CI)",
+        "timestamp": "2025-12-16 01:10:40",
+        "rbms_version": "1.2.0",
+        "bootstrap_iterations": 100
       }
     },
     "Brintesia circe": {
@@ -2196,9 +2199,10 @@
         "baseline_year": 2021
       },
       "processingInfo": {
-        "method": "rbms (GAM flight curves + GLM collated index)",
-        "timestamp": "2025-12-16 00:26:24",
-        "rbms_version": "1.2.0"
+        "method": "rbms (GAM flight curves + GLM collated index + bootstrap CI)",
+        "timestamp": "2025-12-16 01:10:41",
+        "rbms_version": "1.2.0",
+        "bootstrap_iterations": 100
       }
     },
     "Cacyreus marshalli": {
@@ -2674,9 +2678,10 @@
         "baseline_year": 2021
       },
       "processingInfo": {
-        "method": "rbms (GAM flight curves + GLM collated index)",
-        "timestamp": "2025-12-16 00:26:25",
-        "rbms_version": "1.2.0"
+        "method": "rbms (GAM flight curves + GLM collated index + bootstrap CI)",
+        "timestamp": "2025-12-16 01:10:42",
+        "rbms_version": "1.2.0",
+        "bootstrap_iterations": 100
       }
     },
     "Callophrys rubi": {
@@ -3050,9 +3055,10 @@
         "baseline_year": 2021
       },
       "processingInfo": {
-        "method": "rbms (GAM flight curves + GLM collated index)",
-        "timestamp": "2025-12-16 00:26:26",
-        "rbms_version": "1.2.0"
+        "method": "rbms (GAM flight curves + GLM collated index + bootstrap CI)",
+        "timestamp": "2025-12-16 01:10:43",
+        "rbms_version": "1.2.0",
+        "bootstrap_iterations": 100
       }
     },
     "Carcharodus alceae": {
@@ -3426,9 +3432,10 @@
         "baseline_year": 2021
       },
       "processingInfo": {
-        "method": "rbms (GAM flight curves + GLM collated index)",
-        "timestamp": "2025-12-16 00:26:26",
-        "rbms_version": "1.2.0"
+        "method": "rbms (GAM flight curves + GLM collated index + bootstrap CI)",
+        "timestamp": "2025-12-16 01:10:45",
+        "rbms_version": "1.2.0",
+        "bootstrap_iterations": 100
       }
     },
     "Celastrina argiolus": {
@@ -4006,9 +4013,10 @@
         "baseline_year": 2021
       },
       "processingInfo": {
-        "method": "rbms (GAM flight curves + GLM collated index)",
-        "timestamp": "2025-12-16 00:26:27",
-        "rbms_version": "1.2.0"
+        "method": "rbms (GAM flight curves + GLM collated index + bootstrap CI)",
+        "timestamp": "2025-12-16 01:10:46",
+        "rbms_version": "1.2.0",
+        "bootstrap_iterations": 100
       }
     },
     "Charaxes jasius": {
@@ -4586,9 +4594,10 @@
         "baseline_year": 2021
       },
       "processingInfo": {
-        "method": "rbms (GAM flight curves + GLM collated index)",
-        "timestamp": "2025-12-16 00:26:27",
-        "rbms_version": "1.2.0"
+        "method": "rbms (GAM flight curves + GLM collated index + bootstrap CI)",
+        "timestamp": "2025-12-16 01:10:47",
+        "rbms_version": "1.2.0",
+        "bootstrap_iterations": 100
       }
     },
     "Coenonympha pamphilus": {
@@ -5166,9 +5175,10 @@
         "baseline_year": 2021
       },
       "processingInfo": {
-        "method": "rbms (GAM flight curves + GLM collated index)",
-        "timestamp": "2025-12-16 00:26:28",
-        "rbms_version": "1.2.0"
+        "method": "rbms (GAM flight curves + GLM collated index + bootstrap CI)",
+        "timestamp": "2025-12-16 01:10:48",
+        "rbms_version": "1.2.0",
+        "bootstrap_iterations": 100
       }
     },
     "Colias crocea": {
@@ -5746,9 +5756,10 @@
         "baseline_year": 2021
       },
       "processingInfo": {
-        "method": "rbms (GAM flight curves + GLM collated index)",
-        "timestamp": "2025-12-16 00:26:29",
-        "rbms_version": "1.2.0"
+        "method": "rbms (GAM flight curves + GLM collated index + bootstrap CI)",
+        "timestamp": "2025-12-16 01:10:50",
+        "rbms_version": "1.2.0",
+        "bootstrap_iterations": 100
       }
     },
     "Danaus plexippus": {
@@ -6122,9 +6133,10 @@
         "baseline_year": 2021
       },
       "processingInfo": {
-        "method": "rbms (GAM flight curves + GLM collated index)",
-        "timestamp": "2025-12-16 00:26:29",
-        "rbms_version": "1.2.0"
+        "method": "rbms (GAM flight curves + GLM collated index + bootstrap CI)",
+        "timestamp": "2025-12-16 01:10:51",
+        "rbms_version": "1.2.0",
+        "bootstrap_iterations": 100
       }
     },
     "Euchloe belemia": {
@@ -6702,9 +6714,10 @@
         "baseline_year": 2021
       },
       "processingInfo": {
-        "method": "rbms (GAM flight curves + GLM collated index)",
-        "timestamp": "2025-12-16 00:26:30",
-        "rbms_version": "1.2.0"
+        "method": "rbms (GAM flight curves + GLM collated index + bootstrap CI)",
+        "timestamp": "2025-12-16 01:10:52",
+        "rbms_version": "1.2.0",
+        "bootstrap_iterations": 100
       }
     },
     "Euchloe crameri": {
@@ -7282,9 +7295,10 @@
         "baseline_year": 2021
       },
       "processingInfo": {
-        "method": "rbms (GAM flight curves + GLM collated index)",
-        "timestamp": "2025-12-16 00:26:31",
-        "rbms_version": "1.2.0"
+        "method": "rbms (GAM flight curves + GLM collated index + bootstrap CI)",
+        "timestamp": "2025-12-16 01:10:54",
+        "rbms_version": "1.2.0",
+        "bootstrap_iterations": 100
       }
     },
     "Euphydryas aurinia": {
@@ -7862,9 +7876,10 @@
         "baseline_year": 2021
       },
       "processingInfo": {
-        "method": "rbms (GAM flight curves + GLM collated index)",
-        "timestamp": "2025-12-16 00:26:31",
-        "rbms_version": "1.2.0"
+        "method": "rbms (GAM flight curves + GLM collated index + bootstrap CI)",
+        "timestamp": "2025-12-16 01:10:55",
+        "rbms_version": "1.2.0",
+        "bootstrap_iterations": 100
       }
     },
     "Fabriciana niobe": {
@@ -8238,9 +8253,10 @@
         "baseline_year": 2021
       },
       "processingInfo": {
-        "method": "rbms (GAM flight curves + GLM collated index)",
-        "timestamp": "2025-12-16 00:26:32",
-        "rbms_version": "1.2.0"
+        "method": "rbms (GAM flight curves + GLM collated index + bootstrap CI)",
+        "timestamp": "2025-12-16 01:10:56",
+        "rbms_version": "1.2.0",
+        "bootstrap_iterations": 100
       }
     },
     "Favonius quercus": {
@@ -8818,9 +8834,10 @@
         "baseline_year": 2021
       },
       "processingInfo": {
-        "method": "rbms (GAM flight curves + GLM collated index)",
-        "timestamp": "2025-12-16 00:26:32",
-        "rbms_version": "1.2.0"
+        "method": "rbms (GAM flight curves + GLM collated index + bootstrap CI)",
+        "timestamp": "2025-12-16 01:10:57",
+        "rbms_version": "1.2.0",
+        "bootstrap_iterations": 100
       }
     },
     "Glaucopsyche melanops": {
@@ -9296,9 +9313,10 @@
         "baseline_year": 2021
       },
       "processingInfo": {
-        "method": "rbms (GAM flight curves + GLM collated index)",
-        "timestamp": "2025-12-16 00:26:33",
-        "rbms_version": "1.2.0"
+        "method": "rbms (GAM flight curves + GLM collated index + bootstrap CI)",
+        "timestamp": "2025-12-16 01:10:59",
+        "rbms_version": "1.2.0",
+        "bootstrap_iterations": 100
       }
     },
     "Gonepteryx cleopatra": {
@@ -9876,9 +9894,10 @@
         "baseline_year": 2021
       },
       "processingInfo": {
-        "method": "rbms (GAM flight curves + GLM collated index)",
-        "timestamp": "2025-12-16 00:26:34",
-        "rbms_version": "1.2.0"
+        "method": "rbms (GAM flight curves + GLM collated index + bootstrap CI)",
+        "timestamp": "2025-12-16 01:11:00",
+        "rbms_version": "1.2.0",
+        "bootstrap_iterations": 100
       }
     },
     "Gonepteryx rhamni": {
@@ -10354,9 +10373,10 @@
         "baseline_year": 2021
       },
       "processingInfo": {
-        "method": "rbms (GAM flight curves + GLM collated index)",
-        "timestamp": "2025-12-16 00:26:34",
-        "rbms_version": "1.2.0"
+        "method": "rbms (GAM flight curves + GLM collated index + bootstrap CI)",
+        "timestamp": "2025-12-16 01:11:01",
+        "rbms_version": "1.2.0",
+        "bootstrap_iterations": 100
       }
     },
     "Hipparchia fidia": {
@@ -10934,9 +10954,10 @@
         "baseline_year": 2021
       },
       "processingInfo": {
-        "method": "rbms (GAM flight curves + GLM collated index)",
-        "timestamp": "2025-12-16 00:26:35",
-        "rbms_version": "1.2.0"
+        "method": "rbms (GAM flight curves + GLM collated index + bootstrap CI)",
+        "timestamp": "2025-12-16 01:11:02",
+        "rbms_version": "1.2.0",
+        "bootstrap_iterations": 100
       }
     },
     "Hipparchia statilinus": {
@@ -11514,9 +11535,10 @@
         "baseline_year": 2021
       },
       "processingInfo": {
-        "method": "rbms (GAM flight curves + GLM collated index)",
-        "timestamp": "2025-12-16 00:26:36",
-        "rbms_version": "1.2.0"
+        "method": "rbms (GAM flight curves + GLM collated index + bootstrap CI)",
+        "timestamp": "2025-12-16 01:11:04",
+        "rbms_version": "1.2.0",
+        "bootstrap_iterations": 100
       }
     },
     "Iphiclides feisthamelii": {
@@ -12094,9 +12116,10 @@
         "baseline_year": 2021
       },
       "processingInfo": {
-        "method": "rbms (GAM flight curves + GLM collated index)",
-        "timestamp": "2025-12-16 00:26:36",
-        "rbms_version": "1.2.0"
+        "method": "rbms (GAM flight curves + GLM collated index + bootstrap CI)",
+        "timestamp": "2025-12-16 01:11:05",
+        "rbms_version": "1.2.0",
+        "bootstrap_iterations": 100
       }
     },
     "Issoria lathonia": {
@@ -12572,9 +12595,10 @@
         "baseline_year": 2021
       },
       "processingInfo": {
-        "method": "rbms (GAM flight curves + GLM collated index)",
-        "timestamp": "2025-12-16 00:26:37",
-        "rbms_version": "1.2.0"
+        "method": "rbms (GAM flight curves + GLM collated index + bootstrap CI)",
+        "timestamp": "2025-12-16 01:11:06",
+        "rbms_version": "1.2.0",
+        "bootstrap_iterations": 100
       }
     },
     "Laeosopis roboris": {
@@ -13050,9 +13074,10 @@
         "baseline_year": 2021
       },
       "processingInfo": {
-        "method": "rbms (GAM flight curves + GLM collated index)",
-        "timestamp": "2025-12-16 00:26:37",
-        "rbms_version": "1.2.0"
+        "method": "rbms (GAM flight curves + GLM collated index + bootstrap CI)",
+        "timestamp": "2025-12-16 01:11:07",
+        "rbms_version": "1.2.0",
+        "bootstrap_iterations": 100
       }
     },
     "Lampides boeticus": {
@@ -13630,9 +13655,10 @@
         "baseline_year": 2021
       },
       "processingInfo": {
-        "method": "rbms (GAM flight curves + GLM collated index)",
-        "timestamp": "2025-12-16 00:26:38",
-        "rbms_version": "1.2.0"
+        "method": "rbms (GAM flight curves + GLM collated index + bootstrap CI)",
+        "timestamp": "2025-12-16 01:11:09",
+        "rbms_version": "1.2.0",
+        "bootstrap_iterations": 100
       }
     },
     "Lasiommata megera": {
@@ -14210,9 +14236,10 @@
         "baseline_year": 2021
       },
       "processingInfo": {
-        "method": "rbms (GAM flight curves + GLM collated index)",
-        "timestamp": "2025-12-16 00:26:39",
-        "rbms_version": "1.2.0"
+        "method": "rbms (GAM flight curves + GLM collated index + bootstrap CI)",
+        "timestamp": "2025-12-16 01:11:10",
+        "rbms_version": "1.2.0",
+        "bootstrap_iterations": 100
       }
     },
     "Leptidea sinapis": {
@@ -14790,9 +14817,10 @@
         "baseline_year": 2021
       },
       "processingInfo": {
-        "method": "rbms (GAM flight curves + GLM collated index)",
-        "timestamp": "2025-12-16 00:26:39",
-        "rbms_version": "1.2.0"
+        "method": "rbms (GAM flight curves + GLM collated index + bootstrap CI)",
+        "timestamp": "2025-12-16 01:11:11",
+        "rbms_version": "1.2.0",
+        "bootstrap_iterations": 100
       }
     },
     "Leptotes pirithous": {
@@ -15370,9 +15398,10 @@
         "baseline_year": 2021
       },
       "processingInfo": {
-        "method": "rbms (GAM flight curves + GLM collated index)",
-        "timestamp": "2025-12-16 00:26:40",
-        "rbms_version": "1.2.0"
+        "method": "rbms (GAM flight curves + GLM collated index + bootstrap CI)",
+        "timestamp": "2025-12-16 01:11:13",
+        "rbms_version": "1.2.0",
+        "bootstrap_iterations": 100
       }
     },
     "Lycaena bleusei": {
@@ -15848,9 +15877,10 @@
         "baseline_year": 2021
       },
       "processingInfo": {
-        "method": "rbms (GAM flight curves + GLM collated index)",
-        "timestamp": "2025-12-16 00:26:41",
-        "rbms_version": "1.2.0"
+        "method": "rbms (GAM flight curves + GLM collated index + bootstrap CI)",
+        "timestamp": "2025-12-16 01:11:14",
+        "rbms_version": "1.2.0",
+        "bootstrap_iterations": 100
       }
     },
     "Lycaena phlaeas": {
@@ -16428,9 +16458,10 @@
         "baseline_year": 2021
       },
       "processingInfo": {
-        "method": "rbms (GAM flight curves + GLM collated index)",
-        "timestamp": "2025-12-16 00:26:41",
-        "rbms_version": "1.2.0"
+        "method": "rbms (GAM flight curves + GLM collated index + bootstrap CI)",
+        "timestamp": "2025-12-16 01:11:15",
+        "rbms_version": "1.2.0",
+        "bootstrap_iterations": 100
       }
     },
     "Lysandra bellargus": {
@@ -16906,9 +16937,10 @@
         "baseline_year": 2021
       },
       "processingInfo": {
-        "method": "rbms (GAM flight curves + GLM collated index)",
-        "timestamp": "2025-12-16 00:26:42",
-        "rbms_version": "1.2.0"
+        "method": "rbms (GAM flight curves + GLM collated index + bootstrap CI)",
+        "timestamp": "2025-12-16 01:11:16",
+        "rbms_version": "1.2.0",
+        "bootstrap_iterations": 100
       }
     },
     "Maniola jurtina": {
@@ -17486,9 +17518,10 @@
         "baseline_year": 2021
       },
       "processingInfo": {
-        "method": "rbms (GAM flight curves + GLM collated index)",
-        "timestamp": "2025-12-16 00:26:43",
-        "rbms_version": "1.2.0"
+        "method": "rbms (GAM flight curves + GLM collated index + bootstrap CI)",
+        "timestamp": "2025-12-16 01:11:18",
+        "rbms_version": "1.2.0",
+        "bootstrap_iterations": 100
       }
     },
     "Melanargia ines": {
@@ -18066,9 +18099,10 @@
         "baseline_year": 2021
       },
       "processingInfo": {
-        "method": "rbms (GAM flight curves + GLM collated index)",
-        "timestamp": "2025-12-16 00:26:43",
-        "rbms_version": "1.2.0"
+        "method": "rbms (GAM flight curves + GLM collated index + bootstrap CI)",
+        "timestamp": "2025-12-16 01:11:19",
+        "rbms_version": "1.2.0",
+        "bootstrap_iterations": 100
       }
     },
     "Melanargia lachesis": {
@@ -18646,9 +18680,10 @@
         "baseline_year": 2021
       },
       "processingInfo": {
-        "method": "rbms (GAM flight curves + GLM collated index)",
-        "timestamp": "2025-12-16 00:26:44",
-        "rbms_version": "1.2.0"
+        "method": "rbms (GAM flight curves + GLM collated index + bootstrap CI)",
+        "timestamp": "2025-12-16 01:11:20",
+        "rbms_version": "1.2.0",
+        "bootstrap_iterations": 100
       }
     },
     "Melitaea deione": {
@@ -19226,9 +19261,10 @@
         "baseline_year": 2021
       },
       "processingInfo": {
-        "method": "rbms (GAM flight curves + GLM collated index)",
-        "timestamp": "2025-12-16 00:26:44",
-        "rbms_version": "1.2.0"
+        "method": "rbms (GAM flight curves + GLM collated index + bootstrap CI)",
+        "timestamp": "2025-12-16 01:11:22",
+        "rbms_version": "1.2.0",
+        "bootstrap_iterations": 100
       }
     },
     "Nymphalis polychloros": {
@@ -19704,9 +19740,10 @@
         "baseline_year": 2021
       },
       "processingInfo": {
-        "method": "rbms (GAM flight curves + GLM collated index)",
-        "timestamp": "2025-12-16 00:26:45",
-        "rbms_version": "1.2.0"
+        "method": "rbms (GAM flight curves + GLM collated index + bootstrap CI)",
+        "timestamp": "2025-12-16 01:11:23",
+        "rbms_version": "1.2.0",
+        "bootstrap_iterations": 100
       }
     },
     "Papilio machaon": {
@@ -20284,9 +20321,10 @@
         "baseline_year": 2021
       },
       "processingInfo": {
-        "method": "rbms (GAM flight curves + GLM collated index)",
-        "timestamp": "2025-12-16 00:26:46",
-        "rbms_version": "1.2.0"
+        "method": "rbms (GAM flight curves + GLM collated index + bootstrap CI)",
+        "timestamp": "2025-12-16 01:11:24",
+        "rbms_version": "1.2.0",
+        "bootstrap_iterations": 100
       }
     },
     "Pararge aegeria": {
@@ -20864,9 +20902,10 @@
         "baseline_year": 2021
       },
       "processingInfo": {
-        "method": "rbms (GAM flight curves + GLM collated index)",
-        "timestamp": "2025-12-16 00:26:46",
-        "rbms_version": "1.2.0"
+        "method": "rbms (GAM flight curves + GLM collated index + bootstrap CI)",
+        "timestamp": "2025-12-16 01:11:25",
+        "rbms_version": "1.2.0",
+        "bootstrap_iterations": 100
       }
     },
     "Pieris brassicae": {
@@ -21444,9 +21483,10 @@
         "baseline_year": 2021
       },
       "processingInfo": {
-        "method": "rbms (GAM flight curves + GLM collated index)",
-        "timestamp": "2025-12-16 00:26:47",
-        "rbms_version": "1.2.0"
+        "method": "rbms (GAM flight curves + GLM collated index + bootstrap CI)",
+        "timestamp": "2025-12-16 01:11:27",
+        "rbms_version": "1.2.0",
+        "bootstrap_iterations": 100
       }
     },
     "Pieris napi": {
@@ -22024,9 +22064,10 @@
         "baseline_year": 2021
       },
       "processingInfo": {
-        "method": "rbms (GAM flight curves + GLM collated index)",
-        "timestamp": "2025-12-16 00:26:48",
-        "rbms_version": "1.2.0"
+        "method": "rbms (GAM flight curves + GLM collated index + bootstrap CI)",
+        "timestamp": "2025-12-16 01:11:28",
+        "rbms_version": "1.2.0",
+        "bootstrap_iterations": 100
       }
     },
     "Pieris rapae": {
@@ -22604,9 +22645,10 @@
         "baseline_year": 2021
       },
       "processingInfo": {
-        "method": "rbms (GAM flight curves + GLM collated index)",
-        "timestamp": "2025-12-16 00:26:48",
-        "rbms_version": "1.2.0"
+        "method": "rbms (GAM flight curves + GLM collated index + bootstrap CI)",
+        "timestamp": "2025-12-16 01:11:29",
+        "rbms_version": "1.2.0",
+        "bootstrap_iterations": 100
       }
     },
     "Polygonia c-album": {
@@ -23184,9 +23226,10 @@
         "baseline_year": 2021
       },
       "processingInfo": {
-        "method": "rbms (GAM flight curves + GLM collated index)",
-        "timestamp": "2025-12-16 00:26:49",
-        "rbms_version": "1.2.0"
+        "method": "rbms (GAM flight curves + GLM collated index + bootstrap CI)",
+        "timestamp": "2025-12-16 01:11:31",
+        "rbms_version": "1.2.0",
+        "bootstrap_iterations": 100
       }
     },
     "Polyommatus celina": {
@@ -23764,9 +23807,10 @@
         "baseline_year": 2021
       },
       "processingInfo": {
-        "method": "rbms (GAM flight curves + GLM collated index)",
-        "timestamp": "2025-12-16 00:26:49",
-        "rbms_version": "1.2.0"
+        "method": "rbms (GAM flight curves + GLM collated index + bootstrap CI)",
+        "timestamp": "2025-12-16 01:11:32",
+        "rbms_version": "1.2.0",
+        "bootstrap_iterations": 100
       }
     },
     "Polyommatus icarus": {
@@ -24344,9 +24388,10 @@
         "baseline_year": 2021
       },
       "processingInfo": {
-        "method": "rbms (GAM flight curves + GLM collated index)",
-        "timestamp": "2025-12-16 00:26:50",
-        "rbms_version": "1.2.0"
+        "method": "rbms (GAM flight curves + GLM collated index + bootstrap CI)",
+        "timestamp": "2025-12-16 01:11:33",
+        "rbms_version": "1.2.0",
+        "bootstrap_iterations": 100
       }
     },
     "Pontia daplidice": {
@@ -24720,9 +24765,10 @@
         "baseline_year": 2021
       },
       "processingInfo": {
-        "method": "rbms (GAM flight curves + GLM collated index)",
-        "timestamp": "2025-12-16 00:26:51",
-        "rbms_version": "1.2.0"
+        "method": "rbms (GAM flight curves + GLM collated index + bootstrap CI)",
+        "timestamp": "2025-12-16 01:11:34",
+        "rbms_version": "1.2.0",
+        "bootstrap_iterations": 100
       }
     },
     "Pyronia bathseba": {
@@ -25300,9 +25346,10 @@
         "baseline_year": 2021
       },
       "processingInfo": {
-        "method": "rbms (GAM flight curves + GLM collated index)",
-        "timestamp": "2025-12-16 00:26:51",
-        "rbms_version": "1.2.0"
+        "method": "rbms (GAM flight curves + GLM collated index + bootstrap CI)",
+        "timestamp": "2025-12-16 01:11:36",
+        "rbms_version": "1.2.0",
+        "bootstrap_iterations": 100
       }
     },
     "Pyronia cecilia": {
@@ -25880,9 +25927,10 @@
         "baseline_year": 2021
       },
       "processingInfo": {
-        "method": "rbms (GAM flight curves + GLM collated index)",
-        "timestamp": "2025-12-16 00:26:52",
-        "rbms_version": "1.2.0"
+        "method": "rbms (GAM flight curves + GLM collated index + bootstrap CI)",
+        "timestamp": "2025-12-16 01:11:37",
+        "rbms_version": "1.2.0",
+        "bootstrap_iterations": 100
       }
     },
     "Pyronia tithonus": {
@@ -26460,9 +26508,10 @@
         "baseline_year": 2021
       },
       "processingInfo": {
-        "method": "rbms (GAM flight curves + GLM collated index)",
-        "timestamp": "2025-12-16 00:26:53",
-        "rbms_version": "1.2.0"
+        "method": "rbms (GAM flight curves + GLM collated index + bootstrap CI)",
+        "timestamp": "2025-12-16 01:11:38",
+        "rbms_version": "1.2.0",
+        "bootstrap_iterations": 100
       }
     },
     "Satyrium esculi": {
@@ -27040,9 +27089,10 @@
         "baseline_year": 2021
       },
       "processingInfo": {
-        "method": "rbms (GAM flight curves + GLM collated index)",
-        "timestamp": "2025-12-16 00:26:53",
-        "rbms_version": "1.2.0"
+        "method": "rbms (GAM flight curves + GLM collated index + bootstrap CI)",
+        "timestamp": "2025-12-16 01:11:40",
+        "rbms_version": "1.2.0",
+        "bootstrap_iterations": 100
       }
     },
     "Satyrium spini": {
@@ -27620,9 +27670,10 @@
         "baseline_year": 2021
       },
       "processingInfo": {
-        "method": "rbms (GAM flight curves + GLM collated index)",
-        "timestamp": "2025-12-16 00:26:54",
-        "rbms_version": "1.2.0"
+        "method": "rbms (GAM flight curves + GLM collated index + bootstrap CI)",
+        "timestamp": "2025-12-16 01:11:41",
+        "rbms_version": "1.2.0",
+        "bootstrap_iterations": 100
       }
     },
     "Spialia sertorius": {
@@ -28200,9 +28251,10 @@
         "baseline_year": 2021
       },
       "processingInfo": {
-        "method": "rbms (GAM flight curves + GLM collated index)",
-        "timestamp": "2025-12-16 00:26:54",
-        "rbms_version": "1.2.0"
+        "method": "rbms (GAM flight curves + GLM collated index + bootstrap CI)",
+        "timestamp": "2025-12-16 01:11:42",
+        "rbms_version": "1.2.0",
+        "bootstrap_iterations": 100
       }
     },
     "Thymelicus acteon": {
@@ -28780,9 +28832,10 @@
         "baseline_year": 2021
       },
       "processingInfo": {
-        "method": "rbms (GAM flight curves + GLM collated index)",
-        "timestamp": "2025-12-16 00:26:55",
-        "rbms_version": "1.2.0"
+        "method": "rbms (GAM flight curves + GLM collated index + bootstrap CI)",
+        "timestamp": "2025-12-16 01:11:44",
+        "rbms_version": "1.2.0",
+        "bootstrap_iterations": 100
       }
     },
     "Thymelicus sylvestris": {
@@ -29258,9 +29311,10 @@
         "baseline_year": 2021
       },
       "processingInfo": {
-        "method": "rbms (GAM flight curves + GLM collated index)",
-        "timestamp": "2025-12-16 00:26:56",
-        "rbms_version": "1.2.0"
+        "method": "rbms (GAM flight curves + GLM collated index + bootstrap CI)",
+        "timestamp": "2025-12-16 01:11:45",
+        "rbms_version": "1.2.0",
+        "bootstrap_iterations": 100
       }
     },
     "Vanessa atalanta": {
@@ -29838,9 +29892,10 @@
         "baseline_year": 2021
       },
       "processingInfo": {
-        "method": "rbms (GAM flight curves + GLM collated index)",
-        "timestamp": "2025-12-16 00:26:56",
-        "rbms_version": "1.2.0"
+        "method": "rbms (GAM flight curves + GLM collated index + bootstrap CI)",
+        "timestamp": "2025-12-16 01:11:46",
+        "rbms_version": "1.2.0",
+        "bootstrap_iterations": 100
       }
     },
     "Vanessa cardui": {
@@ -30418,9 +30473,10 @@
         "baseline_year": 2021
       },
       "processingInfo": {
-        "method": "rbms (GAM flight curves + GLM collated index)",
-        "timestamp": "2025-12-16 00:26:57",
-        "rbms_version": "1.2.0"
+        "method": "rbms (GAM flight curves + GLM collated index + bootstrap CI)",
+        "timestamp": "2025-12-16 01:11:47",
+        "rbms_version": "1.2.0",
+        "bootstrap_iterations": 100
       }
     },
     "Zerynthia rumina": {
@@ -30998,9 +31054,10 @@
         "baseline_year": 2021
       },
       "processingInfo": {
-        "method": "rbms (GAM flight curves + GLM collated index)",
-        "timestamp": "2025-12-16 00:26:58",
-        "rbms_version": "1.2.0"
+        "method": "rbms (GAM flight curves + GLM collated index + bootstrap CI)",
+        "timestamp": "2025-12-16 01:11:49",
+        "rbms_version": "1.2.0",
+        "bootstrap_iterations": 100
       }
     }
   },

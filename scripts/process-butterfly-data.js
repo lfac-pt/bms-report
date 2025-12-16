@@ -657,87 +657,6 @@ function percentile(sortedArray, p) {
 }
 
 /**
- * Calculate 95% confidence intervals for a log-linear regression
- * Uses analytical approach based on regression standard error
- *
- * @param {number[]} indices - Array of index values
- * @param {number[]} years - Array of years (relative to baseline, e.g., [0, 1, 2, 3, 4])
- * @param {number} slope - Regression slope
- * @param {number} baselineYear - Baseline year for output
- * @returns {Object} CI bounds per year: { year: { ci_lower, ci_upper } }
- */
-function calculateRegressionCI(indices, years, slope, baselineYear) {
-  const n = years.length;
-
-  // Can't calculate CI with fewer than 3 points
-  if (n < 3) {
-    const result = {};
-    years.forEach((year, i) => {
-      result[baselineYear + year] = { ci_lower: null, ci_upper: null };
-    });
-    return result;
-  }
-
-  // Log-transform indices
-  const logIndices = indices.map(idx => Math.log(idx));
-
-  // Calculate regression statistics
-  const meanX = years.reduce((a, b) => a + b, 0) / n;
-  const meanY = logIndices.reduce((a, b) => a + b, 0) / n;
-
-  // Calculate intercept
-  const intercept = meanY - slope * meanX;
-
-  // Calculate residual standard error
-  const fittedValues = years.map(x => intercept + slope * x);
-  const residuals = logIndices.map((y, i) => y - fittedValues[i]);
-  const sse = residuals.reduce((sum, r) => sum + r * r, 0);
-  const mse = sse / (n - 2); // degrees of freedom = n - 2 for simple linear regression
-  const se = Math.sqrt(mse);
-
-  // t-value for 95% CI with n-2 degrees of freedom
-  // Using approximation for t-distribution
-  const df = n - 2;
-  const tValue = df === 1 ? 12.706 :
-                 df === 2 ? 4.303 :
-                 df === 3 ? 3.182 :
-                 df === 4 ? 2.776 :
-                 df === 5 ? 2.571 :
-                 2.447; // >= 6 df, approximation
-
-  // Calculate Sxx for standard error of prediction
-  const sxx = years.reduce((sum, x) => sum + (x - meanX) * (x - meanX), 0);
-
-  // Calculate CI for each year
-  const result = {};
-  years.forEach((year, i) => {
-    const x = year;
-    const yFit = intercept + slope * x;
-
-    // Standard error of prediction
-    // SE = s * sqrt(1/n + (x - x̄)² / Sxx)
-    // Note: We use prediction interval formula without the "1+" term
-    // because we want CI for the mean, not prediction interval for new observation
-    const sePred = se * Math.sqrt(1/n + ((x - meanX) * (x - meanX)) / sxx);
-
-    // Calculate CI in log space
-    const ciLowerLog = yFit - tValue * sePred;
-    const ciUpperLog = yFit + tValue * sePred;
-
-    // Transform back to original scale
-    const ciLower = Math.exp(ciLowerLog);
-    const ciUpper = Math.exp(ciUpperLog);
-
-    result[baselineYear + year] = {
-      ci_lower: Math.round(ciLower * 100) / 100,
-      ci_upper: Math.round(ciUpper * 100) / 100
-    };
-  });
-
-  return result;
-}
-
-/**
  * Calculate 95% bootstrap confidence intervals for GBI
  * Uses species-level resampling (resample which species contribute to geometric mean)
  *
@@ -941,8 +860,19 @@ async function calculateGBI(allData, transects, baselineYear = 2021) {
         const sumX2 = years.reduce((sum, x) => sum + x * x, 0);
         const slope = (n * sumXY - sumX * sumY) / (n * sumX2 - sumX * sumX);
 
-        // Calculate 95% confidence intervals for the trend
-        const confidenceIntervals = calculateRegressionCI(indices, years, slope, baselineYear);
+        // Extract rbms-calculated bootstrap confidence intervals
+        let confidenceIntervals = {};
+        if (rbmsOutput.confidence_intervals && Object.keys(rbmsOutput.confidence_intervals).length > 0) {
+          for (const [year, ci] of Object.entries(rbmsOutput.confidence_intervals)) {
+            confidenceIntervals[parseInt(year)] = {
+              ci_lower: ci.ci_lower,
+              ci_upper: ci.ci_upper
+            };
+          }
+          console.log(`    ✓ rbms bootstrap CIs: ${Object.keys(confidenceIntervals).length} years`);
+        } else {
+          console.log(`    ⚠ No bootstrap CIs available from rbms`);
+        }
 
         speciesTrends[species] = {
           species,

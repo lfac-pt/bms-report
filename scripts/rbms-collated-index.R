@@ -277,32 +277,59 @@ tryCatch({
   stop(e)
 })
 
-# Step 7: Calculate collated index (GLM-based aggregation across sites)
-cat("Calculating collated index...\n")
+# Step 7: Generate bootstrap samples for confidence intervals
+cat("Generating bootstrap samples (n=100)...\n")
+set.seed(218795)  # For reproducibility
+bootsample <- tryCatch({
+  rbms::boot_sample(site_indices, boot_n = 100)
+}, error = function(e) {
+  cat(paste("Warning: Bootstrap sampling failed:", e$message, "\n"))
+  NULL
+})
+
+# Step 8: Calculate collated index with bootstrap confidence intervals
+cat("Calculating collated index with bootstrap CIs...\n")
+co_index_list <- list()
+
 tryCatch({
-  collated_result <- rbms::collated_index(
-    data = site_indices,
-    s_sp = species_name,
-    glm_weights = TRUE,
-    rm_zero = TRUE
+  # Determine number of bootstrap iterations
+  n_boots <- if (!is.null(bootsample) && !is.null(bootsample$boot_ind)) {
+    dim(bootsample$boot_ind)[1]
+  } else {
+    0
+  }
+
+  cat(paste("Running", n_boots + 1, "collated index calculations (1 original + ", n_boots, "bootstraps)...\n"))
+
+  # Loop through original (bootID=0) and all bootstrap samples
+  for(i in c(0, seq_len(n_boots))){
+    if (i %% 100 == 0) {
+      cat(paste("  Progress:", i, "/", n_boots + 1, "\n"))
+    }
+
+    co_index_list[[i+1]] <- rbms::collated_index(
+      data = site_indices,
+      s_sp = species_name,
+      bootID = i,
+      boot_ind = bootsample,
+      glm_weights = TRUE,
+      rm_zero = TRUE
+    )
+  }
+
+  # Combine all results
+  collated_result_all <- data.table::rbindlist(lapply(co_index_list, FUN = "[[", "col_index"))
+
+  # Extract original result (bootID=0)
+  collated_result <- list(
+    col_index = collated_result_all[collated_result_all$BOOTi == 0, ]
   )
 
-  if (is.null(collated_result)) {
-    stop("Collated index calculation returned NULL")
-  }
-
-  cat("Collated result structure:\n")
-  cat(paste("Names:", paste(names(collated_result), collapse = ", "), "\n"))
-  if ("col_index" %in% names(collated_result)) {
-    cat(paste("col_index rows:", nrow(collated_result$col_index), "\n"))
-  }
-
-  # Extract the collated indices from the result
-  # collated_result is a list with $col_index component
   if (is.null(collated_result$col_index) || nrow(collated_result$col_index) == 0) {
     stop("Collated index calculation returned no indices")
   }
 
+  cat(paste("Collated index calculated successfully with", n_boots, "bootstrap samples\n"))
   collated_success <- TRUE
 
 }, error = function(e) {
@@ -310,7 +337,7 @@ tryCatch({
   stop(e)
 })
 
-# Step 8: Extract and normalize indices
+# Step 9: Extract and normalize indices
 cat("Extracting and normalizing indices...\n")
 
 # Extract col_index (collated index) by year
@@ -367,7 +394,71 @@ normalized_indices <- setNames(
 
 cat(paste("Normalized to baseline year", baseline_year_used, "= 100\n"))
 
-# Step 9: Compile data quality metrics
+# Step 10: Calculate bootstrap confidence intervals
+cat("Calculating 95% bootstrap confidence intervals...\n")
+confidence_intervals <- list()
+
+if (exists("collated_result_all") && !is.null(collated_result_all) && nrow(collated_result_all) > 0) {
+  # Convert to data.table for easier manipulation
+  if (!inherits(collated_result_all, "data.table")) {
+    collated_result_all <- data.table::as.data.table(collated_result_all)
+  }
+
+  # Identify the index column
+  index_col <- NULL
+  if ("COL_INDEX" %in% colnames(collated_result_all)) {
+    index_col <- "COL_INDEX"
+  } else if ("col_index" %in% colnames(collated_result_all)) {
+    index_col <- "col_index"
+  } else if ("INDEX" %in% colnames(collated_result_all)) {
+    index_col <- "INDEX"
+  }
+
+  if (!is.null(index_col) && "M_YEAR" %in% colnames(collated_result_all) && "BOOTi" %in% colnames(collated_result_all)) {
+    # Filter to only bootstrap samples (exclude original bootID=0)
+    boot_only <- collated_result_all[collated_result_all$BOOTi != 0, ]
+
+    # Calculate quantiles for each year
+    unique_years <- unique(collated_by_year$year)
+
+    for (year in unique_years) {
+      year_boot_data <- boot_only[boot_only$M_YEAR == year, ]
+
+      if (nrow(year_boot_data) > 10) {  # Need enough bootstrap samples
+        # Get bootstrap index values
+        boot_indices <- year_boot_data[[index_col]]
+        boot_indices <- boot_indices[!is.na(boot_indices)]
+
+        if (length(boot_indices) > 10) {
+          # Calculate percentiles
+          ci_lower_raw <- quantile(boot_indices, 0.025, na.rm = TRUE)
+          ci_upper_raw <- quantile(boot_indices, 0.975, na.rm = TRUE)
+
+          # Normalize CI bounds the same way we normalized the point estimate
+          ci_lower_norm <- (ci_lower_raw / baseline_value) * 100
+          ci_upper_norm <- (ci_upper_raw / baseline_value) * 100
+
+          confidence_intervals[[as.character(year)]] <- list(
+            ci_lower = round(ci_lower_norm, 2),
+            ci_upper = round(ci_upper_norm, 2)
+          )
+        } else {
+          confidence_intervals[[as.character(year)]] <- list(ci_lower = NULL, ci_upper = NULL)
+        }
+      } else {
+        confidence_intervals[[as.character(year)]] <- list(ci_lower = NULL, ci_upper = NULL)
+      }
+    }
+
+    cat(paste("Calculated CIs for", length(confidence_intervals), "years\n"))
+  } else {
+    cat("Warning: Could not identify required columns for CI calculation\n")
+  }
+} else {
+  cat("Warning: No bootstrap results available for CI calculation\n")
+}
+
+# Step 11: Compile data quality metrics
 data_quality <- list(
   site_count = length(unique(visits$SITE_ID)),
   total_visits = nrow(visits),
@@ -378,20 +469,22 @@ data_quality <- list(
   baseline_year = baseline_year_used
 )
 
-# Step 10: Create output structure
+# Step 12: Create output structure
 output <- list(
   species = species_name,
   collated_indices = normalized_indices,
+  confidence_intervals = confidence_intervals,
   phenology_curves = pheno_curves,
   data_quality = data_quality,
   processing_info = list(
-    method = "rbms (GAM flight curves + GLM collated index)",
+    method = "rbms (GAM flight curves + GLM collated index + bootstrap CI)",
     timestamp = format(Sys.time(), "%Y-%m-%d %H:%M:%S"),
-    rbms_version = as.character(packageVersion("rbms"))
+    rbms_version = as.character(packageVersion("rbms")),
+    bootstrap_iterations = if(exists("n_boots")) n_boots else 0
   )
 )
 
-# Step 11: Write JSON output
+# Step 13: Write JSON output
 cat(paste("Writing output to:", output_file, "\n"))
 json_output <- jsonlite::toJSON(output, pretty = TRUE, auto_unbox = TRUE)
 write(json_output, file = output_file)
