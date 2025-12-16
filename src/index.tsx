@@ -1,6 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import { BrowserRouter, Routes, Route, useNavigate, useLocation, Navigate } from "react-router-dom";
+import { HashRouter, Routes, Route, useNavigate, useLocation, Navigate } from "react-router-dom";
 import MyApp from "./components/App";
 import SpeciesPage from "./components/SpeciesPage";
 import reportWebVitals from "./reportWebVitals";
@@ -75,6 +75,7 @@ function AppContent() {
       <Route path="/nocturnal" element={<MyApp datasetType="nocturnal" />} />
       <Route path="/transects" element={<MyApp datasetType="transects" />} />
       <Route path="/species/:speciesName" element={<SpeciesPage />} />
+      <Route path="*" element={<Navigate to="/diurnal" replace />} />
     </Routes>
   );
 }
@@ -84,7 +85,7 @@ if (!rootElement) throw new Error("Root element not found");
 const root = ReactDOM.createRoot(rootElement);
 root.render(
   <React.StrictMode>
-    <BrowserRouter>
+    <HashRouter>
       <App>
         <Layout>
           <AppHeader />
@@ -94,7 +95,7 @@ root.render(
           <Footer style={{ textAlign: "center" }}>Luís Cardoso ©{new Date().getFullYear()}</Footer>
         </Layout>
       </App>
-    </BrowserRouter>
+    </HashRouter>
   </React.StrictMode>
 );
 
