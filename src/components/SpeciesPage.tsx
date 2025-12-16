@@ -55,19 +55,19 @@ function SpeciesPage() {
   useEffect(() => {
     Promise.all([
       // eslint-disable-next-line no-undef
-      fetch("/data/timeline-data.json").then(res => res.json()),
+      fetch("data/timeline-data.json").then(res => res.json()),
       // eslint-disable-next-line no-undef
-      fetch("/data/processed-transects.json").then(res => res.json()),
+      fetch("data/processed-transects.json").then(res => res.json()),
       // eslint-disable-next-line no-undef
-      fetch("/data/flight-curves-data.json")
+      fetch("data/flight-curves-data.json")
         .then(res => res.json())
         .catch(() => null),
       // eslint-disable-next-line no-undef
-      fetch("/data/phenology-curves-data.json")
+      fetch("data/phenology-curves-data.json")
         .then(res => res.json())
         .catch(() => null),
       // eslint-disable-next-line no-undef
-      fetch("/data/gbi-data.json")
+      fetch("data/gbi-data.json")
         .then(res => res.json())
         .catch(() => null),
     ])
