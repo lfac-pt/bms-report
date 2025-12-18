@@ -34,6 +34,7 @@ import TransectTimeline from "./TransectTimeline";
 import SpeciesLink from "./SpeciesLink";
 import GrasslandButterflyIndex from "./charts/GrasslandButterflyIndex";
 import SpeciesTrendsSparklines from "./charts/SpeciesTrendsSparklines";
+import MunicipalitySpeciesMap from "./charts/MunicipalitySpeciesMap";
 
 const { Title } = Typography;
 
@@ -840,6 +841,11 @@ function ButterflyTransects() {
       {/* Species Trends Sparklines */}
       <div style={{ marginTop: 24 }}>
         <SpeciesTrendsSparklines />
+      </div>
+
+      {/* Municipality Species Map */}
+      <div style={{ marginTop: 24 }}>
+        <MunicipalitySpeciesMap />
       </div>
 
       {/* Search and Column Configuration */}
