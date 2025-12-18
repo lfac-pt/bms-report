@@ -827,7 +827,11 @@ async function calculateGBI(allData, transects, baselineYear = 2021) {
       const args = [visitsFile, countsFile, outputFile, species, baselineYear.toString()];
 
       try {
-        await rbmsUtils.callRbms(rScriptPath, args, 120000); // 2 minute timeout
+        await rbmsUtils.callRbms(rScriptPath, args, 120000, {
+          visitsFile,
+          countsFile,
+          sourceDataFiles: [ALL_DATA_FILE, METADATA_FILE]
+        }); // 2 minute timeout with caching
 
         // Read and validate results
         if (!fs.existsSync(outputFile)) {
@@ -1116,8 +1120,17 @@ async function calculateAllFlightCurves(allData, transects, baselineYear = 2021)
 
       const args = [visitsFile, countsFile, outputFile, species, baselineYear.toString()];
 
-      // Call rbms R script
-      await rbmsUtils.callRbms(rScriptPath, args, 120000);
+      // Call rbms R script with caching
+      await rbmsUtils.callRbms(rScriptPath, args, 120000, {
+        visitsFile,
+        countsFile,
+        sourceDataFiles: [ALL_DATA_FILE, METADATA_FILE]
+      });
+
+      // Check if R script created the output file
+      if (!fs.existsSync(outputFile)) {
+        throw new Error('R script did not produce output file (likely insufficient data for model fitting)');
+      }
 
       // Read and validate results
       const outputJSON = fs.readFileSync(outputFile, 'utf8');
@@ -1320,8 +1333,17 @@ async function calculateRegionalPhenology(allData, transects, baselineYear = 202
 
         const args = [visitsFile, countsFile, outputFile, species, baselineYear.toString()];
 
-        // Call rbms R script
-        await rbmsUtils.callRbms(rScriptPath, args, 120000);
+        // Call rbms R script with caching
+        await rbmsUtils.callRbms(rScriptPath, args, 120000, {
+          visitsFile,
+          countsFile,
+          sourceDataFiles: [ALL_DATA_FILE, METADATA_FILE]
+        });
+
+        // Check if R script created the output file
+        if (!fs.existsSync(outputFile)) {
+          throw new Error('R script did not produce output file (likely insufficient data for model fitting)');
+        }
 
         // Read results
         const outputJSON = fs.readFileSync(outputFile, 'utf8');
@@ -1797,6 +1819,14 @@ async function processData() {
 
   // Calculate and save GBI data
   const gbiData = await calculateGBI(allData, results, 2021);
+
+  // Calculate and save flight curves for all species
+  const flightCurvesData = await calculateAllFlightCurves(allData, results, 2021);
+
+  // Calculate and save regional phenology curves
+  const phenologyData = await calculateRegionalPhenology(allData, results, 2021);
+
+  // Write GBI data to file
   if (gbiData) {
     const GBI_OUTPUT_FILE = path.join(OUTPUT_DIR, 'gbi-data.json');
     console.log(`\nWriting GBI data to ${GBI_OUTPUT_FILE}...`);
@@ -1806,8 +1836,7 @@ async function processData() {
     console.warn('\nWarning: GBI calculation failed or returned no data');
   }
 
-  // Calculate and save flight curves for all species
-  const flightCurvesData = await calculateAllFlightCurves(allData, results, 2021);
+  // Write flight curves data to file
   if (flightCurvesData) {
     const FLIGHT_CURVES_OUTPUT_FILE = path.join(OUTPUT_DIR, 'flight-curves-data.json');
     console.log(`\nWriting flight curves data to ${FLIGHT_CURVES_OUTPUT_FILE}...`);
@@ -1818,8 +1847,7 @@ async function processData() {
     console.warn('\nWarning: Flight curves calculation failed or returned no data');
   }
 
-  // Calculate and save regional phenology curves
-  const phenologyData = await calculateRegionalPhenology(allData, results, 2021);
+  // Write phenology data to file
   if (phenologyData) {
     const PHENOLOGY_OUTPUT_FILE = path.join(OUTPUT_DIR, 'phenology-curves-data.json');
     console.log(`\nWriting regional phenology data to ${PHENOLOGY_OUTPUT_FILE}...`);

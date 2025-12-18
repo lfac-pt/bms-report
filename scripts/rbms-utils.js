@@ -12,6 +12,7 @@
 const fs = require('fs');
 const path = require('path');
 const { spawn } = require('child_process');
+const cacheUtils = require('./cache-utils');
 
 /**
  * Convert date from DD/MM/YYYY to YYYY-MM-DD format
@@ -211,11 +212,36 @@ function writeCSV(filepath, data, columns) {
  * @param {number} timeout - Timeout in milliseconds (default: 120000 = 2 minutes)
  * @returns {Promise<string>} Promise resolving to R script stdout
  */
-function callRbms(rScriptPath, args, timeout = 120000) {
+function callRbms(rScriptPath, args, timeout = 120000, options = {}) {
   return new Promise((resolve, reject) => {
     // Verify R script exists
     if (!fs.existsSync(rScriptPath)) {
       return reject(new Error(`R script not found: ${rScriptPath}`));
+    }
+
+    // Compute cache key and output file once (if caching enabled)
+    let cacheKey = null;
+    let outputFile = null;
+    if (options.visitsFile && options.countsFile) {
+      cacheKey = cacheUtils.generateCacheKey(
+        rScriptPath,
+        options.visitsFile,
+        options.countsFile,
+        args,
+        options  // Pass full options including sourceDataFiles
+      );
+
+      // Extract output file path from args (typically 3rd argument in rbms scripts)
+      outputFile = options.outputFile || (args.length > 2 ? args[2] : null);
+
+      const cachedResult = cacheUtils.getCachedResult(cacheKey, outputFile);
+      if (cachedResult) {
+        // console.log(`    [cache hit]`);
+        return resolve(cachedResult);
+      }
+
+      // Cache miss - will call R and cache the result
+      // console.log(`    [cache miss]`);
     }
 
     // Spawn R process
@@ -249,6 +275,10 @@ function callRbms(rScriptPath, args, timeout = 120000) {
       if (code !== 0) {
         reject(new Error(`R script exited with code ${code}:\n${stderr}`));
       } else {
+        // Cache the result if caching is enabled (reuse previously computed cacheKey)
+        if (cacheKey) {
+          cacheUtils.setCachedResult(cacheKey, stdout, outputFile);
+        }
         resolve(stdout);
       }
     });
