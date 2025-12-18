@@ -995,7 +995,10 @@ function ButterflyTransects() {
                       renderItem={item => (
                         <List.Item style={{ padding: "4px 0" }}>
                           <Typography.Text style={{ fontSize: 12, fontStyle: "italic" }}>
-                            {item.species} ({item.recordCount} {item.recordCount === 1 ? "registo" : "registos"}, {item.totalIndividuals} {item.totalIndividuals === 1 ? "indivíduo" : "indivíduos"})
+                            {item.species} ({item.recordCount}{" "}
+                            {item.recordCount === 1 ? "registo" : "registos"},{" "}
+                            {item.totalIndividuals}{" "}
+                            {item.totalIndividuals === 1 ? "indivíduo" : "indivíduos"})
                           </Typography.Text>
                         </List.Item>
                       )}
@@ -1023,15 +1026,17 @@ function ButterflyTransects() {
                           <ul style={{ paddingLeft: 20, marginBottom: 0 }}>
                             {metadata.corrections.map((correction, idx) => (
                               <li key={idx}>
-                                <Typography.Text delete style={{ color: '#999' }}>
+                                <Typography.Text delete style={{ color: "#999" }}>
                                   {correction.from}
                                 </Typography.Text>
-                                {' → '}
-                                <Typography.Text strong style={{ color: '#52c41a' }}>
+                                {" → "}
+                                <Typography.Text strong style={{ color: "#52c41a" }}>
                                   {correction.to}
                                 </Typography.Text>
                                 <Typography.Text type="secondary">
-                                  {' '}({correction.count} {correction.count === 1 ? 'registo' : 'registos'})
+                                  {" "}
+                                  ({correction.count}{" "}
+                                  {correction.count === 1 ? "registo" : "registos"})
                                 </Typography.Text>
                               </li>
                             ))}
@@ -1044,8 +1049,12 @@ function ButterflyTransects() {
                     title={null}
                     trigger="hover"
                   >
-                    <Typography.Link type="success" style={{ cursor: 'pointer' }}>
-                      ✓ {metadata.correctedRecords} {metadata.correctedRecords === 1 ? "registo foi corrigido" : "registos foram corrigidos"} (erros de nomenclatura)
+                    <Typography.Link type="success" style={{ cursor: "pointer" }}>
+                      ✓ {metadata.correctedRecords}{" "}
+                      {metadata.correctedRecords === 1
+                        ? "registo foi corrigido"
+                        : "registos foram corrigidos"}{" "}
+                      (erros de nomenclatura)
                     </Typography.Link>
                   </Popover>
                 </>
