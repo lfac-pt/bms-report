@@ -40,7 +40,7 @@ const MunicipalitySpeciesMap: React.FC = () => {
   const fetchGeoJSONData = async () => {
     try {
       // eslint-disable-next-line no-undef
-      const response = await fetch("/data/municipalities-species-map.geojson");
+      const response = await fetch("data/municipalities-species-map.geojson");
       const data: MunicipalityGeoJSON = await response.json();
 
       // Find max species count for color scaling

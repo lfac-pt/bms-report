@@ -45,7 +45,7 @@ const SpeciesTrendsSparklines: React.FC = () => {
   const fetchFlightCurvesData = async () => {
     try {
       // eslint-disable-next-line no-undef
-      const response = await fetch("/data/flight-curves-data.json");
+      const response = await fetch("data/flight-curves-data.json");
       const data: FlightCurvesData = await response.json();
 
       // Process species data
