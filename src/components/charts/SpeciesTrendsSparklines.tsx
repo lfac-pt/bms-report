@@ -220,6 +220,15 @@ const SpeciesTrendsSparklines: React.FC = () => {
     );
   }
 
+  // Calculate trend summary
+  const trendSummary = speciesTrends.reduce(
+    (acc, trend) => {
+      acc[trend.direction]++;
+      return acc;
+    },
+    { up: 0, stable: 0, down: 0 }
+  );
+
   const items = [
     {
       key: '1',
@@ -229,7 +238,11 @@ const SpeciesTrendsSparklines: React.FC = () => {
             Tendências por Espécie ({speciesTrends.length} espécies)
           </Title>
           <Text type="secondary" style={{ marginLeft: 16 }}>
-            Evolução dos índices anuais calculados com rbms, ordenados por tendência
+            <span style={{ color: '#52c41a' }}>↑ {trendSummary.up} a aumentar</span>
+            {' • '}
+            <span style={{ color: '#8c8c8c' }}>− {trendSummary.stable} estáveis</span>
+            {' • '}
+            <span style={{ color: '#ff4d4f' }}>↓ {trendSummary.down} a diminuir</span>
           </Text>
         </div>
       ),
