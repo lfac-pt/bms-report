@@ -33,6 +33,7 @@ import TransectMap from "./TransectMap";
 import TransectTimeline from "./TransectTimeline";
 import SpeciesLink from "./SpeciesLink";
 import GrasslandButterflyIndex from "./charts/GrasslandButterflyIndex";
+import SpeciesTrendsSparklines from "./charts/SpeciesTrendsSparklines";
 
 const { Title } = Typography;
 
@@ -834,6 +835,11 @@ function ButterflyTransects() {
       {/* Grassland Butterfly Index Chart */}
       <div style={{ marginTop: 24 }}>
         <GrasslandButterflyIndex gbiData={gbiData} loading={gbiLoading} />
+      </div>
+
+      {/* Species Trends Sparklines */}
+      <div style={{ marginTop: 24 }}>
+        <SpeciesTrendsSparklines />
       </div>
 
       {/* Search and Column Configuration */}
