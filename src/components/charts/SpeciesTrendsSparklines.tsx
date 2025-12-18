@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from 'react';
-import { Collapse, Typography, Row, Col, Spin } from 'antd';
-import { ArrowUpOutlined, ArrowDownOutlined, MinusOutlined } from '@ant-design/icons';
-import { Link } from 'react-router-dom';
+import React, { useEffect, useState } from "react";
+import { Collapse, Typography, Row, Col, Spin } from "antd";
+import { ArrowUpOutlined, ArrowDownOutlined, MinusOutlined } from "@ant-design/icons";
+import { Link } from "react-router-dom";
 
 const { Title, Text } = Typography;
 
@@ -29,7 +29,7 @@ interface SpeciesTrend {
   indices: number[];
   years: number[];
   trend: number; // Percentage change from first to last year
-  direction: 'up' | 'down' | 'stable';
+  direction: "up" | "down" | "stable";
   ciLower?: number[];
   ciUpper?: number[];
 }
@@ -44,7 +44,8 @@ const SpeciesTrendsSparklines: React.FC = () => {
 
   const fetchFlightCurvesData = async () => {
     try {
-      const response = await fetch('/data/flight-curves-data.json');
+      // eslint-disable-next-line no-undef
+      const response = await fetch("/data/flight-curves-data.json");
       const data: FlightCurvesData = await response.json();
 
       // Process species data
@@ -52,7 +53,9 @@ const SpeciesTrendsSparklines: React.FC = () => {
 
       Object.entries(data.species).forEach(([speciesName, speciesData]) => {
         const { collatedIndices, confidenceIntervals } = speciesData;
-        const years = Object.keys(collatedIndices).map(Number).sort((a, b) => a - b);
+        const years = Object.keys(collatedIndices)
+          .map(Number)
+          .sort((a, b) => a - b);
         const indices = years.map(year => collatedIndices[year.toString()]);
 
         if (indices.length >= 2) {
@@ -60,9 +63,9 @@ const SpeciesTrendsSparklines: React.FC = () => {
           const lastValue = indices[indices.length - 1];
           const trend = ((lastValue - firstValue) / firstValue) * 100;
 
-          let direction: 'up' | 'down' | 'stable' = 'stable';
-          if (trend > 5) direction = 'up';
-          else if (trend < -5) direction = 'down';
+          let direction: "up" | "down" | "stable" = "stable";
+          if (trend > 5) direction = "up";
+          else if (trend < -5) direction = "down";
 
           // Extract confidence intervals if available
           let ciLower: number[] | undefined;
@@ -79,7 +82,7 @@ const SpeciesTrendsSparklines: React.FC = () => {
             trend,
             direction,
             ciLower,
-            ciUpper
+            ciUpper,
           });
         }
       });
@@ -89,7 +92,8 @@ const SpeciesTrendsSparklines: React.FC = () => {
 
       setSpeciesTrends(trends);
     } catch (error) {
-      console.error('Error loading flight curves data:', error);
+      // eslint-disable-next-line no-console
+      console.error("Error loading flight curves data:", error);
     } finally {
       setLoading(false);
     }
@@ -119,18 +123,18 @@ const SpeciesTrendsSparklines: React.FC = () => {
       return `${x},${y}`;
     });
 
-    const pathData = `M ${points.join(' L ')}`;
+    const pathData = `M ${points.join(" L ")}`;
 
     // Determine color based on trend
-    let strokeColor = '#d9d9d9';
+    let strokeColor = "#d9d9d9";
     if (indices[indices.length - 1] > indices[0]) {
-      strokeColor = '#52c41a'; // Green for positive
+      strokeColor = "#52c41a"; // Green for positive
     } else if (indices[indices.length - 1] < indices[0]) {
-      strokeColor = '#ff4d4f'; // Red for negative
+      strokeColor = "#ff4d4f"; // Red for negative
     }
 
     // Generate CI band path if available
-    let ciBandPath = '';
+    let ciBandPath = "";
     if (ciLower && ciUpper && ciLower.length === indices.length) {
       const upperPoints = ciUpper.map((value, i) => {
         const x = (i / (ciUpper.length - 1)) * width;
@@ -143,20 +147,13 @@ const SpeciesTrendsSparklines: React.FC = () => {
         return `${x},${y}`;
       });
       // Create a closed path: upper line forward, lower line backward
-      ciBandPath = `M ${upperPoints.join(' L ')} L ${lowerPoints.reverse().join(' L ')} Z`;
+      ciBandPath = `M ${upperPoints.join(" L ")} L ${lowerPoints.reverse().join(" L ")} Z`;
     }
 
     return (
-      <svg width={width} height={height} style={{ display: 'block' }}>
+      <svg width={width} height={height} style={{ display: "block" }}>
         {/* Confidence interval band */}
-        {ciBandPath && (
-          <path
-            d={ciBandPath}
-            fill={strokeColor}
-            fillOpacity="0.15"
-            stroke="none"
-          />
-        )}
+        {ciBandPath && <path d={ciBandPath} fill={strokeColor} fillOpacity="0.15" stroke="none" />}
 
         {/* Main line */}
         <path
@@ -169,31 +166,23 @@ const SpeciesTrendsSparklines: React.FC = () => {
 
         {/* Dots at each data point */}
         {points.map((point, i) => {
-          const [x, y] = point.split(',').map(Number);
-          return (
-            <circle
-              key={i}
-              cx={x}
-              cy={y}
-              r="2"
-              fill={strokeColor}
-            />
-          );
+          const [x, y] = point.split(",").map(Number);
+          return <circle key={i} cx={x} cy={y} r="2" fill={strokeColor} />;
         })}
       </svg>
     );
   };
 
-  const getTrendIcon = (direction: 'up' | 'down' | 'stable') => {
-    if (direction === 'up') return <ArrowUpOutlined style={{ color: '#52c41a' }} />;
-    if (direction === 'down') return <ArrowDownOutlined style={{ color: '#ff4d4f' }} />;
-    return <MinusOutlined style={{ color: '#d9d9d9' }} />;
+  const getTrendIcon = (direction: "up" | "down" | "stable") => {
+    if (direction === "up") return <ArrowUpOutlined style={{ color: "#52c41a" }} />;
+    if (direction === "down") return <ArrowDownOutlined style={{ color: "#ff4d4f" }} />;
+    return <MinusOutlined style={{ color: "#d9d9d9" }} />;
   };
 
   const getTrendColor = (trend: number) => {
-    if (trend > 5) return '#52c41a';
-    if (trend < -5) return '#ff4d4f';
-    return '#8c8c8c';
+    if (trend > 5) return "#52c41a";
+    if (trend < -5) return "#ff4d4f";
+    return "#8c8c8c";
   };
 
   if (loading) {
@@ -201,16 +190,16 @@ const SpeciesTrendsSparklines: React.FC = () => {
       <Collapse
         items={[
           {
-            key: '1',
+            key: "1",
             label: (
               <div>
-                <Title level={4} style={{ marginBottom: 0, display: 'inline' }}>
+                <Title level={4} style={{ marginBottom: 0, display: "inline" }}>
                   Tendências por Espécie
                 </Title>
               </div>
             ),
             children: (
-              <div style={{ textAlign: 'center', padding: '40px 0' }}>
+              <div style={{ textAlign: "center", padding: "40px 0" }}>
                 <Spin size="large" />
               </div>
             ),
@@ -231,47 +220,47 @@ const SpeciesTrendsSparklines: React.FC = () => {
 
   const items = [
     {
-      key: '1',
+      key: "1",
       label: (
         <div>
-          <Title level={4} style={{ marginBottom: 0, display: 'inline' }}>
+          <Title level={4} style={{ marginBottom: 0, display: "inline" }}>
             Tendências por Espécie ({speciesTrends.length} espécies)
           </Title>
           <Text type="secondary" style={{ marginLeft: 16 }}>
-            <span style={{ color: '#52c41a' }}>↑ {trendSummary.up} a aumentar</span>
-            {' • '}
-            <span style={{ color: '#8c8c8c' }}>− {trendSummary.stable} estáveis</span>
-            {' • '}
-            <span style={{ color: '#ff4d4f' }}>↓ {trendSummary.down} a diminuir</span>
+            <span style={{ color: "#52c41a" }}>↑ {trendSummary.up} a aumentar</span>
+            {" • "}
+            <span style={{ color: "#8c8c8c" }}>− {trendSummary.stable} estáveis</span>
+            {" • "}
+            <span style={{ color: "#ff4d4f" }}>↓ {trendSummary.down} a diminuir</span>
           </Text>
         </div>
       ),
       children: (
-        <div style={{ maxHeight: 600, overflowY: 'auto' }}>
+        <div style={{ maxHeight: 600, overflowY: "auto" }}>
           <Row gutter={[16, 12]}>
             {speciesTrends.map((trend, idx) => (
               <Col span={24} key={idx}>
                 <Link
                   to={`/species/${encodeURIComponent(trend.species)}`}
                   style={{
-                    display: 'flex',
-                    alignItems: 'center',
-                    padding: '8px 12px',
+                    display: "flex",
+                    alignItems: "center",
+                    padding: "8px 12px",
                     borderRadius: 4,
-                    background: '#fafafa',
-                    border: '1px solid #f0f0f0',
-                    cursor: 'pointer',
-                    transition: 'all 0.2s',
-                    textDecoration: 'none',
-                    color: 'inherit',
+                    background: "#fafafa",
+                    border: "1px solid #f0f0f0",
+                    cursor: "pointer",
+                    transition: "all 0.2s",
+                    textDecoration: "none",
+                    color: "inherit",
                   }}
-                  onMouseEnter={(e) => {
-                    e.currentTarget.style.background = '#f5f5f5';
-                    e.currentTarget.style.borderColor = '#d9d9d9';
+                  onMouseEnter={e => {
+                    e.currentTarget.style.background = "#f5f5f5";
+                    e.currentTarget.style.borderColor = "#d9d9d9";
                   }}
-                  onMouseLeave={(e) => {
-                    e.currentTarget.style.background = '#fafafa';
-                    e.currentTarget.style.borderColor = '#f0f0f0';
+                  onMouseLeave={e => {
+                    e.currentTarget.style.background = "#fafafa";
+                    e.currentTarget.style.borderColor = "#f0f0f0";
                   }}
                 >
                   {/* Species name */}
@@ -291,11 +280,11 @@ const SpeciesTrendsSparklines: React.FC = () => {
                     style={{
                       marginLeft: 16,
                       minWidth: 90,
-                      textAlign: 'right',
-                      display: 'flex',
-                      alignItems: 'center',
-                      justifyContent: 'flex-end',
-                      gap: 8
+                      textAlign: "right",
+                      display: "flex",
+                      alignItems: "center",
+                      justifyContent: "flex-end",
+                      gap: 8,
                     }}
                   >
                     {getTrendIcon(trend.direction)}
@@ -303,10 +292,11 @@ const SpeciesTrendsSparklines: React.FC = () => {
                       strong
                       style={{
                         color: getTrendColor(trend.trend),
-                        fontSize: 14
+                        fontSize: 14,
                       }}
                     >
-                      {trend.trend > 0 ? '+' : ''}{trend.trend.toFixed(1)}%
+                      {trend.trend > 0 ? "+" : ""}
+                      {trend.trend.toFixed(1)}%
                     </Text>
                   </div>
                 </Link>
@@ -318,7 +308,7 @@ const SpeciesTrendsSparklines: React.FC = () => {
     },
   ];
 
-  return <Collapse items={items} defaultActiveKey={['1']} />;
+  return <Collapse items={items} defaultActiveKey={["1"]} />;
 };
 
 export default SpeciesTrendsSparklines;
