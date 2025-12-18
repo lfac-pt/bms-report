@@ -1,6 +1,6 @@
 {
   "metadata": {
-    "processingDate": "2025-12-18T00:01:55.939Z",
+    "processingDate": "2025-12-18T00:44:14.880Z",
     "baselineYear": 2021,
     "qualityCriteria": {
       "minYearsActive": 5,
@@ -559,7 +559,7 @@
       },
       "processingInfo": {
         "method": "rbms (GAM flight curves + GLM collated index + bootstrap CI)",
-        "timestamp": "2025-12-17 09:03:40",
+        "timestamp": "2025-12-18 00:21:48",
         "rbms_version": "1.2.0",
         "bootstrap_iterations": 500
       },
@@ -1060,7 +1060,7 @@
       },
       "processingInfo": {
         "method": "rbms (GAM flight curves + GLM collated index + bootstrap CI)",
-        "timestamp": "2025-12-17 09:04:18",
+        "timestamp": "2025-12-18 00:22:25",
         "rbms_version": "1.2.0",
         "bootstrap_iterations": 500
       },
@@ -1663,7 +1663,7 @@
       },
       "processingInfo": {
         "method": "rbms (GAM flight curves + GLM collated index + bootstrap CI)",
-        "timestamp": "2025-12-17 09:04:22",
+        "timestamp": "2025-12-18 00:22:29",
         "rbms_version": "1.2.0",
         "bootstrap_iterations": 500
       },
@@ -2266,7 +2266,7 @@
       },
       "processingInfo": {
         "method": "rbms (GAM flight curves + GLM collated index + bootstrap CI)",
-        "timestamp": "2025-12-17 09:04:26",
+        "timestamp": "2025-12-18 00:22:32",
         "rbms_version": "1.2.0",
         "bootstrap_iterations": 500
       },
@@ -2767,7 +2767,7 @@
       },
       "processingInfo": {
         "method": "rbms (GAM flight curves + GLM collated index + bootstrap CI)",
-        "timestamp": "2025-12-17 09:04:29",
+        "timestamp": "2025-12-18 00:22:36",
         "rbms_version": "1.2.0",
         "bootstrap_iterations": 500
       },
@@ -3166,7 +3166,7 @@
       },
       "processingInfo": {
         "method": "rbms (GAM flight curves + GLM collated index + bootstrap CI)",
-        "timestamp": "2025-12-17 09:04:33",
+        "timestamp": "2025-12-18 00:22:40",
         "rbms_version": "1.2.0",
         "bootstrap_iterations": 500
       },
@@ -3565,7 +3565,7 @@
       },
       "processingInfo": {
         "method": "rbms (GAM flight curves + GLM collated index + bootstrap CI)",
-        "timestamp": "2025-12-17 09:04:37",
+        "timestamp": "2025-12-18 00:22:44",
         "rbms_version": "1.2.0",
         "bootstrap_iterations": 500
       },
@@ -4168,7 +4168,7 @@
       },
       "processingInfo": {
         "method": "rbms (GAM flight curves + GLM collated index + bootstrap CI)",
-        "timestamp": "2025-12-17 09:04:41",
+        "timestamp": "2025-12-18 00:22:48",
         "rbms_version": "1.2.0",
         "bootstrap_iterations": 500
       },
@@ -4771,7 +4771,7 @@
       },
       "processingInfo": {
         "method": "rbms (GAM flight curves + GLM collated index + bootstrap CI)",
-        "timestamp": "2025-12-17 09:04:45",
+        "timestamp": "2025-12-18 00:22:51",
         "rbms_version": "1.2.0",
         "bootstrap_iterations": 500
       },
@@ -5374,7 +5374,7 @@
       },
       "processingInfo": {
         "method": "rbms (GAM flight curves + GLM collated index + bootstrap CI)",
-        "timestamp": "2025-12-17 09:03:44",
+        "timestamp": "2025-12-18 00:21:51",
         "rbms_version": "1.2.0",
         "bootstrap_iterations": 500
       },
@@ -5977,7 +5977,7 @@
       },
       "processingInfo": {
         "method": "rbms (GAM flight curves + GLM collated index + bootstrap CI)",
-        "timestamp": "2025-12-17 09:04:48",
+        "timestamp": "2025-12-18 00:22:55",
         "rbms_version": "1.2.0",
         "bootstrap_iterations": 500
       },
@@ -6376,7 +6376,7 @@
       },
       "processingInfo": {
         "method": "rbms (GAM flight curves + GLM collated index + bootstrap CI)",
-        "timestamp": "2025-12-17 09:04:52",
+        "timestamp": "2025-12-18 00:22:59",
         "rbms_version": "1.2.0",
         "bootstrap_iterations": 500
       },
@@ -6979,7 +6979,7 @@
       },
       "processingInfo": {
         "method": "rbms (GAM flight curves + GLM collated index + bootstrap CI)",
-        "timestamp": "2025-12-17 09:04:56",
+        "timestamp": "2025-12-18 00:23:03",
         "rbms_version": "1.2.0",
         "bootstrap_iterations": 500
       },
@@ -7582,7 +7582,7 @@
       },
       "processingInfo": {
         "method": "rbms (GAM flight curves + GLM collated index + bootstrap CI)",
-        "timestamp": "2025-12-17 09:05:00",
+        "timestamp": "2025-12-18 00:23:07",
         "rbms_version": "1.2.0",
         "bootstrap_iterations": 500
       },
@@ -8185,7 +8185,7 @@
       },
       "processingInfo": {
         "method": "rbms (GAM flight curves + GLM collated index + bootstrap CI)",
-        "timestamp": "2025-12-17 09:04:03",
+        "timestamp": "2025-12-18 00:22:10",
         "rbms_version": "1.2.0",
         "bootstrap_iterations": 500
       },
@@ -8584,7 +8584,7 @@
       },
       "processingInfo": {
         "method": "rbms (GAM flight curves + GLM collated index + bootstrap CI)",
-        "timestamp": "2025-12-17 09:05:03",
+        "timestamp": "2025-12-18 00:23:11",
         "rbms_version": "1.2.0",
         "bootstrap_iterations": 500
       },
@@ -9187,7 +9187,7 @@
       },
       "processingInfo": {
         "method": "rbms (GAM flight curves + GLM collated index + bootstrap CI)",
-        "timestamp": "2025-12-17 09:05:07",
+        "timestamp": "2025-12-18 00:23:14",
         "rbms_version": "1.2.0",
         "bootstrap_iterations": 500
       },
@@ -9688,7 +9688,7 @@
       },
       "processingInfo": {
         "method": "rbms (GAM flight curves + GLM collated index + bootstrap CI)",
-        "timestamp": "2025-12-17 09:05:10",
+        "timestamp": "2025-12-18 00:23:18",
         "rbms_version": "1.2.0",
         "bootstrap_iterations": 500
       },
@@ -10291,7 +10291,7 @@
       },
       "processingInfo": {
         "method": "rbms (GAM flight curves + GLM collated index + bootstrap CI)",
-        "timestamp": "2025-12-17 09:05:14",
+        "timestamp": "2025-12-18 00:23:22",
         "rbms_version": "1.2.0",
         "bootstrap_iterations": 500
       },
@@ -10792,7 +10792,7 @@
       },
       "processingInfo": {
         "method": "rbms (GAM flight curves + GLM collated index + bootstrap CI)",
-        "timestamp": "2025-12-17 09:05:18",
+        "timestamp": "2025-12-18 00:23:26",
         "rbms_version": "1.2.0",
         "bootstrap_iterations": 500
       },
@@ -11395,7 +11395,7 @@
       },
       "processingInfo": {
         "method": "rbms (GAM flight curves + GLM collated index + bootstrap CI)",
-        "timestamp": "2025-12-17 09:05:21",
+        "timestamp": "2025-12-18 00:23:30",
         "rbms_version": "1.2.0",
         "bootstrap_iterations": 500
       },
@@ -11998,7 +11998,7 @@
       },
       "processingInfo": {
         "method": "rbms (GAM flight curves + GLM collated index + bootstrap CI)",
-        "timestamp": "2025-12-17 09:05:25",
+        "timestamp": "2025-12-18 00:23:34",
         "rbms_version": "1.2.0",
         "bootstrap_iterations": 500
       },
@@ -12601,7 +12601,7 @@
       },
       "processingInfo": {
         "method": "rbms (GAM flight curves + GLM collated index + bootstrap CI)",
-        "timestamp": "2025-12-17 09:05:29",
+        "timestamp": "2025-12-18 00:23:37",
         "rbms_version": "1.2.0",
         "bootstrap_iterations": 500
       },
@@ -13102,7 +13102,7 @@
       },
       "processingInfo": {
         "method": "rbms (GAM flight curves + GLM collated index + bootstrap CI)",
-        "timestamp": "2025-12-17 09:05:33",
+        "timestamp": "2025-12-18 00:23:41",
         "rbms_version": "1.2.0",
         "bootstrap_iterations": 500
       },
@@ -13603,7 +13603,7 @@
       },
       "processingInfo": {
         "method": "rbms (GAM flight curves + GLM collated index + bootstrap CI)",
-        "timestamp": "2025-12-17 09:05:36",
+        "timestamp": "2025-12-18 00:23:45",
         "rbms_version": "1.2.0",
         "bootstrap_iterations": 500
       },
@@ -14206,7 +14206,7 @@
       },
       "processingInfo": {
         "method": "rbms (GAM flight curves + GLM collated index + bootstrap CI)",
-        "timestamp": "2025-12-17 09:05:40",
+        "timestamp": "2025-12-18 00:23:49",
         "rbms_version": "1.2.0",
         "bootstrap_iterations": 500
       },
@@ -14809,7 +14809,7 @@
       },
       "processingInfo": {
         "method": "rbms (GAM flight curves + GLM collated index + bootstrap CI)",
-        "timestamp": "2025-12-17 09:03:47",
+        "timestamp": "2025-12-18 00:21:55",
         "rbms_version": "1.2.0",
         "bootstrap_iterations": 500
       },
@@ -15412,7 +15412,7 @@
       },
       "processingInfo": {
         "method": "rbms (GAM flight curves + GLM collated index + bootstrap CI)",
-        "timestamp": "2025-12-17 09:05:44",
+        "timestamp": "2025-12-18 00:23:53",
         "rbms_version": "1.2.0",
         "bootstrap_iterations": 500
       },
@@ -16015,7 +16015,7 @@
       },
       "processingInfo": {
         "method": "rbms (GAM flight curves + GLM collated index + bootstrap CI)",
-        "timestamp": "2025-12-17 09:05:48",
+        "timestamp": "2025-12-18 00:23:57",
         "rbms_version": "1.2.0",
         "bootstrap_iterations": 500
       },
@@ -16516,7 +16516,7 @@
       },
       "processingInfo": {
         "method": "rbms (GAM flight curves + GLM collated index + bootstrap CI)",
-        "timestamp": "2025-12-17 09:05:51",
+        "timestamp": "2025-12-18 00:24:01",
         "rbms_version": "1.2.0",
         "bootstrap_iterations": 500
       },
@@ -17119,7 +17119,7 @@
       },
       "processingInfo": {
         "method": "rbms (GAM flight curves + GLM collated index + bootstrap CI)",
-        "timestamp": "2025-12-17 09:03:51",
+        "timestamp": "2025-12-18 00:21:59",
         "rbms_version": "1.2.0",
         "bootstrap_iterations": 500
       },
@@ -17620,7 +17620,7 @@
       },
       "processingInfo": {
         "method": "rbms (GAM flight curves + GLM collated index + bootstrap CI)",
-        "timestamp": "2025-12-17 09:04:07",
+        "timestamp": "2025-12-18 00:22:13",
         "rbms_version": "1.2.0",
         "bootstrap_iterations": 500
       },
@@ -18223,7 +18223,7 @@
       },
       "processingInfo": {
         "method": "rbms (GAM flight curves + GLM collated index + bootstrap CI)",
-        "timestamp": "2025-12-17 09:03:55",
+        "timestamp": "2025-12-18 00:22:02",
         "rbms_version": "1.2.0",
         "bootstrap_iterations": 500
       },
@@ -18826,7 +18826,7 @@
       },
       "processingInfo": {
         "method": "rbms (GAM flight curves + GLM collated index + bootstrap CI)",
-        "timestamp": "2025-12-17 09:05:55",
+        "timestamp": "2025-12-18 00:24:05",
         "rbms_version": "1.2.0",
         "bootstrap_iterations": 500
       },
@@ -19429,7 +19429,7 @@
       },
       "processingInfo": {
         "method": "rbms (GAM flight curves + GLM collated index + bootstrap CI)",
-        "timestamp": "2025-12-17 09:05:59",
+        "timestamp": "2025-12-18 00:24:09",
         "rbms_version": "1.2.0",
         "bootstrap_iterations": 500
       },
@@ -20032,7 +20032,7 @@
       },
       "processingInfo": {
         "method": "rbms (GAM flight curves + GLM collated index + bootstrap CI)",
-        "timestamp": "2025-12-17 09:06:02",
+        "timestamp": "2025-12-18 00:24:12",
         "rbms_version": "1.2.0",
         "bootstrap_iterations": 500
       },
@@ -20533,7 +20533,7 @@
       },
       "processingInfo": {
         "method": "rbms (GAM flight curves + GLM collated index + bootstrap CI)",
-        "timestamp": "2025-12-17 09:06:06",
+        "timestamp": "2025-12-18 00:24:16",
         "rbms_version": "1.2.0",
         "bootstrap_iterations": 500
       },
@@ -21136,7 +21136,7 @@
       },
       "processingInfo": {
         "method": "rbms (GAM flight curves + GLM collated index + bootstrap CI)",
-        "timestamp": "2025-12-17 09:06:10",
+        "timestamp": "2025-12-18 00:24:20",
         "rbms_version": "1.2.0",
         "bootstrap_iterations": 500
       },
@@ -21739,7 +21739,7 @@
       },
       "processingInfo": {
         "method": "rbms (GAM flight curves + GLM collated index + bootstrap CI)",
-        "timestamp": "2025-12-17 09:06:15",
+        "timestamp": "2025-12-18 00:24:24",
         "rbms_version": "1.2.0",
         "bootstrap_iterations": 500
       },
@@ -22342,7 +22342,7 @@
       },
       "processingInfo": {
         "method": "rbms (GAM flight curves + GLM collated index + bootstrap CI)",
-        "timestamp": "2025-12-17 09:06:19",
+        "timestamp": "2025-12-18 00:24:28",
         "rbms_version": "1.2.0",
         "bootstrap_iterations": 500
       },
@@ -22945,7 +22945,7 @@
       },
       "processingInfo": {
         "method": "rbms (GAM flight curves + GLM collated index + bootstrap CI)",
-        "timestamp": "2025-12-17 09:06:23",
+        "timestamp": "2025-12-18 00:24:32",
         "rbms_version": "1.2.0",
         "bootstrap_iterations": 500
       },
@@ -23548,7 +23548,7 @@
       },
       "processingInfo": {
         "method": "rbms (GAM flight curves + GLM collated index + bootstrap CI)",
-        "timestamp": "2025-12-17 09:06:27",
+        "timestamp": "2025-12-18 00:24:36",
         "rbms_version": "1.2.0",
         "bootstrap_iterations": 500
       },
@@ -24151,7 +24151,7 @@
       },
       "processingInfo": {
         "method": "rbms (GAM flight curves + GLM collated index + bootstrap CI)",
-        "timestamp": "2025-12-17 09:06:31",
+        "timestamp": "2025-12-18 00:24:40",
         "rbms_version": "1.2.0",
         "bootstrap_iterations": 500
       },
@@ -24754,7 +24754,7 @@
       },
       "processingInfo": {
         "method": "rbms (GAM flight curves + GLM collated index + bootstrap CI)",
-        "timestamp": "2025-12-17 09:06:35",
+        "timestamp": "2025-12-18 00:24:44",
         "rbms_version": "1.2.0",
         "bootstrap_iterations": 500
       },
@@ -25357,7 +25357,7 @@
       },
       "processingInfo": {
         "method": "rbms (GAM flight curves + GLM collated index + bootstrap CI)",
-        "timestamp": "2025-12-17 09:03:59",
+        "timestamp": "2025-12-18 00:22:06",
         "rbms_version": "1.2.0",
         "bootstrap_iterations": 500
       },
@@ -25756,7 +25756,7 @@
       },
       "processingInfo": {
         "method": "rbms (GAM flight curves + GLM collated index + bootstrap CI)",
-        "timestamp": "2025-12-17 09:06:39",
+        "timestamp": "2025-12-18 00:24:47",
         "rbms_version": "1.2.0",
         "bootstrap_iterations": 500
       },
@@ -26359,7 +26359,7 @@
       },
       "processingInfo": {
         "method": "rbms (GAM flight curves + GLM collated index + bootstrap CI)",
-        "timestamp": "2025-12-17 09:06:43",
+        "timestamp": "2025-12-18 00:24:51",
         "rbms_version": "1.2.0",
         "bootstrap_iterations": 500
       },
@@ -26962,7 +26962,7 @@
       },
       "processingInfo": {
         "method": "rbms (GAM flight curves + GLM collated index + bootstrap CI)",
-        "timestamp": "2025-12-17 09:06:47",
+        "timestamp": "2025-12-18 00:24:55",
         "rbms_version": "1.2.0",
         "bootstrap_iterations": 500
       },
@@ -27565,7 +27565,7 @@
       },
       "processingInfo": {
         "method": "rbms (GAM flight curves + GLM collated index + bootstrap CI)",
-        "timestamp": "2025-12-17 09:06:51",
+        "timestamp": "2025-12-18 00:24:59",
         "rbms_version": "1.2.0",
         "bootstrap_iterations": 500
       },
@@ -28168,7 +28168,7 @@
       },
       "processingInfo": {
         "method": "rbms (GAM flight curves + GLM collated index + bootstrap CI)",
-        "timestamp": "2025-12-17 09:06:55",
+        "timestamp": "2025-12-18 00:25:03",
         "rbms_version": "1.2.0",
         "bootstrap_iterations": 500
       },
@@ -28771,7 +28771,7 @@
       },
       "processingInfo": {
         "method": "rbms (GAM flight curves + GLM collated index + bootstrap CI)",
-        "timestamp": "2025-12-17 09:06:59",
+        "timestamp": "2025-12-18 00:25:07",
         "rbms_version": "1.2.0",
         "bootstrap_iterations": 500
       },
@@ -29374,7 +29374,7 @@
       },
       "processingInfo": {
         "method": "rbms (GAM flight curves + GLM collated index + bootstrap CI)",
-        "timestamp": "2025-12-17 09:04:11",
+        "timestamp": "2025-12-18 00:22:17",
         "rbms_version": "1.2.0",
         "bootstrap_iterations": 500
       },
@@ -29977,7 +29977,7 @@
       },
       "processingInfo": {
         "method": "rbms (GAM flight curves + GLM collated index + bootstrap CI)",
-        "timestamp": "2025-12-17 09:04:15",
+        "timestamp": "2025-12-18 00:22:21",
         "rbms_version": "1.2.0",
         "bootstrap_iterations": 500
       },
@@ -30478,7 +30478,7 @@
       },
       "processingInfo": {
         "method": "rbms (GAM flight curves + GLM collated index + bootstrap CI)",
-        "timestamp": "2025-12-17 09:07:03",
+        "timestamp": "2025-12-18 00:25:11",
         "rbms_version": "1.2.0",
         "bootstrap_iterations": 500
       },
@@ -31081,7 +31081,7 @@
       },
       "processingInfo": {
         "method": "rbms (GAM flight curves + GLM collated index + bootstrap CI)",
-        "timestamp": "2025-12-17 09:07:07",
+        "timestamp": "2025-12-18 00:25:15",
         "rbms_version": "1.2.0",
         "bootstrap_iterations": 500
       },
@@ -31684,7 +31684,7 @@
       },
       "processingInfo": {
         "method": "rbms (GAM flight curves + GLM collated index + bootstrap CI)",
-        "timestamp": "2025-12-17 09:07:11",
+        "timestamp": "2025-12-18 00:25:19",
         "rbms_version": "1.2.0",
         "bootstrap_iterations": 500
       },
@@ -32287,7 +32287,7 @@
       },
       "processingInfo": {
         "method": "rbms (GAM flight curves + GLM collated index + bootstrap CI)",
-        "timestamp": "2025-12-17 09:07:15",
+        "timestamp": "2025-12-18 00:25:23",
         "rbms_version": "1.2.0",
         "bootstrap_iterations": 500
       },

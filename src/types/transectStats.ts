@@ -29,6 +29,12 @@ export interface FilteredSpeciesEntry {
   totalIndividuals: number;
 }
 
+export interface SpeciesCorrection {
+  from: string;
+  to: string;
+  count: number;
+}
+
 export interface ProcessingMetadata {
   totalValidTransects: number;
   activeTransects: number;
@@ -37,6 +43,8 @@ export interface ProcessingMetadata {
   filteredSpecies: FilteredSpeciesEntry[];
   totalButterfliesValidSpecies: number;
   totalButterfliesAllSpecies: number;
+  correctedRecords?: number;
+  corrections?: SpeciesCorrection[];
 }
 
 export interface TransectData {

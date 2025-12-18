@@ -1590,6 +1590,42 @@ async function processData() {
   // Read all butterfly observation data
   const allData = readCSV(ALL_DATA_FILE);
 
+  // Correct common species name typos
+  const SPECIES_NAME_CORRECTIONS = {
+    'Boloria selenis': 'Boloria selene',
+    'Apatura iris': 'Apatura ilia',
+    'Colias sp.': 'Colias crocea'
+  };
+
+  let correctedRecordsCount = 0;
+  const correctionDetails = {}; // Track count per correction
+
+  allData.forEach(row => {
+    const speciesName = row['Preferred Species Name'];
+    if (speciesName && SPECIES_NAME_CORRECTIONS[speciesName]) {
+      const correctedName = SPECIES_NAME_CORRECTIONS[speciesName];
+      row['Preferred Species Name'] = correctedName;
+      correctedRecordsCount++;
+
+      // Track this correction
+      if (!correctionDetails[speciesName]) {
+        correctionDetails[speciesName] = {
+          from: speciesName,
+          to: correctedName,
+          count: 0
+        };
+      }
+      correctionDetails[speciesName].count++;
+    }
+  });
+
+  if (correctedRecordsCount > 0) {
+    console.log(`\nCorrected ${correctedRecordsCount} species name typos`);
+    Object.values(correctionDetails).forEach(detail => {
+      console.log(`  ${detail.from} → ${detail.to}: ${detail.count} ${detail.count === 1 ? 'record' : 'records'}`);
+    });
+  }
+
   // Create a map of metadata by Transect ID for quick lookup
   const metadataMap = {};
   validTransects.forEach(row => {
@@ -1799,6 +1835,8 @@ async function processData() {
       filteredSpecies: filteredSpeciesList,
       totalButterfliesValidSpecies,
       totalButterfliesAllSpecies,
+      correctedRecords: correctedRecordsCount,
+      corrections: Object.values(correctionDetails),
     },
   };
 

@@ -1010,6 +1010,46 @@ function ButterflyTransects() {
                   Clique para ver a lista completa
                 </Typography.Link>
               </Popover>
+              {metadata.correctedRecords && metadata.correctedRecords > 0 && (
+                <>
+                  <br />
+                  <Popover
+                    content={
+                      <div style={{ maxWidth: 400 }}>
+                        <Typography.Title level={5} style={{ marginTop: 0 }}>
+                          Correções de Nomenclatura
+                        </Typography.Title>
+                        {metadata.corrections && metadata.corrections.length > 0 ? (
+                          <ul style={{ paddingLeft: 20, marginBottom: 0 }}>
+                            {metadata.corrections.map((correction, idx) => (
+                              <li key={idx}>
+                                <Typography.Text delete style={{ color: '#999' }}>
+                                  {correction.from}
+                                </Typography.Text>
+                                {' → '}
+                                <Typography.Text strong style={{ color: '#52c41a' }}>
+                                  {correction.to}
+                                </Typography.Text>
+                                <Typography.Text type="secondary">
+                                  {' '}({correction.count} {correction.count === 1 ? 'registo' : 'registos'})
+                                </Typography.Text>
+                              </li>
+                            ))}
+                          </ul>
+                        ) : (
+                          <Typography.Text>Sem detalhes disponíveis</Typography.Text>
+                        )}
+                      </div>
+                    }
+                    title={null}
+                    trigger="hover"
+                  >
+                    <Typography.Link type="success" style={{ cursor: 'pointer' }}>
+                      ✓ {metadata.correctedRecords} {metadata.correctedRecords === 1 ? "registo foi corrigido" : "registos foram corrigidos"} (erros de nomenclatura)
+                    </Typography.Link>
+                  </Popover>
+                </>
+              )}
             </span>
           }
           type="warning"

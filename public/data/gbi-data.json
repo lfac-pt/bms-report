@@ -188,8 +188,8 @@
         "totalVisits": 174,
         "speciesWithData": 10
       },
-      "ci_lower": 61.61,
-      "ci_upper": 150.27
+      "ci_lower": 61.34,
+      "ci_upper": 146.04
     },
     "2023": {
       "year": 2023,
@@ -211,8 +211,8 @@
         "totalVisits": 194,
         "speciesWithData": 10
       },
-      "ci_lower": 29.66,
-      "ci_upper": 117.15
+      "ci_lower": 28.31,
+      "ci_upper": 120.12
     },
     "2024": {
       "year": 2024,
@@ -234,8 +234,8 @@
         "totalVisits": 187,
         "speciesWithData": 10
       },
-      "ci_lower": 53.92,
-      "ci_upper": 124.29
+      "ci_lower": 51.35,
+      "ci_upper": 124.55
     },
     "2025": {
       "year": 2025,
@@ -257,8 +257,8 @@
         "totalVisits": 180,
         "speciesWithData": 10
       },
-      "ci_lower": 32.35,
-      "ci_upper": 116.59
+      "ci_lower": 31.68,
+      "ci_upper": 121.65
     }
   },
   "speciesTrends": {

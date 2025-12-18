@@ -2088,6 +2088,12 @@
         "totalVisits": 181
       },
       {
+        "species": "Apatura ilia",
+        "frequency": 2.209944751381215,
+        "visitCount": 4,
+        "totalVisits": 181
+      },
+      {
         "species": "Hipparchia hermione",
         "frequency": 2.209944751381215,
         "visitCount": 4,
@@ -2119,12 +2125,6 @@
       },
       {
         "species": "Vanessa virginiensis",
-        "frequency": 1.6574585635359116,
-        "visitCount": 3,
-        "totalVisits": 181
-      },
-      {
-        "species": "Apatura ilia",
         "frequency": 1.6574585635359116,
         "visitCount": 3,
         "totalVisits": 181
@@ -3340,6 +3340,12 @@
         "totalVisits": 184
       },
       {
+        "species": "Apatura ilia",
+        "frequency": 1.0869565217391304,
+        "visitCount": 2,
+        "totalVisits": 184
+      },
+      {
         "species": "Speyeria aglaja",
         "frequency": 1.0869565217391304,
         "visitCount": 2,
@@ -3389,12 +3395,6 @@
       },
       {
         "species": "Tomares ballus",
-        "frequency": 0.5434782608695652,
-        "visitCount": 1,
-        "totalVisits": 184
-      },
-      {
-        "species": "Apatura ilia",
         "frequency": 0.5434782608695652,
         "visitCount": 1,
         "totalVisits": 184
@@ -3846,6 +3846,12 @@
         "totalVisits": 179
       },
       {
+        "species": "Apatura ilia",
+        "frequency": 2.2346368715083798,
+        "visitCount": 4,
+        "totalVisits": 179
+      },
+      {
         "species": "Coenonympha arcania",
         "frequency": 2.2346368715083798,
         "visitCount": 4,
@@ -3894,12 +3900,6 @@
         "totalVisits": 179
       },
       {
-        "species": "Apatura ilia",
-        "frequency": 1.675977653631285,
-        "visitCount": 3,
-        "totalVisits": 179
-      },
-      {
         "species": "Erynnis tages",
         "frequency": 1.1173184357541899,
         "visitCount": 2,
@@ -3943,6 +3943,12 @@
       },
       {
         "species": "Satyrus actaea",
+        "frequency": 0.5586592178770949,
+        "visitCount": 1,
+        "totalVisits": 179
+      },
+      {
+        "species": "Boloria selene",
         "frequency": 0.5586592178770949,
         "visitCount": 1,
         "totalVisits": 179
@@ -6538,9 +6544,10 @@
     "2022": [
       {
         "transectId": "220698",
-        "diversityCount": 46,
+        "diversityCount": 47,
         "speciesList": [
           "Anthocharis cardamines",
+          "Apatura ilia",
           "Aporia crataegi",
           "Argynnis pandora",
           "Aricia cramera",
@@ -10715,6 +10722,32 @@
         ]
       },
       {
+        "transectId": "222006",
+        "diversityCount": 20,
+        "speciesList": [
+          "Aglais io",
+          "Apatura ilia",
+          "Coenonympha pamphilus",
+          "Colias crocea",
+          "Euphydryas aurinia",
+          "Glaucopsyche melanops",
+          "Gonepteryx rhamni",
+          "Iphiclides feisthamelii",
+          "Leptotes pirithous",
+          "Maniola jurtina",
+          "Papilio machaon",
+          "Pararge aegeria",
+          "Pieris brassicae",
+          "Pieris napi",
+          "Pieris rapae",
+          "Polyommatus icarus",
+          "Pontia daplidice",
+          "Pyronia tithonus",
+          "Satyrium esculi",
+          "Vanessa cardui"
+        ]
+      },
+      {
         "transectId": "228032",
         "diversityCount": 20,
         "speciesList": [
@@ -10868,31 +10901,6 @@
           "Thymelicus acteon",
           "Thymelicus sylvestris",
           "Zizeeria knysna"
-        ]
-      },
-      {
-        "transectId": "222006",
-        "diversityCount": 19,
-        "speciesList": [
-          "Aglais io",
-          "Coenonympha pamphilus",
-          "Colias crocea",
-          "Euphydryas aurinia",
-          "Glaucopsyche melanops",
-          "Gonepteryx rhamni",
-          "Iphiclides feisthamelii",
-          "Leptotes pirithous",
-          "Maniola jurtina",
-          "Papilio machaon",
-          "Pararge aegeria",
-          "Pieris brassicae",
-          "Pieris napi",
-          "Pieris rapae",
-          "Polyommatus icarus",
-          "Pontia daplidice",
-          "Pyronia tithonus",
-          "Satyrium esculi",
-          "Vanessa cardui"
         ]
       },
       {
@@ -11901,6 +11909,49 @@
         ]
       },
       {
+        "transectId": "228413",
+        "diversityCount": 37,
+        "speciesList": [
+          "Arethusana arethusa",
+          "Argynnis paphia",
+          "Aricia cramera",
+          "Boloria selene",
+          "Brintesia circe",
+          "Celastrina argiolus",
+          "Coenonympha arcania",
+          "Coenonympha dorus",
+          "Coenonympha glycerion",
+          "Coenonympha pamphilus",
+          "Colias crocea",
+          "Euphydryas aurinia",
+          "Gonepteryx rhamni",
+          "Hipparchia statilinus",
+          "Iphiclides feisthamelii",
+          "Lampides boeticus",
+          "Lasiommata megera",
+          "Leptidea sinapis",
+          "Leptotes pirithous",
+          "Lycaena alciphron",
+          "Lycaena phlaeas",
+          "Maniola jurtina",
+          "Melanargia lachesis",
+          "Melitaea celadussa",
+          "Melitaea deione",
+          "Melitaea parthenoides",
+          "Melitaea phoebe",
+          "Ochlodes sylvanus",
+          "Pararge aegeria",
+          "Pieris rapae",
+          "Plebejus argus",
+          "Polyommatus icarus",
+          "Pyrgus malvoides",
+          "Pyronia cecilia",
+          "Pyronia tithonus",
+          "Spialia sertorius",
+          "Thymelicus sylvestris"
+        ]
+      },
+      {
         "transectId": "330931",
         "diversityCount": 36,
         "speciesList": [
@@ -11940,48 +11991,6 @@
           "Vanessa cardui",
           "Vanessa virginiensis",
           "Zerynthia rumina"
-        ]
-      },
-      {
-        "transectId": "228413",
-        "diversityCount": 36,
-        "speciesList": [
-          "Arethusana arethusa",
-          "Argynnis paphia",
-          "Aricia cramera",
-          "Brintesia circe",
-          "Celastrina argiolus",
-          "Coenonympha arcania",
-          "Coenonympha dorus",
-          "Coenonympha glycerion",
-          "Coenonympha pamphilus",
-          "Colias crocea",
-          "Euphydryas aurinia",
-          "Gonepteryx rhamni",
-          "Hipparchia statilinus",
-          "Iphiclides feisthamelii",
-          "Lampides boeticus",
-          "Lasiommata megera",
-          "Leptidea sinapis",
-          "Leptotes pirithous",
-          "Lycaena alciphron",
-          "Lycaena phlaeas",
-          "Maniola jurtina",
-          "Melanargia lachesis",
-          "Melitaea celadussa",
-          "Melitaea deione",
-          "Melitaea parthenoides",
-          "Melitaea phoebe",
-          "Ochlodes sylvanus",
-          "Pararge aegeria",
-          "Pieris rapae",
-          "Plebejus argus",
-          "Polyommatus icarus",
-          "Pyrgus malvoides",
-          "Pyronia cecilia",
-          "Pyronia tithonus",
-          "Spialia sertorius",
-          "Thymelicus sylvestris"
         ]
       },
       {
@@ -12962,6 +12971,29 @@
         ]
       },
       {
+        "transectId": "222006",
+        "diversityCount": 17,
+        "speciesList": [
+          "Apatura ilia",
+          "Celastrina argiolus",
+          "Coenonympha pamphilus",
+          "Colias crocea",
+          "Euphydryas aurinia",
+          "Glaucopsyche melanops",
+          "Iphiclides feisthamelii",
+          "Leptotes pirithous",
+          "Maniola jurtina",
+          "Papilio machaon",
+          "Pararge aegeria",
+          "Pieris brassicae",
+          "Pieris napi",
+          "Pieris rapae",
+          "Pyronia tithonus",
+          "Satyrium esculi",
+          "Thymelicus acteon"
+        ]
+      },
+      {
         "transectId": "243008",
         "diversityCount": 17,
         "speciesList": [
@@ -13004,28 +13036,6 @@
           "Vanessa atalanta",
           "Vanessa cardui",
           "Vanessa virginiensis"
-        ]
-      },
-      {
-        "transectId": "222006",
-        "diversityCount": 16,
-        "speciesList": [
-          "Celastrina argiolus",
-          "Coenonympha pamphilus",
-          "Colias crocea",
-          "Euphydryas aurinia",
-          "Glaucopsyche melanops",
-          "Iphiclides feisthamelii",
-          "Leptotes pirithous",
-          "Maniola jurtina",
-          "Papilio machaon",
-          "Pararge aegeria",
-          "Pieris brassicae",
-          "Pieris napi",
-          "Pieris rapae",
-          "Pyronia tithonus",
-          "Satyrium esculi",
-          "Thymelicus acteon"
         ]
       },
       {
@@ -91370,7 +91380,7 @@
       "16/06/2022": [
         [
           "220698",
-          "Apatura iris",
+          "Apatura ilia",
           1
         ],
         [
@@ -153056,7 +153066,7 @@
         ],
         [
           "340164",
-          "Colias sp.",
+          "Colias crocea",
           1
         ],
         [
@@ -155324,7 +155334,7 @@
         ],
         [
           "340164",
-          "Colias sp.",
+          "Colias crocea",
           1
         ],
         [
@@ -161802,7 +161812,7 @@
         ],
         [
           "222006",
-          "Apatura iris",
+          "Apatura ilia",
           1
         ],
         [
@@ -220421,7 +220431,7 @@
         ],
         [
           "222006",
-          "Apatura iris",
+          "Apatura ilia",
           1
         ],
         [
@@ -231909,7 +231919,7 @@
         ],
         [
           "228413",
-          "Boloria selenis",
+          "Boloria selene",
           1
         ],
         [
