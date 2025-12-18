@@ -1565,7 +1565,7 @@ function processTimelineData(allData) {
 /**
  * Process municipality GeoJSON with species counts
  */
-function processMunicipalityGeoJSON(transects) {
+function processMunicipalityGeoJSON(transects, allData) {
   console.log('\n=== Processing municipality species map ===');
 
   // Check if input GeoJSON exists
@@ -1575,41 +1575,78 @@ function processMunicipalityGeoJSON(transects) {
     return;
   }
 
-  // Aggregate species by municipality
-  console.log('Aggregating species by municipality...');
+  // Aggregate species by municipality and month
+  console.log('Aggregating species by municipality and month...');
   const municipalityData = {};
 
+  // Build a map of transect ID to municipality name
+  const transectToMunicipality = {};
   transects.forEach(transect => {
-    const concelho = transect.concelho;
-    if (!concelho) return;
+    if (transect.concelho) {
+      const normalizedName = transect.concelho
+        .normalize('NFD')
+        .replace(/[\u0300-\u036f]/g, '')
+        .toUpperCase();
+      transectToMunicipality[transect.transectId] = {
+        normalizedName,
+        originalName: transect.concelho,
+        transectName: transect.transectName,
+        isActive: transect.isActive
+      };
+    }
+  });
 
-    // Normalize concelho name (lowercase, remove accents)
-    const normalizedName = concelho
-      .normalize('NFD')
-      .replace(/[\u0300-\u036f]/g, '')
-      .toUpperCase();
-
+  // Initialize municipality data with monthly breakdowns
+  Object.values(transectToMunicipality).forEach(({ normalizedName, originalName, transectName, isActive }) => {
     if (!municipalityData[normalizedName]) {
       municipalityData[normalizedName] = {
-        originalName: concelho,
+        originalName,
         speciesSet: new Set(),
+        monthlySpecies: {}, // { 1: Set(), 2: Set(), ... 12: Set() }
         transectCount: 0,
         transects: []
       };
+      // Initialize monthly sets
+      for (let month = 1; month <= 12; month++) {
+        municipalityData[normalizedName].monthlySpecies[month] = new Set();
+      }
     }
 
-    // Add all species from this transect (speciesList contains only valid species)
-    transect.speciesList.forEach(species => {
-      municipalityData[normalizedName].speciesSet.add(species);
-    });
+    // Avoid duplicate transects
+    const transectExists = municipalityData[normalizedName].transects.some(t => t.name === transectName);
+    if (!transectExists) {
+      municipalityData[normalizedName].transects.push({
+        name: transectName,
+        isActive
+      });
+      municipalityData[normalizedName].transectCount++;
+    }
+  });
 
-    // Store transect information
-    municipalityData[normalizedName].transects.push({
-      name: transect.transectName,
-      isActive: transect.isActive
-    });
+  // Aggregate species from observations
+  allData.forEach(row => {
+    const transectId = row['Transect ID'];
+    const species = row['Preferred Species Name'];
+    const dateStr = row['Date']; // Format: DD/MM/YYYY
 
-    municipalityData[normalizedName].transectCount++;
+    if (!transectId || !species || !dateStr) return;
+
+    const municipalityInfo = transectToMunicipality[transectId];
+    if (!municipalityInfo) return;
+
+    const { normalizedName } = municipalityInfo;
+
+    // Parse month from date (DD/MM/YYYY)
+    const dateParts = dateStr.split('/');
+    if (dateParts.length === 3) {
+      const month = parseInt(dateParts[1], 10);
+      if (month >= 1 && month <= 12) {
+        // Add to overall species set
+        municipalityData[normalizedName].speciesSet.add(species);
+        // Add to month-specific set
+        municipalityData[normalizedName].monthlySpecies[month].add(species);
+      }
+    }
   });
 
   console.log(`  - Found ${Object.keys(municipalityData).length} municipalities with data`);
@@ -1641,19 +1678,33 @@ function processMunicipalityGeoJSON(transects) {
     const data = municipalityData[normalizedName];
 
     if (data) {
+      // Convert monthly species Sets to counts
+      const monthlySpeciesCount = {};
+      for (let month = 1; month <= 12; month++) {
+        monthlySpeciesCount[month] = data.monthlySpecies[month].size;
+      }
+
       feature.properties = {
         Concelho: concelhoName,
         speciesCount: data.speciesSet.size,
         transectCount: data.transectCount,
-        transects: data.transects
+        transects: data.transects,
+        monthlySpeciesCount // { 1: 5, 2: 8, ... 12: 3 }
       };
       municipalitiesWithData++;
     } else {
+      // Initialize empty monthly data
+      const monthlySpeciesCount = {};
+      for (let month = 1; month <= 12; month++) {
+        monthlySpeciesCount[month] = 0;
+      }
+
       feature.properties = {
         Concelho: concelhoName,
         speciesCount: 0,
         transectCount: 0,
-        transects: []
+        transects: [],
+        monthlySpeciesCount
       };
       municipalitiesWithoutData++;
     }
@@ -2055,7 +2106,7 @@ async function processData() {
   }
 
   // Process municipality species map
-  processMunicipalityGeoJSON(results);
+  processMunicipalityGeoJSON(results, allData);
 
   console.log('\n✓ Processing complete!');
   console.log(`\nSummary:`);

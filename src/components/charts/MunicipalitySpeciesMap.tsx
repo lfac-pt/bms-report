@@ -1,5 +1,6 @@
-import React, { useEffect, useState } from "react";
-import { Collapse, Typography, Spin } from "antd";
+import React, { useEffect, useState, useRef } from "react";
+import { Collapse, Typography, Spin, Slider, Button, Checkbox } from "antd";
+import { PlayCircleOutlined, PauseCircleOutlined } from "@ant-design/icons";
 import { MapContainer, TileLayer, GeoJSON } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
 
@@ -15,6 +16,7 @@ interface MunicipalityProperties {
   speciesCount: number;
   transectCount: number;
   transects: TransectInfo[];
+  monthlySpeciesCount: { [month: number]: number }; // { 1: 5, 2: 8, ... 12: 3 }
 }
 
 interface GeoJSONFeature {
@@ -28,13 +30,44 @@ interface MunicipalityGeoJSON {
   features: GeoJSONFeature[];
 }
 
+const MONTH_NAMES = [
+  "Jan",
+  "Fev",
+  "Mar",
+  "Abr",
+  "Mai",
+  "Jun",
+  "Jul",
+  "Ago",
+  "Set",
+  "Out",
+  "Nov",
+  "Dez",
+];
+
+// Monitoring season: March through September (months 3-9)
+const MONITORING_MONTHS = [3, 4, 5, 6, 7, 8, 9];
+
 const MunicipalitySpeciesMap: React.FC = () => {
   const [loading, setLoading] = useState(true);
   const [geoData, setGeoData] = useState<MunicipalityGeoJSON | null>(null);
   const [maxSpecies, setMaxSpecies] = useState(0);
+  const [filterByMonth, setFilterByMonth] = useState(false);
+  const [selectedMonth, setSelectedMonth] = useState<number>(MONITORING_MONTHS[0]); // Default to first monitoring month
+  const [isPlaying, setIsPlaying] = useState(false);
+  const playIntervalRef = useRef<ReturnType<typeof setInterval> | null>(null);
 
   useEffect(() => {
     fetchGeoJSONData();
+  }, []);
+
+  // Cleanup interval on unmount
+  useEffect(() => {
+    return () => {
+      if (playIntervalRef.current) {
+        clearInterval(playIntervalRef.current);
+      }
+    };
   }, []);
 
   const fetchGeoJSONData = async () => {
@@ -42,10 +75,6 @@ const MunicipalitySpeciesMap: React.FC = () => {
       // eslint-disable-next-line no-undef
       const response = await fetch("data/municipalities-species-map.geojson");
       const data: MunicipalityGeoJSON = await response.json();
-
-      // Find max species count for color scaling
-      const max = Math.max(...data.features.map(f => f.properties.speciesCount));
-      setMaxSpecies(max);
       setGeoData(data);
     } catch (error) {
       // eslint-disable-next-line no-console
@@ -55,20 +84,86 @@ const MunicipalitySpeciesMap: React.FC = () => {
     }
   };
 
+  // Play/pause control for month animation
+  const handlePlayPause = () => {
+    if (isPlaying) {
+      // Stop playing
+      if (playIntervalRef.current) {
+        clearInterval(playIntervalRef.current);
+        playIntervalRef.current = null;
+      }
+      setIsPlaying(false);
+    } else {
+      // Start playing - always start from the beginning
+      setSelectedMonth(MONITORING_MONTHS[0]); // Reset to March
+      setIsPlaying(true);
+      playIntervalRef.current = setInterval(() => {
+        setSelectedMonth(prev => {
+          const currentIndex = MONITORING_MONTHS.indexOf(prev);
+          const nextIndex = currentIndex + 1;
+
+          // Stop at the end of monitoring season
+          if (nextIndex >= MONITORING_MONTHS.length) {
+            if (playIntervalRef.current) {
+              clearInterval(playIntervalRef.current);
+              playIntervalRef.current = null;
+            }
+            setIsPlaying(false);
+            return prev; // Stay at last month
+          }
+
+          return MONITORING_MONTHS[nextIndex];
+        });
+      }, 800);
+    }
+  };
+
+  // Update maxSpecies when geoData loads - always use same scale
+  useEffect(() => {
+    if (!geoData) return;
+
+    // Always calculate max across all months for consistent color scale
+    let max = 0;
+    geoData.features.forEach(feature => {
+      const { speciesCount, monthlySpeciesCount } = feature.properties;
+      // Check overall species count
+      max = Math.max(max, speciesCount);
+      // Check each month's count
+      if (monthlySpeciesCount) {
+        Object.values(monthlySpeciesCount).forEach(count => {
+          max = Math.max(max, count);
+        });
+      }
+    });
+    setMaxSpecies(max);
+  }, [geoData]);
+
   const getColor = (speciesCount: number): string => {
     if (speciesCount === 0) return "#d9d9d9"; // Grey for no data
 
-    // Color scale from light yellow to dark green
-    const ratio = speciesCount / maxSpecies;
-    if (ratio < 0.2) return "#fff7bc";
-    if (ratio < 0.4) return "#fee391";
-    if (ratio < 0.6) return "#fec44f";
-    if (ratio < 0.8) return "#fe9929";
-    return "#d95f0e";
+    // Color scale from light yellow to dark orange (6 levels)
+    const ratio = maxSpecies > 0 ? speciesCount / maxSpecies : 0;
+    if (ratio < 0.167) return "#ffffd4"; // Very light yellow
+    if (ratio < 0.333) return "#fee391"; // Light yellow
+    if (ratio < 0.5) return "#fec44f"; // Yellow-orange
+    if (ratio < 0.667) return "#fe9929"; // Orange
+    if (ratio < 0.833) return "#ec7014"; // Dark orange
+    return "#cc4c02"; // Very dark orange
   };
 
   const style = (feature: GeoJSONFeature | undefined) => {
-    const speciesCount = feature?.properties.speciesCount ?? 0;
+    if (!feature) return {};
+
+    // Get species count based on filter mode
+    let speciesCount: number;
+    if (!filterByMonth) {
+      // All year
+      speciesCount = feature.properties.speciesCount ?? 0;
+    } else {
+      // Specific month
+      speciesCount = feature.properties.monthlySpeciesCount?.[selectedMonth] ?? 0;
+    }
+
     return {
       fillColor: getColor(speciesCount),
       weight: 1,
@@ -79,24 +174,40 @@ const MunicipalitySpeciesMap: React.FC = () => {
   };
 
   const onEachFeature = (feature: GeoJSONFeature, layer: any) => {
-    const { Concelho, speciesCount, transectCount, transects } = feature.properties;
+    const { Concelho, speciesCount, transectCount, transects, monthlySpeciesCount } =
+      feature.properties;
 
     let popupContent = `<strong>${Concelho}</strong><br/>`;
-    if (speciesCount > 0) {
-      popupContent += `Espécies: ${speciesCount}<br/>`;
-      popupContent += `Transectos: ${transectCount}<br/>`;
 
-      // Add transect list with active/inactive status
-      if (transects && transects.length > 0) {
-        popupContent += `<br/><strong>Transectos:</strong><br/>`;
-        transects.forEach((transect: TransectInfo) => {
-          const statusIcon = transect.isActive ? "✓" : "✗";
-          const statusColor = transect.isActive ? "green" : "red";
-          popupContent += `<span style="color: ${statusColor}">${statusIcon}</span> ${transect.name}<br/>`;
-        });
+    // Show month-specific or all-year data
+    if (!filterByMonth) {
+      // All year view
+      if (speciesCount > 0) {
+        popupContent += `Espécies: ${speciesCount}<br/>`;
+        popupContent += `Transectos: ${transectCount}<br/>`;
+
+        // Add transect list with active/inactive status
+        if (transects && transects.length > 0) {
+          popupContent += `<br/><strong>Transectos:</strong><br/>`;
+          transects.forEach((transect: TransectInfo) => {
+            const statusIcon = transect.isActive ? "✓" : "✗";
+            const statusColor = transect.isActive ? "green" : "red";
+            popupContent += `<span style="color: ${statusColor}">${statusIcon}</span> ${transect.name}<br/>`;
+          });
+        }
+      } else {
+        popupContent += `Sem dados`;
       }
     } else {
-      popupContent += `Sem dados`;
+      // Month-specific view
+      const monthSpeciesCount = monthlySpeciesCount?.[selectedMonth] ?? 0;
+      popupContent += `${MONTH_NAMES[selectedMonth - 1]}<br/>`;
+      if (monthSpeciesCount > 0) {
+        popupContent += `Espécies: ${monthSpeciesCount}<br/>`;
+        popupContent += `Transectos: ${transectCount}<br/>`;
+      } else {
+        popupContent += `Sem dados para este mês`;
+      }
     }
 
     layer.bindPopup(popupContent);
@@ -166,10 +277,25 @@ const MunicipalitySpeciesMap: React.FC = () => {
     );
   }
 
-  const municipalitiesWithData = geoData.features.filter(f => f.properties.speciesCount > 0).length;
-  const municipalitiesWithoutData = geoData.features.filter(
-    f => f.properties.speciesCount === 0
-  ).length;
+  // Calculate stats based on filter mode
+  let municipalitiesWithData: number;
+  let municipalitiesWithoutData: number;
+
+  if (!filterByMonth) {
+    // All year stats
+    municipalitiesWithData = geoData.features.filter(f => f.properties.speciesCount > 0).length;
+    municipalitiesWithoutData = geoData.features.filter(
+      f => f.properties.speciesCount === 0
+    ).length;
+  } else {
+    // Month-specific stats
+    municipalitiesWithData = geoData.features.filter(
+      f => (f.properties.monthlySpeciesCount?.[selectedMonth] ?? 0) > 0
+    ).length;
+    municipalitiesWithoutData = geoData.features.filter(
+      f => (f.properties.monthlySpeciesCount?.[selectedMonth] ?? 0) === 0
+    ).length;
+  }
 
   const items = [
     {
@@ -187,6 +313,87 @@ const MunicipalitySpeciesMap: React.FC = () => {
       ),
       children: (
         <div>
+          {/* Month Filter Controls */}
+          <div
+            style={{
+              marginBottom: 24,
+              padding: "16px",
+              backgroundColor: "#f5f5f5",
+              borderRadius: 8,
+              display: "flex",
+              alignItems: "center",
+              gap: 16,
+            }}
+          >
+            {/* Checkbox on the left */}
+            <Checkbox
+              checked={filterByMonth}
+              onChange={e => {
+                const checked = e.target.checked;
+                setFilterByMonth(checked);
+                // Stop playing when toggling off
+                if (!checked && isPlaying) {
+                  if (playIntervalRef.current) {
+                    clearInterval(playIntervalRef.current);
+                    playIntervalRef.current = null;
+                  }
+                  setIsPlaying(false);
+                }
+              }}
+            >
+              Por mês
+            </Checkbox>
+
+            {/* Slider in the middle */}
+            <div style={{ flex: 1 }}>
+              <Slider
+                disabled={!filterByMonth}
+                min={MONITORING_MONTHS[0]}
+                max={MONITORING_MONTHS[MONITORING_MONTHS.length - 1]}
+                value={selectedMonth}
+                onChange={(value: number) => {
+                  // Find the closest monitoring month
+                  const closest = MONITORING_MONTHS.reduce((prev, curr) =>
+                    Math.abs(curr - value) < Math.abs(prev - value) ? curr : prev
+                  );
+                  setSelectedMonth(closest);
+                  // Stop playing when user manually changes the month
+                  if (isPlaying) {
+                    if (playIntervalRef.current) {
+                      clearInterval(playIntervalRef.current);
+                      playIntervalRef.current = null;
+                    }
+                    setIsPlaying(false);
+                  }
+                }}
+                marks={MONITORING_MONTHS.reduce(
+                  (acc, month) => {
+                    acc[month] = MONTH_NAMES[month - 1];
+                    return acc;
+                  },
+                  {} as Record<number, string>
+                )}
+                tooltip={{
+                  formatter: (value?: number) => {
+                    if (value === undefined) return "";
+                    return MONTH_NAMES[value - 1];
+                  },
+                }}
+              />
+            </div>
+
+            {/* Animate button on the right */}
+            <Button
+              type="primary"
+              icon={isPlaying ? <PauseCircleOutlined /> : <PlayCircleOutlined />}
+              onClick={handlePlayPause}
+              size="small"
+              disabled={!filterByMonth}
+            >
+              {isPlaying ? "Pausar" : "Animar"}
+            </Button>
+          </div>
+
           <div style={{ height: 600, marginBottom: 16 }}>
             <MapContainer center={[39.5, -8.0]} zoom={7} style={{ height: "100%", width: "100%" }}>
               <TileLayer
@@ -194,7 +401,12 @@ const MunicipalitySpeciesMap: React.FC = () => {
                 attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
               />
               {geoData && (
-                <GeoJSON data={geoData as any} style={style} onEachFeature={onEachFeature} />
+                <GeoJSON
+                  key={`${filterByMonth}-${selectedMonth}`}
+                  data={geoData as any}
+                  style={style}
+                  onEachFeature={onEachFeature}
+                />
               )}
             </MapContainer>
           </div>
@@ -218,11 +430,11 @@ const MunicipalitySpeciesMap: React.FC = () => {
                 style={{
                   width: 20,
                   height: 20,
-                  backgroundColor: "#fff7bc",
+                  backgroundColor: "#ffffd4",
                   border: "1px solid #666",
                 }}
               />
-              <Text>1-{Math.ceil(maxSpecies * 0.2)} espécies</Text>
+              <Text>1-{Math.ceil(maxSpecies * 0.167)} espécies</Text>
             </div>
             <div style={{ display: "flex", alignItems: "center", gap: 4 }}>
               <div
@@ -234,7 +446,7 @@ const MunicipalitySpeciesMap: React.FC = () => {
                 }}
               />
               <Text>
-                {Math.ceil(maxSpecies * 0.2 + 1)}-{Math.ceil(maxSpecies * 0.4)} espécies
+                {Math.ceil(maxSpecies * 0.167 + 1)}-{Math.ceil(maxSpecies * 0.333)} espécies
               </Text>
             </div>
             <div style={{ display: "flex", alignItems: "center", gap: 4 }}>
@@ -247,7 +459,7 @@ const MunicipalitySpeciesMap: React.FC = () => {
                 }}
               />
               <Text>
-                {Math.ceil(maxSpecies * 0.4 + 1)}-{Math.ceil(maxSpecies * 0.6)} espécies
+                {Math.ceil(maxSpecies * 0.333 + 1)}-{Math.ceil(maxSpecies * 0.5)} espécies
               </Text>
             </div>
             <div style={{ display: "flex", alignItems: "center", gap: 4 }}>
@@ -260,7 +472,7 @@ const MunicipalitySpeciesMap: React.FC = () => {
                 }}
               />
               <Text>
-                {Math.ceil(maxSpecies * 0.6 + 1)}-{Math.ceil(maxSpecies * 0.8)} espécies
+                {Math.ceil(maxSpecies * 0.5 + 1)}-{Math.ceil(maxSpecies * 0.667)} espécies
               </Text>
             </div>
             <div style={{ display: "flex", alignItems: "center", gap: 4 }}>
@@ -268,11 +480,24 @@ const MunicipalitySpeciesMap: React.FC = () => {
                 style={{
                   width: 20,
                   height: 20,
-                  backgroundColor: "#d95f0e",
+                  backgroundColor: "#ec7014",
                   border: "1px solid #666",
                 }}
               />
-              <Text>{Math.ceil(maxSpecies * 0.8 + 1)}+ espécies</Text>
+              <Text>
+                {Math.ceil(maxSpecies * 0.667 + 1)}-{Math.ceil(maxSpecies * 0.833)} espécies
+              </Text>
+            </div>
+            <div style={{ display: "flex", alignItems: "center", gap: 4 }}>
+              <div
+                style={{
+                  width: 20,
+                  height: 20,
+                  backgroundColor: "#cc4c02",
+                  border: "1px solid #666",
+                }}
+              />
+              <Text>{Math.ceil(maxSpecies * 0.833 + 1)}+ espécies</Text>
             </div>
           </div>
         </div>
