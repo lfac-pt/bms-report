@@ -3,7 +3,6 @@ import { Collapse, Typography, Spin, Slider, Button, Checkbox } from "antd";
 import { PlayCircleOutlined, PauseCircleOutlined } from "@ant-design/icons";
 import { MapContainer, TileLayer, GeoJSON } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
-import { SPECIES_FAMILIES } from "../../utils/speciesFamilies";
 
 const { Title, Text } = Typography;
 
@@ -49,29 +48,6 @@ const MONTH_NAMES = [
 
 // Monitoring season: March through September (months 3-9)
 const MONITORING_MONTHS = [3, 4, 5, 6, 7, 8, 9];
-
-// Helper function to group species by family and sort
-const groupSpeciesByFamily = (speciesList: string[]) => {
-  const familyGroups: Record<string, string[]> = {};
-
-  speciesList.forEach(species => {
-    const family = SPECIES_FAMILIES[species] || "Unknown";
-    if (!familyGroups[family]) {
-      familyGroups[family] = [];
-    }
-    familyGroups[family].push(species);
-  });
-
-  // Sort species within each family
-  Object.keys(familyGroups).forEach(family => {
-    familyGroups[family].sort();
-  });
-
-  // Sort families alphabetically
-  const sortedFamilies = Object.keys(familyGroups).sort();
-
-  return { familyGroups, sortedFamilies };
-};
 
 const MunicipalitySpeciesMap: React.FC = () => {
   const [loading, setLoading] = useState(true);
@@ -220,6 +196,10 @@ const MunicipalitySpeciesMap: React.FC = () => {
             popupContent += `<span style="color: ${statusColor}">${statusIcon}</span> ${transect.name}<br/>`;
           });
         }
+
+        // Add link to municipality page
+        const municipalityUrl = `#/municipality/${encodeURIComponent(Concelho.toLowerCase())}`;
+        popupContent += `<br/><a href="${municipalityUrl}" style="color: #1890ff; text-decoration: none;">Ver detalhes do município →</a>`;
       } else {
         popupContent += `Sem dados`;
       }

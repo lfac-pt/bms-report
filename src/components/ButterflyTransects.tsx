@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import {
   Table,
   Input,
@@ -125,7 +126,9 @@ function GeographicCoverageDetails({
           dataSource={concelhosWithTransects}
           renderItem={item => (
             <List.Item style={{ padding: "4px 0", border: "none" }}>
-              <Typography.Text style={{ fontSize: 12 }}>{item}</Typography.Text>
+              <Link to={`/municipality/${encodeURIComponent(item.toLowerCase())}`} style={{ fontSize: 12 }}>
+                {item}
+              </Link>
             </List.Item>
           )}
         />

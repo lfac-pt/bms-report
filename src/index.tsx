@@ -3,6 +3,7 @@ import ReactDOM from "react-dom/client";
 import { HashRouter, Routes, Route, useNavigate, useLocation, Navigate } from "react-router-dom";
 import MyApp from "./components/App";
 import SpeciesPage from "./components/SpeciesPage";
+import MunicipalityPage from "./components/MunicipalityPage";
 import reportWebVitals from "./reportWebVitals";
 import { App, Layout, Radio } from "antd";
 import {
@@ -75,6 +76,7 @@ function AppContent() {
       <Route path="/nocturnal" element={<MyApp datasetType="nocturnal" />} />
       <Route path="/transects" element={<MyApp datasetType="transects" />} />
       <Route path="/species/:speciesName" element={<SpeciesPage />} />
+      <Route path="/municipality/:municipalityName" element={<MunicipalityPage />} />
       <Route path="*" element={<Navigate to="/diurnal" replace />} />
     </Routes>
   );
