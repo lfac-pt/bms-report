@@ -1591,13 +1591,14 @@ function processMunicipalityGeoJSON(transects, allData) {
         normalizedName,
         originalName: transect.concelho,
         transectName: transect.transectName,
-        isActive: transect.isActive
+        isActive: transect.isActive,
+        firstMonitoringYear: transect.firstMonitoringYear
       };
     }
   });
 
   // Initialize municipality data with monthly breakdowns
-  Object.values(transectToMunicipality).forEach(({ normalizedName, originalName, transectName, isActive }) => {
+  Object.values(transectToMunicipality).forEach(({ normalizedName, originalName, transectName, isActive, firstMonitoringYear }) => {
     if (!municipalityData[normalizedName]) {
       municipalityData[normalizedName] = {
         originalName,
@@ -1617,7 +1618,8 @@ function processMunicipalityGeoJSON(transects, allData) {
     if (!transectExists) {
       municipalityData[normalizedName].transects.push({
         name: transectName,
-        isActive
+        isActive,
+        firstMonitoringYear
       });
       municipalityData[normalizedName].transectCount++;
     }
@@ -1692,6 +1694,14 @@ function processMunicipalityGeoJSON(transects, allData) {
         monthlySpeciesLists[month] = Array.from(data.monthlySpecies[month]);
       }
 
+      // Calculate earliest monitoring year from active transects
+      const activeTransectsYears = data.transects
+        .filter(t => t.isActive && t.firstMonitoringYear)
+        .map(t => t.firstMonitoringYear);
+      const monitoringSinceYear = activeTransectsYears.length > 0
+        ? Math.min(...activeTransectsYears)
+        : null;
+
       feature.properties = {
         Concelho: concelhoName,
         speciesCount: data.speciesSet.size,
@@ -1699,7 +1709,8 @@ function processMunicipalityGeoJSON(transects, allData) {
         transects: data.transects,
         monthlySpeciesCount, // { 1: 5, 2: 8, ... 12: 3 }
         monthlySpeciesLists, // { 1: ["Species A", "Species B"], 2: [...], ... 12: [...] }
-        species: Array.from(data.speciesSet) // Array of species names
+        species: Array.from(data.speciesSet), // Array of species names
+        monitoringSinceYear // Earliest year from active transects
       };
       municipalitiesWithData++;
     } else {

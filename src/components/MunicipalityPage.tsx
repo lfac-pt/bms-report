@@ -2,7 +2,10 @@ import { useState, useEffect } from "react";
 import { Button, Card, Space, Typography, Spin, Alert, Checkbox, Slider } from "antd";
 import { ArrowLeftOutlined } from "@ant-design/icons";
 import { useParams, useNavigate, useSearchParams, Link } from "react-router-dom";
+import { MapContainer, TileLayer, GeoJSON, CircleMarker, Popup } from "react-leaflet";
 import { SPECIES_FAMILIES } from "../utils/speciesFamilies";
+import { TransectStats } from "../types/transectStats";
+import "leaflet/dist/leaflet.css";
 
 const { Title, Text } = Typography;
 
@@ -28,10 +31,11 @@ interface MunicipalityProperties {
   Concelho: string;
   speciesCount: number;
   transectCount: number;
-  transects: { name: string; isActive: boolean }[];
+  transects: { name: string; isActive: boolean; firstMonitoringYear?: number }[];
   monthlySpeciesCount: { [month: number]: number };
   monthlySpeciesLists: { [month: number]: string[] };
   species: string[];
+  monitoringSinceYear?: number | null;
 }
 
 interface GeoJSONFeature {
@@ -92,6 +96,7 @@ function MunicipalityPage() {
   const [searchParams, setSearchParams] = useSearchParams();
 
   const [geoData, setGeoData] = useState<MunicipalityGeoJSON | null>(null);
+  const [transects, setTransects] = useState<TransectStats[]>([]);
   const [loading, setLoading] = useState(true);
 
   // Initialize month from URL or default
@@ -105,13 +110,17 @@ function MunicipalityPage() {
   // Decode the municipality name from URL
   const decodedMunicipalityName = municipalityName ? decodeURIComponent(municipalityName) : "";
 
-  // Load GeoJSON data
+  // Load GeoJSON and transects data
   useEffect(() => {
-    // eslint-disable-next-line no-undef
-    fetch("data/municipalities-species-map.geojson")
-      .then(res => res.json())
-      .then(data => {
-        setGeoData(data);
+    Promise.all([
+      // eslint-disable-next-line no-undef
+      fetch("data/municipalities-species-map.geojson").then(res => res.json()),
+      // eslint-disable-next-line no-undef
+      fetch("data/processed-transects.json").then(res => res.json())
+    ])
+      .then(([geoJsonData, transectsData]) => {
+        setGeoData(geoJsonData);
+        setTransects(transectsData.transects || []);
         setLoading(false);
       })
       .catch(() => {
@@ -155,7 +164,7 @@ function MunicipalityPage() {
     );
   }
 
-  const { Concelho, species, speciesCount, transectCount, transects, monthlySpeciesCount, monthlySpeciesLists } =
+  const { Concelho, species, speciesCount, transectCount, transects: municipalityTransectsInfo, monthlySpeciesCount, monthlySpeciesLists, monitoringSinceYear } =
     municipalityFeature.properties;
 
   // Get species list based on filter mode
@@ -170,6 +179,54 @@ function MunicipalityPage() {
   // Group species by family
   const { familyGroups, sortedFamilies } = groupSpeciesByFamily(displayedSpecies);
 
+  // Filter transects for this municipality
+  const municipalityTransects = transects.filter(
+    t => t.concelho.toLowerCase() === decodedMunicipalityName.toLowerCase()
+  );
+
+  // Filter transects with coordinates
+  const transectsWithCoords = municipalityTransects.filter(t => t.coordinates !== null);
+
+  // Find the most recent year
+  const mostRecentYear =
+    transects.length > 0
+      ? Math.max(...transects.map(t => t.lastMonitoringYear || 0).filter(y => y > 0))
+      : null;
+
+  // Helper function to determine marker color
+  const getMarkerColor = (transect: TransectStats) => {
+    // New transect (started in most recent year)
+    if (mostRecentYear && transect.firstMonitoringYear === mostRecentYear) {
+      return "#1890ff"; // Blue for new transects
+    }
+    // Active (monitored in most recent year)
+    if (transect.isActive) {
+      return "#52c41a"; // Green for active
+    }
+    // Inactive (not monitored in most recent year)
+    return "#ff4d4f"; // Red for inactive
+  };
+
+  // Helper function to calculate marker radius based on species count
+  const getMarkerRadius = (transect: TransectStats) => {
+    const speciesCount = transect.totalSpecies || 0;
+    const minRadius = 4;
+    const maxRadius = 15;
+    const scaleFactor = 1.3;
+    return Math.min(maxRadius, minRadius + Math.sqrt(speciesCount) * scaleFactor);
+  };
+
+  // Calculate center for map
+  const mapCenter: [number, number] =
+    transectsWithCoords.length > 0
+      ? [
+          transectsWithCoords.reduce((sum, t) => sum + t.coordinates!.lat, 0) /
+            transectsWithCoords.length,
+          transectsWithCoords.reduce((sum, t) => sum + t.coordinates!.lon, 0) /
+            transectsWithCoords.length,
+        ]
+      : [39.5, -8.0]; // Default center of Portugal
+
   return (
     <Space direction="vertical" size="large" style={{ width: "100%", padding: 24 }}>
       <Button type="default" icon={<ArrowLeftOutlined />} onClick={handleGoBack} size="large">
@@ -177,36 +234,106 @@ function MunicipalityPage() {
       </Button>
 
       <Card>
-        <Space direction="vertical" size="middle" style={{ width: "100%" }}>
-          <Title level={2} style={{ marginBottom: 0 }}>
-            {toTitleCase(Concelho)}
-          </Title>
-          <div>
-            <Text strong style={{ fontSize: 16 }}>
-              Espécies registadas: {displayedSpeciesCount}
-            </Text>
-            <br />
-            <Text strong style={{ fontSize: 16 }}>
-              Transectos: {transectCount}
-            </Text>
+        <div style={{ display: "flex", gap: 24 }}>
+          {/* Left column: Municipality info */}
+          <div style={{ flex: 1 }}>
+            <Space direction="vertical" size="middle" style={{ width: "100%" }}>
+              <Title level={2} style={{ marginBottom: 0 }}>
+                {toTitleCase(Concelho)}
+              </Title>
+              <div>
+                <Text strong style={{ fontSize: 16 }}>
+                  Espécies registadas: {displayedSpeciesCount}
+                </Text>
+                <br />
+                <Text strong style={{ fontSize: 16 }}>
+                  Transectos: {transectCount}
+                </Text>
+                {monitoringSinceYear && (
+                  <>
+                    <br />
+                    <Text strong style={{ fontSize: 16 }}>
+                      Monitorização desde: {monitoringSinceYear}
+                    </Text>
+                  </>
+                )}
+              </div>
+
+              {municipalityTransectsInfo && municipalityTransectsInfo.length > 0 && (
+                <div>
+                  <Text strong>Transectos:</Text>
+                  <ul style={{ marginTop: 8 }}>
+                    {municipalityTransectsInfo.map((transect, idx) => (
+                      <li key={idx}>
+                        <span style={{ color: transect.isActive ? "green" : "red" }}>
+                          {transect.isActive ? "✓" : "✗"}
+                        </span>{" "}
+                        {transect.name}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              )}
+            </Space>
           </div>
 
-          {transects && transects.length > 0 && (
-            <div>
-              <Text strong>Transectos:</Text>
-              <ul style={{ marginTop: 8 }}>
-                {transects.map((transect, idx) => (
-                  <li key={idx}>
-                    <span style={{ color: transect.isActive ? "green" : "red" }}>
-                      {transect.isActive ? "✓" : "✗"}
-                    </span>{" "}
-                    {transect.name}
-                  </li>
-                ))}
-              </ul>
-            </div>
-          )}
-        </Space>
+          {/* Right column: Map */}
+          <div style={{ width: 400, height: 400 }}>
+            <MapContainer
+              center={mapCenter}
+              zoom={11}
+              style={{ height: "100%", width: "100%", borderRadius: 8 }}
+              scrollWheelZoom={false}
+            >
+              <TileLayer
+                attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+                url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+              />
+              {/* Municipality border */}
+              {municipalityFeature && (
+                <GeoJSON
+                  key={municipalityFeature.properties.Concelho}
+                  data={municipalityFeature as any}
+                  style={{
+                    fillColor: "#1890ff",
+                    fillOpacity: 0.1,
+                    color: "#1890ff",
+                    weight: 2,
+                  }}
+                />
+              )}
+              {/* Transect markers */}
+              {transectsWithCoords.map(transect => (
+                <CircleMarker
+                  key={transect.transectId}
+                  center={[transect.coordinates!.lat, transect.coordinates!.lon]}
+                  radius={getMarkerRadius(transect)}
+                  pathOptions={{
+                    fillColor: getMarkerColor(transect),
+                    color: "#fff",
+                    weight: 1,
+                    opacity: 1,
+                    fillOpacity: 0.7,
+                  }}
+                >
+                  <Popup>
+                    <div style={{ minWidth: 150 }}>
+                      <strong>{transect.transectName}</strong>
+                      <br />
+                      <div style={{ marginTop: 8 }}>
+                        Espécies: {transect.totalSpecies}
+                        <br />
+                        Visitas: {transect.totalVisits}
+                        <br />
+                        Anos Ativos: {transect.yearsActive}
+                      </div>
+                    </div>
+                  </Popup>
+                </CircleMarker>
+              ))}
+            </MapContainer>
+          </div>
+        </div>
       </Card>
 
       {/* Month Filter Controls */}
