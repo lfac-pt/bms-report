@@ -1629,7 +1629,12 @@ function processMunicipalityGeoJSON(transects, allData) {
     const species = row['Preferred Species Name'];
     const dateStr = row['Date']; // Format: DD/MM/YYYY
 
-    if (!transectId || !species || !dateStr) return;
+    if (!species || !species.trim()) return;
+
+    const trimmedSpecies = species.trim();
+    if (!VALID_SPECIES.has(trimmedSpecies)) return;
+
+    if (!transectId || !dateStr) return;
 
     const municipalityInfo = transectToMunicipality[transectId];
     if (!municipalityInfo) return;
@@ -1640,6 +1645,7 @@ function processMunicipalityGeoJSON(transects, allData) {
     const dateParts = dateStr.split('/');
     if (dateParts.length === 3) {
       const month = parseInt(dateParts[1], 10);
+
       if (month >= 1 && month <= 12) {
         // Add to overall species set
         municipalityData[normalizedName].speciesSet.add(species);
