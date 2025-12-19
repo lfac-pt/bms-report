@@ -460,10 +460,14 @@ function ButterflyTransects() {
       align: "right",
       sorter: (a, b) => a.avgVisitsPerYear - b.avgVisitsPerYear,
       render: (value: number) => value.toFixed(1),
-      filters: [{ text: "Mais de 10", value: ">10" }],
+      filters: [
+        { text: "10 ou mais", value: ">=10" },
+        { text: "Menos de 10", value: "<10" },
+      ],
       filteredValue: avgVisitsPerYearFilters,
       onFilter: (value, record) => {
-        if (value === ">10") return record.avgVisitsPerYear > 10;
+        if (value === ">=10") return record.avgVisitsPerYear >= 10;
+        if (value === "<10") return record.avgVisitsPerYear < 10;
         return true;
       },
     },
