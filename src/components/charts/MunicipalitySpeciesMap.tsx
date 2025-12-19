@@ -206,10 +206,13 @@ const MunicipalitySpeciesMap: React.FC = () => {
     } else {
       // Month-specific view
       const monthSpeciesCount = monthlySpeciesCount?.[selectedMonth] ?? 0;
-      popupContent += `${MONTH_NAMES[selectedMonth - 1]}<br/>`;
       if (monthSpeciesCount > 0) {
         popupContent += `Espécies: ${monthSpeciesCount}<br/>`;
         popupContent += `Transectos: ${transectCount}<br/>`;
+
+        // Add link to municipality page with month parameter
+        const municipalityUrl = `#/municipality/${encodeURIComponent(Concelho.toLowerCase())}?month=${selectedMonth}`;
+        popupContent += `<br/><a href="${municipalityUrl}" style="color: #1890ff; text-decoration: none;">Ver detalhes do município →</a>`;
       } else {
         popupContent += `Sem dados para este mês`;
       }

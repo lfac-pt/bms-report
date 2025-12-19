@@ -1,10 +1,28 @@
 import { useState, useEffect } from "react";
-import { Button, Card, Space, Typography, Spin, Alert } from "antd";
+import { Button, Card, Space, Typography, Spin, Alert, Checkbox, Slider } from "antd";
 import { ArrowLeftOutlined } from "@ant-design/icons";
-import { useParams, useNavigate, Link } from "react-router-dom";
+import { useParams, useNavigate, useSearchParams, Link } from "react-router-dom";
 import { SPECIES_FAMILIES } from "../utils/speciesFamilies";
 
 const { Title, Text } = Typography;
+
+const MONTH_NAMES = [
+  "Jan",
+  "Fev",
+  "Mar",
+  "Abr",
+  "Mai",
+  "Jun",
+  "Jul",
+  "Ago",
+  "Set",
+  "Out",
+  "Nov",
+  "Dez",
+];
+
+// Monitoring season: March through September (months 3-9)
+const MONITORING_MONTHS = [3, 4, 5, 6, 7, 8, 9];
 
 interface MunicipalityProperties {
   Concelho: string;
@@ -12,6 +30,7 @@ interface MunicipalityProperties {
   transectCount: number;
   transects: { name: string; isActive: boolean }[];
   monthlySpeciesCount: { [month: number]: number };
+  monthlySpeciesLists: { [month: number]: string[] };
   species: string[];
 }
 
@@ -70,9 +89,18 @@ const groupSpeciesByFamily = (speciesList: string[]) => {
 function MunicipalityPage() {
   const { municipalityName } = useParams<{ municipalityName: string }>();
   const navigate = useNavigate();
+  const [searchParams, setSearchParams] = useSearchParams();
 
   const [geoData, setGeoData] = useState<MunicipalityGeoJSON | null>(null);
   const [loading, setLoading] = useState(true);
+
+  // Initialize month from URL or default
+  const monthParam = searchParams.get("month");
+  const initialMonth = monthParam ? parseInt(monthParam) : MONITORING_MONTHS[0];
+  const initialFilterByMonth = monthParam !== null;
+
+  const [filterByMonth, setFilterByMonth] = useState(initialFilterByMonth);
+  const [selectedMonth, setSelectedMonth] = useState<number>(initialMonth);
 
   // Decode the municipality name from URL
   const decodedMunicipalityName = municipalityName ? decodeURIComponent(municipalityName) : "";
@@ -127,11 +155,20 @@ function MunicipalityPage() {
     );
   }
 
-  const { Concelho, species, speciesCount, transectCount, transects } =
+  const { Concelho, species, speciesCount, transectCount, transects, monthlySpeciesCount, monthlySpeciesLists } =
     municipalityFeature.properties;
 
+  // Get species list based on filter mode
+  const displayedSpecies = filterByMonth
+    ? (monthlySpeciesLists?.[selectedMonth] ?? [])
+    : species;
+
+  const displayedSpeciesCount = filterByMonth
+    ? (monthlySpeciesCount?.[selectedMonth] ?? 0)
+    : speciesCount;
+
   // Group species by family
-  const { familyGroups, sortedFamilies } = groupSpeciesByFamily(species);
+  const { familyGroups, sortedFamilies } = groupSpeciesByFamily(displayedSpecies);
 
   return (
     <Space direction="vertical" size="large" style={{ width: "100%", padding: 24 }}>
@@ -146,7 +183,7 @@ function MunicipalityPage() {
           </Title>
           <div>
             <Text strong style={{ fontSize: 16 }}>
-              Espécies registadas: {speciesCount}
+              Espécies registadas: {displayedSpeciesCount}
             </Text>
             <br />
             <Text strong style={{ fontSize: 16 }}>
@@ -172,8 +209,67 @@ function MunicipalityPage() {
         </Space>
       </Card>
 
-      <Card title={`Espécies Registadas (${speciesCount})`}>
-        {species.length === 0 ? (
+      {/* Month Filter Controls */}
+      <div
+        style={{
+          padding: "16px",
+          backgroundColor: "#f5f5f5",
+          borderRadius: 8,
+          display: "flex",
+          alignItems: "center",
+          gap: 16,
+        }}
+      >
+        <Checkbox
+          checked={filterByMonth}
+          onChange={e => {
+            const checked = e.target.checked;
+            setFilterByMonth(checked);
+            if (checked) {
+              setSearchParams({ month: selectedMonth.toString() });
+            } else {
+              setSearchParams({});
+            }
+          }}
+        >
+          Filtrar por mês
+        </Checkbox>
+
+        <div style={{ flex: 1 }}>
+          <Slider
+            disabled={!filterByMonth}
+            min={MONITORING_MONTHS[0]}
+            max={MONITORING_MONTHS[MONITORING_MONTHS.length - 1]}
+            value={selectedMonth}
+            onChange={(value: number) => {
+              // Find the closest monitoring month
+              const closest = MONITORING_MONTHS.reduce((prev, curr) =>
+                Math.abs(curr - value) < Math.abs(prev - value) ? curr : prev
+              );
+              setSelectedMonth(closest);
+              if (filterByMonth) {
+                setSearchParams({ month: closest.toString() });
+              }
+            }}
+            marks={MONITORING_MONTHS.reduce(
+              (acc, month) => {
+                acc[month] = MONTH_NAMES[month - 1];
+                return acc;
+              },
+              {} as Record<number, string>
+            )}
+            tooltip={{
+              formatter: (value?: number) => {
+                if (value === undefined) return "";
+                return MONTH_NAMES[value - 1];
+              },
+            }}
+          />
+        </div>
+      </div>
+
+      <Card title={`Espécies Registadas (${displayedSpeciesCount})`}>
+        {displayedSpecies.length === 0 ? (
           <Alert message="Sem dados de espécies para este município" type="info" />
         ) : (
           <Space direction="vertical" size="large" style={{ width: "100%" }}>

@@ -1684,10 +1684,12 @@ function processMunicipalityGeoJSON(transects, allData) {
     const data = municipalityData[normalizedName];
 
     if (data) {
-      // Convert monthly species Sets to counts
+      // Convert monthly species Sets to counts and arrays
       const monthlySpeciesCount = {};
+      const monthlySpeciesLists = {};
       for (let month = 1; month <= 12; month++) {
         monthlySpeciesCount[month] = data.monthlySpecies[month].size;
+        monthlySpeciesLists[month] = Array.from(data.monthlySpecies[month]);
       }
 
       feature.properties = {
@@ -1696,14 +1698,17 @@ function processMunicipalityGeoJSON(transects, allData) {
         transectCount: data.transectCount,
         transects: data.transects,
         monthlySpeciesCount, // { 1: 5, 2: 8, ... 12: 3 }
+        monthlySpeciesLists, // { 1: ["Species A", "Species B"], 2: [...], ... 12: [...] }
         species: Array.from(data.speciesSet) // Array of species names
       };
       municipalitiesWithData++;
     } else {
       // Initialize empty monthly data
       const monthlySpeciesCount = {};
+      const monthlySpeciesLists = {};
       for (let month = 1; month <= 12; month++) {
         monthlySpeciesCount[month] = 0;
+        monthlySpeciesLists[month] = [];
       }
 
       feature.properties = {
@@ -1712,6 +1717,7 @@ function processMunicipalityGeoJSON(transects, allData) {
         transectCount: 0,
         transects: [],
         monthlySpeciesCount,
+        monthlySpeciesLists,
         species: []
       };
       municipalitiesWithoutData++;
