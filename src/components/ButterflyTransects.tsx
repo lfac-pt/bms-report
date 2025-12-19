@@ -126,7 +126,10 @@ function GeographicCoverageDetails({
           dataSource={concelhosWithTransects}
           renderItem={item => (
             <List.Item style={{ padding: "4px 0", border: "none" }}>
-              <Link to={`/municipality/${encodeURIComponent(item.toLowerCase())}`} style={{ fontSize: 12 }}>
+              <Link
+                to={`/municipality/${encodeURIComponent(item.toLowerCase())}`}
+                style={{ fontSize: 12 }}
+              >
                 {item}
               </Link>
             </List.Item>

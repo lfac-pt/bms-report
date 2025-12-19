@@ -14,6 +14,18 @@ jest.mock("./TransectTimeline", () => ({
   default: () => <div data-testid="transect-timeline">Timeline Component</div>,
 }));
 
+// Mock MunicipalitySpeciesMap to avoid geojson data loading in tests
+jest.mock("./charts/MunicipalitySpeciesMap", () => ({
+  __esModule: true,
+  default: () => <div data-testid="municipality-species-map">Municipality Map Component</div>,
+}));
+
+// Mock SpeciesTrendsSparklines to avoid flight curves data loading in tests
+jest.mock("./charts/SpeciesTrendsSparklines", () => ({
+  __esModule: true,
+  default: () => <div data-testid="species-trends-sparklines">Species Trends Component</div>,
+}));
+
 // Mock data
 const mockTransectsData = {
   transects: [
@@ -98,7 +110,7 @@ global.fetch = jest.fn(() =>
   })
 ) as jest.Mock;
 
-describe.skip("ButterflyTransects - Smoke Tests", () => {
+describe("ButterflyTransects - Smoke Tests", () => {
   beforeEach(() => {
     jest.clearAllMocks();
   });

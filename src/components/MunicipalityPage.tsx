@@ -127,7 +127,8 @@ function MunicipalityPage() {
     );
   }
 
-  const { Concelho, species, speciesCount, transectCount, transects } = municipalityFeature.properties;
+  const { Concelho, species, speciesCount, transectCount, transects } =
+    municipalityFeature.properties;
 
   // Group species by family
   const { familyGroups, sortedFamilies } = groupSpeciesByFamily(species);
