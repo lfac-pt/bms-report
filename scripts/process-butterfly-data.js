@@ -1695,7 +1695,8 @@ function processMunicipalityGeoJSON(transects, allData) {
         speciesCount: data.speciesSet.size,
         transectCount: data.transectCount,
         transects: data.transects,
-        monthlySpeciesCount // { 1: 5, 2: 8, ... 12: 3 }
+        monthlySpeciesCount, // { 1: 5, 2: 8, ... 12: 3 }
+        species: Array.from(data.speciesSet) // Array of species names
       };
       municipalitiesWithData++;
     } else {
@@ -1710,7 +1711,8 @@ function processMunicipalityGeoJSON(transects, allData) {
         speciesCount: 0,
         transectCount: 0,
         transects: [],
-        monthlySpeciesCount
+        monthlySpeciesCount,
+        species: []
       };
       municipalitiesWithoutData++;
     }
