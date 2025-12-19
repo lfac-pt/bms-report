@@ -116,7 +116,7 @@ function MunicipalityPage() {
       // eslint-disable-next-line no-undef
       fetch("data/municipalities-species-map.geojson").then(res => res.json()),
       // eslint-disable-next-line no-undef
-      fetch("data/processed-transects.json").then(res => res.json())
+      fetch("data/processed-transects.json").then(res => res.json()),
     ])
       .then(([geoJsonData, transectsData]) => {
         setGeoData(geoJsonData);
@@ -164,13 +164,19 @@ function MunicipalityPage() {
     );
   }
 
-  const { Concelho, species, speciesCount, transectCount, transects: municipalityTransectsInfo, monthlySpeciesCount, monthlySpeciesLists, monitoringSinceYear } =
-    municipalityFeature.properties;
+  const {
+    Concelho,
+    species,
+    speciesCount,
+    transectCount,
+    transects: municipalityTransectsInfo,
+    monthlySpeciesCount,
+    monthlySpeciesLists,
+    monitoringSinceYear,
+  } = municipalityFeature.properties;
 
   // Get species list based on filter mode
-  const displayedSpecies = filterByMonth
-    ? (monthlySpeciesLists?.[selectedMonth] ?? [])
-    : species;
+  const displayedSpecies = filterByMonth ? (monthlySpeciesLists?.[selectedMonth] ?? []) : species;
 
   const displayedSpeciesCount = filterByMonth
     ? (monthlySpeciesCount?.[selectedMonth] ?? 0)
