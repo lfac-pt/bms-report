@@ -69,6 +69,34 @@ export interface YearlyGBI {
 }
 
 /**
+ * Trend classification categories based on bootstrap confidence intervals
+ */
+export type TrendCategory =
+  | "Strong increase"
+  | "Moderate increase"
+  | "Stable"
+  | "Uncertain"
+  | "Moderate decline"
+  | "Strong decline";
+
+/**
+ * Trend classification with confidence intervals
+ */
+export interface TrendClassification {
+  category: TrendCategory;
+  annualRateOfChange: number | null;  // Annual % change (pc1)
+  rateOfChange: number;                // Multiplicative rate
+  confidenceInterval: {
+    lower: number | null;               // CI for annual % change
+    upper: number | null;
+  };
+  rateCI: {
+    lower: number | null;               // CI for multiplicative rate
+    upper: number | null;
+  };
+}
+
+/**
  * Species trend data including slope and annual indices
  */
 export interface SpeciesTrend {
@@ -78,6 +106,7 @@ export interface SpeciesTrend {
   yearsWithData: number[];
   annualIndices: Record<number, number>;
   confidenceIntervals?: Record<number, { ci_lower: number | null; ci_upper: number | null }>;
+  trendClassification?: TrendClassification;
 }
 
 /**

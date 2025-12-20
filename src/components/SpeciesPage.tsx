@@ -13,6 +13,8 @@ import { SERIES_COLORS } from "../utils/utils";
 import endangeredSpeciesPT from "../utils/endangered_pt";
 import endangeredSpeciesEurope from "../utils/endangered_eu";
 import { FlightCurvesDisplay } from "./charts/FlightCurveChart";
+import TrendClassificationBadge from "./TrendClassificationBadge";
+import type { GBIData } from "../types/gbiData";
 
 const { Title, Text } = Typography;
 
@@ -40,6 +42,7 @@ function SpeciesPage() {
   const [transectData, setTransectData] = useState<TransectData | null>(null);
   const [flightCurvesData, setFlightCurvesData] = useState<any>(null);
   const [phenologyData, setPhenologyData] = useState<any>(null);
+  const [gbiData, setGbiData] = useState<GBIData | null>(null);
   const [loading, setLoading] = useState(true);
   const [dataViewMode, setDataViewMode] = useState<"flightCurves" | "phenologyCurves">(
     "flightCurves"
@@ -49,7 +52,7 @@ function SpeciesPage() {
   const decodedSpeciesName = speciesName ? decodeURIComponent(speciesName) : "";
   const family = SPECIES_FAMILIES[decodedSpeciesName] || "Informação não disponível";
 
-  // Load timeline, transect, flight curves, and phenology data
+  // Load timeline, transect, flight curves, phenology, and GBI data
   useEffect(() => {
     Promise.all([
       // eslint-disable-next-line no-undef
@@ -64,12 +67,17 @@ function SpeciesPage() {
       fetch("data/phenology-curves-data.json")
         .then(res => res.json())
         .catch(() => null),
+      // eslint-disable-next-line no-undef
+      fetch("data/gbi-data.json")
+        .then(res => res.json())
+        .catch(() => null),
     ])
-      .then(([timeline, transects, flightCurves, phenology]) => {
+      .then(([timeline, transects, flightCurves, phenology, gbi]) => {
         setTimelineData(timeline);
         setTransectData(transects);
         setFlightCurvesData(flightCurves);
         setPhenologyData(phenology);
+        setGbiData(gbi);
         setLoading(false);
       })
       .catch(() => {
@@ -192,6 +200,25 @@ function SpeciesPage() {
           <Text strong style={{ fontSize: 16 }}>
             Família: {family}
           </Text>
+          {/* Show trend classification from GBI data (for GBI species) or flight curves data (for all other species) */}
+          {(() => {
+            const gbiTrend = gbiData?.speciesTrends?.[decodedSpeciesName]?.trendClassification;
+            const flightCurvesTrend = flightCurvesData?.species?.[decodedSpeciesName]?.trendClassification;
+            const trendClassification = gbiTrend || flightCurvesTrend;
+
+            if (trendClassification) {
+              return (
+                <div style={{ marginTop: 8 }}>
+                  <Text strong>Tendência Populacional: </Text>
+                  <TrendClassificationBadge
+                    classification={trendClassification}
+                    showDetails={true}
+                  />
+                </div>
+              );
+            }
+            return null;
+          })()}
           {(endangeredSpeciesPT[decodedSpeciesName] ||
             endangeredSpeciesEurope[decodedSpeciesName]) && (
             <Alert

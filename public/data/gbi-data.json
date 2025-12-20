@@ -188,8 +188,8 @@
         "totalVisits": 174,
         "speciesWithData": 10
       },
-      "ci_lower": 64.35,
-      "ci_upper": 152.96
+      "ci_lower": 62.37,
+      "ci_upper": 144.74
     },
     "2023": {
       "year": 2023,
@@ -211,8 +211,8 @@
         "totalVisits": 194,
         "speciesWithData": 10
       },
-      "ci_lower": 30.33,
-      "ci_upper": 109.97
+      "ci_lower": 29.73,
+      "ci_upper": 112.02
     },
     "2024": {
       "year": 2024,
@@ -234,8 +234,8 @@
         "totalVisits": 187,
         "speciesWithData": 10
       },
-      "ci_lower": 51.33,
-      "ci_upper": 121.69
+      "ci_lower": 53.14,
+      "ci_upper": 126.71
     },
     "2025": {
       "year": 2025,
@@ -257,8 +257,8 @@
         "totalVisits": 180,
         "speciesWithData": 10
       },
-      "ci_lower": 33.61,
-      "ci_upper": 119.53
+      "ci_lower": 33.16,
+      "ci_upper": 120.17
     }
   },
   "speciesTrends": {
@@ -300,6 +300,19 @@
         "2025": {
           "ci_lower": 26.36,
           "ci_upper": 773.59
+        }
+      },
+      "trendClassification": {
+        "category": "Uncertain",
+        "annualRateOfChange": 53.33,
+        "rateOfChange": 1.5333,
+        "confidenceInterval": {
+          "lower": -99.16,
+          "upper": 653917.45
+        },
+        "rateCI": {
+          "lower": 0.0084,
+          "upper": 6540.1745
         }
       },
       "dataQuality": {
@@ -353,6 +366,19 @@
           "ci_upper": 113.39
         }
       },
+      "trendClassification": {
+        "category": "Strong decline",
+        "annualRateOfChange": -32.24,
+        "rateOfChange": 0.6776,
+        "confidenceInterval": {
+          "lower": -51.67,
+          "upper": -5.34
+        },
+        "rateCI": {
+          "lower": 0.4833,
+          "upper": 0.9466
+        }
+      },
       "dataQuality": {
         "site_count": 18,
         "total_visits": 1381,
@@ -402,6 +428,19 @@
         "2025": {
           "ci_lower": 32.83,
           "ci_upper": 180.34
+        }
+      },
+      "trendClassification": {
+        "category": "Uncertain",
+        "annualRateOfChange": 21.9,
+        "rateOfChange": 1.219,
+        "confidenceInterval": {
+          "lower": -29.35,
+          "upper": 54.52
+        },
+        "rateCI": {
+          "lower": 0.7065,
+          "upper": 1.5452
         }
       },
       "dataQuality": {
@@ -455,6 +494,19 @@
           "ci_upper": 205.67
         }
       },
+      "trendClassification": {
+        "category": "Uncertain",
+        "annualRateOfChange": 11.08,
+        "rateOfChange": 1.1108,
+        "confidenceInterval": {
+          "lower": -12.4,
+          "upper": 36.69
+        },
+        "rateCI": {
+          "lower": 0.876,
+          "upper": 1.3669
+        }
+      },
       "dataQuality": {
         "site_count": 18,
         "total_visits": 1381,
@@ -504,6 +556,19 @@
         "2025": {
           "ci_lower": 50.49,
           "ci_upper": 376
+        }
+      },
+      "trendClassification": {
+        "category": "Uncertain",
+        "annualRateOfChange": 22.56,
+        "rateOfChange": 1.2256,
+        "confidenceInterval": {
+          "lower": -25.11,
+          "upper": 46.63
+        },
+        "rateCI": {
+          "lower": 0.7489,
+          "upper": 1.4663
         }
       },
       "dataQuality": {
@@ -557,6 +622,19 @@
           "ci_upper": 17.32
         }
       },
+      "trendClassification": {
+        "category": "Strong decline",
+        "annualRateOfChange": -74.58,
+        "rateOfChange": 0.2542,
+        "confidenceInterval": {
+          "lower": -92.71,
+          "upper": -28.72
+        },
+        "rateCI": {
+          "lower": 0.0729,
+          "upper": 0.7128
+        }
+      },
       "dataQuality": {
         "site_count": 18,
         "total_visits": 1381,
@@ -606,6 +684,19 @@
         "2025": {
           "ci_lower": 7.32,
           "ci_upper": 111.44
+        }
+      },
+      "trendClassification": {
+        "category": "Uncertain",
+        "annualRateOfChange": -24.33,
+        "rateOfChange": 0.7567,
+        "confidenceInterval": {
+          "lower": -41.63,
+          "upper": 2078.59
+        },
+        "rateCI": {
+          "lower": 0.5837,
+          "upper": 21.7859
         }
       },
       "dataQuality": {
@@ -659,6 +750,19 @@
           "ci_upper": 192.92
         }
       },
+      "trendClassification": {
+        "category": "Uncertain",
+        "annualRateOfChange": -15.38,
+        "rateOfChange": 0.8462,
+        "confidenceInterval": {
+          "lower": -100,
+          "upper": 249164.52
+        },
+        "rateCI": {
+          "lower": null,
+          "upper": 2492.6452
+        }
+      },
       "dataQuality": {
         "site_count": 18,
         "total_visits": 1381,
@@ -710,6 +814,19 @@
           "ci_upper": 34.52
         }
       },
+      "trendClassification": {
+        "category": "Uncertain",
+        "annualRateOfChange": -59.24,
+        "rateOfChange": 0.4076,
+        "confidenceInterval": {
+          "lower": -100,
+          "upper": 3556.39
+        },
+        "rateCI": {
+          "lower": null,
+          "upper": 36.5639
+        }
+      },
       "dataQuality": {
         "site_count": 18,
         "total_visits": 1381,
@@ -759,6 +876,19 @@
         "2025": {
           "ci_lower": 4.36,
           "ci_upper": 129.44
+        }
+      },
+      "trendClassification": {
+        "category": "Uncertain",
+        "annualRateOfChange": -22.89,
+        "rateOfChange": 0.7711,
+        "confidenceInterval": {
+          "lower": -66.49,
+          "upper": 2.94
+        },
+        "rateCI": {
+          "lower": 0.3351,
+          "upper": 1.0294
         }
       },
       "dataQuality": {

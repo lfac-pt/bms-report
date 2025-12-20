@@ -881,6 +881,27 @@ async function calculateGBI(allData, transects, baselineYear = 2021) {
           console.log(`    ⚠ No bootstrap CIs available from rbms`);
         }
 
+        // Extract trend classification from rbms output
+        const trendStats = rbmsOutput.trend_statistics || {};
+        let trendClassification = null;
+
+        if (trendStats.trend_class) {
+          trendClassification = {
+            category: trendStats.trend_class,
+            annualRateOfChange: trendStats.pc1 || null,
+            rateOfChange: trendStats.rate || 1.0,
+            confidenceInterval: {
+              lower: trendStats.pc1_ci_lower || null,
+              upper: trendStats.pc1_ci_upper || null
+            },
+            rateCI: {
+              lower: trendStats.rate_ci_lower || null,
+              upper: trendStats.rate_ci_upper || null
+            }
+          };
+          console.log(`    ✓ Trend: ${trendStats.trend_class} (${trendStats.pc1?.toFixed(1)}%/yr)`);
+        }
+
         speciesTrends[species] = {
           species,
           type: speciesType,
@@ -888,6 +909,7 @@ async function calculateGBI(allData, transects, baselineYear = 2021) {
           yearsWithData,
           annualIndices: rbmsOutput.collated_indices,
           confidenceIntervals: confidenceIntervals,
+          trendClassification: trendClassification,
           dataQuality: rbmsOutput.data_quality,
           method: 'rbms'
         };
@@ -1151,13 +1173,34 @@ async function calculateAllFlightCurves(allData, transects, baselineYear = 2021)
         }
       }
 
+      // Extract trend classification from rbms output
+      const trendStats = rbmsOutput.trend_statistics || {};
+      let trendClassification = null;
+
+      if (trendStats.trend_class) {
+        trendClassification = {
+          category: trendStats.trend_class,
+          annualRateOfChange: trendStats.pc1 || null,
+          rateOfChange: trendStats.rate || 1.0,
+          confidenceInterval: {
+            lower: trendStats.pc1_ci_lower || null,
+            upper: trendStats.pc1_ci_upper || null
+          },
+          rateCI: {
+            lower: trendStats.rate_ci_lower || null,
+            upper: trendStats.rate_ci_upper || null
+          }
+        };
+      }
+
       // Store results
       speciesResults[species] = {
         collatedIndices: rbmsOutput.collated_indices,
         phenologyCurves: rbmsOutput.phenology_curves || null,
         dataQuality: rbmsOutput.data_quality,
         processingInfo: rbmsOutput.processing_info,
-        confidenceIntervals: confidenceIntervals
+        confidenceIntervals: confidenceIntervals,
+        trendClassification: trendClassification
       };
 
       successCount++;
