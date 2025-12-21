@@ -73,6 +73,10 @@
         "transectName": "A Rocha Cruzinha II"
       },
       {
+        "transectId": "228038",
+        "transectName": "Duna_Cresmina"
+      },
+      {
         "transectId": "267250",
         "transectName": "EBIO Vale de Poios"
       },
@@ -83,6 +87,10 @@
       {
         "transectId": "256572",
         "transectName": "ICNF PNA Serra do Louro"
+      },
+      {
+        "transectId": "255860",
+        "transectName": "ICNF PNAL Arnal"
       },
       {
         "transectId": "244448",
@@ -101,6 +109,10 @@
         "transectName": "ICNF PNSACV EBIO Barragem da Bravura"
       },
       {
+        "transectId": "295724",
+        "transectName": "ICNF PNSE Levada Sra do Desterro"
+      },
+      {
         "transectId": "216760",
         "transectName": "ICNF PNSSM Cerejeirinha - Marvão"
       },
@@ -109,12 +121,20 @@
         "transectName": "ICNF PNSSM SUL Mosteiros"
       },
       {
+        "transectId": "256583",
+        "transectName": "ICNF PPAFCC Mata dos Medos"
+      },
+      {
         "transectId": "272901",
         "transectName": "ICNF RNES Gambia"
       },
       {
         "transectId": "240324",
         "transectName": "ICNF RNLSAS Salgueiral da Galiza"
+      },
+      {
+        "transectId": "265800",
+        "transectName": "ICNF Santa Rita-Maceira"
       },
       {
         "transectId": "243008",
@@ -129,12 +149,32 @@
         "transectName": "Parque Ecológico da Várzea da Quinta do Conde"
       },
       {
+        "transectId": "218548",
+        "transectName": "PEUVC"
+      },
+      {
         "transectId": "241378",
         "transectName": "Portela de Sintra"
       },
       {
+        "transectId": "227915",
+        "transectName": "Qta_PisaoT1"
+      },
+      {
+        "transectId": "227921",
+        "transectName": "Qta_PisaoT2"
+      },
+      {
+        "transectId": "227927",
+        "transectName": "Qta_PisaoT3"
+      },
+      {
         "transectId": "222006",
         "transectName": "Sete Fontes - Braga"
+      },
+      {
+        "transectId": "216728",
+        "transectName": "Telheiras"
       }
     ],
     "calculationMethod": "rbms (GAM flight curves + GLM collated indices + geometric mean)",
@@ -153,6 +193,7 @@
         "Lasiommata megera": 100,
         "Lycaena phlaeas": 100,
         "Maniola jurtina": 100,
+        "Ochlodes sylvanus": 100,
         "Polyommatus icarus": 100,
         "Euphydryas aurinia": 100,
         "Lysandra bellargus": 100,
@@ -162,105 +203,109 @@
       "dataQuality": {
         "transectCount": 50,
         "totalVisits": 169,
-        "speciesWithData": 9
+        "speciesWithData": 10
       },
       "ci_lower": 100,
       "ci_upper": 100
     },
     "2022": {
       "year": 2022,
-      "gbiValue": 78.05,
+      "gbiValue": 74.56,
       "speciesIndices": {
-        "Coenonympha pamphilus": 66.178,
-        "Lasiommata megera": 72.7006,
-        "Lycaena phlaeas": 114.4501,
-        "Maniola jurtina": 75.1124,
-        "Polyommatus icarus": 121.8526,
-        "Euphydryas aurinia": 61.6866,
-        "Lysandra bellargus": 157.19,
-        "Spialia sertorius": 25.3524,
-        "Thymelicus acteon": 86.7926
+        "Coenonympha pamphilus": 66.5891,
+        "Lasiommata megera": 82.0696,
+        "Lycaena phlaeas": 104.3602,
+        "Maniola jurtina": 82.0179,
+        "Ochlodes sylvanus": 68.75,
+        "Polyommatus icarus": 108.0777,
+        "Euphydryas aurinia": 84.5245,
+        "Lysandra bellargus": 70.1382,
+        "Spialia sertorius": 27.5576,
+        "Thymelicus acteon": 93.4896
       },
       "dataQuality": {
         "transectCount": 45,
         "totalVisits": 174,
-        "speciesWithData": 9
+        "speciesWithData": 10
       },
-      "ci_lower": 55.91,
-      "ci_upper": 106.66
+      "ci_lower": 57.29,
+      "ci_upper": 90.41
     },
     "2023": {
       "year": 2023,
-      "gbiValue": 48.81,
+      "gbiValue": 59.44,
       "speciesIndices": {
-        "Coenonympha pamphilus": 34.0097,
-        "Lasiommata megera": 98.411,
-        "Lycaena phlaeas": 151.5385,
-        "Maniola jurtina": 52.9584,
-        "Polyommatus icarus": 4.9628,
-        "Euphydryas aurinia": 44.5462,
-        "Lysandra bellargus": 108.1603,
-        "Spialia sertorius": 31.0145,
-        "Thymelicus acteon": 78.9829
+        "Coenonympha pamphilus": 38.3645,
+        "Lasiommata megera": 132.835,
+        "Lycaena phlaeas": 150.2931,
+        "Maniola jurtina": 59.8619,
+        "Ochlodes sylvanus": 81.25,
+        "Polyommatus icarus": 18.9419,
+        "Euphydryas aurinia": 78.1106,
+        "Lysandra bellargus": 40.871,
+        "Spialia sertorius": 31.2461,
+        "Thymelicus acteon": 78.2458
       },
       "dataQuality": {
         "transectCount": 70,
         "totalVisits": 194,
-        "speciesWithData": 9
+        "speciesWithData": 10
       },
-      "ci_lower": 25.74,
-      "ci_upper": 84.93
+      "ci_lower": 40.44,
+      "ci_upper": 86.04
     },
     "2024": {
       "year": 2024,
-      "gbiValue": 73.1,
+      "gbiValue": 72.42,
       "speciesIndices": {
-        "Coenonympha pamphilus": 31.4645,
-        "Lasiommata megera": 180.6374,
-        "Lycaena phlaeas": 125.6903,
-        "Maniola jurtina": 59.0861,
-        "Polyommatus icarus": 37.0498,
-        "Euphydryas aurinia": 79.4487,
-        "Lysandra bellargus": 163.4282,
-        "Spialia sertorius": 34.6744,
-        "Thymelicus acteon": 84.6477
+        "Coenonympha pamphilus": 36.3522,
+        "Lasiommata megera": 182.5295,
+        "Lycaena phlaeas": 124.04,
+        "Maniola jurtina": 63.8829,
+        "Ochlodes sylvanus": 56.25,
+        "Polyommatus icarus": 48.9548,
+        "Euphydryas aurinia": 57.4253,
+        "Lysandra bellargus": 163.5596,
+        "Spialia sertorius": 34.6838,
+        "Thymelicus acteon": 84.0912
       },
       "dataQuality": {
         "transectCount": 77,
         "totalVisits": 187,
-        "speciesWithData": 9
+        "speciesWithData": 10
       },
-      "ci_lower": 47.76,
-      "ci_upper": 110.6
+      "ci_lower": 52.64,
+      "ci_upper": 104.62
     },
     "2025": {
       "year": 2025,
-      "gbiValue": 55.3,
+      "gbiValue": 65.26,
       "speciesIndices": {
-        "Coenonympha pamphilus": 61.8691,
-        "Lasiommata megera": 96.6199,
-        "Lycaena phlaeas": 119.5392,
-        "Maniola jurtina": 175.2052,
-        "Polyommatus icarus": 11.0077,
-        "Euphydryas aurinia": 49.3165,
-        "Lysandra bellargus": 73.1878,
-        "Spialia sertorius": 17.1091,
-        "Thymelicus acteon": 56.83
+        "Coenonympha pamphilus": 68.4042,
+        "Lasiommata megera": 106.6365,
+        "Lycaena phlaeas": 112.6308,
+        "Maniola jurtina": 177.938,
+        "Ochlodes sylvanus": 206.25,
+        "Polyommatus icarus": 23.2156,
+        "Euphydryas aurinia": 36.5361,
+        "Lysandra bellargus": 56.2743,
+        "Spialia sertorius": 17.2096,
+        "Thymelicus acteon": 56.5927
       },
       "dataQuality": {
         "transectCount": 72,
         "totalVisits": 180,
-        "speciesWithData": 9
+        "speciesWithData": 10
       },
-      "ci_lower": 30.83,
-      "ci_upper": 92.97
+      "ci_lower": 39.04,
+      "ci_upper": 107.52
     }
   },
   "speciesTrends": {
     "Coenonympha pamphilus": {
       "species": "Coenonympha pamphilus",
       "type": "widespread",
-      "slope": -0.17037868016079416,
+      "slope": -0.13647580951160707,
       "yearsWithData": [
         2021,
         2022,
@@ -270,57 +315,57 @@
       ],
       "annualIndices": {
         "2021": 100,
-        "2022": 66.178,
-        "2023": 34.0097,
-        "2024": 31.4645,
-        "2025": 61.8691
+        "2022": 66.5891,
+        "2023": 38.3645,
+        "2024": 36.3522,
+        "2025": 68.4042
       },
       "trendLine": {
-        "2021": 80.9,
-        "2022": 69.8,
-        "2023": 58.7,
-        "2024": 47.61,
-        "2025": 36.51
+        "2021": 80.63,
+        "2022": 71.28,
+        "2023": 61.94,
+        "2024": 52.6,
+        "2025": 43.26
       },
       "confidenceIntervals": {
         "2021": {
-          "ci_lower": 25.24,
-          "ci_upper": 196.12
+          "ci_lower": 20.6,
+          "ci_upper": 204.97
         },
         "2022": {
-          "ci_lower": 26.18,
-          "ci_upper": 110.64
+          "ci_lower": 22.75,
+          "ci_upper": 112.69
         },
         "2023": {
-          "ci_lower": 10.08,
-          "ci_upper": 61.49
+          "ci_lower": 13.15,
+          "ci_upper": 67.81
         },
         "2024": {
-          "ci_lower": 6.49,
-          "ci_upper": 64.17
+          "ci_lower": 10.32,
+          "ci_upper": 68.35
         },
         "2025": {
-          "ci_lower": 18.02,
-          "ci_upper": 112.68
+          "ci_lower": 20.95,
+          "ci_upper": 120.02
         }
       },
       "trendClassification": {
-        "category": "Moderate decline",
-        "annualRateOfChange": -15.67,
-        "rateOfChange": 0.8433,
+        "category": "Uncertain",
+        "annualRateOfChange": -12.76,
+        "rateOfChange": 0.8724,
         "confidenceInterval": {
-          "lower": -27.27,
-          "upper": -2.3
+          "lower": -23.44,
+          "upper": 1.92
         },
         "rateCI": {
-          "lower": 0.7273,
-          "upper": 0.977
+          "lower": 0.7656,
+          "upper": 1.0192
         }
       },
       "dataQuality": {
-        "site_count": 18,
-        "total_visits": 1381,
-        "total_counts": 231,
+        "site_count": 28,
+        "total_visits": 1762,
+        "total_counts": 255,
         "years_with_data": 5,
         "flight_curve_r2": 0,
         "imputation_success": true,
@@ -331,7 +376,7 @@
     "Lasiommata megera": {
       "species": "Lasiommata megera",
       "type": "widespread",
-      "slope": 0.0841371145739521,
+      "slope": 0.09278554733307601,
       "yearsWithData": [
         2021,
         2022,
@@ -341,57 +386,57 @@
       ],
       "annualIndices": {
         "2021": 100,
-        "2022": 72.7006,
-        "2023": 98.411,
-        "2024": 180.6374,
-        "2025": 96.6199
+        "2022": 82.0696,
+        "2023": 132.835,
+        "2024": 182.5295,
+        "2025": 106.6365
       },
       "trendLine": {
-        "2021": 89.44,
-        "2022": 99.56,
-        "2023": 109.67,
-        "2024": 119.79,
-        "2025": 129.91
+        "2021": 98.07,
+        "2022": 109.44,
+        "2023": 120.81,
+        "2024": 132.19,
+        "2025": 143.56
       },
       "confidenceIntervals": {
         "2021": {
-          "ci_lower": 50.19,
-          "ci_upper": 161.09
+          "ci_lower": 54.67,
+          "ci_upper": 157.58
         },
         "2022": {
-          "ci_lower": 26.56,
-          "ci_upper": 141.36
+          "ci_lower": 33.23,
+          "ci_upper": 142.48
         },
         "2023": {
-          "ci_lower": 23.16,
-          "ci_upper": 208.76
+          "ci_lower": 48.49,
+          "ci_upper": 274.79
         },
         "2024": {
-          "ci_lower": 40.69,
-          "ci_upper": 413.55
+          "ci_lower": 55.76,
+          "ci_upper": 356.48
         },
         "2025": {
-          "ci_lower": 32.36,
-          "ci_upper": 177.44
+          "ci_lower": 38.99,
+          "ci_upper": 215.71
         }
       },
       "trendClassification": {
         "category": "Uncertain",
-        "annualRateOfChange": 8.78,
-        "rateOfChange": 1.0878,
+        "annualRateOfChange": 9.72,
+        "rateOfChange": 1.0972,
         "confidenceInterval": {
-          "lower": -14.58,
-          "upper": 20.89
+          "lower": -9.59,
+          "upper": 22.3
         },
         "rateCI": {
-          "lower": 0.8542,
-          "upper": 1.2089
+          "lower": 0.9041,
+          "upper": 1.223
         }
       },
       "dataQuality": {
-        "site_count": 18,
-        "total_visits": 1381,
-        "total_counts": 270,
+        "site_count": 28,
+        "total_visits": 1762,
+        "total_counts": 358,
         "years_with_data": 5,
         "flight_curve_r2": 0,
         "imputation_success": true,
@@ -402,7 +447,7 @@
     "Lycaena phlaeas": {
       "species": "Lycaena phlaeas",
       "type": "widespread",
-      "slope": 0.045063035474656774,
+      "slope": 0.04106457714216788,
       "yearsWithData": [
         2021,
         2022,
@@ -412,57 +457,57 @@
       ],
       "annualIndices": {
         "2021": 100,
-        "2022": 114.4501,
-        "2023": 151.5385,
-        "2024": 125.6903,
-        "2025": 119.5392
+        "2022": 104.3602,
+        "2023": 150.2931,
+        "2024": 124.04,
+        "2025": 112.6308
       },
       "trendLine": {
-        "2021": 112.18,
-        "2022": 117.21,
-        "2023": 122.24,
-        "2024": 127.28,
-        "2025": 132.31
+        "2021": 109.28,
+        "2022": 113.77,
+        "2023": 118.26,
+        "2024": 122.76,
+        "2025": 127.25
       },
       "confidenceIntervals": {
         "2021": {
-          "ci_lower": 54.68,
-          "ci_upper": 147.65
+          "ci_lower": 58.01,
+          "ci_upper": 143.39
         },
         "2022": {
-          "ci_lower": 47.01,
-          "ci_upper": 211.06
+          "ci_lower": 39.57,
+          "ci_upper": 172.82
         },
         "2023": {
-          "ci_lower": 66.13,
-          "ci_upper": 252.68
+          "ci_lower": 76.34,
+          "ci_upper": 230.98
         },
         "2024": {
-          "ci_lower": 60.94,
-          "ci_upper": 208.97
+          "ci_lower": 60.2,
+          "ci_upper": 185.47
         },
         "2025": {
-          "ci_lower": 43.61,
-          "ci_upper": 205.64
+          "ci_lower": 51.36,
+          "ci_upper": 177.27
         }
       },
       "trendClassification": {
         "category": "Uncertain",
-        "annualRateOfChange": 4.61,
-        "rateOfChange": 1.0461,
+        "annualRateOfChange": 4.19,
+        "rateOfChange": 1.0419,
         "confidenceInterval": {
-          "lower": -5.61,
-          "upper": 14.51
+          "lower": -5.11,
+          "upper": 12.77
         },
         "rateCI": {
-          "lower": 0.9439,
-          "upper": 1.1451
+          "lower": 0.9489,
+          "upper": 1.1277
         }
       },
       "dataQuality": {
-        "site_count": 18,
-        "total_visits": 1381,
-        "total_counts": 428,
+        "site_count": 28,
+        "total_visits": 1762,
+        "total_counts": 516,
         "years_with_data": 5,
         "flight_curve_r2": 0,
         "imputation_success": true,
@@ -473,7 +518,7 @@
     "Maniola jurtina": {
       "species": "Maniola jurtina",
       "type": "widespread",
-      "slope": 0.08815853887192703,
+      "slope": 0.09026441818553678,
       "yearsWithData": [
         2021,
         2022,
@@ -483,57 +528,128 @@
       ],
       "annualIndices": {
         "2021": 100,
-        "2022": 75.1124,
-        "2023": 52.9584,
-        "2024": 59.0861,
-        "2025": 175.2052
+        "2022": 82.0179,
+        "2023": 59.8619,
+        "2024": 63.8829,
+        "2025": 177.938
       },
       "trendLine": {
-        "2021": 65.6,
-        "2022": 79.03,
-        "2023": 92.47,
-        "2024": 105.91,
-        "2025": 119.35
+        "2021": 69.19,
+        "2022": 82.97,
+        "2023": 96.74,
+        "2024": 110.51,
+        "2025": 124.29
       },
       "confidenceIntervals": {
         "2021": {
-          "ci_lower": 63.01,
-          "ci_upper": 147.29
+          "ci_lower": 59.69,
+          "ci_upper": 143.07
         },
         "2022": {
-          "ci_lower": 45.38,
-          "ci_upper": 118.74
+          "ci_lower": 48.12,
+          "ci_upper": 122.12
         },
         "2023": {
-          "ci_lower": 32.67,
-          "ci_upper": 77.16
+          "ci_lower": 38.67,
+          "ci_upper": 83.23
         },
         "2024": {
-          "ci_lower": 33.1,
-          "ci_upper": 89.22
+          "ci_lower": 37.23,
+          "ci_upper": 95.63
         },
         "2025": {
-          "ci_lower": 50.49,
-          "ci_upper": 375.93
+          "ci_lower": 68.05,
+          "ci_upper": 339.82
         }
       },
       "trendClassification": {
         "category": "Uncertain",
-        "annualRateOfChange": 9.22,
-        "rateOfChange": 1.0922,
+        "annualRateOfChange": 9.45,
+        "rateOfChange": 1.0945,
         "confidenceInterval": {
-          "lower": -11.8,
-          "upper": 18.06
+          "lower": -5.72,
+          "upper": 18.21
         },
         "rateCI": {
-          "lower": 0.882,
-          "upper": 1.1806
+          "lower": 0.9428,
+          "upper": 1.1821
         }
       },
       "dataQuality": {
-        "site_count": 18,
-        "total_visits": 1381,
-        "total_counts": 744,
+        "site_count": 28,
+        "total_visits": 1762,
+        "total_counts": 864,
+        "years_with_data": 5,
+        "flight_curve_r2": 0,
+        "imputation_success": true,
+        "baseline_year": 2021
+      },
+      "method": "rbms"
+    },
+    "Ochlodes sylvanus": {
+      "species": "Ochlodes sylvanus",
+      "type": "widespread",
+      "slope": 0.12471669829912457,
+      "yearsWithData": [
+        2021,
+        2022,
+        2023,
+        2024,
+        2025
+      ],
+      "annualIndices": {
+        "2021": 100,
+        "2022": 68.75,
+        "2023": 81.25,
+        "2024": 56.25,
+        "2025": 206.25
+      },
+      "trendLine": {
+        "2021": 62.5,
+        "2022": 82.5,
+        "2023": 102.5,
+        "2024": 122.5,
+        "2025": 142.5
+      },
+      "confidenceIntervals": {
+        "2021": {
+          "ci_lower": 0,
+          "ci_upper": 300
+        },
+        "2022": {
+          "ci_lower": 0,
+          "ci_upper": 206.25
+        },
+        "2023": {
+          "ci_lower": 0,
+          "ci_upper": 243.75
+        },
+        "2024": {
+          "ci_lower": 0,
+          "ci_upper": 168.75
+        },
+        "2025": {
+          "ci_lower": 0,
+          "ci_upper": 618.75
+        }
+      },
+      "trendClassification": {
+        "category": "Strong increase",
+        "annualRateOfChange": 13.29,
+        "rateOfChange": 1.1329,
+        "confidenceInterval": {
+          "lower": 13.29,
+          "upper": 13.29
+        },
+        "rateCI": {
+          "lower": 1.1329,
+          "upper": 1.1329
+        }
+      },
+      "dataQuality": {
+        "site_count": 28,
+        "total_visits": 1762,
+        "total_counts": 9,
         "years_with_data": 5,
         "flight_curve_r2": 0,
         "imputation_success": true,
@@ -544,7 +660,7 @@
     "Polyommatus icarus": {
       "species": "Polyommatus icarus",
       "type": "widespread",
-      "slope": -0.5603699480087903,
+      "slope": -0.37126444284625904,
       "yearsWithData": [
         2021,
         2022,
@@ -554,57 +670,57 @@
       ],
       "annualIndices": {
         "2021": 100,
-        "2022": 121.8526,
-        "2023": 4.9628,
-        "2024": 37.0498,
-        "2025": 11.0077
+        "2022": 108.0777,
+        "2023": 18.9419,
+        "2024": 48.9548,
+        "2025": 23.2156
       },
       "trendLine": {
-        "2021": 107.53,
-        "2022": 81.25,
-        "2023": 54.97,
-        "2024": 28.7,
-        "2025": 2.42
+        "2021": 102.38,
+        "2022": 81.11,
+        "2023": 59.84,
+        "2024": 38.57,
+        "2025": 17.3
       },
       "confidenceIntervals": {
         "2021": {
-          "ci_lower": 11.15,
-          "ci_upper": 356.34
+          "ci_lower": 21.54,
+          "ci_upper": 240.99
         },
         "2022": {
-          "ci_lower": 16.94,
-          "ci_upper": 405.44
+          "ci_lower": 26,
+          "ci_upper": 243.87
         },
         "2023": {
-          "ci_lower": 1.08,
-          "ci_upper": 10.59
+          "ci_lower": 5.43,
+          "ci_upper": 36.93
         },
         "2024": {
-          "ci_lower": 9.52,
-          "ci_upper": 68.96
+          "ci_lower": 22.66,
+          "ci_upper": 77.39
         },
         "2025": {
-          "ci_lower": 2,
-          "ci_upper": 20.52
+          "ci_lower": 3.55,
+          "ci_upper": 56.72
         }
       },
       "trendClassification": {
-        "category": "Strong decline",
-        "annualRateOfChange": -42.91,
-        "rateOfChange": 0.5709,
+        "category": "Moderate decline",
+        "annualRateOfChange": -31.02,
+        "rateOfChange": 0.6898,
         "confidenceInterval": {
-          "lower": -67.53,
-          "upper": -12.07
+          "lower": -55.99,
+          "upper": -0.46
         },
         "rateCI": {
-          "lower": 0.3247,
-          "upper": 0.8793
+          "lower": 0.4401,
+          "upper": 0.9954
         }
       },
       "dataQuality": {
-        "site_count": 18,
-        "total_visits": 1381,
-        "total_counts": 108,
+        "site_count": 28,
+        "total_visits": 1762,
+        "total_counts": 165,
         "years_with_data": 5,
         "flight_curve_r2": 0,
         "imputation_success": true,
@@ -615,7 +731,7 @@
     "Euphydryas aurinia": {
       "species": "Euphydryas aurinia",
       "type": "specialist",
-      "slope": -0.11607781477364938,
+      "slope": -0.24002952065651015,
       "yearsWithData": [
         2021,
         2022,
@@ -625,57 +741,57 @@
       ],
       "annualIndices": {
         "2021": 100,
-        "2022": 61.6866,
-        "2023": 44.5462,
-        "2024": 79.4487,
-        "2025": 49.3165
+        "2022": 84.5245,
+        "2023": 78.1106,
+        "2024": 57.4253,
+        "2025": 36.5361
       },
       "trendLine": {
-        "2021": 83.72,
-        "2022": 75.36,
-        "2023": 67,
-        "2024": 58.64,
-        "2025": 50.28
+        "2021": 102.12,
+        "2022": 86.72,
+        "2023": 71.32,
+        "2024": 55.92,
+        "2025": 40.51
       },
       "confidenceIntervals": {
         "2021": {
-          "ci_lower": 10.22,
-          "ci_upper": 260.59
+          "ci_lower": 11.27,
+          "ci_upper": 223.94
         },
         "2022": {
-          "ci_lower": 0,
-          "ci_upper": 172.29
+          "ci_lower": 8.39,
+          "ci_upper": 192.48
         },
         "2023": {
-          "ci_lower": 2.55,
-          "ci_upper": 101.45
+          "ci_lower": 10.68,
+          "ci_upper": 181.78
         },
         "2024": {
-          "ci_lower": 8.19,
-          "ci_upper": 184.68
+          "ci_lower": 16.02,
+          "ci_upper": 115.96
         },
         "2025": {
-          "ci_lower": 6.42,
-          "ci_upper": 111.56
+          "ci_lower": 11.32,
+          "ci_upper": 72.98
         }
       },
       "trendClassification": {
         "category": "Uncertain",
-        "annualRateOfChange": -10.96,
-        "rateOfChange": 0.8904,
+        "annualRateOfChange": -21.34,
+        "rateOfChange": 0.7866,
         "confidenceInterval": {
-          "lower": -21.4,
-          "upper": 217.29
+          "lower": -31.72,
+          "upper": 7.08
         },
         "rateCI": {
-          "lower": 0.786,
-          "upper": 3.1729
+          "lower": 0.6828,
+          "upper": 1.0708
         }
       },
       "dataQuality": {
-        "site_count": 18,
-        "total_visits": 1381,
-        "total_counts": 46,
+        "site_count": 28,
+        "total_visits": 1762,
+        "total_counts": 76,
         "years_with_data": 5,
         "flight_curve_r2": 0,
         "imputation_success": true,
@@ -686,7 +802,7 @@
     "Lysandra bellargus": {
       "species": "Lysandra bellargus",
       "type": "specialist",
-      "slope": -0.058536440574143284,
+      "slope": -0.030315460789259986,
       "yearsWithData": [
         2021,
         2022,
@@ -696,57 +812,57 @@
       ],
       "annualIndices": {
         "2021": 100,
-        "2022": 157.19,
-        "2023": 108.1603,
-        "2024": 163.4282,
-        "2025": 73.1878
+        "2022": 70.1382,
+        "2023": 40.871,
+        "2024": 163.5596,
+        "2025": 56.2743
       },
       "trendLine": {
-        "2021": 129.87,
-        "2022": 125.13,
-        "2023": 120.39,
-        "2024": 115.65,
-        "2025": 110.92
+        "2021": 84.97,
+        "2022": 85.57,
+        "2023": 86.17,
+        "2024": 86.77,
+        "2025": 87.36
       },
       "confidenceIntervals": {
         "2021": {
-          "ci_lower": 0,
-          "ci_upper": 322.65
+          "ci_lower": 3.08,
+          "ci_upper": 295.79
         },
         "2022": {
-          "ci_lower": 50.9,
-          "ci_upper": 317.37
+          "ci_lower": 22.86,
+          "ci_upper": 125.68
         },
         "2023": {
-          "ci_lower": 4.01,
-          "ci_upper": 257.15
+          "ci_lower": 0,
+          "ci_upper": 87.68
         },
         "2024": {
-          "ci_lower": 24.01,
-          "ci_upper": 366.9
+          "ci_lower": 37.25,
+          "ci_upper": 360.31
         },
         "2025": {
           "ci_lower": 0,
-          "ci_upper": 199.72
+          "ci_upper": 190.34
         }
       },
       "trendClassification": {
         "category": "Uncertain",
-        "annualRateOfChange": -5.69,
-        "rateOfChange": 0.9431,
+        "annualRateOfChange": -2.99,
+        "rateOfChange": 0.9701,
         "confidenceInterval": {
-          "lower": -98.64,
-          "upper": 2097.89
+          "lower": -98.12,
+          "upper": 84.86
         },
         "rateCI": {
-          "lower": 0.0136,
-          "upper": 21.9789
+          "lower": 0.0188,
+          "upper": 1.8486
         }
       },
       "dataQuality": {
-        "site_count": 18,
-        "total_visits": 1381,
-        "total_counts": 34,
+        "site_count": 28,
+        "total_visits": 1762,
+        "total_counts": 49,
         "years_with_data": 5,
         "flight_curve_r2": 0,
         "imputation_success": true,
@@ -757,7 +873,7 @@
     "Spialia sertorius": {
       "species": "Spialia sertorius",
       "type": "specialist",
-      "slope": -0.3217991138165053,
+      "slope": -0.32894112771457346,
       "yearsWithData": [
         2021,
         2022,
@@ -767,57 +883,57 @@
       ],
       "annualIndices": {
         "2021": 100,
-        "2022": 25.3524,
-        "2023": 31.0145,
-        "2024": 34.6744,
-        "2025": 17.1091
+        "2022": 27.5576,
+        "2023": 31.2461,
+        "2024": 34.6838,
+        "2025": 17.2096
       },
       "trendLine": {
-        "2021": 72.92,
-        "2022": 57.28,
-        "2023": 41.63,
-        "2024": 25.98,
-        "2025": 10.34
+        "2021": 73.83,
+        "2022": 57.98,
+        "2023": 42.14,
+        "2024": 26.29,
+        "2025": 10.45
       },
       "confidenceIntervals": {
         "2021": {
           "ci_lower": 0,
-          "ci_upper": 236.55
+          "ci_upper": 238.21
         },
         "2022": {
           "ci_lower": 0,
-          "ci_upper": 69.12
+          "ci_upper": 66.18
         },
         "2023": {
           "ci_lower": 0,
-          "ci_upper": 87.55
+          "ci_upper": 80.74
         },
         "2024": {
           "ci_lower": 0,
-          "ci_upper": 107.7
+          "ci_upper": 95.34
         },
         "2025": {
           "ci_lower": 0,
-          "ci_upper": 42.73
+          "ci_upper": 39.28
         }
       },
       "trendClassification": {
         "category": "Uncertain",
-        "annualRateOfChange": -27.52,
-        "rateOfChange": 0.7248,
+        "annualRateOfChange": -28.04,
+        "rateOfChange": 0.7196,
         "confidenceInterval": {
-          "lower": -98.75,
-          "upper": 466.98
+          "lower": -99.41,
+          "upper": 420.11
         },
         "rateCI": {
-          "lower": 0.0125,
-          "upper": 5.6698
+          "lower": 0.0059,
+          "upper": 5.2011
         }
       },
       "dataQuality": {
-        "site_count": 18,
-        "total_visits": 1381,
-        "total_counts": 39,
+        "site_count": 28,
+        "total_visits": 1762,
+        "total_counts": 40,
         "years_with_data": 5,
         "flight_curve_r2": 0,
         "imputation_success": true,
@@ -828,7 +944,7 @@
     "Thymelicus acteon": {
       "species": "Thymelicus acteon",
       "type": "specialist",
-      "slope": -0.1155235088426798,
+      "slope": -0.1244528644718082,
       "yearsWithData": [
         2021,
         2022,
@@ -838,57 +954,57 @@
       ],
       "annualIndices": {
         "2021": 100,
-        "2022": 86.7926,
-        "2023": 78.9829,
-        "2024": 84.6477,
-        "2025": 56.83
+        "2022": 93.4896,
+        "2023": 78.2458,
+        "2024": 84.0912,
+        "2025": 56.5927
       },
       "trendLine": {
-        "2021": 99.15,
-        "2022": 90.3,
-        "2023": 81.45,
-        "2024": 72.6,
-        "2025": 63.75
+        "2021": 101.73,
+        "2022": 92.11,
+        "2023": 82.48,
+        "2024": 72.86,
+        "2025": 63.24
       },
       "confidenceIntervals": {
         "2021": {
-          "ci_lower": 19.41,
-          "ci_upper": 229.11
+          "ci_lower": 24.6,
+          "ci_upper": 223.46
         },
         "2022": {
-          "ci_lower": 6.79,
-          "ci_upper": 205.39
+          "ci_lower": 21.43,
+          "ci_upper": 195.42
         },
         "2023": {
-          "ci_lower": 1.56,
-          "ci_upper": 215.96
+          "ci_lower": 3.69,
+          "ci_upper": 211.78
         },
         "2024": {
-          "ci_lower": 5.6,
-          "ci_upper": 209.82
+          "ci_lower": 7.01,
+          "ci_upper": 205.47
         },
         "2025": {
-          "ci_lower": 3.91,
-          "ci_upper": 123.11
+          "ci_lower": 6.99,
+          "ci_upper": 109.21
         }
       },
       "trendClassification": {
-        "category": "Uncertain",
-        "annualRateOfChange": -10.91,
-        "rateOfChange": 0.8909,
+        "category": "Moderate decline",
+        "annualRateOfChange": -11.7,
+        "rateOfChange": 0.883,
         "confidenceInterval": {
-          "lower": -37.19,
-          "upper": 1.53
+          "lower": -33.43,
+          "upper": -0.21
         },
         "rateCI": {
-          "lower": 0.6281,
-          "upper": 1.0153
+          "lower": 0.6657,
+          "upper": 0.9979
         }
       },
       "dataQuality": {
-        "site_count": 18,
-        "total_visits": 1381,
-        "total_counts": 62,
+        "site_count": 28,
+        "total_visits": 1762,
+        "total_counts": 68,
         "years_with_data": 5,
         "flight_curve_r2": 0,
         "imputation_success": true,

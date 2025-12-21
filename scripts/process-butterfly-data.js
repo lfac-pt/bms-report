@@ -542,11 +542,11 @@ function calculateTransectStats(transectId, allData, metadata, location = null, 
 
 /**
  * Filter transects based on quality criteria for GBI
- * Criteria: 5+ years active, 10+ visits per year average
+ * Criteria: 5+ years active, 5+ visits per year average
  */
 function getQualityFilteredTransects(transects) {
   return transects.filter(t =>
-    t.yearsActive >= 5 && t.avgVisitsPerYear >= 10
+    t.yearsActive >= 5 && t.avgVisitsPerYear >= 5
   );
 }
 
@@ -724,7 +724,7 @@ async function calculateGBI(allData, transects, baselineYear = 2021) {
   const activeQualityTransects = qualityTransects.filter(t => t.isActive);
   const qualityTransectIds = activeQualityTransects.map(t => t.transectId);
 
-  console.log(`  Quality transects: ${qualityTransects.length} (5+ years, 10+ visits/year)`);
+  console.log(`  Quality transects: ${qualityTransects.length} (5+ years, 5+ visits/year)`);
   console.log(`  Active in most recent year: ${activeQualityTransects.length}`);
 
   if (activeQualityTransects.length === 0) {
@@ -752,7 +752,7 @@ async function calculateGBI(allData, transects, baselineYear = 2021) {
       species: row['Preferred Species Name'],
       count: parseInt(row['Abundance Count']) || 0
     }))
-    .filter(row => row.year >= 2021); // Start from 2021
+    .filter(row => row.year >= 2021);
 
   console.log(`  Transformed ${transformedData.length} observations for rbms`);
 
@@ -803,7 +803,7 @@ async function calculateGBI(allData, transects, baselineYear = 2021) {
 
       console.log(`    Found: ${speciesData.visits.length} visits, ${speciesData.counts.length} counts`);
 
-      if (speciesData.visits.length < 10) {
+      if (speciesData.visits.length < 5) {
         console.log(`    Skipping: insufficient visits (${speciesData.visits.length})`);
         continue;
       }
@@ -1053,7 +1053,7 @@ async function calculateAllFlightCurves(allData, transects, baselineYear = 2021)
   const activeQualityTransects = qualityTransects.filter(t => t.isActive);
   const qualityTransectIds = activeQualityTransects.map(t => t.transectId);
 
-  console.log(`  Quality transects: ${qualityTransects.length} (5+ years, 10+ visits/year)`);
+  console.log(`  Quality transects: ${qualityTransects.length} (5+ years, 5+ visits/year)`);
   console.log(`  Active in most recent year: ${activeQualityTransects.length}`);
 
   if (activeQualityTransects.length === 0) {
@@ -1080,7 +1080,7 @@ async function calculateAllFlightCurves(allData, transects, baselineYear = 2021)
       species: row['Preferred Species Name'],
       count: parseInt(row['Abundance Count']) || 0
     }))
-    .filter(row => row.year >= 2021); // Start from 2021
+    .filter(row => row.year >= 2021);
 
   console.log(`  Transformed ${transformedData.length} observations for rbms`);
 
@@ -1131,7 +1131,7 @@ async function calculateAllFlightCurves(allData, transects, baselineYear = 2021)
         species
       );
 
-      if (speciesData.visits.length < 10 || speciesData.counts.length < 5) {
+      if (speciesData.visits.length < 5 || speciesData.counts.length < 5) {
         continue; // Skip silently
       }
 
@@ -1267,7 +1267,7 @@ async function calculateRegionalPhenology(allData, transects, baselineYear = 202
   const qualityTransects = getQualityFilteredTransects(transects);
   const activeQualityTransects = qualityTransects.filter(t => t.isActive);
 
-  console.log(`  Quality transects: ${qualityTransects.length} (5+ years, 10+ visits/year)`);
+  console.log(`  Quality transects: ${qualityTransects.length} (5+ years, 5+ visits/year)`);
   console.log(`  Active in most recent year: ${activeQualityTransects.length}`);
 
   // Step 2: Group transects by climatic region
@@ -1296,7 +1296,7 @@ async function calculateRegionalPhenology(allData, transects, baselineYear = 202
 
       const month = parseInt(parts[1], 10);
       const year = parseInt(parts[2], 10);
-      return month >= 3 && month <= 9 && year >= 2021; // Monitoring season, 2021+
+      return month >= 3 && month <= 9 && year >= 2021;
     })
     .map(row => ({
       transectId: row['Transect ID'],
@@ -1364,7 +1364,7 @@ async function calculateRegionalPhenology(allData, transects, baselineYear = 202
           species
         );
 
-        if (speciesData.visits.length < 10 || speciesData.counts.length < 5) {
+        if (speciesData.visits.length < 5 || speciesData.counts.length < 5) {
           console.log(`    ${region}: skipped (insufficient data)`);
           continue;
         }

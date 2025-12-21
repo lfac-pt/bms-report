@@ -341,14 +341,6 @@ function ButterflyTransects() {
     ? data.filter(t => t.lastMonitoringYear === mostRecentYear).length
     : 0;
 
-  // Long-term quality data transects: active in last season, 5+ years, 10+ avg visits/year
-  const longTermQualityTransects = mostRecentYear
-    ? data.filter(
-        t =>
-          t.lastMonitoringYear === mostRecentYear && t.yearsActive >= 5 && t.avgVisitsPerYear > 10
-      ).length
-    : 0;
-
   // Transects gained (started in last season) and lost (active in year before last, but not in last)
   const transectsGainedList = mostRecentYear
     ? data.filter(t => t.firstMonitoringYear === mostRecentYear)
@@ -461,13 +453,13 @@ function ButterflyTransects() {
       sorter: (a, b) => a.avgVisitsPerYear - b.avgVisitsPerYear,
       render: (value: number) => value.toFixed(1),
       filters: [
-        { text: "10 ou mais", value: ">=10" },
-        { text: "Menos de 10", value: "<10" },
+        { text: "5 ou mais", value: ">=5" },
+        { text: "Menos de 5", value: "<5" },
       ],
       filteredValue: avgVisitsPerYearFilters,
       onFilter: (value, record) => {
-        if (value === ">=10") return record.avgVisitsPerYear >= 10;
-        if (value === "<10") return record.avgVisitsPerYear < 10;
+        if (value === ">=5") return record.avgVisitsPerYear >= 5;
+        if (value === "<5") return record.avgVisitsPerYear < 5;
         return true;
       },
     },
@@ -620,16 +612,7 @@ function ButterflyTransects() {
 
       {/* Summary Statistics */}
       <Row gutter={16}>
-        <Col span={4}>
-          <Card>
-            <Statistic
-              title="Transectos com Dados Robustos"
-              value={longTermQualityTransects}
-              valueStyle={{ color: "#1890ff" }}
-            />
-          </Card>
-        </Col>
-        <Col span={4}>
+        <Col span={5}>
           <Card>
             <Popover
               content={
@@ -704,7 +687,7 @@ function ButterflyTransects() {
             </Popover>
           </Card>
         </Col>
-        <Col span={4}>
+        <Col span={5}>
           <Card>
             <Popover
               content={

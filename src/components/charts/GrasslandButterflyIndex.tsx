@@ -539,7 +539,7 @@ function GrasslandButterflyIndex({ gbiData, loading }: GrasslandButterflyIndexPr
                 <Typography.Text
                   style={{ fontSize: 12, color: "#8c8c8c", display: "block", marginBottom: 8 }}
                 >
-                  Critérios: 5+ anos ativos, 10+ visitas/ano
+                  Critérios: 5+ anos ativos, 5+ visitas/ano
                 </Typography.Text>
                 <List
                   size="small"
