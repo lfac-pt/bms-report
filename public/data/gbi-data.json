@@ -149,7 +149,6 @@
       "year": 2021,
       "gbiValue": 100,
       "speciesIndices": {
-        "Anthocharis cardamines": 100,
         "Coenonympha pamphilus": 100,
         "Lasiommata megera": 100,
         "Lycaena phlaeas": 100,
@@ -163,180 +162,105 @@
       "dataQuality": {
         "transectCount": 50,
         "totalVisits": 169,
-        "speciesWithData": 10
+        "speciesWithData": 9
       },
       "ci_lower": 100,
       "ci_upper": 100
     },
     "2022": {
       "year": 2022,
-      "gbiValue": 93.48,
+      "gbiValue": 78.05,
       "speciesIndices": {
-        "Anthocharis cardamines": 446.6414,
-        "Coenonympha pamphilus": 66.2112,
-        "Lasiommata megera": 74.449,
-        "Lycaena phlaeas": 114.3934,
-        "Maniola jurtina": 74.9873,
-        "Polyommatus icarus": 119.8199,
-        "Euphydryas aurinia": 60.5179,
-        "Lysandra bellargus": 156.0424,
-        "Spialia sertorius": 27.5849,
-        "Thymelicus acteon": 86.4188
+        "Coenonympha pamphilus": 66.178,
+        "Lasiommata megera": 72.7006,
+        "Lycaena phlaeas": 114.4501,
+        "Maniola jurtina": 75.1124,
+        "Polyommatus icarus": 121.8526,
+        "Euphydryas aurinia": 61.6866,
+        "Lysandra bellargus": 157.19,
+        "Spialia sertorius": 25.3524,
+        "Thymelicus acteon": 86.7926
       },
       "dataQuality": {
         "transectCount": 45,
         "totalVisits": 174,
-        "speciesWithData": 10
+        "speciesWithData": 9
       },
-      "ci_lower": 61.79,
-      "ci_upper": 147.48
+      "ci_lower": 55.91,
+      "ci_upper": 106.66
     },
     "2023": {
       "year": 2023,
-      "gbiValue": 58.85,
+      "gbiValue": 48.81,
       "speciesIndices": {
-        "Anthocharis cardamines": 350.821,
-        "Coenonympha pamphilus": 34.0186,
-        "Lasiommata megera": 100.0276,
-        "Lycaena phlaeas": 150.2339,
-        "Maniola jurtina": 52.9597,
-        "Polyommatus icarus": 4.4221,
-        "Euphydryas aurinia": 44.6294,
-        "Lysandra bellargus": 109.4181,
-        "Spialia sertorius": 30.9494,
-        "Thymelicus acteon": 78.547
+        "Coenonympha pamphilus": 34.0097,
+        "Lasiommata megera": 98.411,
+        "Lycaena phlaeas": 151.5385,
+        "Maniola jurtina": 52.9584,
+        "Polyommatus icarus": 4.9628,
+        "Euphydryas aurinia": 44.5462,
+        "Lysandra bellargus": 108.1603,
+        "Spialia sertorius": 31.0145,
+        "Thymelicus acteon": 78.9829
       },
       "dataQuality": {
         "transectCount": 70,
         "totalVisits": 194,
-        "speciesWithData": 10
+        "speciesWithData": 9
       },
-      "ci_lower": 29.83,
-      "ci_upper": 109.22
+      "ci_lower": 25.74,
+      "ci_upper": 84.93
     },
     "2024": {
       "year": 2024,
-      "gbiValue": 80.9,
+      "gbiValue": 73.1,
       "speciesIndices": {
-        "Anthocharis cardamines": 239.5329,
-        "Coenonympha pamphilus": 31.4965,
-        "Lasiommata megera": 182.5864,
-        "Lycaena phlaeas": 126.2707,
-        "Maniola jurtina": 59.0675,
-        "Polyommatus icarus": 35.3684,
-        "Euphydryas aurinia": 79.5035,
-        "Lysandra bellargus": 153.6555,
-        "Spialia sertorius": 34.6959,
-        "Thymelicus acteon": 77.965
+        "Coenonympha pamphilus": 31.4645,
+        "Lasiommata megera": 180.6374,
+        "Lycaena phlaeas": 125.6903,
+        "Maniola jurtina": 59.0861,
+        "Polyommatus icarus": 37.0498,
+        "Euphydryas aurinia": 79.4487,
+        "Lysandra bellargus": 163.4282,
+        "Spialia sertorius": 34.6744,
+        "Thymelicus acteon": 84.6477
       },
       "dataQuality": {
         "transectCount": 77,
         "totalVisits": 187,
-        "speciesWithData": 10
+        "speciesWithData": 9
       },
-      "ci_lower": 52.33,
-      "ci_upper": 122.57
+      "ci_lower": 47.76,
+      "ci_upper": 110.6
     },
     "2025": {
       "year": 2025,
-      "gbiValue": 63.45,
+      "gbiValue": 55.3,
       "speciesIndices": {
-        "Anthocharis cardamines": 345.4121,
-        "Coenonympha pamphilus": 62.2879,
-        "Lasiommata megera": 98.1593,
-        "Lycaena phlaeas": 119.5767,
-        "Maniola jurtina": 175.2256,
-        "Polyommatus icarus": 9.4124,
-        "Euphydryas aurinia": 47.6349,
-        "Lysandra bellargus": 70.123,
-        "Spialia sertorius": 12.7022,
-        "Thymelicus acteon": 59.8732
+        "Coenonympha pamphilus": 61.8691,
+        "Lasiommata megera": 96.6199,
+        "Lycaena phlaeas": 119.5392,
+        "Maniola jurtina": 175.2052,
+        "Polyommatus icarus": 11.0077,
+        "Euphydryas aurinia": 49.3165,
+        "Lysandra bellargus": 73.1878,
+        "Spialia sertorius": 17.1091,
+        "Thymelicus acteon": 56.83
       },
       "dataQuality": {
         "transectCount": 72,
         "totalVisits": 180,
-        "speciesWithData": 10
+        "speciesWithData": 9
       },
-      "ci_lower": 31.94,
-      "ci_upper": 114.56
+      "ci_lower": 30.83,
+      "ci_upper": 92.97
     }
   },
   "speciesTrends": {
-    "Anthocharis cardamines": {
-      "species": "Anthocharis cardamines",
-      "type": "widespread",
-      "slope": 0.18560707633398238,
-      "yearsWithData": [
-        2021,
-        2022,
-        2023,
-        2024,
-        2025
-      ],
-      "annualIndices": {
-        "2021": 100,
-        "2022": 446.6414,
-        "2023": 350.821,
-        "2024": 239.5329,
-        "2025": 345.4121
-      },
-      "trendLine": {
-        "2021": 239.74,
-        "2022": 268.11,
-        "2023": 296.48,
-        "2024": 324.85,
-        "2025": 353.22
-      },
-      "confidenceIntervals": {
-        "2021": {
-          "ci_lower": 0,
-          "ci_upper": 374.29
-        },
-        "2022": {
-          "ci_lower": 56.55,
-          "ci_upper": 1133.39
-        },
-        "2023": {
-          "ci_lower": 43.68,
-          "ci_upper": 826.7
-        },
-        "2024": {
-          "ci_lower": 0,
-          "ci_upper": 590.53
-        },
-        "2025": {
-          "ci_lower": 26.36,
-          "ci_upper": 773.59
-        }
-      },
-      "trendClassification": {
-        "category": "Uncertain",
-        "annualRateOfChange": 20.4,
-        "rateOfChange": 1.204,
-        "confidenceInterval": {
-          "lower": -87.47,
-          "upper": 4438.11
-        },
-        "rateCI": {
-          "lower": 0.1253,
-          "upper": 45.3811
-        }
-      },
-      "dataQuality": {
-        "site_count": 18,
-        "total_visits": 1381,
-        "total_counts": 43,
-        "years_with_data": 5,
-        "flight_curve_r2": 0,
-        "imputation_success": true,
-        "baseline_year": 2021
-      },
-      "method": "rbms"
-    },
     "Coenonympha pamphilus": {
       "species": "Coenonympha pamphilus",
       "type": "widespread",
-      "slope": -0.16897792055096772,
+      "slope": -0.17037868016079416,
       "yearsWithData": [
         2021,
         2022,
@@ -346,51 +270,51 @@
       ],
       "annualIndices": {
         "2021": 100,
-        "2022": 66.2112,
-        "2023": 34.0186,
-        "2024": 31.4965,
-        "2025": 62.2879
+        "2022": 66.178,
+        "2023": 34.0097,
+        "2024": 31.4645,
+        "2025": 61.8691
       },
       "trendLine": {
-        "2021": 80.83,
-        "2022": 69.82,
-        "2023": 58.8,
-        "2024": 47.79,
-        "2025": 36.78
+        "2021": 80.9,
+        "2022": 69.8,
+        "2023": 58.7,
+        "2024": 47.61,
+        "2025": 36.51
       },
       "confidenceIntervals": {
         "2021": {
-          "ci_lower": 25.29,
-          "ci_upper": 196.19
+          "ci_lower": 25.24,
+          "ci_upper": 196.12
         },
         "2022": {
-          "ci_lower": 26.2,
-          "ci_upper": 110.69
+          "ci_lower": 26.18,
+          "ci_upper": 110.64
         },
         "2023": {
           "ci_lower": 10.08,
-          "ci_upper": 61.52
+          "ci_upper": 61.49
         },
         "2024": {
-          "ci_lower": 6.44,
-          "ci_upper": 64.22
+          "ci_lower": 6.49,
+          "ci_upper": 64.17
         },
         "2025": {
-          "ci_lower": 18.15,
-          "ci_upper": 113.39
+          "ci_lower": 18.02,
+          "ci_upper": 112.68
         }
       },
       "trendClassification": {
         "category": "Moderate decline",
-        "annualRateOfChange": -15.55,
-        "rateOfChange": 0.8445,
+        "annualRateOfChange": -15.67,
+        "rateOfChange": 0.8433,
         "confidenceInterval": {
-          "lower": -27.08,
-          "upper": -2.36
+          "lower": -27.27,
+          "upper": -2.3
         },
         "rateCI": {
-          "lower": 0.7292,
-          "upper": 0.9764
+          "lower": 0.7273,
+          "upper": 0.977
         }
       },
       "dataQuality": {
@@ -407,7 +331,7 @@
     "Lasiommata megera": {
       "species": "Lasiommata megera",
       "type": "widespread",
-      "slope": 0.08599521247931989,
+      "slope": 0.0841371145739521,
       "yearsWithData": [
         2021,
         2022,
@@ -417,51 +341,51 @@
       ],
       "annualIndices": {
         "2021": 100,
-        "2022": 74.449,
-        "2023": 100.0276,
-        "2024": 182.5864,
-        "2025": 98.1593
+        "2022": 72.7006,
+        "2023": 98.411,
+        "2024": 180.6374,
+        "2025": 96.6199
       },
       "trendLine": {
-        "2021": 90.15,
-        "2022": 100.6,
-        "2023": 111.04,
-        "2024": 121.49,
-        "2025": 131.94
+        "2021": 89.44,
+        "2022": 99.56,
+        "2023": 109.67,
+        "2024": 119.79,
+        "2025": 129.91
       },
       "confidenceIntervals": {
         "2021": {
-          "ci_lower": 49.58,
-          "ci_upper": 159.25
+          "ci_lower": 50.19,
+          "ci_upper": 161.09
         },
         "2022": {
-          "ci_lower": 26.96,
-          "ci_upper": 145.53
+          "ci_lower": 26.56,
+          "ci_upper": 141.36
         },
         "2023": {
-          "ci_lower": 23.56,
-          "ci_upper": 212.21
+          "ci_lower": 23.16,
+          "ci_upper": 208.76
         },
         "2024": {
-          "ci_lower": 41.3,
-          "ci_upper": 415.4
+          "ci_lower": 40.69,
+          "ci_upper": 413.55
         },
         "2025": {
-          "ci_lower": 32.83,
-          "ci_upper": 180.34
+          "ci_lower": 32.36,
+          "ci_upper": 177.44
         }
       },
       "trendClassification": {
         "category": "Uncertain",
-        "annualRateOfChange": 8.98,
-        "rateOfChange": 1.0898,
+        "annualRateOfChange": 8.78,
+        "rateOfChange": 1.0878,
         "confidenceInterval": {
-          "lower": -14.01,
-          "upper": 20.8
+          "lower": -14.58,
+          "upper": 20.89
         },
         "rateCI": {
-          "lower": 0.8599,
-          "upper": 1.208
+          "lower": 0.8542,
+          "upper": 1.2089
         }
       },
       "dataQuality": {
@@ -478,7 +402,7 @@
     "Lycaena phlaeas": {
       "species": "Lycaena phlaeas",
       "type": "widespread",
-      "slope": 0.045636027112936975,
+      "slope": 0.045063035474656774,
       "yearsWithData": [
         2021,
         2022,
@@ -488,51 +412,51 @@
       ],
       "annualIndices": {
         "2021": 100,
-        "2022": 114.3934,
-        "2023": 150.2339,
-        "2024": 126.2707,
-        "2025": 119.5767
+        "2022": 114.4501,
+        "2023": 151.5385,
+        "2024": 125.6903,
+        "2025": 119.5392
       },
       "trendLine": {
-        "2021": 111.89,
-        "2022": 116.99,
-        "2023": 122.09,
-        "2024": 127.2,
-        "2025": 132.3
+        "2021": 112.18,
+        "2022": 117.21,
+        "2023": 122.24,
+        "2024": 127.28,
+        "2025": 132.31
       },
       "confidenceIntervals": {
         "2021": {
-          "ci_lower": 54.73,
-          "ci_upper": 147.67
+          "ci_lower": 54.68,
+          "ci_upper": 147.65
         },
         "2022": {
-          "ci_lower": 47.03,
-          "ci_upper": 210.96
+          "ci_lower": 47.01,
+          "ci_upper": 211.06
         },
         "2023": {
-          "ci_lower": 65.85,
-          "ci_upper": 250.64
+          "ci_lower": 66.13,
+          "ci_upper": 252.68
         },
         "2024": {
-          "ci_lower": 61.29,
-          "ci_upper": 209.62
+          "ci_lower": 60.94,
+          "ci_upper": 208.97
         },
         "2025": {
-          "ci_lower": 43.63,
-          "ci_upper": 205.67
+          "ci_lower": 43.61,
+          "ci_upper": 205.64
         }
       },
       "trendClassification": {
         "category": "Uncertain",
-        "annualRateOfChange": 4.67,
-        "rateOfChange": 1.0467,
+        "annualRateOfChange": 4.61,
+        "rateOfChange": 1.0461,
         "confidenceInterval": {
-          "lower": -5.59,
-          "upper": 14.54
+          "lower": -5.61,
+          "upper": 14.51
         },
         "rateCI": {
-          "lower": 0.9441,
-          "upper": 1.1454
+          "lower": 0.9439,
+          "upper": 1.1451
         }
       },
       "dataQuality": {
@@ -549,7 +473,7 @@
     "Maniola jurtina": {
       "species": "Maniola jurtina",
       "type": "widespread",
-      "slope": 0.08831702930137453,
+      "slope": 0.08815853887192703,
       "yearsWithData": [
         2021,
         2022,
@@ -559,51 +483,51 @@
       ],
       "annualIndices": {
         "2021": 100,
-        "2022": 74.9873,
-        "2023": 52.9597,
-        "2024": 59.0675,
-        "2025": 175.2256
+        "2022": 75.1124,
+        "2023": 52.9584,
+        "2024": 59.0861,
+        "2025": 175.2052
       },
       "trendLine": {
-        "2021": 65.54,
-        "2022": 78.99,
-        "2023": 92.45,
-        "2024": 105.9,
+        "2021": 65.6,
+        "2022": 79.03,
+        "2023": 92.47,
+        "2024": 105.91,
         "2025": 119.35
       },
       "confidenceIntervals": {
         "2021": {
-          "ci_lower": 63.02,
+          "ci_lower": 63.01,
           "ci_upper": 147.29
         },
         "2022": {
-          "ci_lower": 45.29,
-          "ci_upper": 118.51
+          "ci_lower": 45.38,
+          "ci_upper": 118.74
         },
         "2023": {
           "ci_lower": 32.67,
           "ci_upper": 77.16
         },
         "2024": {
-          "ci_lower": 33.09,
+          "ci_lower": 33.1,
           "ci_upper": 89.22
         },
         "2025": {
           "ci_lower": 50.49,
-          "ci_upper": 376
+          "ci_upper": 375.93
         }
       },
       "trendClassification": {
         "category": "Uncertain",
-        "annualRateOfChange": 9.24,
-        "rateOfChange": 1.0924,
+        "annualRateOfChange": 9.22,
+        "rateOfChange": 1.0922,
         "confidenceInterval": {
           "lower": -11.8,
-          "upper": 18.08
+          "upper": 18.06
         },
         "rateCI": {
           "lower": 0.882,
-          "upper": 1.1808
+          "upper": 1.1806
         }
       },
       "dataQuality": {
@@ -620,7 +544,7 @@
     "Polyommatus icarus": {
       "species": "Polyommatus icarus",
       "type": "widespread",
-      "slope": -0.594645545012878,
+      "slope": -0.5603699480087903,
       "yearsWithData": [
         2021,
         2022,
@@ -630,51 +554,51 @@
       ],
       "annualIndices": {
         "2021": 100,
-        "2022": 119.8199,
-        "2023": 4.4221,
-        "2024": 35.3684,
-        "2025": 9.4124
+        "2022": 121.8526,
+        "2023": 4.9628,
+        "2024": 37.0498,
+        "2025": 11.0077
       },
       "trendLine": {
-        "2021": 106.93,
-        "2022": 80.37,
-        "2023": 53.8,
-        "2024": 27.24,
-        "2025": 0.68
+        "2021": 107.53,
+        "2022": 81.25,
+        "2023": 54.97,
+        "2024": 28.7,
+        "2025": 2.42
       },
       "confidenceIntervals": {
         "2021": {
-          "ci_lower": 11.42,
-          "ci_upper": 354.62
+          "ci_lower": 11.15,
+          "ci_upper": 356.34
         },
         "2022": {
-          "ci_lower": 16.86,
-          "ci_upper": 396.68
+          "ci_lower": 16.94,
+          "ci_upper": 405.44
         },
         "2023": {
-          "ci_lower": 1.04,
-          "ci_upper": 9.26
+          "ci_lower": 1.08,
+          "ci_upper": 10.59
         },
         "2024": {
-          "ci_lower": 9.36,
-          "ci_upper": 65.97
+          "ci_lower": 9.52,
+          "ci_upper": 68.96
         },
         "2025": {
-          "ci_lower": 1.99,
-          "ci_upper": 17.32
+          "ci_lower": 2,
+          "ci_upper": 20.52
         }
       },
       "trendClassification": {
         "category": "Strong decline",
-        "annualRateOfChange": -44.83,
-        "rateOfChange": 0.5517,
+        "annualRateOfChange": -42.91,
+        "rateOfChange": 0.5709,
         "confidenceInterval": {
-          "lower": -67.94,
-          "upper": -13.67
+          "lower": -67.53,
+          "upper": -12.07
         },
         "rateCI": {
-          "lower": 0.3206,
-          "upper": 0.8633
+          "lower": 0.3247,
+          "upper": 0.8793
         }
       },
       "dataQuality": {
@@ -691,7 +615,7 @@
     "Euphydryas aurinia": {
       "species": "Euphydryas aurinia",
       "type": "specialist",
-      "slope": -0.12103471434532992,
+      "slope": -0.11607781477364938,
       "yearsWithData": [
         2021,
         2022,
@@ -701,51 +625,51 @@
       ],
       "annualIndices": {
         "2021": 100,
-        "2022": 60.5179,
-        "2023": 44.6294,
-        "2024": 79.5035,
-        "2025": 47.6349
+        "2022": 61.6866,
+        "2023": 44.5462,
+        "2024": 79.4487,
+        "2025": 49.3165
       },
       "trendLine": {
-        "2021": 83.61,
-        "2022": 75.03,
-        "2023": 66.46,
-        "2024": 57.88,
-        "2025": 49.31
+        "2021": 83.72,
+        "2022": 75.36,
+        "2023": 67,
+        "2024": 58.64,
+        "2025": 50.28
       },
       "confidenceIntervals": {
         "2021": {
-          "ci_lower": 10.27,
-          "ci_upper": 260.67
+          "ci_lower": 10.22,
+          "ci_upper": 260.59
         },
         "2022": {
           "ci_lower": 0,
-          "ci_upper": 171.63
+          "ci_upper": 172.29
         },
         "2023": {
           "ci_lower": 2.55,
-          "ci_upper": 101.74
+          "ci_upper": 101.45
         },
         "2024": {
-          "ci_lower": 8.17,
-          "ci_upper": 185.11
+          "ci_lower": 8.19,
+          "ci_upper": 184.68
         },
         "2025": {
-          "ci_lower": 7.32,
-          "ci_upper": 111.44
+          "ci_lower": 6.42,
+          "ci_upper": 111.56
         }
       },
       "trendClassification": {
         "category": "Uncertain",
-        "annualRateOfChange": -11.4,
-        "rateOfChange": 0.886,
+        "annualRateOfChange": -10.96,
+        "rateOfChange": 0.8904,
         "confidenceInterval": {
-          "lower": -20.85,
-          "upper": 226.07
+          "lower": -21.4,
+          "upper": 217.29
         },
         "rateCI": {
-          "lower": 0.7915,
-          "upper": 3.2607
+          "lower": 0.786,
+          "upper": 3.1729
         }
       },
       "dataQuality": {
@@ -762,7 +686,7 @@
     "Lysandra bellargus": {
       "species": "Lysandra bellargus",
       "type": "specialist",
-      "slope": -0.0725253367718625,
+      "slope": -0.058536440574143284,
       "yearsWithData": [
         2021,
         2022,
@@ -772,51 +696,51 @@
       ],
       "annualIndices": {
         "2021": 100,
-        "2022": 156.0424,
-        "2023": 109.4181,
-        "2024": 153.6555,
-        "2025": 70.123
+        "2022": 157.19,
+        "2023": 108.1603,
+        "2024": 163.4282,
+        "2025": 73.1878
       },
       "trendLine": {
-        "2021": 130.28,
-        "2022": 124.06,
-        "2023": 117.85,
-        "2024": 111.63,
-        "2025": 105.42
+        "2021": 129.87,
+        "2022": 125.13,
+        "2023": 120.39,
+        "2024": 115.65,
+        "2025": 110.92
       },
       "confidenceIntervals": {
         "2021": {
           "ci_lower": 0,
-          "ci_upper": 344.99
+          "ci_upper": 322.65
         },
         "2022": {
-          "ci_lower": 50.17,
-          "ci_upper": 314.01
+          "ci_lower": 50.9,
+          "ci_upper": 317.37
         },
         "2023": {
-          "ci_lower": 3.6,
-          "ci_upper": 256.85
+          "ci_lower": 4.01,
+          "ci_upper": 257.15
         },
         "2024": {
-          "ci_lower": 22.51,
-          "ci_upper": 340.82
+          "ci_lower": 24.01,
+          "ci_upper": 366.9
         },
         "2025": {
           "ci_lower": 0,
-          "ci_upper": 192.92
+          "ci_upper": 199.72
         }
       },
       "trendClassification": {
         "category": "Uncertain",
-        "annualRateOfChange": -7,
-        "rateOfChange": 0.93,
+        "annualRateOfChange": -5.69,
+        "rateOfChange": 0.9431,
         "confidenceInterval": {
-          "lower": -98.69,
-          "upper": 2074.55
+          "lower": -98.64,
+          "upper": 2097.89
         },
         "rateCI": {
-          "lower": 0.0131,
-          "upper": 21.7455
+          "lower": 0.0136,
+          "upper": 21.9789
         }
       },
       "dataQuality": {
@@ -833,7 +757,7 @@
     "Spialia sertorius": {
       "species": "Spialia sertorius",
       "type": "specialist",
-      "slope": -0.3897436955565706,
+      "slope": -0.3217991138165053,
       "yearsWithData": [
         2021,
         2022,
@@ -843,51 +767,51 @@
       ],
       "annualIndices": {
         "2021": 100,
-        "2022": 27.5849,
-        "2023": 30.9494,
-        "2024": 34.6959,
-        "2025": 12.7022
+        "2022": 25.3524,
+        "2023": 31.0145,
+        "2024": 34.6744,
+        "2025": 17.1091
       },
       "trendLine": {
-        "2021": 74.68,
-        "2022": 57.93,
-        "2023": 41.19,
-        "2024": 24.44,
-        "2025": 7.69
+        "2021": 72.92,
+        "2022": 57.28,
+        "2023": 41.63,
+        "2024": 25.98,
+        "2025": 10.34
       },
       "confidenceIntervals": {
         "2021": {
           "ci_lower": 0,
-          "ci_upper": 236.09
+          "ci_upper": 236.55
         },
         "2022": {
           "ci_lower": 0,
-          "ci_upper": 80.68
+          "ci_upper": 69.12
         },
         "2023": {
           "ci_lower": 0,
-          "ci_upper": 87.48
+          "ci_upper": 87.55
         },
         "2024": {
           "ci_lower": 0,
-          "ci_upper": 107.55
+          "ci_upper": 107.7
         },
         "2025": {
           "ci_lower": 0,
-          "ci_upper": 34.52
+          "ci_upper": 42.73
         }
       },
       "trendClassification": {
         "category": "Uncertain",
-        "annualRateOfChange": -32.28,
-        "rateOfChange": 0.6772,
+        "annualRateOfChange": -27.52,
+        "rateOfChange": 0.7248,
         "confidenceInterval": {
-          "lower": -98.95,
-          "upper": 377.34
+          "lower": -98.75,
+          "upper": 466.98
         },
         "rateCI": {
-          "lower": 0.0105,
-          "upper": 4.7734
+          "lower": 0.0125,
+          "upper": 5.6698
         }
       },
       "dataQuality": {
@@ -904,7 +828,7 @@
     "Thymelicus acteon": {
       "species": "Thymelicus acteon",
       "type": "specialist",
-      "slope": -0.11288276233746843,
+      "slope": -0.1155235088426798,
       "yearsWithData": [
         2021,
         2022,
@@ -914,51 +838,51 @@
       ],
       "annualIndices": {
         "2021": 100,
-        "2022": 86.4188,
-        "2023": 78.547,
-        "2024": 77.965,
-        "2025": 59.8732
+        "2022": 86.7926,
+        "2023": 78.9829,
+        "2024": 84.6477,
+        "2025": 56.83
       },
       "trendLine": {
-        "2021": 98.3,
-        "2022": 89.43,
-        "2023": 80.56,
-        "2024": 71.69,
-        "2025": 62.82
+        "2021": 99.15,
+        "2022": 90.3,
+        "2023": 81.45,
+        "2024": 72.6,
+        "2025": 63.75
       },
       "confidenceIntervals": {
         "2021": {
-          "ci_lower": 19.54,
-          "ci_upper": 228.03
+          "ci_lower": 19.41,
+          "ci_upper": 229.11
         },
         "2022": {
-          "ci_lower": 6.8,
-          "ci_upper": 204.02
+          "ci_lower": 6.79,
+          "ci_upper": 205.39
         },
         "2023": {
-          "ci_lower": 1.57,
-          "ci_upper": 214.32
+          "ci_lower": 1.56,
+          "ci_upper": 215.96
         },
         "2024": {
-          "ci_lower": 5.97,
-          "ci_upper": 191.11
+          "ci_lower": 5.6,
+          "ci_upper": 209.82
         },
         "2025": {
-          "ci_lower": 4.36,
-          "ci_upper": 129.44
+          "ci_lower": 3.91,
+          "ci_upper": 123.11
         }
       },
       "trendClassification": {
         "category": "Uncertain",
-        "annualRateOfChange": -10.68,
-        "rateOfChange": 0.8932,
+        "annualRateOfChange": -10.91,
+        "rateOfChange": 0.8909,
         "confidenceInterval": {
-          "lower": -37.8,
-          "upper": 1.27
+          "lower": -37.19,
+          "upper": 1.53
         },
         "rateCI": {
-          "lower": 0.622,
-          "upper": 1.0127
+          "lower": 0.6281,
+          "upper": 1.0153
         }
       },
       "dataQuality": {

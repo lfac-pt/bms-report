@@ -139,18 +139,17 @@ print(head(m_count, 3))
 cat("Calculating GAM flight curves...\n")
 pheno_curves <- NULL  # Initialize for scope
 tryCatch({
-  ts_flight_curve <- rbms::flight_curve(
+  ts_flight_curve <- rbms::flight_curve( # Parameters taken from VS2025.014 EU Grassland Butterfly Index 1991-2023 Technical report.pdf
     m_count,
     NbrSample = 300,
-    MinVisit = 2,
-    MinOccur = 2,
+    MinVisit = 3,
+    MinOccur = 1,
     MinNbrSite = 1,
-    MaxTrial = 3,
-    GamFamily = "nb",
-    SpeedGam = TRUE,  # Faster computation
+    MaxTrial = 4,
+    GamFamily = 'nb',
+    SpeedGam = FALSE,
     CompltSeason = TRUE,
-    SelectYear = NULL,
-    TimeUnit = "w"
+    TimeUnit = 'w'
   )
 
   flight_curve_success <- TRUE
