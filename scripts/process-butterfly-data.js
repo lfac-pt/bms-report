@@ -908,6 +908,7 @@ async function calculateGBI(allData, transects, baselineYear = 2021) {
           slope: slope,
           yearsWithData,
           annualIndices: rbmsOutput.collated_indices,
+          trendLine: rbmsOutput.trend_line || null,
           confidenceIntervals: confidenceIntervals,
           trendClassification: trendClassification,
           dataQuality: rbmsOutput.data_quality,
@@ -1196,6 +1197,7 @@ async function calculateAllFlightCurves(allData, transects, baselineYear = 2021)
       // Store results
       speciesResults[species] = {
         collatedIndices: rbmsOutput.collated_indices,
+        trendLine: rbmsOutput.trend_line || null,
         phenologyCurves: rbmsOutput.phenology_curves || null,
         dataQuality: rbmsOutput.data_quality,
         processingInfo: rbmsOutput.processing_info,

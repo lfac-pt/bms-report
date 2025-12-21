@@ -1,6 +1,6 @@
 {
   "metadata": {
-    "processingDate": "2025-12-20T23:28:55.955Z",
+    "processingDate": "2025-12-21T00:37:29.019Z",
     "baselineYear": 2021,
     "qualityCriteria": {
       "minYearsActive": 5,
@@ -92,6 +92,13 @@
         "2023": 350.821,
         "2024": 239.5329,
         "2025": 345.4121
+      },
+      "trendLine": {
+        "2021": 239.74,
+        "2022": 268.11,
+        "2023": 296.48,
+        "2024": 324.85,
+        "2025": 353.22
       },
       "phenologyCurves": {
         "2021": {
@@ -558,8 +565,8 @@
         "baseline_year": 2021
       },
       "processingInfo": {
-        "method": "rbms (GAM flight curves + GLM collated index + bootstrap CI)",
-        "timestamp": "2025-12-20 23:10:52",
+        "method": "rbms (GAM flight curves + GLM collated index + bootstrap CI + linear trend)",
+        "timestamp": "2025-12-21 00:15:29",
         "rbms_version": "1.2.0",
         "bootstrap_iterations": 500
       },
@@ -606,6 +613,13 @@
         "2023": 350.4881,
         "2024": 546.6119,
         "2025": 211.7768
+      },
+      "trendLine": {
+        "2021": 250.41,
+        "2022": 286.76,
+        "2023": 323.11,
+        "2024": 359.46,
+        "2025": 395.81
       },
       "phenologyCurves": {
         "2021": {
@@ -1072,8 +1086,8 @@
         "baseline_year": 2021
       },
       "processingInfo": {
-        "method": "rbms (GAM flight curves + GLM collated index + bootstrap CI)",
-        "timestamp": "2025-12-20 23:11:32",
+        "method": "rbms (GAM flight curves + GLM collated index + bootstrap CI + linear trend)",
+        "timestamp": "2025-12-21 00:16:25",
         "rbms_version": "1.2.0",
         "bootstrap_iterations": 500
       },
@@ -1120,6 +1134,13 @@
         "2023": 59.6771,
         "2024": 116.1127,
         "2025": 314.8824
+      },
+      "trendLine": {
+        "2021": 40.33,
+        "2022": 87.08,
+        "2023": 133.82,
+        "2024": 180.57,
+        "2025": 227.31
       },
       "phenologyCurves": {
         "2021": {
@@ -1688,8 +1709,8 @@
         "baseline_year": 2021
       },
       "processingInfo": {
-        "method": "rbms (GAM flight curves + GLM collated index + bootstrap CI)",
-        "timestamp": "2025-12-20 23:11:36",
+        "method": "rbms (GAM flight curves + GLM collated index + bootstrap CI + linear trend)",
+        "timestamp": "2025-12-21 00:16:30",
         "rbms_version": "1.2.0",
         "bootstrap_iterations": 500
       },
@@ -1736,6 +1757,13 @@
         "2023": 86.8683,
         "2024": 94.6848,
         "2025": 208.9626
+      },
+      "trendLine": {
+        "2021": 61.49,
+        "2022": 86.27,
+        "2023": 111.06,
+        "2024": 135.84,
+        "2025": 160.63
       },
       "phenologyCurves": {
         "2021": {
@@ -2304,8 +2332,8 @@
         "baseline_year": 2021
       },
       "processingInfo": {
-        "method": "rbms (GAM flight curves + GLM collated index + bootstrap CI)",
-        "timestamp": "2025-12-20 23:11:39",
+        "method": "rbms (GAM flight curves + GLM collated index + bootstrap CI + linear trend)",
+        "timestamp": "2025-12-21 00:16:35",
         "rbms_version": "1.2.0",
         "bootstrap_iterations": 500
       },
@@ -2352,6 +2380,13 @@
         "2023": 62.881,
         "2024": 30.1576,
         "2025": 13.2836
+      },
+      "trendLine": {
+        "2021": 79.34,
+        "2022": 62.66,
+        "2023": 45.97,
+        "2024": 29.29,
+        "2025": 12.61
       },
       "phenologyCurves": {
         "2021": {
@@ -2818,8 +2853,8 @@
         "baseline_year": 2021
       },
       "processingInfo": {
-        "method": "rbms (GAM flight curves + GLM collated index + bootstrap CI)",
-        "timestamp": "2025-12-20 23:11:43",
+        "method": "rbms (GAM flight curves + GLM collated index + bootstrap CI + linear trend)",
+        "timestamp": "2025-12-21 00:16:40",
         "rbms_version": "1.2.0",
         "bootstrap_iterations": 500
       },
@@ -2866,6 +2901,13 @@
         "2023": 665.138,
         "2024": 393.0117,
         "2025": 699.4841
+      },
+      "trendLine": {
+        "2021": 631.77,
+        "2022": 646.31,
+        "2023": 660.85,
+        "2024": 675.39,
+        "2025": 689.92
       },
       "phenologyCurves": {
         "2021": {
@@ -3230,8 +3272,8 @@
         "baseline_year": 2021
       },
       "processingInfo": {
-        "method": "rbms (GAM flight curves + GLM collated index + bootstrap CI)",
-        "timestamp": "2025-12-20 23:11:47",
+        "method": "rbms (GAM flight curves + GLM collated index + bootstrap CI + linear trend)",
+        "timestamp": "2025-12-21 00:16:45",
         "rbms_version": "1.2.0",
         "bootstrap_iterations": 500
       },
@@ -3278,6 +3320,13 @@
         "2023": 167.1054,
         "2024": 125.468,
         "2025": 68.2348
+      },
+      "trendLine": {
+        "2021": 98.33,
+        "2022": 99.88,
+        "2023": 101.44,
+        "2024": 102.99,
+        "2025": 104.55
       },
       "phenologyCurves": {
         "2021": {
@@ -3642,8 +3691,8 @@
         "baseline_year": 2021
       },
       "processingInfo": {
-        "method": "rbms (GAM flight curves + GLM collated index + bootstrap CI)",
-        "timestamp": "2025-12-20 23:11:51",
+        "method": "rbms (GAM flight curves + GLM collated index + bootstrap CI + linear trend)",
+        "timestamp": "2025-12-21 00:16:50",
         "rbms_version": "1.2.0",
         "bootstrap_iterations": 500
       },
@@ -3690,6 +3739,13 @@
         "2023": 217.2043,
         "2024": 181.4382,
         "2025": 123.7901
+      },
+      "trendLine": {
+        "2021": 124.97,
+        "2022": 136.3,
+        "2023": 147.63,
+        "2024": 158.96,
+        "2025": 170.29
       },
       "phenologyCurves": {
         "2021": {
@@ -4258,8 +4314,8 @@
         "baseline_year": 2021
       },
       "processingInfo": {
-        "method": "rbms (GAM flight curves + GLM collated index + bootstrap CI)",
-        "timestamp": "2025-12-20 23:11:55",
+        "method": "rbms (GAM flight curves + GLM collated index + bootstrap CI + linear trend)",
+        "timestamp": "2025-12-21 00:16:55",
         "rbms_version": "1.2.0",
         "bootstrap_iterations": 500
       },
@@ -4306,6 +4362,13 @@
         "2023": 214.7528,
         "2024": 144.3397,
         "2025": 77.518
+      },
+      "trendLine": {
+        "2021": 118.03,
+        "2022": 120.32,
+        "2023": 122.61,
+        "2024": 124.91,
+        "2025": 127.2
       },
       "phenologyCurves": {
         "2021": {
@@ -4874,8 +4937,8 @@
         "baseline_year": 2021
       },
       "processingInfo": {
-        "method": "rbms (GAM flight curves + GLM collated index + bootstrap CI)",
-        "timestamp": "2025-12-20 23:11:59",
+        "method": "rbms (GAM flight curves + GLM collated index + bootstrap CI + linear trend)",
+        "timestamp": "2025-12-21 00:17:00",
         "rbms_version": "1.2.0",
         "bootstrap_iterations": 500
       },
@@ -4922,6 +4985,13 @@
         "2023": 34.0186,
         "2024": 31.4965,
         "2025": 62.2879
+      },
+      "trendLine": {
+        "2021": 80.83,
+        "2022": 69.82,
+        "2023": 58.8,
+        "2024": 47.79,
+        "2025": 36.78
       },
       "phenologyCurves": {
         "2021": {
@@ -5490,8 +5560,8 @@
         "baseline_year": 2021
       },
       "processingInfo": {
-        "method": "rbms (GAM flight curves + GLM collated index + bootstrap CI)",
-        "timestamp": "2025-12-20 23:10:56",
+        "method": "rbms (GAM flight curves + GLM collated index + bootstrap CI + linear trend)",
+        "timestamp": "2025-12-21 00:15:37",
         "rbms_version": "1.2.0",
         "bootstrap_iterations": 500
       },
@@ -5538,6 +5608,13 @@
         "2023": 116.8522,
         "2024": 132.4056,
         "2025": 94.8949
+      },
+      "trendLine": {
+        "2021": 108.76,
+        "2022": 109.89,
+        "2023": 111.02,
+        "2024": 112.14,
+        "2025": 113.27
       },
       "phenologyCurves": {
         "2021": {
@@ -6106,8 +6183,8 @@
         "baseline_year": 2021
       },
       "processingInfo": {
-        "method": "rbms (GAM flight curves + GLM collated index + bootstrap CI)",
-        "timestamp": "2025-12-20 23:12:03",
+        "method": "rbms (GAM flight curves + GLM collated index + bootstrap CI + linear trend)",
+        "timestamp": "2025-12-21 00:17:05",
         "rbms_version": "1.2.0",
         "bootstrap_iterations": 500
       },
@@ -6154,6 +6231,13 @@
         "2023": 188454006544.97,
         "2024": 113005506094.3678,
         "2025": 75215232364.5538
+      },
+      "trendLine": {
+        "2021": 22647754922.9,
+        "2022": 48991351978.55,
+        "2023": 75334949034.2,
+        "2024": 101678546089.84,
+        "2025": 128022143145.49
       },
       "phenologyCurves": {
         "2021": {
@@ -6518,8 +6602,8 @@
         "baseline_year": 2021
       },
       "processingInfo": {
-        "method": "rbms (GAM flight curves + GLM collated index + bootstrap CI)",
-        "timestamp": "2025-12-20 23:12:07",
+        "method": "rbms (GAM flight curves + GLM collated index + bootstrap CI + linear trend)",
+        "timestamp": "2025-12-21 00:17:10",
         "rbms_version": "1.2.0",
         "bootstrap_iterations": 500
       },
@@ -6566,6 +6650,13 @@
         "2023": 1313.5202,
         "2024": 1145.6044,
         "2025": 318.6895
+      },
+      "trendLine": {
+        "2021": 341.25,
+        "2022": 478.98,
+        "2023": 616.7,
+        "2024": 754.43,
+        "2025": 892.16
       },
       "phenologyCurves": {
         "2021": {
@@ -7134,8 +7225,8 @@
         "baseline_year": 2021
       },
       "processingInfo": {
-        "method": "rbms (GAM flight curves + GLM collated index + bootstrap CI)",
-        "timestamp": "2025-12-20 23:12:11",
+        "method": "rbms (GAM flight curves + GLM collated index + bootstrap CI + linear trend)",
+        "timestamp": "2025-12-21 00:17:15",
         "rbms_version": "1.2.0",
         "bootstrap_iterations": 500
       },
@@ -7182,6 +7273,13 @@
         "2023": 123.5288,
         "2024": 91.8478,
         "2025": 101.3018
+      },
+      "trendLine": {
+        "2021": 84.21,
+        "2022": 88.72,
+        "2023": 93.22,
+        "2024": 97.72,
+        "2025": 102.23
       },
       "phenologyCurves": {
         "2021": {
@@ -7750,8 +7848,8 @@
         "baseline_year": 2021
       },
       "processingInfo": {
-        "method": "rbms (GAM flight curves + GLM collated index + bootstrap CI)",
-        "timestamp": "2025-12-20 23:12:15",
+        "method": "rbms (GAM flight curves + GLM collated index + bootstrap CI + linear trend)",
+        "timestamp": "2025-12-21 00:17:20",
         "rbms_version": "1.2.0",
         "bootstrap_iterations": 500
       },
@@ -7798,6 +7896,13 @@
         "2023": 44.6294,
         "2024": 79.5035,
         "2025": 47.6349
+      },
+      "trendLine": {
+        "2021": 83.61,
+        "2022": 75.03,
+        "2023": 66.46,
+        "2024": 57.88,
+        "2025": 49.31
       },
       "phenologyCurves": {
         "2021": {
@@ -8366,8 +8471,8 @@
         "baseline_year": 2021
       },
       "processingInfo": {
-        "method": "rbms (GAM flight curves + GLM collated index + bootstrap CI)",
-        "timestamp": "2025-12-20 23:11:16",
+        "method": "rbms (GAM flight curves + GLM collated index + bootstrap CI + linear trend)",
+        "timestamp": "2025-12-21 00:16:04",
         "rbms_version": "1.2.0",
         "bootstrap_iterations": 500
       },
@@ -8414,6 +8519,13 @@
         "2023": 666.5756,
         "2024": 716.5688,
         "2025": 266.6302
+      },
+      "trendLine": {
+        "2021": 153.32,
+        "2022": 254.97,
+        "2023": 356.62,
+        "2024": 458.27,
+        "2025": 559.92
       },
       "phenologyCurves": {
         "2021": {
@@ -8778,8 +8890,8 @@
         "baseline_year": 2021
       },
       "processingInfo": {
-        "method": "rbms (GAM flight curves + GLM collated index + bootstrap CI)",
-        "timestamp": "2025-12-20 23:12:19",
+        "method": "rbms (GAM flight curves + GLM collated index + bootstrap CI + linear trend)",
+        "timestamp": "2025-12-21 00:17:25",
         "rbms_version": "1.2.0",
         "bootstrap_iterations": 500
       },
@@ -8826,6 +8938,13 @@
         "2023": 65.2171,
         "2024": 43.4781,
         "2025": 104.3474
+      },
+      "trendLine": {
+        "2021": 76.52,
+        "2022": 75.65,
+        "2023": 74.78,
+        "2024": 73.91,
+        "2025": 73.04
       },
       "phenologyCurves": {
         "2021": {
@@ -9394,8 +9513,8 @@
         "baseline_year": 2021
       },
       "processingInfo": {
-        "method": "rbms (GAM flight curves + GLM collated index + bootstrap CI)",
-        "timestamp": "2025-12-20 23:12:22",
+        "method": "rbms (GAM flight curves + GLM collated index + bootstrap CI + linear trend)",
+        "timestamp": "2025-12-21 00:17:30",
         "rbms_version": "1.2.0",
         "bootstrap_iterations": 500
       },
@@ -9442,6 +9561,13 @@
         "2023": 481.3366,
         "2024": 272.9785,
         "2025": 65.4606
+      },
+      "trendLine": {
+        "2021": 146.28,
+        "2022": 165.89,
+        "2023": 185.51,
+        "2024": 205.12,
+        "2025": 224.74
       },
       "phenologyCurves": {
         "2021": {
@@ -9908,8 +10034,8 @@
         "baseline_year": 2021
       },
       "processingInfo": {
-        "method": "rbms (GAM flight curves + GLM collated index + bootstrap CI)",
-        "timestamp": "2025-12-20 23:12:26",
+        "method": "rbms (GAM flight curves + GLM collated index + bootstrap CI + linear trend)",
+        "timestamp": "2025-12-21 00:17:35",
         "rbms_version": "1.2.0",
         "bootstrap_iterations": 500
       },
@@ -9956,6 +10082,13 @@
         "2023": 74.4893,
         "2024": 72.2477,
         "2025": 37.5216
+      },
+      "trendLine": {
+        "2021": 84.11,
+        "2022": 74.66,
+        "2023": 65.21,
+        "2024": 55.76,
+        "2025": 46.31
       },
       "phenologyCurves": {
         "2021": {
@@ -10524,8 +10657,8 @@
         "baseline_year": 2021
       },
       "processingInfo": {
-        "method": "rbms (GAM flight curves + GLM collated index + bootstrap CI)",
-        "timestamp": "2025-12-20 23:12:30",
+        "method": "rbms (GAM flight curves + GLM collated index + bootstrap CI + linear trend)",
+        "timestamp": "2025-12-21 00:17:40",
         "rbms_version": "1.2.0",
         "bootstrap_iterations": 500
       },
@@ -10572,6 +10705,13 @@
         "2023": 26.8062,
         "2024": 34.4661,
         "2025": 63.0171
+      },
+      "trendLine": {
+        "2021": 77.38,
+        "2022": 67.28,
+        "2023": 57.17,
+        "2024": 47.06,
+        "2025": 36.96
       },
       "phenologyCurves": {
         "2021": {
@@ -11038,8 +11178,8 @@
         "baseline_year": 2021
       },
       "processingInfo": {
-        "method": "rbms (GAM flight curves + GLM collated index + bootstrap CI)",
-        "timestamp": "2025-12-20 23:12:34",
+        "method": "rbms (GAM flight curves + GLM collated index + bootstrap CI + linear trend)",
+        "timestamp": "2025-12-21 00:17:45",
         "rbms_version": "1.2.0",
         "bootstrap_iterations": 500
       },
@@ -11086,6 +11226,13 @@
         "2023": 146.3762,
         "2024": 221.3038,
         "2025": 223.6643
+      },
+      "trendLine": {
+        "2021": 108.03,
+        "2022": 139.02,
+        "2023": 170.01,
+        "2024": 201,
+        "2025": 232
       },
       "phenologyCurves": {
         "2021": {
@@ -11654,8 +11801,8 @@
         "baseline_year": 2021
       },
       "processingInfo": {
-        "method": "rbms (GAM flight curves + GLM collated index + bootstrap CI)",
-        "timestamp": "2025-12-20 23:12:38",
+        "method": "rbms (GAM flight curves + GLM collated index + bootstrap CI + linear trend)",
+        "timestamp": "2025-12-21 00:17:50",
         "rbms_version": "1.2.0",
         "bootstrap_iterations": 500
       },
@@ -11702,6 +11849,13 @@
         "2023": 56.1695,
         "2024": 61.5385,
         "2025": 102.6833
+      },
+      "trendLine": {
+        "2021": 97.19,
+        "2022": 92.26,
+        "2023": 87.32,
+        "2024": 82.39,
+        "2025": 77.46
       },
       "phenologyCurves": {
         "2021": {
@@ -12270,8 +12424,8 @@
         "baseline_year": 2021
       },
       "processingInfo": {
-        "method": "rbms (GAM flight curves + GLM collated index + bootstrap CI)",
-        "timestamp": "2025-12-20 23:12:42",
+        "method": "rbms (GAM flight curves + GLM collated index + bootstrap CI + linear trend)",
+        "timestamp": "2025-12-21 00:17:55",
         "rbms_version": "1.2.0",
         "bootstrap_iterations": 500
       },
@@ -12318,6 +12472,13 @@
         "2023": 232.1331,
         "2024": 199.1946,
         "2025": 79.1947
+      },
+      "trendLine": {
+        "2021": 153.28,
+        "2022": 153.36,
+        "2023": 153.45,
+        "2024": 153.54,
+        "2025": 153.62
       },
       "phenologyCurves": {
         "2021": {
@@ -12886,8 +13047,8 @@
         "baseline_year": 2021
       },
       "processingInfo": {
-        "method": "rbms (GAM flight curves + GLM collated index + bootstrap CI)",
-        "timestamp": "2025-12-20 23:12:46",
+        "method": "rbms (GAM flight curves + GLM collated index + bootstrap CI + linear trend)",
+        "timestamp": "2025-12-21 00:18:01",
         "rbms_version": "1.2.0",
         "bootstrap_iterations": 500
       },
@@ -12934,6 +13095,13 @@
         "2023": 54.1707,
         "2024": 184.88,
         "2025": 30.2608
+      },
+      "trendLine": {
+        "2021": 94.08,
+        "2022": 91.29,
+        "2023": 88.51,
+        "2024": 85.73,
+        "2025": 82.94
       },
       "phenologyCurves": {
         "2021": {
@@ -13400,8 +13568,8 @@
         "baseline_year": 2021
       },
       "processingInfo": {
-        "method": "rbms (GAM flight curves + GLM collated index + bootstrap CI)",
-        "timestamp": "2025-12-20 23:12:50",
+        "method": "rbms (GAM flight curves + GLM collated index + bootstrap CI + linear trend)",
+        "timestamp": "2025-12-21 00:18:05",
         "rbms_version": "1.2.0",
         "bootstrap_iterations": 500
       },
@@ -13448,6 +13616,13 @@
         "2023": 102.0338,
         "2024": 54.5694,
         "2025": 13.9085
+      },
+      "trendLine": {
+        "2021": 94.39,
+        "2022": 78.44,
+        "2023": 62.49,
+        "2024": 46.53,
+        "2025": 30.58
       },
       "phenologyCurves": {
         "2021": {
@@ -13914,8 +14089,8 @@
         "baseline_year": 2021
       },
       "processingInfo": {
-        "method": "rbms (GAM flight curves + GLM collated index + bootstrap CI)",
-        "timestamp": "2025-12-20 23:12:54",
+        "method": "rbms (GAM flight curves + GLM collated index + bootstrap CI + linear trend)",
+        "timestamp": "2025-12-21 00:18:10",
         "rbms_version": "1.2.0",
         "bootstrap_iterations": 500
       },
@@ -13962,6 +14137,13 @@
         "2023": 171.446,
         "2024": 126.9463,
         "2025": 60.1569
+      },
+      "trendLine": {
+        "2021": 135.56,
+        "2022": 126.96,
+        "2023": 118.36,
+        "2024": 109.76,
+        "2025": 101.16
       },
       "phenologyCurves": {
         "2021": {
@@ -14530,8 +14712,8 @@
         "baseline_year": 2021
       },
       "processingInfo": {
-        "method": "rbms (GAM flight curves + GLM collated index + bootstrap CI)",
-        "timestamp": "2025-12-20 23:12:58",
+        "method": "rbms (GAM flight curves + GLM collated index + bootstrap CI + linear trend)",
+        "timestamp": "2025-12-21 00:18:15",
         "rbms_version": "1.2.0",
         "bootstrap_iterations": 500
       },
@@ -14578,6 +14760,13 @@
         "2023": 100.0276,
         "2024": 182.5864,
         "2025": 98.1593
+      },
+      "trendLine": {
+        "2021": 90.15,
+        "2022": 100.6,
+        "2023": 111.04,
+        "2024": 121.49,
+        "2025": 131.94
       },
       "phenologyCurves": {
         "2021": {
@@ -15146,8 +15335,8 @@
         "baseline_year": 2021
       },
       "processingInfo": {
-        "method": "rbms (GAM flight curves + GLM collated index + bootstrap CI)",
-        "timestamp": "2025-12-20 23:11:00",
+        "method": "rbms (GAM flight curves + GLM collated index + bootstrap CI + linear trend)",
+        "timestamp": "2025-12-21 00:15:43",
         "rbms_version": "1.2.0",
         "bootstrap_iterations": 500
       },
@@ -15194,6 +15383,13 @@
         "2023": 32.5854,
         "2024": 46.4461,
         "2025": 56.8487
+      },
+      "trendLine": {
+        "2021": 84.17,
+        "2022": 72.93,
+        "2023": 61.69,
+        "2024": 50.45,
+        "2025": 39.2
       },
       "phenologyCurves": {
         "2021": {
@@ -15762,8 +15958,8 @@
         "baseline_year": 2021
       },
       "processingInfo": {
-        "method": "rbms (GAM flight curves + GLM collated index + bootstrap CI)",
-        "timestamp": "2025-12-20 23:13:02",
+        "method": "rbms (GAM flight curves + GLM collated index + bootstrap CI + linear trend)",
+        "timestamp": "2025-12-21 00:18:20",
         "rbms_version": "1.2.0",
         "bootstrap_iterations": 500
       },
@@ -15810,6 +16006,13 @@
         "2023": 284.1251,
         "2024": 151.9262,
         "2025": 71.4193
+      },
+      "trendLine": {
+        "2021": 136.99,
+        "2022": 137.85,
+        "2023": 138.72,
+        "2024": 139.58,
+        "2025": 140.45
       },
       "phenologyCurves": {
         "2021": {
@@ -16378,8 +16581,8 @@
         "baseline_year": 2021
       },
       "processingInfo": {
-        "method": "rbms (GAM flight curves + GLM collated index + bootstrap CI)",
-        "timestamp": "2025-12-20 23:13:06",
+        "method": "rbms (GAM flight curves + GLM collated index + bootstrap CI + linear trend)",
+        "timestamp": "2025-12-21 00:18:26",
         "rbms_version": "1.2.0",
         "bootstrap_iterations": 500
       },
@@ -16426,6 +16629,13 @@
         "2023": 75,
         "2024": 275,
         "2025": 600
+      },
+      "trendLine": {
+        "2021": -5,
+        "2022": 112.5,
+        "2023": 230,
+        "2024": 347.5,
+        "2025": 465
       },
       "phenologyCurves": {
         "2021": {
@@ -16892,8 +17102,8 @@
         "baseline_year": 2021
       },
       "processingInfo": {
-        "method": "rbms (GAM flight curves + GLM collated index + bootstrap CI)",
-        "timestamp": "2025-12-20 23:13:10",
+        "method": "rbms (GAM flight curves + GLM collated index + bootstrap CI + linear trend)",
+        "timestamp": "2025-12-21 00:18:31",
         "rbms_version": "1.2.0",
         "bootstrap_iterations": 500
       },
@@ -16940,6 +17150,13 @@
         "2023": 150.2339,
         "2024": 126.2707,
         "2025": 119.5767
+      },
+      "trendLine": {
+        "2021": 111.89,
+        "2022": 116.99,
+        "2023": 122.09,
+        "2024": 127.2,
+        "2025": 132.3
       },
       "phenologyCurves": {
         "2021": {
@@ -17508,8 +17725,8 @@
         "baseline_year": 2021
       },
       "processingInfo": {
-        "method": "rbms (GAM flight curves + GLM collated index + bootstrap CI)",
-        "timestamp": "2025-12-20 23:11:04",
+        "method": "rbms (GAM flight curves + GLM collated index + bootstrap CI + linear trend)",
+        "timestamp": "2025-12-21 00:15:49",
         "rbms_version": "1.2.0",
         "bootstrap_iterations": 500
       },
@@ -17556,6 +17773,13 @@
         "2023": 109.4181,
         "2024": 153.6555,
         "2025": 70.123
+      },
+      "trendLine": {
+        "2021": 130.28,
+        "2022": 124.06,
+        "2023": 117.85,
+        "2024": 111.63,
+        "2025": 105.42
       },
       "phenologyCurves": {
         "2021": {
@@ -18022,8 +18246,8 @@
         "baseline_year": 2021
       },
       "processingInfo": {
-        "method": "rbms (GAM flight curves + GLM collated index + bootstrap CI)",
-        "timestamp": "2025-12-20 23:11:20",
+        "method": "rbms (GAM flight curves + GLM collated index + bootstrap CI + linear trend)",
+        "timestamp": "2025-12-21 00:16:09",
         "rbms_version": "1.2.0",
         "bootstrap_iterations": 500
       },
@@ -18070,6 +18294,13 @@
         "2023": 52.9597,
         "2024": 59.0675,
         "2025": 175.2256
+      },
+      "trendLine": {
+        "2021": 65.54,
+        "2022": 78.99,
+        "2023": 92.45,
+        "2024": 105.9,
+        "2025": 119.35
       },
       "phenologyCurves": {
         "2021": {
@@ -18638,8 +18869,8 @@
         "baseline_year": 2021
       },
       "processingInfo": {
-        "method": "rbms (GAM flight curves + GLM collated index + bootstrap CI)",
-        "timestamp": "2025-12-20 23:11:08",
+        "method": "rbms (GAM flight curves + GLM collated index + bootstrap CI + linear trend)",
+        "timestamp": "2025-12-21 00:15:54",
         "rbms_version": "1.2.0",
         "bootstrap_iterations": 500
       },
@@ -18686,6 +18917,13 @@
         "2023": 76.8807,
         "2024": 47.0339,
         "2025": 20.6781
+      },
+      "trendLine": {
+        "2021": 105.77,
+        "2022": 85.98,
+        "2023": 66.18,
+        "2024": 46.39,
+        "2025": 26.6
       },
       "phenologyCurves": {
         "2021": {
@@ -19254,8 +19492,8 @@
         "baseline_year": 2021
       },
       "processingInfo": {
-        "method": "rbms (GAM flight curves + GLM collated index + bootstrap CI)",
-        "timestamp": "2025-12-20 23:13:14",
+        "method": "rbms (GAM flight curves + GLM collated index + bootstrap CI + linear trend)",
+        "timestamp": "2025-12-21 00:18:36",
         "rbms_version": "1.2.0",
         "bootstrap_iterations": 500
       },
@@ -19302,6 +19540,13 @@
         "2023": 51.0898,
         "2024": 80.589,
         "2025": 51.1843
+      },
+      "trendLine": {
+        "2021": 84.61,
+        "2022": 76.75,
+        "2023": 68.89,
+        "2024": 61.03,
+        "2025": 53.16
       },
       "phenologyCurves": {
         "2021": {
@@ -19870,8 +20115,8 @@
         "baseline_year": 2021
       },
       "processingInfo": {
-        "method": "rbms (GAM flight curves + GLM collated index + bootstrap CI)",
-        "timestamp": "2025-12-20 23:13:18",
+        "method": "rbms (GAM flight curves + GLM collated index + bootstrap CI + linear trend)",
+        "timestamp": "2025-12-21 00:18:41",
         "rbms_version": "1.2.0",
         "bootstrap_iterations": 500
       },
@@ -19918,6 +20163,13 @@
         "2023": 49.025,
         "2024": 8.8575,
         "2025": 10.5509
+      },
+      "trendLine": {
+        "2021": 83.27,
+        "2022": 62.37,
+        "2023": 41.47,
+        "2024": 20.58,
+        "2025": -0.32
       },
       "phenologyCurves": {
         "2021": {
@@ -20486,8 +20738,8 @@
         "baseline_year": 2021
       },
       "processingInfo": {
-        "method": "rbms (GAM flight curves + GLM collated index + bootstrap CI)",
-        "timestamp": "2025-12-20 23:13:22",
+        "method": "rbms (GAM flight curves + GLM collated index + bootstrap CI + linear trend)",
+        "timestamp": "2025-12-21 00:18:48",
         "rbms_version": "1.2.0",
         "bootstrap_iterations": 500
       },
@@ -20534,6 +20786,13 @@
         "2023": 215.2078,
         "2024": 223.4004,
         "2025": 233.1887
+      },
+      "trendLine": {
+        "2021": 88.15,
+        "2022": 129.19,
+        "2023": 170.23,
+        "2024": 211.27,
+        "2025": 252.31
       },
       "phenologyCurves": {
         "2021": {
@@ -21000,8 +21259,8 @@
         "baseline_year": 2021
       },
       "processingInfo": {
-        "method": "rbms (GAM flight curves + GLM collated index + bootstrap CI)",
-        "timestamp": "2025-12-20 23:13:26",
+        "method": "rbms (GAM flight curves + GLM collated index + bootstrap CI + linear trend)",
+        "timestamp": "2025-12-21 00:18:58",
         "rbms_version": "1.2.0",
         "bootstrap_iterations": 500
       },
@@ -21048,6 +21307,13 @@
         "2023": 127.6989,
         "2024": 118.3258,
         "2025": 76.2582
+      },
+      "trendLine": {
+        "2021": 108.24,
+        "2022": 105.84,
+        "2023": 103.43,
+        "2024": 101.03,
+        "2025": 98.63
       },
       "phenologyCurves": {
         "2021": {
@@ -21616,8 +21882,8 @@
         "baseline_year": 2021
       },
       "processingInfo": {
-        "method": "rbms (GAM flight curves + GLM collated index + bootstrap CI)",
-        "timestamp": "2025-12-20 23:13:30",
+        "method": "rbms (GAM flight curves + GLM collated index + bootstrap CI + linear trend)",
+        "timestamp": "2025-12-21 00:19:06",
         "rbms_version": "1.2.0",
         "bootstrap_iterations": 500
       },
@@ -21664,6 +21930,13 @@
         "2023": 67.0795,
         "2024": 141.3504,
         "2025": 109.4821
+      },
+      "trendLine": {
+        "2021": 76.67,
+        "2022": 86.42,
+        "2023": 96.16,
+        "2024": 105.9,
+        "2025": 115.65
       },
       "phenologyCurves": {
         "2021": {
@@ -22232,8 +22505,8 @@
         "baseline_year": 2021
       },
       "processingInfo": {
-        "method": "rbms (GAM flight curves + GLM collated index + bootstrap CI)",
-        "timestamp": "2025-12-20 23:13:34",
+        "method": "rbms (GAM flight curves + GLM collated index + bootstrap CI + linear trend)",
+        "timestamp": "2025-12-21 00:19:12",
         "rbms_version": "1.2.0",
         "bootstrap_iterations": 500
       },
@@ -22280,6 +22553,13 @@
         "2023": 278.3853,
         "2024": 266.9666,
         "2025": 120.7868
+      },
+      "trendLine": {
+        "2021": 155.59,
+        "2022": 170.43,
+        "2023": 185.26,
+        "2024": 200.1,
+        "2025": 214.94
       },
       "phenologyCurves": {
         "2021": {
@@ -22848,8 +23128,8 @@
         "baseline_year": 2021
       },
       "processingInfo": {
-        "method": "rbms (GAM flight curves + GLM collated index + bootstrap CI)",
-        "timestamp": "2025-12-20 23:13:38",
+        "method": "rbms (GAM flight curves + GLM collated index + bootstrap CI + linear trend)",
+        "timestamp": "2025-12-21 00:19:19",
         "rbms_version": "1.2.0",
         "bootstrap_iterations": 500
       },
@@ -22896,6 +23176,13 @@
         "2023": 48.5742,
         "2024": 70.3734,
         "2025": 66.7491
+      },
+      "trendLine": {
+        "2021": 78.11,
+        "2022": 73.06,
+        "2023": 68.01,
+        "2024": 62.96,
+        "2025": 57.91
       },
       "phenologyCurves": {
         "2021": {
@@ -23464,8 +23751,8 @@
         "baseline_year": 2021
       },
       "processingInfo": {
-        "method": "rbms (GAM flight curves + GLM collated index + bootstrap CI)",
-        "timestamp": "2025-12-20 23:13:42",
+        "method": "rbms (GAM flight curves + GLM collated index + bootstrap CI + linear trend)",
+        "timestamp": "2025-12-21 00:19:24",
         "rbms_version": "1.2.0",
         "bootstrap_iterations": 500
       },
@@ -23512,6 +23799,13 @@
         "2023": 220.9721,
         "2024": 239.5797,
         "2025": 83.3293
+      },
+      "trendLine": {
+        "2021": 140.49,
+        "2022": 147.87,
+        "2023": 155.26,
+        "2024": 162.64,
+        "2025": 170.02
       },
       "phenologyCurves": {
         "2021": {
@@ -24080,8 +24374,8 @@
         "baseline_year": 2021
       },
       "processingInfo": {
-        "method": "rbms (GAM flight curves + GLM collated index + bootstrap CI)",
-        "timestamp": "2025-12-20 23:13:46",
+        "method": "rbms (GAM flight curves + GLM collated index + bootstrap CI + linear trend)",
+        "timestamp": "2025-12-21 00:19:29",
         "rbms_version": "1.2.0",
         "bootstrap_iterations": 500
       },
@@ -24128,6 +24422,13 @@
         "2023": 189.6956,
         "2024": 55.1496,
         "2025": 61.9164
+      },
+      "trendLine": {
+        "2021": 119.76,
+        "2022": 109.11,
+        "2023": 98.46,
+        "2024": 87.8,
+        "2025": 77.15
       },
       "phenologyCurves": {
         "2021": {
@@ -24696,8 +24997,8 @@
         "baseline_year": 2021
       },
       "processingInfo": {
-        "method": "rbms (GAM flight curves + GLM collated index + bootstrap CI)",
-        "timestamp": "2025-12-20 23:13:50",
+        "method": "rbms (GAM flight curves + GLM collated index + bootstrap CI + linear trend)",
+        "timestamp": "2025-12-21 00:19:34",
         "rbms_version": "1.2.0",
         "bootstrap_iterations": 500
       },
@@ -24744,6 +25045,13 @@
         "2023": 54.6344,
         "2024": 38.2711,
         "2025": 31.67
+      },
+      "trendLine": {
+        "2021": 83.45,
+        "2022": 68.89,
+        "2023": 54.34,
+        "2024": 39.79,
+        "2025": 25.24
       },
       "phenologyCurves": {
         "2021": {
@@ -25312,8 +25620,8 @@
         "baseline_year": 2021
       },
       "processingInfo": {
-        "method": "rbms (GAM flight curves + GLM collated index + bootstrap CI)",
-        "timestamp": "2025-12-20 23:13:53",
+        "method": "rbms (GAM flight curves + GLM collated index + bootstrap CI + linear trend)",
+        "timestamp": "2025-12-21 00:19:39",
         "rbms_version": "1.2.0",
         "bootstrap_iterations": 500
       },
@@ -25360,6 +25668,13 @@
         "2023": 4.4221,
         "2024": 35.3684,
         "2025": 9.4124
+      },
+      "trendLine": {
+        "2021": 106.93,
+        "2022": 80.37,
+        "2023": 53.8,
+        "2024": 27.24,
+        "2025": 0.68
       },
       "phenologyCurves": {
         "2021": {
@@ -25928,8 +26243,8 @@
         "baseline_year": 2021
       },
       "processingInfo": {
-        "method": "rbms (GAM flight curves + GLM collated index + bootstrap CI)",
-        "timestamp": "2025-12-20 23:11:12",
+        "method": "rbms (GAM flight curves + GLM collated index + bootstrap CI + linear trend)",
+        "timestamp": "2025-12-21 00:15:59",
         "rbms_version": "1.2.0",
         "bootstrap_iterations": 500
       },
@@ -25976,6 +26291,13 @@
         "2023": 234.9917,
         "2024": 38.6732,
         "2025": 73.9658
+      },
+      "trendLine": {
+        "2021": 122.26,
+        "2022": 113.4,
+        "2023": 104.55,
+        "2024": 95.7,
+        "2025": 86.85
       },
       "phenologyCurves": {
         "2021": {
@@ -26340,8 +26662,8 @@
         "baseline_year": 2021
       },
       "processingInfo": {
-        "method": "rbms (GAM flight curves + GLM collated index + bootstrap CI)",
-        "timestamp": "2025-12-20 23:13:57",
+        "method": "rbms (GAM flight curves + GLM collated index + bootstrap CI + linear trend)",
+        "timestamp": "2025-12-21 00:19:44",
         "rbms_version": "1.2.0",
         "bootstrap_iterations": 500
       },
@@ -26388,6 +26710,13 @@
         "2023": 45.0697,
         "2024": 47.6851,
         "2025": 40.8351
+      },
+      "trendLine": {
+        "2021": 93.67,
+        "2022": 78.4,
+        "2023": 63.13,
+        "2024": 47.86,
+        "2025": 32.59
       },
       "phenologyCurves": {
         "2021": {
@@ -26956,8 +27285,8 @@
         "baseline_year": 2021
       },
       "processingInfo": {
-        "method": "rbms (GAM flight curves + GLM collated index + bootstrap CI)",
-        "timestamp": "2025-12-20 23:14:01",
+        "method": "rbms (GAM flight curves + GLM collated index + bootstrap CI + linear trend)",
+        "timestamp": "2025-12-21 00:19:49",
         "rbms_version": "1.2.0",
         "bootstrap_iterations": 500
       },
@@ -27004,6 +27333,13 @@
         "2023": 41.8273,
         "2024": 53.5459,
         "2025": 95.0651
+      },
+      "trendLine": {
+        "2021": 79.54,
+        "2022": 76.36,
+        "2023": 73.18,
+        "2024": 70,
+        "2025": 66.82
       },
       "phenologyCurves": {
         "2021": {
@@ -27572,8 +27908,8 @@
         "baseline_year": 2021
       },
       "processingInfo": {
-        "method": "rbms (GAM flight curves + GLM collated index + bootstrap CI)",
-        "timestamp": "2025-12-20 23:14:06",
+        "method": "rbms (GAM flight curves + GLM collated index + bootstrap CI + linear trend)",
+        "timestamp": "2025-12-21 00:19:54",
         "rbms_version": "1.2.0",
         "bootstrap_iterations": 500
       },
@@ -27620,6 +27956,13 @@
         "2023": 62.8693,
         "2024": 55.229,
         "2025": 100.8289
+      },
+      "trendLine": {
+        "2021": 78.2,
+        "2022": 77.44,
+        "2023": 76.68,
+        "2024": 75.92,
+        "2025": 75.16
       },
       "phenologyCurves": {
         "2021": {
@@ -28188,8 +28531,8 @@
         "baseline_year": 2021
       },
       "processingInfo": {
-        "method": "rbms (GAM flight curves + GLM collated index + bootstrap CI)",
-        "timestamp": "2025-12-20 23:14:10",
+        "method": "rbms (GAM flight curves + GLM collated index + bootstrap CI + linear trend)",
+        "timestamp": "2025-12-21 00:19:59",
         "rbms_version": "1.2.0",
         "bootstrap_iterations": 500
       },
@@ -28236,6 +28579,13 @@
         "2023": 364.8928,
         "2024": 169.5365,
         "2025": 154.0964
+      },
+      "trendLine": {
+        "2021": 158.49,
+        "2022": 172.18,
+        "2023": 185.87,
+        "2024": 199.56,
+        "2025": 213.25
       },
       "phenologyCurves": {
         "2021": {
@@ -28804,8 +29154,8 @@
         "baseline_year": 2021
       },
       "processingInfo": {
-        "method": "rbms (GAM flight curves + GLM collated index + bootstrap CI)",
-        "timestamp": "2025-12-20 23:14:13",
+        "method": "rbms (GAM flight curves + GLM collated index + bootstrap CI + linear trend)",
+        "timestamp": "2025-12-21 00:20:05",
         "rbms_version": "1.2.0",
         "bootstrap_iterations": 500
       },
@@ -28852,6 +29202,13 @@
         "2023": 97.7686,
         "2024": 50.5065,
         "2025": 18.6508
+      },
+      "trendLine": {
+        "2021": 100.1,
+        "2022": 82.81,
+        "2023": 65.52,
+        "2024": 48.23,
+        "2025": 30.95
       },
       "phenologyCurves": {
         "2021": {
@@ -29420,8 +29777,8 @@
         "baseline_year": 2021
       },
       "processingInfo": {
-        "method": "rbms (GAM flight curves + GLM collated index + bootstrap CI)",
-        "timestamp": "2025-12-20 23:14:17",
+        "method": "rbms (GAM flight curves + GLM collated index + bootstrap CI + linear trend)",
+        "timestamp": "2025-12-21 00:20:10",
         "rbms_version": "1.2.0",
         "bootstrap_iterations": 500
       },
@@ -29468,6 +29825,13 @@
         "2023": 30.9494,
         "2024": 34.6959,
         "2025": 12.7022
+      },
+      "trendLine": {
+        "2021": 74.68,
+        "2022": 57.93,
+        "2023": 41.19,
+        "2024": 24.44,
+        "2025": 7.69
       },
       "phenologyCurves": {
         "2021": {
@@ -30036,8 +30400,8 @@
         "baseline_year": 2021
       },
       "processingInfo": {
-        "method": "rbms (GAM flight curves + GLM collated index + bootstrap CI)",
-        "timestamp": "2025-12-20 23:11:24",
+        "method": "rbms (GAM flight curves + GLM collated index + bootstrap CI + linear trend)",
+        "timestamp": "2025-12-21 00:16:14",
         "rbms_version": "1.2.0",
         "bootstrap_iterations": 500
       },
@@ -30084,6 +30448,13 @@
         "2023": 78.547,
         "2024": 77.965,
         "2025": 59.8732
+      },
+      "trendLine": {
+        "2021": 98.3,
+        "2022": 89.43,
+        "2023": 80.56,
+        "2024": 71.69,
+        "2025": 62.82
       },
       "phenologyCurves": {
         "2021": {
@@ -30652,8 +31023,8 @@
         "baseline_year": 2021
       },
       "processingInfo": {
-        "method": "rbms (GAM flight curves + GLM collated index + bootstrap CI)",
-        "timestamp": "2025-12-20 23:11:28",
+        "method": "rbms (GAM flight curves + GLM collated index + bootstrap CI + linear trend)",
+        "timestamp": "2025-12-21 00:16:19",
         "rbms_version": "1.2.0",
         "bootstrap_iterations": 500
       },
@@ -30700,6 +31071,13 @@
         "2023": 44.5705,
         "2024": 66.0612,
         "2025": 132.6485
+      },
+      "trendLine": {
+        "2021": 73.86,
+        "2022": 79.13,
+        "2023": 84.39,
+        "2024": 89.66,
+        "2025": 94.93
       },
       "phenologyCurves": {
         "2021": {
@@ -31166,8 +31544,8 @@
         "baseline_year": 2021
       },
       "processingInfo": {
-        "method": "rbms (GAM flight curves + GLM collated index + bootstrap CI)",
-        "timestamp": "2025-12-20 23:14:22",
+        "method": "rbms (GAM flight curves + GLM collated index + bootstrap CI + linear trend)",
+        "timestamp": "2025-12-21 00:20:16",
         "rbms_version": "1.2.0",
         "bootstrap_iterations": 500
       },
@@ -31214,6 +31592,13 @@
         "2023": 83.8736,
         "2024": 93.4052,
         "2025": 127.8159
+      },
+      "trendLine": {
+        "2021": 89.87,
+        "2022": 95.11,
+        "2023": 100.35,
+        "2024": 105.59,
+        "2025": 110.83
       },
       "phenologyCurves": {
         "2021": {
@@ -31782,8 +32167,8 @@
         "baseline_year": 2021
       },
       "processingInfo": {
-        "method": "rbms (GAM flight curves + GLM collated index + bootstrap CI)",
-        "timestamp": "2025-12-20 23:14:26",
+        "method": "rbms (GAM flight curves + GLM collated index + bootstrap CI + linear trend)",
+        "timestamp": "2025-12-21 00:20:22",
         "rbms_version": "1.2.0",
         "bootstrap_iterations": 500
       },
@@ -31830,6 +32215,13 @@
         "2023": 38.3792,
         "2024": 123.8357,
         "2025": 210.2361
+      },
+      "trendLine": {
+        "2021": 57.91,
+        "2022": 84.27,
+        "2023": 110.63,
+        "2024": 136.99,
+        "2025": 163.35
       },
       "phenologyCurves": {
         "2021": {
@@ -32398,8 +32790,8 @@
         "baseline_year": 2021
       },
       "processingInfo": {
-        "method": "rbms (GAM flight curves + GLM collated index + bootstrap CI)",
-        "timestamp": "2025-12-20 23:14:30",
+        "method": "rbms (GAM flight curves + GLM collated index + bootstrap CI + linear trend)",
+        "timestamp": "2025-12-21 00:20:27",
         "rbms_version": "1.2.0",
         "bootstrap_iterations": 500
       },
@@ -32446,6 +32838,13 @@
         "2023": 237.4884,
         "2024": 139.7733,
         "2025": 84.2025
+      },
+      "trendLine": {
+        "2021": 134.92,
+        "2022": 134.67,
+        "2023": 134.42,
+        "2024": 134.18,
+        "2025": 133.93
       },
       "phenologyCurves": {
         "2021": {
@@ -33014,8 +33413,8 @@
         "baseline_year": 2021
       },
       "processingInfo": {
-        "method": "rbms (GAM flight curves + GLM collated index + bootstrap CI)",
-        "timestamp": "2025-12-20 23:14:34",
+        "method": "rbms (GAM flight curves + GLM collated index + bootstrap CI + linear trend)",
+        "timestamp": "2025-12-21 00:20:32",
         "rbms_version": "1.2.0",
         "bootstrap_iterations": 500
       },

@@ -282,6 +282,11 @@ function SpeciesPage() {
               const years = Object.keys(speciesData.collatedIndices).map(Number).sort();
               const indices = years.map(year => speciesData.collatedIndices[year]);
 
+              // Get trend line from rBMS calculation (if available)
+              const trendLineValues = speciesData.trendLine
+                ? years.map(year => speciesData.trendLine![year])
+                : [];
+
               // Get CI data from flight curves data
               const hasCI = speciesData.confidenceIntervals != null;
               const ciLower = hasCI
@@ -328,15 +333,31 @@ function SpeciesPage() {
                 });
               }
 
-              // Main trend line
+              // Trend line (linear regression from rBMS)
+              if (trendLineValues.length > 0) {
+                datasets.push({
+                  label: "Linha de Tendência",
+                  data: trendLineValues,
+                  borderColor: SERIES_COLORS[0],
+                  backgroundColor: SERIES_COLORS[0],
+                  borderWidth: 6,
+                  pointRadius: 0,
+                  fill: false,
+                  order: 2,
+                });
+              }
+
+              // Main data points (line without curves)
               datasets.push({
                 label: "Índice Populacional (2021 = 100)",
                 data: indices,
-                borderColor: SERIES_COLORS[0],
-                backgroundColor: SERIES_COLORS[0],
-                borderWidth: 3,
+                borderColor: `${SERIES_COLORS[0]}99`,
+                backgroundColor: "transparent",
+                borderDash: [5, 5],
+                borderWidth: 2,
                 pointRadius: 4,
-                tension: 0.3,
+                pointHoverRadius: 6,
+                tension: 0,
                 fill: false,
                 order: 1,
               });
@@ -365,6 +386,11 @@ function SpeciesPage() {
 
                         // Skip CI Upper
                         if (datasetLabel === "CI Upper") return undefined;
+
+                        // For trend line, show value
+                        if (datasetLabel === "Linha de Tendência") {
+                          return `Tendência: ${context.parsed.y.toFixed(2)}`;
+                        }
 
                         // For CI band, show range
                         if (datasetLabel === "IC 95%" && hasCI) {

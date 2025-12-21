@@ -593,6 +593,32 @@ if (exists("collated_result_all") && !is.null(collated_result_all) && nrow(colla
   )
 }
 
+# Step 11b: Calculate linear trend line for visualization
+# This calculates a simple linear regression on normalized indices
+# matching the approach in the Desktop/scripts/Maniola Jurtina.R script
+trend_line <- list()
+if (nrow(collated_by_year) >= 2) {
+  years_numeric <- as.numeric(collated_by_year$year)
+  indices_values <- collated_by_year$index_normalized
+
+  # Linear regression on normalized indices
+  lm_trend <- try(lm(indices_values ~ years_numeric), silent = TRUE)
+
+  if (!inherits(lm_trend, "try-error")) {
+    # Calculate predicted values for each year
+    predicted_values <- predict(lm_trend, newdata = data.frame(years_numeric = years_numeric))
+
+    # Store as named list by year
+    for (i in seq_along(collated_by_year$year)) {
+      trend_line[[as.character(collated_by_year$year[i])]] <- round(predicted_values[i], 2)
+    }
+
+    cat("  Linear trend line calculated\n")
+  } else {
+    cat("Warning: Could not calculate linear trend line\n")
+  }
+}
+
 # Step 12: Compile data quality metrics
 data_quality <- list(
   site_count = length(unique(visits$SITE_ID)),
@@ -610,10 +636,11 @@ output <- list(
   collated_indices = normalized_indices,
   confidence_intervals = confidence_intervals,
   trend_statistics = trend_statistics,
+  trend_line = if(length(trend_line) > 0) trend_line else NULL,
   phenology_curves = pheno_curves,
   data_quality = data_quality,
   processing_info = list(
-    method = "rbms (GAM flight curves + GLM collated index + bootstrap CI)",
+    method = "rbms (GAM flight curves + GLM collated index + bootstrap CI + linear trend)",
     timestamp = format(Sys.time(), "%Y-%m-%d %H:%M:%S"),
     rbms_version = as.character(packageVersion("rbms")),
     bootstrap_iterations = if(exists("n_boots")) n_boots else 0
