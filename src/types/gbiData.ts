@@ -84,14 +84,14 @@ export type TrendCategory =
  */
 export interface TrendClassification {
   category: TrendCategory;
-  annualRateOfChange: number | null;  // Annual % change (pc1)
-  rateOfChange: number;                // Multiplicative rate
+  annualRateOfChange: number | null; // Annual % change (pc1)
+  rateOfChange: number; // Multiplicative rate
   confidenceInterval: {
-    lower: number | null;               // CI for annual % change
+    lower: number | null; // CI for annual % change
     upper: number | null;
   };
   rateCI: {
-    lower: number | null;               // CI for multiplicative rate
+    lower: number | null; // CI for multiplicative rate
     upper: number | null;
   };
 }

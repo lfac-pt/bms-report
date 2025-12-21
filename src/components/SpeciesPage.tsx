@@ -203,7 +203,8 @@ function SpeciesPage() {
           {/* Show trend classification from GBI data (for GBI species) or flight curves data (for all other species) */}
           {(() => {
             const gbiTrend = gbiData?.speciesTrends?.[decodedSpeciesName]?.trendClassification;
-            const flightCurvesTrend = flightCurvesData?.species?.[decodedSpeciesName]?.trendClassification;
+            const flightCurvesTrend =
+              flightCurvesData?.species?.[decodedSpeciesName]?.trendClassification;
             const trendClassification = gbiTrend || flightCurvesTrend;
 
             if (trendClassification) {

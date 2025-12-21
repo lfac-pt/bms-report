@@ -1,11 +1,6 @@
 import React from "react";
 import { Tag, Tooltip } from "antd";
-import {
-  RiseOutlined,
-  FallOutlined,
-  MinusOutlined,
-  QuestionOutlined,
-} from "@ant-design/icons";
+import { RiseOutlined, FallOutlined, MinusOutlined, QuestionOutlined } from "@ant-design/icons";
 import type { TrendClassification } from "../types/gbiData";
 
 interface TrendClassificationBadgeProps {
@@ -30,10 +25,7 @@ const TrendClassificationBadge: React.FC<TrendClassificationBadgeProps> = ({
   };
 
   // Color and icon mapping
-  const config: Record<
-    string,
-    { color: string; icon: React.ReactElement }
-  > = {
+  const config: Record<string, { color: string; icon: React.ReactElement }> = {
     "Strong increase": { color: "#52c41a", icon: <RiseOutlined /> },
     "Moderate increase": { color: "#95de64", icon: <RiseOutlined /> },
     Stable: { color: "#1890ff", icon: <MinusOutlined /> },
@@ -60,13 +52,12 @@ const TrendClassificationBadge: React.FC<TrendClassificationBadgeProps> = ({
       <div>
         <strong>Taxa anual:</strong> {rateText}
       </div>
-      {confidenceInterval.lower !== null &&
-        confidenceInterval.upper !== null && (
-          <div>
-            <strong>IC 95%:</strong> [{confidenceInterval.lower.toFixed(1)}%,{" "}
-            {confidenceInterval.upper.toFixed(1)}%]
-          </div>
-        )}
+      {confidenceInterval.lower !== null && confidenceInterval.upper !== null && (
+        <div>
+          <strong>IC 95%:</strong> [{confidenceInterval.lower.toFixed(1)}%,{" "}
+          {confidenceInterval.upper.toFixed(1)}%]
+        </div>
+      )}
       <div style={{ marginTop: 8, fontSize: "12px", color: "#888" }}>
         Baseado em regressão log-linear com bootstrap (metodologia EGBI)
       </div>

@@ -44,7 +44,8 @@ const SpeciesTrendsSparklines: React.FC = () => {
 
       // Helper function to process species data
       const processSpecies = (speciesName: string, speciesData: any) => {
-        const { annualIndices, collatedIndices, confidenceIntervals, trendClassification } = speciesData;
+        const { annualIndices, collatedIndices, confidenceIntervals, trendClassification } =
+          speciesData;
 
         // Use annualIndices (from GBI) or collatedIndices (from flight curves)
         const indicesData = annualIndices || collatedIndices;
@@ -270,9 +271,7 @@ const SpeciesTrendsSparklines: React.FC = () => {
               )}
               {categorySummary["Stable"] && (
                 <>
-                  <span style={{ color: "#1890ff" }}>
-                    − {categorySummary["Stable"]} estáveis
-                  </span>
+                  <span style={{ color: "#1890ff" }}>− {categorySummary["Stable"]} estáveis</span>
                   {" • "}
                 </>
               )}
