@@ -1,6 +1,6 @@
 {
   "metadata": {
-    "processingDate": "2025-12-21T00:37:29.019Z",
+    "processingDate": "2025-12-21T19:15:08.231Z",
     "baselineYear": 2021,
     "qualityCriteria": {
       "minYearsActive": 5,
@@ -566,7 +566,7 @@
       },
       "processingInfo": {
         "method": "rbms (GAM flight curves + GLM collated index + bootstrap CI + linear trend)",
-        "timestamp": "2025-12-21 00:15:29",
+        "timestamp": "2025-12-21 19:11:25",
         "rbms_version": "1.2.0",
         "bootstrap_iterations": 500
       },
@@ -594,15 +594,15 @@
       },
       "trendClassification": {
         "category": "Uncertain",
-        "annualRateOfChange": 53.33,
-        "rateOfChange": 1.5333,
+        "annualRateOfChange": 20.4,
+        "rateOfChange": 1.204,
         "confidenceInterval": {
-          "lower": -99.16,
-          "upper": 653917.45
+          "lower": -87.47,
+          "upper": 4438.11
         },
         "rateCI": {
-          "lower": 0.0084,
-          "upper": 6540.1745
+          "lower": 0.1253,
+          "upper": 45.3811
         }
       }
     },
@@ -1087,7 +1087,7 @@
       },
       "processingInfo": {
         "method": "rbms (GAM flight curves + GLM collated index + bootstrap CI + linear trend)",
-        "timestamp": "2025-12-21 00:16:25",
+        "timestamp": "2025-12-21 19:12:05",
         "rbms_version": "1.2.0",
         "bootstrap_iterations": 500
       },
@@ -1115,15 +1115,15 @@
       },
       "trendClassification": {
         "category": "Uncertain",
-        "annualRateOfChange": 51.24,
-        "rateOfChange": 1.5124,
+        "annualRateOfChange": 19.68,
+        "rateOfChange": 1.1968,
         "confidenceInterval": {
-          "lower": -84.03,
-          "upper": 137.63
+          "lower": -76.33,
+          "upper": 45.63
         },
         "rateCI": {
-          "lower": 0.1597,
-          "upper": 2.3763
+          "lower": 0.2367,
+          "upper": 1.4563
         }
       }
     },
@@ -1710,7 +1710,7 @@
       },
       "processingInfo": {
         "method": "rbms (GAM flight curves + GLM collated index + bootstrap CI + linear trend)",
-        "timestamp": "2025-12-21 00:16:30",
+        "timestamp": "2025-12-21 19:12:09",
         "rbms_version": "1.2.0",
         "bootstrap_iterations": 500
       },
@@ -1738,15 +1738,15 @@
       },
       "trendClassification": {
         "category": "Strong increase",
-        "annualRateOfChange": 85.65,
-        "rateOfChange": 1.8565,
+        "annualRateOfChange": 30.82,
+        "rateOfChange": 1.3082,
         "confidenceInterval": {
-          "lower": 16.01,
-          "upper": 131.5
+          "lower": 6.66,
+          "upper": 43.99
         },
         "rateCI": {
-          "lower": 1.1601,
-          "upper": 2.315
+          "lower": 1.0666,
+          "upper": 1.4399
         }
       }
     },
@@ -2333,7 +2333,7 @@
       },
       "processingInfo": {
         "method": "rbms (GAM flight curves + GLM collated index + bootstrap CI + linear trend)",
-        "timestamp": "2025-12-21 00:16:35",
+        "timestamp": "2025-12-21 19:12:13",
         "rbms_version": "1.2.0",
         "bootstrap_iterations": 500
       },
@@ -2361,15 +2361,15 @@
       },
       "trendClassification": {
         "category": "Uncertain",
-        "annualRateOfChange": 53.25,
-        "rateOfChange": 1.5325,
+        "annualRateOfChange": 20.37,
+        "rateOfChange": 1.2037,
         "confidenceInterval": {
-          "lower": -99.69,
-          "upper": 138.51
+          "lower": -91.87,
+          "upper": 45.85
         },
         "rateCI": {
-          "lower": 0.0031,
-          "upper": 2.3851
+          "lower": 0.0813,
+          "upper": 1.4585
         }
       }
     },
@@ -2854,7 +2854,7 @@
       },
       "processingInfo": {
         "method": "rbms (GAM flight curves + GLM collated index + bootstrap CI + linear trend)",
-        "timestamp": "2025-12-21 00:16:40",
+        "timestamp": "2025-12-21 19:12:17",
         "rbms_version": "1.2.0",
         "bootstrap_iterations": 500
       },
@@ -2882,15 +2882,15 @@
       },
       "trendClassification": {
         "category": "Uncertain",
-        "annualRateOfChange": -58.22,
-        "rateOfChange": 0.4178,
+        "annualRateOfChange": -31.55,
+        "rateOfChange": 0.6845,
         "confidenceInterval": {
-          "lower": -100,
-          "upper": 3082.01
+          "lower": -98.68,
+          "upper": 347.87
         },
         "rateCI": {
-          "lower": null,
-          "upper": 31.8201
+          "lower": 0.0132,
+          "upper": 4.4787
         }
       }
     },
@@ -3273,7 +3273,7 @@
       },
       "processingInfo": {
         "method": "rbms (GAM flight curves + GLM collated index + bootstrap CI + linear trend)",
-        "timestamp": "2025-12-21 00:16:45",
+        "timestamp": "2025-12-21 19:12:21",
         "rbms_version": "1.2.0",
         "bootstrap_iterations": 500
       },
@@ -3301,15 +3301,15 @@
       },
       "trendClassification": {
         "category": "Uncertain",
-        "annualRateOfChange": 81.45,
-        "rateOfChange": 1.8145,
+        "annualRateOfChange": 29.53,
+        "rateOfChange": 1.2953,
         "confidenceInterval": {
-          "lower": -3.81,
-          "upper": 573109.24
+          "lower": -1.67,
+          "upper": 4187.53
         },
         "rateCI": {
-          "lower": 0.9619,
-          "upper": 5732.0924
+          "lower": 0.9833,
+          "upper": 42.8753
         }
       }
     },
@@ -3692,7 +3692,7 @@
       },
       "processingInfo": {
         "method": "rbms (GAM flight curves + GLM collated index + bootstrap CI + linear trend)",
-        "timestamp": "2025-12-21 00:16:50",
+        "timestamp": "2025-12-21 19:12:24",
         "rbms_version": "1.2.0",
         "bootstrap_iterations": 500
       },
@@ -3720,15 +3720,15 @@
       },
       "trendClassification": {
         "category": "Uncertain",
-        "annualRateOfChange": 5.46,
-        "rateOfChange": 1.0546,
+        "annualRateOfChange": 2.34,
+        "rateOfChange": 1.0234,
         "confidenceInterval": {
-          "lower": -100,
-          "upper": 10125.32
+          "lower": -99.62,
+          "upper": 646.09
         },
         "rateCI": {
-          "lower": null,
-          "upper": 102.2532
+          "lower": 0.0038,
+          "upper": 7.4609
         }
       }
     },
@@ -4315,7 +4315,7 @@
       },
       "processingInfo": {
         "method": "rbms (GAM flight curves + GLM collated index + bootstrap CI + linear trend)",
-        "timestamp": "2025-12-21 00:16:55",
+        "timestamp": "2025-12-21 19:12:28",
         "rbms_version": "1.2.0",
         "bootstrap_iterations": 500
       },
@@ -4343,15 +4343,15 @@
       },
       "trendClassification": {
         "category": "Uncertain",
-        "annualRateOfChange": 22.37,
-        "rateOfChange": 1.2237,
+        "annualRateOfChange": 9.16,
+        "rateOfChange": 1.0916,
         "confidenceInterval": {
-          "lower": -32.54,
-          "upper": 103.35
+          "lower": -15.72,
+          "upper": 36.1
         },
         "rateCI": {
-          "lower": 0.6746,
-          "upper": 2.0335
+          "lower": 0.8428,
+          "upper": 1.361
         }
       }
     },
@@ -4938,7 +4938,7 @@
       },
       "processingInfo": {
         "method": "rbms (GAM flight curves + GLM collated index + bootstrap CI + linear trend)",
-        "timestamp": "2025-12-21 00:17:00",
+        "timestamp": "2025-12-21 19:12:32",
         "rbms_version": "1.2.0",
         "bootstrap_iterations": 500
       },
@@ -4966,15 +4966,15 @@
       },
       "trendClassification": {
         "category": "Uncertain",
-        "annualRateOfChange": 2.95,
-        "rateOfChange": 1.0295,
+        "annualRateOfChange": 1.27,
+        "rateOfChange": 1.0127,
         "confidenceInterval": {
-          "lower": -44.46,
-          "upper": 8340.52
+          "lower": -22.54,
+          "upper": 586.37
         },
         "rateCI": {
-          "lower": 0.5554,
-          "upper": 84.4052
+          "lower": 0.7746,
+          "upper": 6.8637
         }
       }
     },
@@ -5561,7 +5561,7 @@
       },
       "processingInfo": {
         "method": "rbms (GAM flight curves + GLM collated index + bootstrap CI + linear trend)",
-        "timestamp": "2025-12-21 00:15:37",
+        "timestamp": "2025-12-21 19:11:28",
         "rbms_version": "1.2.0",
         "bootstrap_iterations": 500
       },
@@ -5588,16 +5588,16 @@
         }
       },
       "trendClassification": {
-        "category": "Strong decline",
-        "annualRateOfChange": -32.24,
-        "rateOfChange": 0.6776,
+        "category": "Moderate decline",
+        "annualRateOfChange": -15.55,
+        "rateOfChange": 0.8445,
         "confidenceInterval": {
-          "lower": -51.67,
-          "upper": -5.34
+          "lower": -27.08,
+          "upper": -2.36
         },
         "rateCI": {
-          "lower": 0.4833,
-          "upper": 0.9466
+          "lower": 0.7292,
+          "upper": 0.9764
         }
       }
     },
@@ -6184,7 +6184,7 @@
       },
       "processingInfo": {
         "method": "rbms (GAM flight curves + GLM collated index + bootstrap CI + linear trend)",
-        "timestamp": "2025-12-21 00:17:05",
+        "timestamp": "2025-12-21 19:12:37",
         "rbms_version": "1.2.0",
         "bootstrap_iterations": 500
       },
@@ -6212,15 +6212,15 @@
       },
       "trendClassification": {
         "category": "Uncertain",
-        "annualRateOfChange": 1.68,
-        "rateOfChange": 1.0168,
+        "annualRateOfChange": 0.72,
+        "rateOfChange": 1.0072,
         "confidenceInterval": {
-          "lower": -20.69,
-          "upper": 32.1
+          "lower": -9.58,
+          "upper": 12.85
         },
         "rateCI": {
-          "lower": 0.7931,
-          "upper": 1.321
+          "lower": 0.9042,
+          "upper": 1.1285
         }
       }
     },
@@ -6603,7 +6603,7 @@
       },
       "processingInfo": {
         "method": "rbms (GAM flight curves + GLM collated index + bootstrap CI + linear trend)",
-        "timestamp": "2025-12-21 00:17:10",
+        "timestamp": "2025-12-21 19:12:41",
         "rbms_version": "1.2.0",
         "bootstrap_iterations": 500
       },
@@ -6631,15 +6631,15 @@
       },
       "trendClassification": {
         "category": "Uncertain",
-        "annualRateOfChange": 163470610.12,
-        "rateOfChange": 1634707.1012,
+        "annualRateOfChange": 49841.63,
+        "rateOfChange": 499.4163,
         "confidenceInterval": {
           "lower": null,
-          "upper": 3267558631.65
+          "upper": 183294.27
         },
         "rateCI": {
           "lower": 1,
-          "upper": 32675587.3165
+          "upper": 1833.9427
         }
       }
     },
@@ -7226,7 +7226,7 @@
       },
       "processingInfo": {
         "method": "rbms (GAM flight curves + GLM collated index + bootstrap CI + linear trend)",
-        "timestamp": "2025-12-21 00:17:15",
+        "timestamp": "2025-12-21 19:12:45",
         "rbms_version": "1.2.0",
         "bootstrap_iterations": 500
       },
@@ -7254,15 +7254,15 @@
       },
       "trendClassification": {
         "category": "Uncertain",
-        "annualRateOfChange": 153.28,
-        "rateOfChange": 2.5328,
+        "annualRateOfChange": 49.72,
+        "rateOfChange": 1.4972,
         "confidenceInterval": {
-          "lower": -38.89,
-          "upper": 261227.23
+          "lower": -19.25,
+          "upper": 2546.96
         },
         "rateCI": {
-          "lower": 0.6111,
-          "upper": 2613.2723
+          "lower": 0.8075,
+          "upper": 26.4696
         }
       }
     },
@@ -7849,7 +7849,7 @@
       },
       "processingInfo": {
         "method": "rbms (GAM flight curves + GLM collated index + bootstrap CI + linear trend)",
-        "timestamp": "2025-12-21 00:17:20",
+        "timestamp": "2025-12-21 19:12:49",
         "rbms_version": "1.2.0",
         "bootstrap_iterations": 500
       },
@@ -7877,15 +7877,15 @@
       },
       "trendClassification": {
         "category": "Uncertain",
-        "annualRateOfChange": 16.03,
-        "rateOfChange": 1.1603,
+        "annualRateOfChange": 6.67,
+        "rateOfChange": 1.0667,
         "confidenceInterval": {
-          "lower": -43.66,
-          "upper": 254.37
+          "lower": -22.06,
+          "upper": 73.23
         },
         "rateCI": {
-          "lower": 0.5634,
-          "upper": 3.5437
+          "lower": 0.7794,
+          "upper": 1.7323
         }
       }
     },
@@ -8472,7 +8472,7 @@
       },
       "processingInfo": {
         "method": "rbms (GAM flight curves + GLM collated index + bootstrap CI + linear trend)",
-        "timestamp": "2025-12-21 00:16:04",
+        "timestamp": "2025-12-21 19:11:48",
         "rbms_version": "1.2.0",
         "bootstrap_iterations": 500
       },
@@ -8500,15 +8500,15 @@
       },
       "trendClassification": {
         "category": "Uncertain",
-        "annualRateOfChange": -24.33,
-        "rateOfChange": 0.7567,
+        "annualRateOfChange": -11.4,
+        "rateOfChange": 0.886,
         "confidenceInterval": {
-          "lower": -41.63,
-          "upper": 2078.59
+          "lower": -20.85,
+          "upper": 226.07
         },
         "rateCI": {
-          "lower": 0.5837,
-          "upper": 21.7859
+          "lower": 0.7915,
+          "upper": 3.2607
         }
       }
     },
@@ -8891,7 +8891,7 @@
       },
       "processingInfo": {
         "method": "rbms (GAM flight curves + GLM collated index + bootstrap CI + linear trend)",
-        "timestamp": "2025-12-21 00:17:25",
+        "timestamp": "2025-12-21 19:12:52",
         "rbms_version": "1.2.0",
         "bootstrap_iterations": 500
       },
@@ -8919,15 +8919,15 @@
       },
       "trendClassification": {
         "category": "Strong increase",
-        "annualRateOfChange": 218.45,
-        "rateOfChange": 3.1845,
+        "annualRateOfChange": 65.37,
+        "rateOfChange": 1.6537,
         "confidenceInterval": {
-          "lower": 215.51,
-          "upper": 40449.66
+          "lower": 64.71,
+          "upper": 1257.17
         },
         "rateCI": {
-          "lower": 3.1551,
-          "upper": 405.4966
+          "lower": 1.6471,
+          "upper": 13.5717
         }
       }
     },
@@ -9514,7 +9514,7 @@
       },
       "processingInfo": {
         "method": "rbms (GAM flight curves + GLM collated index + bootstrap CI + linear trend)",
-        "timestamp": "2025-12-21 00:17:30",
+        "timestamp": "2025-12-21 19:12:56",
         "rbms_version": "1.2.0",
         "bootstrap_iterations": 500
       },
@@ -9542,15 +9542,15 @@
       },
       "trendClassification": {
         "category": "Uncertain",
-        "annualRateOfChange": -5.62,
-        "rateOfChange": 0.9438,
+        "annualRateOfChange": -2.48,
+        "rateOfChange": 0.9752,
         "confidenceInterval": {
-          "lower": -21.99,
-          "upper": 89.91
+          "lower": -10.22,
+          "upper": 32.12
         },
         "rateCI": {
-          "lower": 0.7801,
-          "upper": 1.8991
+          "lower": 0.8978,
+          "upper": 1.3212
         }
       }
     },
@@ -10035,7 +10035,7 @@
       },
       "processingInfo": {
         "method": "rbms (GAM flight curves + GLM collated index + bootstrap CI + linear trend)",
-        "timestamp": "2025-12-21 00:17:35",
+        "timestamp": "2025-12-21 19:13:00",
         "rbms_version": "1.2.0",
         "bootstrap_iterations": 500
       },
@@ -10063,15 +10063,15 @@
       },
       "trendClassification": {
         "category": "Uncertain",
-        "annualRateOfChange": 86.77,
-        "rateOfChange": 1.8677,
+        "annualRateOfChange": 31.17,
+        "rateOfChange": 1.3117,
         "confidenceInterval": {
-          "lower": -99.99,
-          "upper": 4042365.69
+          "lower": -97.83,
+          "upper": 9853.22
         },
         "rateCI": {
-          "lower": 0.0001,
-          "upper": 40424.6569
+          "lower": 0.0217,
+          "upper": 99.5322
         }
       }
     },
@@ -10658,7 +10658,7 @@
       },
       "processingInfo": {
         "method": "rbms (GAM flight curves + GLM collated index + bootstrap CI + linear trend)",
-        "timestamp": "2025-12-21 00:17:40",
+        "timestamp": "2025-12-21 19:13:04",
         "rbms_version": "1.2.0",
         "bootstrap_iterations": 500
       },
@@ -10686,15 +10686,15 @@
       },
       "trendClassification": {
         "category": "Uncertain",
-        "annualRateOfChange": -27.78,
-        "rateOfChange": 0.7222,
+        "annualRateOfChange": -13.18,
+        "rateOfChange": 0.8682,
         "confidenceInterval": {
-          "lower": -45.51,
-          "upper": 5.23
+          "lower": -23.18,
+          "upper": 2.24
         },
         "rateCI": {
-          "lower": 0.5449,
-          "upper": 1.0523
+          "lower": 0.7682,
+          "upper": 1.0224
         }
       }
     },
@@ -11179,7 +11179,7 @@
       },
       "processingInfo": {
         "method": "rbms (GAM flight curves + GLM collated index + bootstrap CI + linear trend)",
-        "timestamp": "2025-12-21 00:17:45",
+        "timestamp": "2025-12-21 19:13:08",
         "rbms_version": "1.2.0",
         "bootstrap_iterations": 500
       },
@@ -11207,15 +11207,15 @@
       },
       "trendClassification": {
         "category": "Uncertain",
-        "annualRateOfChange": -29.27,
-        "rateOfChange": 0.7073,
+        "annualRateOfChange": -13.96,
+        "rateOfChange": 0.8604,
         "confidenceInterval": {
-          "lower": -99.99,
-          "upper": 54.91
+          "lower": -98.37,
+          "upper": 20.94
         },
         "rateCI": {
-          "lower": 0.0001,
-          "upper": 1.5491
+          "lower": 0.0163,
+          "upper": 1.2094
         }
       }
     },
@@ -11802,7 +11802,7 @@
       },
       "processingInfo": {
         "method": "rbms (GAM flight curves + GLM collated index + bootstrap CI + linear trend)",
-        "timestamp": "2025-12-21 00:17:50",
+        "timestamp": "2025-12-21 19:13:12",
         "rbms_version": "1.2.0",
         "bootstrap_iterations": 500
       },
@@ -11830,15 +11830,15 @@
       },
       "trendClassification": {
         "category": "Uncertain",
-        "annualRateOfChange": 56.41,
-        "rateOfChange": 1.5641,
+        "annualRateOfChange": 21.44,
+        "rateOfChange": 1.2144,
         "confidenceInterval": {
-          "lower": -98.09,
-          "upper": 125.93
+          "lower": -82.06,
+          "upper": 42.47
         },
         "rateCI": {
-          "lower": 0.0191,
-          "upper": 2.2593
+          "lower": 0.1794,
+          "upper": 1.4247
         }
       }
     },
@@ -12425,7 +12425,7 @@
       },
       "processingInfo": {
         "method": "rbms (GAM flight curves + GLM collated index + bootstrap CI + linear trend)",
-        "timestamp": "2025-12-21 00:17:55",
+        "timestamp": "2025-12-21 19:13:16",
         "rbms_version": "1.2.0",
         "bootstrap_iterations": 500
       },
@@ -12453,15 +12453,15 @@
       },
       "trendClassification": {
         "category": "Uncertain",
-        "annualRateOfChange": -12.56,
-        "rateOfChange": 0.8744,
+        "annualRateOfChange": -5.66,
+        "rateOfChange": 0.9434,
         "confidenceInterval": {
-          "lower": -41.72,
-          "upper": 14.64
+          "lower": -20.9,
+          "upper": 6.11
         },
         "rateCI": {
-          "lower": 0.5828,
-          "upper": 1.1464
+          "lower": 0.791,
+          "upper": 1.0611
         }
       }
     },
@@ -13048,7 +13048,7 @@
       },
       "processingInfo": {
         "method": "rbms (GAM flight curves + GLM collated index + bootstrap CI + linear trend)",
-        "timestamp": "2025-12-21 00:18:01",
+        "timestamp": "2025-12-21 19:13:20",
         "rbms_version": "1.2.0",
         "bootstrap_iterations": 500
       },
@@ -13076,15 +13076,15 @@
       },
       "trendClassification": {
         "category": "Uncertain",
-        "annualRateOfChange": -5.09,
-        "rateOfChange": 0.9491,
+        "annualRateOfChange": -2.24,
+        "rateOfChange": 0.9776,
         "confidenceInterval": {
-          "lower": -46.86,
-          "upper": 38.71
+          "lower": -24.01,
+          "upper": 15.27
         },
         "rateCI": {
-          "lower": 0.5314,
-          "upper": 1.3871
+          "lower": 0.7599,
+          "upper": 1.1527
         }
       }
     },
@@ -13569,7 +13569,7 @@
       },
       "processingInfo": {
         "method": "rbms (GAM flight curves + GLM collated index + bootstrap CI + linear trend)",
-        "timestamp": "2025-12-21 00:18:05",
+        "timestamp": "2025-12-21 19:13:24",
         "rbms_version": "1.2.0",
         "bootstrap_iterations": 500
       },
@@ -13597,15 +13597,15 @@
       },
       "trendClassification": {
         "category": "Uncertain",
-        "annualRateOfChange": -28.63,
-        "rateOfChange": 0.7137,
+        "annualRateOfChange": -13.63,
+        "rateOfChange": 0.8637,
         "confidenceInterval": {
-          "lower": -53.67,
-          "upper": 165207655.51
+          "lower": -28.4,
+          "upper": 50071.41
         },
         "rateCI": {
-          "lower": 0.4633,
-          "upper": 1652077.5551
+          "lower": 0.716,
+          "upper": 501.7141
         }
       }
     },
@@ -14090,7 +14090,7 @@
       },
       "processingInfo": {
         "method": "rbms (GAM flight curves + GLM collated index + bootstrap CI + linear trend)",
-        "timestamp": "2025-12-21 00:18:10",
+        "timestamp": "2025-12-21 19:13:28",
         "rbms_version": "1.2.0",
         "bootstrap_iterations": 500
       },
@@ -14118,15 +14118,15 @@
       },
       "trendClassification": {
         "category": "Strong decline",
-        "annualRateOfChange": -57.17,
-        "rateOfChange": 0.4283,
+        "annualRateOfChange": -30.8,
+        "rateOfChange": 0.692,
         "confidenceInterval": {
-          "lower": -100,
-          "upper": -11.27
+          "lower": -99.91,
+          "upper": -5.06
         },
         "rateCI": {
-          "lower": null,
-          "upper": 0.8873
+          "lower": 0.0009,
+          "upper": 0.9494
         }
       }
     },
@@ -14713,7 +14713,7 @@
       },
       "processingInfo": {
         "method": "rbms (GAM flight curves + GLM collated index + bootstrap CI + linear trend)",
-        "timestamp": "2025-12-21 00:18:15",
+        "timestamp": "2025-12-21 19:13:32",
         "rbms_version": "1.2.0",
         "bootstrap_iterations": 500
       },
@@ -14741,15 +14741,15 @@
       },
       "trendClassification": {
         "category": "Uncertain",
-        "annualRateOfChange": -21.75,
-        "rateOfChange": 0.7825,
+        "annualRateOfChange": -10.1,
+        "rateOfChange": 0.899,
         "confidenceInterval": {
-          "lower": -52.42,
-          "upper": 48.47
+          "lower": -27.57,
+          "upper": 18.72
         },
         "rateCI": {
-          "lower": 0.4758,
-          "upper": 1.4847
+          "lower": 0.7243,
+          "upper": 1.1872
         }
       }
     },
@@ -15336,7 +15336,7 @@
       },
       "processingInfo": {
         "method": "rbms (GAM flight curves + GLM collated index + bootstrap CI + linear trend)",
-        "timestamp": "2025-12-21 00:15:43",
+        "timestamp": "2025-12-21 19:11:32",
         "rbms_version": "1.2.0",
         "bootstrap_iterations": 500
       },
@@ -15364,15 +15364,15 @@
       },
       "trendClassification": {
         "category": "Uncertain",
-        "annualRateOfChange": 21.9,
-        "rateOfChange": 1.219,
+        "annualRateOfChange": 8.98,
+        "rateOfChange": 1.0898,
         "confidenceInterval": {
-          "lower": -29.35,
-          "upper": 54.52
+          "lower": -14.01,
+          "upper": 20.8
         },
         "rateCI": {
-          "lower": 0.7065,
-          "upper": 1.5452
+          "lower": 0.8599,
+          "upper": 1.208
         }
       }
     },
@@ -15959,7 +15959,7 @@
       },
       "processingInfo": {
         "method": "rbms (GAM flight curves + GLM collated index + bootstrap CI + linear trend)",
-        "timestamp": "2025-12-21 00:18:20",
+        "timestamp": "2025-12-21 19:13:36",
         "rbms_version": "1.2.0",
         "bootstrap_iterations": 500
       },
@@ -15987,15 +15987,15 @@
       },
       "trendClassification": {
         "category": "Uncertain",
-        "annualRateOfChange": -30.43,
-        "rateOfChange": 0.6957,
+        "annualRateOfChange": -14.58,
+        "rateOfChange": 0.8542,
         "confidenceInterval": {
-          "lower": -100,
-          "upper": 61.69
+          "lower": -99.19,
+          "upper": 23.21
         },
         "rateCI": {
-          "lower": null,
-          "upper": 1.6169
+          "lower": 0.0081,
+          "upper": 1.2321
         }
       }
     },
@@ -16582,7 +16582,7 @@
       },
       "processingInfo": {
         "method": "rbms (GAM flight curves + GLM collated index + bootstrap CI + linear trend)",
-        "timestamp": "2025-12-21 00:18:26",
+        "timestamp": "2025-12-21 19:13:40",
         "rbms_version": "1.2.0",
         "bootstrap_iterations": 500
       },
@@ -16610,15 +16610,15 @@
       },
       "trendClassification": {
         "category": "Uncertain",
-        "annualRateOfChange": -2.4,
-        "rateOfChange": 0.976,
+        "annualRateOfChange": -1.05,
+        "rateOfChange": 0.9895,
         "confidenceInterval": {
-          "lower": -49.32,
-          "upper": 41.53
+          "lower": -25.56,
+          "upper": 16.28
         },
         "rateCI": {
-          "lower": 0.5068,
-          "upper": 1.4153
+          "lower": 0.7444,
+          "upper": 1.1628
         }
       }
     },
@@ -17103,7 +17103,7 @@
       },
       "processingInfo": {
         "method": "rbms (GAM flight curves + GLM collated index + bootstrap CI + linear trend)",
-        "timestamp": "2025-12-21 00:18:31",
+        "timestamp": "2025-12-21 19:13:44",
         "rbms_version": "1.2.0",
         "bootstrap_iterations": 500
       },
@@ -17131,15 +17131,15 @@
       },
       "trendClassification": {
         "category": "Strong increase",
-        "annualRateOfChange": 188.13,
-        "rateOfChange": 2.8813,
+        "annualRateOfChange": 58.34,
+        "rateOfChange": 1.5834,
         "confidenceInterval": {
-          "lower": 113.62,
-          "upper": 295.99
+          "lower": 39.05,
+          "upper": 81.79
         },
         "rateCI": {
-          "lower": 2.1362,
-          "upper": 3.9599
+          "lower": 1.3905,
+          "upper": 1.8179
         }
       }
     },
@@ -17726,7 +17726,7 @@
       },
       "processingInfo": {
         "method": "rbms (GAM flight curves + GLM collated index + bootstrap CI + linear trend)",
-        "timestamp": "2025-12-21 00:15:49",
+        "timestamp": "2025-12-21 19:11:36",
         "rbms_version": "1.2.0",
         "bootstrap_iterations": 500
       },
@@ -17754,15 +17754,15 @@
       },
       "trendClassification": {
         "category": "Uncertain",
-        "annualRateOfChange": 11.08,
-        "rateOfChange": 1.1108,
+        "annualRateOfChange": 4.67,
+        "rateOfChange": 1.0467,
         "confidenceInterval": {
-          "lower": -12.4,
-          "upper": 36.69
+          "lower": -5.59,
+          "upper": 14.54
         },
         "rateCI": {
-          "lower": 0.876,
-          "upper": 1.3669
+          "lower": 0.9441,
+          "upper": 1.1454
         }
       }
     },
@@ -18247,7 +18247,7 @@
       },
       "processingInfo": {
         "method": "rbms (GAM flight curves + GLM collated index + bootstrap CI + linear trend)",
-        "timestamp": "2025-12-21 00:16:09",
+        "timestamp": "2025-12-21 19:11:52",
         "rbms_version": "1.2.0",
         "bootstrap_iterations": 500
       },
@@ -18275,15 +18275,15 @@
       },
       "trendClassification": {
         "category": "Uncertain",
-        "annualRateOfChange": -15.38,
-        "rateOfChange": 0.8462,
+        "annualRateOfChange": -7,
+        "rateOfChange": 0.93,
         "confidenceInterval": {
-          "lower": -100,
-          "upper": 249164.52
+          "lower": -98.69,
+          "upper": 2074.55
         },
         "rateCI": {
-          "lower": null,
-          "upper": 2492.6452
+          "lower": 0.0131,
+          "upper": 21.7455
         }
       }
     },
@@ -18870,7 +18870,7 @@
       },
       "processingInfo": {
         "method": "rbms (GAM flight curves + GLM collated index + bootstrap CI + linear trend)",
-        "timestamp": "2025-12-21 00:15:54",
+        "timestamp": "2025-12-21 19:11:41",
         "rbms_version": "1.2.0",
         "bootstrap_iterations": 500
       },
@@ -18898,15 +18898,15 @@
       },
       "trendClassification": {
         "category": "Uncertain",
-        "annualRateOfChange": 22.56,
-        "rateOfChange": 1.2256,
+        "annualRateOfChange": 9.24,
+        "rateOfChange": 1.0924,
         "confidenceInterval": {
-          "lower": -25.11,
-          "upper": 46.63
+          "lower": -11.8,
+          "upper": 18.08
         },
         "rateCI": {
-          "lower": 0.7489,
-          "upper": 1.4663
+          "lower": 0.882,
+          "upper": 1.1808
         }
       }
     },
@@ -19493,7 +19493,7 @@
       },
       "processingInfo": {
         "method": "rbms (GAM flight curves + GLM collated index + bootstrap CI + linear trend)",
-        "timestamp": "2025-12-21 00:18:36",
+        "timestamp": "2025-12-21 19:13:48",
         "rbms_version": "1.2.0",
         "bootstrap_iterations": 500
       },
@@ -19521,15 +19521,15 @@
       },
       "trendClassification": {
         "category": "Uncertain",
-        "annualRateOfChange": -57.93,
-        "rateOfChange": 0.4207,
+        "annualRateOfChange": -31.34,
+        "rateOfChange": 0.6866,
         "confidenceInterval": {
-          "lower": -71.44,
-          "upper": 765259.4
+          "lower": -41.98,
+          "upper": 4760.84
         },
         "rateCI": {
-          "lower": 0.2856,
-          "upper": 7653.594
+          "lower": 0.5802,
+          "upper": 48.6084
         }
       }
     },
@@ -20116,7 +20116,7 @@
       },
       "processingInfo": {
         "method": "rbms (GAM flight curves + GLM collated index + bootstrap CI + linear trend)",
-        "timestamp": "2025-12-21 00:18:41",
+        "timestamp": "2025-12-21 19:13:52",
         "rbms_version": "1.2.0",
         "bootstrap_iterations": 500
       },
@@ -20143,16 +20143,16 @@
         }
       },
       "trendClassification": {
-        "category": "Strong decline",
-        "annualRateOfChange": -21.85,
-        "rateOfChange": 0.7815,
+        "category": "Moderate decline",
+        "annualRateOfChange": -10.15,
+        "rateOfChange": 0.8985,
         "confidenceInterval": {
-          "lower": -44.96,
-          "upper": -9.59
+          "lower": -22.85,
+          "upper": -4.28
         },
         "rateCI": {
-          "lower": 0.5504,
-          "upper": 0.9041
+          "lower": 0.7715,
+          "upper": 0.9572
         }
       }
     },
@@ -20739,7 +20739,7 @@
       },
       "processingInfo": {
         "method": "rbms (GAM flight curves + GLM collated index + bootstrap CI + linear trend)",
-        "timestamp": "2025-12-21 00:18:48",
+        "timestamp": "2025-12-21 19:13:56",
         "rbms_version": "1.2.0",
         "bootstrap_iterations": 500
       },
@@ -20767,15 +20767,15 @@
       },
       "trendClassification": {
         "category": "Uncertain",
-        "annualRateOfChange": -74.76,
-        "rateOfChange": 0.2524,
+        "annualRateOfChange": -45.01,
+        "rateOfChange": 0.5499,
         "confidenceInterval": {
-          "lower": -100,
-          "upper": 6309636.48
+          "lower": -99.94,
+          "upper": 12051.18
         },
         "rateCI": {
-          "lower": null,
-          "upper": 63097.3648
+          "lower": 0.0006,
+          "upper": 121.5118
         }
       }
     },
@@ -21260,7 +21260,7 @@
       },
       "processingInfo": {
         "method": "rbms (GAM flight curves + GLM collated index + bootstrap CI + linear trend)",
-        "timestamp": "2025-12-21 00:18:58",
+        "timestamp": "2025-12-21 19:14:00",
         "rbms_version": "1.2.0",
         "bootstrap_iterations": 500
       },
@@ -21288,15 +21288,15 @@
       },
       "trendClassification": {
         "category": "Uncertain",
-        "annualRateOfChange": 87.45,
-        "rateOfChange": 1.8745,
+        "annualRateOfChange": 31.37,
+        "rateOfChange": 1.3137,
         "confidenceInterval": {
-          "lower": -99.98,
-          "upper": 14262.62
+          "lower": -97.48,
+          "upper": 764.72
         },
         "rateCI": {
-          "lower": 0.0002,
-          "upper": 143.6262
+          "lower": 0.0252,
+          "upper": 8.6472
         }
       }
     },
@@ -21883,7 +21883,7 @@
       },
       "processingInfo": {
         "method": "rbms (GAM flight curves + GLM collated index + bootstrap CI + linear trend)",
-        "timestamp": "2025-12-21 00:19:06",
+        "timestamp": "2025-12-21 19:14:04",
         "rbms_version": "1.2.0",
         "bootstrap_iterations": 500
       },
@@ -21911,15 +21911,15 @@
       },
       "trendClassification": {
         "category": "Uncertain",
-        "annualRateOfChange": -7.13,
-        "rateOfChange": 0.9287,
+        "annualRateOfChange": -3.16,
+        "rateOfChange": 0.9684,
         "confidenceInterval": {
-          "lower": -28.52,
-          "upper": 41.25
+          "lower": -13.57,
+          "upper": 16.18
         },
         "rateCI": {
-          "lower": 0.7148,
-          "upper": 1.4125
+          "lower": 0.8643,
+          "upper": 1.1618
         }
       }
     },
@@ -22506,7 +22506,7 @@
       },
       "processingInfo": {
         "method": "rbms (GAM flight curves + GLM collated index + bootstrap CI + linear trend)",
-        "timestamp": "2025-12-21 00:19:12",
+        "timestamp": "2025-12-21 19:14:08",
         "rbms_version": "1.2.0",
         "bootstrap_iterations": 500
       },
@@ -22533,16 +22533,16 @@
         }
       },
       "trendClassification": {
-        "category": "Strong increase",
-        "annualRateOfChange": 25.64,
-        "rateOfChange": 1.2564,
+        "category": "Moderate increase",
+        "annualRateOfChange": 10.42,
+        "rateOfChange": 1.1042,
         "confidenceInterval": {
-          "lower": 5.11,
-          "upper": 50.99
+          "lower": 2.19,
+          "upper": 19.6
         },
         "rateCI": {
-          "lower": 1.0511,
-          "upper": 1.5099
+          "lower": 1.0219,
+          "upper": 1.196
         }
       }
     },
@@ -23129,7 +23129,7 @@
       },
       "processingInfo": {
         "method": "rbms (GAM flight curves + GLM collated index + bootstrap CI + linear trend)",
-        "timestamp": "2025-12-21 00:19:19",
+        "timestamp": "2025-12-21 19:14:12",
         "rbms_version": "1.2.0",
         "bootstrap_iterations": 500
       },
@@ -23157,15 +23157,15 @@
       },
       "trendClassification": {
         "category": "Uncertain",
-        "annualRateOfChange": 22.71,
-        "rateOfChange": 1.2271,
+        "annualRateOfChange": 9.29,
+        "rateOfChange": 1.0929,
         "confidenceInterval": {
-          "lower": -11.31,
-          "upper": 55.05
+          "lower": -5.08,
+          "upper": 20.98
         },
         "rateCI": {
-          "lower": 0.8869,
-          "upper": 1.5505
+          "lower": 0.9492,
+          "upper": 1.2098
         }
       }
     },
@@ -23752,7 +23752,7 @@
       },
       "processingInfo": {
         "method": "rbms (GAM flight curves + GLM collated index + bootstrap CI + linear trend)",
-        "timestamp": "2025-12-21 00:19:24",
+        "timestamp": "2025-12-21 19:14:16",
         "rbms_version": "1.2.0",
         "bootstrap_iterations": 500
       },
@@ -23780,15 +23780,15 @@
       },
       "trendClassification": {
         "category": "Uncertain",
-        "annualRateOfChange": -11.9,
-        "rateOfChange": 0.881,
+        "annualRateOfChange": -5.35,
+        "rateOfChange": 0.9465,
         "confidenceInterval": {
-          "lower": -37.29,
-          "upper": 52.23
+          "lower": -18.34,
+          "upper": 20.02
         },
         "rateCI": {
-          "lower": 0.6271,
-          "upper": 1.5223
+          "lower": 0.8166,
+          "upper": 1.2002
         }
       }
     },
@@ -24375,7 +24375,7 @@
       },
       "processingInfo": {
         "method": "rbms (GAM flight curves + GLM collated index + bootstrap CI + linear trend)",
-        "timestamp": "2025-12-21 00:19:29",
+        "timestamp": "2025-12-21 19:14:20",
         "rbms_version": "1.2.0",
         "bootstrap_iterations": 500
       },
@@ -24403,15 +24403,15 @@
       },
       "trendClassification": {
         "category": "Uncertain",
-        "annualRateOfChange": 5.4,
-        "rateOfChange": 1.054,
+        "annualRateOfChange": 2.31,
+        "rateOfChange": 1.0231,
         "confidenceInterval": {
-          "lower": -14.41,
-          "upper": 23.26
+          "lower": -6.53,
+          "upper": 9.51
         },
         "rateCI": {
-          "lower": 0.8559,
-          "upper": 1.2326
+          "lower": 0.9347,
+          "upper": 1.0951
         }
       }
     },
@@ -24998,7 +24998,7 @@
       },
       "processingInfo": {
         "method": "rbms (GAM flight curves + GLM collated index + bootstrap CI + linear trend)",
-        "timestamp": "2025-12-21 00:19:34",
+        "timestamp": "2025-12-21 19:14:24",
         "rbms_version": "1.2.0",
         "bootstrap_iterations": 500
       },
@@ -25026,15 +25026,15 @@
       },
       "trendClassification": {
         "category": "Uncertain",
-        "annualRateOfChange": -27.52,
-        "rateOfChange": 0.7248,
+        "annualRateOfChange": -13.04,
+        "rateOfChange": 0.8696,
         "confidenceInterval": {
-          "lower": -100,
-          "upper": 977230.42
+          "lower": -99.94,
+          "upper": 5305.71
         },
         "rateCI": {
-          "lower": null,
-          "upper": 9773.3042
+          "lower": 0.0006,
+          "upper": 54.0571
         }
       }
     },
@@ -25621,7 +25621,7 @@
       },
       "processingInfo": {
         "method": "rbms (GAM flight curves + GLM collated index + bootstrap CI + linear trend)",
-        "timestamp": "2025-12-21 00:19:39",
+        "timestamp": "2025-12-21 19:14:27",
         "rbms_version": "1.2.0",
         "bootstrap_iterations": 500
       },
@@ -25649,14 +25649,14 @@
       },
       "trendClassification": {
         "category": "Uncertain",
-        "annualRateOfChange": -43.87,
-        "rateOfChange": 0.5613,
+        "annualRateOfChange": -22.18,
+        "rateOfChange": 0.7782,
         "confidenceInterval": {
-          "lower": -48.54,
+          "lower": -25.07,
           "upper": null
         },
         "rateCI": {
-          "lower": 0.5146,
+          "lower": 0.7493,
           "upper": 1
         }
       }
@@ -26244,7 +26244,7 @@
       },
       "processingInfo": {
         "method": "rbms (GAM flight curves + GLM collated index + bootstrap CI + linear trend)",
-        "timestamp": "2025-12-21 00:15:59",
+        "timestamp": "2025-12-21 19:11:45",
         "rbms_version": "1.2.0",
         "bootstrap_iterations": 500
       },
@@ -26272,15 +26272,15 @@
       },
       "trendClassification": {
         "category": "Strong decline",
-        "annualRateOfChange": -74.58,
-        "rateOfChange": 0.2542,
+        "annualRateOfChange": -44.83,
+        "rateOfChange": 0.5517,
         "confidenceInterval": {
-          "lower": -92.71,
-          "upper": -28.72
+          "lower": -67.94,
+          "upper": -13.67
         },
         "rateCI": {
-          "lower": 0.0729,
-          "upper": 0.7128
+          "lower": 0.3206,
+          "upper": 0.8633
         }
       }
     },
@@ -26663,7 +26663,7 @@
       },
       "processingInfo": {
         "method": "rbms (GAM flight curves + GLM collated index + bootstrap CI + linear trend)",
-        "timestamp": "2025-12-21 00:19:44",
+        "timestamp": "2025-12-21 19:14:32",
         "rbms_version": "1.2.0",
         "bootstrap_iterations": 500
       },
@@ -26691,15 +26691,15 @@
       },
       "trendClassification": {
         "category": "Uncertain",
-        "annualRateOfChange": -25.31,
-        "rateOfChange": 0.7469,
+        "annualRateOfChange": -11.9,
+        "rateOfChange": 0.881,
         "confidenceInterval": {
-          "lower": -99.97,
-          "upper": 14217814.54
+          "lower": -96.98,
+          "upper": 13471.22
         },
         "rateCI": {
-          "lower": 0.0003,
-          "upper": 142179.1454
+          "lower": 0.0302,
+          "upper": 135.7122
         }
       }
     },
@@ -27286,7 +27286,7 @@
       },
       "processingInfo": {
         "method": "rbms (GAM flight curves + GLM collated index + bootstrap CI + linear trend)",
-        "timestamp": "2025-12-21 00:19:49",
+        "timestamp": "2025-12-21 19:14:36",
         "rbms_version": "1.2.0",
         "bootstrap_iterations": 500
       },
@@ -27314,15 +27314,15 @@
       },
       "trendClassification": {
         "category": "Strong decline",
-        "annualRateOfChange": -41.58,
-        "rateOfChange": 0.5842,
+        "annualRateOfChange": -20.82,
+        "rateOfChange": 0.7918,
         "confidenceInterval": {
-          "lower": -64.25,
-          "upper": -28.51
+          "lower": -36.02,
+          "upper": -13.56
         },
         "rateCI": {
-          "lower": 0.3575,
-          "upper": 0.7149
+          "lower": 0.6398,
+          "upper": 0.8644
         }
       }
     },
@@ -27909,7 +27909,7 @@
       },
       "processingInfo": {
         "method": "rbms (GAM flight curves + GLM collated index + bootstrap CI + linear trend)",
-        "timestamp": "2025-12-21 00:19:54",
+        "timestamp": "2025-12-21 19:14:40",
         "rbms_version": "1.2.0",
         "bootstrap_iterations": 500
       },
@@ -27937,15 +27937,15 @@
       },
       "trendClassification": {
         "category": "Uncertain",
-        "annualRateOfChange": -9.73,
-        "rateOfChange": 0.9027,
+        "annualRateOfChange": -4.35,
+        "rateOfChange": 0.9565,
         "confidenceInterval": {
-          "lower": -31.8,
-          "upper": 14.47
+          "lower": -15.31,
+          "upper": 6.04
         },
         "rateCI": {
-          "lower": 0.682,
-          "upper": 1.1447
+          "lower": 0.8469,
+          "upper": 1.0604
         }
       }
     },
@@ -28532,7 +28532,7 @@
       },
       "processingInfo": {
         "method": "rbms (GAM flight curves + GLM collated index + bootstrap CI + linear trend)",
-        "timestamp": "2025-12-21 00:19:59",
+        "timestamp": "2025-12-21 19:14:44",
         "rbms_version": "1.2.0",
         "bootstrap_iterations": 500
       },
@@ -28560,15 +28560,15 @@
       },
       "trendClassification": {
         "category": "Uncertain",
-        "annualRateOfChange": -3.13,
-        "rateOfChange": 0.9687,
+        "annualRateOfChange": -1.37,
+        "rateOfChange": 0.9863,
         "confidenceInterval": {
-          "lower": -27.48,
-          "upper": 31.53
+          "lower": -13.03,
+          "upper": 12.64
         },
         "rateCI": {
-          "lower": 0.7252,
-          "upper": 1.3153
+          "lower": 0.8697,
+          "upper": 1.1264
         }
       }
     },
@@ -29155,7 +29155,7 @@
       },
       "processingInfo": {
         "method": "rbms (GAM flight curves + GLM collated index + bootstrap CI + linear trend)",
-        "timestamp": "2025-12-21 00:20:05",
+        "timestamp": "2025-12-21 19:14:48",
         "rbms_version": "1.2.0",
         "bootstrap_iterations": 500
       },
@@ -29183,15 +29183,15 @@
       },
       "trendClassification": {
         "category": "Uncertain",
-        "annualRateOfChange": 27.36,
-        "rateOfChange": 1.2736,
+        "annualRateOfChange": 11.08,
+        "rateOfChange": 1.1108,
         "confidenceInterval": {
-          "lower": -23.44,
-          "upper": 83.59
+          "lower": -10.95,
+          "upper": 30.19
         },
         "rateCI": {
-          "lower": 0.7656,
-          "upper": 1.8359
+          "lower": 0.8905,
+          "upper": 1.3019
         }
       }
     },
@@ -29778,7 +29778,7 @@
       },
       "processingInfo": {
         "method": "rbms (GAM flight curves + GLM collated index + bootstrap CI + linear trend)",
-        "timestamp": "2025-12-21 00:20:10",
+        "timestamp": "2025-12-21 19:14:52",
         "rbms_version": "1.2.0",
         "bootstrap_iterations": 500
       },
@@ -29805,16 +29805,16 @@
         }
       },
       "trendClassification": {
-        "category": "Strong decline",
-        "annualRateOfChange": -55.77,
-        "rateOfChange": 0.4423,
+        "category": "Moderate decline",
+        "annualRateOfChange": -29.83,
+        "rateOfChange": 0.7017,
         "confidenceInterval": {
-          "lower": -100,
-          "upper": -9.45
+          "lower": -99.58,
+          "upper": -4.22
         },
         "rateCI": {
-          "lower": null,
-          "upper": 0.9055
+          "lower": 0.0042,
+          "upper": 0.9578
         }
       }
     },
@@ -30401,7 +30401,7 @@
       },
       "processingInfo": {
         "method": "rbms (GAM flight curves + GLM collated index + bootstrap CI + linear trend)",
-        "timestamp": "2025-12-21 00:16:14",
+        "timestamp": "2025-12-21 19:11:56",
         "rbms_version": "1.2.0",
         "bootstrap_iterations": 500
       },
@@ -30429,15 +30429,15 @@
       },
       "trendClassification": {
         "category": "Uncertain",
-        "annualRateOfChange": -59.24,
-        "rateOfChange": 0.4076,
+        "annualRateOfChange": -32.28,
+        "rateOfChange": 0.6772,
         "confidenceInterval": {
-          "lower": -100,
-          "upper": 3556.39
+          "lower": -98.95,
+          "upper": 377.34
         },
         "rateCI": {
-          "lower": null,
-          "upper": 36.5639
+          "lower": 0.0105,
+          "upper": 4.7734
         }
       }
     },
@@ -31024,7 +31024,7 @@
       },
       "processingInfo": {
         "method": "rbms (GAM flight curves + GLM collated index + bootstrap CI + linear trend)",
-        "timestamp": "2025-12-21 00:16:19",
+        "timestamp": "2025-12-21 19:12:01",
         "rbms_version": "1.2.0",
         "bootstrap_iterations": 500
       },
@@ -31052,15 +31052,15 @@
       },
       "trendClassification": {
         "category": "Uncertain",
-        "annualRateOfChange": -22.89,
-        "rateOfChange": 0.7711,
+        "annualRateOfChange": -10.68,
+        "rateOfChange": 0.8932,
         "confidenceInterval": {
-          "lower": -66.49,
-          "upper": 2.94
+          "lower": -37.8,
+          "upper": 1.27
         },
         "rateCI": {
-          "lower": 0.3351,
-          "upper": 1.0294
+          "lower": 0.622,
+          "upper": 1.0127
         }
       }
     },
@@ -31545,7 +31545,7 @@
       },
       "processingInfo": {
         "method": "rbms (GAM flight curves + GLM collated index + bootstrap CI + linear trend)",
-        "timestamp": "2025-12-21 00:20:16",
+        "timestamp": "2025-12-21 19:14:56",
         "rbms_version": "1.2.0",
         "bootstrap_iterations": 500
       },
@@ -31573,15 +31573,15 @@
       },
       "trendClassification": {
         "category": "Uncertain",
-        "annualRateOfChange": 9.4,
-        "rateOfChange": 1.094,
+        "annualRateOfChange": 3.98,
+        "rateOfChange": 1.0398,
         "confidenceInterval": {
-          "lower": -46.38,
-          "upper": 41.38
+          "lower": -23.71,
+          "upper": 16.23
         },
         "rateCI": {
-          "lower": 0.5362,
-          "upper": 1.4138
+          "lower": 0.7629,
+          "upper": 1.1623
         }
       }
     },
@@ -32168,7 +32168,7 @@
       },
       "processingInfo": {
         "method": "rbms (GAM flight curves + GLM collated index + bootstrap CI + linear trend)",
-        "timestamp": "2025-12-21 00:20:22",
+        "timestamp": "2025-12-21 19:15:00",
         "rbms_version": "1.2.0",
         "bootstrap_iterations": 500
       },
@@ -32196,15 +32196,15 @@
       },
       "trendClassification": {
         "category": "Uncertain",
-        "annualRateOfChange": 11.09,
-        "rateOfChange": 1.1109,
+        "annualRateOfChange": 4.67,
+        "rateOfChange": 1.0467,
         "confidenceInterval": {
-          "lower": -11.77,
-          "upper": 50.33
+          "lower": -5.29,
+          "upper": 19.37
         },
         "rateCI": {
-          "lower": 0.8823,
-          "upper": 1.5033
+          "lower": 0.9471,
+          "upper": 1.1937
         }
       }
     },
@@ -32791,7 +32791,7 @@
       },
       "processingInfo": {
         "method": "rbms (GAM flight curves + GLM collated index + bootstrap CI + linear trend)",
-        "timestamp": "2025-12-21 00:20:27",
+        "timestamp": "2025-12-21 19:15:04",
         "rbms_version": "1.2.0",
         "bootstrap_iterations": 500
       },
@@ -32819,15 +32819,15 @@
       },
       "trendClassification": {
         "category": "Uncertain",
-        "annualRateOfChange": 55.4,
-        "rateOfChange": 1.554,
+        "annualRateOfChange": 21.1,
+        "rateOfChange": 1.211,
         "confidenceInterval": {
-          "lower": -46.06,
-          "upper": 140.24
+          "lower": -23.52,
+          "upper": 46.32
         },
         "rateCI": {
-          "lower": 0.5394,
-          "upper": 2.4024
+          "lower": 0.7648,
+          "upper": 1.4632
         }
       }
     },
@@ -33414,7 +33414,7 @@
       },
       "processingInfo": {
         "method": "rbms (GAM flight curves + GLM collated index + bootstrap CI + linear trend)",
-        "timestamp": "2025-12-21 00:20:32",
+        "timestamp": "2025-12-21 19:15:08",
         "rbms_version": "1.2.0",
         "bootstrap_iterations": 500
       },
@@ -33442,15 +33442,15 @@
       },
       "trendClassification": {
         "category": "Uncertain",
-        "annualRateOfChange": -2.51,
-        "rateOfChange": 0.9749,
+        "annualRateOfChange": -1.1,
+        "rateOfChange": 0.989,
         "confidenceInterval": {
-          "lower": -21.07,
-          "upper": 224.76
+          "lower": -9.76,
+          "upper": 66.79
         },
         "rateCI": {
-          "lower": 0.7893,
-          "upper": 3.2476
+          "lower": 0.9024,
+          "upper": 1.6679
         }
       }
     }

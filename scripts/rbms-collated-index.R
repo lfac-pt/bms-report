@@ -571,8 +571,8 @@ trend_statistics <- NULL
 if (exists("collated_result_all") && !is.null(collated_result_all) && nrow(collated_result_all) > 0) {
   cat("Calculating trend statistics...\n")
 
-  # Add TRMOBS column (log-transformed collated index) for trend calculation
-  collated_result_all$TRMOBS <- log(collated_result_all$COL_INDEX)
+  # Add TRMOBS column (log10-transformed collated index) for trend calculation
+  collated_result_all$TRMOBS <- log10(collated_result_all$COL_INDEX)
 
   trend_statistics <- calculate_trend_with_ci(collated_result_all, baseline_year)
   if (!is.na(trend_statistics$pc1)) {

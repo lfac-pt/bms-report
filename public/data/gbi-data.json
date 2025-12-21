@@ -188,8 +188,8 @@
         "totalVisits": 174,
         "speciesWithData": 10
       },
-      "ci_lower": 63.19,
-      "ci_upper": 147.67
+      "ci_lower": 61.79,
+      "ci_upper": 147.48
     },
     "2023": {
       "year": 2023,
@@ -211,8 +211,8 @@
         "totalVisits": 194,
         "speciesWithData": 10
       },
-      "ci_lower": 28.03,
-      "ci_upper": 111.62
+      "ci_lower": 29.83,
+      "ci_upper": 109.22
     },
     "2024": {
       "year": 2024,
@@ -234,8 +234,8 @@
         "totalVisits": 187,
         "speciesWithData": 10
       },
-      "ci_lower": 51.92,
-      "ci_upper": 120.52
+      "ci_lower": 52.33,
+      "ci_upper": 122.57
     },
     "2025": {
       "year": 2025,
@@ -257,8 +257,8 @@
         "totalVisits": 180,
         "speciesWithData": 10
       },
-      "ci_lower": 33.14,
-      "ci_upper": 117.77
+      "ci_lower": 31.94,
+      "ci_upper": 114.56
     }
   },
   "speciesTrends": {
@@ -311,15 +311,15 @@
       },
       "trendClassification": {
         "category": "Uncertain",
-        "annualRateOfChange": 53.33,
-        "rateOfChange": 1.5333,
+        "annualRateOfChange": 20.4,
+        "rateOfChange": 1.204,
         "confidenceInterval": {
-          "lower": -99.16,
-          "upper": 653917.45
+          "lower": -87.47,
+          "upper": 4438.11
         },
         "rateCI": {
-          "lower": 0.0084,
-          "upper": 6540.1745
+          "lower": 0.1253,
+          "upper": 45.3811
         }
       },
       "dataQuality": {
@@ -381,16 +381,16 @@
         }
       },
       "trendClassification": {
-        "category": "Strong decline",
-        "annualRateOfChange": -32.24,
-        "rateOfChange": 0.6776,
+        "category": "Moderate decline",
+        "annualRateOfChange": -15.55,
+        "rateOfChange": 0.8445,
         "confidenceInterval": {
-          "lower": -51.67,
-          "upper": -5.34
+          "lower": -27.08,
+          "upper": -2.36
         },
         "rateCI": {
-          "lower": 0.4833,
-          "upper": 0.9466
+          "lower": 0.7292,
+          "upper": 0.9764
         }
       },
       "dataQuality": {
@@ -453,15 +453,15 @@
       },
       "trendClassification": {
         "category": "Uncertain",
-        "annualRateOfChange": 21.9,
-        "rateOfChange": 1.219,
+        "annualRateOfChange": 8.98,
+        "rateOfChange": 1.0898,
         "confidenceInterval": {
-          "lower": -29.35,
-          "upper": 54.52
+          "lower": -14.01,
+          "upper": 20.8
         },
         "rateCI": {
-          "lower": 0.7065,
-          "upper": 1.5452
+          "lower": 0.8599,
+          "upper": 1.208
         }
       },
       "dataQuality": {
@@ -524,15 +524,15 @@
       },
       "trendClassification": {
         "category": "Uncertain",
-        "annualRateOfChange": 11.08,
-        "rateOfChange": 1.1108,
+        "annualRateOfChange": 4.67,
+        "rateOfChange": 1.0467,
         "confidenceInterval": {
-          "lower": -12.4,
-          "upper": 36.69
+          "lower": -5.59,
+          "upper": 14.54
         },
         "rateCI": {
-          "lower": 0.876,
-          "upper": 1.3669
+          "lower": 0.9441,
+          "upper": 1.1454
         }
       },
       "dataQuality": {
@@ -595,15 +595,15 @@
       },
       "trendClassification": {
         "category": "Uncertain",
-        "annualRateOfChange": 22.56,
-        "rateOfChange": 1.2256,
+        "annualRateOfChange": 9.24,
+        "rateOfChange": 1.0924,
         "confidenceInterval": {
-          "lower": -25.11,
-          "upper": 46.63
+          "lower": -11.8,
+          "upper": 18.08
         },
         "rateCI": {
-          "lower": 0.7489,
-          "upper": 1.4663
+          "lower": 0.882,
+          "upper": 1.1808
         }
       },
       "dataQuality": {
@@ -666,15 +666,15 @@
       },
       "trendClassification": {
         "category": "Strong decline",
-        "annualRateOfChange": -74.58,
-        "rateOfChange": 0.2542,
+        "annualRateOfChange": -44.83,
+        "rateOfChange": 0.5517,
         "confidenceInterval": {
-          "lower": -92.71,
-          "upper": -28.72
+          "lower": -67.94,
+          "upper": -13.67
         },
         "rateCI": {
-          "lower": 0.0729,
-          "upper": 0.7128
+          "lower": 0.3206,
+          "upper": 0.8633
         }
       },
       "dataQuality": {
@@ -737,15 +737,15 @@
       },
       "trendClassification": {
         "category": "Uncertain",
-        "annualRateOfChange": -24.33,
-        "rateOfChange": 0.7567,
+        "annualRateOfChange": -11.4,
+        "rateOfChange": 0.886,
         "confidenceInterval": {
-          "lower": -41.63,
-          "upper": 2078.59
+          "lower": -20.85,
+          "upper": 226.07
         },
         "rateCI": {
-          "lower": 0.5837,
-          "upper": 21.7859
+          "lower": 0.7915,
+          "upper": 3.2607
         }
       },
       "dataQuality": {
@@ -808,15 +808,15 @@
       },
       "trendClassification": {
         "category": "Uncertain",
-        "annualRateOfChange": -15.38,
-        "rateOfChange": 0.8462,
+        "annualRateOfChange": -7,
+        "rateOfChange": 0.93,
         "confidenceInterval": {
-          "lower": -100,
-          "upper": 249164.52
+          "lower": -98.69,
+          "upper": 2074.55
         },
         "rateCI": {
-          "lower": null,
-          "upper": 2492.6452
+          "lower": 0.0131,
+          "upper": 21.7455
         }
       },
       "dataQuality": {
@@ -879,15 +879,15 @@
       },
       "trendClassification": {
         "category": "Uncertain",
-        "annualRateOfChange": -59.24,
-        "rateOfChange": 0.4076,
+        "annualRateOfChange": -32.28,
+        "rateOfChange": 0.6772,
         "confidenceInterval": {
-          "lower": -100,
-          "upper": 3556.39
+          "lower": -98.95,
+          "upper": 377.34
         },
         "rateCI": {
-          "lower": null,
-          "upper": 36.5639
+          "lower": 0.0105,
+          "upper": 4.7734
         }
       },
       "dataQuality": {
@@ -950,15 +950,15 @@
       },
       "trendClassification": {
         "category": "Uncertain",
-        "annualRateOfChange": -22.89,
-        "rateOfChange": 0.7711,
+        "annualRateOfChange": -10.68,
+        "rateOfChange": 0.8932,
         "confidenceInterval": {
-          "lower": -66.49,
-          "upper": 2.94
+          "lower": -37.8,
+          "upper": 1.27
         },
         "rateCI": {
-          "lower": 0.3351,
-          "upper": 1.0294
+          "lower": 0.622,
+          "upper": 1.0127
         }
       },
       "dataQuality": {
