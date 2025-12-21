@@ -290,6 +290,7 @@ bootsample <- tryCatch({
 # Step 8: Calculate collated index with bootstrap confidence intervals
 cat("Calculating collated index with bootstrap CIs...\n")
 co_index_list <- list()
+collated_result_all <- NULL  # Initialize outside tryCatch for proper scope
 
 tryCatch({
   # Determine number of bootstrap iterations
@@ -458,7 +459,167 @@ if (exists("collated_result_all") && !is.null(collated_result_all) && nrow(colla
   cat("Warning: No bootstrap results available for CI calculation\n")
 }
 
-# Step 11: Compile data quality metrics
+# Step 11: Calculate trend statistics with bootstrap CIs
+cat("Calculating trend statistics from bootstrap samples...\n")
+
+calculate_trend_with_ci <- function(collind_boot, baseline_year) {
+  # Function to fit trend for one bootstrap sample
+  fit_trend <- function(boot_df) {
+    if (nrow(boot_df) < 3) return(data.frame(rate=NA, pc1=NA))
+
+    # Fit log-linear regression: lm(TRMOBS ~ M_YEAR)
+    # TRMOBS is the log-transformed index in rbms collated output
+    lm_obj <- try(lm(TRMOBS ~ M_YEAR, data=boot_df), silent = TRUE)
+    if (inherits(lm_obj, "try-error")) {
+      return(data.frame(rate=NA, pc1=NA))
+    }
+
+    # Extract slope and convert to annual rate of change
+    # rate = exp(slope * 2.303) where 2.303 converts log10 to ln
+    slope <- coef(lm_obj)[2]
+    if (is.na(slope)) {
+      return(data.frame(rate=NA, pc1=NA))
+    }
+
+    rate <- exp(slope * 2.303)
+    pc1 <- 100 * (rate - 1)  # Annual percentage change
+
+    return(data.frame(rate=rate, pc1=pc1))
+  }
+
+  # Check if we have the required columns
+  if (!all(c("BOOTi", "M_YEAR", "TRMOBS") %in% colnames(collind_boot))) {
+    cat("Warning: Required columns for trend calculation not found\n")
+    return(list(
+      rate = NA,
+      rate_ci_lower = NA,
+      rate_ci_upper = NA,
+      pc1 = NA,
+      pc1_ci_lower = NA,
+      pc1_ci_upper = NA,
+      trend_class = "Uncertain"
+    ))
+  }
+
+  # Calculate trends for all bootstraps
+  boot_ids <- unique(collind_boot$BOOTi)
+  boot_trends <- do.call(rbind, lapply(boot_ids, function(boot_id) {
+    boot_data <- collind_boot[collind_boot$BOOTi == boot_id, ]
+    trend_result <- fit_trend(boot_data)
+    trend_result$BOOTi <- boot_id
+    return(trend_result)
+  }))
+
+  # Extract point estimate (BOOTi == 0)
+  point_est <- boot_trends[boot_trends$BOOTi == 0, ]
+
+  # Calculate CIs from bootstraps (BOOTi > 0)
+  boot_only <- boot_trends[boot_trends$BOOTi > 0 & !is.na(boot_trends$rate), ]
+
+  if (nrow(boot_only) < 10) {
+    # Not enough bootstrap samples
+    cat(paste("Warning: Only", nrow(boot_only), "valid bootstrap trends. Using point estimate only.\n"))
+    return(list(
+      rate = if(nrow(point_est) > 0) point_est$rate else NA,
+      rate_ci_lower = NA,
+      rate_ci_upper = NA,
+      pc1 = if(nrow(point_est) > 0) point_est$pc1 else NA,
+      pc1_ci_lower = NA,
+      pc1_ci_upper = NA,
+      trend_class = "Uncertain"
+    ))
+  }
+
+  rate_ci <- quantile(boot_only$rate, c(0.025, 0.975), na.rm = TRUE)
+  pc1_ci <- quantile(boot_only$pc1, c(0.025, 0.975), na.rm = TRUE)
+
+  # Classify trend based on rate CI bounds
+  ci_lower <- rate_ci[1]
+  ci_upper <- rate_ci[2]
+
+  trend_class <- if (ci_lower > 1.05) {
+    "Strong increase"
+  } else if (ci_lower > 1.0) {
+    "Moderate increase"
+  } else if (ci_upper < 0.95) {
+    "Strong decline"
+  } else if (ci_upper < 1.0) {
+    "Moderate decline"
+  } else if (ci_upper > 1.05 | ci_lower < 0.95) {
+    "Uncertain"
+  } else {
+    "Stable"
+  }
+
+  cat(paste("  Trend classification:", trend_class, "\n"))
+  cat(paste("  Annual rate:", round(if(nrow(point_est) > 0) point_est$rate else NA, 4), "\n"))
+  cat(paste("  Annual % change:", round(if(nrow(point_est) > 0) point_est$pc1 else NA, 2), "%\n"))
+
+  return(list(
+    rate = if(nrow(point_est) > 0) round(point_est$rate, 4) else NA,
+    rate_ci_lower = round(rate_ci[1], 4),
+    rate_ci_upper = round(rate_ci[2], 4),
+    pc1 = if(nrow(point_est) > 0) round(point_est$pc1, 2) else NA,
+    pc1_ci_lower = round(pc1_ci[1], 2),
+    pc1_ci_upper = round(pc1_ci[2], 2),
+    trend_class = trend_class
+  ))
+}
+
+# Calculate trend statistics if we have bootstrap results
+trend_statistics <- NULL
+if (exists("collated_result_all") && !is.null(collated_result_all) && nrow(collated_result_all) > 0) {
+  cat("Calculating trend statistics...\n")
+
+  # Add TRMOBS column (log10-transformed collated index) for trend calculation
+  collated_result_all$TRMOBS <- log10(collated_result_all$COL_INDEX)
+
+  trend_statistics <- calculate_trend_with_ci(collated_result_all, baseline_year)
+  if (!is.na(trend_statistics$pc1)) {
+    cat(sprintf("  Trend: %s (%.1f%%/yr)\n", trend_statistics$trend_class, trend_statistics$pc1))
+  } else {
+    cat(sprintf("  Trend: %s\n", trend_statistics$trend_class))
+  }
+} else {
+  cat("Warning: No bootstrap results available for trend calculation\n")
+  trend_statistics <- list(
+    rate = NA,
+    rate_ci_lower = NA,
+    rate_ci_upper = NA,
+    pc1 = NA,
+    pc1_ci_lower = NA,
+    pc1_ci_upper = NA,
+    trend_class = "Uncertain"
+  )
+}
+
+# Step 11b: Calculate linear trend line for visualization
+# This calculates a simple linear regression on normalized indices
+# matching the approach in the Desktop/scripts/Maniola Jurtina.R script
+trend_line <- list()
+if (nrow(collated_by_year) >= 2) {
+  years_numeric <- as.numeric(collated_by_year$year)
+  indices_values <- collated_by_year$index_normalized
+
+  # Linear regression on normalized indices
+  lm_trend <- try(lm(indices_values ~ years_numeric), silent = TRUE)
+
+  if (!inherits(lm_trend, "try-error")) {
+    # Calculate predicted values for each year
+    predicted_values <- predict(lm_trend, newdata = data.frame(years_numeric = years_numeric))
+
+    # Store as named list by year
+    for (i in seq_along(collated_by_year$year)) {
+      trend_line[[as.character(collated_by_year$year[i])]] <- round(predicted_values[i], 2)
+    }
+
+    cat("  Linear trend line calculated\n")
+  } else {
+    cat("Warning: Could not calculate linear trend line\n")
+  }
+}
+
+# Step 12: Compile data quality metrics
 data_quality <- list(
   site_count = length(unique(visits$SITE_ID)),
   total_visits = nrow(visits),
@@ -469,22 +630,24 @@ data_quality <- list(
   baseline_year = baseline_year_used
 )
 
-# Step 12: Create output structure
+# Step 13: Create output structure
 output <- list(
   species = species_name,
   collated_indices = normalized_indices,
   confidence_intervals = confidence_intervals,
+  trend_statistics = trend_statistics,
+  trend_line = if(length(trend_line) > 0) trend_line else NULL,
   phenology_curves = pheno_curves,
   data_quality = data_quality,
   processing_info = list(
-    method = "rbms (GAM flight curves + GLM collated index + bootstrap CI)",
+    method = "rbms (GAM flight curves + GLM collated index + bootstrap CI + linear trend)",
     timestamp = format(Sys.time(), "%Y-%m-%d %H:%M:%S"),
     rbms_version = as.character(packageVersion("rbms")),
     bootstrap_iterations = if(exists("n_boots")) n_boots else 0
   )
 )
 
-# Step 13: Write JSON output
+# Step 14: Write JSON output
 cat(paste("Writing output to:", output_file, "\n"))
 json_output <- jsonlite::toJSON(output, pretty = TRUE, auto_unbox = TRUE)
 write(json_output, file = output_file)

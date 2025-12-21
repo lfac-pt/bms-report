@@ -102,7 +102,7 @@ function GrasslandButterflyIndex({ gbiData, loading }: GrasslandButterflyIndexPr
 
   if (loading) {
     return (
-      <Card title="Índice de Borboletas de Pastagens (GBI)" size="small" loading={true}>
+      <Card title="Índice de Borboletas de Prados (GBI)" size="small" loading={true}>
         <div style={{ height: "300px" }} />
       </Card>
     );
@@ -110,10 +110,10 @@ function GrasslandButterflyIndex({ gbiData, loading }: GrasslandButterflyIndexPr
 
   if (!gbiData || !gbiData.years || gbiData.years.length === 0) {
     return (
-      <Card title="Índice de Borboletas de Pastagens (GBI)" size="small">
+      <Card title="Índice de Borboletas de Prados (GBI)" size="small">
         <Alert
           message="Dados insuficientes"
-          description="Não há dados suficientes para calcular o Índice de Borboletas de Pastagens."
+          description="Não há dados suficientes para calcular o Índice de Borboletas de Prados."
           type="warning"
           showIcon
         />
@@ -393,7 +393,7 @@ function GrasslandButterflyIndex({ gbiData, loading }: GrasslandButterflyIndexPr
     <Card
       title={
         <Space>
-          Índice de Borboletas de Pastagens (GBI)
+          Índice de Borboletas de Prados (GBI)
           <Tooltip title={gbiCardTitleTooltip}>
             <InfoCircleOutlined style={{ color: "#1890ff" }} />
           </Tooltip>

@@ -188,8 +188,8 @@
         "totalVisits": 174,
         "speciesWithData": 10
       },
-      "ci_lower": 64.35,
-      "ci_upper": 152.96
+      "ci_lower": 61.79,
+      "ci_upper": 147.48
     },
     "2023": {
       "year": 2023,
@@ -211,8 +211,8 @@
         "totalVisits": 194,
         "speciesWithData": 10
       },
-      "ci_lower": 30.33,
-      "ci_upper": 109.97
+      "ci_lower": 29.83,
+      "ci_upper": 109.22
     },
     "2024": {
       "year": 2024,
@@ -234,8 +234,8 @@
         "totalVisits": 187,
         "speciesWithData": 10
       },
-      "ci_lower": 51.33,
-      "ci_upper": 121.69
+      "ci_lower": 52.33,
+      "ci_upper": 122.57
     },
     "2025": {
       "year": 2025,
@@ -257,8 +257,8 @@
         "totalVisits": 180,
         "speciesWithData": 10
       },
-      "ci_lower": 33.61,
-      "ci_upper": 119.53
+      "ci_lower": 31.94,
+      "ci_upper": 114.56
     }
   },
   "speciesTrends": {
@@ -280,6 +280,13 @@
         "2024": 239.5329,
         "2025": 345.4121
       },
+      "trendLine": {
+        "2021": 239.74,
+        "2022": 268.11,
+        "2023": 296.48,
+        "2024": 324.85,
+        "2025": 353.22
+      },
       "confidenceIntervals": {
         "2021": {
           "ci_lower": 0,
@@ -300,6 +307,19 @@
         "2025": {
           "ci_lower": 26.36,
           "ci_upper": 773.59
+        }
+      },
+      "trendClassification": {
+        "category": "Uncertain",
+        "annualRateOfChange": 20.4,
+        "rateOfChange": 1.204,
+        "confidenceInterval": {
+          "lower": -87.47,
+          "upper": 4438.11
+        },
+        "rateCI": {
+          "lower": 0.1253,
+          "upper": 45.3811
         }
       },
       "dataQuality": {
@@ -331,6 +351,13 @@
         "2024": 31.4965,
         "2025": 62.2879
       },
+      "trendLine": {
+        "2021": 80.83,
+        "2022": 69.82,
+        "2023": 58.8,
+        "2024": 47.79,
+        "2025": 36.78
+      },
       "confidenceIntervals": {
         "2021": {
           "ci_lower": 25.29,
@@ -351,6 +378,19 @@
         "2025": {
           "ci_lower": 18.15,
           "ci_upper": 113.39
+        }
+      },
+      "trendClassification": {
+        "category": "Moderate decline",
+        "annualRateOfChange": -15.55,
+        "rateOfChange": 0.8445,
+        "confidenceInterval": {
+          "lower": -27.08,
+          "upper": -2.36
+        },
+        "rateCI": {
+          "lower": 0.7292,
+          "upper": 0.9764
         }
       },
       "dataQuality": {
@@ -382,6 +422,13 @@
         "2024": 182.5864,
         "2025": 98.1593
       },
+      "trendLine": {
+        "2021": 90.15,
+        "2022": 100.6,
+        "2023": 111.04,
+        "2024": 121.49,
+        "2025": 131.94
+      },
       "confidenceIntervals": {
         "2021": {
           "ci_lower": 49.58,
@@ -402,6 +449,19 @@
         "2025": {
           "ci_lower": 32.83,
           "ci_upper": 180.34
+        }
+      },
+      "trendClassification": {
+        "category": "Uncertain",
+        "annualRateOfChange": 8.98,
+        "rateOfChange": 1.0898,
+        "confidenceInterval": {
+          "lower": -14.01,
+          "upper": 20.8
+        },
+        "rateCI": {
+          "lower": 0.8599,
+          "upper": 1.208
         }
       },
       "dataQuality": {
@@ -433,6 +493,13 @@
         "2024": 126.2707,
         "2025": 119.5767
       },
+      "trendLine": {
+        "2021": 111.89,
+        "2022": 116.99,
+        "2023": 122.09,
+        "2024": 127.2,
+        "2025": 132.3
+      },
       "confidenceIntervals": {
         "2021": {
           "ci_lower": 54.73,
@@ -453,6 +520,19 @@
         "2025": {
           "ci_lower": 43.63,
           "ci_upper": 205.67
+        }
+      },
+      "trendClassification": {
+        "category": "Uncertain",
+        "annualRateOfChange": 4.67,
+        "rateOfChange": 1.0467,
+        "confidenceInterval": {
+          "lower": -5.59,
+          "upper": 14.54
+        },
+        "rateCI": {
+          "lower": 0.9441,
+          "upper": 1.1454
         }
       },
       "dataQuality": {
@@ -484,6 +564,13 @@
         "2024": 59.0675,
         "2025": 175.2256
       },
+      "trendLine": {
+        "2021": 65.54,
+        "2022": 78.99,
+        "2023": 92.45,
+        "2024": 105.9,
+        "2025": 119.35
+      },
       "confidenceIntervals": {
         "2021": {
           "ci_lower": 63.02,
@@ -504,6 +591,19 @@
         "2025": {
           "ci_lower": 50.49,
           "ci_upper": 376
+        }
+      },
+      "trendClassification": {
+        "category": "Uncertain",
+        "annualRateOfChange": 9.24,
+        "rateOfChange": 1.0924,
+        "confidenceInterval": {
+          "lower": -11.8,
+          "upper": 18.08
+        },
+        "rateCI": {
+          "lower": 0.882,
+          "upper": 1.1808
         }
       },
       "dataQuality": {
@@ -535,6 +635,13 @@
         "2024": 35.3684,
         "2025": 9.4124
       },
+      "trendLine": {
+        "2021": 106.93,
+        "2022": 80.37,
+        "2023": 53.8,
+        "2024": 27.24,
+        "2025": 0.68
+      },
       "confidenceIntervals": {
         "2021": {
           "ci_lower": 11.42,
@@ -555,6 +662,19 @@
         "2025": {
           "ci_lower": 1.99,
           "ci_upper": 17.32
+        }
+      },
+      "trendClassification": {
+        "category": "Strong decline",
+        "annualRateOfChange": -44.83,
+        "rateOfChange": 0.5517,
+        "confidenceInterval": {
+          "lower": -67.94,
+          "upper": -13.67
+        },
+        "rateCI": {
+          "lower": 0.3206,
+          "upper": 0.8633
         }
       },
       "dataQuality": {
@@ -586,6 +706,13 @@
         "2024": 79.5035,
         "2025": 47.6349
       },
+      "trendLine": {
+        "2021": 83.61,
+        "2022": 75.03,
+        "2023": 66.46,
+        "2024": 57.88,
+        "2025": 49.31
+      },
       "confidenceIntervals": {
         "2021": {
           "ci_lower": 10.27,
@@ -606,6 +733,19 @@
         "2025": {
           "ci_lower": 7.32,
           "ci_upper": 111.44
+        }
+      },
+      "trendClassification": {
+        "category": "Uncertain",
+        "annualRateOfChange": -11.4,
+        "rateOfChange": 0.886,
+        "confidenceInterval": {
+          "lower": -20.85,
+          "upper": 226.07
+        },
+        "rateCI": {
+          "lower": 0.7915,
+          "upper": 3.2607
         }
       },
       "dataQuality": {
@@ -637,6 +777,13 @@
         "2024": 153.6555,
         "2025": 70.123
       },
+      "trendLine": {
+        "2021": 130.28,
+        "2022": 124.06,
+        "2023": 117.85,
+        "2024": 111.63,
+        "2025": 105.42
+      },
       "confidenceIntervals": {
         "2021": {
           "ci_lower": 0,
@@ -657,6 +804,19 @@
         "2025": {
           "ci_lower": 0,
           "ci_upper": 192.92
+        }
+      },
+      "trendClassification": {
+        "category": "Uncertain",
+        "annualRateOfChange": -7,
+        "rateOfChange": 0.93,
+        "confidenceInterval": {
+          "lower": -98.69,
+          "upper": 2074.55
+        },
+        "rateCI": {
+          "lower": 0.0131,
+          "upper": 21.7455
         }
       },
       "dataQuality": {
@@ -688,6 +848,13 @@
         "2024": 34.6959,
         "2025": 12.7022
       },
+      "trendLine": {
+        "2021": 74.68,
+        "2022": 57.93,
+        "2023": 41.19,
+        "2024": 24.44,
+        "2025": 7.69
+      },
       "confidenceIntervals": {
         "2021": {
           "ci_lower": 0,
@@ -708,6 +875,19 @@
         "2025": {
           "ci_lower": 0,
           "ci_upper": 34.52
+        }
+      },
+      "trendClassification": {
+        "category": "Uncertain",
+        "annualRateOfChange": -32.28,
+        "rateOfChange": 0.6772,
+        "confidenceInterval": {
+          "lower": -98.95,
+          "upper": 377.34
+        },
+        "rateCI": {
+          "lower": 0.0105,
+          "upper": 4.7734
         }
       },
       "dataQuality": {
@@ -739,6 +919,13 @@
         "2024": 77.965,
         "2025": 59.8732
       },
+      "trendLine": {
+        "2021": 98.3,
+        "2022": 89.43,
+        "2023": 80.56,
+        "2024": 71.69,
+        "2025": 62.82
+      },
       "confidenceIntervals": {
         "2021": {
           "ci_lower": 19.54,
@@ -759,6 +946,19 @@
         "2025": {
           "ci_lower": 4.36,
           "ci_upper": 129.44
+        }
+      },
+      "trendClassification": {
+        "category": "Uncertain",
+        "annualRateOfChange": -10.68,
+        "rateOfChange": 0.8932,
+        "confidenceInterval": {
+          "lower": -37.8,
+          "upper": 1.27
+        },
+        "rateCI": {
+          "lower": 0.622,
+          "upper": 1.0127
         }
       },
       "dataQuality": {

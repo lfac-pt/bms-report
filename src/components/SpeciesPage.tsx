@@ -13,6 +13,8 @@ import { SERIES_COLORS } from "../utils/utils";
 import endangeredSpeciesPT from "../utils/endangered_pt";
 import endangeredSpeciesEurope from "../utils/endangered_eu";
 import { FlightCurvesDisplay } from "./charts/FlightCurveChart";
+import TrendClassificationBadge from "./TrendClassificationBadge";
+import type { GBIData } from "../types/gbiData";
 
 const { Title, Text } = Typography;
 
@@ -40,6 +42,7 @@ function SpeciesPage() {
   const [transectData, setTransectData] = useState<TransectData | null>(null);
   const [flightCurvesData, setFlightCurvesData] = useState<any>(null);
   const [phenologyData, setPhenologyData] = useState<any>(null);
+  const [gbiData, setGbiData] = useState<GBIData | null>(null);
   const [loading, setLoading] = useState(true);
   const [dataViewMode, setDataViewMode] = useState<"flightCurves" | "phenologyCurves">(
     "flightCurves"
@@ -49,7 +52,7 @@ function SpeciesPage() {
   const decodedSpeciesName = speciesName ? decodeURIComponent(speciesName) : "";
   const family = SPECIES_FAMILIES[decodedSpeciesName] || "Informação não disponível";
 
-  // Load timeline, transect, flight curves, and phenology data
+  // Load timeline, transect, flight curves, phenology, and GBI data
   useEffect(() => {
     Promise.all([
       // eslint-disable-next-line no-undef
@@ -64,12 +67,17 @@ function SpeciesPage() {
       fetch("data/phenology-curves-data.json")
         .then(res => res.json())
         .catch(() => null),
+      // eslint-disable-next-line no-undef
+      fetch("data/gbi-data.json")
+        .then(res => res.json())
+        .catch(() => null),
     ])
-      .then(([timeline, transects, flightCurves, phenology]) => {
+      .then(([timeline, transects, flightCurves, phenology, gbi]) => {
         setTimelineData(timeline);
         setTransectData(transects);
         setFlightCurvesData(flightCurves);
         setPhenologyData(phenology);
+        setGbiData(gbi);
         setLoading(false);
       })
       .catch(() => {
@@ -192,6 +200,26 @@ function SpeciesPage() {
           <Text strong style={{ fontSize: 16 }}>
             Família: {family}
           </Text>
+          {/* Show trend classification from GBI data (for GBI species) or flight curves data (for all other species) */}
+          {(() => {
+            const gbiTrend = gbiData?.speciesTrends?.[decodedSpeciesName]?.trendClassification;
+            const flightCurvesTrend =
+              flightCurvesData?.species?.[decodedSpeciesName]?.trendClassification;
+            const trendClassification = gbiTrend || flightCurvesTrend;
+
+            if (trendClassification) {
+              return (
+                <div style={{ marginTop: 8 }}>
+                  <Text strong>Tendência Populacional: </Text>
+                  <TrendClassificationBadge
+                    classification={trendClassification}
+                    showDetails={true}
+                  />
+                </div>
+              );
+            }
+            return null;
+          })()}
           {(endangeredSpeciesPT[decodedSpeciesName] ||
             endangeredSpeciesEurope[decodedSpeciesName]) && (
             <Alert
@@ -255,6 +283,11 @@ function SpeciesPage() {
               const years = Object.keys(speciesData.collatedIndices).map(Number).sort();
               const indices = years.map(year => speciesData.collatedIndices[year]);
 
+              // Get trend line from rBMS calculation (if available)
+              const trendLineValues = speciesData.trendLine
+                ? years.map(year => speciesData.trendLine![year])
+                : [];
+
               // Get CI data from flight curves data
               const hasCI = speciesData.confidenceIntervals != null;
               const ciLower = hasCI
@@ -301,15 +334,31 @@ function SpeciesPage() {
                 });
               }
 
-              // Main trend line
+              // Trend line (linear regression from rBMS)
+              if (trendLineValues.length > 0) {
+                datasets.push({
+                  label: "Linha de Tendência",
+                  data: trendLineValues,
+                  borderColor: SERIES_COLORS[0],
+                  backgroundColor: SERIES_COLORS[0],
+                  borderWidth: 6,
+                  pointRadius: 0,
+                  fill: false,
+                  order: 2,
+                });
+              }
+
+              // Main data points (line without curves)
               datasets.push({
                 label: "Índice Populacional (2021 = 100)",
                 data: indices,
-                borderColor: SERIES_COLORS[0],
-                backgroundColor: SERIES_COLORS[0],
-                borderWidth: 3,
+                borderColor: `${SERIES_COLORS[0]}99`,
+                backgroundColor: "transparent",
+                borderDash: [5, 5],
+                borderWidth: 2,
                 pointRadius: 4,
-                tension: 0.3,
+                pointHoverRadius: 6,
+                tension: 0,
                 fill: false,
                 order: 1,
               });
@@ -338,6 +387,11 @@ function SpeciesPage() {
 
                         // Skip CI Upper
                         if (datasetLabel === "CI Upper") return undefined;
+
+                        // For trend line, show value
+                        if (datasetLabel === "Linha de Tendência") {
+                          return `Tendência: ${context.parsed.y.toFixed(2)}`;
+                        }
 
                         // For CI band, show range
                         if (datasetLabel === "IC 95%" && hasCI) {

@@ -2,27 +2,10 @@ import React, { useEffect, useState } from "react";
 import { Collapse, Typography, Row, Col, Spin } from "antd";
 import { ArrowUpOutlined, ArrowDownOutlined, MinusOutlined } from "@ant-design/icons";
 import { Link } from "react-router-dom";
+import TrendClassificationBadge from "../TrendClassificationBadge";
+import type { SpeciesTrend as GBISpeciesTrend, TrendCategory } from "../../types/gbiData";
 
 const { Title, Text } = Typography;
-
-interface SpeciesIndices {
-  [species: string]: {
-    collatedIndices: {
-      [year: string]: number;
-    };
-    confidenceIntervals?: {
-      [year: string]: {
-        ci_lower: number;
-        ci_upper: number;
-      };
-    };
-  };
-}
-
-interface FlightCurvesData {
-  species: SpeciesIndices;
-  years: number[];
-}
 
 interface SpeciesTrend {
   species: string;
@@ -32,6 +15,7 @@ interface SpeciesTrend {
   direction: "up" | "down" | "stable";
   ciLower?: number[];
   ciUpper?: number[];
+  trendClassification?: GBISpeciesTrend["trendClassification"];
 }
 
 const SpeciesTrendsSparklines: React.FC = () => {
@@ -44,19 +28,33 @@ const SpeciesTrendsSparklines: React.FC = () => {
 
   const fetchFlightCurvesData = async () => {
     try {
-      // eslint-disable-next-line no-undef
-      const response = await fetch("data/flight-curves-data.json");
-      const data: FlightCurvesData = await response.json();
+      // Fetch both GBI data and flight curves data
+      const [gbiResponse, flightResponse] = await Promise.all([
+        // eslint-disable-next-line no-undef
+        fetch("data/gbi-data.json").catch(() => null),
+        // eslint-disable-next-line no-undef
+        fetch("data/flight-curves-data.json").catch(() => null),
+      ]);
 
-      // Process species data
+      const gbiData = gbiResponse ? await gbiResponse.json() : null;
+      const flightData = flightResponse ? await flightResponse.json() : null;
+
+      // Process species data from both sources
       const trends: SpeciesTrend[] = [];
 
-      Object.entries(data.species).forEach(([speciesName, speciesData]) => {
-        const { collatedIndices, confidenceIntervals } = speciesData;
-        const years = Object.keys(collatedIndices)
+      // Helper function to process species data
+      const processSpecies = (speciesName: string, speciesData: any) => {
+        const { annualIndices, collatedIndices, confidenceIntervals, trendClassification } =
+          speciesData;
+
+        // Use annualIndices (from GBI) or collatedIndices (from flight curves)
+        const indicesData = annualIndices || collatedIndices;
+        if (!indicesData) return;
+
+        const years = Object.keys(indicesData)
           .map(Number)
           .sort((a, b) => a - b);
-        const indices = years.map(year => collatedIndices[year.toString()]);
+        const indices = years.map(year => indicesData[year]);
 
         if (indices.length >= 2) {
           const firstValue = indices[0];
@@ -71,8 +69,8 @@ const SpeciesTrendsSparklines: React.FC = () => {
           let ciLower: number[] | undefined;
           let ciUpper: number[] | undefined;
           if (confidenceIntervals) {
-            ciLower = years.map(year => confidenceIntervals[year.toString()]?.ci_lower ?? 0);
-            ciUpper = years.map(year => confidenceIntervals[year.toString()]?.ci_upper ?? 0);
+            ciLower = years.map(year => confidenceIntervals[year]?.ci_lower ?? 0);
+            ciUpper = years.map(year => confidenceIntervals[year]?.ci_upper ?? 0);
           }
 
           trends.push({
@@ -83,17 +81,42 @@ const SpeciesTrendsSparklines: React.FC = () => {
             direction,
             ciLower,
             ciUpper,
+            trendClassification,
           });
         }
-      });
+      };
 
-      // Sort by trend (highest first)
-      trends.sort((a, b) => b.trend - a.trend);
+      // Process GBI species
+      if (gbiData?.speciesTrends) {
+        Object.entries(gbiData.speciesTrends as Record<string, GBISpeciesTrend>).forEach(
+          ([speciesName, speciesData]) => processSpecies(speciesName, speciesData)
+        );
+      }
+
+      // Process flight curves species (skip if already in GBI)
+      if (flightData?.species) {
+        const gbiSpeciesSet = new Set(trends.map(t => t.species));
+        Object.entries(flightData.species as Record<string, any>).forEach(
+          ([speciesName, speciesData]) => {
+            if (!gbiSpeciesSet.has(speciesName)) {
+              processSpecies(speciesName, speciesData);
+            }
+          }
+        );
+      }
+
+      // Sort by trend percentage (highest first)
+      // Prefer annualRateOfChange from trendClassification if available
+      trends.sort((a, b) => {
+        const aTrend = a.trendClassification?.annualRateOfChange ?? a.trend;
+        const bTrend = b.trendClassification?.annualRateOfChange ?? b.trend;
+        return bTrend - aTrend;
+      });
 
       setSpeciesTrends(trends);
     } catch (error) {
       // eslint-disable-next-line no-console
-      console.error("Error loading flight curves data:", error);
+      console.error("Error loading species data:", error);
     } finally {
       setLoading(false);
     }
@@ -101,6 +124,7 @@ const SpeciesTrendsSparklines: React.FC = () => {
 
   const renderSparkline = (
     indices: number[],
+    trendValue: number,
     ciLower?: number[],
     ciUpper?: number[],
     width = 60,
@@ -125,11 +149,11 @@ const SpeciesTrendsSparklines: React.FC = () => {
 
     const pathData = `M ${points.join(" L ")}`;
 
-    // Determine color based on trend
+    // Determine color based on trend value (annual rate of change or simple trend)
     let strokeColor = "#d9d9d9";
-    if (indices[indices.length - 1] > indices[0]) {
+    if (trendValue > 0) {
       strokeColor = "#52c41a"; // Green for positive
-    } else if (indices[indices.length - 1] < indices[0]) {
+    } else if (trendValue < 0) {
       strokeColor = "#ff4d4f"; // Red for negative
     }
 
@@ -209,13 +233,14 @@ const SpeciesTrendsSparklines: React.FC = () => {
     );
   }
 
-  // Calculate trend summary
-  const trendSummary = speciesTrends.reduce(
+  // Calculate trend summary by classification category
+  const categorySummary: Record<TrendCategory | "Unknown", number> = speciesTrends.reduce(
     (acc, trend) => {
-      acc[trend.direction]++;
+      const category = trend.trendClassification?.category || "Unknown";
+      acc[category] = (acc[category] || 0) + 1;
       return acc;
     },
-    { up: 0, stable: 0, down: 0 }
+    {} as Record<TrendCategory | "Unknown", number>
   );
 
   const items = [
@@ -226,13 +251,61 @@ const SpeciesTrendsSparklines: React.FC = () => {
           <Title level={4} style={{ marginBottom: 0, display: "inline" }}>
             Tendências por Espécie ({speciesTrends.length} espécies)
           </Title>
-          <Text type="secondary" style={{ marginLeft: 16 }}>
-            <span style={{ color: "#52c41a" }}>↑ {trendSummary.up} a aumentar</span>
-            {" • "}
-            <span style={{ color: "#8c8c8c" }}>− {trendSummary.stable} estáveis</span>
-            {" • "}
-            <span style={{ color: "#ff4d4f" }}>↓ {trendSummary.down} a diminuir</span>
-          </Text>
+          <div style={{ marginTop: 8 }}>
+            <Text type="secondary">
+              {categorySummary["Strong increase"] && (
+                <>
+                  <span style={{ color: "#52c41a" }}>
+                    ↑↑ {categorySummary["Strong increase"]} aumento forte
+                  </span>
+                  {" • "}
+                </>
+              )}
+              {categorySummary["Moderate increase"] && (
+                <>
+                  <span style={{ color: "#95de64" }}>
+                    ↑ {categorySummary["Moderate increase"]} aumento moderado
+                  </span>
+                  {" • "}
+                </>
+              )}
+              {categorySummary["Stable"] && (
+                <>
+                  <span style={{ color: "#1890ff" }}>− {categorySummary["Stable"]} estáveis</span>
+                  {" • "}
+                </>
+              )}
+              {categorySummary["Moderate decline"] && (
+                <>
+                  <span style={{ color: "#fa8c16" }}>
+                    ↓ {categorySummary["Moderate decline"]} declínio moderado
+                  </span>
+                  {" • "}
+                </>
+              )}
+              {categorySummary["Strong decline"] && (
+                <>
+                  <span style={{ color: "#f5222d" }}>
+                    ↓↓ {categorySummary["Strong decline"]} declínio forte
+                  </span>
+                  {" • "}
+                </>
+              )}
+              {categorySummary["Uncertain"] && (
+                <>
+                  <span style={{ color: "#8c8c8c" }}>
+                    ? {categorySummary["Uncertain"]} incertos
+                  </span>
+                  {" • "}
+                </>
+              )}
+              {categorySummary["Unknown"] && (
+                <span style={{ color: "#d9d9d9" }}>
+                  {categorySummary["Unknown"]} sem classificação
+                </span>
+              )}
+            </Text>
+          </div>
         </div>
       ),
       children: (
@@ -272,14 +345,19 @@ const SpeciesTrendsSparklines: React.FC = () => {
 
                   {/* Sparkline */}
                   <div style={{ marginLeft: 16 }}>
-                    {renderSparkline(trend.indices, trend.ciLower, trend.ciUpper)}
+                    {renderSparkline(
+                      trend.indices,
+                      trend.trendClassification?.annualRateOfChange ?? trend.trend,
+                      trend.ciLower,
+                      trend.ciUpper
+                    )}
                   </div>
 
-                  {/* Trend value and icon */}
+                  {/* Trend classification badge or fallback */}
                   <div
                     style={{
                       marginLeft: 16,
-                      minWidth: 90,
+                      minWidth: 180,
                       textAlign: "right",
                       display: "flex",
                       alignItems: "center",
@@ -287,17 +365,40 @@ const SpeciesTrendsSparklines: React.FC = () => {
                       gap: 8,
                     }}
                   >
-                    {getTrendIcon(trend.direction)}
-                    <Text
-                      strong
-                      style={{
-                        color: getTrendColor(trend.trend),
-                        fontSize: 14,
-                      }}
-                    >
-                      {trend.trend > 0 ? "+" : ""}
-                      {trend.trend.toFixed(1)}%
-                    </Text>
+                    {trend.trendClassification ? (
+                      <>
+                        <Text
+                          strong
+                          style={{
+                            color: getTrendColor(trend.trendClassification.annualRateOfChange || 0),
+                            fontSize: 14,
+                            minWidth: 60,
+                            textAlign: "right",
+                          }}
+                        >
+                          {(trend.trendClassification.annualRateOfChange || 0) > 0 ? "+" : ""}
+                          {trend.trendClassification.annualRateOfChange?.toFixed(1)}%/ano
+                        </Text>
+                        <TrendClassificationBadge
+                          classification={trend.trendClassification}
+                          showDetails={false}
+                        />
+                      </>
+                    ) : (
+                      <>
+                        {getTrendIcon(trend.direction)}
+                        <Text
+                          strong
+                          style={{
+                            color: getTrendColor(trend.trend),
+                            fontSize: 14,
+                          }}
+                        >
+                          {trend.trend > 0 ? "+" : ""}
+                          {trend.trend.toFixed(1)}%
+                        </Text>
+                      </>
+                    )}
                   </div>
                 </Link>
               </Col>
