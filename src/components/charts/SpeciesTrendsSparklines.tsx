@@ -104,8 +104,13 @@ const SpeciesTrendsSparklines: React.FC = () => {
         );
       }
 
-      // Sort by trend (highest first)
-      trends.sort((a, b) => b.trend - a.trend);
+      // Sort by trend percentage (highest first)
+      // Prefer annualRateOfChange from trendClassification if available
+      trends.sort((a, b) => {
+        const aTrend = a.trendClassification?.annualRateOfChange ?? a.trend;
+        const bTrend = b.trendClassification?.annualRateOfChange ?? b.trend;
+        return bTrend - aTrend;
+      });
 
       setSpeciesTrends(trends);
     } catch (error) {
@@ -118,6 +123,7 @@ const SpeciesTrendsSparklines: React.FC = () => {
 
   const renderSparkline = (
     indices: number[],
+    trendValue: number,
     ciLower?: number[],
     ciUpper?: number[],
     width = 60,
@@ -142,11 +148,11 @@ const SpeciesTrendsSparklines: React.FC = () => {
 
     const pathData = `M ${points.join(" L ")}`;
 
-    // Determine color based on trend
+    // Determine color based on trend value (annual rate of change or simple trend)
     let strokeColor = "#d9d9d9";
-    if (indices[indices.length - 1] > indices[0]) {
+    if (trendValue > 0) {
       strokeColor = "#52c41a"; // Green for positive
-    } else if (indices[indices.length - 1] < indices[0]) {
+    } else if (trendValue < 0) {
       strokeColor = "#ff4d4f"; // Red for negative
     }
 
@@ -340,7 +346,12 @@ const SpeciesTrendsSparklines: React.FC = () => {
 
                   {/* Sparkline */}
                   <div style={{ marginLeft: 16 }}>
-                    {renderSparkline(trend.indices, trend.ciLower, trend.ciUpper)}
+                    {renderSparkline(
+                      trend.indices,
+                      trend.trendClassification?.annualRateOfChange ?? trend.trend,
+                      trend.ciLower,
+                      trend.ciUpper
+                    )}
                   </div>
 
                   {/* Trend classification badge or fallback */}
