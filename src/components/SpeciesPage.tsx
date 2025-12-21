@@ -455,7 +455,7 @@ function SpeciesPage() {
                         <ul style={{ marginBottom: 0, paddingLeft: 20 }}>
                           <li>
                             {speciesData.dataQuality.site_count} transectos de qualidade (5+ anos,
-                            10+ visitas/ano)
+                            5+ visitas/ano)
                           </li>
                           <li>
                             {speciesData.dataQuality.total_counts} contagens ao longo de{" "}

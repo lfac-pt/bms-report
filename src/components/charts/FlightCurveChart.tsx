@@ -241,7 +241,7 @@ export const FlightCurvesDisplay: React.FC<FlightCurvesDisplayProps> = ({
             </p>
             <p style={{ marginTop: 8, marginBottom: 0 }}>
               <strong>Metodologia:</strong> As curvas são calculadas separadamente por região
-              climática, usando apenas transectos de qualidade (5+ anos ativos, 10+ visitas/ano).
+              climática, usando apenas transectos de qualidade (5+ anos ativos, 5+ visitas/ano).
               Cada linha representa um ano diferente, permitindo comparar padrões fenológicos entre
               anos.
             </p>

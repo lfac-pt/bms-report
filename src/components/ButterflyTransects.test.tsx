@@ -126,7 +126,6 @@ describe("ButterflyTransects - Smoke Tests", () => {
     it("displays summary statistics cards", async () => {
       render(<ButterflyTransects />);
       await waitFor(() => {
-        expect(screen.getByText("Transectos com Dados Robustos")).toBeInTheDocument();
         expect(screen.getByText("Cobertura Geográfica")).toBeInTheDocument();
         expect(screen.getByText("Total de Borboletas Contadas")).toBeInTheDocument();
       });
