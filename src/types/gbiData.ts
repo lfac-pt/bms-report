@@ -106,6 +106,7 @@ export interface SpeciesTrend {
   slope: number;
   yearsWithData: number[];
   annualIndices: Record<number, number>;
+  trendLine?: Record<number, number>;
   confidenceIntervals?: Record<number, { ci_lower: number | null; ci_upper: number | null }>;
   trendClassification?: TrendClassification;
 }

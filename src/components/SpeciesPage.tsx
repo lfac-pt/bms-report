@@ -1,18 +1,17 @@
 /* eslint-env browser */
 import { useState, useEffect } from "react";
-import { Button, Card, Space, Typography, Spin, Alert, Row, Col, Select, Radio } from "antd";
+import { Button, Card, Space, Typography, Spin, Alert, Row, Col, Select } from "antd";
 import { ArrowLeftOutlined } from "@ant-design/icons";
 import { useParams, useNavigate } from "react-router-dom";
-import { Line } from "react-chartjs-2";
 import { SPECIES_FAMILIES } from "../utils/speciesFamilies";
 import { TimelineData } from "../types/timelineData";
 import { TransectData } from "../types/transectStats";
 import { calculateSpeciesPresenceByYear } from "../utils/speciesMapUtils";
 import SpeciesMap from "./SpeciesMap";
-import { SERIES_COLORS } from "../utils/utils";
 import endangeredSpeciesPT from "../utils/endangered_pt";
 import endangeredSpeciesEurope from "../utils/endangered_eu";
 import { FlightCurvesDisplay } from "./charts/FlightCurveChart";
+import { SpeciesTrendChart } from "./charts/SpeciesTrendChart";
 import TrendClassificationBadge from "./TrendClassificationBadge";
 import type { GBIData } from "../types/gbiData";
 
@@ -44,9 +43,6 @@ function SpeciesPage() {
   const [phenologyData, setPhenologyData] = useState<any>(null);
   const [gbiData, setGbiData] = useState<GBIData | null>(null);
   const [loading, setLoading] = useState(true);
-  const [dataViewMode, setDataViewMode] = useState<"flightCurves" | "phenologyCurves">(
-    "flightCurves"
-  );
 
   // Decode the species name from URL
   const decodedSpeciesName = speciesName ? decodeURIComponent(speciesName) : "";
@@ -235,253 +231,33 @@ function SpeciesPage() {
         </Space>
       </Card>
 
-      <Card title="Curvas de Voo">
-        <Space direction="vertical" size="large" style={{ width: "100%" }}>
-          {/* Data view mode switcher */}
-          <Radio.Group
-            value={dataViewMode}
-            onChange={e => setDataViewMode(e.target.value)}
-            buttonStyle="solid"
-          >
-            <Radio.Button
-              value="flightCurves"
-              disabled={!flightCurvesData?.species?.[decodedSpeciesName]}
-            >
-              Curvas de Voo (Anuais)
-            </Radio.Button>
-            <Radio.Button
-              value="phenologyCurves"
-              disabled={!phenologyData?.species?.[decodedSpeciesName]}
-            >
-              Curvas de Voo (Regionais)
-            </Radio.Button>
-          </Radio.Group>
+      {/* Trend Chart Card - shows whenever trend data exists (from flight curves or GBI) */}
+      {(() => {
+        const flightCurvesTrend = flightCurvesData?.species?.[decodedSpeciesName];
+        const gbiTrend = gbiData?.speciesTrends?.[decodedSpeciesName];
 
-          {dataViewMode === "phenologyCurves" ? (
-            // Regional Phenology Curves View
-            <FlightCurvesDisplay
-              speciesName={decodedSpeciesName}
-              phenologyData={phenologyData?.species?.[decodedSpeciesName]}
-              loading={loading}
-            />
-          ) : (
-            // Annual Flight Curves View
-            (() => {
-              const speciesData = flightCurvesData?.species?.[decodedSpeciesName];
+        // Use flight curves data if available, otherwise GBI data
+        const trendData = flightCurvesTrend || (gbiTrend ? {
+          collatedIndices: gbiTrend.annualIndices,
+          trendLine: gbiTrend.trendLine,
+          confidenceIntervals: gbiTrend.confidenceIntervals
+        } : null);
 
-              if (!speciesData) {
-                return (
-                  <Alert
-                    message="Curvas de voo não disponíveis"
-                    description="Esta espécie não tem dados suficientes para calcular curvas de voo (mínimo 20 contagens em 3 anos)."
-                    type="info"
-                    showIcon
-                  />
-                );
-              }
+        if (!trendData) return null;
 
-              const years = Object.keys(speciesData.collatedIndices).map(Number).sort();
-              const indices = years.map(year => speciesData.collatedIndices[year]);
+        return (
+          <Card title="Tendência Populacional">
+            <SpeciesTrendChart speciesData={trendData} />
+          </Card>
+        );
+      })()}
 
-              // Get trend line from rBMS calculation (if available)
-              const trendLineValues = speciesData.trendLine
-                ? years.map(year => speciesData.trendLine![year])
-                : [];
-
-              // Get CI data from flight curves data
-              const hasCI = speciesData.confidenceIntervals != null;
-              const ciLower = hasCI
-                ? years.map(
-                    year =>
-                      speciesData.confidenceIntervals![year]?.ci_lower ??
-                      indices[years.indexOf(year)]
-                  )
-                : [];
-              const ciUpper = hasCI
-                ? years.map(
-                    year =>
-                      speciesData.confidenceIntervals![year]?.ci_upper ??
-                      indices[years.indexOf(year)]
-                  )
-                : [];
-
-              const datasets = [];
-
-              // Add CI band if available
-              if (hasCI) {
-                // CI Upper bound (hidden)
-                datasets.push({
-                  label: "CI Upper",
-                  data: ciUpper,
-                  borderColor: "transparent",
-                  backgroundColor: "transparent",
-                  borderWidth: 0,
-                  pointRadius: 0,
-                  fill: false,
-                  order: 3,
-                });
-
-                // CI Lower bound with fill
-                datasets.push({
-                  label: "IC 95%",
-                  data: ciLower,
-                  borderColor: `${SERIES_COLORS[0]}33`,
-                  backgroundColor: `${SERIES_COLORS[0]}22`,
-                  borderWidth: 1,
-                  pointRadius: 0,
-                  fill: "-1",
-                  order: 3,
-                });
-              }
-
-              // Trend line (linear regression from rBMS)
-              if (trendLineValues.length > 0) {
-                datasets.push({
-                  label: "Linha de Tendência",
-                  data: trendLineValues,
-                  borderColor: SERIES_COLORS[0],
-                  backgroundColor: SERIES_COLORS[0],
-                  borderWidth: 6,
-                  pointRadius: 0,
-                  fill: false,
-                  order: 2,
-                });
-              }
-
-              // Main data points (line without curves)
-              datasets.push({
-                label: "Índice Populacional (2021 = 100)",
-                data: indices,
-                borderColor: `${SERIES_COLORS[0]}99`,
-                backgroundColor: "transparent",
-                borderDash: [5, 5],
-                borderWidth: 2,
-                pointRadius: 4,
-                pointHoverRadius: 6,
-                tension: 0,
-                fill: false,
-                order: 1,
-              });
-
-              const chartData = {
-                labels: years.map(String),
-                datasets,
-              };
-
-              const options = {
-                responsive: true,
-                maintainAspectRatio: false,
-                plugins: {
-                  legend: {
-                    display: true,
-                    position: "top" as const,
-                    labels: {
-                      filter: (legendItem: any) => legendItem.text !== "CI Upper",
-                    },
-                  },
-                  tooltip: {
-                    callbacks: {
-                      label: (context: any) => {
-                        const datasetLabel = context.dataset.label || "";
-                        const year = years[context.dataIndex];
-
-                        // Skip CI Upper
-                        if (datasetLabel === "CI Upper") return undefined;
-
-                        // For trend line, show value
-                        if (datasetLabel === "Linha de Tendência") {
-                          return `Tendência: ${context.parsed.y.toFixed(2)}`;
-                        }
-
-                        // For CI band, show range
-                        if (datasetLabel === "IC 95%" && hasCI) {
-                          const ci = speciesData.confidenceIntervals![year];
-                          if (ci?.ci_lower != null && ci?.ci_upper != null) {
-                            return `IC 95%: ${ci.ci_lower.toFixed(1)} - ${ci.ci_upper.toFixed(1)}`;
-                          }
-                        }
-
-                        // For main line, show index with CI if available
-                        if (datasetLabel === "Índice Populacional (2021 = 100)") {
-                          const lines = [`Índice: ${context.parsed.y.toFixed(2)}`];
-                          if (hasCI) {
-                            const ci = speciesData.confidenceIntervals![year];
-                            if (ci?.ci_lower != null && ci?.ci_upper != null) {
-                              lines.push(
-                                `IC 95%: [${ci.ci_lower.toFixed(1)}, ${ci.ci_upper.toFixed(1)}]`
-                              );
-                            }
-                          }
-                          return lines;
-                        }
-
-                        return `${datasetLabel}: ${context.parsed.y.toFixed(2)}`;
-                      },
-                    },
-                    filter: (item: any) => item.dataset.label !== "CI Upper",
-                  },
-                },
-                scales: {
-                  y: {
-                    beginAtZero: false,
-                    title: {
-                      display: true,
-                      text: "Índice Populacional",
-                    },
-                  },
-                  x: {
-                    title: {
-                      display: true,
-                      text: "Ano",
-                    },
-                  },
-                },
-              };
-
-              return (
-                <>
-                  <Alert
-                    message="Sobre as Curvas de Voo"
-                    description={
-                      <>
-                        <p style={{ marginBottom: 8 }}>
-                          As curvas de voo são calculadas usando a biblioteca <strong>rbms</strong>{" "}
-                          (Regional Butterfly Monitoring Scheme) com modelos GAM (Generalized
-                          Additive Models) e GLM (Generalized Linear Models).
-                        </p>
-                        <p style={{ marginBottom: 8 }}>
-                          <strong>Dados utilizados:</strong>
-                        </p>
-                        <ul style={{ marginBottom: 0, paddingLeft: 20 }}>
-                          <li>
-                            {speciesData.dataQuality.site_count} transectos de qualidade (5+ anos,
-                            5+ visitas/ano)
-                          </li>
-                          <li>
-                            {speciesData.dataQuality.total_counts} contagens ao longo de{" "}
-                            {speciesData.dataQuality.years_with_data} anos
-                          </li>
-                          <li>Baseline: {speciesData.dataQuality.baseline_year} = 100</li>
-                          <li>
-                            Imputação: {speciesData.dataQuality.imputation_success ? "Sim" : "Não"}
-                          </li>
-                        </ul>
-                      </>
-                    }
-                    type="info"
-                    showIcon
-                    style={{ marginBottom: 16 }}
-                  />
-                  <Card type="inner" title="Tendência Populacional">
-                    <div style={{ height: 400 }}>
-                      <Line data={chartData} options={options} />
-                    </div>
-                  </Card>
-                </>
-              );
-            })()
-          )}
-        </Space>
+      <Card title="Curvas de Voo (Regionais)">
+        <FlightCurvesDisplay
+          speciesName={decodedSpeciesName}
+          phenologyData={phenologyData?.species?.[decodedSpeciesName]}
+          loading={loading}
+        />
       </Card>
 
       <Card title="Distribuição por Ano">
