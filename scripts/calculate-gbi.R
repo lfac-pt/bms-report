@@ -162,12 +162,11 @@ produce_indicator0 <- function(collind_region0, interval = "decreasing") {
 }
 
 #' Produce indicators for all bootstrap samples
-produce_indicators_boot <- function(collind_region_boot, interval = "decreasing") {
+#' Note: Bootstrap samples are NOT rescaled to anchor year = 100 before smoothing.
+#' This preserves variation needed for confidence intervals. Rescaling happens
+#' in add_indicator_CI to match the baseline of the main indicator.
+produce_indicators_boot <- function(collind_region_boot) {
   setDT(collind_region_boot)
-
-  if (interval != "decreasing") {
-    warning("Interval not defined as decreasing - will increase in width over time")
-  }
 
   # Rescale collated indices from log10 scale
   collind_region_boot[, TRMOBS100 := 10^TRMOBS]
@@ -186,10 +185,9 @@ produce_indicators_boot <- function(collind_region_boot, interval = "decreasing"
       })
     )
 
-    # Rescale so last year is 100
-    if (interval == "decreasing") {
-      indicators_boot <- indicators_boot / indicators_boot[, ncol(indicators_boot)] * 100
-    }
+    # NOTE: Do NOT rescale to last year = 100 before LOESS smoothing
+    # This would remove all bootstrap variation in the last year, causing zero-width CIs
+    # Instead, keep natural variation and let add_indicator_CI handle rescaling
 
     # Apply LOESS smoothing to each bootstrap
     indicators_gam <- apply(indicators_boot, 1, function(x) {
