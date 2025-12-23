@@ -3,10 +3,6 @@
     "baselineYear": 2021,
     "grasslandSpecies": [
       {
-        "scientificName": "Anthocharis cardamines",
-        "type": "widespread"
-      },
-      {
         "scientificName": "Coenonympha pamphilus",
         "type": "widespread"
       },
@@ -31,18 +27,6 @@
         "type": "widespread"
       },
       {
-        "scientificName": "Cupido minimus",
-        "type": "specialist"
-      },
-      {
-        "scientificName": "Cyaniris semiargus",
-        "type": "specialist"
-      },
-      {
-        "scientificName": "Erynnis tages",
-        "type": "specialist"
-      },
-      {
         "scientificName": "Euphydryas aurinia",
         "type": "specialist"
       },
@@ -61,126 +45,182 @@
     ],
     "qualityCriteria": {
       "minYearsActive": 5,
-      "minVisitsPerYear": 10
+      "minVisitsPerYear": 5
     },
     "transectsUsed": [
       {
         "transectId": "240215",
-        "transectName": "A Rocha Cruzinha I"
+        "yearsActive": 7,
+        "avgVisitsPerYear": 23.6,
+        "isActive": true
       },
       {
         "transectId": "240222",
-        "transectName": "A Rocha Cruzinha II"
+        "yearsActive": 7,
+        "avgVisitsPerYear": 23.4,
+        "isActive": true
       },
       {
         "transectId": "228038",
-        "transectName": "Duna_Cresmina"
+        "yearsActive": 6,
+        "avgVisitsPerYear": 5.7,
+        "isActive": true
       },
       {
         "transectId": "267250",
-        "transectName": "EBIO Vale de Poios"
+        "yearsActive": 5,
+        "avgVisitsPerYear": 13.2,
+        "isActive": true
       },
       {
         "transectId": "243747",
-        "transectName": "ICNF MNPR Trilho da Mina de Ouro no Conhal"
+        "yearsActive": 6,
+        "avgVisitsPerYear": 11.3,
+        "isActive": true
       },
       {
         "transectId": "256572",
-        "transectName": "ICNF PNA Serra do Louro"
+        "yearsActive": 6,
+        "avgVisitsPerYear": 26.2,
+        "isActive": true
       },
       {
         "transectId": "255860",
-        "transectName": "ICNF PNAL Arnal"
+        "yearsActive": 5,
+        "avgVisitsPerYear": 9.2,
+        "isActive": true
       },
       {
         "transectId": "244448",
-        "transectName": "ICNF PNDI Lamoso"
+        "yearsActive": 6,
+        "avgVisitsPerYear": 15.2,
+        "isActive": true
       },
       {
         "transectId": "265806",
-        "transectName": "ICNF PNDI Vila Ala"
+        "yearsActive": 6,
+        "avgVisitsPerYear": 16.7,
+        "isActive": true
       },
       {
         "transectId": "242415",
-        "transectName": "ICNF PNLN"
+        "yearsActive": 6,
+        "avgVisitsPerYear": 20.2,
+        "isActive": true
       },
       {
         "transectId": "255958",
-        "transectName": "ICNF PNSACV EBIO Barragem da Bravura"
+        "yearsActive": 5,
+        "avgVisitsPerYear": 11.8,
+        "isActive": true
       },
       {
         "transectId": "295724",
-        "transectName": "ICNF PNSE Levada Sra do Desterro"
+        "yearsActive": 5,
+        "avgVisitsPerYear": 8.6,
+        "isActive": true
       },
       {
         "transectId": "216760",
-        "transectName": "ICNF PNSSM Cerejeirinha - Marvão"
+        "yearsActive": 7,
+        "avgVisitsPerYear": 14.7,
+        "isActive": true
       },
       {
         "transectId": "243847",
-        "transectName": "ICNF PNSSM SUL Mosteiros"
+        "yearsActive": 6,
+        "avgVisitsPerYear": 10.5,
+        "isActive": true
       },
       {
         "transectId": "256583",
-        "transectName": "ICNF PPAFCC Mata dos Medos"
+        "yearsActive": 6,
+        "avgVisitsPerYear": 9.5,
+        "isActive": true
       },
       {
         "transectId": "272901",
-        "transectName": "ICNF RNES Gambia"
+        "yearsActive": 6,
+        "avgVisitsPerYear": 28.3,
+        "isActive": true
       },
       {
         "transectId": "240324",
-        "transectName": "ICNF RNLSAS Salgueiral da Galiza"
+        "yearsActive": 5,
+        "avgVisitsPerYear": 27,
+        "isActive": true
       },
       {
         "transectId": "265800",
-        "transectName": "ICNF Santa Rita-Maceira"
+        "yearsActive": 5,
+        "avgVisitsPerYear": 9.2,
+        "isActive": true
       },
       {
         "transectId": "243008",
-        "transectName": "Mata dos Sete Montes"
+        "yearsActive": 5,
+        "avgVisitsPerYear": 12.6,
+        "isActive": true
       },
       {
         "transectId": "240301",
-        "transectName": "Parque Ambiental de Santa Margarida"
+        "yearsActive": 6,
+        "avgVisitsPerYear": 21.2,
+        "isActive": true
       },
       {
         "transectId": "243659",
-        "transectName": "Parque Ecológico da Várzea da Quinta do Conde"
+        "yearsActive": 6,
+        "avgVisitsPerYear": 10.2,
+        "isActive": true
       },
       {
         "transectId": "218548",
-        "transectName": "PEUVC"
+        "yearsActive": 7,
+        "avgVisitsPerYear": 9.3,
+        "isActive": true
       },
       {
         "transectId": "241378",
-        "transectName": "Portela de Sintra"
+        "yearsActive": 6,
+        "avgVisitsPerYear": 27.2,
+        "isActive": true
       },
       {
         "transectId": "227915",
-        "transectName": "Qta_PisaoT1"
+        "yearsActive": 6,
+        "avgVisitsPerYear": 8.5,
+        "isActive": true
       },
       {
         "transectId": "227921",
-        "transectName": "Qta_PisaoT2"
+        "yearsActive": 6,
+        "avgVisitsPerYear": 8.2,
+        "isActive": true
       },
       {
         "transectId": "227927",
-        "transectName": "Qta_PisaoT3"
+        "yearsActive": 6,
+        "avgVisitsPerYear": 8.5,
+        "isActive": true
       },
       {
         "transectId": "222006",
-        "transectName": "Sete Fontes - Braga"
+        "yearsActive": 6,
+        "avgVisitsPerYear": 10.8,
+        "isActive": true
       },
       {
         "transectId": "216728",
-        "transectName": "Telheiras"
+        "yearsActive": 7,
+        "avgVisitsPerYear": 6.6,
+        "isActive": true
       }
     ],
-    "calculationMethod": "rbms (GAM flight curves + GLM collated indices + geometric mean)",
+    "calculationMethod": "rbms + MSI (LOESS smoothing span=0.75, bootstrap CIs)",
     "confidenceInterval": {
-      "method": "species_bootstrap",
-      "nIterations": 1000,
+      "method": "multi_species_bootstrap",
+      "nIterations": 500,
       "confidenceLevel": 0.95
     }
   },
@@ -188,117 +228,87 @@
     "2021": {
       "year": 2021,
       "gbiValue": 100,
-      "speciesIndices": {
-        "Coenonympha pamphilus": 100,
-        "Lasiommata megera": 100,
-        "Lycaena phlaeas": 100,
-        "Maniola jurtina": 100,
-        "Ochlodes sylvanus": 100,
-        "Polyommatus icarus": 100,
-        "Euphydryas aurinia": 100,
-        "Lysandra bellargus": 100,
-        "Spialia sertorius": 100,
-        "Thymelicus acteon": 100
-      },
+      "ci_lower": 84.4,
+      "ci_upper": 178.05,
+      "ci80_lower": 98.29,
+      "ci80_upper": 155.45,
+      "ci90_lower": 93.43,
+      "ci90_upper": 164.48,
+      "smoothedValue": 100,
+      "speciesIndices": [],
       "dataQuality": {
         "transectCount": 50,
         "totalVisits": 169,
-        "speciesWithData": 10
-      },
-      "ci_lower": 100,
-      "ci_upper": 100
+        "speciesWithData": 68
+      }
     },
     "2022": {
       "year": 2022,
-      "gbiValue": 74.56,
-      "speciesIndices": {
-        "Coenonympha pamphilus": 66.5891,
-        "Lasiommata megera": 82.0696,
-        "Lycaena phlaeas": 104.3602,
-        "Maniola jurtina": 82.0179,
-        "Ochlodes sylvanus": 68.75,
-        "Polyommatus icarus": 108.0777,
-        "Euphydryas aurinia": 84.5245,
-        "Lysandra bellargus": 70.1382,
-        "Spialia sertorius": 27.5576,
-        "Thymelicus acteon": 93.4896
-      },
+      "gbiValue": 115.45,
+      "ci_lower": 99.5,
+      "ci_upper": 190.11,
+      "ci80_lower": 110.93,
+      "ci80_upper": 168.06,
+      "ci90_lower": 104.03,
+      "ci90_upper": 182.6,
+      "smoothedValue": 115.45,
+      "speciesIndices": [],
       "dataQuality": {
         "transectCount": 45,
         "totalVisits": 174,
-        "speciesWithData": 10
-      },
-      "ci_lower": 57.29,
-      "ci_upper": 90.41
+        "speciesWithData": 69
+      }
     },
     "2023": {
       "year": 2023,
-      "gbiValue": 59.44,
-      "speciesIndices": {
-        "Coenonympha pamphilus": 38.3645,
-        "Lasiommata megera": 132.835,
-        "Lycaena phlaeas": 150.2931,
-        "Maniola jurtina": 59.8619,
-        "Ochlodes sylvanus": 81.25,
-        "Polyommatus icarus": 18.9419,
-        "Euphydryas aurinia": 78.1106,
-        "Lysandra bellargus": 40.871,
-        "Spialia sertorius": 31.2461,
-        "Thymelicus acteon": 78.2458
-      },
+      "gbiValue": 131.28,
+      "ci_lower": 95.85,
+      "ci_upper": 212.13,
+      "ci80_lower": 113.43,
+      "ci80_upper": 183.31,
+      "ci90_lower": 104.24,
+      "ci90_upper": 194.77,
+      "smoothedValue": 131.28,
+      "speciesIndices": [],
       "dataQuality": {
         "transectCount": 70,
         "totalVisits": 194,
-        "speciesWithData": 10
-      },
-      "ci_lower": 40.44,
-      "ci_upper": 86.04
+        "speciesWithData": 70
+      }
     },
     "2024": {
       "year": 2024,
-      "gbiValue": 72.42,
-      "speciesIndices": {
-        "Coenonympha pamphilus": 36.3522,
-        "Lasiommata megera": 182.5295,
-        "Lycaena phlaeas": 124.04,
-        "Maniola jurtina": 63.8829,
-        "Ochlodes sylvanus": 56.25,
-        "Polyommatus icarus": 48.9548,
-        "Euphydryas aurinia": 57.4253,
-        "Lysandra bellargus": 163.5596,
-        "Spialia sertorius": 34.6838,
-        "Thymelicus acteon": 84.0912
-      },
+      "gbiValue": 103.3,
+      "ci_lower": 86,
+      "ci_upper": 149.61,
+      "ci80_lower": 96.23,
+      "ci80_upper": 135.85,
+      "ci90_lower": 90.16,
+      "ci90_upper": 142.63,
+      "smoothedValue": 103.3,
+      "speciesIndices": [],
       "dataQuality": {
         "transectCount": 77,
         "totalVisits": 187,
-        "speciesWithData": 10
-      },
-      "ci_lower": 52.64,
-      "ci_upper": 104.62
+        "speciesWithData": 71
+      }
     },
     "2025": {
       "year": 2025,
-      "gbiValue": 65.26,
-      "speciesIndices": {
-        "Coenonympha pamphilus": 68.4042,
-        "Lasiommata megera": 106.6365,
-        "Lycaena phlaeas": 112.6308,
-        "Maniola jurtina": 177.938,
-        "Ochlodes sylvanus": 206.25,
-        "Polyommatus icarus": 23.2156,
-        "Euphydryas aurinia": 36.5361,
-        "Lysandra bellargus": 56.2743,
-        "Spialia sertorius": 17.2096,
-        "Thymelicus acteon": 56.5927
-      },
+      "gbiValue": 91.82,
+      "ci_lower": 91.82,
+      "ci_upper": 91.82,
+      "ci80_lower": 91.82,
+      "ci80_upper": 91.82,
+      "ci90_lower": 91.82,
+      "ci90_upper": 91.82,
+      "smoothedValue": 91.82,
+      "speciesIndices": [],
       "dataQuality": {
         "transectCount": 72,
         "totalVisits": 180,
-        "speciesWithData": 10
-      },
-      "ci_lower": 39.04,
-      "ci_upper": 107.52
+        "speciesWithData": 71
+      }
     }
   },
   "speciesTrends": {

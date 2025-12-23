@@ -18,6 +18,7 @@ import { InfoCircleOutlined, MinusCircleOutlined } from "@ant-design/icons";
 import { GBIData } from "../../types/gbiData";
 import SpeciesLink from "../SpeciesLink";
 import { useState } from "react";
+import { GRASSLAND_SPECIES } from "../../utils/grasslandSpecies";
 
 interface GrasslandButterflyIndexProps {
   gbiData: GBIData | null;
@@ -439,15 +440,11 @@ function GrasslandButterflyIndex({ gbiData, loading }: GrasslandButterflyIndexPr
                     strong
                     style={{ display: "block", marginBottom: 8, color: "#52c41a" }}
                   >
-                    Generalistas (
-                    {metadata.grasslandSpecies.filter(s => s.type === "widespread").length})
+                    Generalistas ({GRASSLAND_SPECIES.widespread.length})
                   </Typography.Text>
                   <List
                     size="small"
-                    dataSource={metadata.grasslandSpecies
-                      .filter(s => s.type === "widespread")
-                      .map(s => s.scientificName)
-                      .sort()}
+                    dataSource={[...GRASSLAND_SPECIES.widespread].sort()}
                     renderItem={species => {
                       const hasData = speciesWithTrends.has(species);
                       return (
@@ -477,15 +474,11 @@ function GrasslandButterflyIndex({ gbiData, loading }: GrasslandButterflyIndexPr
                     strong
                     style={{ display: "block", marginBottom: 8, color: "#1890ff" }}
                   >
-                    Especialistas (
-                    {metadata.grasslandSpecies.filter(s => s.type === "specialist").length})
+                    Especialistas ({GRASSLAND_SPECIES.specialist.length})
                   </Typography.Text>
                   <List
                     size="small"
-                    dataSource={metadata.grasslandSpecies
-                      .filter(s => s.type === "specialist")
-                      .map(s => s.scientificName)
-                      .sort()}
+                    dataSource={[...GRASSLAND_SPECIES.specialist].sort()}
                     renderItem={species => {
                       const hasData = speciesWithTrends.has(species);
                       return (
@@ -524,7 +517,7 @@ function GrasslandButterflyIndex({ gbiData, loading }: GrasslandButterflyIndexPr
                   </span>
                 }
                 value={speciesCount}
-                suffix={`de ${metadata.grasslandSpecies.length}`}
+                suffix={`de ${GRASSLAND_SPECIES.widespread.length + GRASSLAND_SPECIES.specialist.length}`}
               />
             </div>
           </Popover>

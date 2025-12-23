@@ -618,6 +618,34 @@ if (nrow(collated_by_year) >= 2) {
   }
 }
 
+# Step 11c: Save bootstrap results for multi-species indicator (GBI) calculation
+# Export full bootstrap distribution as RDS file for proper MSI methodology
+if (exists("collated_result_all") && !is.null(collated_result_all) && nrow(collated_result_all) > 0) {
+  cat("Saving bootstrap results for GBI calculation...\n")
+
+  # Determine bootstrap output directory
+  # Navigate from output_file (/path/to/raw-data/temp-rbms/output_species.json)
+  # up two levels to project root, then to .cache/rbms/bootstrap
+  project_root <- dirname(dirname(dirname(output_file)))  # temp-rbms -> raw-data -> project root
+  bootstrap_output_dir <- file.path(project_root, ".cache", "rbms", "bootstrap")
+  dir.create(bootstrap_output_dir, recursive = TRUE, showWarnings = FALSE)
+  cat(sprintf("  Bootstrap output dir: %s\n", bootstrap_output_dir))
+
+  # Create safe filename from species name
+  species_safe <- gsub(" ", "_", tolower(species_name))
+  bootstrap_file <- file.path(bootstrap_output_dir, paste0(species_safe, "_boot.rds"))
+
+  # Prepare data for MSI: Add SPECIES column and keep only necessary columns
+  bootstrap_data <- collated_result_all[, c("BOOTi", "M_YEAR", "COL_INDEX", "TRMOBS")]
+  bootstrap_data$SPECIES <- species_name
+
+  # Save as RDS
+  saveRDS(bootstrap_data, bootstrap_file)
+  cat(sprintf("  Bootstrap data saved: %s\n", basename(bootstrap_file)))
+} else {
+  cat("Warning: No bootstrap data available for GBI calculation\n")
+}
+
 # Step 12: Compile data quality metrics
 data_quality <- list(
   site_count = length(unique(visits$SITE_ID)),

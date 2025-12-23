@@ -623,93 +623,7 @@ function calculateSpeciesIndex(slope, year, baselineYear) {
   return 100 * Math.exp(slope * (year - baselineYear));
 }
 
-/**
- * Calculate geometric mean of species indices
- * Geometric mean = exp(mean(log(indices)))
- */
-function calculateGeometricMean(values) {
-  if (values.length === 0) return 0;
-
-  // Filter out non-positive values
-  const positiveValues = values.filter(v => v > 0);
-  if (positiveValues.length === 0) return 0;
-
-  const logSum = positiveValues.reduce((sum, v) => sum + Math.log(v), 0);
-  const logMean = logSum / positiveValues.length;
-
-  return Math.exp(logMean);
-}
-
-/**
- * Calculate percentile from sorted array using linear interpolation
- * @param {number[]} sortedArray - Array sorted in ascending order
- * @param {number} p - Percentile to calculate (0-100)
- * @returns {number} Percentile value
- */
-function percentile(sortedArray, p) {
-  if (sortedArray.length === 0) return 0;
-  if (sortedArray.length === 1) return sortedArray[0];
-
-  const index = (p / 100) * (sortedArray.length - 1);
-  const lower = Math.floor(index);
-  const upper = Math.ceil(index);
-  const weight = index - lower;
-
-  if (lower === upper) return sortedArray[lower];
-  return sortedArray[lower] * (1 - weight) + sortedArray[upper] * weight;
-}
-
-/**
- * Calculate 95% bootstrap confidence intervals for GBI
- * Uses species-level resampling (resample which species contribute to geometric mean)
- *
- * @param {Object} speciesTrends - Species trend data with annual indices
- * @param {number[]} years - Array of years to calculate CI for
- * @param {number} nBootstrap - Number of bootstrap iterations (default 1000)
- * @returns {Object} CI bounds per year: { year: { ci_lower, ci_upper } }
- */
-function calculateBootstrapCI(speciesTrends, years, nBootstrap = 1000) {
-  const speciesNames = Object.keys(speciesTrends);
-  const ciByYear = {};
-
-  console.log(`  Bootstrap: ${nBootstrap} iterations, ${speciesNames.length} species`);
-
-  for (const year of years) {
-    // Get valid indices for this year
-    const observedIndices = speciesNames
-      .map(sp => speciesTrends[sp].annualIndices[year])
-      .filter(idx => idx !== undefined && idx > 0);
-
-    if (observedIndices.length < 2) {
-      console.warn(`  Year ${year}: insufficient species for CI (${observedIndices.length})`);
-      ciByYear[year] = { ci_lower: null, ci_upper: null };
-      continue;
-    }
-
-    const n = observedIndices.length;
-
-    // Bootstrap resampling with replacement
-    const bootstrapGBIs = [];
-    for (let b = 0; b < nBootstrap; b++) {
-      const resampled = [];
-      for (let i = 0; i < n; i++) {
-        const randomIdx = Math.floor(Math.random() * n);
-        resampled.push(observedIndices[randomIdx]);
-      }
-      bootstrapGBIs.push(calculateGeometricMean(resampled));
-    }
-
-    // Sort and extract percentiles
-    bootstrapGBIs.sort((a, b) => a - b);
-
-    ciByYear[year] = {
-      ci_lower: Math.round(percentile(bootstrapGBIs, 2.5) * 100) / 100,
-      ci_upper: Math.round(percentile(bootstrapGBIs, 97.5) * 100) / 100
-    };
-  }
-
-  return ciByYear;
-}
+// GBI calculation functions removed - now using calculate-gbi.R for proper MSI methodology
 
 /**
  * Main GBI calculation function
@@ -829,11 +743,16 @@ async function calculateGBI(allData, transects, baselineYear = 2021) {
       // Call R script with extended timeout (2 minutes per species)
       const args = [visitsFile, countsFile, outputFile, species, baselineYear.toString()];
 
+      // Calculate bootstrap RDS file path for caching
+      const bootstrapDir = path.join(__dirname, '..', '.cache', 'rbms', 'bootstrap');
+      const bootstrapFile = path.join(bootstrapDir, `${speciesSafe}_boot.rds`);
+
       try {
         await rbmsUtils.callRbms(rScriptPath, args, 120000, {
           visitsFile,
           countsFile,
-          sourceDataFiles: [ALL_DATA_FILE, METADATA_FILE]
+          sourceDataFiles: [ALL_DATA_FILE, METADATA_FILE],
+          additionalFiles: [bootstrapFile]  // Cache the bootstrap RDS file
         }); // 2 minute timeout with caching
 
         // Read and validate results
@@ -946,96 +865,101 @@ async function calculateGBI(allData, transects, baselineYear = 2021) {
     return null;
   }
 
-  // Step 5: Calculate GBI for each year using geometric mean
-  const gbiByYear = {};
+  // Step 5: Calculate GBI using R script with proper MSI methodology
+  console.log('\n  Calculating GBI using Multi-Species Indicator (MSI) methodology...');
 
-  allYears.forEach(year => {
-    const speciesIndicesThisYear = {};
-    const indicesForGBI = [];
-
-    speciesWithTrends.forEach(species => {
-      const index = speciesTrends[species].annualIndices[year];
-      if (index !== undefined && index > 0) {
-        speciesIndicesThisYear[species] = index;
-        indicesForGBI.push(index);
-      }
-    });
-
-    if (indicesForGBI.length === 0) {
-      console.warn(`  Warning: No species indices for year ${year}`);
-      return;
-    }
-
-    const gbiValue = calculateGeometricMean(indicesForGBI);
-
-    // Count transects and visits for this year
-    const yearData = transformedData.filter(row => row.year === year);
-    const transectsThisYear = new Set(yearData.map(row => row.transectId));
-    const datesThisYear = new Set(yearData.map(row => row.date));
-
-    gbiByYear[year] = {
-      year,
-      gbiValue: Math.round(gbiValue * 100) / 100, // Round to 2 decimals
-      speciesIndices: speciesIndicesThisYear,
-      dataQuality: {
-        transectCount: transectsThisYear.size,
-        totalVisits: datesThisYear.size,
-        speciesWithData: Object.keys(speciesIndicesThisYear).length
-      }
-    };
-
-    console.log(`  ${year}: GBI=${gbiValue.toFixed(2)}, species=${Object.keys(speciesIndicesThisYear).length}`);
-  });
-
-  // Step 5.5: Calculate bootstrap confidence intervals
-  console.log('  Calculating 95% bootstrap confidence intervals...');
-  const confidenceIntervals = calculateBootstrapCI(speciesTrends, allYears, 1000);
-
-  // Merge CI data into gbiByYear
-  allYears.forEach(year => {
-    if (gbiByYear[year] && confidenceIntervals[year]) {
-      gbiByYear[year].ci_lower = confidenceIntervals[year].ci_lower;
-      gbiByYear[year].ci_upper = confidenceIntervals[year].ci_upper;
-    }
-  });
-
-  console.log(`  CI calculated for ${allYears.length} years`);
-
-  // Step 6: Compile metadata
-  const grasslandSpeciesList = allSpecies.map(species => ({
+  // Prepare species metadata for R script
+  const grasslandSpeciesList = speciesWithTrends.map(species => ({
     scientificName: species,
     type: GRASSLAND_SPECIES.widespread.has(species) ? 'widespread' : 'specialist'
   }));
 
   const transectsUsedList = activeQualityTransects.map(t => ({
     transectId: t.transectId,
-    transectName: t.transectName
-  })).sort((a, b) => a.transectName.localeCompare(b.transectName));
+    yearsActive: t.yearsActive,
+    avgVisitsPerYear: Math.round(t.avgVisitsPerYear * 10) / 10,
+    isActive: t.isActive
+  }));
 
-  const metadata = {
-    baselineYear,
+  const speciesMetadata = {
     grasslandSpecies: grasslandSpeciesList,
     qualityCriteria: {
       minYearsActive: 5,
-      minVisitsPerYear: 10
+      minVisitsPerYear: 5
     },
-    transectsUsed: transectsUsedList,
-    calculationMethod: 'rbms (GAM flight curves + GLM collated indices + geometric mean)',
-    confidenceInterval: {
-      method: 'species_bootstrap',
-      nIterations: 1000,
-      confidenceLevel: 0.95
+    transectsUsed: transectsUsedList
+  };
+
+  // Write species metadata to JSON for R script
+  const speciesMetadataFile = path.join(TEMP_RBMS_DIR, 'species_metadata.json');
+  fs.writeFileSync(speciesMetadataFile, JSON.stringify(speciesMetadata, null, 2));
+
+  // Prepare paths
+  const bootstrapDir = path.join(__dirname, '..', '.cache', 'rbms', 'bootstrap');
+  const gbiOutputFile = path.join(__dirname, '..', 'public', 'data', 'gbi-data.json');
+  const gbiRScript = path.join(__dirname, 'calculate-gbi.R');
+
+  // Call calculate-gbi.R
+  console.log(`  Calling calculate-gbi.R...`);
+  console.log(`    Bootstrap dir: ${bootstrapDir}`);
+  console.log(`    Output: ${gbiOutputFile}`);
+
+  try {
+    await rbmsUtils.callRbms(
+      gbiRScript,
+      [bootstrapDir, gbiOutputFile, baselineYear.toString(), speciesMetadataFile],
+      120000  // 2 minute timeout
+    );
+
+    console.log(`  ✓ GBI calculation complete`);
+
+    // Read the GBI results
+    if (!fs.existsSync(gbiOutputFile)) {
+      throw new Error('calculate-gbi.R did not produce output file');
     }
-  };
 
-  console.log(`  ✓ GBI calculated for ${Object.keys(gbiByYear).length} years using rbms`);
+    const gbiData = JSON.parse(fs.readFileSync(gbiOutputFile, 'utf8'));
+    const gbiByYear = gbiData.gbiByYear;
 
-  return {
-    metadata,
-    gbiByYear,
-    speciesTrends,
-    years: allYears
-  };
+    console.log(`  ✓ GBI calculated for ${Object.keys(gbiByYear).length} years using MSI`);
+
+    // Add data quality metrics (transect/visit counts per year)
+    allYears.forEach(year => {
+      if (gbiByYear[year]) {
+        const yearData = transformedData.filter(row => row.year === year);
+        const transectsThisYear = new Set(yearData.map(row => row.transectId));
+        const datesThisYear = new Set(yearData.map(row => row.date));
+
+        // Merge with existing dataQuality from R script
+        gbiByYear[year].dataQuality = {
+          ...gbiByYear[year].dataQuality,
+          transectCount: transectsThisYear.size,
+          totalVisits: datesThisYear.size
+        };
+      }
+    });
+
+    // Clean up temp metadata file
+    try {
+      fs.unlinkSync(speciesMetadataFile);
+    } catch (err) {
+      // Ignore cleanup errors
+    }
+
+    // Step 6: Return GBI data (metadata is already in gbiData from R script)
+    // Merge species trends for compatibility with existing code
+    return {
+      metadata: gbiData.metadata,
+      gbiByYear,
+      speciesTrends,
+      years: allYears
+    };
+
+  } catch (gbiError) {
+    console.error(`  Error calculating GBI with R script: ${gbiError.message}`);
+    console.error(`  Falling back to null result`);
+    return null;
+  }
 }
 
 /**
@@ -2140,8 +2064,15 @@ async function processData() {
   // Calculate and save flight curves for all species
   const flightCurvesData = await calculateAllFlightCurves(allData, results, 2021);
 
-  // Calculate and save regional phenology curves
-  const phenologyData = await calculateRegionalPhenology(allData, results, 2021);
+  // Calculate and save regional phenology curves (skip if --skip-regional flag is set)
+  const skipRegional = process.argv.includes('--skip-regional');
+  let phenologyData = null;
+
+  if (skipRegional) {
+    console.log('\n⏭️  Skipping regional phenology curves (--skip-regional flag set)');
+  } else {
+    phenologyData = await calculateRegionalPhenology(allData, results, 2021);
+  }
 
   // Write GBI data to file
   if (gbiData) {
