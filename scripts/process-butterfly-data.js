@@ -952,7 +952,8 @@ async function calculateGBI(allData, transects, baselineYear = 2021) {
       metadata: gbiData.metadata,
       gbiByYear,
       speciesTrends,
-      years: allYears
+      years: allYears,
+      gbiTrend: gbiData.gbiTrend
     };
 
   } catch (gbiError) {

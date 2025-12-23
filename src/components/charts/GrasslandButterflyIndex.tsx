@@ -25,6 +25,32 @@ interface GrasslandButterflyIndexProps {
   loading: boolean;
 }
 
+// Helper function to translate trend categories to Portuguese
+const getTrendCategoryLabel = (category: string): string => {
+  const labels: Record<string, string> = {
+    "Strong increase": "Aumento Forte",
+    "Moderate increase": "Aumento Moderado",
+    "Stable": "Estável",
+    "Uncertain": "Incerto",
+    "Moderate decline": "Declínio Moderado",
+    "Strong decline": "Declínio Forte"
+  };
+  return labels[category] || category;
+};
+
+// Helper function to get color based on trend category
+const getTrendColor = (category: string): string => {
+  const colors: Record<string, string> = {
+    "Strong increase": "#52c41a",
+    "Moderate increase": "#95de64",
+    "Stable": "#1890ff",
+    "Uncertain": "#faad14",
+    "Moderate decline": "#ff7875",
+    "Strong decline": "#cf1322"
+  };
+  return colors[category] || "#8c8c8c";
+};
+
 const chartOptions = {
   responsive: true,
   maintainAspectRatio: false,
@@ -403,24 +429,45 @@ function GrasslandButterflyIndex({ gbiData, loading }: GrasslandButterflyIndexPr
       size="small"
     >
       <Row gutter={[16, 16]} style={{ marginBottom: "16px" }}>
-        <Col xs={24} sm={12} md={6}>
-          <Statistic
-            title="Índice Atual"
-            value={latestGBI.toFixed(2)}
-            suffix={`(${latestYear})`}
-            valueStyle={{ color: trendPercent >= 0 ? "#3f8600" : "#cf1322" }}
-          />
+        <Col xs={24} sm={12} md={8}>
+          {gbiData.gbiTrend ? (
+            <Tooltip
+              title={
+                <div>
+                  <div>Taxa anual: {gbiData.gbiTrend.pc1.toFixed(1)}% [{gbiData.gbiTrend.pc1CI.lower.toFixed(1)}%, {gbiData.gbiTrend.pc1CI.upper.toFixed(1)}%]</div>
+                  <div>Mudança total: {gbiData.gbiTrend.pcn.toFixed(1)}% [{gbiData.gbiTrend.pcnCI.lower.toFixed(1)}%, {gbiData.gbiTrend.pcnCI.upper.toFixed(1)}%]</div>
+                  <div style={{ marginTop: 4, fontSize: 11, opacity: 0.8 }}>
+                    Classificação baseada em intervalos de confiança de 95% da taxa de mudança anual
+                  </div>
+                </div>
+              }
+            >
+              <div style={{ cursor: "help" }}>
+                <Statistic
+                  title={
+                    <span>
+                      Tendência <InfoCircleOutlined style={{ fontSize: 12 }} />
+                    </span>
+                  }
+                  value={`${getTrendCategoryLabel(gbiData.gbiTrend.category)} (${gbiData.gbiTrend.pc1.toFixed(1)}%/ano)`}
+                  valueStyle={{
+                    color: getTrendColor(gbiData.gbiTrend.category),
+                    fontSize: 16
+                  }}
+                />
+              </div>
+            </Tooltip>
+          ) : (
+            <Statistic
+              title="Tendência"
+              value={Math.abs(trendPercent).toFixed(1)}
+              prefix={trendPercent >= 0 ? "+" : "-"}
+              suffix="%"
+              valueStyle={{ color: trendPercent >= 0 ? "#3f8600" : "#cf1322" }}
+            />
+          )}
         </Col>
-        <Col xs={24} sm={12} md={6}>
-          <Statistic
-            title="Tendência"
-            value={Math.abs(trendPercent).toFixed(1)}
-            prefix={trendPercent >= 0 ? "+" : "-"}
-            suffix="%"
-            valueStyle={{ color: trendPercent >= 0 ? "#3f8600" : "#cf1322" }}
-          />
-        </Col>
-        <Col xs={24} sm={12} md={6}>
+        <Col xs={24} sm={12} md={8}>
           <Popover
             content={
               <div style={{ maxWidth: 400, maxHeight: 400, overflowY: "auto" }}>
@@ -522,7 +569,7 @@ function GrasslandButterflyIndex({ gbiData, loading }: GrasslandButterflyIndexPr
             </div>
           </Popover>
         </Col>
-        <Col xs={24} sm={12} md={6}>
+        <Col xs={24} sm={12} md={8}>
           <Popover
             content={
               <div style={{ maxWidth: 400, maxHeight: 400, overflowY: "auto" }}>

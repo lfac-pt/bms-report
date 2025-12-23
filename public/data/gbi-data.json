@@ -1029,5 +1029,23 @@
     2023,
     2024,
     2025
-  ]
+  ],
+  "gbiTrend": {
+    "category": "Moderate decline",
+    "rate": 0.9722,
+    "rateCI": {
+      "lower": 0.8633,
+      "upper": 0.9908
+    },
+    "pcn": -10.66,
+    "pcnCI": {
+      "lower": -44.45,
+      "upper": -3.64
+    },
+    "pc1": -2.78,
+    "pc1CI": {
+      "lower": -13.67,
+      "upper": -0.92
+    }
+  }
 }

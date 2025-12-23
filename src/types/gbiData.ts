@@ -110,6 +110,28 @@ export interface SpeciesTrend {
 }
 
 /**
+ * GBI overall trend with confidence intervals
+ */
+export interface GBITrend {
+  category: string; // "Increasing", "Decreasing", "Stable", "Uncertain"
+  rate: number; // Multiplicative annual rate (e.g., 1.031 = 3.1% increase)
+  rateCI: {
+    lower: number;
+    upper: number;
+  };
+  pcn: number; // Percent change over n years
+  pcnCI: {
+    lower: number;
+    upper: number;
+  };
+  pc1: number; // Percent change per year
+  pc1CI: {
+    lower: number;
+    upper: number;
+  };
+}
+
+/**
  * Complete GBI dataset structure
  */
 export interface GBIData {
@@ -117,4 +139,5 @@ export interface GBIData {
   gbiByYear: Record<number, YearlyGBI>;
   speciesTrends: Record<string, SpeciesTrend>;
   years: number[];
+  gbiTrend?: GBITrend | null;
 }
