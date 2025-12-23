@@ -64,6 +64,7 @@ export interface YearlyGBI {
   gbiValue: number;
   ci_lower: number | null;
   ci_upper: number | null;
+  smoothedValue: number;
   speciesIndices: Record<string, number>;
   dataQuality: DataQuality;
 }

@@ -153,6 +153,7 @@ function GrasslandButterflyIndex({ gbiData, loading }: GrasslandButterflyIndexPr
   // Prepare chart data
   const labels = years.map(year => year.toString());
   const gbiValues = years.map(year => gbiByYear[year].gbiValue);
+  const smoothedValues = years.map(year => gbiByYear[year].smoothedValue);
 
   // Prepare CI band data
   const ciLowerData = years.map(
@@ -254,16 +255,30 @@ function GrasslandButterflyIndex({ gbiData, loading }: GrasslandButterflyIndexPr
       });
     }
 
+    // Add trend line (LOESS smoothed)
+    baseDatasets.push({
+      label: "Linha de Tendência",
+      data: smoothedValues,
+      borderColor: "#1890ff",
+      backgroundColor: "#1890ff",
+      borderWidth: 4,
+      pointRadius: 0,
+      pointHoverRadius: 0,
+      tension: 0.4,
+      fill: false,
+      order: 2,
+    });
+
     baseDatasets.push(
       {
         label: "GBI (Todas as Espécies)",
         data: gbiValues,
         borderColor: "#1890ff",
         backgroundColor: "#1890ff",
-        borderWidth: 3,
+        borderWidth: 0,
         pointRadius: 5,
         pointHoverRadius: 7,
-        tension: 0.2,
+        showLine: false,
         fill: false,
         order: 1,
       },
@@ -272,7 +287,7 @@ function GrasslandButterflyIndex({ gbiData, loading }: GrasslandButterflyIndexPr
         data: generalistIndices,
         borderColor: "#52c41a",
         backgroundColor: "#52c41a",
-        borderWidth: 3,
+        borderWidth: 2,
         pointRadius: 4,
         pointHoverRadius: 6,
         tension: 0.2,
@@ -284,7 +299,7 @@ function GrasslandButterflyIndex({ gbiData, loading }: GrasslandButterflyIndexPr
         data: specialistIndices,
         borderColor: "#722ed1",
         backgroundColor: "#722ed1",
-        borderWidth: 3,
+        borderWidth: 2,
         pointRadius: 4,
         pointHoverRadius: 6,
         tension: 0.2,
@@ -338,16 +353,30 @@ function GrasslandButterflyIndex({ gbiData, loading }: GrasslandButterflyIndexPr
       });
     }
 
+    // Add trend line (LOESS smoothed)
+    baseDatasets.push({
+      label: "Linha de Tendência",
+      data: smoothedValues,
+      borderColor: "#1890ff",
+      backgroundColor: "#1890ff",
+      borderWidth: 4,
+      pointRadius: 0,
+      pointHoverRadius: 0,
+      tension: 0.4,
+      fill: false,
+      order: 2,
+    });
+
     // Main GBI line
     baseDatasets.push({
       label: "GBI (Todas as Espécies)",
       data: gbiValues,
       borderColor: "#1890ff",
       backgroundColor: "#1890ff",
-      borderWidth: 3,
+      borderWidth: 0,
       pointRadius: 5,
       pointHoverRadius: 7,
-      tension: 0.2,
+      showLine: false,
       fill: false,
       order: 1,
     });
