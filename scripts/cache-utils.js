@@ -3,7 +3,7 @@ const path = require('path');
 const crypto = require('crypto');
 
 const CACHE_DIR = path.join(__dirname, '..', '.cache', 'rbms');
-const CACHE_VERSION = 'v2'; // Increment when cache format changes
+const CACHE_VERSION = 'v3'; // Increment when cache format changes (added additionalFiles support)
 
 /**
  * Calculate MD5 hash of a file
@@ -63,9 +63,10 @@ function generateCacheKey(rScriptPath, visitsFile, countsFile, args, options = {
  * Get cached result for an rbms call
  * @param {string} cacheKey - Cache key
  * @param {string} outputFile - Optional output file path to restore
+ * @param {Array<string>} additionalFiles - Optional additional file paths to restore
  * @returns {Object|null} Cached result (stdout) or null if not found/invalid
  */
-function getCachedResult(cacheKey, outputFile = null) {
+function getCachedResult(cacheKey, outputFile = null, additionalFiles = []) {
   const cacheFile = path.join(CACHE_DIR, `${cacheKey}.json`);
 
   if (!fs.existsSync(cacheFile)) {
@@ -84,6 +85,23 @@ function getCachedResult(cacheKey, outputFile = null) {
       }
     }
 
+    // Restore additional binary files (e.g., RDS bootstrap files)
+    if (cached.additionalFiles && additionalFiles.length > 0) {
+      additionalFiles.forEach((filePath, index) => {
+        if (cached.additionalFiles[index]) {
+          try {
+            const buffer = Buffer.from(cached.additionalFiles[index], 'base64');
+            // Ensure directory exists
+            const dir = path.dirname(filePath);
+            fs.mkdirSync(dir, { recursive: true });
+            fs.writeFileSync(filePath, buffer);
+          } catch (error) {
+            console.warn(`  Warning: Failed to restore additional file ${filePath}: ${error.message}`);
+          }
+        }
+      });
+    }
+
     // Return stdout (or legacy 'result' field for backwards compatibility)
     return cached.stdout || cached.result;
   } catch (error) {
@@ -97,8 +115,9 @@ function getCachedResult(cacheKey, outputFile = null) {
  * @param {string} cacheKey - Cache key
  * @param {string} stdout - R script stdout
  * @param {string} outputFile - Optional output file path to cache
+ * @param {Array<string>} additionalFiles - Optional additional binary file paths to cache
  */
-function setCachedResult(cacheKey, stdout, outputFile = null) {
+function setCachedResult(cacheKey, stdout, outputFile = null, additionalFiles = []) {
   // Create cache directory if it doesn't exist (recursive is idempotent)
   fs.mkdirSync(CACHE_DIR, { recursive: true });
 
@@ -115,6 +134,24 @@ function setCachedResult(cacheKey, stdout, outputFile = null) {
     } catch (error) {
       console.warn(`  Warning: Failed to read output file ${outputFile} for caching: ${error.message}`);
     }
+  }
+
+  // Cache additional binary files (e.g., RDS bootstrap files) as base64
+  if (additionalFiles.length > 0) {
+    cached.additionalFiles = [];
+    additionalFiles.forEach((filePath) => {
+      if (fs.existsSync(filePath)) {
+        try {
+          const buffer = fs.readFileSync(filePath);
+          cached.additionalFiles.push(buffer.toString('base64'));
+        } catch (error) {
+          console.warn(`  Warning: Failed to read additional file ${filePath} for caching: ${error.message}`);
+          cached.additionalFiles.push(null);
+        }
+      } else {
+        cached.additionalFiles.push(null);
+      }
+    });
   }
 
   try {

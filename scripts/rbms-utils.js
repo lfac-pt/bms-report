@@ -234,7 +234,7 @@ function callRbms(rScriptPath, args, timeout = 120000, options = {}) {
       // Extract output file path from args (typically 3rd argument in rbms scripts)
       outputFile = options.outputFile || (args.length > 2 ? args[2] : null);
 
-      const cachedResult = cacheUtils.getCachedResult(cacheKey, outputFile);
+      const cachedResult = cacheUtils.getCachedResult(cacheKey, outputFile, options.additionalFiles || []);
       if (cachedResult) {
         // console.log(`    [cache hit]`);
         return resolve(cachedResult);
@@ -277,7 +277,7 @@ function callRbms(rScriptPath, args, timeout = 120000, options = {}) {
       } else {
         // Cache the result if caching is enabled (reuse previously computed cacheKey)
         if (cacheKey) {
-          cacheUtils.setCachedResult(cacheKey, stdout, outputFile);
+          cacheUtils.setCachedResult(cacheKey, stdout, outputFile, options.additionalFiles || []);
         }
         resolve(stdout);
       }

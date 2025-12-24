@@ -18,11 +18,38 @@ import { InfoCircleOutlined, MinusCircleOutlined } from "@ant-design/icons";
 import { GBIData } from "../../types/gbiData";
 import SpeciesLink from "../SpeciesLink";
 import { useState } from "react";
+import { GRASSLAND_SPECIES } from "../../utils/grasslandSpecies";
 
 interface GrasslandButterflyIndexProps {
   gbiData: GBIData | null;
   loading: boolean;
 }
+
+// Helper function to translate trend categories to Portuguese
+const getTrendCategoryLabel = (category: string): string => {
+  const labels: Record<string, string> = {
+    "Strong increase": "Aumento Forte",
+    "Moderate increase": "Aumento Moderado",
+    Stable: "Estável",
+    Uncertain: "Incerto",
+    "Moderate decline": "Declínio Moderado",
+    "Strong decline": "Declínio Forte",
+  };
+  return labels[category] || category;
+};
+
+// Helper function to get color based on trend category
+const getTrendColor = (category: string): string => {
+  const colors: Record<string, string> = {
+    "Strong increase": "#52c41a",
+    "Moderate increase": "#95de64",
+    Stable: "#1890ff",
+    Uncertain: "#faad14",
+    "Moderate decline": "#ff7875",
+    "Strong decline": "#cf1322",
+  };
+  return colors[category] || "#8c8c8c";
+};
 
 const chartOptions = {
   responsive: true,
@@ -126,6 +153,7 @@ function GrasslandButterflyIndex({ gbiData, loading }: GrasslandButterflyIndexPr
   // Prepare chart data
   const labels = years.map(year => year.toString());
   const gbiValues = years.map(year => gbiByYear[year].gbiValue);
+  const smoothedValues = years.map(year => gbiByYear[year].smoothedValue);
 
   // Prepare CI band data
   const ciLowerData = years.map(
@@ -227,16 +255,30 @@ function GrasslandButterflyIndex({ gbiData, loading }: GrasslandButterflyIndexPr
       });
     }
 
+    // Add trend line (LOESS smoothed)
+    baseDatasets.push({
+      label: "Linha de Tendência",
+      data: smoothedValues,
+      borderColor: "#1890ff",
+      backgroundColor: "#1890ff",
+      borderWidth: 4,
+      pointRadius: 0,
+      pointHoverRadius: 0,
+      tension: 0.4,
+      fill: false,
+      order: 2,
+    });
+
     baseDatasets.push(
       {
         label: "GBI (Todas as Espécies)",
         data: gbiValues,
         borderColor: "#1890ff",
         backgroundColor: "#1890ff",
-        borderWidth: 3,
+        borderWidth: 0,
         pointRadius: 5,
         pointHoverRadius: 7,
-        tension: 0.2,
+        showLine: false,
         fill: false,
         order: 1,
       },
@@ -245,7 +287,7 @@ function GrasslandButterflyIndex({ gbiData, loading }: GrasslandButterflyIndexPr
         data: generalistIndices,
         borderColor: "#52c41a",
         backgroundColor: "#52c41a",
-        borderWidth: 3,
+        borderWidth: 2,
         pointRadius: 4,
         pointHoverRadius: 6,
         tension: 0.2,
@@ -257,7 +299,7 @@ function GrasslandButterflyIndex({ gbiData, loading }: GrasslandButterflyIndexPr
         data: specialistIndices,
         borderColor: "#722ed1",
         backgroundColor: "#722ed1",
-        borderWidth: 3,
+        borderWidth: 2,
         pointRadius: 4,
         pointHoverRadius: 6,
         tension: 0.2,
@@ -311,16 +353,30 @@ function GrasslandButterflyIndex({ gbiData, loading }: GrasslandButterflyIndexPr
       });
     }
 
+    // Add trend line (LOESS smoothed)
+    baseDatasets.push({
+      label: "Linha de Tendência",
+      data: smoothedValues,
+      borderColor: "#1890ff",
+      backgroundColor: "#1890ff",
+      borderWidth: 4,
+      pointRadius: 0,
+      pointHoverRadius: 0,
+      tension: 0.4,
+      fill: false,
+      order: 2,
+    });
+
     // Main GBI line
     baseDatasets.push({
       label: "GBI (Todas as Espécies)",
       data: gbiValues,
       borderColor: "#1890ff",
       backgroundColor: "#1890ff",
-      borderWidth: 3,
+      borderWidth: 0,
       pointRadius: 5,
       pointHoverRadius: 7,
-      tension: 0.2,
+      showLine: false,
       fill: false,
       order: 1,
     });
@@ -402,24 +458,53 @@ function GrasslandButterflyIndex({ gbiData, loading }: GrasslandButterflyIndexPr
       size="small"
     >
       <Row gutter={[16, 16]} style={{ marginBottom: "16px" }}>
-        <Col xs={24} sm={12} md={6}>
-          <Statistic
-            title="Índice Atual"
-            value={latestGBI.toFixed(2)}
-            suffix={`(${latestYear})`}
-            valueStyle={{ color: trendPercent >= 0 ? "#3f8600" : "#cf1322" }}
-          />
+        <Col xs={24} sm={12} md={8}>
+          {gbiData.gbiTrend ? (
+            <Tooltip
+              title={
+                <div>
+                  <div>
+                    Taxa anual: {gbiData.gbiTrend.pc1.toFixed(1)}% [
+                    {gbiData.gbiTrend.pc1CI.lower.toFixed(1)}%,{" "}
+                    {gbiData.gbiTrend.pc1CI.upper.toFixed(1)}%]
+                  </div>
+                  <div>
+                    Mudança total: {gbiData.gbiTrend.pcn.toFixed(1)}% [
+                    {gbiData.gbiTrend.pcnCI.lower.toFixed(1)}%,{" "}
+                    {gbiData.gbiTrend.pcnCI.upper.toFixed(1)}%]
+                  </div>
+                  <div style={{ marginTop: 4, fontSize: 11, opacity: 0.8 }}>
+                    Classificação baseada em intervalos de confiança de 95% da taxa de mudança anual
+                  </div>
+                </div>
+              }
+            >
+              <div style={{ cursor: "help" }}>
+                <Statistic
+                  title={
+                    <span>
+                      Tendência <InfoCircleOutlined style={{ fontSize: 12 }} />
+                    </span>
+                  }
+                  value={`${getTrendCategoryLabel(gbiData.gbiTrend.category)} (${gbiData.gbiTrend.pc1.toFixed(1)}%/ano)`}
+                  valueStyle={{
+                    color: getTrendColor(gbiData.gbiTrend.category),
+                    fontSize: 16,
+                  }}
+                />
+              </div>
+            </Tooltip>
+          ) : (
+            <Statistic
+              title="Tendência"
+              value={Math.abs(trendPercent).toFixed(1)}
+              prefix={trendPercent >= 0 ? "+" : "-"}
+              suffix="%"
+              valueStyle={{ color: trendPercent >= 0 ? "#3f8600" : "#cf1322" }}
+            />
+          )}
         </Col>
-        <Col xs={24} sm={12} md={6}>
-          <Statistic
-            title="Tendência"
-            value={Math.abs(trendPercent).toFixed(1)}
-            prefix={trendPercent >= 0 ? "+" : "-"}
-            suffix="%"
-            valueStyle={{ color: trendPercent >= 0 ? "#3f8600" : "#cf1322" }}
-          />
-        </Col>
-        <Col xs={24} sm={12} md={6}>
+        <Col xs={24} sm={12} md={8}>
           <Popover
             content={
               <div style={{ maxWidth: 400, maxHeight: 400, overflowY: "auto" }}>
@@ -439,15 +524,11 @@ function GrasslandButterflyIndex({ gbiData, loading }: GrasslandButterflyIndexPr
                     strong
                     style={{ display: "block", marginBottom: 8, color: "#52c41a" }}
                   >
-                    Generalistas (
-                    {metadata.grasslandSpecies.filter(s => s.type === "widespread").length})
+                    Generalistas ({GRASSLAND_SPECIES.widespread.length})
                   </Typography.Text>
                   <List
                     size="small"
-                    dataSource={metadata.grasslandSpecies
-                      .filter(s => s.type === "widespread")
-                      .map(s => s.scientificName)
-                      .sort()}
+                    dataSource={[...GRASSLAND_SPECIES.widespread].sort()}
                     renderItem={species => {
                       const hasData = speciesWithTrends.has(species);
                       return (
@@ -477,15 +558,11 @@ function GrasslandButterflyIndex({ gbiData, loading }: GrasslandButterflyIndexPr
                     strong
                     style={{ display: "block", marginBottom: 8, color: "#1890ff" }}
                   >
-                    Especialistas (
-                    {metadata.grasslandSpecies.filter(s => s.type === "specialist").length})
+                    Especialistas ({GRASSLAND_SPECIES.specialist.length})
                   </Typography.Text>
                   <List
                     size="small"
-                    dataSource={metadata.grasslandSpecies
-                      .filter(s => s.type === "specialist")
-                      .map(s => s.scientificName)
-                      .sort()}
+                    dataSource={[...GRASSLAND_SPECIES.specialist].sort()}
                     renderItem={species => {
                       const hasData = speciesWithTrends.has(species);
                       return (
@@ -524,12 +601,12 @@ function GrasslandButterflyIndex({ gbiData, loading }: GrasslandButterflyIndexPr
                   </span>
                 }
                 value={speciesCount}
-                suffix={`de ${metadata.grasslandSpecies.length}`}
+                suffix={`de ${GRASSLAND_SPECIES.widespread.length + GRASSLAND_SPECIES.specialist.length}`}
               />
             </div>
           </Popover>
         </Col>
-        <Col xs={24} sm={12} md={6}>
+        <Col xs={24} sm={12} md={8}>
           <Popover
             content={
               <div style={{ maxWidth: 400, maxHeight: 400, overflowY: "auto" }}>

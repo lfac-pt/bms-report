@@ -374,12 +374,34 @@ if (nrow(collated_by_year) == 0) {
 # Normalize to baseline year = 100
 baseline_row <- collated_by_year[collated_by_year$year == baseline_year, ]
 
+# Check if baseline year exists and has valid non-zero index
 if (nrow(baseline_row) == 0) {
-  cat(paste("Warning: Baseline year", baseline_year, "not found in results. Using first year.\n"))
-  baseline_value <- collated_by_year$index[1]
-  baseline_year_used <- collated_by_year$year[1]
+  cat(paste("Warning: Baseline year", baseline_year, "not found in results.\n"))
+  baseline_value <- NULL
 } else {
   baseline_value <- baseline_row$index[1]
+  # Check if baseline value is zero, NA, NaN, or Inf
+  if (is.na(baseline_value) || !is.finite(baseline_value) || baseline_value == 0) {
+    cat(paste("Warning: Baseline year", baseline_year, "has invalid index (", baseline_value, ").\n"))
+    baseline_value <- NULL
+  }
+}
+
+# If baseline is invalid, find first year with valid non-zero index
+if (is.null(baseline_value)) {
+  cat("Searching for first year with valid non-zero index...\n")
+  valid_rows <- collated_by_year[!is.na(collated_by_year$index) &
+                                  is.finite(collated_by_year$index) &
+                                  collated_by_year$index > 0, ]
+
+  if (nrow(valid_rows) == 0) {
+    stop("No valid non-zero indices found in any year")
+  }
+
+  baseline_value <- valid_rows$index[1]
+  baseline_year_used <- valid_rows$year[1]
+  cat(paste("Using first valid year", baseline_year_used, "as baseline\n"))
+} else {
   baseline_year_used <- baseline_year
 }
 
@@ -418,33 +440,63 @@ if (exists("collated_result_all") && !is.null(collated_result_all) && nrow(colla
     # Filter to only bootstrap samples (exclude original bootID=0)
     boot_only <- collated_result_all[collated_result_all$BOOTi != 0, ]
 
-    # Calculate quantiles for each year
+    # Get unique bootstrap IDs and years
+    unique_boot_ids <- unique(boot_only$BOOTi)
     unique_years <- unique(collated_by_year$year)
 
-    for (year in unique_years) {
-      year_boot_data <- boot_only[boot_only$M_YEAR == year, ]
+    # For each bootstrap sample, normalize by its own baseline year value
+    # This is the correct approach: normalize first, then take percentiles
+    normalized_boots <- list()
 
-      if (nrow(year_boot_data) > 10) {  # Need enough bootstrap samples
-        # Get bootstrap index values
-        boot_indices <- year_boot_data[[index_col]]
-        boot_indices <- boot_indices[!is.na(boot_indices)]
+    for (boot_id in unique_boot_ids) {
+      boot_data <- collated_result_all[collated_result_all$BOOTi == boot_id, ]
 
-        if (length(boot_indices) > 10) {
-          # Calculate percentiles
-          ci_lower_raw <- quantile(boot_indices, 0.025, na.rm = TRUE)
-          ci_upper_raw <- quantile(boot_indices, 0.975, na.rm = TRUE)
+      # Find this bootstrap's baseline year COL_INDEX
+      baseline_row_boot <- boot_data[boot_data$M_YEAR == baseline_year_used, ]
 
-          # Normalize CI bounds the same way we normalized the point estimate
-          ci_lower_norm <- (ci_lower_raw / baseline_value) * 100
-          ci_upper_norm <- (ci_upper_raw / baseline_value) * 100
+      if (nrow(baseline_row_boot) > 0) {
+        baseline_val_boot <- baseline_row_boot[[index_col]][1]
 
-          confidence_intervals[[as.character(year)]] <- list(
-            ci_lower = round(ci_lower_norm, 2),
-            ci_upper = round(ci_upper_norm, 2)
-          )
-        } else {
-          confidence_intervals[[as.character(year)]] <- list(ci_lower = NULL, ci_upper = NULL)
+        # Check if baseline is valid (non-zero, finite)
+        if (!is.na(baseline_val_boot) && is.finite(baseline_val_boot) && baseline_val_boot > 0) {
+          # Normalize all years in this bootstrap by its baseline
+          for (year in unique_years) {
+            year_row <- boot_data[boot_data$M_YEAR == year, ]
+            if (nrow(year_row) > 0) {
+              year_val <- year_row[[index_col]][1]
+              if (!is.na(year_val) && is.finite(year_val)) {
+                normalized_val <- (year_val / baseline_val_boot) * 100
+
+                # Store normalized value
+                if (is.null(normalized_boots[[as.character(year)]])) {
+                  normalized_boots[[as.character(year)]] <- c()
+                }
+                normalized_boots[[as.character(year)]] <- c(
+                  normalized_boots[[as.character(year)]],
+                  normalized_val
+                )
+              }
+            }
+          }
         }
+      }
+    }
+
+    # Now calculate percentiles from the normalized bootstrap distributions
+    for (year in unique_years) {
+      if (!is.null(normalized_boots[[as.character(year)]]) &&
+          length(normalized_boots[[as.character(year)]]) > 10) {
+
+        norm_values <- normalized_boots[[as.character(year)]]
+
+        # Calculate percentiles directly on normalized values
+        ci_lower_norm <- quantile(norm_values, 0.025, na.rm = TRUE)
+        ci_upper_norm <- quantile(norm_values, 0.975, na.rm = TRUE)
+
+        confidence_intervals[[as.character(year)]] <- list(
+          ci_lower = round(ci_lower_norm, 2),
+          ci_upper = round(ci_upper_norm, 2)
+        )
       } else {
         confidence_intervals[[as.character(year)]] <- list(ci_lower = NULL, ci_upper = NULL)
       }
@@ -464,6 +516,9 @@ cat("Calculating trend statistics from bootstrap samples...\n")
 calculate_trend_with_ci <- function(collind_boot, baseline_year) {
   # Function to fit trend for one bootstrap sample
   fit_trend <- function(boot_df) {
+    # Filter out rows with NA, NaN, or Inf TRMOBS values
+    boot_df <- boot_df[!is.na(boot_df$TRMOBS) & is.finite(boot_df$TRMOBS), ]
+
     if (nrow(boot_df) < 3) return(data.frame(rate=NA, pc1=NA))
 
     # Fit log-linear regression: lm(TRMOBS ~ M_YEAR)
@@ -571,7 +626,12 @@ if (exists("collated_result_all") && !is.null(collated_result_all) && nrow(colla
   cat("Calculating trend statistics...\n")
 
   # Add TRMOBS column (log10-transformed collated index) for trend calculation
-  collated_result_all$TRMOBS <- log10(collated_result_all$COL_INDEX)
+  # Filter out zero and negative values before log transformation to avoid -Inf
+  collated_result_all$TRMOBS <- ifelse(
+    collated_result_all$COL_INDEX > 0,
+    log10(collated_result_all$COL_INDEX),
+    NA
+  )
 
   trend_statistics <- calculate_trend_with_ci(collated_result_all, baseline_year)
   if (!is.na(trend_statistics$pc1)) {
@@ -592,30 +652,88 @@ if (exists("collated_result_all") && !is.null(collated_result_all) && nrow(colla
   )
 }
 
-# Step 11b: Calculate linear trend line for visualization
-# This calculates a simple linear regression on normalized indices
-# matching the approach in the Desktop/scripts/Maniola Jurtina.R script
+# Step 11b: Calculate LOESS smoothed trend line for visualization
+# This uses LOESS smoothing to match the GBI methodology
+# Filters out zero/invalid values to match trend_statistics methodology
 trend_line <- list()
 if (nrow(collated_by_year) >= 2) {
-  years_numeric <- as.numeric(collated_by_year$year)
-  indices_values <- collated_by_year$index_normalized
+  # Filter out years where the original COL_INDEX was zero or invalid
+  # This ensures trend_line matches trend_statistics methodology
+  valid_indices <- collated_by_year$index_normalized > 0 &
+                   !is.na(collated_by_year$index_normalized) &
+                   is.finite(collated_by_year$index_normalized)
 
-  # Linear regression on normalized indices
-  lm_trend <- try(lm(indices_values ~ years_numeric), silent = TRUE)
+  collated_valid <- collated_by_year[valid_indices, ]
 
-  if (!inherits(lm_trend, "try-error")) {
-    # Calculate predicted values for each year
-    predicted_values <- predict(lm_trend, newdata = data.frame(years_numeric = years_numeric))
+  if (nrow(collated_valid) >= 3) {  # LOESS needs at least 3 points
+    years_numeric <- as.numeric(collated_valid$year)
+    indices_values <- collated_valid$index_normalized
 
-    # Store as named list by year
-    for (i in seq_along(collated_by_year$year)) {
-      trend_line[[as.character(collated_by_year$year[i])]] <- round(predicted_values[i], 2)
+    # Adjust LOESS span based on number of data points
+    # For short time series, use larger span for more smoothing
+    # For longer time series, use standard 0.75 (EU GBI standard)
+    n_years <- length(years_numeric)
+    loess_span <- if (n_years <= 5) {
+      1.0  # Use all points for short series (maximum smoothing)
+    } else if (n_years <= 7) {
+      0.9  # Still high smoothing for medium-short series
+    } else {
+      0.75  # Standard EU GBI span for longer series
     }
 
-    cat("  Linear trend line calculated\n")
+    # LOESS smoothing on normalized indices
+    loess_trend <- try(
+      loess(indices_values ~ years_numeric,
+            span = loess_span,
+            degree = 2,
+            na.action = na.exclude),
+      silent = TRUE
+    )
+
+    if (!inherits(loess_trend, "try-error")) {
+      # Calculate predicted values for valid years only
+      predicted_values <- predict(loess_trend)
+
+      # Store as named list by year
+      for (i in seq_along(collated_valid$year)) {
+        trend_line[[as.character(collated_valid$year[i])]] <- round(predicted_values[i], 2)
+      }
+
+      cat("  LOESS smoothed trend line calculated\n")
+    } else {
+      cat("Warning: Could not calculate LOESS trend line\n")
+    }
   } else {
-    cat("Warning: Could not calculate linear trend line\n")
+    cat("Warning: Not enough valid data points for LOESS (need at least 3)\n")
   }
+}
+
+# Step 11c: Save bootstrap results for multi-species indicator (GBI) calculation
+# Export full bootstrap distribution as RDS file for proper MSI methodology
+if (exists("collated_result_all") && !is.null(collated_result_all) && nrow(collated_result_all) > 0) {
+  cat("Saving bootstrap results for GBI calculation...\n")
+
+  # Determine bootstrap output directory
+  # Navigate from output_file (/path/to/raw-data/temp-rbms/output_species.json)
+  # up two levels to project root, then to .cache/rbms/bootstrap
+  project_root <- dirname(dirname(dirname(output_file)))  # temp-rbms -> raw-data -> project root
+  bootstrap_output_dir <- file.path(project_root, ".cache", "rbms", "bootstrap")
+  dir.create(bootstrap_output_dir, recursive = TRUE, showWarnings = FALSE)
+  cat(sprintf("  Bootstrap output dir: %s\n", bootstrap_output_dir))
+
+  # Create safe filename from species name
+  species_safe <- gsub(" ", "_", tolower(species_name))
+  bootstrap_file <- file.path(bootstrap_output_dir, paste0(species_safe, "_boot.rds"))
+
+  # Prepare data for MSI: Add SPECIES column and keep only necessary columns
+  bootstrap_data <- collated_result_all[, c("BOOTi", "M_YEAR", "COL_INDEX", "TRMOBS")]
+  bootstrap_data$SPECIES <- species_name
+
+  # Save as RDS
+  saveRDS(bootstrap_data, bootstrap_file)
+  cat(sprintf("  Bootstrap data saved: %s\n", basename(bootstrap_file)))
+} else {
+  cat("Warning: No bootstrap data available for GBI calculation\n")
 }
 
 # Step 12: Compile data quality metrics

@@ -64,6 +64,7 @@ export interface YearlyGBI {
   gbiValue: number;
   ci_lower: number | null;
   ci_upper: number | null;
+  smoothedValue: number;
   speciesIndices: Record<string, number>;
   dataQuality: DataQuality;
 }
@@ -105,8 +106,31 @@ export interface SpeciesTrend {
   slope: number;
   yearsWithData: number[];
   annualIndices: Record<number, number>;
+  trendLine?: Record<number, number>;
   confidenceIntervals?: Record<number, { ci_lower: number | null; ci_upper: number | null }>;
   trendClassification?: TrendClassification;
+}
+
+/**
+ * GBI overall trend with confidence intervals
+ */
+export interface GBITrend {
+  category: string; // "Increasing", "Decreasing", "Stable", "Uncertain"
+  rate: number; // Multiplicative annual rate (e.g., 1.031 = 3.1% increase)
+  rateCI: {
+    lower: number;
+    upper: number;
+  };
+  pcn: number; // Percent change over n years
+  pcnCI: {
+    lower: number;
+    upper: number;
+  };
+  pc1: number; // Percent change per year
+  pc1CI: {
+    lower: number;
+    upper: number;
+  };
 }
 
 /**
@@ -117,4 +141,5 @@ export interface GBIData {
   gbiByYear: Record<number, YearlyGBI>;
   speciesTrends: Record<string, SpeciesTrend>;
   years: number[];
+  gbiTrend?: GBITrend | null;
 }
