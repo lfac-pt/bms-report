@@ -6,6 +6,12 @@
 # Usage: Rscript calculate-gbi.R <bootstrap_dir> <output_json> <baseline_year> <species_metadata_json>
 #
 
+if (!require("data.table", quietly = TRUE)) {
+  install.packages("data.table", repos = "http://cran.us.r-project.org")
+}
+if (!require("jsonlite", quietly = TRUE)) {
+  install.packages("jsonlite", repos = "http://cran.us.r-project.org")
+}
 library(data.table)
 library(jsonlite)
 
