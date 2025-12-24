@@ -130,6 +130,14 @@ produce_indicator0 <- function(collind_region0, interval = "decreasing") {
     reshape2::dcast(collind_region0, year ~ SPECIES, value.var = "TRMOBS100")
   )[, c("year", "indicator")]
 
+  # Validate that baseline year exists in the data
+  if (!(baseline_year %in% indicator0[, "year"])) {
+    warning(sprintf(
+      "Baseline year %d not found in indicator data (data spans %d-%d). Indicator values will not be anchored to the specified baseline.",
+      baseline_year, min(indicator0[, "year"]), max(indicator0[, "year"])
+    ))
+  }
+
   # NOTE: Do NOT rescale to last year = 100 before LOESS smoothing
   # This must match the bootstrap approach to ensure CIs are valid
   # The "decreasing interval" effect happens naturally from bootstrap variation
@@ -207,6 +215,12 @@ produce_indicators_boot <- function(collind_region_boot) {
 
 #' Add confidence intervals to indicator from bootstrap samples
 add_indicator_CI <- function(msi0, msi_boot) {
+  # Validate that rescaling baseline is valid
+  if (is.na(msi0$ind_gam0[1]) || !is.finite(msi0$ind_gam0[1]) || msi0$ind_gam0[1] <= 0) {
+    stop("First year LOESS prediction is invalid (", msi0$ind_gam0[1],
+         ") - cannot rescale bootstrap samples for CI calculation")
+  }
+
   # 95% CI (2.5th and 97.5th percentiles)
   msi0$ci_lower <- apply(
     msi_boot / msi0$ind_gam0[1] * 100,
@@ -364,8 +378,8 @@ cat(sprintf("   Loaded %d rows (%d bootstrap iterations) for %d species\n",
 
 cat("\n2. Preparing data for MSI calculation...\n")
 
-# Filter out rows where TRMOBS is NA, NaN, or Inf (from zero/invalid COL_INDEX)
-# This removes years where a species had zero abundance
+# Filter out rows where COL_INDEX is zero or invalid
+# This removes years where a species had zero abundance (can't take log of zero)
 cat(sprintf("   Before filtering: %d rows, %d species\n",
     nrow(co_index), uniqueN(co_index$SPECIES)))
 
@@ -373,8 +387,8 @@ cat(sprintf("   Before filtering: %d rows, %d species\n",
 species_counts_before <- co_index[, .(rows_before = .N), by = SPECIES]
 setkey(species_counts_before, SPECIES)
 
-co_index <- co_index[!is.na(TRMOBS) & is.finite(TRMOBS)]
-cat(sprintf("   After filtering: %d rows with valid TRMOBS values\n", nrow(co_index)))
+co_index <- co_index[!is.na(COL_INDEX) & is.finite(COL_INDEX) & COL_INDEX > 0]
+cat(sprintf("   After filtering: %d rows with valid COL_INDEX values\n", nrow(co_index)))
 
 # Show per-species row counts after filtering
 species_counts_after <- co_index[, .(rows_after = .N), by = SPECIES]
@@ -411,17 +425,61 @@ cat("\n3. Calculating main indicator (BOOTi == 0)...\n")
 msi <- produce_indicator0(co_index[BOOTi == 0])
 cat(sprintf("   Indicator calculated for %d years\n", nrow(msi)))
 
+# Warn about years with only one species (not truly a multi-species indicator)
+single_species_years <- msi$year[msi$NSPECIES == 1]
+if (length(single_species_years) > 0) {
+  cat(sprintf("   Warning: Years with only 1 species (not a true multi-species indicator): %s\n",
+              paste(single_species_years, collapse=", ")))
+}
+
 cat("\n4. Calculating bootstrap indicators...\n")
 msi_boot <- produce_indicators_boot(co_index[BOOTi > 0])
-cat(sprintf("   Bootstrap indicators: %d iterations x %d years\n",
-    nrow(msi_boot), ncol(msi_boot)))
 
-cat("\n5. Adding confidence intervals...\n")
-msi <- add_indicator_CI(msi, msi_boot)
-cat("   95%, 90%, and 80% CIs calculated\n")
+# Handle empty bootstrap case
+if (is.null(msi_boot) || ncol(msi_boot) == 0) {
+  cat("   Warning: No bootstrap samples available - CIs will be set to NA\n")
+  msi$ci_lower <- msi$ci_upper <- NA
+  msi$ci80_lower <- msi$ci80_upper <- NA
+  msi$ci90_lower <- msi$ci90_upper <- NA
+} else {
+  cat(sprintf("   Bootstrap indicators: %d iterations x %d years\n",
+      nrow(msi_boot), ncol(msi_boot)))
+
+  cat("\n5. Adding confidence intervals...\n")
+  msi <- add_indicator_CI(msi, msi_boot)
+  cat("   95%, 90%, and 80% CIs calculated\n")
+}
 
 cat("\n6. Estimating GBI trend...\n")
-msi_trend <- estimate_ind_trends(msi, msi_boot)
+
+# Only calculate trend if we have bootstrap samples
+if (is.null(msi_boot) || ncol(msi_boot) == 0) {
+  cat("   Warning: Cannot calculate trend CIs without bootstrap samples\n")
+  # Create a minimal trend object with point estimates only
+  maxyear <- max(msi$year)
+  minyear <- min(msi$year)
+  lm_obj <- try(lm(log(SMOOTH) ~ year, msi), silent = TRUE)
+
+  msi_trend <- data.frame(
+    rate_lt = ifelse(!inherits(lm_obj, "try-error"), exp(coef(lm_obj)[2]), NA),
+    rate_lt_low = NA,
+    rate_lt_upp = NA,
+    pc1_lt = ifelse(!inherits(lm_obj, "try-error"), 100 * (exp(coef(lm_obj)[2]) - 1), NA),
+    pc1_lt_low = NA,
+    pc1_lt_upp = NA,
+    pcn_lt = ifelse(!inherits(lm_obj, "try-error"),
+      100 * (exp(coef(lm_obj)[2])^(maxyear - minyear) - 1), NA),
+    pcn_lt_low = NA,
+    pcn_lt_upp = NA,
+    TrendClass_lt = "Uncertain",
+    minyear = minyear,
+    maxyear = maxyear,
+    nboot_lt = 0
+  )
+} else {
+  msi_trend <- estimate_ind_trends(msi, msi_boot)
+}
+
 cat(sprintf("   Trend: %s (%.1f%%/yr)\n",
     msi_trend$TrendClass_lt, msi_trend$pc1_lt))
 cat(sprintf("   Total change: %.1f%% [%.1f%%, %.1f%%]\n",
