@@ -161,7 +161,7 @@ const VALID_SPECIES = new Set([
 const GRASSLAND_SPECIES = {
   // Widespread species (7)
   widespread: new Set([
-    //'Anthocharis cardamines',
+    'Anthocharis cardamines',
     'Coenonympha pamphilus',
     'Lasiommata megera',
     'Lycaena phlaeas',

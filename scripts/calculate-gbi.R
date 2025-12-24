@@ -320,29 +320,92 @@ estimate_ind_trends <- function(msi0, msi_boot) {
 
 cat("\n1. Loading species bootstrap data...\n")
 
-# Find all bootstrap RDS files
-species_files <- list.files(bootstrap_dir, pattern = "*_boot.rds$", full.names = TRUE)
-cat(sprintf("   Found %d species files\n", length(species_files)))
+# Load metadata to get list of species to include
+cat("   Loading species metadata...\n")
+species_metadata <- fromJSON(species_metadata_json)
 
-if (length(species_files) == 0) {
-  stop("No bootstrap RDS files found in ", bootstrap_dir)
+# Extract species names from the array of objects
+# grasslandSpecies is an array of {scientificName, type} objects
+if (is.data.frame(species_metadata$grasslandSpecies)) {
+  grassland_species_list <- species_metadata$grasslandSpecies$scientificName
+} else if (is.list(species_metadata$grasslandSpecies)) {
+  grassland_species_list <- sapply(species_metadata$grasslandSpecies, function(x) x$scientificName)
+} else {
+  grassland_species_list <- species_metadata$grasslandSpecies
 }
 
-# Load all species data
+if (length(grassland_species_list) == 0) {
+  stop("No grassland species specified in metadata")
+}
+
+cat(sprintf("   Grassland species to include: %s\n",
+    paste(grassland_species_list, collapse = ", ")))
+
+# Find all bootstrap RDS files
+all_species_files <- list.files(bootstrap_dir, pattern = "*_boot.rds$", full.names = TRUE)
+cat(sprintf("   Found %d total bootstrap files in directory\n", length(all_species_files)))
+
+# Filter to only include species in grassland_species_list
+# Convert species names to safe filenames (same as rbms-collated-index.R does)
+safe_names <- gsub(" ", "_", tolower(grassland_species_list))
+expected_files <- paste0(safe_names, "_boot.rds")
+
+species_files <- all_species_files[basename(all_species_files) %in% expected_files]
+cat(sprintf("   Filtered to %d files matching grassland species list\n", length(species_files)))
+
+if (length(species_files) == 0) {
+  stop("No bootstrap RDS files found for specified grassland species in ", bootstrap_dir)
+}
+
+# Load only the filtered species data
 co_index <- rbindlist(lapply(species_files, readRDS), fill = TRUE)
-cat(sprintf("   Loaded %d rows (%d bootstrap iterations)\n",
-    nrow(co_index), uniqueN(co_index$BOOTi)))
+cat(sprintf("   Loaded %d rows (%d bootstrap iterations) for %d species\n",
+    nrow(co_index), uniqueN(co_index$BOOTi), uniqueN(co_index$SPECIES)))
 
 cat("\n2. Preparing data for MSI calculation...\n")
 
-# TRMOBS is already calculated in rbms-collated-index.R with proper handling of
-# zero/invalid COL_INDEX values. Use those values instead of recalculating.
-# Filter out any rows where TRMOBS is NA, NaN, or Inf (from zero COL_INDEX)
-co_index <- co_index[!is.na(TRMOBS) & is.finite(TRMOBS)]
-cat(sprintf("   Filtered to %d rows with valid TRMOBS values\n", nrow(co_index)))
+# Filter out rows where TRMOBS is NA, NaN, or Inf (from zero/invalid COL_INDEX)
+# This removes years where a species had zero abundance
+cat(sprintf("   Before filtering: %d rows, %d species\n",
+    nrow(co_index), uniqueN(co_index$SPECIES)))
 
-cat(sprintf("   Species: %s\n", paste(unique(co_index$SPECIES), collapse = ", ")))
+# Show per-species row counts before filtering
+species_counts_before <- co_index[, .(rows_before = .N), by = SPECIES]
+setkey(species_counts_before, SPECIES)
+
+co_index <- co_index[!is.na(TRMOBS) & is.finite(TRMOBS)]
+cat(sprintf("   After filtering: %d rows with valid TRMOBS values\n", nrow(co_index)))
+
+# Show per-species row counts after filtering
+species_counts_after <- co_index[, .(rows_after = .N), by = SPECIES]
+setkey(species_counts_after, SPECIES)
+
+# Merge and display
+species_counts <- merge(species_counts_before, species_counts_after, all = TRUE)
+species_counts[is.na(rows_after), rows_after := 0]
+cat("\n   Per-species filtering results:\n")
+print(species_counts)
+
+cat(sprintf("\n   Species in final dataset: %s\n", paste(unique(co_index$SPECIES), collapse = ", ")))
 cat(sprintf("   Years: %d-%d\n", min(co_index$M_YEAR), max(co_index$M_YEAR)))
+
+# Check for species with data only in later years
+first_year <- min(co_index$M_YEAR)
+species_first_years <- co_index[, .(first_year_with_data = min(M_YEAR)), by = SPECIES]
+late_starters <- species_first_years[first_year_with_data > first_year]
+if (nrow(late_starters) > 0) {
+  cat("\n   Species starting after first year:\n")
+  print(late_starters)
+}
+
+# CRITICAL: Recalculate TRMOBS to center each species around 2 in log-space
+# This makes species comparable in the multi-species indicator calculation
+# Each species was normalized to its own baseline year, so raw COL_INDEX values
+# are on different scales. Centering by mean(LOGDENSITY) fixes this.
+cat("\n   Centering TRMOBS for cross-species comparability...\n")
+co_index[, LOGDENSITY := log(COL_INDEX) / log(10)]
+co_index[, TRMOBS := LOGDENSITY - mean(LOGDENSITY) + 2, by = .(SPECIES, BOOTi)]
+cat("   ✓ TRMOBS recalculated and centered\n")
 
 cat("\n3. Calculating main indicator (BOOTi == 0)...\n")
 msi <- produce_indicator0(co_index[BOOTi == 0])
@@ -364,10 +427,7 @@ cat(sprintf("   Trend: %s (%.1f%%/yr)\n",
 cat(sprintf("   Total change: %.1f%% [%.1f%%, %.1f%%]\n",
     msi_trend$pcn_lt, msi_trend$pcn_lt_low, msi_trend$pcn_lt_upp))
 
-cat("\n7. Loading species metadata...\n")
-species_metadata <- fromJSON(species_metadata_json)
-
-cat("\n8. Preparing JSON output...\n")
+cat("\n7. Preparing JSON output...\n")
 
 # Convert to JavaScript-compatible structure
 gbiByYear <- lapply(1:nrow(msi), function(i) {

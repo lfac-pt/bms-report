@@ -3,6 +3,10 @@
     "baselineYear": 2021,
     "grasslandSpecies": [
       {
+        "scientificName": "Anthocharis cardamines",
+        "type": "widespread"
+      },
+      {
         "scientificName": "Coenonympha pamphilus",
         "type": "widespread"
       },
@@ -239,79 +243,149 @@
       "dataQuality": {
         "transectCount": 50,
         "totalVisits": 169,
-        "speciesWithData": 64
+        "speciesWithData": 10
       }
     },
     "2022": {
       "year": 2022,
-      "gbiValue": 88.02,
-      "ci_lower": 69.51,
-      "ci_upper": 108.36,
-      "ci80_lower": 77.43,
-      "ci80_upper": 99.69,
-      "ci90_lower": 73.02,
-      "ci90_upper": 104.54,
-      "smoothedValue": 88.02,
+      "gbiValue": 74.56,
+      "ci_lower": 54.08,
+      "ci_upper": 118.66,
+      "ci80_lower": 63.48,
+      "ci80_upper": 94.13,
+      "ci90_lower": 60.46,
+      "ci90_upper": 101.1,
+      "smoothedValue": 74.56,
       "speciesIndices": [],
       "dataQuality": {
         "transectCount": 45,
         "totalVisits": 174,
-        "speciesWithData": 67
+        "speciesWithData": 11
       }
     },
     "2023": {
       "year": 2023,
-      "gbiValue": 120.53,
-      "ci_lower": 94.09,
-      "ci_upper": 149.23,
-      "ci80_lower": 102.06,
-      "ci80_upper": 136.46,
-      "ci90_lower": 97.63,
-      "ci90_upper": 140.93,
-      "smoothedValue": 120.53,
+      "gbiValue": 58.71,
+      "ci_lower": 34.79,
+      "ci_upper": 84.04,
+      "ci80_lower": 40.78,
+      "ci80_upper": 66.51,
+      "ci90_lower": 36.64,
+      "ci90_upper": 74.79,
+      "smoothedValue": 58.71,
       "speciesIndices": [],
       "dataQuality": {
         "transectCount": 70,
         "totalVisits": 194,
-        "speciesWithData": 67
+        "speciesWithData": 11
       }
     },
     "2024": {
       "year": 2024,
-      "gbiValue": 109.71,
-      "ci_lower": 82.05,
-      "ci_upper": 129.34,
-      "ci80_lower": 89.99,
-      "ci80_upper": 121.31,
-      "ci90_lower": 86.35,
-      "ci90_upper": 125.85,
-      "smoothedValue": 109.71,
+      "gbiValue": 67.88,
+      "ci_lower": 39.66,
+      "ci_upper": 93.8,
+      "ci80_lower": 48.18,
+      "ci80_upper": 82.64,
+      "ci90_lower": 44.01,
+      "ci90_upper": 88.81,
+      "smoothedValue": 67.88,
       "speciesIndices": [],
       "dataQuality": {
         "transectCount": 77,
         "totalVisits": 187,
-        "speciesWithData": 67
+        "speciesWithData": 11
       }
     },
     "2025": {
       "year": 2025,
-      "gbiValue": 98.86,
-      "ci_lower": 65.42,
-      "ci_upper": 114.41,
-      "ci80_lower": 72.17,
-      "ci80_upper": 106.93,
-      "ci90_lower": 67.75,
-      "ci90_upper": 111.69,
-      "smoothedValue": 98.86,
+      "gbiValue": 63.89,
+      "ci_lower": 28.75,
+      "ci_upper": 98.46,
+      "ci80_lower": 37.04,
+      "ci80_upper": 81.77,
+      "ci90_lower": 31.39,
+      "ci90_upper": 89.55,
+      "smoothedValue": 63.89,
       "speciesIndices": [],
       "dataQuality": {
         "transectCount": 72,
         "totalVisits": 180,
-        "speciesWithData": 67
+        "speciesWithData": 11
       }
     }
   },
   "speciesTrends": {
+    "Anthocharis cardamines": {
+      "species": "Anthocharis cardamines",
+      "type": "widespread",
+      "slope": null,
+      "yearsWithData": [
+        2021,
+        2022,
+        2023,
+        2024,
+        2025
+      ],
+      "annualIndices": {
+        "2021": 0,
+        "2022": 100,
+        "2023": 69.5574,
+        "2024": 47.6405,
+        "2025": 69.2895
+      },
+      "trendLine": {
+        "2022": 88.73,
+        "2023": 77.32,
+        "2024": 65.92,
+        "2025": 54.51
+      },
+      "confidenceIntervals": {
+        "2021": {
+          "ci_lower": 0,
+          "ci_upper": 0
+        },
+        "2022": {
+          "ci_lower": 100,
+          "ci_upper": 100
+        },
+        "2023": {
+          "ci_lower": 0,
+          "ci_upper": 157.46
+        },
+        "2024": {
+          "ci_lower": 0,
+          "ci_upper": 104.6
+        },
+        "2025": {
+          "ci_lower": 0,
+          "ci_upper": 175.92
+        }
+      },
+      "trendClassification": {
+        "category": "Uncertain",
+        "annualRateOfChange": -13.75,
+        "rateOfChange": 0.8625,
+        "confidenceInterval": {
+          "lower": -100,
+          "upper": 16.34
+        },
+        "rateCI": {
+          "lower": null,
+          "upper": 1.1634
+        }
+      },
+      "dataQuality": {
+        "site_count": 28,
+        "total_visits": 1762,
+        "total_counts": 45,
+        "years_with_data": 5,
+        "flight_curve_r2": 0,
+        "imputation_success": true,
+        "baseline_year": 2022
+      },
+      "method": "rbms"
+    },
     "Coenonympha pamphilus": {
       "species": "Coenonympha pamphilus",
       "type": "widespread",
@@ -1031,21 +1105,21 @@
     2025
   ],
   "gbiTrend": {
-    "category": "Uncertain",
-    "rate": 1.0199,
+    "category": "Moderate decline",
+    "rate": 0.9058,
     "rateCI": {
-      "lower": 0.9223,
-      "upper": 1.0529
+      "lower": 0.7488,
+      "upper": 0.9881
     },
-    "pcn": 8.21,
+    "pcn": -32.7,
     "pcnCI": {
-      "lower": -27.65,
-      "upper": 22.92
+      "lower": -68.56,
+      "upper": -4.66
     },
-    "pc1": 1.99,
+    "pc1": -9.42,
     "pc1CI": {
-      "lower": -7.77,
-      "upper": 5.29
+      "lower": -25.12,
+      "upper": -1.19
     }
   }
 }
