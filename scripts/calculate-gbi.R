@@ -130,11 +130,9 @@ produce_indicator0 <- function(collind_region0, interval = "decreasing") {
     reshape2::dcast(collind_region0, year ~ SPECIES, value.var = "TRMOBS100")
   )[, c("year", "indicator")]
 
-  # Rescale so last year is 100 (for decreasing interval width)
-  if (interval == "decreasing") {
-    indicator0[, "indicator"] <- indicator0[, "indicator"] /
-      indicator0[nrow(indicator0), "indicator"] * 100
-  }
+  # NOTE: Do NOT rescale to last year = 100 before LOESS smoothing
+  # This must match the bootstrap approach to ensure CIs are valid
+  # The "decreasing interval" effect happens naturally from bootstrap variation
 
   # Fit LOESS to get smoothed indicators (EU standard: span=0.75, degree=2)
   ind_gam <- predict(
@@ -337,11 +335,11 @@ cat(sprintf("   Loaded %d rows (%d bootstrap iterations)\n",
 
 cat("\n2. Preparing data for MSI calculation...\n")
 
-# Add LOGDENSITY and TRMOBS columns (following MSI.R pattern)
-# TRMOBS is already calculated in rbms-collated-index.R, but we recalculate
-# to ensure consistency with MSI methodology
-co_index[, LOGDENSITY := log(COL_INDEX) / log(10)]
-co_index[, TRMOBS := LOGDENSITY - mean(LOGDENSITY) + 2, by = .(SPECIES, BOOTi)]
+# TRMOBS is already calculated in rbms-collated-index.R with proper handling of
+# zero/invalid COL_INDEX values. Use those values instead of recalculating.
+# Filter out any rows where TRMOBS is NA, NaN, or Inf (from zero COL_INDEX)
+co_index <- co_index[!is.na(TRMOBS) & is.finite(TRMOBS)]
+cat(sprintf("   Filtered to %d rows with valid TRMOBS values\n", nrow(co_index)))
 
 cat(sprintf("   Species: %s\n", paste(unique(co_index$SPECIES), collapse = ", ")))
 cat(sprintf("   Years: %d-%d\n", min(co_index$M_YEAR), max(co_index$M_YEAR)))
