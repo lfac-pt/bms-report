@@ -30,10 +30,10 @@ const getTrendCategoryLabel = (category: string): string => {
   const labels: Record<string, string> = {
     "Strong increase": "Aumento Forte",
     "Moderate increase": "Aumento Moderado",
-    "Stable": "Estável",
-    "Uncertain": "Incerto",
+    Stable: "Estável",
+    Uncertain: "Incerto",
     "Moderate decline": "Declínio Moderado",
-    "Strong decline": "Declínio Forte"
+    "Strong decline": "Declínio Forte",
   };
   return labels[category] || category;
 };
@@ -43,10 +43,10 @@ const getTrendColor = (category: string): string => {
   const colors: Record<string, string> = {
     "Strong increase": "#52c41a",
     "Moderate increase": "#95de64",
-    "Stable": "#1890ff",
-    "Uncertain": "#faad14",
+    Stable: "#1890ff",
+    Uncertain: "#faad14",
     "Moderate decline": "#ff7875",
-    "Strong decline": "#cf1322"
+    "Strong decline": "#cf1322",
   };
   return colors[category] || "#8c8c8c";
 };
@@ -463,8 +463,16 @@ function GrasslandButterflyIndex({ gbiData, loading }: GrasslandButterflyIndexPr
             <Tooltip
               title={
                 <div>
-                  <div>Taxa anual: {gbiData.gbiTrend.pc1.toFixed(1)}% [{gbiData.gbiTrend.pc1CI.lower.toFixed(1)}%, {gbiData.gbiTrend.pc1CI.upper.toFixed(1)}%]</div>
-                  <div>Mudança total: {gbiData.gbiTrend.pcn.toFixed(1)}% [{gbiData.gbiTrend.pcnCI.lower.toFixed(1)}%, {gbiData.gbiTrend.pcnCI.upper.toFixed(1)}%]</div>
+                  <div>
+                    Taxa anual: {gbiData.gbiTrend.pc1.toFixed(1)}% [
+                    {gbiData.gbiTrend.pc1CI.lower.toFixed(1)}%,{" "}
+                    {gbiData.gbiTrend.pc1CI.upper.toFixed(1)}%]
+                  </div>
+                  <div>
+                    Mudança total: {gbiData.gbiTrend.pcn.toFixed(1)}% [
+                    {gbiData.gbiTrend.pcnCI.lower.toFixed(1)}%,{" "}
+                    {gbiData.gbiTrend.pcnCI.upper.toFixed(1)}%]
+                  </div>
                   <div style={{ marginTop: 4, fontSize: 11, opacity: 0.8 }}>
                     Classificação baseada em intervalos de confiança de 95% da taxa de mudança anual
                   </div>
@@ -481,7 +489,7 @@ function GrasslandButterflyIndex({ gbiData, loading }: GrasslandButterflyIndexPr
                   value={`${getTrendCategoryLabel(gbiData.gbiTrend.category)} (${gbiData.gbiTrend.pc1.toFixed(1)}%/ano)`}
                   valueStyle={{
                     color: getTrendColor(gbiData.gbiTrend.category),
-                    fontSize: 16
+                    fontSize: 16,
                   }}
                 />
               </div>

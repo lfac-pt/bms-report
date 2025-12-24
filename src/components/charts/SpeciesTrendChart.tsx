@@ -6,10 +6,7 @@ interface SpeciesTrendChartProps {
   speciesData: {
     collatedIndices: Record<number, number>;
     trendLine?: Record<number, number>;
-    confidenceIntervals?: Record<
-      number,
-      { ci_lower: number | null; ci_upper: number | null }
-    >;
+    confidenceIntervals?: Record<number, { ci_lower: number | null; ci_upper: number | null }>;
   };
 }
 
@@ -37,16 +34,12 @@ export function SpeciesTrendChart({ speciesData }: SpeciesTrendChartProps) {
   const hasCI = speciesData.confidenceIntervals != null;
   const ciLower = hasCI
     ? years.map(
-        year =>
-          speciesData.confidenceIntervals![year]?.ci_lower ??
-          indices[years.indexOf(year)]
+        year => speciesData.confidenceIntervals![year]?.ci_lower ?? indices[years.indexOf(year)]
       )
     : [];
   const ciUpper = hasCI
     ? years.map(
-        year =>
-          speciesData.confidenceIntervals![year]?.ci_upper ??
-          indices[years.indexOf(year)]
+        year => speciesData.confidenceIntervals![year]?.ci_upper ?? indices[years.indexOf(year)]
       )
     : [];
 
@@ -154,9 +147,7 @@ export function SpeciesTrendChart({ speciesData }: SpeciesTrendChartProps) {
               if (hasCI) {
                 const ci = speciesData.confidenceIntervals![year];
                 if (ci?.ci_lower != null && ci?.ci_upper != null) {
-                  lines.push(
-                    `IC 95%: [${ci.ci_lower.toFixed(1)}, ${ci.ci_upper.toFixed(1)}]`
-                  );
+                  lines.push(`IC 95%: [${ci.ci_lower.toFixed(1)}, ${ci.ci_upper.toFixed(1)}]`);
                 }
               }
               return lines;

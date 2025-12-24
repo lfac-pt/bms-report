@@ -237,11 +237,15 @@ function SpeciesPage() {
         const gbiTrend = gbiData?.speciesTrends?.[decodedSpeciesName];
 
         // Use flight curves data if available, otherwise GBI data
-        const trendData = flightCurvesTrend || (gbiTrend ? {
-          collatedIndices: gbiTrend.annualIndices,
-          trendLine: gbiTrend.trendLine,
-          confidenceIntervals: gbiTrend.confidenceIntervals
-        } : null);
+        const trendData =
+          flightCurvesTrend ||
+          (gbiTrend
+            ? {
+                collatedIndices: gbiTrend.annualIndices,
+                trendLine: gbiTrend.trendLine,
+                confidenceIntervals: gbiTrend.confidenceIntervals,
+              }
+            : null);
 
         if (!trendData) return null;
 
