@@ -652,8 +652,8 @@ if (exists("collated_result_all") && !is.null(collated_result_all) && nrow(colla
   )
 }
 
-# Step 11b: Calculate linear trend line for visualization
-# This calculates a simple linear regression on normalized indices
+# Step 11b: Calculate LOESS smoothed trend line for visualization
+# This uses LOESS smoothing to match the GBI methodology
 # Filters out zero/invalid values to match trend_statistics methodology
 trend_line <- list()
 if (nrow(collated_by_year) >= 2) {
@@ -665,28 +665,46 @@ if (nrow(collated_by_year) >= 2) {
 
   collated_valid <- collated_by_year[valid_indices, ]
 
-  if (nrow(collated_valid) >= 2) {
+  if (nrow(collated_valid) >= 3) {  # LOESS needs at least 3 points
     years_numeric <- as.numeric(collated_valid$year)
     indices_values <- collated_valid$index_normalized
 
-    # Linear regression on normalized indices
-    lm_trend <- try(lm(indices_values ~ years_numeric), silent = TRUE)
+    # Adjust LOESS span based on number of data points
+    # For short time series, use larger span for more smoothing
+    # For longer time series, use standard 0.75 (EU GBI standard)
+    n_years <- length(years_numeric)
+    loess_span <- if (n_years <= 5) {
+      1.0  # Use all points for short series (maximum smoothing)
+    } else if (n_years <= 7) {
+      0.9  # Still high smoothing for medium-short series
+    } else {
+      0.75  # Standard EU GBI span for longer series
+    }
 
-    if (!inherits(lm_trend, "try-error")) {
+    # LOESS smoothing on normalized indices
+    loess_trend <- try(
+      loess(indices_values ~ years_numeric,
+            span = loess_span,
+            degree = 2,
+            na.action = na.exclude),
+      silent = TRUE
+    )
+
+    if (!inherits(loess_trend, "try-error")) {
       # Calculate predicted values for valid years only
-      predicted_values <- predict(lm_trend, newdata = data.frame(years_numeric = years_numeric))
+      predicted_values <- predict(loess_trend)
 
       # Store as named list by year
       for (i in seq_along(collated_valid$year)) {
         trend_line[[as.character(collated_valid$year[i])]] <- round(predicted_values[i], 2)
       }
 
-      cat("  Linear trend line calculated\n")
+      cat("  LOESS smoothed trend line calculated\n")
     } else {
-      cat("Warning: Could not calculate linear trend line\n")
+      cat("Warning: Could not calculate LOESS trend line\n")
     }
   } else {
-    cat("Warning: Not enough valid data points for trend line (need at least 2)\n")
+    cat("Warning: Not enough valid data points for LOESS (need at least 3)\n")
   }
 }
 

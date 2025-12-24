@@ -88,6 +88,8 @@ export function SpeciesTrendChart({ speciesData }: SpeciesTrendChartProps) {
       backgroundColor: SERIES_COLORS[0],
       borderWidth: 6,
       pointRadius: 0,
+      pointHoverRadius: 0,
+      tension: 0.4,
       fill: false,
       order: 2,
     });

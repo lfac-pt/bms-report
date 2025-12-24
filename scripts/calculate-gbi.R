@@ -145,10 +145,21 @@ produce_indicator0 <- function(collind_region0, interval = "decreasing") {
   # This must match the bootstrap approach to ensure CIs are valid
   # The "decreasing interval" effect happens naturally from bootstrap variation
 
-  # Fit LOESS to get smoothed indicators (EU standard: span=0.75, degree=2)
+  # Adjust LOESS span based on number of years
+  # For short time series, use larger span for more smoothing
+  n_years <- nrow(indicator0)
+  loess_span <- if (n_years <= 5) {
+    1.0  # Use all points for short series (maximum smoothing)
+  } else if (n_years <= 7) {
+    0.9  # Still high smoothing for medium-short series
+  } else {
+    0.75  # Standard EU GBI span for longer series
+  }
+
+  # Fit LOESS to get smoothed indicators
   ind_gam <- predict(
     loess(indicator0[, 2] ~ indicator0[, 1],
-      span = 0.75, degree = 2,
+      span = loess_span, degree = 2,
       na.action = na.exclude
     ),
     se = FALSE
