@@ -123,7 +123,8 @@ indicator_func <- function(Data, index = 100, max = 10000, min = 1) {
 }
 
 #' Produce indicator for original data (BOOTi == 0)
-produce_indicator0 <- function(collind_region0, interval = "decreasing") {
+#' Now accepts loess_span as a parameter for consistency
+produce_indicator0 <- function(collind_region0, loess_span, interval = "decreasing") {
   if (interval != "decreasing") {
     warning("Interval not defined as decreasing - will increase in width over time")
   }
@@ -151,18 +152,7 @@ produce_indicator0 <- function(collind_region0, interval = "decreasing") {
   # This must match the bootstrap approach to ensure CIs are valid
   # The "decreasing interval" effect happens naturally from bootstrap variation
 
-  # Adjust LOESS span based on number of years
-  # For short time series, use larger span for more smoothing
-  n_years <- nrow(indicator0)
-  loess_span <- if (n_years <= 5) {
-    1.0  # Use all points for short series (maximum smoothing)
-  } else if (n_years <= 7) {
-    0.9  # Still high smoothing for medium-short series
-  } else {
-    0.75  # Standard EU GBI span for longer series
-  }
-
-  # Fit LOESS to get smoothed indicators
+  # Fit LOESS to get smoothed indicators using the passed span
   ind_gam <- predict(
     loess(indicator0[, 2] ~ indicator0[, 1],
       span = loess_span, degree = 2,
@@ -188,10 +178,11 @@ produce_indicator0 <- function(collind_region0, interval = "decreasing") {
 }
 
 #' Produce indicators for all bootstrap samples
+#' Now accepts loess_span as a parameter for consistency
 #' Note: Bootstrap samples are NOT rescaled to anchor year = 100 before smoothing.
 #' This preserves variation needed for confidence intervals. Rescaling happens
 #' in add_indicator_CI to match the baseline of the main indicator.
-produce_indicators_boot <- function(collind_region_boot) {
+produce_indicators_boot <- function(collind_region_boot, loess_span) {
   setDT(collind_region_boot)
 
   # Rescale collated indices from log10 scale
@@ -217,12 +208,12 @@ produce_indicators_boot <- function(collind_region_boot) {
     # This would remove all bootstrap variation in the last year, causing zero-width CIs
     # Instead, keep natural variation and let add_indicator_CI handle rescaling
 
-    # Apply LOESS smoothing to each bootstrap
+    # Apply LOESS smoothing to each bootstrap using the passed span
     indicators_gam <- apply(indicators_boot, 1, function(x) {
       z <- data.frame(ind = x, y = 1:ncol(indicators_boot))
       predict(
         loess(ind ~ y,
-          span = 0.75, degree = 2,
+          span = loess_span, degree = 2,
           na.action = na.exclude, data = z
         ),
         se = FALSE
@@ -443,8 +434,21 @@ co_index[, LOGDENSITY := log10(COL_INDEX)]
 co_index[, TRMOBS := LOGDENSITY - mean(LOGDENSITY) + LOG10_CENTER, by = .(SPECIES, BOOTi)]
 cat("   [OK] TRMOBS recalculated and centered\n")
 
+# Determine LOESS span once for consistency
+# For short time series, use larger span for more smoothing
+n_years <- uniqueN(co_index$M_YEAR)
+loess_span <- if (n_years <= 5) {
+  1.0  # Use all points for short series (maximum smoothing)
+} else if (n_years <= 7) {
+  0.9  # Still high smoothing for medium-short series
+} else {
+  0.75  # Standard EU GBI span for longer series
+}
+cat(sprintf("\n   Time series length: %d years -> Using LOESS span: %.2f\n", n_years, loess_span))
+
 cat("\n3. Calculating main indicator (BOOTi == 0)...\n")
-msi <- produce_indicator0(co_index[BOOTi == 0])
+# Pass the calculated span to the function
+msi <- produce_indicator0(co_index[BOOTi == 0], loess_span = loess_span)
 cat(sprintf("   Indicator calculated for %d years\n", nrow(msi)))
 
 # Warn about years with only one species (not truly a multi-species indicator)
@@ -455,7 +459,8 @@ if (length(single_species_years) > 0) {
 }
 
 cat("\n4. Calculating bootstrap indicators...\n")
-msi_boot <- produce_indicators_boot(co_index[BOOTi > 0])
+# Pass the calculated span to the function
+msi_boot <- produce_indicators_boot(co_index[BOOTi > 0], loess_span = loess_span)
 
 # Handle empty bootstrap case
 if (is.null(msi_boot) || ncol(msi_boot) == 0) {
@@ -557,7 +562,8 @@ metadata <- list(
   grasslandSpecies = species_metadata$grasslandSpecies,
   qualityCriteria = species_metadata$qualityCriteria,
   transectsUsed = species_metadata$transectsUsed,
-  calculationMethod = "rbms + MSI (LOESS smoothing span=0.75, bootstrap CIs)",
+  # Update calculation method string to show actual span used
+  calculationMethod = sprintf("rbms + MSI (LOESS smoothing span=%.2f, bootstrap CIs)", loess_span),
   confidenceInterval = list(
     method = "multi_species_bootstrap",
     nIterations = as.integer(msi_trend$nboot_lt),

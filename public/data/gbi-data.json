@@ -221,7 +221,7 @@
         "isActive": true
       }
     ],
-    "calculationMethod": "rbms + MSI (LOESS smoothing span=0.75, bootstrap CIs)",
+    "calculationMethod": "rbms + MSI (LOESS smoothing span=1.00, bootstrap CIs)",
     "confidenceInterval": {
       "method": "multi_species_bootstrap",
       "nIterations": 500,
@@ -232,12 +232,12 @@
     "2021": {
       "year": 2021,
       "gbiValue": 99.47,
-      "ci_lower": 99.47,
-      "ci_upper": 99.47,
-      "ci80_lower": 99.47,
-      "ci80_upper": 99.47,
-      "ci90_lower": 99.47,
-      "ci90_upper": 99.47,
+      "ci_lower": 98.58,
+      "ci_upper": 103.68,
+      "ci80_lower": 99.13,
+      "ci80_upper": 102.14,
+      "ci90_lower": 98.94,
+      "ci90_upper": 102.89,
       "smoothedValue": 100,
       "speciesIndices": [],
       "dataQuality": {
@@ -249,12 +249,12 @@
     "2022": {
       "year": 2022,
       "gbiValue": 74.16,
-      "ci_lower": 53.8,
-      "ci_upper": 118.03,
-      "ci80_lower": 63.15,
-      "ci80_upper": 93.63,
-      "ci90_lower": 60.14,
-      "ci90_upper": 100.57,
+      "ci_lower": 56.56,
+      "ci_upper": 101.9,
+      "ci80_lower": 61.77,
+      "ci80_upper": 84.49,
+      "ci90_lower": 59.69,
+      "ci90_upper": 92.27,
       "smoothedValue": 72.17,
       "speciesIndices": [],
       "dataQuality": {
@@ -283,12 +283,12 @@
     "2024": {
       "year": 2024,
       "gbiValue": 67.52,
-      "ci_lower": 39.45,
-      "ci_upper": 93.31,
-      "ci80_lower": 47.92,
-      "ci80_upper": 82.21,
-      "ci90_lower": 43.78,
-      "ci90_upper": 88.34,
+      "ci_lower": 33.99,
+      "ci_upper": 87.15,
+      "ci80_lower": 42.84,
+      "ci80_upper": 74.48,
+      "ci90_lower": 39.18,
+      "ci90_upper": 81.18,
       "smoothedValue": 62.58,
       "speciesIndices": [],
       "dataQuality": {
@@ -300,12 +300,12 @@
     "2025": {
       "year": 2025,
       "gbiValue": 63.55,
-      "ci_lower": 28.6,
-      "ci_upper": 97.94,
-      "ci80_lower": 36.84,
-      "ci80_upper": 81.33,
-      "ci90_lower": 31.23,
-      "ci90_upper": 89.07,
+      "ci_lower": 30.48,
+      "ci_upper": 99.87,
+      "ci80_lower": 38.97,
+      "ci80_upper": 82.77,
+      "ci90_lower": 33.45,
+      "ci90_upper": 89.93,
       "smoothedValue": 64.85,
       "speciesIndices": [],
       "dataQuality": {
@@ -1108,18 +1108,18 @@
     "category": "Moderate decline",
     "rate": 0.9041,
     "rateCI": {
-      "lower": 0.7488,
-      "upper": 0.9881
+      "lower": 0.7477,
+      "upper": 0.9885
     },
     "pcn": -33.2,
     "pcnCI": {
-      "lower": -68.56,
-      "upper": -4.66
+      "lower": -68.75,
+      "upper": -4.52
     },
     "pc1": -9.59,
     "pc1CI": {
-      "lower": -25.12,
-      "upper": -1.19
+      "lower": -25.23,
+      "upper": -1.15
     }
   }
 }
