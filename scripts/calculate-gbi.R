@@ -9,6 +9,10 @@
 library(data.table)
 library(jsonlite)
 
+# MSI Constants
+# Center species at 10^2 = 100 in linear space for cross-species comparability
+LOG10_CENTER <- 2
+
 # Parse command line arguments
 args <- commandArgs(trailingOnly = TRUE)
 if (length(args) != 4) {
@@ -34,10 +38,9 @@ geomean <- function(x) exp(mean(log(x), na.rm = TRUE))
 
 #' Fill tail NAs with last non-NA value (forward fill)
 fillTailNAs <- function(x) {
-  na_true_false <- is.na(x)
-  na_position <- grep(FALSE, na_true_false)
-  if (length(na_position) > 0 && !max(na_position) == length(x)) {
-    x[(max(na_position) + 1):length(x)] <- x[max(na_position)]
+  non_na_positions <- which(!is.na(x))
+  if (length(non_na_positions) > 0 && max(non_na_positions) < length(x)) {
+    x[(max(non_na_positions) + 1):length(x)] <- x[max(non_na_positions)]
   }
   return(x)
 }
@@ -127,7 +130,7 @@ produce_indicator0 <- function(collind_region0, interval = "decreasing") {
 
   # Calculate indicator for real data
   indicator0 <- indicator_func(
-    reshape2::dcast(collind_region0, year ~ SPECIES, value.var = "TRMOBS100")
+    data.table::dcast(collind_region0, year ~ SPECIES, value.var = "TRMOBS100")
   )[, c("year", "indicator")]
 
   # Validate that baseline year exists in the data
@@ -182,11 +185,13 @@ produce_indicators_boot <- function(collind_region_boot) {
 
   # Calculate indicator for each bootstrap
   if (nrow(collind_region_boot) > 0) {
+    # Split by bootstrap ID and calculate indicator for each
+    boot_list <- split(collind_region_boot, collind_region_boot$BOOTi)
     indicators_boot <- do.call(
       rbind,
-      plyr::dlply(collind_region_boot, "BOOTi", function(x) {
+      lapply(boot_list, function(x) {
         indicator_func(
-          reshape2::dcast(x, year ~ SPECIES, value.var = "TRMOBS100")
+          data.table::dcast(x, year ~ SPECIES, value.var = "TRMOBS100")
         )[, "indicator"]
       })
     )
@@ -412,14 +417,14 @@ if (nrow(late_starters) > 0) {
   print(late_starters)
 }
 
-# CRITICAL: Recalculate TRMOBS to center each species around 2 in log-space
+# CRITICAL: Recalculate TRMOBS to center each species in log-space
 # This makes species comparable in the multi-species indicator calculation
 # Each species was normalized to its own baseline year, so raw COL_INDEX values
 # are on different scales. Centering by mean(LOGDENSITY) fixes this.
 cat("\n   Centering TRMOBS for cross-species comparability...\n")
-co_index[, LOGDENSITY := log(COL_INDEX) / log(10)]
-co_index[, TRMOBS := LOGDENSITY - mean(LOGDENSITY) + 2, by = .(SPECIES, BOOTi)]
-cat("   ✓ TRMOBS recalculated and centered\n")
+co_index[, LOGDENSITY := log10(COL_INDEX)]
+co_index[, TRMOBS := LOGDENSITY - mean(LOGDENSITY) + LOG10_CENTER, by = .(SPECIES, BOOTi)]
+cat("   [OK] TRMOBS recalculated and centered\n")
 
 cat("\n3. Calculating main indicator (BOOTi == 0)...\n")
 msi <- produce_indicator0(co_index[BOOTi == 0])
@@ -551,7 +556,7 @@ output <- list(
   gbiTrend = gbiTrend
 )
 
-cat(sprintf("\n9. Writing output to %s...\n", output_json))
+cat(sprintf("\n8. Writing output to %s...\n", output_json))
 write_json(output, output_json, pretty = TRUE, auto_unbox = TRUE)
 
 cat("\n=== GBI Calculation Complete ===\n")
