@@ -524,7 +524,7 @@ function GrasslandButterflyIndex({ gbiData, loading }: GrasslandButterflyIndexPr
                     strong
                     style={{ display: "block", marginBottom: 8, color: "#52c41a" }}
                   >
-                    Generalistas ({GRASSLAND_SPECIES.widespread.length})
+                    Generalistas ({GRASSLAND_SPECIES.widespread.size})
                   </Typography.Text>
                   <List
                     size="small"
@@ -558,7 +558,7 @@ function GrasslandButterflyIndex({ gbiData, loading }: GrasslandButterflyIndexPr
                     strong
                     style={{ display: "block", marginBottom: 8, color: "#1890ff" }}
                   >
-                    Especialistas ({GRASSLAND_SPECIES.specialist.length})
+                    Especialistas ({GRASSLAND_SPECIES.specialist.size})
                   </Typography.Text>
                   <List
                     size="small"
@@ -601,7 +601,7 @@ function GrasslandButterflyIndex({ gbiData, loading }: GrasslandButterflyIndexPr
                   </span>
                 }
                 value={speciesCount}
-                suffix={`de ${GRASSLAND_SPECIES.widespread.length + GRASSLAND_SPECIES.specialist.length}`}
+                suffix={`de ${GRASSLAND_SPECIES.widespread.size + GRASSLAND_SPECIES.specialist.size}`}
               />
             </div>
           </Popover>

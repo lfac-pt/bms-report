@@ -10,39 +10,32 @@
  */
 
 import * as fs from "fs";
-import * as path from "path";
 import { spawn } from "child_process";
 import * as cacheUtils from "./cache-utils";
+import { TransformedDataRow } from "../src/types/processing";
 
 interface ISOWeekResult {
   year: number;
   week: number;
 }
 
-interface VisitData {
+export interface VisitData {
   site_id: string;
   date: string;
   year: number;
+  [key: string]: unknown; // Add index signature for compatibility
 }
 
-interface CountData {
+export interface CountData {
   site_id: string;
   date: string;
   count: number;
+  [key: string]: unknown; // Add index signature for compatibility
 }
 
 interface SpeciesDataResult {
   visits: VisitData[];
   counts: CountData[];
-}
-
-interface DataRow {
-  transectId: string;
-  date: string;
-  month: string;
-  species?: string;
-  count?: string;
-  [key: string]: unknown;
 }
 
 interface CallRbmsOptions {
@@ -120,7 +113,7 @@ export function sanitizeFilename(speciesName: string): string {
  * Extract and transform data for a single species, aggregated by week
  */
 export function extractSpeciesData(
-  allData: DataRow[],
+  allData: TransformedDataRow[],
   transectIds: string[],
   speciesName: string
 ): SpeciesDataResult {
@@ -131,9 +124,9 @@ export function extractSpeciesData(
   // First pass: Build weekly visits map from ALL data at these transects
   // Aggregate to one visit per site-week (using first monitoring date of that week)
   allData.forEach(row => {
-    const month = parseInt(row.month);
-    if (!transectSet.has(row.transectId) || month < 3 || month > 9) {
-      return; // Skip non-quality transects and out-of-season data
+    const month = row.month;
+    if (!transectSet.has(row.transectId) || month === null || month < 2 || month > 8) {
+      return; // Skip non-quality transects and out-of-season data (month is 0-indexed, so 2-8 = March-September)
     }
 
     try {
@@ -157,12 +150,18 @@ export function extractSpeciesData(
   // Second pass: Build weekly counts for this specific species
   // Sum all counts within each site-week
   allData.forEach(row => {
-    const month = parseInt(row.month);
-    if (row.species !== speciesName || !transectSet.has(row.transectId) || month < 3 || month > 9) {
-      return;
+    const month = row.month;
+    if (
+      row.species !== speciesName ||
+      !transectSet.has(row.transectId) ||
+      month === null ||
+      month < 2 ||
+      month > 8
+    ) {
+      return; // month is 0-indexed, so 2-8 = March-September
     }
 
-    const count = parseInt(row.count || "0") || 0;
+    const count = row.count || 0;
     if (count > 0) {
       try {
         const dateObj = parseDate(row.date);
