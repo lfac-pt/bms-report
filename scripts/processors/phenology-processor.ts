@@ -17,6 +17,8 @@ import {
   MIN_YEARS_PER_SPECIES,
   BASELINE_YEAR,
   VALID_SPECIES,
+  MONITORING_START_MONTH,
+  MONITORING_END_MONTH,
 } from "../../src/constants";
 import { ALL_DATA_FILE, METADATA_FILE, TEMP_RBMS_DIR } from "../config";
 import { getQualityFilteredTransects } from "./transect-stats-processor";
@@ -62,9 +64,9 @@ export async function calculateRegionalPhenology(
       const parts = date.split("/");
       if (parts.length !== 3) return false;
 
-      const month = parseInt(parts[1], 10);
+      const month = parseInt(parts[1], 10); // 1-indexed month from date string
       const year = parseInt(parts[2], 10);
-      return month >= 3 && month <= 9 && year >= 2021;
+      return month >= MONITORING_START_MONTH && month <= MONITORING_END_MONTH && year >= baselineYear;
     })
     .map(row => ({
       transectId: row["Transect ID"],
