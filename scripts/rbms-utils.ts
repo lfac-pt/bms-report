@@ -9,10 +9,10 @@
  * - Validate rbms output
  */
 
-import * as fs from 'fs';
-import * as path from 'path';
-import { spawn } from 'child_process';
-import * as cacheUtils from './cache-utils';
+import * as fs from "fs";
+import * as path from "path";
+import { spawn } from "child_process";
+import * as cacheUtils from "./cache-utils";
 
 interface ISOWeekResult {
   year: number;
@@ -70,17 +70,17 @@ interface RbmsOutput {
  * Convert date from DD/MM/YYYY to YYYY-MM-DD format
  */
 export function convertDateFormat(dateStr: string): string {
-  if (!dateStr || typeof dateStr !== 'string') {
+  if (!dateStr || typeof dateStr !== "string") {
     throw new Error(`Invalid date string: ${dateStr}`);
   }
 
-  const parts = dateStr.split('/');
+  const parts = dateStr.split("/");
   if (parts.length !== 3) {
     throw new Error(`Invalid date format: ${dateStr}. Expected DD/MM/YYYY`);
   }
 
   const [day, month, year] = parts;
-  return `${year}-${month.padStart(2, '0')}-${day.padStart(2, '0')}`;
+  return `${year}-${month.padStart(2, "0")}-${day.padStart(2, "0")}`;
 }
 
 /**
@@ -91,10 +91,10 @@ export function getISOWeek(date: Date): ISOWeekResult {
   const dayNum = d.getUTCDay() || 7; // Sunday = 7
   d.setUTCDate(d.getUTCDate() + 4 - dayNum);
   const yearStart = new Date(Date.UTC(d.getUTCFullYear(), 0, 1));
-  const weekNo = Math.ceil((((d.getTime() - yearStart.getTime()) / 86400000) + 1) / 7);
+  const weekNo = Math.ceil(((d.getTime() - yearStart.getTime()) / 86400000 + 1) / 7);
   return {
     year: d.getUTCFullYear(),
-    week: weekNo
+    week: weekNo,
   };
 }
 
@@ -102,7 +102,7 @@ export function getISOWeek(date: Date): ISOWeekResult {
  * Parse DD/MM/YYYY date string to Date object
  */
 export function parseDate(dateStr: string): Date {
-  const [day, month, year] = dateStr.split('/');
+  const [day, month, year] = dateStr.split("/");
   return new Date(parseInt(year), parseInt(month) - 1, parseInt(day));
 }
 
@@ -112,8 +112,8 @@ export function parseDate(dateStr: string): Date {
 export function sanitizeFilename(speciesName: string): string {
   return speciesName
     .toLowerCase()
-    .replace(/\s+/g, '_')
-    .replace(/[^a-z0-9_]/g, '');
+    .replace(/\s+/g, "_")
+    .replace(/[^a-z0-9_]/g, "");
 }
 
 /**
@@ -146,7 +146,7 @@ export function extractSpeciesData(
         visitsMap.set(visitKey, {
           site_id: row.transectId,
           date: dateYMD, // First date we saw this site-week
-          year: year
+          year: year,
         });
       }
     } catch (err) {
@@ -158,16 +158,11 @@ export function extractSpeciesData(
   // Sum all counts within each site-week
   allData.forEach(row => {
     const month = parseInt(row.month);
-    if (
-      row.species !== speciesName ||
-      !transectSet.has(row.transectId) ||
-      month < 3 ||
-      month > 9
-    ) {
+    if (row.species !== speciesName || !transectSet.has(row.transectId) || month < 3 || month > 9) {
       return;
     }
 
-    const count = parseInt(row.count || '0') || 0;
+    const count = parseInt(row.count || "0") || 0;
     if (count > 0) {
       try {
         const dateObj = parseDate(row.date);
@@ -189,7 +184,7 @@ export function extractSpeciesData(
           countsMap.set(countKey, {
             site_id: row.transectId,
             date: visit.date, // Use same date as visit
-            count: count
+            count: count,
           });
         }
       } catch (err) {
@@ -212,7 +207,7 @@ export function extractSpeciesData(
 
   return {
     visits: visitsArray,
-    counts: countsArray
+    counts: countsArray,
   };
 }
 
@@ -229,25 +224,27 @@ export function writeCSV(
   }
 
   // Create header row
-  const header = columns.join(',');
+  const header = columns.join(",");
 
   // Create data rows
   const rows = data.map(row => {
-    return columns.map(col => {
-      const value = row[col];
-      // Handle undefined/null
-      if (value === undefined || value === null) return '';
-      // Escape values containing commas or quotes
-      if (typeof value === 'string' && (value.includes(',') || value.includes('"'))) {
-        return `"${value.replace(/"/g, '""')}"`;
-      }
-      return value;
-    }).join(',');
+    return columns
+      .map(col => {
+        const value = row[col];
+        // Handle undefined/null
+        if (value === undefined || value === null) return "";
+        // Escape values containing commas or quotes
+        if (typeof value === "string" && (value.includes(",") || value.includes('"'))) {
+          return `"${value.replace(/"/g, '""')}"`;
+        }
+        return value;
+      })
+      .join(",");
   });
 
   // Combine and write
-  const csv = [header, ...rows].join('\n');
-  fs.writeFileSync(filepath, csv, 'utf8');
+  const csv = [header, ...rows].join("\n");
+  fs.writeFileSync(filepath, csv, "utf8");
 }
 
 /**
@@ -274,13 +271,17 @@ export function callRbms(
         options.visitsFile,
         options.countsFile,
         args,
-        options  // Pass full options including sourceDataFiles
+        options // Pass full options including sourceDataFiles
       );
 
       // Extract output file path from args (typically 3rd argument in rbms scripts)
       outputFile = options.outputFile || (args.length > 2 ? args[2] : null);
 
-      const cachedResult = cacheUtils.getCachedResult(cacheKey, outputFile, options.additionalFiles || []);
+      const cachedResult = cacheUtils.getCachedResult(
+        cacheKey,
+        outputFile,
+        options.additionalFiles || []
+      );
       if (cachedResult) {
         // console.log(`    [cache hit]`);
         return resolve(cachedResult);
@@ -291,31 +292,31 @@ export function callRbms(
     }
 
     // Spawn R process
-    const rProcess = spawn('Rscript', [rScriptPath, ...args], {
-      stdio: ['ignore', 'pipe', 'pipe']
+    const rProcess = spawn("Rscript", [rScriptPath, ...args], {
+      stdio: ["ignore", "pipe", "pipe"],
     });
 
-    let stdout = '';
-    let stderr = '';
+    let stdout = "";
+    let stderr = "";
 
     // Collect stdout
-    rProcess.stdout.on('data', (data: Buffer) => {
+    rProcess.stdout.on("data", (data: Buffer) => {
       stdout += data.toString();
     });
 
     // Collect stderr
-    rProcess.stderr.on('data', (data: Buffer) => {
+    rProcess.stderr.on("data", (data: Buffer) => {
       stderr += data.toString();
     });
 
     // Set timeout
     const timer = setTimeout(() => {
-      rProcess.kill('SIGTERM');
+      rProcess.kill("SIGTERM");
       reject(new Error(`R script timeout after ${timeout}ms`));
     }, timeout);
 
     // Handle process exit
-    rProcess.on('close', (code: number | null) => {
+    rProcess.on("close", (code: number | null) => {
       clearTimeout(timer);
 
       if (code !== 0) {
@@ -330,7 +331,7 @@ export function callRbms(
     });
 
     // Handle process errors
-    rProcess.on('error', (err: Error) => {
+    rProcess.on("error", (err: Error) => {
       clearTimeout(timer);
       reject(new Error(`Failed to start R process: ${err.message}`));
     });
@@ -346,7 +347,7 @@ export function validateRbmsOutput(
   expectedYears: number[]
 ): RbmsOutput {
   // Check basic structure
-  if (!output || typeof output !== 'object') {
+  if (!output || typeof output !== "object") {
     throw new Error(`Invalid rbms output: not an object`);
   }
 
@@ -354,11 +355,11 @@ export function validateRbmsOutput(
     throw new Error(`Species mismatch: expected ${speciesName}, got ${output.species}`);
   }
 
-  if (!output.collated_indices || typeof output.collated_indices !== 'object') {
+  if (!output.collated_indices || typeof output.collated_indices !== "object") {
     throw new Error(`Missing or invalid collated_indices`);
   }
 
-  if (!output.data_quality || typeof output.data_quality !== 'object') {
+  if (!output.data_quality || typeof output.data_quality !== "object") {
     throw new Error(`Missing or invalid data_quality`);
   }
 
@@ -367,7 +368,7 @@ export function validateRbmsOutput(
   const missingYears = expectedYears.filter(y => !indexYears.includes(y));
 
   if (missingYears.length > 0) {
-    console.warn(`rbms output missing years for ${speciesName}: ${missingYears.join(', ')}`);
+    console.warn(`rbms output missing years for ${speciesName}: ${missingYears.join(", ")}`);
   }
 
   // Check index values are reasonable (0.01 to 10000)
@@ -383,10 +384,10 @@ export function validateRbmsOutput(
 
   // Check data quality metrics
   const dq = output.data_quality;
-  if (typeof dq.site_count !== 'number' || dq.site_count < 0) {
+  if (typeof dq.site_count !== "number" || dq.site_count < 0) {
     throw new Error(`Invalid data_quality.site_count: ${dq.site_count}`);
   }
-  if (typeof dq.total_visits !== 'number' || dq.total_visits < 0) {
+  if (typeof dq.total_visits !== "number" || dq.total_visits < 0) {
     throw new Error(`Invalid data_quality.total_visits: ${dq.total_visits}`);
   }
 

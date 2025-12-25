@@ -1,9 +1,9 @@
-import * as fs from 'fs';
-import * as path from 'path';
-import * as crypto from 'crypto';
+import * as fs from "fs";
+import * as path from "path";
+import * as crypto from "crypto";
 
-const CACHE_DIR = path.join(__dirname, '..', '.cache', 'rbms');
-const CACHE_VERSION = 'v3'; // Increment when cache format changes (added additionalFiles support)
+const CACHE_DIR = path.join(__dirname, "..", ".cache", "rbms");
+const CACHE_VERSION = "v3"; // Increment when cache format changes (added additionalFiles support)
 
 interface CacheOptions {
   sourceDataFiles?: string[];
@@ -31,15 +31,15 @@ export function calculateFileHash(filePath: string): string | null {
     return null;
   }
   const fileContent = fs.readFileSync(filePath);
-  return crypto.createHash('md5').update(fileContent).digest('hex');
+  return crypto.createHash("md5").update(fileContent).digest("hex");
 }
 
 /**
  * Calculate hash for a string or object
  */
 export function calculateHash(data: string | object): string {
-  const str = typeof data === 'string' ? data : JSON.stringify(data);
-  return crypto.createHash('md5').update(str).digest('hex');
+  const str = typeof data === "string" ? data : JSON.stringify(data);
+  return crypto.createHash("md5").update(str).digest("hex");
 }
 
 /**
@@ -59,17 +59,17 @@ export function generateCacheKey(
   let dataHash: string;
   if (options.sourceDataFiles && options.sourceDataFiles.length > 0) {
     // Include filename in missing sentinel to prevent hash collisions
-    const sourceHashes = options.sourceDataFiles.map(f =>
-      calculateFileHash(f) || `missing:${path.basename(f)}`
+    const sourceHashes = options.sourceDataFiles.map(
+      f => calculateFileHash(f) || `missing:${path.basename(f)}`
     );
-    dataHash = calculateHash(sourceHashes.join('|'));
+    dataHash = calculateHash(sourceHashes.join("|"));
   } else {
     const visitsHash = calculateFileHash(visitsFile);
     const countsHash = calculateFileHash(countsFile);
     dataHash = calculateHash(`${visitsHash}|${countsHash}`);
   }
 
-  const argsHash = calculateHash(args.join('|'));
+  const argsHash = calculateHash(args.join("|"));
 
   // Combine all hashes with cache version
   const combined = `${CACHE_VERSION}|${rScriptHash}|${dataHash}|${argsHash}`;
@@ -91,12 +91,12 @@ export function getCachedResult(
   }
 
   try {
-    const cached: CachedData = JSON.parse(fs.readFileSync(cacheFile, 'utf8'));
+    const cached: CachedData = JSON.parse(fs.readFileSync(cacheFile, "utf8"));
 
     // Restore output file if it was cached and path is provided
     if (outputFile && cached.outputFileContent) {
       try {
-        fs.writeFileSync(outputFile, cached.outputFileContent, 'utf8');
+        fs.writeFileSync(outputFile, cached.outputFileContent, "utf8");
       } catch (error) {
         const errorMessage = error instanceof Error ? error.message : String(error);
         console.warn(`  Warning: Failed to restore output file ${outputFile}: ${errorMessage}`);
@@ -108,14 +108,16 @@ export function getCachedResult(
       additionalFiles.forEach((filePath, index) => {
         if (cached.additionalFiles![index]) {
           try {
-            const buffer = Buffer.from(cached.additionalFiles![index]!, 'base64');
+            const buffer = Buffer.from(cached.additionalFiles![index]!, "base64");
             // Ensure directory exists
             const dir = path.dirname(filePath);
             fs.mkdirSync(dir, { recursive: true });
             fs.writeFileSync(filePath, buffer);
           } catch (error) {
             const errorMessage = error instanceof Error ? error.message : String(error);
-            console.warn(`  Warning: Failed to restore additional file ${filePath}: ${errorMessage}`);
+            console.warn(
+              `  Warning: Failed to restore additional file ${filePath}: ${errorMessage}`
+            );
           }
         }
       });
@@ -145,30 +147,34 @@ export function setCachedResult(
   const cacheFile = path.join(CACHE_DIR, `${cacheKey}.json`);
   const cached: CachedData = {
     timestamp: new Date().toISOString(),
-    stdout: stdout
+    stdout: stdout,
   };
 
   // Cache output file content if it exists
   if (outputFile && fs.existsSync(outputFile)) {
     try {
-      cached.outputFileContent = fs.readFileSync(outputFile, 'utf8');
+      cached.outputFileContent = fs.readFileSync(outputFile, "utf8");
     } catch (error) {
       const errorMessage = error instanceof Error ? error.message : String(error);
-      console.warn(`  Warning: Failed to read output file ${outputFile} for caching: ${errorMessage}`);
+      console.warn(
+        `  Warning: Failed to read output file ${outputFile} for caching: ${errorMessage}`
+      );
     }
   }
 
   // Cache additional binary files (e.g., RDS bootstrap files) as base64
   if (additionalFiles.length > 0) {
     cached.additionalFiles = [];
-    additionalFiles.forEach((filePath) => {
+    additionalFiles.forEach(filePath => {
       if (fs.existsSync(filePath)) {
         try {
           const buffer = fs.readFileSync(filePath);
-          cached.additionalFiles!.push(buffer.toString('base64'));
+          cached.additionalFiles!.push(buffer.toString("base64"));
         } catch (error) {
           const errorMessage = error instanceof Error ? error.message : String(error);
-          console.warn(`  Warning: Failed to read additional file ${filePath} for caching: ${errorMessage}`);
+          console.warn(
+            `  Warning: Failed to read additional file ${filePath} for caching: ${errorMessage}`
+          );
           cached.additionalFiles!.push(null);
         }
       } else {
@@ -203,7 +209,7 @@ export function clearCache(): void {
  */
 export function getCacheStats(): CacheStats {
   if (!fs.existsSync(CACHE_DIR)) {
-    return { fileCount: 0, totalSize: 0, totalSizeMB: '0.00' };
+    return { fileCount: 0, totalSize: 0, totalSizeMB: "0.00" };
   }
 
   const files = fs.readdirSync(CACHE_DIR);
@@ -215,6 +221,6 @@ export function getCacheStats(): CacheStats {
   return {
     fileCount: files.length,
     totalSize: totalSize,
-    totalSizeMB: (totalSize / (1024 * 1024)).toFixed(2)
+    totalSizeMB: (totalSize / (1024 * 1024)).toFixed(2),
   };
 }
