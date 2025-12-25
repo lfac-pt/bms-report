@@ -39,15 +39,15 @@ npm run process-data
 
 ### Statistics Calculated
 
-| Metric | Description | Calculation |
-|--------|-------------|-------------|
-| Total Species | Number of unique butterfly species | Count distinct "Preferred Species Name" |
-| Total Visits | Number of monitoring visits | Count distinct dates |
-| Avg Visits/Year | Average visits per year | Total visits ÷ Years active |
-| Avg Butterflies/Visit | Average abundance per visit | Sum of all counts ÷ Total visits |
-| Years Active | Number of years monitored | Count distinct years in dates |
-| First Monitoring Year | Year of first observation | Earliest year from dates |
-| Is Active | Current status | From metadata "Estado" === "Ativo" |
+| Metric                | Description                        | Calculation                             |
+| --------------------- | ---------------------------------- | --------------------------------------- |
+| Total Species         | Number of unique butterfly species | Count distinct "Preferred Species Name" |
+| Total Visits          | Number of monitoring visits        | Count distinct dates                    |
+| Avg Visits/Year       | Average visits per year            | Total visits ÷ Years active             |
+| Avg Butterflies/Visit | Average abundance per visit        | Sum of all counts ÷ Total visits        |
+| Years Active          | Number of years monitored          | Count distinct years in dates           |
+| First Monitoring Year | Year of first observation          | Earliest year from dates                |
+| Is Active             | Current status                     | From metadata "Estado" === "Ativo"      |
 
 ### Data Quality
 

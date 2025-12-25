@@ -66,7 +66,9 @@ export async function calculateRegionalPhenology(
 
       const month = parseInt(parts[1], 10); // 1-indexed month from date string
       const year = parseInt(parts[2], 10);
-      return month >= MONITORING_START_MONTH && month <= MONITORING_END_MONTH && year >= baselineYear;
+      return (
+        month >= MONITORING_START_MONTH && month <= MONITORING_END_MONTH && year >= baselineYear
+      );
     })
     .map(row => ({
       transectId: row["Transect ID"],
