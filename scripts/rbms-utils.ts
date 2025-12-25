@@ -13,6 +13,7 @@ import * as fs from "fs";
 import { spawn } from "child_process";
 import * as cacheUtils from "./cache-utils";
 import { TransformedDataRow } from "../src/types/processing";
+import { MONITORING_START_MONTH, MONITORING_END_MONTH } from "../src/constants";
 
 interface ISOWeekResult {
   year: number;
@@ -125,8 +126,13 @@ export function extractSpeciesData(
   // Aggregate to one visit per site-week (using first monitoring date of that week)
   allData.forEach(row => {
     const month = row.month;
-    if (!transectSet.has(row.transectId) || month === null || month < 2 || month > 8) {
-      return; // Skip non-quality transects and out-of-season data (month is 0-indexed, so 2-8 = March-September)
+    if (
+      !transectSet.has(row.transectId) ||
+      month === null ||
+      month < MONITORING_START_MONTH - 1 ||
+      month > MONITORING_END_MONTH - 1
+    ) {
+      return; // Skip non-quality transects and out-of-season data (month is 0-indexed)
     }
 
     try {
@@ -155,10 +161,10 @@ export function extractSpeciesData(
       row.species !== speciesName ||
       !transectSet.has(row.transectId) ||
       month === null ||
-      month < 2 ||
-      month > 8
+      month < MONITORING_START_MONTH - 1 ||
+      month > MONITORING_END_MONTH - 1
     ) {
-      return; // month is 0-indexed, so 2-8 = March-September
+      return; // month is 0-indexed
     }
 
     const count = row.count || 0;
