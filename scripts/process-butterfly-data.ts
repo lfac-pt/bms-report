@@ -1,10 +1,10 @@
-const fs = require('fs');
-const path = require('path');
-const Papa = require('papaparse');
-const https = require('https');
-const rbmsUtils = require('./rbms-utils');
-const proj4 = require('proj4');
-const {
+import * as fs from 'fs';
+import * as path from 'path';
+import * as Papa from 'papaparse';
+import * as https from 'https';
+import * as rbmsUtils from './rbms-utils';
+import * as proj4 from 'proj4';
+import {
   MIN_YEARS_ACTIVE,
   MIN_VISITS_PER_YEAR,
   BASELINE_YEAR,
@@ -15,7 +15,227 @@ const {
   VALID_SPECIES,
   GRASSLAND_SPECIES,
   ALL_GRASSLAND_SPECIES
-} = require('../constants');
+} from '../src/constants';
+
+// Type definitions
+interface Coordinates {
+  lat: number;
+  lon: number;
+}
+
+interface Location {
+  concelho: string;
+  distrito: string;
+}
+
+interface TransectStats {
+  transectId: string;
+  transectCode: string;
+  transectName: string;
+  isActive: boolean;
+  totalSpecies: number;
+  totalVisits: number;
+  totalAbundance: number;
+  avgVisitsPerYear: number;
+  avgButterfliesPerVisit: number;
+  yearsActive: number;
+  firstMonitoringYear: number | null;
+  lastMonitoringYear: number | null;
+  speciesList: string[];
+  tipologia: string;
+  concelho: string;
+  distrito: string;
+  climaticRegion: string;
+  responsavel: string;
+  entidade: string;
+  coordinates: Coordinates | null;
+}
+
+interface TransformedDataRow {
+  transectId: string;
+  date: string;
+  year: number | null;
+  month: number | null;
+  species: string;
+  count: number;
+}
+
+interface SpeciesTrend {
+  species: string;
+  type: string;
+  slope: number;
+  yearsWithData: number[];
+  annualIndices: Record<string, number>;
+  trendLine: Record<string, number> | null;
+  confidenceIntervals: Record<number, { ci_lower: number; ci_upper: number }>;
+  trendClassification: TrendClassification | null;
+  dataQuality: DataQuality;
+  method: string;
+}
+
+interface TrendClassification {
+  category: string;
+  annualRateOfChange: number | null;
+  rateOfChange: number;
+  confidenceInterval: {
+    lower: number | null;
+    upper: number | null;
+  };
+  rateCI: {
+    lower: number | null;
+    upper: number | null;
+  };
+}
+
+interface DataQuality {
+  site_count: number;
+  total_visits: number;
+  transectCount?: number;
+  totalVisits?: number;
+  [key: string]: unknown;
+}
+
+interface GBIData {
+  metadata: {
+    processingDate: string;
+    baselineYear: number;
+    qualityCriteria: {
+      minYearsActive: number;
+      minVisitsPerYear: number;
+    };
+    transectsUsed: TransectInfo[];
+    [key: string]: unknown;
+  };
+  gbiByYear: Record<string, {
+    gbi: number;
+    dataQuality: DataQuality;
+    [key: string]: unknown;
+  }>;
+  speciesTrends: Record<string, SpeciesTrend>;
+  years: number[];
+  gbiTrend: unknown;
+}
+
+interface TransectInfo {
+  transectId: string;
+  transectName?: string;
+  yearsActive?: number;
+  avgVisitsPerYear?: number;
+  isActive?: boolean;
+}
+
+interface FlightCurvesData {
+  metadata: {
+    processingDate: string;
+    baselineYear: number;
+    qualityCriteria: {
+      minYearsActive: number;
+      minVisitsPerYear: number;
+      minCountsPerSpecies: number;
+      minYearsPerSpecies: number;
+    };
+    transectsUsed: TransectInfo[];
+    method: string;
+  };
+  species: Record<string, {
+    collatedIndices: Record<string, number>;
+    trendLine: Record<string, number> | null;
+    phenologyCurves: Record<string, unknown> | null;
+    dataQuality: DataQuality;
+    processingInfo: unknown;
+    confidenceIntervals: Record<number, { ci_lower: number; ci_upper: number }>;
+    trendClassification: TrendClassification | null;
+  }>;
+  speciesList: string[];
+  years: number[];
+}
+
+interface RegionalPhenologyData {
+  metadata: {
+    processingDate: string;
+    baselineYear: number;
+    regions: string[];
+    transectsByRegion: Record<string, number>;
+    qualityCriteria: {
+      minYearsActive: number;
+      minVisitsPerYear: number;
+      minCountsPerSpecies: number;
+      minYearsPerSpecies: number;
+      minTransectsPerRegion: number;
+    };
+    method: string;
+  };
+  species: Record<string, {
+    regions: Record<string, {
+      phenologyCurves: Record<string, unknown>;
+      dataQuality: {
+        transectCount: number;
+        totalVisits: number;
+        totalCounts: number;
+      };
+    }>;
+  }>;
+  speciesList: string[];
+}
+
+interface TimelineData {
+  years: number[];
+  transectsByYear: Record<number, string[]>;
+  butterflyFrequencyByYear: Record<number, {
+    species: string;
+    frequency: number;
+    visitCount: number;
+    totalVisits: number;
+  }[]>;
+  transectDiversityByYear: Record<number, {
+    transectId: string;
+    diversityCount: number;
+    speciesList: string[];
+  }[]>;
+  observationsByYearDate: Record<number, Record<string, [string, string, number][]>>;
+}
+
+interface NominatimAddress {
+  municipality?: string;
+  city?: string;
+  town?: string;
+  village?: string;
+  county?: string;
+}
+
+interface NominatimResponse {
+  address?: NominatimAddress;
+}
+
+interface GeocodeCache {
+  [key: string]: Location;
+}
+
+interface SpeciesCorrection {
+  from: string;
+  to: string;
+  count: number;
+}
+
+interface FilteredSpeciesData {
+  recordCount: number;
+  totalIndividuals: number;
+}
+
+interface GeoJSONFeature {
+  type: string;
+  geometry: {
+    type: string;
+    coordinates: unknown;
+  };
+  properties: Record<string, unknown>;
+}
+
+interface GeoJSON {
+  type: string;
+  crs?: unknown;
+  features: GeoJSONFeature[];
+}
 
 // File paths
 const RAW_DATA_DIR = path.join(__dirname, '../raw-data');
@@ -32,7 +252,7 @@ const MUNICIPALITY_GEOJSON_OUTPUT = path.join(OUTPUT_DIR, 'municipalities-specie
 /**
  * Parse a date string in DD/MM/YYYY format and extract the year
  */
-function getYearFromDate(dateString) {
+function getYearFromDate(dateString: string): number | null {
   if (!dateString || typeof dateString !== 'string') return null;
   const parts = dateString.split('/');
   if (parts.length !== 3) return null;
@@ -43,7 +263,7 @@ function getYearFromDate(dateString) {
 /**
  * Parse a date string in DD/MM/YYYY format and extract the month (0-indexed)
  */
-function getMonthFromDate(dateString) {
+function getMonthFromDate(dateString: string): number | null {
   if (!dateString || typeof dateString !== 'string') return null;
   const parts = dateString.split('/');
   if (parts.length !== 3) return null;
@@ -58,7 +278,7 @@ function getMonthFromDate(dateString) {
  * - "latitude longitude" (space-separated)
  * - "39.41647N 9.5088W" or "40.068639N, 8.391275W" (with N/S/E/W notation)
  */
-function parseCoordinates(spatialRef) {
+function parseCoordinates(spatialRef: string): Coordinates | null {
   if (!spatialRef || typeof spatialRef !== 'string') return null;
 
   const original = spatialRef.trim();
@@ -81,7 +301,7 @@ function parseCoordinates(spatialRef) {
   }
 
   // Try to split by comma first, then by space
-  let parts;
+  let parts: string[];
   if (original.includes(',')) {
     // Comma-separated: clean up spaces around minus sign, then split by comma
     const cleaned = original.replace(/\s*-\s*/g, '-');
@@ -104,7 +324,7 @@ function parseCoordinates(spatialRef) {
 /**
  * Reverse geocode coordinates to get location information using Nominatim
  */
-function reverseGeocode(lat, lon) {
+function reverseGeocode(lat: number, lon: number): Promise<NominatimResponse> {
   return new Promise((resolve, reject) => {
     const url = `https://nominatim.openstreetmap.org/reverse?format=json&lat=${lat}&lon=${lon}&zoom=10&addressdetails=1`;
 
@@ -117,19 +337,19 @@ function reverseGeocode(lat, lon) {
     https.get(url, options, (res) => {
       let data = '';
 
-      res.on('data', (chunk) => {
-        data += chunk;
+      res.on('data', (chunk: Buffer) => {
+        data += chunk.toString();
       });
 
       res.on('end', () => {
         try {
-          const result = JSON.parse(data);
+          const result: NominatimResponse = JSON.parse(data);
           resolve(result);
         } catch (error) {
           reject(error);
         }
       });
-    }).on('error', (error) => {
+    }).on('error', (error: Error) => {
       reject(error);
     });
   });
@@ -138,7 +358,7 @@ function reverseGeocode(lat, lon) {
 /**
  * Known mapping of localities/freguesias to their correct concelhos
  */
-const LOCALITY_TO_CONCELHO = {
+const LOCALITY_TO_CONCELHO: Record<string, string> = {
   'Amora': 'Seixal',
   'Costa da Caparica': 'Almada',
   'Minde': 'Alcanena',
@@ -152,7 +372,7 @@ const LOCALITY_TO_CONCELHO = {
  * Mapping of distritos to climatic regions
  * Based on Portugal's geographic and climatic divisions
  */
-const DISTRITO_TO_CLIMATIC_REGION = {
+const DISTRITO_TO_CLIMATIC_REGION: Record<string, string> = {
   // Norte (North) - Atlantic climate
   'Viana do Castelo': 'Norte',
   'Braga': 'Norte',
@@ -185,14 +405,14 @@ const DISTRITO_TO_CLIMATIC_REGION = {
 /**
  * Get climatic region from distrito
  */
-function getClimaticRegion(distrito) {
+function getClimaticRegion(distrito: string): string {
   return DISTRITO_TO_CLIMATIC_REGION[distrito] || 'Desconhecido';
 }
 
 /**
  * Extract Concelho and Distrito from Nominatim response
  */
-function extractLocation(nominatimResponse) {
+function extractLocation(nominatimResponse: NominatimResponse): Location {
   if (!nominatimResponse || !nominatimResponse.address) {
     return { concelho: '', distrito: '' };
   }
@@ -216,21 +436,22 @@ function extractLocation(nominatimResponse) {
 /**
  * Sleep for a specified number of milliseconds
  */
-function sleep(ms) {
+function sleep(ms: number): Promise<void> {
   return new Promise(resolve => setTimeout(resolve, ms));
 }
 
 /**
  * Load geocode cache from file
  */
-function loadGeocodeCache() {
+function loadGeocodeCache(): GeocodeCache {
   try {
     if (fs.existsSync(GEOCODE_CACHE_FILE)) {
       const cacheData = fs.readFileSync(GEOCODE_CACHE_FILE, 'utf-8');
       return JSON.parse(cacheData);
     }
   } catch (error) {
-    console.warn('Warning: Failed to load geocode cache:', error.message);
+    const errorMessage = error instanceof Error ? error.message : String(error);
+    console.warn('Warning: Failed to load geocode cache:', errorMessage);
   }
   return {};
 }
@@ -238,21 +459,22 @@ function loadGeocodeCache() {
 /**
  * Save geocode cache to file
  */
-function saveGeocodeCache(cache) {
+function saveGeocodeCache(cache: GeocodeCache): void {
   try {
     fs.writeFileSync(GEOCODE_CACHE_FILE, JSON.stringify(cache, null, 2), 'utf-8');
   } catch (error) {
-    console.warn('Warning: Failed to save geocode cache:', error.message);
+    const errorMessage = error instanceof Error ? error.message : String(error);
+    console.warn('Warning: Failed to save geocode cache:', errorMessage);
   }
 }
 
 /**
  * Read and parse a CSV file
  */
-function readCSV(filePath) {
+function readCSV(filePath: string): Record<string, string>[] {
   console.log(`Reading ${filePath}...`);
   const fileContent = fs.readFileSync(filePath, 'utf-8');
-  const result = Papa.parse(fileContent, {
+  const result = Papa.parse<Record<string, string>>(fileContent, {
     header: true,
     skipEmptyLines: true,
     dynamicTyping: false, // Keep everything as strings initially
@@ -269,7 +491,7 @@ function readCSV(filePath) {
 /**
  * Add random offset to coordinates for privacy (approximately 500-1000 meters)
  */
-function fuzzyCoordinates(coords) {
+function fuzzyCoordinates(coords: Coordinates): Coordinates | null {
   if (!coords) return null;
 
   // Add random offset of ~0.005 to 0.01 degrees (roughly 500-1000 meters)
@@ -285,7 +507,13 @@ function fuzzyCoordinates(coords) {
 /**
  * Calculate statistics for a transect
  */
-function calculateTransectStats(transectId, allData, metadata, location = null, coords = null) {
+function calculateTransectStats(
+  transectId: string,
+  allData: Record<string, string>[],
+  metadata: Record<string, string>,
+  location: Location | null = null,
+  coords: Coordinates | null = null
+): TransectStats | null {
   // Filter data for this transect AND only include valid species
   const transectData = allData.filter(row => {
     if (row['Transect ID'] !== transectId) return false;
@@ -303,7 +531,7 @@ function calculateTransectStats(transectId, allData, metadata, location = null, 
 
   // Get unique species (using Preferred Species Name)
   // All species are already filtered by the whitelist, so just count unique ones
-  const speciesSet = new Set();
+  const speciesSet = new Set<string>();
   transectData.forEach(row => {
     const species = row['Preferred Species Name'];
     if (species && species.trim()) {
@@ -312,7 +540,7 @@ function calculateTransectStats(transectId, allData, metadata, location = null, 
   });
 
   // Get unique dates and years
-  const datesSet = new Set();
+  const datesSet = new Set<string>();
   transectData.forEach(row => {
     const date = row['Date'];
     if (date && date.trim()) {
@@ -327,7 +555,7 @@ function calculateTransectStats(transectId, allData, metadata, location = null, 
     return month !== null && month >= (MONITORING_START_MONTH - 1) && month <= (MONITORING_END_MONTH - 1);
   });
 
-  const monitoringYearsSet = new Set();
+  const monitoringYearsSet = new Set<number>();
   monitoringSeasonData.forEach(row => {
     const year = getYearFromDate(row['Date']);
     if (year) {
@@ -386,7 +614,7 @@ function calculateTransectStats(transectId, allData, metadata, location = null, 
  * Filter transects based on quality criteria for GBI
  * Criteria: MIN_YEARS_ACTIVE years active, MIN_VISITS_PER_YEAR visits per year average
  */
-function getQualityFilteredTransects(transects) {
+function getQualityFilteredTransects(transects: TransectStats[]): TransectStats[] {
   return transects.filter(t =>
     t.yearsActive >= MIN_YEARS_ACTIVE && t.avgVisitsPerYear >= MIN_VISITS_PER_YEAR
   );
@@ -396,7 +624,11 @@ function getQualityFilteredTransects(transects) {
 /**
  * Main GBI calculation function
  */
-async function calculateGBI(allData, transects, baselineYear = BASELINE_YEAR) {
+async function calculateGBI(
+  allData: Record<string, string>[],
+  transects: TransectStats[],
+  baselineYear: number = BASELINE_YEAR
+): Promise<GBIData | null> {
   console.log('\nCalculating Grassland Butterfly Index (GBI) using rbms...');
 
   // Step 1: Filter quality transects
@@ -421,7 +653,7 @@ async function calculateGBI(allData, transects, baselineYear = BASELINE_YEAR) {
 
   // Step 3: Transform data for rbms
   // rbms expects: transectId, date (YYYY-MM-DD), year, species, count
-  const transformedData = allData
+  const transformedData: TransformedDataRow[] = allData
     .filter(row => {
       const month = getMonthFromDate(row['Date']);
       return month !== null && month >= (MONITORING_START_MONTH - 1) && month <= (MONITORING_END_MONTH - 1); // Monitoring season (0-indexed)
@@ -434,12 +666,12 @@ async function calculateGBI(allData, transects, baselineYear = BASELINE_YEAR) {
       species: row['Preferred Species Name'],
       count: parseInt(row['Abundance Count']) || 0
     }))
-    .filter(row => row.year >= BASELINE_YEAR);
+    .filter(row => row.year !== null && row.year >= baselineYear);
 
   console.log(`  Transformed ${transformedData.length} observations for rbms`);
 
   // Get all years
-  const allYears = Array.from(new Set(transformedData.map(row => row.year))).sort((a, b) => a - b);
+  const allYears = Array.from(new Set(transformedData.map(row => row.year).filter((y): y is number => y !== null))).sort((a, b) => a - b);
   console.log(`  Years with data: ${allYears.join(', ')}`);
 
   if (allYears.length < 3) {
@@ -448,7 +680,7 @@ async function calculateGBI(allData, transects, baselineYear = BASELINE_YEAR) {
   }
 
   // Step 4: Process each grassland species with rbms
-  const speciesTrends = {};
+  const speciesTrends: Record<string, SpeciesTrend> = {};
   const allSpecies = Array.from(ALL_GRASSLAND_SPECIES);
   const rScriptPath = path.join(__dirname, 'rbms-collated-index.R');
 
@@ -555,12 +787,12 @@ async function calculateGBI(allData, transects, baselineYear = BASELINE_YEAR) {
         const slope = (n * sumXY - sumX * sumY) / (n * sumX2 - sumX * sumX);
 
         // Extract rbms-calculated bootstrap confidence intervals
-        let confidenceIntervals = {};
+        let confidenceIntervals: Record<number, { ci_lower: number; ci_upper: number }> = {};
         if (rbmsOutput.confidence_intervals && Object.keys(rbmsOutput.confidence_intervals).length > 0) {
           for (const [year, ci] of Object.entries(rbmsOutput.confidence_intervals)) {
             confidenceIntervals[parseInt(year)] = {
-              ci_lower: ci.ci_lower,
-              ci_upper: ci.ci_upper
+              ci_lower: (ci as any).ci_lower,
+              ci_upper: (ci as any).ci_upper
             };
           }
           console.log(`    ✓ rbms bootstrap CIs: ${Object.keys(confidenceIntervals).length} years`);
@@ -570,7 +802,7 @@ async function calculateGBI(allData, transects, baselineYear = BASELINE_YEAR) {
 
         // Extract trend classification from rbms output
         const trendStats = rbmsOutput.trend_statistics || {};
-        let trendClassification = null;
+        let trendClassification: TrendClassification | null = null;
 
         if (trendStats.trend_class) {
           trendClassification = {
@@ -614,13 +846,15 @@ async function calculateGBI(allData, transects, baselineYear = BASELINE_YEAR) {
         }
 
       } catch (rbmsError) {
-        console.log(`    rbms failed: ${rbmsError.message.split('\n')[0]}`);
+        const errorMessage = rbmsError instanceof Error ? rbmsError.message.split('\n')[0] : String(rbmsError);
+        console.log(`    rbms failed: ${errorMessage}`);
         console.log(`    Species excluded from GBI`);
         continue;
       }
 
     } catch (err) {
-      console.log(`    Error: ${err.message}`);
+      const errorMessage = err instanceof Error ? err.message : String(err);
+      console.log(`    Error: ${errorMessage}`);
       continue;
     }
   }
@@ -725,7 +959,8 @@ async function calculateGBI(allData, transects, baselineYear = BASELINE_YEAR) {
     };
 
   } catch (gbiError) {
-    console.error(`  Error calculating GBI with R script: ${gbiError.message}`);
+    const errorMessage = gbiError instanceof Error ? gbiError.message : String(gbiError);
+    console.error(`  Error calculating GBI with R script: ${errorMessage}`);
     console.error(`  Falling back to null result`);
     return null;
   }
@@ -733,12 +968,12 @@ async function calculateGBI(allData, transects, baselineYear = BASELINE_YEAR) {
 
 /**
  * Calculate flight curves for all species with sufficient data using rbms
- * @param {Array} allData - Raw butterfly observation data
- * @param {Array} transects - Transect metadata
- * @param {number} baselineYear - Baseline year for index normalization
- * @returns {Object|null} Flight curve data for all species
  */
-async function calculateAllFlightCurves(allData, transects, baselineYear = 2021) {
+async function calculateAllFlightCurves(
+  allData: Record<string, string>[],
+  transects: TransectStats[],
+  baselineYear: number = 2021
+): Promise<FlightCurvesData | null> {
   console.log('\nCalculating flight curves for all species using rbms...');
 
   // Step 1: Use same quality transect filtering as GBI
@@ -760,7 +995,7 @@ async function calculateAllFlightCurves(allData, transects, baselineYear = 2021)
   }
 
   // Step 3: Transform data for rbms
-  const transformedData = allData
+  const transformedData: TransformedDataRow[] = allData
     .filter(row => {
       const month = getMonthFromDate(row['Date']);
       return month !== null && month >= (MONITORING_START_MONTH - 1) && month <= (MONITORING_END_MONTH - 1); // Monitoring season (0-indexed)
@@ -773,12 +1008,12 @@ async function calculateAllFlightCurves(allData, transects, baselineYear = 2021)
       species: row['Preferred Species Name'],
       count: parseInt(row['Abundance Count']) || 0
     }))
-    .filter(row => row.year >= BASELINE_YEAR);
+    .filter(row => row.year !== null && row.year >= baselineYear);
 
   console.log(`  Transformed ${transformedData.length} observations for rbms`);
 
   // Get all years
-  const allYears = Array.from(new Set(transformedData.map(row => row.year))).sort((a, b) => a - b);
+  const allYears = Array.from(new Set(transformedData.map(row => row.year).filter((y): y is number => y !== null))).sort((a, b) => a - b);
   console.log(`  Years with data: ${allYears.join(', ')}`);
 
   if (allYears.length < 3) {
@@ -787,14 +1022,14 @@ async function calculateAllFlightCurves(allData, transects, baselineYear = 2021)
   }
 
   // Step 4: Get all species with sufficient data
-  const speciesCounts = new Map();
+  const speciesCounts = new Map<string, { observations: number; counts: number; years: Set<number> }>();
   transformedData.forEach(row => {
     if (!qualityTransectIds.includes(row.transectId)) return;
 
-    const current = speciesCounts.get(row.species) || { observations: 0, counts: 0, years: new Set() };
+    const current = speciesCounts.get(row.species) || { observations: 0, counts: 0, years: new Set<number>() };
     current.observations++;
     if (row.count > 0) current.counts++;
-    current.years.add(row.year);
+    if (row.year) current.years.add(row.year);
     speciesCounts.set(row.species, current);
   });
 
@@ -811,7 +1046,7 @@ async function calculateAllFlightCurves(allData, transects, baselineYear = 2021)
   console.log(`  Found ${eligibleSpecies.length} species in whitelist with sufficient data (${MIN_COUNTS_PER_SPECIES}+ counts, ${MIN_YEARS_PER_SPECIES}+ years)`);
 
   // Step 5: Process each species with rbms
-  const speciesResults = {};
+  const speciesResults: FlightCurvesData['species'] = {};
   const rScriptPath = path.join(__dirname, 'rbms-collated-index.R');
   let successCount = 0;
 
@@ -857,19 +1092,19 @@ async function calculateAllFlightCurves(allData, transects, baselineYear = 2021)
       rbmsUtils.validateRbmsOutput(rbmsOutput, species, allYears);
 
       // Extract confidence intervals from rbms bootstrap
-      const confidenceIntervals = {};
+      const confidenceIntervals: Record<number, { ci_lower: number; ci_upper: number }> = {};
       if (rbmsOutput.confidence_intervals && Object.keys(rbmsOutput.confidence_intervals).length > 0) {
         for (const [year, ci] of Object.entries(rbmsOutput.confidence_intervals)) {
           confidenceIntervals[parseInt(year)] = {
-            ci_lower: ci.ci_lower,
-            ci_upper: ci.ci_upper
+            ci_lower: (ci as any).ci_lower,
+            ci_upper: (ci as any).ci_upper
           };
         }
       }
 
       // Extract trend classification from rbms output
       const trendStats = rbmsOutput.trend_statistics || {};
-      let trendClassification = null;
+      let trendClassification: TrendClassification | null = null;
 
       if (trendStats.trend_class) {
         trendClassification = {
@@ -924,7 +1159,7 @@ async function calculateAllFlightCurves(allData, transects, baselineYear = 2021)
     transectName: t.transectName
   })).sort((a, b) => a.transectName.localeCompare(b.transectName));
 
-  const metadata = {
+  const metadata: FlightCurvesData['metadata'] = {
     processingDate: new Date().toISOString(),
     baselineYear,
     qualityCriteria: {
@@ -947,13 +1182,12 @@ async function calculateAllFlightCurves(allData, transects, baselineYear = 2021)
 
 /**
  * Calculate phenology curves (weekly abundance predictions) by region using rbms
- *
- * @param {Array} allData - Raw observation data
- * @param {Array} transects - All transect information
- * @param {number} baselineYear - Baseline year for normalization
- * @returns {Object} Phenology data organized by species and region
  */
-async function calculateRegionalPhenology(allData, transects, baselineYear = 2021) {
+async function calculateRegionalPhenology(
+  allData: Record<string, string>[],
+  transects: TransectStats[],
+  baselineYear: number = 2021
+): Promise<RegionalPhenologyData | null> {
   console.log('\nCalculating regional phenology curves using rbms...');
 
   // Step 1: Get quality transects (same criteria as GBI)
@@ -964,7 +1198,7 @@ async function calculateRegionalPhenology(allData, transects, baselineYear = 202
   console.log(`  Active in most recent year: ${activeQualityTransects.length}`);
 
   // Step 2: Group transects by climatic region
-  const transectsByRegion = {};
+  const transectsByRegion: Record<string, TransectStats[]> = {};
   const REGIONS = ['Norte', 'Centro', 'Lisboa e Vale do Tejo', 'Alentejo', 'Algarve'];
 
   REGIONS.forEach(region => {
@@ -979,7 +1213,7 @@ async function calculateRegionalPhenology(allData, transects, baselineYear = 202
   });
 
   // Step 3: Transform data for rbms
-  const transformedData = allData
+  const transformedData: TransformedDataRow[] = allData
     .filter(row => {
       const date = row['Date'];
       if (!date) return false;
@@ -1002,7 +1236,7 @@ async function calculateRegionalPhenology(allData, transects, baselineYear = 202
 
   // Step 4: Identify species with sufficient data (using quality transects only)
   const qualityTransectIds = new Set(activeQualityTransects.map(t => t.transectId));
-  const speciesCounts = new Map();
+  const speciesCounts = new Map<string, { counts: number; years: Set<number> }>();
 
   transformedData.forEach(row => {
     if (!VALID_SPECIES.has(row.species)) return;
@@ -1011,13 +1245,13 @@ async function calculateRegionalPhenology(allData, transects, baselineYear = 202
     if (!speciesCounts.has(row.species)) {
       speciesCounts.set(row.species, {
         counts: 0,
-        years: new Set()
+        years: new Set<number>()
       });
     }
 
-    const stats = speciesCounts.get(row.species);
+    const stats = speciesCounts.get(row.species)!;
     stats.counts += row.count;
-    stats.years.add(row.year);
+    if (row.year) stats.years.add(row.year);
   });
 
   const eligibleSpecies = Array.from(speciesCounts.entries())
@@ -1030,7 +1264,7 @@ async function calculateRegionalPhenology(allData, transects, baselineYear = 202
   console.log(`\n  Found ${eligibleSpecies.length} species with sufficient data (${MIN_COUNTS_PER_SPECIES}+ counts, ${MIN_YEARS_PER_SPECIES}+ years)`);
 
   // Step 5: Process each species for each region
-  const regionalResults = {};
+  const regionalResults: RegionalPhenologyData['species'] = {};
   const rScriptPath = path.join(__dirname, 'rbms-collated-index.R');
   let totalProcessed = 0;
 
@@ -1110,7 +1344,8 @@ async function calculateRegionalPhenology(allData, transects, baselineYear = 202
         fs.unlinkSync(outputFile);
 
       } catch (error) {
-        console.log(`    ${region}: failed (${error.message})`);
+        const errorMessage = error instanceof Error ? error.message : String(error);
+        console.log(`    ${region}: failed (${errorMessage})`);
         continue;
       }
     }
@@ -1129,7 +1364,7 @@ async function calculateRegionalPhenology(allData, transects, baselineYear = 202
   }
 
   // Step 6: Compile metadata
-  const metadata = {
+  const metadata: RegionalPhenologyData['metadata'] = {
     processingDate: new Date().toISOString(),
     baselineYear,
     regions: REGIONS,
@@ -1156,10 +1391,10 @@ async function calculateRegionalPhenology(allData, transects, baselineYear = 202
 /**
  * Process timeline data for all transects and years
  */
-function processTimelineData(allData) {
+function processTimelineData(allData: Record<string, string>[]): TimelineData {
   console.log('\nProcessing timeline data...');
 
-  const timelineData = {
+  const timelineData: TimelineData = {
     years: [],
     transectsByYear: {},
     butterflyFrequencyByYear: {},
@@ -1168,7 +1403,7 @@ function processTimelineData(allData) {
   };
 
   // Extract unique years from monitoring season (March-September)
-  const yearsSet = new Set();
+  const yearsSet = new Set<number>();
   allData.forEach(row => {
     const date = row['Date'];
     if (!date) return;
@@ -1211,24 +1446,24 @@ function processTimelineData(allData) {
     console.log(`  Processing year ${year}: ${yearData.length} observations`);
 
     // 1. Transects active this year
-    const transectsThisYear = new Set();
+    const transectsThisYear = new Set<string>();
     yearData.forEach(row => {
       transectsThisYear.add(row['Transect ID']);
     });
     timelineData.transectsByYear[year] = Array.from(transectsThisYear);
 
     // 2. Butterfly frequency
-    const allDatesThisYear = new Set();
+    const allDatesThisYear = new Set<string>();
     yearData.forEach(row => allDatesThisYear.add(row['Date']));
     const totalVisits = allDatesThisYear.size;
 
-    const speciesVisitsMap = new Map();
+    const speciesVisitsMap = new Map<string, Set<string>>();
     yearData.forEach(row => {
       const species = row['Preferred Species Name'].trim();
       if (!speciesVisitsMap.has(species)) {
-        speciesVisitsMap.set(species, new Set());
+        speciesVisitsMap.set(species, new Set<string>());
       }
-      speciesVisitsMap.get(species).add(row['Date']);
+      speciesVisitsMap.get(species)!.add(row['Date']);
     });
 
     timelineData.butterflyFrequencyByYear[year] = Array.from(speciesVisitsMap.entries())
@@ -1241,15 +1476,15 @@ function processTimelineData(allData) {
       .sort((a, b) => b.frequency - a.frequency);
 
     // 3. Diversity per transect
-    const transectSpeciesMap = new Map();
+    const transectSpeciesMap = new Map<string, Set<string>>();
     yearData.forEach(row => {
       const transectId = row['Transect ID'];
       const species = row['Preferred Species Name'].trim();
 
       if (!transectSpeciesMap.has(transectId)) {
-        transectSpeciesMap.set(transectId, new Set());
+        transectSpeciesMap.set(transectId, new Set<string>());
       }
-      transectSpeciesMap.get(transectId).add(species);
+      transectSpeciesMap.get(transectId)!.add(species);
     });
 
     timelineData.transectDiversityByYear[year] = Array.from(transectSpeciesMap.entries())
@@ -1278,7 +1513,7 @@ function processTimelineData(allData) {
              species;  // Only check that species exists, don't filter by VALID_SPECIES
     });
 
-    const observationsByDate = {};
+    const observationsByDate: Record<string, [string, string, number][]> = {};
     yearDataAllSpecies.forEach(row => {
       const date = row['Date'];
       const transectId = row['Transect ID'];
@@ -1303,7 +1538,7 @@ function processTimelineData(allData) {
 /**
  * Process municipality GeoJSON with species counts
  */
-function processMunicipalityGeoJSON(transects, allData) {
+function processMunicipalityGeoJSON(transects: TransectStats[], allData: Record<string, string>[]): void {
   console.log('\n=== Processing municipality species map ===');
 
   // Check if input GeoJSON exists
@@ -1315,10 +1550,23 @@ function processMunicipalityGeoJSON(transects, allData) {
 
   // Aggregate species by municipality and month
   console.log('Aggregating species by municipality and month...');
-  const municipalityData = {};
+  const municipalityData: Record<string, {
+    originalName: string;
+    speciesSet: Set<string>;
+    monthlySpecies: Record<number, Set<string>>;
+    transectCount: number;
+    transects: { name: string; isActive: boolean; firstMonitoringYear: number | null }[];
+  }> = {};
 
   // Build a map of transect ID to municipality name
-  const transectToMunicipality = {};
+  const transectToMunicipality: Record<string, {
+    normalizedName: string;
+    originalName: string;
+    transectName: string;
+    isActive: boolean;
+    firstMonitoringYear: number | null;
+  }> = {};
+
   transects.forEach(transect => {
     if (transect.concelho) {
       const normalizedName = transect.concelho
@@ -1340,14 +1588,14 @@ function processMunicipalityGeoJSON(transects, allData) {
     if (!municipalityData[normalizedName]) {
       municipalityData[normalizedName] = {
         originalName,
-        speciesSet: new Set(),
+        speciesSet: new Set<string>(),
         monthlySpecies: {}, // { 1: Set(), 2: Set(), ... 12: Set() }
         transectCount: 0,
         transects: []
       };
       // Initialize monthly sets
       for (let month = 1; month <= 12; month++) {
-        municipalityData[normalizedName].monthlySpecies[month] = new Set();
+        municipalityData[normalizedName].monthlySpecies[month] = new Set<string>();
       }
     }
 
@@ -1404,7 +1652,7 @@ function processMunicipalityGeoJSON(transects, allData) {
   if (geoJSONContent.charCodeAt(0) === 0xFEFF) {
     geoJSONContent = geoJSONContent.substring(1);
   }
-  const geoJSON = JSON.parse(geoJSONContent);
+  const geoJSON: GeoJSON = JSON.parse(geoJSONContent);
 
   // Remove CRS definition since we're converting to standard WGS84
   delete geoJSON.crs;
@@ -1415,7 +1663,7 @@ function processMunicipalityGeoJSON(transects, allData) {
   let municipalitiesWithoutData = 0;
 
   geoJSON.features = geoJSON.features.map(feature => {
-    const concelhoName = feature.properties.Concelho;
+    const concelhoName = feature.properties.Concelho as string;
     const normalizedName = concelhoName
       .normalize('NFD')
       .replace(/[\u0300-\u036f]/g, '')
@@ -1425,8 +1673,8 @@ function processMunicipalityGeoJSON(transects, allData) {
 
     if (data) {
       // Convert monthly species Sets to counts and arrays
-      const monthlySpeciesCount = {};
-      const monthlySpeciesLists = {};
+      const monthlySpeciesCount: Record<number, number> = {};
+      const monthlySpeciesLists: Record<number, string[]> = {};
       for (let month = 1; month <= 12; month++) {
         monthlySpeciesCount[month] = data.monthlySpecies[month].size;
         monthlySpeciesLists[month] = Array.from(data.monthlySpecies[month]);
@@ -1435,7 +1683,7 @@ function processMunicipalityGeoJSON(transects, allData) {
       // Calculate earliest monitoring year from active transects
       const activeTransectsYears = data.transects
         .filter(t => t.isActive && t.firstMonitoringYear)
-        .map(t => t.firstMonitoringYear);
+        .map(t => t.firstMonitoringYear!);
       const monitoringSinceYear = activeTransectsYears.length > 0
         ? Math.min(...activeTransectsYears)
         : null;
@@ -1453,8 +1701,8 @@ function processMunicipalityGeoJSON(transects, allData) {
       municipalitiesWithData++;
     } else {
       // Initialize empty monthly data
-      const monthlySpeciesCount = {};
-      const monthlySpeciesLists = {};
+      const monthlySpeciesCount: Record<number, number> = {};
+      const monthlySpeciesLists: Record<number, string[]> = {};
       for (let month = 1; month <= 12; month++) {
         monthlySpeciesCount[month] = 0;
         monthlySpeciesLists[month] = [];
@@ -1503,38 +1751,38 @@ function processMunicipalityGeoJSON(transects, allData) {
  * Define proj4 coordinate systems
  */
 // EPSG:3763 - Portuguese Transverse Mercator (source)
-proj4.defs('EPSG:3763', '+proj=tmerc +lat_0=39.66825833333333 +lon_0=-8.133108333333334 +k=1 +x_0=0 +y_0=0 +ellps=GRS80 +towgs84=0,0,0,0,0,0,0 +units=m +no_defs');
+proj4.default.defs('EPSG:3763', '+proj=tmerc +lat_0=39.66825833333333 +lon_0=-8.133108333333334 +k=1 +x_0=0 +y_0=0 +ellps=GRS80 +towgs84=0,0,0,0,0,0,0 +units=m +no_defs');
 // EPSG:4326 - WGS84 (destination - standard lat/lon)
-proj4.defs('EPSG:4326', '+proj=longlat +datum=WGS84 +no_defs');
+proj4.default.defs('EPSG:4326', '+proj=longlat +datum=WGS84 +no_defs');
 
 /**
  * Recursively reproject coordinates from EPSG:3763 to EPSG:4326 (WGS84)
  */
-function reprojectCoordinates(coords) {
+function reprojectCoordinates(coords: any): any {
   if (typeof coords[0] === 'number' && coords.length === 2) {
     // It's a coordinate pair [x, y] in EPSG:3763, transform to [lon, lat] in EPSG:4326
-    return proj4('EPSG:3763', 'EPSG:4326', coords);
+    return proj4.default('EPSG:3763', 'EPSG:4326', coords);
   }
   // It's an array of coordinates, recurse
-  return coords.map(c => reprojectCoordinates(c));
+  return coords.map((c: any) => reprojectCoordinates(c));
 }
 
 /**
  * Recursively simplify coordinates by reducing precision
  */
-function simplifyCoordinates(coords, precision = 4) {
+function simplifyCoordinates(coords: any, precision: number = 4): any {
   if (typeof coords[0] === 'number') {
     // It's a coordinate pair [lon, lat]
-    return coords.map(c => Number(c.toFixed(precision)));
+    return coords.map((c: number) => Number(c.toFixed(precision)));
   }
   // It's an array of coordinates, recurse
-  return coords.map(c => simplifyCoordinates(c, precision));
+  return coords.map((c: any) => simplifyCoordinates(c, precision));
 }
 
 /**
  * Main processing function
  */
-async function processData() {
+async function processData(): Promise<void> {
   console.log('Starting butterfly data processing...\n');
 
   // Read metadata
@@ -1563,14 +1811,14 @@ async function processData() {
   const allData = readCSV(ALL_DATA_FILE);
 
   // Correct common species name typos
-  const SPECIES_NAME_CORRECTIONS = {
+  const SPECIES_NAME_CORRECTIONS: Record<string, string> = {
     'Boloria selenis': 'Boloria selene',
     'Apatura iris': 'Apatura ilia',
     'Colias sp.': 'Colias crocea'
   };
 
   let correctedRecordsCount = 0;
-  const correctionDetails = {}; // Track count per correction
+  const correctionDetails: Record<string, SpeciesCorrection> = {}; // Track count per correction
 
   allData.forEach(row => {
     const speciesName = row['Preferred Species Name'];
@@ -1599,7 +1847,7 @@ async function processData() {
   }
 
   // Create a map of metadata by Transect ID for quick lookup
-  const metadataMap = {};
+  const metadataMap: Record<string, Record<string, string>> = {};
   validTransects.forEach(row => {
     const transectId = row['Transect ID'];
     if (transectId && transectId.trim()) {
@@ -1610,20 +1858,23 @@ async function processData() {
   // Geocode transect coordinates to get Concelho and Distrito
   console.log('\nGeocoding transect coordinates...');
   const geocodeCache = loadGeocodeCache();
-  const locationMap = {};
-  const coordinatesMap = {}; // Store fuzzy coordinates for privacy
+  const locationMap: Record<string, Location> = {};
+  const coordinatesMap: Record<string, Coordinates> = {}; // Store fuzzy coordinates for privacy
   let geocodedCount = 0;
   let cachedCount = 0;
   let failedCount = 0;
   let apiCallCount = 0;
-  const failedTransects = [];
+  const failedTransects: { name: string; id: string; coords?: string; reason: string }[] = [];
 
   for (const [transectId, metadata] of Object.entries(metadataMap)) {
     const coords = parseCoordinates(metadata['Spatial Refere']);
 
     // Store fuzzy coordinates for map display (privacy protection)
     if (coords) {
-      coordinatesMap[transectId] = fuzzyCoordinates(coords);
+      const fuzzyCoords = fuzzyCoordinates(coords);
+      if (fuzzyCoords) {
+        coordinatesMap[transectId] = fuzzyCoords;
+      }
     }
 
     if (coords) {
@@ -1660,12 +1911,13 @@ async function processData() {
             });
           }
         } catch (error) {
-          console.warn(`  Warning: Failed to geocode transect ${metadata['Transect Name']}: ${error.message}`);
+          const errorMessage = error instanceof Error ? error.message : String(error);
+          console.warn(`  Warning: Failed to geocode transect ${metadata['Transect Name']}: ${errorMessage}`);
           failedCount++;
           failedTransects.push({
             name: metadata['Transect Name'],
             id: transectId,
-            reason: error.message
+            reason: errorMessage
           });
         }
       }
@@ -1702,7 +1954,7 @@ async function processData() {
   }
 
   // Track filtered species (those not in the whitelist) with record counts and total individuals
-  const filteredSpeciesMap = new Map();
+  const filteredSpeciesMap = new Map<string, FilteredSpeciesData>();
   const validTransectIds = new Set(Object.keys(metadataMap));
 
   // Collect all species that were filtered out from valid transects
@@ -1727,9 +1979,9 @@ async function processData() {
 
   // Calculate statistics for each valid transect
   console.log('\nCalculating statistics for each transect...');
-  const results = [];
+  const results: TransectStats[] = [];
   let processedCount = 0;
-  const skippedTransects = [];
+  const skippedTransects: { id: string; name: string; situacao: string }[] = [];
 
   Object.entries(metadataMap).forEach(([transectId, metadata]) => {
     const location = locationMap[transectId] || null;
@@ -1835,7 +2087,7 @@ async function processData() {
 
   // Calculate and save regional phenology curves (skip if --skip-regional flag is set)
   const skipRegional = process.argv.includes('--skip-regional');
-  let phenologyData = null;
+  let phenologyData: RegionalPhenologyData | null = null;
 
   if (skipRegional) {
     console.log('\n⏭️  Skipping regional phenology curves (--skip-regional flag set)');
@@ -1892,6 +2144,7 @@ async function processData() {
 try {
   processData();
 } catch (error) {
-  console.error('\n❌ Error processing data:', error);
+  const errorMessage = error instanceof Error ? error : String(error);
+  console.error('\n❌ Error processing data:', errorMessage);
   process.exit(1);
 }
