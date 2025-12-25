@@ -7,7 +7,7 @@ import { TransectStats } from "../types/transectStats";
 import { SERIES_COLORS } from "../utils/utils";
 import { filterTimelineByTransects } from "../utils/timelineUtils";
 import SpeciesLink from "./SpeciesLink";
-import { SPECIES_FAMILIES } from "../utils/speciesFamilies";
+import { SPECIES_FAMILIES } from "../constants";
 
 interface TransectTimelineProps {
   timelineData: TimelineData;

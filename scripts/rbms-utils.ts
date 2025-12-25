@@ -9,87 +9,130 @@
  * - Validate rbms output
  */
 
-const fs = require('fs');
-const path = require('path');
-const { spawn } = require('child_process');
-const cacheUtils = require('./cache-utils');
+import * as fs from "fs";
+import { spawn } from "child_process";
+import * as cacheUtils from "./cache-utils";
+import { TransformedDataRow } from "../src/types/processing";
+import { MONITORING_START_MONTH, MONITORING_END_MONTH } from "../src/constants";
+
+interface ISOWeekResult {
+  year: number;
+  week: number;
+}
+
+export interface VisitData {
+  site_id: string;
+  date: string;
+  year: number;
+  [key: string]: unknown; // Add index signature for compatibility
+}
+
+export interface CountData {
+  site_id: string;
+  date: string;
+  count: number;
+  [key: string]: unknown; // Add index signature for compatibility
+}
+
+interface SpeciesDataResult {
+  visits: VisitData[];
+  counts: CountData[];
+}
+
+interface CallRbmsOptions {
+  visitsFile?: string;
+  countsFile?: string;
+  outputFile?: string;
+  sourceDataFiles?: string[];
+  additionalFiles?: string[];
+}
+
+interface RbmsDataQuality {
+  site_count: number;
+  total_visits: number;
+  [key: string]: unknown;
+}
+
+interface RbmsOutput {
+  species: string;
+  collated_indices: Record<string, number>;
+  data_quality: RbmsDataQuality;
+  [key: string]: unknown;
+}
 
 /**
  * Convert date from DD/MM/YYYY to YYYY-MM-DD format
- * @param {string} dateStr - Date in DD/MM/YYYY format
- * @returns {string} Date in YYYY-MM-DD format
  */
-function convertDateFormat(dateStr) {
-  if (!dateStr || typeof dateStr !== 'string') {
+export function convertDateFormat(dateStr: string): string {
+  if (!dateStr || typeof dateStr !== "string") {
     throw new Error(`Invalid date string: ${dateStr}`);
   }
 
-  const parts = dateStr.split('/');
+  const parts = dateStr.split("/");
   if (parts.length !== 3) {
     throw new Error(`Invalid date format: ${dateStr}. Expected DD/MM/YYYY`);
   }
 
   const [day, month, year] = parts;
-  return `${year}-${month.padStart(2, '0')}-${day.padStart(2, '0')}`;
+  return `${year}-${month.padStart(2, "0")}-${day.padStart(2, "0")}`;
 }
 
 /**
  * Get ISO week number and year for a date
- * @param {Date} date - JavaScript Date object
- * @returns {Object} Object with {year, week}
  */
-function getISOWeek(date) {
+export function getISOWeek(date: Date): ISOWeekResult {
   const d = new Date(Date.UTC(date.getFullYear(), date.getMonth(), date.getDate()));
   const dayNum = d.getUTCDay() || 7; // Sunday = 7
   d.setUTCDate(d.getUTCDate() + 4 - dayNum);
   const yearStart = new Date(Date.UTC(d.getUTCFullYear(), 0, 1));
-  const weekNo = Math.ceil((((d - yearStart) / 86400000) + 1) / 7);
+  const weekNo = Math.ceil(((d.getTime() - yearStart.getTime()) / 86400000 + 1) / 7);
   return {
     year: d.getUTCFullYear(),
-    week: weekNo
+    week: weekNo,
   };
 }
 
 /**
  * Parse DD/MM/YYYY date string to Date object
- * @param {string} dateStr - Date in DD/MM/YYYY format
- * @returns {Date} JavaScript Date object
  */
-function parseDate(dateStr) {
-  const [day, month, year] = dateStr.split('/');
+export function parseDate(dateStr: string): Date {
+  const [day, month, year] = dateStr.split("/");
   return new Date(parseInt(year), parseInt(month) - 1, parseInt(day));
 }
 
 /**
  * Sanitize species name for use in filenames
- * @param {string} speciesName - Scientific name
- * @returns {string} Sanitized filename-safe string
  */
-function sanitizeFilename(speciesName) {
+export function sanitizeFilename(speciesName: string): string {
   return speciesName
     .toLowerCase()
-    .replace(/\s+/g, '_')
-    .replace(/[^a-z0-9_]/g, '');
+    .replace(/\s+/g, "_")
+    .replace(/[^a-z0-9_]/g, "");
 }
 
 /**
  * Extract and transform data for a single species, aggregated by week
- * @param {Array} allData - Complete butterfly observation data
- * @param {Array<string>} transectIds - List of quality filtered transect IDs
- * @param {string} speciesName - Scientific name of species
- * @returns {Object} Object with visits and counts arrays (weekly aggregated)
  */
-function extractSpeciesData(allData, transectIds, speciesName) {
+export function extractSpeciesData(
+  allData: TransformedDataRow[],
+  transectIds: string[],
+  speciesName: string
+): SpeciesDataResult {
   const transectSet = new Set(transectIds);
-  const visitsMap = new Map(); // Key: transectId_year_week, Value: visit info (first date of week)
-  const countsMap = new Map(); // Key: transectId_year_week, Value: total count for week
+  const visitsMap = new Map<string, VisitData>(); // Key: transectId_year_week, Value: visit info (first date of week)
+  const countsMap = new Map<string, CountData>(); // Key: transectId_year_week, Value: total count for week
 
   // First pass: Build weekly visits map from ALL data at these transects
   // Aggregate to one visit per site-week (using first monitoring date of that week)
   allData.forEach(row => {
-    const month = parseInt(row.month);
-    if (!transectSet.has(row.transectId) || month < 3 || month > 9) {
-      return; // Skip non-quality transects and out-of-season data
+    const month = row.month;
+    if (
+      !transectSet.has(row.transectId) ||
+      month === null ||
+      month < MONITORING_START_MONTH - 1 ||
+      month > MONITORING_END_MONTH - 1
+    ) {
+      return; // Skip non-quality transects and out-of-season data (month is 0-indexed)
     }
 
     try {
@@ -102,7 +145,7 @@ function extractSpeciesData(allData, transectIds, speciesName) {
         visitsMap.set(visitKey, {
           site_id: row.transectId,
           date: dateYMD, // First date we saw this site-week
-          year: year
+          year: year,
         });
       }
     } catch (err) {
@@ -113,17 +156,18 @@ function extractSpeciesData(allData, transectIds, speciesName) {
   // Second pass: Build weekly counts for this specific species
   // Sum all counts within each site-week
   allData.forEach(row => {
-    const month = parseInt(row.month);
+    const month = row.month;
     if (
       row.species !== speciesName ||
       !transectSet.has(row.transectId) ||
-      month < 3 ||
-      month > 9
+      month === null ||
+      month < MONITORING_START_MONTH - 1 ||
+      month > MONITORING_END_MONTH - 1
     ) {
-      return;
+      return; // month is 0-indexed
     }
 
-    const count = parseInt(row.count) || 0;
+    const count = row.count || 0;
     if (count > 0) {
       try {
         const dateObj = parseDate(row.date);
@@ -140,12 +184,12 @@ function extractSpeciesData(allData, transectIds, speciesName) {
 
         // Aggregate counts by site-week
         if (countsMap.has(countKey)) {
-          countsMap.get(countKey).count += count;
+          countsMap.get(countKey)!.count += count;
         } else {
           countsMap.set(countKey, {
             site_id: row.transectId,
             date: visit.date, // Use same date as visit
-            count: count
+            count: count,
           });
         }
       } catch (err) {
@@ -168,51 +212,55 @@ function extractSpeciesData(allData, transectIds, speciesName) {
 
   return {
     visits: visitsArray,
-    counts: countsArray
+    counts: countsArray,
   };
 }
 
 /**
  * Write array of objects to CSV file
- * @param {string} filepath - Output CSV file path
- * @param {Array<Object>} data - Array of objects to write
- * @param {Array<string>} columns - Column names in desired order
  */
-function writeCSV(filepath, data, columns) {
+export function writeCSV(
+  filepath: string,
+  data: Record<string, unknown>[],
+  columns: string[]
+): void {
   if (!data || data.length === 0) {
     throw new Error(`No data to write to ${filepath}`);
   }
 
   // Create header row
-  const header = columns.join(',');
+  const header = columns.join(",");
 
   // Create data rows
   const rows = data.map(row => {
-    return columns.map(col => {
-      const value = row[col];
-      // Handle undefined/null
-      if (value === undefined || value === null) return '';
-      // Escape values containing commas or quotes
-      if (typeof value === 'string' && (value.includes(',') || value.includes('"'))) {
-        return `"${value.replace(/"/g, '""')}"`;
-      }
-      return value;
-    }).join(',');
+    return columns
+      .map(col => {
+        const value = row[col];
+        // Handle undefined/null
+        if (value === undefined || value === null) return "";
+        // Escape values containing commas or quotes
+        if (typeof value === "string" && (value.includes(",") || value.includes('"'))) {
+          return `"${value.replace(/"/g, '""')}"`;
+        }
+        return value;
+      })
+      .join(",");
   });
 
   // Combine and write
-  const csv = [header, ...rows].join('\n');
-  fs.writeFileSync(filepath, csv, 'utf8');
+  const csv = [header, ...rows].join("\n");
+  fs.writeFileSync(filepath, csv, "utf8");
 }
 
 /**
  * Call R script for rbms processing
- * @param {string} rScriptPath - Path to R script
- * @param {Array<string>} args - Command line arguments for R script
- * @param {number} timeout - Timeout in milliseconds (default: 120000 = 2 minutes)
- * @returns {Promise<string>} Promise resolving to R script stdout
  */
-function callRbms(rScriptPath, args, timeout = 120000, options = {}) {
+export function callRbms(
+  rScriptPath: string,
+  args: string[],
+  timeout: number = 120000,
+  options: CallRbmsOptions = {}
+): Promise<string> {
   return new Promise((resolve, reject) => {
     // Verify R script exists
     if (!fs.existsSync(rScriptPath)) {
@@ -220,21 +268,25 @@ function callRbms(rScriptPath, args, timeout = 120000, options = {}) {
     }
 
     // Compute cache key and output file once (if caching enabled)
-    let cacheKey = null;
-    let outputFile = null;
+    let cacheKey: string | null = null;
+    let outputFile: string | null = null;
     if (options.visitsFile && options.countsFile) {
       cacheKey = cacheUtils.generateCacheKey(
         rScriptPath,
         options.visitsFile,
         options.countsFile,
         args,
-        options  // Pass full options including sourceDataFiles
+        options // Pass full options including sourceDataFiles
       );
 
       // Extract output file path from args (typically 3rd argument in rbms scripts)
       outputFile = options.outputFile || (args.length > 2 ? args[2] : null);
 
-      const cachedResult = cacheUtils.getCachedResult(cacheKey, outputFile, options.additionalFiles || []);
+      const cachedResult = cacheUtils.getCachedResult(
+        cacheKey,
+        outputFile,
+        options.additionalFiles || []
+      );
       if (cachedResult) {
         // console.log(`    [cache hit]`);
         return resolve(cachedResult);
@@ -245,31 +297,31 @@ function callRbms(rScriptPath, args, timeout = 120000, options = {}) {
     }
 
     // Spawn R process
-    const rProcess = spawn('Rscript', [rScriptPath, ...args], {
-      stdio: ['ignore', 'pipe', 'pipe']
+    const rProcess = spawn("Rscript", [rScriptPath, ...args], {
+      stdio: ["ignore", "pipe", "pipe"],
     });
 
-    let stdout = '';
-    let stderr = '';
+    let stdout = "";
+    let stderr = "";
 
     // Collect stdout
-    rProcess.stdout.on('data', (data) => {
+    rProcess.stdout.on("data", (data: Buffer) => {
       stdout += data.toString();
     });
 
     // Collect stderr
-    rProcess.stderr.on('data', (data) => {
+    rProcess.stderr.on("data", (data: Buffer) => {
       stderr += data.toString();
     });
 
     // Set timeout
     const timer = setTimeout(() => {
-      rProcess.kill('SIGTERM');
+      rProcess.kill("SIGTERM");
       reject(new Error(`R script timeout after ${timeout}ms`));
     }, timeout);
 
     // Handle process exit
-    rProcess.on('close', (code) => {
+    rProcess.on("close", (code: number | null) => {
       clearTimeout(timer);
 
       if (code !== 0) {
@@ -284,7 +336,7 @@ function callRbms(rScriptPath, args, timeout = 120000, options = {}) {
     });
 
     // Handle process errors
-    rProcess.on('error', (err) => {
+    rProcess.on("error", (err: Error) => {
       clearTimeout(timer);
       reject(new Error(`Failed to start R process: ${err.message}`));
     });
@@ -293,15 +345,14 @@ function callRbms(rScriptPath, args, timeout = 120000, options = {}) {
 
 /**
  * Validate rbms output JSON structure and values
- * @param {Object} output - Parsed JSON from rbms R script
- * @param {string} speciesName - Expected species name
- * @param {Array<number>} expectedYears - Expected years
- * @returns {Object} Validated output
- * @throws {Error} If validation fails
  */
-function validateRbmsOutput(output, speciesName, expectedYears) {
+export function validateRbmsOutput(
+  output: RbmsOutput,
+  speciesName: string,
+  expectedYears: number[]
+): RbmsOutput {
   // Check basic structure
-  if (!output || typeof output !== 'object') {
+  if (!output || typeof output !== "object") {
     throw new Error(`Invalid rbms output: not an object`);
   }
 
@@ -309,11 +360,11 @@ function validateRbmsOutput(output, speciesName, expectedYears) {
     throw new Error(`Species mismatch: expected ${speciesName}, got ${output.species}`);
   }
 
-  if (!output.collated_indices || typeof output.collated_indices !== 'object') {
+  if (!output.collated_indices || typeof output.collated_indices !== "object") {
     throw new Error(`Missing or invalid collated_indices`);
   }
 
-  if (!output.data_quality || typeof output.data_quality !== 'object') {
+  if (!output.data_quality || typeof output.data_quality !== "object") {
     throw new Error(`Missing or invalid data_quality`);
   }
 
@@ -322,12 +373,12 @@ function validateRbmsOutput(output, speciesName, expectedYears) {
   const missingYears = expectedYears.filter(y => !indexYears.includes(y));
 
   if (missingYears.length > 0) {
-    console.warn(`rbms output missing years for ${speciesName}: ${missingYears.join(', ')}`);
+    console.warn(`rbms output missing years for ${speciesName}: ${missingYears.join(", ")}`);
   }
 
   // Check index values are reasonable (0.01 to 10000)
   for (const [year, index] of Object.entries(output.collated_indices)) {
-    const indexValue = parseFloat(index);
+    const indexValue = parseFloat(String(index));
     if (isNaN(indexValue)) {
       throw new Error(`Invalid index value for year ${year}: ${index}`);
     }
@@ -338,26 +389,12 @@ function validateRbmsOutput(output, speciesName, expectedYears) {
 
   // Check data quality metrics
   const dq = output.data_quality;
-  if (typeof dq.site_count !== 'number' || dq.site_count < 0) {
+  if (typeof dq.site_count !== "number" || dq.site_count < 0) {
     throw new Error(`Invalid data_quality.site_count: ${dq.site_count}`);
   }
-  if (typeof dq.total_visits !== 'number' || dq.total_visits < 0) {
+  if (typeof dq.total_visits !== "number" || dq.total_visits < 0) {
     throw new Error(`Invalid data_quality.total_visits: ${dq.total_visits}`);
-  }
-  if (typeof dq.flight_curve_r2 !== 'number' || dq.flight_curve_r2 < 0 || dq.flight_curve_r2 > 1) {
-    console.warn(`Unusual flight_curve_r2 for ${speciesName}: ${dq.flight_curve_r2}`);
   }
 
   return output;
 }
-
-module.exports = {
-  convertDateFormat,
-  getISOWeek,
-  parseDate,
-  sanitizeFilename,
-  extractSpeciesData,
-  writeCSV,
-  callRbms,
-  validateRbmsOutput
-};

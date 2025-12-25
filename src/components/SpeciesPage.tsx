@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 import { Button, Card, Space, Typography, Spin, Alert, Row, Col, Select } from "antd";
 import { ArrowLeftOutlined } from "@ant-design/icons";
 import { useParams, useNavigate } from "react-router-dom";
-import { SPECIES_FAMILIES } from "../utils/speciesFamilies";
+import { SPECIES_FAMILIES } from "../constants";
 import { TimelineData } from "../types/timelineData";
 import { TransectData } from "../types/transectStats";
 import { calculateSpeciesPresenceByYear } from "../utils/speciesMapUtils";

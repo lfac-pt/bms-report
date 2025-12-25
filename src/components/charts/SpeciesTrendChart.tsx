@@ -1,6 +1,7 @@
 import { Line } from "react-chartjs-2";
 import { Alert } from "antd";
 import { SERIES_COLORS } from "../../utils/utils";
+import { BASELINE_YEAR } from "../../constants";
 
 interface SpeciesTrendChartProps {
   speciesData: {
@@ -90,7 +91,7 @@ export function SpeciesTrendChart({ speciesData }: SpeciesTrendChartProps) {
 
   // Main data points (line without curves)
   datasets.push({
-    label: "Índice Populacional (2021 = 100)",
+    label: `Índice Populacional (${BASELINE_YEAR} = 100)`,
     data: indices,
     borderColor: `${SERIES_COLORS[0]}99`,
     backgroundColor: "transparent",
@@ -142,7 +143,7 @@ export function SpeciesTrendChart({ speciesData }: SpeciesTrendChartProps) {
             }
 
             // For main line, show index with CI if available
-            if (datasetLabel === "Índice Populacional (2021 = 100)") {
+            if (datasetLabel === `Índice Populacional (${BASELINE_YEAR} = 100)`) {
               const lines = [`Índice: ${context.parsed.y.toFixed(2)}`];
               if (hasCI) {
                 const ci = speciesData.confidenceIntervals![year];

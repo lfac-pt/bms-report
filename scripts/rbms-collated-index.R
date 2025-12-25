@@ -154,20 +154,6 @@ tryCatch({
 
   flight_curve_success <- TRUE
 
-  # Extract R² as quality metric
-  if (!is.null(ts_flight_curve) && "pheno" %in% names(ts_flight_curve)) {
-    pheno_data <- ts_flight_curve$pheno
-    if (!is.null(pheno_data) && "r.squared" %in% names(pheno_data)) {
-      flight_curve_r2 <- mean(pheno_data$r.squared, na.rm = TRUE)
-    } else {
-      flight_curve_r2 <- NA
-    }
-  } else {
-    flight_curve_r2 <- NA
-  }
-
-  cat(paste("Flight curve R²:", round(flight_curve_r2, 3), "\n"))
-
   # Debug: Check flight curve structure
   cat("Flight curve structure:\n")
   cat(paste("  Names:", paste(names(ts_flight_curve), collapse = ", "), "\n"))
@@ -227,7 +213,6 @@ tryCatch({
   cat(paste("Warning: Flight curve calculation failed:", e$message, "\n"))
   ts_flight_curve <<- NULL
   flight_curve_success <<- FALSE
-  flight_curve_r2 <<- NA
   pheno_curves <<- NULL
 })
 
@@ -742,7 +727,6 @@ data_quality <- list(
   total_visits = nrow(visits),
   total_counts = nrow(counts[counts$COUNT > 0, ]),
   years_with_data = length(unique(collated_by_year$year)),
-  flight_curve_r2 = ifelse(is.na(flight_curve_r2), 0, round(flight_curve_r2, 4)),
   imputation_success = imputation_success,
   baseline_year = baseline_year_used
 )

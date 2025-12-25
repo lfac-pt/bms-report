@@ -75,6 +75,31 @@ export default [
     },
   },
   {
-    ignores: ["dist", "node_modules", "build", "coverage", "scripts", "*.config.ts", "*.config.js"],
+    // Configuration for Node.js scripts
+    files: ["scripts/**/*.ts"],
+    languageOptions: {
+      globals: {
+        Buffer: "readonly",
+        __filename: "readonly",
+        __dirname: "readonly",
+        exports: "readonly",
+        global: "readonly",
+        process: "readonly",
+        console: "readonly",
+        setTimeout: "readonly",
+        clearTimeout: "readonly",
+        setInterval: "readonly",
+        clearInterval: "readonly",
+        setImmediate: "readonly",
+        clearImmediate: "readonly",
+      },
+    },
+    rules: {
+      "no-console": "off", // Console is expected in Node.js scripts
+      "@typescript-eslint/no-explicit-any": "warn",
+    },
+  },
+  {
+    ignores: ["dist", "node_modules", "build", "coverage", "*.config.ts", "*.config.js"],
   },
 ];

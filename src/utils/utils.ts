@@ -7,7 +7,7 @@ import {
   formatDatePortuguese,
   isDateBefore,
 } from "./fastDateParser";
-import { SPECIES_FAMILIES } from "./speciesFamilies";
+import { SPECIES_FAMILIES } from "../constants";
 
 export function filterDataset(
   dataset: Dataset,

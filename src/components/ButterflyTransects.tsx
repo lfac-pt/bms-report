@@ -29,7 +29,7 @@ import {
   WarningOutlined,
   SettingOutlined,
 } from "@ant-design/icons";
-import { groupSpeciesByFamily } from "../utils/speciesFamilies";
+import { groupSpeciesByFamily } from "../constants";
 import TransectMap from "./TransectMap";
 import TransectTimeline from "./TransectTimeline";
 import SpeciesLink from "./SpeciesLink";
