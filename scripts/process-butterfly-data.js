@@ -676,7 +676,7 @@ async function calculateGBI(allData, transects, baselineYear = BASELINE_YEAR) {
           method: 'rbms'
         };
 
-        console.log(`    ✓ rbms success: ${yearsWithData.length} years, R²=${rbmsOutput.data_quality.flight_curve_r2}`);
+        console.log(`    ✓ rbms success: ${yearsWithData.length} years`);
 
         // Clean up temp files
         try {

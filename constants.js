@@ -200,26 +200,8 @@ const ALL_GRASSLAND_SPECIES = new Set([
   ...GRASSLAND_SPECIES.specialist
 ]);
 
-// For CommonJS (Node.js scripts)
-if (typeof module !== 'undefined' && module.exports) {
-  module.exports = {
-    MIN_YEARS_ACTIVE,
-    MIN_VISITS_PER_YEAR,
-    MIN_VISITS_FOR_FLIGHT_CURVE,
-    BASELINE_YEAR,
-    MONITORING_START_MONTH,
-    MONITORING_END_MONTH,
-    MIN_COUNTS_PER_SPECIES,
-    MIN_YEARS_PER_SPECIES,
-    SPECIES_FAMILIES,
-    VALID_SPECIES,
-    GRASSLAND_SPECIES,
-    ALL_GRASSLAND_SPECIES,
-  };
-}
-
-// For ES modules (TypeScript/React)
-export {
+// Export for CommonJS (Node.js scripts)
+module.exports = {
   MIN_YEARS_ACTIVE,
   MIN_VISITS_PER_YEAR,
   MIN_VISITS_FOR_FLIGHT_CURVE,

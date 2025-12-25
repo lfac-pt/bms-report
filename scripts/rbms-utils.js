@@ -344,9 +344,6 @@ function validateRbmsOutput(output, speciesName, expectedYears) {
   if (typeof dq.total_visits !== 'number' || dq.total_visits < 0) {
     throw new Error(`Invalid data_quality.total_visits: ${dq.total_visits}`);
   }
-  if (typeof dq.flight_curve_r2 !== 'number' || dq.flight_curve_r2 < 0 || dq.flight_curve_r2 > 1) {
-    console.warn(`Unusual flight_curve_r2 for ${speciesName}: ${dq.flight_curve_r2}`);
-  }
 
   return output;
 }
