@@ -4,6 +4,17 @@ const Papa = require('papaparse');
 const https = require('https');
 const rbmsUtils = require('./rbms-utils');
 const proj4 = require('proj4');
+const {
+  MIN_YEARS_ACTIVE,
+  MIN_VISITS_PER_YEAR,
+  BASELINE_YEAR,
+  MONITORING_START_MONTH,
+  MONITORING_END_MONTH,
+  MIN_COUNTS_PER_SPECIES,
+  MIN_YEARS_PER_SPECIES,
+  GRASSLAND_SPECIES,
+  ALL_GRASSLAND_SPECIES
+} = require('../constants');
 
 // File paths
 const RAW_DATA_DIR = path.join(__dirname, '../raw-data');
@@ -155,37 +166,7 @@ const VALID_SPECIES = new Set([
   'Satyrus actaea',
 ]);
 
-// Grassland butterfly species for GBI calculation
-// Based on European Grassland Butterfly Indicator
-// Source: https://www.eea.europa.eu/en/analysis/indicators/grassland-butterfly-index-in-europe-1
-const GRASSLAND_SPECIES = {
-  // Widespread species (7)
-  widespread: new Set([
-    'Anthocharis cardamines',
-    'Coenonympha pamphilus',
-    'Lasiommata megera',
-    'Lycaena phlaeas',
-    'Maniola jurtina',
-    'Ochlodes sylvanus',
-    'Polyommatus icarus',
-  ]),
-  // Specialist species (7)
-  specialist: new Set([
-    'Cupido minimus',
-    'Cyaniris semiargus', // Also known as Polyommatus semiargus
-    'Erynnis tages',
-    'Euphydryas aurinia',
-    'Lysandra bellargus',
-    'Spialia sertorius',
-    'Thymelicus acteon',
-  ])
-};
-
-// Get all grassland species as a single set
-const ALL_GRASSLAND_SPECIES = new Set([
-  ...GRASSLAND_SPECIES.widespread,
-  ...GRASSLAND_SPECIES.specialist
-]);
+// Note: GRASSLAND_SPECIES and ALL_GRASSLAND_SPECIES are now imported from constants.js
 
 /**
  * Parse a date string in DD/MM/YYYY format and extract the year
@@ -479,10 +460,10 @@ function calculateTransectStats(transectId, allData, metadata, location = null, 
   });
 
   // Calculate years active and first monitoring year using only monitoring season data
-  // Monitoring season is March-September (months 2-8 in 0-indexed)
+  // Monitoring season is March-September (months MONITORING_START_MONTH-1 to MONITORING_END_MONTH-1 in 0-indexed)
   const monitoringSeasonData = transectData.filter(row => {
     const month = getMonthFromDate(row['Date']);
-    return month !== null && month >= 2 && month <= 8;
+    return month !== null && month >= (MONITORING_START_MONTH - 1) && month <= (MONITORING_END_MONTH - 1);
   });
 
   const monitoringYearsSet = new Set();
@@ -542,11 +523,11 @@ function calculateTransectStats(transectId, allData, metadata, location = null, 
 
 /**
  * Filter transects based on quality criteria for GBI
- * Criteria: 5+ years active, 5+ visits per year average
+ * Criteria: MIN_YEARS_ACTIVE years active, MIN_VISITS_PER_YEAR visits per year average
  */
 function getQualityFilteredTransects(transects) {
   return transects.filter(t =>
-    t.yearsActive >= 5 && t.avgVisitsPerYear >= 5
+    t.yearsActive >= MIN_YEARS_ACTIVE && t.avgVisitsPerYear >= MIN_VISITS_PER_YEAR
   );
 }
 
@@ -564,7 +545,7 @@ function calculateSpeciesAbundanceByYear(allData, qualityTransectIds) {
     if (!year) return;
 
     const month = getMonthFromDate(row['Date']);
-    if (month === null || month < 2 || month > 8) return; // Monitoring season only (March-September)
+    if (month === null || month < (MONITORING_START_MONTH - 1) || month > (MONITORING_END_MONTH - 1)) return; // Monitoring season only (March-September, 0-indexed)
 
     const species = row['Preferred Species Name'];
     if (!species || !ALL_GRASSLAND_SPECIES.has(species.trim())) return;
@@ -628,7 +609,7 @@ function calculateSpeciesIndex(slope, year, baselineYear) {
 /**
  * Main GBI calculation function
  */
-async function calculateGBI(allData, transects, baselineYear = 2021) {
+async function calculateGBI(allData, transects, baselineYear = BASELINE_YEAR) {
   console.log('\nCalculating Grassland Butterfly Index (GBI) using rbms...');
 
   // Step 1: Filter quality transects
@@ -638,7 +619,7 @@ async function calculateGBI(allData, transects, baselineYear = 2021) {
   const activeQualityTransects = qualityTransects.filter(t => t.isActive);
   const qualityTransectIds = activeQualityTransects.map(t => t.transectId);
 
-  console.log(`  Quality transects: ${qualityTransects.length} (5+ years, 5+ visits/year)`);
+  console.log(`  Quality transects: ${qualityTransects.length} (${MIN_YEARS_ACTIVE}+ years, ${MIN_VISITS_PER_YEAR}+ visits/year)`);
   console.log(`  Active in most recent year: ${activeQualityTransects.length}`);
 
   if (activeQualityTransects.length === 0) {
@@ -656,7 +637,7 @@ async function calculateGBI(allData, transects, baselineYear = 2021) {
   const transformedData = allData
     .filter(row => {
       const month = getMonthFromDate(row['Date']);
-      return month !== null && month >= 3 && month <= 9; // Monitoring season
+      return month !== null && month >= (MONITORING_START_MONTH - 1) && month <= (MONITORING_END_MONTH - 1); // Monitoring season (0-indexed)
     })
     .map(row => ({
       transectId: row['Transect ID'],
@@ -666,7 +647,7 @@ async function calculateGBI(allData, transects, baselineYear = 2021) {
       species: row['Preferred Species Name'],
       count: parseInt(row['Abundance Count']) || 0
     }))
-    .filter(row => row.year >= 2021);
+    .filter(row => row.year >= BASELINE_YEAR);
 
   console.log(`  Transformed ${transformedData.length} observations for rbms`);
 
@@ -884,8 +865,8 @@ async function calculateGBI(allData, transects, baselineYear = 2021) {
   const speciesMetadata = {
     grasslandSpecies: grasslandSpeciesList,
     qualityCriteria: {
-      minYearsActive: 5,
-      minVisitsPerYear: 5
+      minYearsActive: MIN_YEARS_ACTIVE,
+      minVisitsPerYear: MIN_VISITS_PER_YEAR
     },
     transectsUsed: transectsUsedList
   };
@@ -978,7 +959,7 @@ async function calculateAllFlightCurves(allData, transects, baselineYear = 2021)
   const activeQualityTransects = qualityTransects.filter(t => t.isActive);
   const qualityTransectIds = activeQualityTransects.map(t => t.transectId);
 
-  console.log(`  Quality transects: ${qualityTransects.length} (5+ years, 5+ visits/year)`);
+  console.log(`  Quality transects: ${qualityTransects.length} (${MIN_YEARS_ACTIVE}+ years, ${MIN_VISITS_PER_YEAR}+ visits/year)`);
   console.log(`  Active in most recent year: ${activeQualityTransects.length}`);
 
   if (activeQualityTransects.length === 0) {
@@ -995,7 +976,7 @@ async function calculateAllFlightCurves(allData, transects, baselineYear = 2021)
   const transformedData = allData
     .filter(row => {
       const month = getMonthFromDate(row['Date']);
-      return month !== null && month >= 3 && month <= 9; // Monitoring season
+      return month !== null && month >= (MONITORING_START_MONTH - 1) && month <= (MONITORING_END_MONTH - 1); // Monitoring season (0-indexed)
     })
     .map(row => ({
       transectId: row['Transect ID'],
@@ -1005,7 +986,7 @@ async function calculateAllFlightCurves(allData, transects, baselineYear = 2021)
       species: row['Preferred Species Name'],
       count: parseInt(row['Abundance Count']) || 0
     }))
-    .filter(row => row.year >= 2021);
+    .filter(row => row.year >= BASELINE_YEAR);
 
   console.log(`  Transformed ${transformedData.length} observations for rbms`);
 
@@ -1034,13 +1015,13 @@ async function calculateAllFlightCurves(allData, transects, baselineYear = 2021)
   const eligibleSpecies = Array.from(speciesCounts.entries())
     .filter(([species, stats]) => {
       return VALID_SPECIES.has(species) &&
-             stats.counts >= 20 &&
-             stats.years.size >= 3; // At least 20 counts across 3 years
+             stats.counts >= MIN_COUNTS_PER_SPECIES &&
+             stats.years.size >= MIN_YEARS_PER_SPECIES; // Minimum counts and years for species analysis
     })
     .map(([species]) => species)
     .sort();
 
-  console.log(`  Found ${eligibleSpecies.length} species in whitelist with sufficient data (20+ counts, 3+ years)`);
+  console.log(`  Found ${eligibleSpecies.length} species in whitelist with sufficient data (${MIN_COUNTS_PER_SPECIES}+ counts, ${MIN_YEARS_PER_SPECIES}+ years)`);
 
   // Step 5: Process each species with rbms
   const speciesResults = {};
@@ -1160,10 +1141,10 @@ async function calculateAllFlightCurves(allData, transects, baselineYear = 2021)
     processingDate: new Date().toISOString(),
     baselineYear,
     qualityCriteria: {
-      minYearsActive: 5,
-      minVisitsPerYear: 10,
-      minCountsPerSpecies: 20,
-      minYearsPerSpecies: 3
+      minYearsActive: MIN_YEARS_ACTIVE,
+      minVisitsPerYear: MIN_VISITS_PER_YEAR,
+      minCountsPerSpecies: MIN_COUNTS_PER_SPECIES,
+      minYearsPerSpecies: MIN_YEARS_PER_SPECIES
     },
     transectsUsed: transectsUsedList,
     method: 'rbms (GAM flight curves + GLM collated indices)'
@@ -1192,7 +1173,7 @@ async function calculateRegionalPhenology(allData, transects, baselineYear = 202
   const qualityTransects = getQualityFilteredTransects(transects);
   const activeQualityTransects = qualityTransects.filter(t => t.isActive);
 
-  console.log(`  Quality transects: ${qualityTransects.length} (5+ years, 5+ visits/year)`);
+  console.log(`  Quality transects: ${qualityTransects.length} (${MIN_YEARS_ACTIVE}+ years, ${MIN_VISITS_PER_YEAR}+ visits/year)`);
   console.log(`  Active in most recent year: ${activeQualityTransects.length}`);
 
   // Step 2: Group transects by climatic region
@@ -1254,12 +1235,12 @@ async function calculateRegionalPhenology(allData, transects, baselineYear = 202
 
   const eligibleSpecies = Array.from(speciesCounts.entries())
     .filter(([species, stats]) => {
-      return stats.counts >= 20 && stats.years.size >= 3;
+      return stats.counts >= MIN_COUNTS_PER_SPECIES && stats.years.size >= MIN_YEARS_PER_SPECIES;
     })
     .map(([species]) => species)
     .sort();
 
-  console.log(`\n  Found ${eligibleSpecies.length} species with sufficient data (20+ counts, 3+ years)`);
+  console.log(`\n  Found ${eligibleSpecies.length} species with sufficient data (${MIN_COUNTS_PER_SPECIES}+ counts, ${MIN_YEARS_PER_SPECIES}+ years)`);
 
   // Step 5: Process each species for each region
   const regionalResults = {};
@@ -1369,10 +1350,10 @@ async function calculateRegionalPhenology(allData, transects, baselineYear = 202
       REGIONS.map(region => [region, transectsByRegion[region].length])
     ),
     qualityCriteria: {
-      minYearsActive: 5,
-      minVisitsPerYear: 10,
-      minCountsPerSpecies: 20,
-      minYearsPerSpecies: 3,
+      minYearsActive: MIN_YEARS_ACTIVE,
+      minVisitsPerYear: MIN_VISITS_PER_YEAR,
+      minCountsPerSpecies: MIN_COUNTS_PER_SPECIES,
+      minYearsPerSpecies: MIN_YEARS_PER_SPECIES,
       minTransectsPerRegion: 2
     },
     method: 'rbms (GAM flight curves with regional filtering)'
@@ -1412,7 +1393,7 @@ function processTimelineData(allData) {
     const month = parseInt(parts[1], 10);
 
     // Filter to monitoring season (March-September)
-    if (month >= 3 && month <= 9) {
+    if (month >= MONITORING_START_MONTH && month <= MONITORING_END_MONTH) {
       yearsSet.add(year);
     }
   });
@@ -1435,7 +1416,7 @@ function processTimelineData(allData) {
       const species = row['Preferred Species Name'];
 
       return rowYear === year &&
-             month >= 3 && month <= 9 &&
+             month >= MONITORING_START_MONTH && month <= MONITORING_END_MONTH &&
              species &&
              VALID_SPECIES.has(species.trim());
     });
@@ -1506,7 +1487,7 @@ function processTimelineData(allData) {
       const species = row['Preferred Species Name'];
 
       return rowYear === year &&
-             month >= 3 && month <= 9 &&
+             month >= MONITORING_START_MONTH && month <= MONITORING_END_MONTH &&
              species;  // Only check that species exists, don't filter by VALID_SPECIES
     });
 
@@ -2060,10 +2041,10 @@ async function processData() {
   console.log(`Timeline data saved (${(fs.statSync(TIMELINE_OUTPUT_FILE).size / 1024).toFixed(2)} KB)`);
 
   // Calculate and save GBI data
-  const gbiData = await calculateGBI(allData, results, 2021);
+  const gbiData = await calculateGBI(allData, results, BASELINE_YEAR);
 
   // Calculate and save flight curves for all species
-  const flightCurvesData = await calculateAllFlightCurves(allData, results, 2021);
+  const flightCurvesData = await calculateAllFlightCurves(allData, results, BASELINE_YEAR);
 
   // Calculate and save regional phenology curves (skip if --skip-regional flag is set)
   const skipRegional = process.argv.includes('--skip-regional');
@@ -2072,7 +2053,7 @@ async function processData() {
   if (skipRegional) {
     console.log('\n⏭️  Skipping regional phenology curves (--skip-regional flag set)');
   } else {
-    phenologyData = await calculateRegionalPhenology(allData, results, 2021);
+    phenologyData = await calculateRegionalPhenology(allData, results, BASELINE_YEAR);
   }
 
   // Write GBI data to file

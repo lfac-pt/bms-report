@@ -18,7 +18,7 @@ import { InfoCircleOutlined, MinusCircleOutlined } from "@ant-design/icons";
 import { GBIData } from "../../types/gbiData";
 import SpeciesLink from "../SpeciesLink";
 import { useState } from "react";
-import { GRASSLAND_SPECIES } from "../../utils/grasslandSpecies";
+import { GRASSLAND_SPECIES, BASELINE_YEAR } from "../../constants";
 
 interface GrasslandButterflyIndexProps {
   gbiData: GBIData | null;
@@ -110,7 +110,7 @@ const chartOptions = {
       beginAtZero: false,
       title: {
         display: true,
-        text: "Índice (2021 = 100)",
+        text: `Índice (${BASELINE_YEAR} = 100)`,
       },
     },
     x: {
@@ -307,7 +307,7 @@ function GrasslandButterflyIndex({ gbiData, loading }: GrasslandButterflyIndexPr
         order: 2,
       },
       {
-        label: "Baseline 2021",
+        label: `Baseline ${BASELINE_YEAR}`,
         data: Array(years.length).fill(100),
         borderColor: "#d9d9d9",
         borderWidth: 2,
@@ -405,7 +405,7 @@ function GrasslandButterflyIndex({ gbiData, loading }: GrasslandButterflyIndexPr
 
     // Add baseline reference line at 100
     baseDatasets.push({
-      label: "Baseline 2021",
+      label: `Baseline ${BASELINE_YEAR}`,
       data: Array(years.length).fill(100),
       borderColor: "#d9d9d9",
       borderWidth: 2,
