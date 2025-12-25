@@ -1,6 +1,6 @@
 /* eslint-env browser */
 import { useState, useEffect } from "react";
-import { Button, Card, Space, Typography, Spin, Alert, Row, Col, Select } from "antd";
+import { Button, Card, Space, Typography, Spin, Alert, Row, Col, Select, Switch } from "antd";
 import { ArrowLeftOutlined } from "@ant-design/icons";
 import { useParams, useNavigate } from "react-router-dom";
 import { SPECIES_FAMILIES } from "../constants";
@@ -43,6 +43,7 @@ function SpeciesPage() {
   const [phenologyData, setPhenologyData] = useState<any>(null);
   const [gbiData, setGbiData] = useState<GBIData | null>(null);
   const [loading, setLoading] = useState(true);
+  const [showOnlyQualityTransects, setShowOnlyQualityTransects] = useState(true);
 
   // Decode the species name from URL
   const decodedSpeciesName = speciesName ? decodeURIComponent(speciesName) : "";
@@ -252,15 +253,43 @@ function SpeciesPage() {
         />
       </Card>
 
-      <Card title="Distribuição por Ano">
+      <Card
+        title="Distribuição por Ano"
+        extra={
+          <Space>
+            <Text type="secondary" style={{ fontSize: 12 }}>
+              {showOnlyQualityTransects
+                ? "Apenas transectos usados no cálculo de tendências"
+                : "Todos os transectos"}
+            </Text>
+            <Switch
+              checked={showOnlyQualityTransects}
+              onChange={setShowOnlyQualityTransects}
+              checkedChildren="Qualidade"
+              unCheckedChildren="Todos"
+            />
+          </Space>
+        }
+      >
         <Row gutter={[16, 16]}>
           {years.map(year => {
-            const speciesData = calculateSpeciesPresenceByYear(
+            // Get quality transect IDs from flight curves metadata
+            const qualityTransectIds = new Set(
+              flightCurvesData?.metadata?.transectsUsed?.map((t: any) => t.transectId) || []
+            );
+
+            // Calculate species presence for all transects
+            let speciesData = calculateSpeciesPresenceByYear(
               decodedSpeciesName,
               year,
               timelineData,
               transectData.transects
             );
+
+            // Filter to only quality transects if toggle is enabled
+            if (showOnlyQualityTransects && qualityTransectIds.size > 0) {
+              speciesData = speciesData.filter(t => qualityTransectIds.has(t.transectId));
+            }
 
             const withSpecies = speciesData.filter(t => t.hasSpecies).length;
             const totalTransects = speciesData.length;
