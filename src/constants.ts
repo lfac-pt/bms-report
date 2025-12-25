@@ -27,6 +27,147 @@ export const MONITORING_END_MONTH = 9;  // September (1-indexed)
 export const MIN_COUNTS_PER_SPECIES = 20;  // Minimum total counts for species analysis
 export const MIN_YEARS_PER_SPECIES = 3;  // Minimum years of data for species analysis
 
+// Mapping of species to their families
+export const SPECIES_FAMILIES: Record<string, string> = {
+  "Carcharodus alceae": "Hesperiidae",
+  "Carcharodus baeticus": "Hesperiidae",
+  "Carcharodus tripolinus": "Hesperiidae",
+  "Erynnis tages": "Hesperiidae",
+  "Gegenes nostrodamus": "Hesperiidae",
+  "Hesperia comma": "Hesperiidae",
+  "Muschampia proto": "Hesperiidae",
+  "Ochlodes sylvanus": "Hesperiidae",
+  "Pyrgus alveus": "Hesperiidae",
+  "Pyrgus armoricanus": "Hesperiidae",
+  "Pyrgus malvoides": "Hesperiidae",
+  "Pyrgus onopordi": "Hesperiidae",
+  "Pyrgus serratulae": "Hesperiidae",
+  "Spialia sertorius": "Hesperiidae",
+  "Thymelicus acteon": "Hesperiidae",
+  "Thymelicus lineola": "Hesperiidae",
+  "Thymelicus sylvestris": "Hesperiidae",
+  "Aricia cramera": "Lycaenidae",
+  "Aricia montensis": "Lycaenidae",
+  "Cacyreus marshalli": "Lycaenidae",
+  "Callophrys avis": "Lycaenidae",
+  "Callophrys rubi": "Lycaenidae",
+  "Celastrina argiolus": "Lycaenidae",
+  "Cupido lorquinii": "Lycaenidae",
+  "Cupido minimus": "Lycaenidae",
+  "Eumedonia eumedon": "Lycaenidae",
+  "Favonius quercus": "Lycaenidae",
+  "Glaucopsyche alexis": "Lycaenidae",
+  "Glaucopsyche melanops": "Lycaenidae",
+  "Hamearis lucina": "Lycaenidae",
+  "Laeosopis roboris": "Lycaenidae",
+  "Lampides boeticus": "Lycaenidae",
+  "Leptotes pirithous": "Lycaenidae",
+  "Lycaena alciphron": "Lycaenidae",
+  "Lycaena bleusei": "Lycaenidae",
+  "Lycaena phlaeas": "Lycaenidae",
+  "Lycaena tityrus": "Lycaenidae",
+  "Lycaena virgaureae": "Lycaenidae",
+  "Lysandra bellargus": "Lycaenidae",
+  "Phengaris alcon": "Lycaenidae",
+  "Plebejus argus": "Lycaenidae",
+  "Polyommatus celina": "Lycaenidae",
+  "Polyommatus icarus": "Lycaenidae",
+  "Polyommatus semiargus": "Lycaenidae",
+  "Cyaniris semiargus": "Lycaenidae", // Synonym for Polyommatus semiargus
+  "Polyommatus thersites": "Lycaenidae",
+  "Pseudophilotes abencerragus": "Lycaenidae",
+  "Pseudophilotes baton": "Lycaenidae",
+  "Pseudophilotes panoptes": "Lycaenidae",
+  "Satyrium esculi": "Lycaenidae",
+  "Satyrium ilicis": "Lycaenidae",
+  "Satyrium spini": "Lycaenidae",
+  "Thecla betulae": "Lycaenidae",
+  "Tomares ballus": "Lycaenidae",
+  "Zizeeria knysna": "Lycaenidae",
+  "Aglais io": "Nymphalidae",
+  "Aglais urticae": "Nymphalidae",
+  "Apatura ilia": "Nymphalidae",
+  "Argynnis pandora": "Nymphalidae",
+  "Argynnis paphia": "Nymphalidae",
+  "Boloria dia": "Nymphalidae",
+  "Boloria euphrosyne": "Nymphalidae",
+  "Boloria selene": "Nymphalidae",
+  "Brenthis daphne": "Nymphalidae",
+  "Brenthis hecate": "Nymphalidae",
+  "Brenthis ino": "Nymphalidae",
+  "Charaxes jasius": "Nymphalidae",
+  "Danaus chrysippus": "Nymphalidae",
+  "Danaus plexippus": "Nymphalidae",
+  "Euphydryas aurinia": "Nymphalidae",
+  "Euphydryas desfontainii": "Nymphalidae",
+  "Fabriciana adippe": "Nymphalidae",
+  "Fabriciana niobe": "Nymphalidae",
+  "Issoria lathonia": "Nymphalidae",
+  "Libythea celtis": "Nymphalidae",
+  "Limenitis camilla": "Nymphalidae",
+  "Limenitis reducta": "Nymphalidae",
+  "Melitaea aetherie": "Nymphalidae",
+  "Melitaea cinxia": "Nymphalidae",
+  "Melitaea deione": "Nymphalidae",
+  "Melitaea didyma": "Nymphalidae",
+  "Melitaea celadussa": "Nymphalidae",
+  "Melitaea parthenoides": "Nymphalidae",
+  "Melitaea phoebe": "Nymphalidae",
+  "Melitaea trivia": "Nymphalidae",
+  "Nymphalis antiopa": "Nymphalidae",
+  "Nymphalis polychloros": "Nymphalidae",
+  "Polygonia c-album": "Nymphalidae",
+  "Speyeria aglaja": "Nymphalidae",
+  "Vanessa atalanta": "Nymphalidae",
+  "Vanessa cardui": "Nymphalidae",
+  "Vanessa virginiensis": "Nymphalidae",
+  "Iphiclides feisthamelii": "Papilionidae",
+  "Papilio machaon": "Papilionidae",
+  "Zerynthia rumina": "Papilionidae",
+  "Anthocharis cardamines": "Pieridae",
+  "Anthocharis euphenoides": "Pieridae",
+  "Aporia crataegi": "Pieridae",
+  "Colias crocea": "Pieridae",
+  "Euchloe belemia": "Pieridae",
+  "Euchloe crameri": "Pieridae",
+  "Euchloe tagis": "Pieridae",
+  "Gonepteryx cleopatra": "Pieridae",
+  "Gonepteryx rhamni": "Pieridae",
+  "Leptidea sinapis": "Pieridae",
+  "Pieris brassicae": "Pieridae",
+  "Pieris napi": "Pieridae",
+  "Pieris rapae": "Pieridae",
+  "Pontia daplidice": "Pieridae",
+  "Arethusana arethusa": "Nymphalidae",
+  "Brintesia circe": "Nymphalidae",
+  "Coenonympha arcania": "Nymphalidae",
+  "Coenonympha dorus": "Nymphalidae",
+  "Coenonympha glycerion": "Nymphalidae",
+  "Coenonympha pamphilus": "Nymphalidae",
+  "Erebia triarius": "Nymphalidae",
+  "Hipparchia fidia": "Nymphalidae",
+  "Hipparchia hermione": "Nymphalidae",
+  "Hipparchia semele": "Nymphalidae",
+  "Hipparchia statilinus": "Nymphalidae",
+  "Hyponephele lupinus": "Nymphalidae",
+  "Hyponephele lycaon": "Nymphalidae",
+  "Lasiommata maera": "Nymphalidae",
+  "Lasiommata megera": "Nymphalidae",
+  "Maniola jurtina": "Nymphalidae",
+  "Melanargia ines": "Nymphalidae",
+  "Melanargia lachesis": "Nymphalidae",
+  "Melanargia occitanica": "Nymphalidae",
+  "Melanargia russiae": "Nymphalidae",
+  "Pararge aegeria": "Nymphalidae",
+  "Pyronia bathseba": "Nymphalidae",
+  "Pyronia cecilia": "Nymphalidae",
+  "Pyronia tithonus": "Nymphalidae",
+  "Satyrus actaea": "Nymphalidae",
+};
+
+// Valid species - all species with family classifications (derived from SPECIES_FAMILIES keys)
+export const VALID_SPECIES = Object.keys(SPECIES_FAMILIES);
+
 // Grassland butterfly species for GBI calculation
 // Based on European Grassland Butterfly Indicator
 // Source: https://www.eea.europa.eu/en/analysis/indicators/grassland-butterfly-index-in-europe-1
@@ -57,3 +198,23 @@ export const ALL_GRASSLAND_SPECIES = [
   ...GRASSLAND_SPECIES.widespread,
   ...GRASSLAND_SPECIES.specialist,
 ] as const;
+
+// Helper function to group species by family and sort them
+export function groupSpeciesByFamily(speciesList: string[]): Record<string, string[]> {
+  const grouped: Record<string, string[]> = {};
+
+  speciesList.forEach(species => {
+    const family = SPECIES_FAMILIES[species] || "Outras";
+    if (!grouped[family]) {
+      grouped[family] = [];
+    }
+    grouped[family].push(species);
+  });
+
+  // Sort species alphabetically within each family
+  Object.keys(grouped).forEach(family => {
+    grouped[family].sort();
+  });
+
+  return grouped;
+}

@@ -2,7 +2,7 @@
 import { render, screen, waitFor } from "@testing-library/react";
 import { MemoryRouter, Route, Routes } from "react-router-dom";
 import SpeciesPage from "./SpeciesPage";
-import { SPECIES_FAMILIES } from "../utils/speciesFamilies";
+import { SPECIES_FAMILIES } from "../constants";
 import endangeredSpeciesPT from "../utils/endangered_pt";
 import endangeredSpeciesEurope from "../utils/endangered_eu";
 

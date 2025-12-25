@@ -3,7 +3,7 @@ import { Button, Card, Space, Typography, Spin, Alert, Checkbox, Slider } from "
 import { ArrowLeftOutlined } from "@ant-design/icons";
 import { useParams, useNavigate, useSearchParams, Link } from "react-router-dom";
 import { MapContainer, TileLayer, GeoJSON, CircleMarker, Popup } from "react-leaflet";
-import { SPECIES_FAMILIES } from "../utils/speciesFamilies";
+import { SPECIES_FAMILIES } from "../constants";
 import { TransectStats } from "../types/transectStats";
 import "leaflet/dist/leaflet.css";
 
