@@ -141,12 +141,22 @@ export interface GBITrend {
 }
 
 /**
+ * MSI subset data (for widespread/specialist)
+ */
+export interface MSISubset {
+  gbiByYear: Record<number, YearlyGBI>;
+  gbiTrend: GBITrend;
+  years: number[];
+}
+
+/**
  * Complete GBI dataset structure
  */
 export interface GBIData {
   metadata: GBIMetadata;
   gbiByYear: Record<number, YearlyGBI>;
-  speciesTrends: Record<string, SpeciesTrend>;
   years: number[];
   gbiTrend?: GBITrend | null;
+  widespreadMSI?: MSISubset | null;
+  specialistMSI?: MSISubset | null;
 }

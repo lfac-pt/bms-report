@@ -10,11 +10,9 @@ import {
   Popover,
   List,
   Typography,
-  Select,
-  Button,
   Switch,
 } from "antd";
-import { InfoCircleOutlined, MinusCircleOutlined } from "@ant-design/icons";
+import { InfoCircleOutlined } from "@ant-design/icons";
 import { GBIData } from "../../types/gbiData";
 import SpeciesLink from "../SpeciesLink";
 import { useState } from "react";
@@ -60,8 +58,12 @@ const chartOptions = {
       position: "top" as const,
       labels: {
         filter: (legendItem: any) => {
-          // Hide CI Upper from legend (technical dataset)
-          return legendItem.text !== "CI Upper";
+          // Hide CI Upper datasets from legend (technical datasets)
+          return (
+            legendItem.text !== "CI Upper" &&
+            legendItem.text !== "Generalistas CI Upper" &&
+            legendItem.text !== "Especialistas CI Upper"
+          );
         },
       },
     },
@@ -73,8 +75,13 @@ const chartOptions = {
           const indexValue = context.parsed.y;
           const yearData = context.chart.data.yearData?.[year];
 
-          // Skip CI Upper in tooltip (technical dataset)
-          if (datasetLabel === "CI Upper") return undefined;
+          // Skip CI Upper datasets in tooltip (technical datasets)
+          if (
+            datasetLabel === "CI Upper" ||
+            datasetLabel === "Generalistas CI Upper" ||
+            datasetLabel === "Especialistas CI Upper"
+          )
+            return undefined;
 
           // For CI band, show range
           if (datasetLabel === "IC 95%" && yearData) {
@@ -102,7 +109,10 @@ const chartOptions = {
           return `${datasetLabel}: ${indexValue.toFixed(2)}`;
         },
       },
-      filter: (item: any) => item.dataset.label !== "CI Upper",
+      filter: (item: any) =>
+        item.dataset.label !== "CI Upper" &&
+        item.dataset.label !== "Generalistas CI Upper" &&
+        item.dataset.label !== "Especialistas CI Upper",
     },
   },
   scales: {
@@ -123,8 +133,6 @@ const chartOptions = {
 };
 
 function GrasslandButterflyIndex({ gbiData, loading }: GrasslandButterflyIndexProps) {
-  // State for selected species - must be before any early returns
-  const [selectedSpecies, setSelectedSpecies] = useState<string[]>([]);
   const [showGroupComparison, setShowGroupComparison] = useState(false);
 
   if (loading) {
@@ -148,7 +156,7 @@ function GrasslandButterflyIndex({ gbiData, loading }: GrasslandButterflyIndexPr
     );
   }
 
-  const { metadata, gbiByYear, years, speciesTrends } = gbiData;
+  const { metadata, gbiByYear, years } = gbiData;
 
   // Prepare chart data
   const labels = years.map(year => year.toString());
@@ -178,60 +186,75 @@ function GrasslandButterflyIndex({ gbiData, loading }: GrasslandButterflyIndexPr
     {} as Record<number, any>
   );
 
-  // Helper function to calculate geometric mean for a group of species
-  const calculateGroupIndex = (speciesList: string[]) => {
-    return years.map(year => {
-      const indices = speciesList
-        .filter(species => speciesTrends[species])
-        .map(species => speciesTrends[species].annualIndices[year])
-        .filter(val => val > 0);
-
-      if (indices.length === 0) return 100;
-
-      const logSum = indices.reduce((sum, val) => sum + Math.log(val), 0);
-      const logMean = logSum / indices.length;
-      return Math.exp(logMean);
-    });
-  };
-
-  // Color palette for species
-  const speciesColors = [
-    "#52c41a",
-    "#fa8c16",
-    "#722ed1",
-    "#13c2c2",
-    "#eb2f96",
-    "#faad14",
-    "#a0d911",
-    "#f5222d",
-    "#2f54eb",
-    "#fadb14",
-  ];
-
   // Create datasets based on mode
   let datasets;
 
   if (showGroupComparison) {
-    // Group comparison mode: show overall, generalists, and specialists
-    const generalistSpecies = metadata.grasslandSpecies
-      .filter(s => s.type === "widespread" && speciesTrends[s.scientificName])
-      .map(s => s.scientificName);
+    // Group comparison mode: show overall, widespread MSI, and specialist MSI
+    // Use the properly calculated MSI values from R script instead of manual geometric means
+    const widespreadIndices = gbiData.widespreadMSI
+      ? years.map(year => gbiData.widespreadMSI!.gbiByYear[year]?.smoothedValue ?? 100)
+      : [];
 
-    const specialistSpecies = metadata.grasslandSpecies
-      .filter(s => s.type === "specialist" && speciesTrends[s.scientificName])
-      .map(s => s.scientificName);
+    const specialistIndices = gbiData.specialistMSI
+      ? years.map(year => gbiData.specialistMSI!.gbiByYear[year]?.smoothedValue ?? 100)
+      : [];
 
-    const generalistIndices = calculateGroupIndex(generalistSpecies);
-    const specialistIndices = calculateGroupIndex(specialistSpecies);
+    // Extract CI data for widespread MSI
+    const widespreadCILower = gbiData.widespreadMSI
+      ? years.map(
+          year =>
+            gbiData.widespreadMSI!.gbiByYear[year]?.ci_lower ??
+            gbiData.widespreadMSI!.gbiByYear[year]?.smoothedValue ??
+            100
+        )
+      : [];
+    const widespreadCIUpper = gbiData.widespreadMSI
+      ? years.map(
+          year =>
+            gbiData.widespreadMSI!.gbiByYear[year]?.ci_upper ??
+            gbiData.widespreadMSI!.gbiByYear[year]?.smoothedValue ??
+            100
+        )
+      : [];
+
+    // Extract CI data for specialist MSI
+    const specialistCILower = gbiData.specialistMSI
+      ? years.map(
+          year =>
+            gbiData.specialistMSI!.gbiByYear[year]?.ci_lower ??
+            gbiData.specialistMSI!.gbiByYear[year]?.smoothedValue ??
+            100
+        )
+      : [];
+    const specialistCIUpper = gbiData.specialistMSI
+      ? years.map(
+          year =>
+            gbiData.specialistMSI!.gbiByYear[year]?.ci_upper ??
+            gbiData.specialistMSI!.gbiByYear[year]?.smoothedValue ??
+            100
+        )
+      : [];
 
     const baseDatasets = [];
 
-    // Add CI band datasets if available
-    if (hasConfidenceIntervals) {
-      // CI Upper bound (hidden line - serves as fill target)
+    // Don't show overall GBI CI bands in group comparison mode
+
+    // Check if widespread MSI has CI data
+    const hasWidespreadCI =
+      gbiData.widespreadMSI &&
+      years.some(
+        year =>
+          gbiData.widespreadMSI!.gbiByYear[year]?.ci_lower !== null &&
+          gbiData.widespreadMSI!.gbiByYear[year]?.ci_lower !== undefined
+      );
+
+    // Add CI bands for Widespread MSI if available
+    if (hasWidespreadCI) {
+      // Widespread CI Upper (hidden)
       baseDatasets.push({
-        label: "CI Upper",
-        data: ciUpperData,
+        label: "Generalistas CI Upper",
+        data: widespreadCIUpper,
         borderColor: "transparent",
         backgroundColor: "transparent",
         borderWidth: 0,
@@ -241,16 +264,54 @@ function GrasslandButterflyIndex({ gbiData, loading }: GrasslandButterflyIndexPr
         order: 4,
       });
 
-      // CI Lower bound with fill to upper
+      // Widespread CI Lower (filled)
       baseDatasets.push({
-        label: "IC 95%",
-        data: ciLowerData,
-        borderColor: "rgba(24, 144, 255, 0.3)",
-        backgroundColor: "rgba(24, 144, 255, 0.15)",
+        label: "IC 95% Generalistas",
+        data: widespreadCILower,
+        borderColor: "rgba(82, 196, 26, 0.3)",
+        backgroundColor: "rgba(82, 196, 26, 0.15)",
         borderWidth: 1,
         pointRadius: 0,
         pointHoverRadius: 0,
-        fill: "-1", // Fill to previous dataset (CI Upper)
+        fill: "-1",
+        order: 4,
+      });
+    }
+
+    // Check if specialist MSI has CI data
+    const hasSpecialistCI =
+      gbiData.specialistMSI &&
+      years.some(
+        year =>
+          gbiData.specialistMSI!.gbiByYear[year]?.ci_lower !== null &&
+          gbiData.specialistMSI!.gbiByYear[year]?.ci_lower !== undefined
+      );
+
+    // Add CI bands for Specialist MSI if available
+    if (hasSpecialistCI) {
+      // Specialist CI Upper (hidden)
+      baseDatasets.push({
+        label: "Especialistas CI Upper",
+        data: specialistCIUpper,
+        borderColor: "transparent",
+        backgroundColor: "transparent",
+        borderWidth: 0,
+        pointRadius: 0,
+        pointHoverRadius: 0,
+        fill: false,
+        order: 4,
+      });
+
+      // Specialist CI Lower (filled)
+      baseDatasets.push({
+        label: "IC 95% Especialistas",
+        data: specialistCILower,
+        borderColor: "rgba(114, 46, 209, 0.3)",
+        backgroundColor: "rgba(114, 46, 209, 0.15)",
+        borderWidth: 1,
+        pointRadius: 0,
+        pointHoverRadius: 0,
+        fill: "-1",
         order: 4,
       });
     }
@@ -284,7 +345,7 @@ function GrasslandButterflyIndex({ gbiData, loading }: GrasslandButterflyIndexPr
       },
       {
         label: "Generalistas",
-        data: generalistIndices,
+        data: widespreadIndices,
         borderColor: "#52c41a",
         backgroundColor: "#52c41a",
         borderWidth: 2,
@@ -321,7 +382,7 @@ function GrasslandButterflyIndex({ gbiData, loading }: GrasslandButterflyIndexPr
 
     datasets = baseDatasets;
   } else {
-    // Manual selection mode
+    // When group comparison is off, show only overall GBI
     const baseDatasets = [];
 
     // Add CI band datasets if available
@@ -381,28 +442,6 @@ function GrasslandButterflyIndex({ gbiData, loading }: GrasslandButterflyIndexPr
       order: 1,
     });
 
-    // Add individual species datasets
-    baseDatasets.push(
-      ...selectedSpecies.map((species, index) => {
-        const speciesTrend = speciesTrends[species];
-        const speciesData = years.map(year => speciesTrend.annualIndices[year]);
-        const color = speciesColors[index % speciesColors.length];
-
-        return {
-          label: species,
-          data: speciesData,
-          borderColor: color,
-          backgroundColor: color,
-          borderWidth: 2,
-          pointRadius: 3,
-          pointHoverRadius: 5,
-          tension: 0.2,
-          fill: false,
-          order: 2,
-        };
-      })
-    );
-
     // Add baseline reference line at 100
     baseDatasets.push({
       label: `Baseline ${BASELINE_YEAR}`,
@@ -431,11 +470,8 @@ function GrasslandButterflyIndex({ gbiData, loading }: GrasslandButterflyIndexPr
   const firstYear = years[0];
   const firstGBI = gbiByYear[firstYear].gbiValue;
   const trendPercent = ((latestGBI - firstGBI) / firstGBI) * 100;
-  const speciesCount = Object.keys(gbiData.speciesTrends).length;
+  const speciesCount = metadata.grasslandSpecies.length;
   const transectCount = metadata.transectsUsed.length;
-
-  // Get species with valid trends for highlighting
-  const speciesWithTrends = new Set(Object.keys(gbiData.speciesTrends));
 
   const gbiCardTitleTooltip = `Este índice rastreia a saúde das populações de borboletas de pastagens em Portugal
               usando uma média geométrica de tendências log-lineares de ${speciesCount} espécies (
@@ -458,7 +494,7 @@ function GrasslandButterflyIndex({ gbiData, loading }: GrasslandButterflyIndexPr
       size="small"
     >
       <Row gutter={[16, 16]} style={{ marginBottom: "16px" }}>
-        <Col xs={24} sm={12} md={8}>
+        <Col xs={24} sm={12} md={6}>
           {gbiData.gbiTrend ? (
             <Tooltip
               title={
@@ -504,21 +540,10 @@ function GrasslandButterflyIndex({ gbiData, loading }: GrasslandButterflyIndexPr
             />
           )}
         </Col>
-        <Col xs={24} sm={12} md={8}>
+        <Col xs={24} sm={12} md={6}>
           <Popover
             content={
               <div style={{ maxWidth: 400, maxHeight: 400, overflowY: "auto" }}>
-                <Typography.Text
-                  style={{
-                    fontSize: 11,
-                    color: "#8c8c8c",
-                    display: "block",
-                    marginBottom: 12,
-                    fontStyle: "italic",
-                  }}
-                >
-                  Critério: Espécies com dados em pelo menos 3 anos para calcular tendências
-                </Typography.Text>
                 <div style={{ marginBottom: 16 }}>
                   <Typography.Text
                     strong
@@ -530,22 +555,9 @@ function GrasslandButterflyIndex({ gbiData, loading }: GrasslandButterflyIndexPr
                     size="small"
                     dataSource={[...GRASSLAND_SPECIES.widespread].sort()}
                     renderItem={species => {
-                      const hasData = speciesWithTrends.has(species);
                       return (
                         <List.Item style={{ padding: "4px 0" }}>
-                          <div
-                            style={{
-                              fontSize: 12,
-                              display: "flex",
-                              alignItems: "center",
-                              gap: "8px",
-                            }}
-                          >
-                            {!hasData && (
-                              <MinusCircleOutlined
-                                style={{ color: "#ff4d4f", fontSize: 14, flexShrink: 0 }}
-                              />
-                            )}
+                          <div style={{ fontSize: 12 }}>
                             <SpeciesLink species={species} />
                           </div>
                         </List.Item>
@@ -564,22 +576,9 @@ function GrasslandButterflyIndex({ gbiData, loading }: GrasslandButterflyIndexPr
                     size="small"
                     dataSource={[...GRASSLAND_SPECIES.specialist].sort()}
                     renderItem={species => {
-                      const hasData = speciesWithTrends.has(species);
                       return (
                         <List.Item style={{ padding: "4px 0" }}>
-                          <div
-                            style={{
-                              fontSize: 12,
-                              display: "flex",
-                              alignItems: "center",
-                              gap: "8px",
-                            }}
-                          >
-                            {!hasData && (
-                              <MinusCircleOutlined
-                                style={{ color: "#ff4d4f", fontSize: 14, flexShrink: 0 }}
-                              />
-                            )}
+                          <div style={{ fontSize: 12 }}>
                             <SpeciesLink species={species} />
                           </div>
                         </List.Item>
@@ -606,7 +605,7 @@ function GrasslandButterflyIndex({ gbiData, loading }: GrasslandButterflyIndexPr
             </div>
           </Popover>
         </Col>
-        <Col xs={24} sm={12} md={8}>
+        <Col xs={24} sm={12} md={6}>
           <Popover
             content={
               <div style={{ maxWidth: 400, maxHeight: 400, overflowY: "auto" }}>
@@ -648,68 +647,17 @@ function GrasslandButterflyIndex({ gbiData, loading }: GrasslandButterflyIndexPr
             </div>
           </Popover>
         </Col>
+        <Col xs={24} sm={12} md={6}>
+          <div style={{ display: "flex", alignItems: "center", height: "100%" }}>
+            <Space>
+              <Switch checked={showGroupComparison} onChange={setShowGroupComparison} />
+              <Typography.Text style={{ whiteSpace: "nowrap" }}>
+                Generalistas vs. especialistas
+              </Typography.Text>
+            </Space>
+          </div>
+        </Col>
       </Row>
-
-      <div style={{ marginBottom: "16px", display: "flex", gap: "8px", alignItems: "center" }}>
-        <Space>
-          <Switch checked={showGroupComparison} onChange={setShowGroupComparison} />
-          <Typography.Text style={{ whiteSpace: "nowrap" }}>
-            Generalistas vs. especialistas
-          </Typography.Text>
-        </Space>
-        <Select
-          mode="multiple"
-          placeholder="Selecione espécies individuais para comparar"
-          value={selectedSpecies}
-          onChange={setSelectedSpecies}
-          style={{ flex: 1 }}
-          allowClear
-          showSearch
-          disabled={showGroupComparison}
-          filterOption={(input, option) =>
-            (option?.label ?? "").toLowerCase().includes(input.toLowerCase())
-          }
-          options={Object.keys(speciesTrends)
-            .sort()
-            .map(species => ({
-              value: species,
-              label: species,
-            }))}
-        />
-        <Button
-          size="middle"
-          disabled={showGroupComparison}
-          onClick={() => {
-            const generalists = metadata.grasslandSpecies
-              .filter(s => s.type === "widespread" && speciesTrends[s.scientificName])
-              .map(s => s.scientificName)
-              .sort();
-            setSelectedSpecies(generalists);
-          }}
-        >
-          Generalistas
-        </Button>
-        <Button
-          size="middle"
-          disabled={showGroupComparison}
-          onClick={() => {
-            const specialists = metadata.grasslandSpecies
-              .filter(s => s.type === "specialist" && speciesTrends[s.scientificName])
-              .map(s => s.scientificName)
-              .sort();
-            setSelectedSpecies(specialists);
-          }}
-        >
-          Especialistas
-        </Button>
-        <Button
-          size="middle"
-          disabled={showGroupComparison}
-          onClick={() => setSelectedSpecies(Object.keys(speciesTrends).sort())}
-        >
-          Todas
-        </Button>
-      </div>
 
       <div style={{ height: "400px", marginBottom: "16px" }}>
         <Line options={chartOptions} data={chartData} />

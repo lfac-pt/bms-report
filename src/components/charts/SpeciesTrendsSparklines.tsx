@@ -28,18 +28,12 @@ const SpeciesTrendsSparklines: React.FC = () => {
 
   const fetchFlightCurvesData = async () => {
     try {
-      // Fetch both GBI data and flight curves data
-      const [gbiResponse, flightResponse] = await Promise.all([
-        // eslint-disable-next-line no-undef
-        fetch("data/gbi-data.json").catch(() => null),
-        // eslint-disable-next-line no-undef
-        fetch("data/flight-curves-data.json").catch(() => null),
-      ]);
-
-      const gbiData = gbiResponse ? await gbiResponse.json() : null;
+      // Fetch flight curves data
+      // eslint-disable-next-line no-undef
+      const flightResponse = await fetch("data/flight-curves-data.json").catch(() => null);
       const flightData = flightResponse ? await flightResponse.json() : null;
 
-      // Process species data from both sources
+      // Process species data
       const trends: SpeciesTrend[] = [];
 
       // Helper function to process species data
@@ -86,21 +80,11 @@ const SpeciesTrendsSparklines: React.FC = () => {
         }
       };
 
-      // Process GBI species
-      if (gbiData?.speciesTrends) {
-        Object.entries(gbiData.speciesTrends as Record<string, GBISpeciesTrend>).forEach(
-          ([speciesName, speciesData]) => processSpecies(speciesName, speciesData)
-        );
-      }
-
-      // Process flight curves species (skip if already in GBI)
+      // Process all species from flight curves data
       if (flightData?.species) {
-        const gbiSpeciesSet = new Set(trends.map(t => t.species));
         Object.entries(flightData.species as Record<string, any>).forEach(
           ([speciesName, speciesData]) => {
-            if (!gbiSpeciesSet.has(speciesName)) {
-              processSpecies(speciesName, speciesData);
-            }
+            processSpecies(speciesName, speciesData);
           }
         );
       }
