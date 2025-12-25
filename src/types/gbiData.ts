@@ -109,6 +109,13 @@ export interface SpeciesTrend {
   trendLine?: Record<number, number>;
   confidenceIntervals?: Record<number, { ci_lower: number | null; ci_upper: number | null }>;
   trendClassification?: TrendClassification;
+  dataQuality?: {
+    site_count?: number;
+    total_visits?: number;
+    transectCount?: number;
+    totalVisits?: number;
+    speciesObservations?: number;
+  };
 }
 
 /**

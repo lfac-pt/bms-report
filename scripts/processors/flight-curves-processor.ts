@@ -203,12 +203,22 @@ export async function calculateAllFlightCurves(
         };
       }
 
+      // Calculate species-specific data quality metrics
+      const speciesTransects = new Set(speciesData.counts.map(c => c.site_id));
+      const speciesObservations = speciesData.counts.reduce((sum, c) => sum + c.count, 0);
+
       // Store results
       speciesResults[species] = {
         collatedIndices: rbmsOutput.collated_indices,
         trendLine: rbmsOutput.trend_line || null,
         phenologyCurves: rbmsOutput.phenology_curves || null,
-        dataQuality: rbmsOutput.data_quality,
+        dataQuality: {
+          ...rbmsOutput.data_quality,
+          // Species-specific metrics (overriding totals)
+          transectCount: speciesTransects.size,
+          totalVisits: speciesData.counts.length,
+          speciesObservations: speciesObservations,
+        },
         processingInfo: rbmsOutput.processing_info,
         confidenceIntervals: confidenceIntervals,
         trendClassification: trendClassification,

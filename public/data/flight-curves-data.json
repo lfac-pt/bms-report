@@ -1,6 +1,6 @@
 {
   "metadata": {
-    "processingDate": "2025-12-25T20:44:42.261Z",
+    "processingDate": "2025-12-25T21:28:55.889Z",
     "baselineYear": 2021,
     "qualityCriteria": {
       "minYearsActive": 5,
@@ -703,7 +703,10 @@
         "total_counts": 17,
         "years_with_data": 5,
         "imputation_success": true,
-        "baseline_year": 2021
+        "baseline_year": 2021,
+        "transectCount": 7,
+        "totalVisits": 19,
+        "speciesObservations": 20
       },
       "processingInfo": {
         "method": "rbms (GAM flight curves + GLM collated index + bootstrap CI + linear trend)",
@@ -1324,7 +1327,10 @@
         "total_counts": 45,
         "years_with_data": 5,
         "imputation_success": true,
-        "baseline_year": 2022
+        "baseline_year": 2022,
+        "transectCount": 11,
+        "totalVisits": 62,
+        "speciesObservations": 248
       },
       "processingInfo": {
         "method": "rbms (GAM flight curves + GLM collated index + bootstrap CI + linear trend)",
@@ -1946,7 +1952,10 @@
         "total_counts": 53,
         "years_with_data": 5,
         "imputation_success": true,
-        "baseline_year": 2021
+        "baseline_year": 2021,
+        "transectCount": 6,
+        "totalVisits": 53,
+        "speciesObservations": 94
       },
       "processingInfo": {
         "method": "rbms (GAM flight curves + GLM collated index + bootstrap CI + linear trend)",
@@ -2568,7 +2577,10 @@
         "total_counts": 343,
         "years_with_data": 5,
         "imputation_success": true,
-        "baseline_year": 2021
+        "baseline_year": 2021,
+        "transectCount": 23,
+        "totalVisits": 351,
+        "speciesObservations": 2336
       },
       "processingInfo": {
         "method": "rbms (GAM flight curves + GLM collated index + bootstrap CI + linear trend)",
@@ -3190,7 +3202,10 @@
         "total_counts": 70,
         "years_with_data": 5,
         "imputation_success": true,
-        "baseline_year": 2021
+        "baseline_year": 2021,
+        "transectCount": 7,
+        "totalVisits": 70,
+        "speciesObservations": 145
       },
       "processingInfo": {
         "method": "rbms (GAM flight curves + GLM collated index + bootstrap CI + linear trend)",
@@ -3812,7 +3827,10 @@
         "total_counts": 67,
         "years_with_data": 5,
         "imputation_success": true,
-        "baseline_year": 2021
+        "baseline_year": 2021,
+        "transectCount": 10,
+        "totalVisits": 69,
+        "speciesObservations": 110
       },
       "processingInfo": {
         "method": "rbms (GAM flight curves + GLM collated index + bootstrap CI + linear trend)",
@@ -4432,7 +4450,10 @@
         "total_counts": 47,
         "years_with_data": 4,
         "imputation_success": true,
-        "baseline_year": 2022
+        "baseline_year": 2022,
+        "transectCount": 21,
+        "totalVisits": 114,
+        "speciesObservations": 307
       },
       "processingInfo": {
         "method": "rbms (GAM flight curves + GLM collated index + bootstrap CI + linear trend)",
@@ -5050,7 +5071,10 @@
         "total_counts": 24,
         "years_with_data": 5,
         "imputation_success": true,
-        "baseline_year": 2021
+        "baseline_year": 2021,
+        "transectCount": 13,
+        "totalVisits": 26,
+        "speciesObservations": 33
       },
       "processingInfo": {
         "method": "rbms (GAM flight curves + GLM collated index + bootstrap CI + linear trend)",
@@ -5570,7 +5594,10 @@
         "total_counts": 20,
         "years_with_data": 5,
         "imputation_success": true,
-        "baseline_year": 2021
+        "baseline_year": 2021,
+        "transectCount": 7,
+        "totalVisits": 20,
+        "speciesObservations": 23
       },
       "processingInfo": {
         "method": "rbms (GAM flight curves + GLM collated index + bootstrap CI + linear trend)",
@@ -6192,7 +6219,10 @@
         "total_counts": 91,
         "years_with_data": 5,
         "imputation_success": true,
-        "baseline_year": 2021
+        "baseline_year": 2021,
+        "transectCount": 23,
+        "totalVisits": 104,
+        "speciesObservations": 171
       },
       "processingInfo": {
         "method": "rbms (GAM flight curves + GLM collated index + bootstrap CI + linear trend)",
@@ -6814,7 +6844,10 @@
         "total_counts": 114,
         "years_with_data": 5,
         "imputation_success": true,
-        "baseline_year": 2021
+        "baseline_year": 2021,
+        "transectCount": 13,
+        "totalVisits": 114,
+        "speciesObservations": 191
       },
       "processingInfo": {
         "method": "rbms (GAM flight curves + GLM collated index + bootstrap CI + linear trend)",
@@ -7436,7 +7469,10 @@
         "total_counts": 8,
         "years_with_data": 5,
         "imputation_success": true,
-        "baseline_year": 2021
+        "baseline_year": 2021,
+        "transectCount": 1,
+        "totalVisits": 8,
+        "speciesObservations": 56
       },
       "processingInfo": {
         "method": "rbms (GAM flight curves + GLM collated index + bootstrap CI + linear trend)",
@@ -8058,7 +8094,10 @@
         "total_counts": 253,
         "years_with_data": 5,
         "imputation_success": true,
-        "baseline_year": 2021
+        "baseline_year": 2021,
+        "transectCount": 15,
+        "totalVisits": 270,
+        "speciesObservations": 1084
       },
       "processingInfo": {
         "method": "rbms (GAM flight curves + GLM collated index + bootstrap CI + linear trend)",
@@ -8680,7 +8719,10 @@
         "total_counts": 582,
         "years_with_data": 5,
         "imputation_success": true,
-        "baseline_year": 2021
+        "baseline_year": 2021,
+        "transectCount": 28,
+        "totalVisits": 665,
+        "speciesObservations": 1657
       },
       "processingInfo": {
         "method": "rbms (GAM flight curves + GLM collated index + bootstrap CI + linear trend)",
@@ -9098,7 +9140,10 @@
         "total_counts": 16,
         "years_with_data": 5,
         "imputation_success": true,
-        "baseline_year": 2021
+        "baseline_year": 2021,
+        "transectCount": 3,
+        "totalVisits": 20,
+        "speciesObservations": 38
       },
       "processingInfo": {
         "method": "rbms (GAM flight curves + GLM collated index + bootstrap CI + linear trend)",
@@ -9720,7 +9765,10 @@
         "total_counts": 44,
         "years_with_data": 5,
         "imputation_success": true,
-        "baseline_year": 2021
+        "baseline_year": 2021,
+        "transectCount": 9,
+        "totalVisits": 59,
+        "speciesObservations": 317
       },
       "processingInfo": {
         "method": "rbms (GAM flight curves + GLM collated index + bootstrap CI + linear trend)",
@@ -10342,7 +10390,10 @@
         "total_counts": 59,
         "years_with_data": 5,
         "imputation_success": true,
-        "baseline_year": 2021
+        "baseline_year": 2021,
+        "transectCount": 10,
+        "totalVisits": 75,
+        "speciesObservations": 180
       },
       "processingInfo": {
         "method": "rbms (GAM flight curves + GLM collated index + bootstrap CI + linear trend)",
@@ -10964,7 +11015,10 @@
         "total_counts": 76,
         "years_with_data": 5,
         "imputation_success": true,
-        "baseline_year": 2021
+        "baseline_year": 2021,
+        "transectCount": 11,
+        "totalVisits": 76,
+        "speciesObservations": 331
       },
       "processingInfo": {
         "method": "rbms (GAM flight curves + GLM collated index + bootstrap CI + linear trend)",
@@ -11586,7 +11640,10 @@
         "total_counts": 18,
         "years_with_data": 5,
         "imputation_success": true,
-        "baseline_year": 2021
+        "baseline_year": 2021,
+        "transectCount": 2,
+        "totalVisits": 18,
+        "speciesObservations": 53
       },
       "processingInfo": {
         "method": "rbms (GAM flight curves + GLM collated index + bootstrap CI + linear trend)",
@@ -12208,7 +12265,10 @@
         "total_counts": 33,
         "years_with_data": 5,
         "imputation_success": true,
-        "baseline_year": 2021
+        "baseline_year": 2021,
+        "transectCount": 3,
+        "totalVisits": 33,
+        "speciesObservations": 88
       },
       "processingInfo": {
         "method": "rbms (GAM flight curves + GLM collated index + bootstrap CI + linear trend)",
@@ -12830,7 +12890,10 @@
         "total_counts": 32,
         "years_with_data": 5,
         "imputation_success": true,
-        "baseline_year": 2021
+        "baseline_year": 2021,
+        "transectCount": 9,
+        "totalVisits": 35,
+        "speciesObservations": 123
       },
       "processingInfo": {
         "method": "rbms (GAM flight curves + GLM collated index + bootstrap CI + linear trend)",
@@ -13452,7 +13515,10 @@
         "total_counts": 259,
         "years_with_data": 5,
         "imputation_success": true,
-        "baseline_year": 2021
+        "baseline_year": 2021,
+        "transectCount": 18,
+        "totalVisits": 284,
+        "speciesObservations": 1232
       },
       "processingInfo": {
         "method": "rbms (GAM flight curves + GLM collated index + bootstrap CI + linear trend)",
@@ -14074,7 +14140,10 @@
         "total_counts": 84,
         "years_with_data": 5,
         "imputation_success": true,
-        "baseline_year": 2021
+        "baseline_year": 2021,
+        "transectCount": 19,
+        "totalVisits": 103,
+        "speciesObservations": 244
       },
       "processingInfo": {
         "method": "rbms (GAM flight curves + GLM collated index + bootstrap CI + linear trend)",
@@ -14696,7 +14765,10 @@
         "total_counts": 97,
         "years_with_data": 5,
         "imputation_success": true,
-        "baseline_year": 2021
+        "baseline_year": 2021,
+        "transectCount": 13,
+        "totalVisits": 97,
+        "speciesObservations": 504
       },
       "processingInfo": {
         "method": "rbms (GAM flight curves + GLM collated index + bootstrap CI + linear trend)",
@@ -15317,7 +15389,10 @@
         "total_counts": 14,
         "years_with_data": 5,
         "imputation_success": true,
-        "baseline_year": 2022
+        "baseline_year": 2022,
+        "transectCount": 2,
+        "totalVisits": 14,
+        "speciesObservations": 43
       },
       "processingInfo": {
         "method": "rbms (GAM flight curves + GLM collated index + bootstrap CI + linear trend)",
@@ -15939,7 +16014,10 @@
         "total_counts": 20,
         "years_with_data": 5,
         "imputation_success": true,
-        "baseline_year": 2021
+        "baseline_year": 2021,
+        "transectCount": 4,
+        "totalVisits": 20,
+        "speciesObservations": 42
       },
       "processingInfo": {
         "method": "rbms (GAM flight curves + GLM collated index + bootstrap CI + linear trend)",
@@ -16561,7 +16639,10 @@
         "total_counts": 118,
         "years_with_data": 5,
         "imputation_success": true,
-        "baseline_year": 2021
+        "baseline_year": 2021,
+        "transectCount": 9,
+        "totalVisits": 118,
+        "speciesObservations": 423
       },
       "processingInfo": {
         "method": "rbms (GAM flight curves + GLM collated index + bootstrap CI + linear trend)",
@@ -17183,7 +17264,10 @@
         "total_counts": 240,
         "years_with_data": 5,
         "imputation_success": true,
-        "baseline_year": 2021
+        "baseline_year": 2021,
+        "transectCount": 25,
+        "totalVisits": 259,
+        "speciesObservations": 418
       },
       "processingInfo": {
         "method": "rbms (GAM flight curves + GLM collated index + bootstrap CI + linear trend)",
@@ -17805,7 +17889,10 @@
         "total_counts": 30,
         "years_with_data": 5,
         "imputation_success": true,
-        "baseline_year": 2021
+        "baseline_year": 2021,
+        "transectCount": 6,
+        "totalVisits": 30,
+        "speciesObservations": 58
       },
       "processingInfo": {
         "method": "rbms (GAM flight curves + GLM collated index + bootstrap CI + linear trend)",
@@ -18427,7 +18514,10 @@
         "total_counts": 27,
         "years_with_data": 5,
         "imputation_success": true,
-        "baseline_year": 2021
+        "baseline_year": 2021,
+        "transectCount": 4,
+        "totalVisits": 27,
+        "speciesObservations": 47
       },
       "processingInfo": {
         "method": "rbms (GAM flight curves + GLM collated index + bootstrap CI + linear trend)",
@@ -19049,7 +19139,10 @@
         "total_counts": 185,
         "years_with_data": 5,
         "imputation_success": true,
-        "baseline_year": 2021
+        "baseline_year": 2021,
+        "transectCount": 21,
+        "totalVisits": 188,
+        "speciesObservations": 506
       },
       "processingInfo": {
         "method": "rbms (GAM flight curves + GLM collated index + bootstrap CI + linear trend)",
@@ -19671,7 +19764,10 @@
         "total_counts": 330,
         "years_with_data": 5,
         "imputation_success": true,
-        "baseline_year": 2021
+        "baseline_year": 2021,
+        "transectCount": 22,
+        "totalVisits": 351,
+        "speciesObservations": 1119
       },
       "processingInfo": {
         "method": "rbms (GAM flight curves + GLM collated index + bootstrap CI + linear trend)",
@@ -20293,7 +20389,10 @@
         "total_counts": 88,
         "years_with_data": 5,
         "imputation_success": true,
-        "baseline_year": 2021
+        "baseline_year": 2021,
+        "transectCount": 11,
+        "totalVisits": 97,
+        "speciesObservations": 260
       },
       "processingInfo": {
         "method": "rbms (GAM flight curves + GLM collated index + bootstrap CI + linear trend)",
@@ -20915,7 +21014,10 @@
         "total_counts": 248,
         "years_with_data": 5,
         "imputation_success": true,
-        "baseline_year": 2021
+        "baseline_year": 2021,
+        "transectCount": 27,
+        "totalVisits": 257,
+        "speciesObservations": 2534
       },
       "processingInfo": {
         "method": "rbms (GAM flight curves + GLM collated index + bootstrap CI + linear trend)",
@@ -21537,7 +21639,10 @@
         "total_counts": 28,
         "years_with_data": 5,
         "imputation_success": true,
-        "baseline_year": 2021
+        "baseline_year": 2021,
+        "transectCount": 4,
+        "totalVisits": 28,
+        "speciesObservations": 87
       },
       "processingInfo": {
         "method": "rbms (GAM flight curves + GLM collated index + bootstrap CI + linear trend)",
@@ -22159,7 +22264,10 @@
         "total_counts": 23,
         "years_with_data": 5,
         "imputation_success": true,
-        "baseline_year": 2021
+        "baseline_year": 2021,
+        "transectCount": 3,
+        "totalVisits": 23,
+        "speciesObservations": 48
       },
       "processingInfo": {
         "method": "rbms (GAM flight curves + GLM collated index + bootstrap CI + linear trend)",
@@ -22781,7 +22889,10 @@
         "total_counts": 501,
         "years_with_data": 5,
         "imputation_success": true,
-        "baseline_year": 2021
+        "baseline_year": 2021,
+        "transectCount": 26,
+        "totalVisits": 550,
+        "speciesObservations": 1463
       },
       "processingInfo": {
         "method": "rbms (GAM flight curves + GLM collated index + bootstrap CI + linear trend)",
@@ -23403,7 +23514,10 @@
         "total_counts": 47,
         "years_with_data": 5,
         "imputation_success": true,
-        "baseline_year": 2021
+        "baseline_year": 2021,
+        "transectCount": 10,
+        "totalVisits": 48,
+        "speciesObservations": 96
       },
       "processingInfo": {
         "method": "rbms (GAM flight curves + GLM collated index + bootstrap CI + linear trend)",
@@ -24025,7 +24139,10 @@
         "total_counts": 854,
         "years_with_data": 5,
         "imputation_success": true,
-        "baseline_year": 2021
+        "baseline_year": 2021,
+        "transectCount": 25,
+        "totalVisits": 858,
+        "speciesObservations": 6744
       },
       "processingInfo": {
         "method": "rbms (GAM flight curves + GLM collated index + bootstrap CI + linear trend)",
@@ -24647,7 +24764,10 @@
         "total_counts": 53,
         "years_with_data": 5,
         "imputation_success": true,
-        "baseline_year": 2021
+        "baseline_year": 2021,
+        "transectCount": 9,
+        "totalVisits": 55,
+        "speciesObservations": 206
       },
       "processingInfo": {
         "method": "rbms (GAM flight curves + GLM collated index + bootstrap CI + linear trend)",
@@ -25269,7 +25389,10 @@
         "total_counts": 129,
         "years_with_data": 5,
         "imputation_success": true,
-        "baseline_year": 2021
+        "baseline_year": 2021,
+        "transectCount": 14,
+        "totalVisits": 129,
+        "speciesObservations": 1704
       },
       "processingInfo": {
         "method": "rbms (GAM flight curves + GLM collated index + bootstrap CI + linear trend)",
@@ -25891,7 +26014,10 @@
         "total_counts": 20,
         "years_with_data": 5,
         "imputation_success": true,
-        "baseline_year": 2021
+        "baseline_year": 2021,
+        "transectCount": 4,
+        "totalVisits": 20,
+        "speciesObservations": 49
       },
       "processingInfo": {
         "method": "rbms (GAM flight curves + GLM collated index + bootstrap CI + linear trend)",
@@ -26513,7 +26639,10 @@
         "total_counts": 70,
         "years_with_data": 5,
         "imputation_success": true,
-        "baseline_year": 2021
+        "baseline_year": 2021,
+        "transectCount": 7,
+        "totalVisits": 71,
+        "speciesObservations": 504
       },
       "processingInfo": {
         "method": "rbms (GAM flight curves + GLM collated index + bootstrap CI + linear trend)",
@@ -27135,7 +27264,10 @@
         "total_counts": 13,
         "years_with_data": 5,
         "imputation_success": true,
-        "baseline_year": 2021
+        "baseline_year": 2021,
+        "transectCount": 3,
+        "totalVisits": 13,
+        "speciesObservations": 26
       },
       "processingInfo": {
         "method": "rbms (GAM flight curves + GLM collated index + bootstrap CI + linear trend)",
@@ -27757,7 +27889,10 @@
         "total_counts": 27,
         "years_with_data": 5,
         "imputation_success": true,
-        "baseline_year": 2021
+        "baseline_year": 2021,
+        "transectCount": 10,
+        "totalVisits": 34,
+        "speciesObservations": 41
       },
       "processingInfo": {
         "method": "rbms (GAM flight curves + GLM collated index + bootstrap CI + linear trend)",
@@ -28379,7 +28514,10 @@
         "total_counts": 310,
         "years_with_data": 5,
         "imputation_success": true,
-        "baseline_year": 2021
+        "baseline_year": 2021,
+        "transectCount": 22,
+        "totalVisits": 360,
+        "speciesObservations": 823
       },
       "processingInfo": {
         "method": "rbms (GAM flight curves + GLM collated index + bootstrap CI + linear trend)",
@@ -29001,7 +29139,10 @@
         "total_counts": 1003,
         "years_with_data": 5,
         "imputation_success": true,
-        "baseline_year": 2021
+        "baseline_year": 2021,
+        "transectCount": 28,
+        "totalVisits": 1157,
+        "speciesObservations": 5826
       },
       "processingInfo": {
         "method": "rbms (GAM flight curves + GLM collated index + bootstrap CI + linear trend)",
@@ -29623,7 +29764,10 @@
         "total_counts": 687,
         "years_with_data": 5,
         "imputation_success": true,
-        "baseline_year": 2021
+        "baseline_year": 2021,
+        "transectCount": 28,
+        "totalVisits": 841,
+        "speciesObservations": 4677
       },
       "processingInfo": {
         "method": "rbms (GAM flight curves + GLM collated index + bootstrap CI + linear trend)",
@@ -30245,7 +30389,10 @@
         "total_counts": 175,
         "years_with_data": 5,
         "imputation_success": true,
-        "baseline_year": 2021
+        "baseline_year": 2021,
+        "transectCount": 21,
+        "totalVisits": 205,
+        "speciesObservations": 786
       },
       "processingInfo": {
         "method": "rbms (GAM flight curves + GLM collated index + bootstrap CI + linear trend)",
@@ -30867,7 +31014,10 @@
         "total_counts": 679,
         "years_with_data": 5,
         "imputation_success": true,
-        "baseline_year": 2021
+        "baseline_year": 2021,
+        "transectCount": 28,
+        "totalVisits": 784,
+        "speciesObservations": 4167
       },
       "processingInfo": {
         "method": "rbms (GAM flight curves + GLM collated index + bootstrap CI + linear trend)",
@@ -31489,7 +31639,10 @@
         "total_counts": 13,
         "years_with_data": 5,
         "imputation_success": true,
-        "baseline_year": 2021
+        "baseline_year": 2021,
+        "transectCount": 2,
+        "totalVisits": 13,
+        "speciesObservations": 234
       },
       "processingInfo": {
         "method": "rbms (GAM flight curves + GLM collated index + bootstrap CI + linear trend)",
@@ -32111,7 +32264,10 @@
         "total_counts": 26,
         "years_with_data": 5,
         "imputation_success": true,
-        "baseline_year": 2021
+        "baseline_year": 2021,
+        "transectCount": 6,
+        "totalVisits": 26,
+        "speciesObservations": 34
       },
       "processingInfo": {
         "method": "rbms (GAM flight curves + GLM collated index + bootstrap CI + linear trend)",
@@ -32733,7 +32889,10 @@
         "total_counts": 48,
         "years_with_data": 5,
         "imputation_success": true,
-        "baseline_year": 2021
+        "baseline_year": 2021,
+        "transectCount": 2,
+        "totalVisits": 48,
+        "speciesObservations": 137
       },
       "processingInfo": {
         "method": "rbms (GAM flight curves + GLM collated index + bootstrap CI + linear trend)",
@@ -33355,7 +33514,10 @@
         "total_counts": 151,
         "years_with_data": 5,
         "imputation_success": true,
-        "baseline_year": 2021
+        "baseline_year": 2021,
+        "transectCount": 21,
+        "totalVisits": 161,
+        "speciesObservations": 581
       },
       "processingInfo": {
         "method": "rbms (GAM flight curves + GLM collated index + bootstrap CI + linear trend)",
@@ -33977,7 +34139,10 @@
         "total_counts": 45,
         "years_with_data": 5,
         "imputation_success": true,
-        "baseline_year": 2021
+        "baseline_year": 2021,
+        "transectCount": 14,
+        "totalVisits": 47,
+        "speciesObservations": 98
       },
       "processingInfo": {
         "method": "rbms (GAM flight curves + GLM collated index + bootstrap CI + linear trend)",
@@ -34599,7 +34764,10 @@
         "total_counts": 193,
         "years_with_data": 5,
         "imputation_success": true,
-        "baseline_year": 2021
+        "baseline_year": 2021,
+        "transectCount": 19,
+        "totalVisits": 193,
+        "speciesObservations": 1066
       },
       "processingInfo": {
         "method": "rbms (GAM flight curves + GLM collated index + bootstrap CI + linear trend)",
@@ -35221,7 +35389,10 @@
         "total_counts": 482,
         "years_with_data": 5,
         "imputation_success": true,
-        "baseline_year": 2021
+        "baseline_year": 2021,
+        "transectCount": 25,
+        "totalVisits": 483,
+        "speciesObservations": 2489
       },
       "processingInfo": {
         "method": "rbms (GAM flight curves + GLM collated index + bootstrap CI + linear trend)",
@@ -35843,7 +36014,10 @@
         "total_counts": 170,
         "years_with_data": 5,
         "imputation_success": true,
-        "baseline_year": 2021
+        "baseline_year": 2021,
+        "transectCount": 18,
+        "totalVisits": 171,
+        "speciesObservations": 1906
       },
       "processingInfo": {
         "method": "rbms (GAM flight curves + GLM collated index + bootstrap CI + linear trend)",
@@ -36465,7 +36639,10 @@
         "total_counts": 139,
         "years_with_data": 5,
         "imputation_success": true,
-        "baseline_year": 2021
+        "baseline_year": 2021,
+        "transectCount": 17,
+        "totalVisits": 140,
+        "speciesObservations": 619
       },
       "processingInfo": {
         "method": "rbms (GAM flight curves + GLM collated index + bootstrap CI + linear trend)",
@@ -37087,7 +37264,10 @@
         "total_counts": 38,
         "years_with_data": 5,
         "imputation_success": true,
-        "baseline_year": 2021
+        "baseline_year": 2021,
+        "transectCount": 8,
+        "totalVisits": 38,
+        "speciesObservations": 130
       },
       "processingInfo": {
         "method": "rbms (GAM flight curves + GLM collated index + bootstrap CI + linear trend)",
@@ -37709,7 +37889,10 @@
         "total_counts": 40,
         "years_with_data": 5,
         "imputation_success": true,
-        "baseline_year": 2021
+        "baseline_year": 2021,
+        "transectCount": 6,
+        "totalVisits": 41,
+        "speciesObservations": 88
       },
       "processingInfo": {
         "method": "rbms (GAM flight curves + GLM collated index + bootstrap CI + linear trend)",
@@ -38331,7 +38514,10 @@
         "total_counts": 68,
         "years_with_data": 5,
         "imputation_success": true,
-        "baseline_year": 2021
+        "baseline_year": 2021,
+        "transectCount": 10,
+        "totalVisits": 68,
+        "speciesObservations": 194
       },
       "processingInfo": {
         "method": "rbms (GAM flight curves + GLM collated index + bootstrap CI + linear trend)",
@@ -38953,7 +39139,10 @@
         "total_counts": 79,
         "years_with_data": 5,
         "imputation_success": true,
-        "baseline_year": 2021
+        "baseline_year": 2021,
+        "transectCount": 18,
+        "totalVisits": 79,
+        "speciesObservations": 242
       },
       "processingInfo": {
         "method": "rbms (GAM flight curves + GLM collated index + bootstrap CI + linear trend)",
@@ -39575,7 +39764,10 @@
         "total_counts": 172,
         "years_with_data": 5,
         "imputation_success": true,
-        "baseline_year": 2021
+        "baseline_year": 2021,
+        "transectCount": 28,
+        "totalVisits": 264,
+        "speciesObservations": 498
       },
       "processingInfo": {
         "method": "rbms (GAM flight curves + GLM collated index + bootstrap CI + linear trend)",
@@ -40197,7 +40389,10 @@
         "total_counts": 150,
         "years_with_data": 5,
         "imputation_success": true,
-        "baseline_year": 2021
+        "baseline_year": 2021,
+        "transectCount": 25,
+        "totalVisits": 171,
+        "speciesObservations": 389
       },
       "processingInfo": {
         "method": "rbms (GAM flight curves + GLM collated index + bootstrap CI + linear trend)",
@@ -40819,7 +41014,10 @@
         "total_counts": 75,
         "years_with_data": 5,
         "imputation_success": true,
-        "baseline_year": 2021
+        "baseline_year": 2021,
+        "transectCount": 14,
+        "totalVisits": 109,
+        "speciesObservations": 443
       },
       "processingInfo": {
         "method": "rbms (GAM flight curves + GLM collated index + bootstrap CI + linear trend)",
@@ -41339,7 +41537,10 @@
         "total_counts": 17,
         "years_with_data": 5,
         "imputation_success": true,
-        "baseline_year": 2021
+        "baseline_year": 2021,
+        "transectCount": 5,
+        "totalVisits": 17,
+        "speciesObservations": 77
       },
       "processingInfo": {
         "method": "rbms (GAM flight curves + GLM collated index + bootstrap CI + linear trend)",

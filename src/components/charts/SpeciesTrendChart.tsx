@@ -8,6 +8,13 @@ interface SpeciesTrendChartProps {
     collatedIndices: Record<number, number>;
     trendLine?: Record<number, number>;
     confidenceIntervals?: Record<number, { ci_lower: number | null; ci_upper: number | null }>;
+    dataQuality?: {
+      site_count?: number;
+      total_visits?: number;
+      transectCount?: number;
+      totalVisits?: number;
+      speciesObservations?: number;
+    };
   };
 }
 
@@ -177,9 +184,39 @@ export function SpeciesTrendChart({ speciesData }: SpeciesTrendChartProps) {
     },
   };
 
+  // Extract observation counts (species-specific)
+  const transectCount =
+    speciesData.dataQuality?.transectCount ?? speciesData.dataQuality?.site_count;
+  const observationVisits =
+    speciesData.dataQuality?.totalVisits ?? speciesData.dataQuality?.total_visits;
+  const individualCount = (speciesData.dataQuality as any)?.speciesObservations;
+
   return (
-    <div style={{ height: "400px" }}>
-      <Line data={chartData} options={options} />
+    <div>
+      <div style={{ height: "400px" }}>
+        <Line data={chartData} options={options} />
+      </div>
+      {(transectCount != null || observationVisits != null || individualCount != null) && (
+        <div style={{ marginTop: 16, textAlign: "center", color: "#666", fontSize: 14 }}>
+          {transectCount != null && (
+            <>
+              {transectCount} transecto{transectCount !== 1 ? "s" : ""}
+            </>
+          )}
+          {transectCount != null && observationVisits != null && " • "}
+          {observationVisits != null && (
+            <>
+              {observationVisits} visita{observationVisits !== 1 ? "s" : ""} com observações
+            </>
+          )}
+          {individualCount != null && (
+            <>
+              {" "}
+              • {individualCount} indivíduo{individualCount !== 1 ? "s" : ""}
+            </>
+          )}
+        </div>
+      )}
     </div>
   );
 }

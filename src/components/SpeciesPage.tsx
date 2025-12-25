@@ -231,27 +231,15 @@ function SpeciesPage() {
         </Space>
       </Card>
 
-      {/* Trend Chart Card - shows whenever trend data exists (from flight curves or GBI) */}
+      {/* Trend Chart Card - shows only when flight curves data exists */}
       {(() => {
         const flightCurvesTrend = flightCurvesData?.species?.[decodedSpeciesName];
-        const gbiTrend = gbiData?.speciesTrends?.[decodedSpeciesName];
 
-        // Use flight curves data if available, otherwise GBI data
-        const trendData =
-          flightCurvesTrend ||
-          (gbiTrend
-            ? {
-                collatedIndices: gbiTrend.annualIndices,
-                trendLine: gbiTrend.trendLine,
-                confidenceIntervals: gbiTrend.confidenceIntervals,
-              }
-            : null);
-
-        if (!trendData) return null;
+        if (!flightCurvesTrend) return null;
 
         return (
           <Card title="Tendência Populacional">
-            <SpeciesTrendChart speciesData={trendData} />
+            <SpeciesTrendChart speciesData={flightCurvesTrend} />
           </Card>
         );
       })()}
