@@ -1,6 +1,6 @@
 {
   "metadata": {
-    "processingDate": "2025-12-26T00:45:48.706Z",
+    "processingDate": "2025-12-26T01:08:41.861Z",
     "baselineYear": 2021,
     "qualityCriteria": {
       "minYearsActive": 5,
@@ -729,7 +729,8 @@
           "upper": 10.6055
         }
       },
-      "ciSkippedDueToLowDetection": true
+      "ciExceedsThreshold": true,
+      "maxCIRange": 30270569855
     },
     "Anthocharis cardamines": {
       "collatedIndices": {
@@ -1320,7 +1321,28 @@
         "rbms_version": "1.2.0",
         "bootstrap_iterations": 500
       },
-      "confidenceIntervals": {},
+      "confidenceIntervals": {
+        "2021": {
+          "ci_lower": 0,
+          "ci_upper": 0
+        },
+        "2022": {
+          "ci_lower": 100,
+          "ci_upper": 100
+        },
+        "2023": {
+          "ci_lower": 0,
+          "ci_upper": 157.46
+        },
+        "2024": {
+          "ci_lower": 0,
+          "ci_upper": 104.6
+        },
+        "2025": {
+          "ci_lower": 0,
+          "ci_upper": 175.92
+        }
+      },
       "trendClassification": {
         "category": "Uncertain",
         "annualRateOfChange": -13.75,
@@ -1334,7 +1356,8 @@
           "upper": 1.1634
         }
       },
-      "ciSkippedDueToLowDetection": true
+      "ciExceedsThreshold": false,
+      "maxCIRange": 175.92
     },
     "Argynnis pandora": {
       "collatedIndices": {
@@ -1940,7 +1963,8 @@
           "upper": 1.3912
         }
       },
-      "ciSkippedDueToLowDetection": true
+      "ciExceedsThreshold": true,
+      "maxCIRange": 1549.9499999999998
     },
     "Aricia cramera": {
       "collatedIndices": {
@@ -2567,7 +2591,8 @@
           "upper": 1.4642
         }
       },
-      "ciSkippedDueToLowDetection": false
+      "ciExceedsThreshold": false,
+      "maxCIRange": 279.72
     },
     "Brintesia circe": {
       "collatedIndices": {
@@ -3159,7 +3184,28 @@
         "rbms_version": "1.2.0",
         "bootstrap_iterations": 500
       },
-      "confidenceIntervals": {},
+      "confidenceIntervals": {
+        "2021": {
+          "ci_lower": 100,
+          "ci_upper": 100
+        },
+        "2022": {
+          "ci_lower": 40.84,
+          "ci_upper": 453.66
+        },
+        "2023": {
+          "ci_lower": 31.1,
+          "ci_upper": 252.36
+        },
+        "2024": {
+          "ci_lower": 52.44,
+          "ci_upper": 272.67
+        },
+        "2025": {
+          "ci_lower": 188.83,
+          "ci_upper": 335.82
+        }
+      },
       "trendClassification": {
         "category": "Strong increase",
         "annualRateOfChange": 15.32,
@@ -3173,7 +3219,8 @@
           "upper": 1.3291
         }
       },
-      "ciSkippedDueToLowDetection": true
+      "ciExceedsThreshold": false,
+      "maxCIRange": 412.82000000000005
     },
     "Cacyreus marshalli": {
       "collatedIndices": {
@@ -3765,7 +3812,28 @@
         "rbms_version": "1.2.0",
         "bootstrap_iterations": 500
       },
-      "confidenceIntervals": {},
+      "confidenceIntervals": {
+        "2021": {
+          "ci_lower": 100,
+          "ci_upper": 100
+        },
+        "2022": {
+          "ci_lower": 11.38,
+          "ci_upper": 103.04
+        },
+        "2023": {
+          "ci_lower": 21.07,
+          "ci_upper": 216.75
+        },
+        "2024": {
+          "ci_lower": 9.6,
+          "ci_upper": 128.14
+        },
+        "2025": {
+          "ci_lower": 0,
+          "ci_upper": 77.88
+        }
+      },
       "trendClassification": {
         "category": "Uncertain",
         "annualRateOfChange": -21.89,
@@ -3779,7 +3847,8 @@
           "upper": 1.0557
         }
       },
-      "ciSkippedDueToLowDetection": true
+      "ciExceedsThreshold": false,
+      "maxCIRange": 195.68
     },
     "Callophrys rubi": {
       "collatedIndices": {
@@ -4369,7 +4438,24 @@
         "rbms_version": "1.2.0",
         "bootstrap_iterations": 500
       },
-      "confidenceIntervals": {},
+      "confidenceIntervals": {
+        "2022": {
+          "ci_lower": 100,
+          "ci_upper": 100
+        },
+        "2023": {
+          "ci_lower": 35.06,
+          "ci_upper": 165.12
+        },
+        "2024": {
+          "ci_lower": 5.21,
+          "ci_upper": 31.1
+        },
+        "2025": {
+          "ci_lower": 0,
+          "ci_upper": 87.07
+        }
+      },
       "trendClassification": {
         "category": "Strong decline",
         "annualRateOfChange": -36.42,
@@ -4383,7 +4469,8 @@
           "upper": 0.828
         }
       },
-      "ciSkippedDueToLowDetection": true
+      "ciExceedsThreshold": false,
+      "maxCIRange": 130.06
     },
     "Carcharodus alceae": {
       "collatedIndices": {
@@ -4975,7 +5062,28 @@
         "rbms_version": "1.2.0",
         "bootstrap_iterations": 500
       },
-      "confidenceIntervals": {},
+      "confidenceIntervals": {
+        "2021": {
+          "ci_lower": 100,
+          "ci_upper": 100
+        },
+        "2022": {
+          "ci_lower": 0,
+          "ci_upper": 146.55
+        },
+        "2023": {
+          "ci_lower": 24.19,
+          "ci_upper": 452.67
+        },
+        "2024": {
+          "ci_lower": 0,
+          "ci_upper": 477.85
+        },
+        "2025": {
+          "ci_lower": 0,
+          "ci_upper": 766.8
+        }
+      },
       "trendClassification": {
         "category": "Uncertain",
         "annualRateOfChange": 24.21,
@@ -4989,7 +5097,8 @@
           "upper": 8.2003
         }
       },
-      "ciSkippedDueToLowDetection": true
+      "ciExceedsThreshold": false,
+      "maxCIRange": 766.8
     },
     "Carcharodus tripolinus": {
       "collatedIndices": {
@@ -5479,7 +5588,28 @@
         "rbms_version": "1.2.0",
         "bootstrap_iterations": 500
       },
-      "confidenceIntervals": {},
+      "confidenceIntervals": {
+        "2021": {
+          "ci_lower": 100,
+          "ci_upper": 100
+        },
+        "2022": {
+          "ci_lower": 0,
+          "ci_upper": 99.58
+        },
+        "2023": {
+          "ci_lower": 0,
+          "ci_upper": 319.84
+        },
+        "2024": {
+          "ci_lower": 0,
+          "ci_upper": 127.96
+        },
+        "2025": {
+          "ci_lower": 0,
+          "ci_upper": 0
+        }
+      },
       "trendClassification": {
         "category": "Strong decline",
         "annualRateOfChange": -97.46,
@@ -5493,7 +5623,8 @@
           "upper": 0.1387
         }
       },
-      "ciSkippedDueToLowDetection": true
+      "ciExceedsThreshold": false,
+      "maxCIRange": 319.84
     },
     "Celastrina argiolus": {
       "collatedIndices": {
@@ -6120,7 +6251,8 @@
           "upper": 1.3258
         }
       },
-      "ciSkippedDueToLowDetection": false
+      "ciExceedsThreshold": false,
+      "maxCIRange": 356.65000000000003
     },
     "Charaxes jasius": {
       "collatedIndices": {
@@ -6747,7 +6879,8 @@
           "upper": 1.5687
         }
       },
-      "ciSkippedDueToLowDetection": false
+      "ciExceedsThreshold": false,
+      "maxCIRange": 469.22
     },
     "Coenonympha arcania": {
       "collatedIndices": {
@@ -7339,7 +7472,28 @@
         "rbms_version": "1.2.0",
         "bootstrap_iterations": 500
       },
-      "confidenceIntervals": {},
+      "confidenceIntervals": {
+        "2021": {
+          "ci_lower": 100,
+          "ci_upper": 100
+        },
+        "2022": {
+          "ci_lower": 750,
+          "ci_upper": 750
+        },
+        "2023": {
+          "ci_lower": 275,
+          "ci_upper": 275
+        },
+        "2024": {
+          "ci_lower": 112.5,
+          "ci_upper": 112.5
+        },
+        "2025": {
+          "ci_lower": 187.5,
+          "ci_upper": 187.5
+        }
+      },
       "trendClassification": {
         "category": "Strong decline",
         "annualRateOfChange": -6.2,
@@ -7353,7 +7507,8 @@
           "upper": 0.938
         }
       },
-      "ciSkippedDueToLowDetection": true
+      "ciExceedsThreshold": false,
+      "maxCIRange": 0
     },
     "Coenonympha pamphilus": {
       "collatedIndices": {
@@ -7980,7 +8135,8 @@
           "upper": 1.0192
         }
       },
-      "ciSkippedDueToLowDetection": false
+      "ciExceedsThreshold": false,
+      "maxCIRange": 106.52
     },
     "Colias crocea": {
       "collatedIndices": {
@@ -8607,7 +8763,8 @@
           "upper": 1.132
         }
       },
-      "ciSkippedDueToLowDetection": false
+      "ciExceedsThreshold": false,
+      "maxCIRange": 125.66
     },
     "Danaus plexippus": {
       "collatedIndices": {
@@ -9009,7 +9166,8 @@
           "upper": 1833.9427
         }
       },
-      "ciSkippedDueToLowDetection": true
+      "ciExceedsThreshold": true,
+      "maxCIRange": 29064885309294.09
     },
     "Euchloe belemia": {
       "collatedIndices": {
@@ -9615,7 +9773,8 @@
           "upper": 34.1551
         }
       },
-      "ciSkippedDueToLowDetection": true
+      "ciExceedsThreshold": true,
+      "maxCIRange": 62643237161.72
     },
     "Euchloe crameri": {
       "collatedIndices": {
@@ -10221,7 +10380,8 @@
           "upper": 1.9353
         }
       },
-      "ciSkippedDueToLowDetection": true
+      "ciExceedsThreshold": true,
+      "maxCIRange": 1312.3000000000002
     },
     "Euphydryas aurinia": {
       "collatedIndices": {
@@ -10813,7 +10973,28 @@
         "rbms_version": "1.2.0",
         "bootstrap_iterations": 500
       },
-      "confidenceIntervals": {},
+      "confidenceIntervals": {
+        "2021": {
+          "ci_lower": 100,
+          "ci_upper": 100
+        },
+        "2022": {
+          "ci_lower": 49.8,
+          "ci_upper": 235.98
+        },
+        "2023": {
+          "ci_lower": 34.72,
+          "ci_upper": 204.52
+        },
+        "2024": {
+          "ci_lower": 25.73,
+          "ci_upper": 218.35
+        },
+        "2025": {
+          "ci_lower": 24.98,
+          "ci_upper": 94.89
+        }
+      },
       "trendClassification": {
         "category": "Uncertain",
         "annualRateOfChange": -21.34,
@@ -10827,7 +11008,8 @@
           "upper": 1.0708
         }
       },
-      "ciSkippedDueToLowDetection": true
+      "ciExceedsThreshold": false,
+      "maxCIRange": 192.62
     },
     "Fabriciana niobe": {
       "collatedIndices": {
@@ -11433,7 +11615,8 @@
           "upper": 15.5902
         }
       },
-      "ciSkippedDueToLowDetection": true
+      "ciExceedsThreshold": true,
+      "maxCIRange": 1550
     },
     "Favonius quercus": {
       "collatedIndices": {
@@ -12039,7 +12222,8 @@
           "upper": 11.3947
         }
       },
-      "ciSkippedDueToLowDetection": true
+      "ciExceedsThreshold": true,
+      "maxCIRange": 3833822900853.45
     },
     "Glaucopsyche melanops": {
       "collatedIndices": {
@@ -12645,7 +12829,8 @@
           "upper": 457.7135
         }
       },
-      "ciSkippedDueToLowDetection": true
+      "ciExceedsThreshold": true,
+      "maxCIRange": 473759258940.54004
     },
     "Gonepteryx cleopatra": {
       "collatedIndices": {
@@ -13272,7 +13457,8 @@
           "upper": 1.0727
         }
       },
-      "ciSkippedDueToLowDetection": false
+      "ciExceedsThreshold": false,
+      "maxCIRange": 73.97999999999999
     },
     "Gonepteryx rhamni": {
       "collatedIndices": {
@@ -13899,7 +14085,8 @@
           "upper": 1.1126
         }
       },
-      "ciSkippedDueToLowDetection": false
+      "ciExceedsThreshold": false,
+      "maxCIRange": 165.75
     },
     "Hipparchia fidia": {
       "collatedIndices": {
@@ -14526,7 +14713,8 @@
           "upper": 1.352
         }
       },
-      "ciSkippedDueToLowDetection": false
+      "ciExceedsThreshold": false,
+      "maxCIRange": 231.42
     },
     "Hipparchia hermione": {
       "collatedIndices": {
@@ -15131,7 +15319,8 @@
           "upper": 2672.8934
         }
       },
-      "ciSkippedDueToLowDetection": true
+      "ciExceedsThreshold": true,
+      "maxCIRange": 26376314689625.918
     },
     "Hipparchia semele": {
       "collatedIndices": {
@@ -15737,7 +15926,8 @@
           "upper": 36.5039
         }
       },
-      "ciSkippedDueToLowDetection": true
+      "ciExceedsThreshold": true,
+      "maxCIRange": 4366486758688.12
     },
     "Hipparchia statilinus": {
       "collatedIndices": {
@@ -16364,7 +16554,8 @@
           "upper": 1.0752
         }
       },
-      "ciSkippedDueToLowDetection": false
+      "ciExceedsThreshold": false,
+      "maxCIRange": 156.78
     },
     "Iphiclides feisthamelii": {
       "collatedIndices": {
@@ -16991,7 +17182,8 @@
           "upper": 1.1389
         }
       },
-      "ciSkippedDueToLowDetection": false
+      "ciExceedsThreshold": false,
+      "maxCIRange": 217.78999999999996
     },
     "Issoria lathonia": {
       "collatedIndices": {
@@ -17597,7 +17789,8 @@
           "upper": 45.339
         }
       },
-      "ciSkippedDueToLowDetection": true
+      "ciExceedsThreshold": true,
+      "maxCIRange": 154528123653.23
     },
     "Laeosopis roboris": {
       "collatedIndices": {
@@ -18189,7 +18382,28 @@
         "rbms_version": "1.2.0",
         "bootstrap_iterations": 500
       },
-      "confidenceIntervals": {},
+      "confidenceIntervals": {
+        "2021": {
+          "ci_lower": 100,
+          "ci_upper": 100
+        },
+        "2022": {
+          "ci_lower": 18.18,
+          "ci_upper": 200
+        },
+        "2023": {
+          "ci_lower": 50,
+          "ci_upper": 136.36
+        },
+        "2024": {
+          "ci_lower": 0,
+          "ci_upper": 81.82
+        },
+        "2025": {
+          "ci_lower": 0,
+          "ci_upper": 36.36
+        }
+      },
       "trendClassification": {
         "category": "Strong decline",
         "annualRateOfChange": -30.37,
@@ -18203,7 +18417,8 @@
           "upper": 0.9494
         }
       },
-      "ciSkippedDueToLowDetection": true
+      "ciExceedsThreshold": false,
+      "maxCIRange": 181.82
     },
     "Lampides boeticus": {
       "collatedIndices": {
@@ -18830,7 +19045,8 @@
           "upper": 1.2878
         }
       },
-      "ciSkippedDueToLowDetection": false
+      "ciExceedsThreshold": false,
+      "maxCIRange": 345.7
     },
     "Lasiommata megera": {
       "collatedIndices": {
@@ -19457,7 +19673,8 @@
           "upper": 1.2209
         }
       },
-      "ciSkippedDueToLowDetection": false
+      "ciExceedsThreshold": false,
+      "maxCIRange": 192.99
     },
     "Leptidea sinapis": {
       "collatedIndices": {
@@ -20084,7 +20301,8 @@
           "upper": 1.2461
         }
       },
-      "ciSkippedDueToLowDetection": false
+      "ciExceedsThreshold": false,
+      "maxCIRange": 432.31
     },
     "Leptotes pirithous": {
       "collatedIndices": {
@@ -20711,7 +20929,8 @@
           "upper": 1.0593
         }
       },
-      "ciSkippedDueToLowDetection": false
+      "ciExceedsThreshold": false,
+      "maxCIRange": 239.41000000000003
     },
     "Lycaena alciphron": {
       "collatedIndices": {
@@ -21317,7 +21536,8 @@
           "upper": 109.3112
         }
       },
-      "ciSkippedDueToLowDetection": true
+      "ciExceedsThreshold": true,
+      "maxCIRange": 7880874919404.37
     },
     "Lycaena bleusei": {
       "collatedIndices": {
@@ -21909,7 +22129,28 @@
         "rbms_version": "1.2.0",
         "bootstrap_iterations": 500
       },
-      "confidenceIntervals": {},
+      "confidenceIntervals": {
+        "2021": {
+          "ci_lower": 100,
+          "ci_upper": 100
+        },
+        "2022": {
+          "ci_lower": 42.52,
+          "ci_upper": 150
+        },
+        "2023": {
+          "ci_lower": 0,
+          "ci_upper": 228.27
+        },
+        "2024": {
+          "ci_lower": 160.22,
+          "ci_upper": 350
+        },
+        "2025": {
+          "ci_lower": 441.12,
+          "ci_upper": 750
+        }
+      },
       "trendClassification": {
         "category": "Strong increase",
         "annualRateOfChange": 58.02,
@@ -21923,7 +22164,8 @@
           "upper": 104.897
         }
       },
-      "ciSkippedDueToLowDetection": true
+      "ciExceedsThreshold": false,
+      "maxCIRange": 308.88
     },
     "Lycaena phlaeas": {
       "collatedIndices": {
@@ -22550,7 +22792,8 @@
           "upper": 1.1283
         }
       },
-      "ciSkippedDueToLowDetection": false
+      "ciExceedsThreshold": false,
+      "maxCIRange": 109.56
     },
     "Lysandra bellargus": {
       "collatedIndices": {
@@ -23156,7 +23399,8 @@
           "upper": 1.8486
         }
       },
-      "ciSkippedDueToLowDetection": true
+      "ciExceedsThreshold": true,
+      "maxCIRange": 2347.5099999999998
     },
     "Maniola jurtina": {
       "collatedIndices": {
@@ -23783,7 +24027,8 @@
           "upper": 1.1821
         }
       },
-      "ciSkippedDueToLowDetection": false
+      "ciExceedsThreshold": false,
+      "maxCIRange": 166.49999999999997
     },
     "Melanargia ines": {
       "collatedIndices": {
@@ -24375,7 +24620,28 @@
         "rbms_version": "1.2.0",
         "bootstrap_iterations": 500
       },
-      "confidenceIntervals": {},
+      "confidenceIntervals": {
+        "2021": {
+          "ci_lower": 100,
+          "ci_upper": 100
+        },
+        "2022": {
+          "ci_lower": 28.82,
+          "ci_upper": 128.96
+        },
+        "2023": {
+          "ci_lower": 22.24,
+          "ci_upper": 192.11
+        },
+        "2024": {
+          "ci_lower": 21.94,
+          "ci_upper": 138.04
+        },
+        "2025": {
+          "ci_lower": 14.71,
+          "ci_upper": 262.44
+        }
+      },
       "trendClassification": {
         "category": "Uncertain",
         "annualRateOfChange": -22.31,
@@ -24389,7 +24655,8 @@
           "upper": 1.2119
         }
       },
-      "ciSkippedDueToLowDetection": true
+      "ciExceedsThreshold": false,
+      "maxCIRange": 247.73
     },
     "Melanargia lachesis": {
       "collatedIndices": {
@@ -25016,7 +25283,8 @@
           "upper": 1.1921
         }
       },
-      "ciSkippedDueToLowDetection": false
+      "ciExceedsThreshold": false,
+      "maxCIRange": 143.28
     },
     "Melitaea celadussa": {
       "collatedIndices": {
@@ -25622,7 +25890,8 @@
           "upper": 107.3346
         }
       },
-      "ciSkippedDueToLowDetection": true
+      "ciExceedsThreshold": true,
+      "maxCIRange": 1865511794239.57
     },
     "Melitaea deione": {
       "collatedIndices": {
@@ -26214,7 +26483,28 @@
         "rbms_version": "1.2.0",
         "bootstrap_iterations": 500
       },
-      "confidenceIntervals": {},
+      "confidenceIntervals": {
+        "2021": {
+          "ci_lower": 100,
+          "ci_upper": 100
+        },
+        "2022": {
+          "ci_lower": 10.14,
+          "ci_upper": 42.8
+        },
+        "2023": {
+          "ci_lower": 24.07,
+          "ci_upper": 95.16
+        },
+        "2024": {
+          "ci_lower": 0,
+          "ci_upper": 106.72
+        },
+        "2025": {
+          "ci_lower": 8.8,
+          "ci_upper": 121.6
+        }
+      },
       "trendClassification": {
         "category": "Uncertain",
         "annualRateOfChange": -9.38,
@@ -26228,7 +26518,8 @@
           "upper": 1.1408
         }
       },
-      "ciSkippedDueToLowDetection": true
+      "ciExceedsThreshold": false,
+      "maxCIRange": 112.8
     },
     "Melitaea phoebe": {
       "collatedIndices": {
@@ -26834,7 +27125,8 @@
           "upper": 1.1725
         }
       },
-      "ciSkippedDueToLowDetection": true
+      "ciExceedsThreshold": true,
+      "maxCIRange": 13188157344721.92
     },
     "Nymphalis polychloros": {
       "collatedIndices": {
@@ -27440,7 +27732,8 @@
           "upper": 7.1525
         }
       },
-      "ciSkippedDueToLowDetection": true
+      "ciExceedsThreshold": true,
+      "maxCIRange": 1012.1
     },
     "Papilio machaon": {
       "collatedIndices": {
@@ -28067,7 +28360,8 @@
           "upper": 1.0458
         }
       },
-      "ciSkippedDueToLowDetection": false
+      "ciExceedsThreshold": false,
+      "maxCIRange": 87.25000000000001
     },
     "Pararge aegeria": {
       "collatedIndices": {
@@ -28694,7 +28988,8 @@
           "upper": 1.1687
         }
       },
-      "ciSkippedDueToLowDetection": false
+      "ciExceedsThreshold": false,
+      "maxCIRange": 72.78
     },
     "Pieris brassicae": {
       "collatedIndices": {
@@ -29321,7 +29616,8 @@
           "upper": 1.2035
         }
       },
-      "ciSkippedDueToLowDetection": false
+      "ciExceedsThreshold": false,
+      "maxCIRange": 410.15
     },
     "Pieris napi": {
       "collatedIndices": {
@@ -29948,7 +30244,8 @@
           "upper": 1.0512
         }
       },
-      "ciSkippedDueToLowDetection": false
+      "ciExceedsThreshold": false,
+      "maxCIRange": 109.00999999999999
     },
     "Pieris rapae": {
       "collatedIndices": {
@@ -30575,7 +30872,8 @@
           "upper": 1.106
         }
       },
-      "ciSkippedDueToLowDetection": false
+      "ciExceedsThreshold": false,
+      "maxCIRange": 179.78
     },
     "Plebejus argus": {
       "collatedIndices": {
@@ -31167,7 +31465,28 @@
         "rbms_version": "1.2.0",
         "bootstrap_iterations": 500
       },
-      "confidenceIntervals": {},
+      "confidenceIntervals": {
+        "2021": {
+          "ci_lower": 100,
+          "ci_upper": 100
+        },
+        "2022": {
+          "ci_lower": 0,
+          "ci_upper": 220
+        },
+        "2023": {
+          "ci_lower": 0,
+          "ci_upper": 674.29
+        },
+        "2024": {
+          "ci_lower": 0,
+          "ci_upper": 274.29
+        },
+        "2025": {
+          "ci_lower": 0,
+          "ci_upper": 528.57
+        }
+      },
       "trendClassification": {
         "category": "Uncertain",
         "annualRateOfChange": 41.73,
@@ -31181,7 +31500,8 @@
           "upper": 1.4264
         }
       },
-      "ciSkippedDueToLowDetection": true
+      "ciExceedsThreshold": false,
+      "maxCIRange": 674.29
     },
     "Polygonia c-album": {
       "collatedIndices": {
@@ -31787,7 +32107,8 @@
           "upper": 54.6469
         }
       },
-      "ciSkippedDueToLowDetection": true
+      "ciExceedsThreshold": true,
+      "maxCIRange": 38802647100.36
     },
     "Polyommatus celina": {
       "collatedIndices": {
@@ -32393,7 +32714,8 @@
           "upper": 1
         }
       },
-      "ciSkippedDueToLowDetection": true
+      "ciExceedsThreshold": true,
+      "maxCIRange": 97448034462451.33
     },
     "Polyommatus icarus": {
       "collatedIndices": {
@@ -33020,7 +33342,8 @@
           "upper": 0.9942
         }
       },
-      "ciSkippedDueToLowDetection": false
+      "ciExceedsThreshold": false,
+      "maxCIRange": 175.60000000000002
     },
     "Pontia daplidice": {
       "collatedIndices": {
@@ -33626,7 +33949,8 @@
           "upper": 6.1099
         }
       },
-      "ciSkippedDueToLowDetection": true
+      "ciExceedsThreshold": true,
+      "maxCIRange": 2982.38
     },
     "Pyronia bathseba": {
       "collatedIndices": {
@@ -34253,7 +34577,8 @@
           "upper": 0.8606
         }
       },
-      "ciSkippedDueToLowDetection": false
+      "ciExceedsThreshold": false,
+      "maxCIRange": 44.39999999999999
     },
     "Pyronia cecilia": {
       "collatedIndices": {
@@ -34880,7 +35205,8 @@
           "upper": 1.0317
         }
       },
-      "ciSkippedDueToLowDetection": false
+      "ciExceedsThreshold": false,
+      "maxCIRange": 74.41999999999999
     },
     "Pyronia tithonus": {
       "collatedIndices": {
@@ -35507,7 +35833,8 @@
           "upper": 1.1635
         }
       },
-      "ciSkippedDueToLowDetection": false
+      "ciExceedsThreshold": false,
+      "maxCIRange": 122.88
     },
     "Satyrium esculi": {
       "collatedIndices": {
@@ -36134,7 +36461,8 @@
           "upper": 1.2389
         }
       },
-      "ciSkippedDueToLowDetection": false
+      "ciExceedsThreshold": false,
+      "maxCIRange": 460.73
     },
     "Satyrium spini": {
       "collatedIndices": {
@@ -36740,7 +37068,8 @@
           "upper": 1.1723
         }
       },
-      "ciSkippedDueToLowDetection": true
+      "ciExceedsThreshold": true,
+      "maxCIRange": 1046.67
     },
     "Spialia sertorius": {
       "collatedIndices": {
@@ -37332,7 +37661,28 @@
         "rbms_version": "1.2.0",
         "bootstrap_iterations": 500
       },
-      "confidenceIntervals": {},
+      "confidenceIntervals": {
+        "2021": {
+          "ci_lower": 100,
+          "ci_upper": 100
+        },
+        "2022": {
+          "ci_lower": 0,
+          "ci_upper": 100
+        },
+        "2023": {
+          "ci_lower": 9.09,
+          "ci_upper": 100
+        },
+        "2024": {
+          "ci_lower": 0,
+          "ci_upper": 96.72
+        },
+        "2025": {
+          "ci_lower": 0,
+          "ci_upper": 100
+        }
+      },
       "trendClassification": {
         "category": "Uncertain",
         "annualRateOfChange": -28.04,
@@ -37346,7 +37696,8 @@
           "upper": 5.2011
         }
       },
-      "ciSkippedDueToLowDetection": true
+      "ciExceedsThreshold": false,
+      "maxCIRange": 100
     },
     "Thymelicus acteon": {
       "collatedIndices": {
@@ -37938,7 +38289,28 @@
         "rbms_version": "1.2.0",
         "bootstrap_iterations": 500
       },
-      "confidenceIntervals": {},
+      "confidenceIntervals": {
+        "2021": {
+          "ci_lower": 100,
+          "ci_upper": 100
+        },
+        "2022": {
+          "ci_lower": 37.41,
+          "ci_upper": 206.79
+        },
+        "2023": {
+          "ci_lower": 8.72,
+          "ci_upper": 107.67
+        },
+        "2024": {
+          "ci_lower": 12.05,
+          "ci_upper": 132.27
+        },
+        "2025": {
+          "ci_lower": 12.95,
+          "ci_upper": 142.61
+        }
+      },
       "trendClassification": {
         "category": "Moderate decline",
         "annualRateOfChange": -11.7,
@@ -37952,7 +38324,8 @@
           "upper": 0.9979
         }
       },
-      "ciSkippedDueToLowDetection": true
+      "ciExceedsThreshold": false,
+      "maxCIRange": 169.38
     },
     "Thymelicus sylvestris": {
       "collatedIndices": {
@@ -38544,7 +38917,28 @@
         "rbms_version": "1.2.0",
         "bootstrap_iterations": 500
       },
-      "confidenceIntervals": {},
+      "confidenceIntervals": {
+        "2021": {
+          "ci_lower": 100,
+          "ci_upper": 100
+        },
+        "2022": {
+          "ci_lower": 36.45,
+          "ci_upper": 103.89
+        },
+        "2023": {
+          "ci_lower": 18.64,
+          "ci_upper": 93.44
+        },
+        "2024": {
+          "ci_lower": 7.35,
+          "ci_upper": 95.98
+        },
+        "2025": {
+          "ci_lower": 37.16,
+          "ci_upper": 169.34
+        }
+      },
       "trendClassification": {
         "category": "Uncertain",
         "annualRateOfChange": -5.86,
@@ -38558,7 +38952,8 @@
           "upper": 1.0796
         }
       },
-      "ciSkippedDueToLowDetection": true
+      "ciExceedsThreshold": false,
+      "maxCIRange": 132.18
     },
     "Vanessa atalanta": {
       "collatedIndices": {
@@ -39185,7 +39580,8 @@
           "upper": 1.1909
         }
       },
-      "ciSkippedDueToLowDetection": false
+      "ciExceedsThreshold": false,
+      "maxCIRange": 187.58000000000004
     },
     "Vanessa cardui": {
       "collatedIndices": {
@@ -39812,7 +40208,8 @@
           "upper": 1.3686
         }
       },
-      "ciSkippedDueToLowDetection": false
+      "ciExceedsThreshold": false,
+      "maxCIRange": 307.96000000000004
     },
     "Zerynthia rumina": {
       "collatedIndices": {
@@ -40418,7 +40815,8 @@
           "upper": 1.5277
         }
       },
-      "ciSkippedDueToLowDetection": true
+      "ciExceedsThreshold": true,
+      "maxCIRange": 2474.7
     },
     "Zizeeria knysna": {
       "collatedIndices": {
@@ -40922,7 +41320,8 @@
           "upper": 2816.1455
         }
       },
-      "ciSkippedDueToLowDetection": true
+      "ciExceedsThreshold": true,
+      "maxCIRange": 3.6801732389077588e+25
     }
   },
   "speciesList": [

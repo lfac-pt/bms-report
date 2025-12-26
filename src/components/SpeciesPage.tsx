@@ -234,15 +234,16 @@ function SpeciesPage() {
             <Card title="Tendência Populacional">
               <SpeciesTrendChart speciesData={flightCurvesTrend} />
             </Card>
-            {flightCurvesTrend.ciSkippedDueToLowDetection && (
+            {flightCurvesTrend.ciExceedsThreshold && (
               <Alert
-                message="Intervalos de Confiança Não Calculados"
+                message="Intervalos de Confiança Muito Amplos"
                 description={
                   <>
-                    Esta espécie tem uma taxa de deteção muito baixa (
-                    {((flightCurvesTrend.dataQuality?.detectionRate || 0) * 100).toFixed(2)}%), o
-                    que resulta em estimativas de intervalo de confiança extremamente grandes e não
-                    confiáveis. Por isso, os intervalos de confiança não foram calculados para esta
+                    Esta espécie apresenta intervalos de confiança extremamente amplos (range máximo:{" "}
+                    {flightCurvesTrend.maxCIRange?.toFixed(0)}), o que indica que as estimativas
+                    têm baixa precisão. Isto pode dever-se a uma taxa de deteção muito baixa (
+                    {((flightCurvesTrend.dataQuality?.detectionRate || 0) * 100).toFixed(2)}%) ou
+                    dados esparsos. Os intervalos de confiança podem não ser confiáveis para esta
                     espécie.
                   </>
                 }

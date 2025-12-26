@@ -16,7 +16,7 @@ import {
   MIN_VISITS_PER_YEAR,
   MIN_COUNTS_PER_SPECIES,
   MIN_YEARS_PER_SPECIES,
-  MIN_DETECTION_RATE,
+  CI_RANGE_THRESHOLD,
   BASELINE_YEAR,
   MONITORING_START_MONTH,
   MONITORING_END_MONTH,
@@ -176,27 +176,43 @@ export async function calculateAllFlightCurves(
       const detectionRate = totalCounts / totalVisits;
 
       // Extract confidence intervals from rbms bootstrap
-      // Skip CI for species with very low detection rates (< 5%) as they produce unreliable estimates
-      const confidenceIntervals: Record<number, { ci_lower: number; ci_upper: number }> = {};
-      let ciSkippedDueToLowDetection = false;
+      let confidenceIntervals: Record<number, { ci_lower: number; ci_upper: number }> = {};
+      let maxCIRange = 0;
+      let ciExceedsThreshold = false;
 
-      if (detectionRate >= MIN_DETECTION_RATE) {
-        if (
-          rbmsOutput.confidence_intervals &&
-          Object.keys(rbmsOutput.confidence_intervals).length > 0
-        ) {
-          for (const [year, ci] of Object.entries(rbmsOutput.confidence_intervals)) {
-            confidenceIntervals[parseInt(year)] = {
-              ci_lower: (ci as any).ci_lower,
-              ci_upper: (ci as any).ci_upper,
-            };
+      if (
+        rbmsOutput.confidence_intervals &&
+        Object.keys(rbmsOutput.confidence_intervals).length > 0
+      ) {
+        // First pass: calculate max CI range
+        const tempCI: Record<number, { ci_lower: number; ci_upper: number }> = {};
+        for (const [year, ci] of Object.entries(rbmsOutput.confidence_intervals)) {
+          const ciLower = (ci as any).ci_lower;
+          const ciUpper = (ci as any).ci_upper;
+          tempCI[parseInt(year)] = {
+            ci_lower: ciLower,
+            ci_upper: ciUpper,
+          };
+          // Track maximum CI range
+          const range = ciUpper - ciLower;
+          if (range > maxCIRange) {
+            maxCIRange = range;
           }
         }
-      } else {
-        ciSkippedDueToLowDetection = true;
-        console.log(
-          `    Skipping CI calculation for ${species}: detection rate ${(detectionRate * 100).toFixed(2)}% < ${(MIN_DETECTION_RATE * 100).toFixed(0)}%`
-        );
+
+        // Check if CI exceeds threshold
+        ciExceedsThreshold = maxCIRange > CI_RANGE_THRESHOLD;
+
+        if (ciExceedsThreshold) {
+          console.log(
+            `    Large CI for ${species}: max range ${maxCIRange.toFixed(0)} > ${CI_RANGE_THRESHOLD} - excluding CI from output`
+          );
+          // Don't include CI data in output
+          confidenceIntervals = {};
+        } else {
+          // Include CI data
+          confidenceIntervals = tempCI;
+        }
       }
 
       // Extract trend classification from rbms output
@@ -239,7 +255,8 @@ export async function calculateAllFlightCurves(
         processingInfo: rbmsOutput.processing_info,
         confidenceIntervals: confidenceIntervals,
         trendClassification: trendClassification,
-        ciSkippedDueToLowDetection: ciSkippedDueToLowDetection,
+        ciExceedsThreshold: ciExceedsThreshold,
+        maxCIRange: maxCIRange,
       };
 
       successCount++;

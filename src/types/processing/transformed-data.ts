@@ -140,6 +140,8 @@ export interface FlightCurvesData {
       processingInfo: unknown;
       confidenceIntervals: Record<number, { ci_lower: number; ci_upper: number }>;
       trendClassification: TrendClassification | null;
+      ciExceedsThreshold: boolean;
+      maxCIRange: number;
     }
   >;
   speciesList: string[];

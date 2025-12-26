@@ -8,6 +8,8 @@ interface SpeciesTrendChartProps {
     collatedIndices: Record<number, number>;
     trendLine?: Record<number, number>;
     confidenceIntervals?: Record<number, { ci_lower: number | null; ci_upper: number | null }>;
+    ciExceedsThreshold?: boolean;
+    maxCIRange?: number;
     dataQuality?: {
       site_count?: number;
       total_visits?: number;
@@ -39,7 +41,9 @@ export function SpeciesTrendChart({ speciesData }: SpeciesTrendChartProps) {
     : [];
 
   // Get CI data from flight curves data
-  const hasCI = speciesData.confidenceIntervals != null;
+  const hasCI =
+    speciesData.confidenceIntervals != null &&
+    Object.keys(speciesData.confidenceIntervals).length > 0;
   const ciLower = hasCI
     ? years.map(
         year => speciesData.confidenceIntervals![year]?.ci_lower ?? indices[years.indexOf(year)]

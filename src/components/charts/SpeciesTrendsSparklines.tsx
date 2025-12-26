@@ -4,6 +4,7 @@ import { ArrowUpOutlined, ArrowDownOutlined, MinusOutlined } from "@ant-design/i
 import { Link } from "react-router-dom";
 import TrendClassificationBadge from "../TrendClassificationBadge";
 import type { SpeciesTrend as GBISpeciesTrend, TrendCategory } from "../../types/gbiData";
+import { CI_RANGE_THRESHOLD } from "../../constants";
 
 const { Title, Text } = Typography;
 
@@ -16,7 +17,8 @@ interface SpeciesTrend {
   ciLower?: number[];
   ciUpper?: number[];
   trendClassification?: GBISpeciesTrend["trendClassification"];
-  ciSkippedDueToLowDetection?: boolean;
+  ciExceedsThreshold?: boolean;
+  maxCIRange?: number;
 }
 
 const SpeciesTrendsSparklines: React.FC = () => {
@@ -44,7 +46,8 @@ const SpeciesTrendsSparklines: React.FC = () => {
           collatedIndices,
           confidenceIntervals,
           trendClassification,
-          ciSkippedDueToLowDetection,
+          ciExceedsThreshold,
+          maxCIRange,
         } = speciesData;
 
         // Use annualIndices (from GBI) or collatedIndices (from flight curves)
@@ -82,7 +85,8 @@ const SpeciesTrendsSparklines: React.FC = () => {
             ciLower,
             ciUpper,
             trendClassification,
-            ciSkippedDueToLowDetection,
+            ciExceedsThreshold,
+            maxCIRange,
           });
         }
       };
@@ -234,12 +238,11 @@ const SpeciesTrendsSparklines: React.FC = () => {
     {} as Record<TrendCategory | "Unknown", number>
   );
 
-  // Count species where CI was not calculated due to low detection rate
-  const speciesWithoutCIList = speciesTrends.filter(trend => {
-    // Check if CI was skipped due to low detection (from flight curves data)
-    return trend.ciSkippedDueToLowDetection === true;
+  // Count species with excessively large CI ranges
+  const speciesWithLargeCIList = speciesTrends.filter(trend => {
+    return trend.ciExceedsThreshold === true;
   });
-  const speciesWithoutCI = speciesWithoutCIList.length;
+  const speciesWithLargeCI = speciesWithLargeCIList.length;
 
   const items = [
     {
@@ -305,7 +308,7 @@ const SpeciesTrendsSparklines: React.FC = () => {
                   {" • "}
                 </>
               )}
-              {speciesWithoutCI > 0 && (
+              {speciesWithLargeCI > 0 && (
                 <Popover
                   content={
                     <div style={{ maxWidth: 400, maxHeight: 300, overflowY: "auto" }}>
@@ -317,12 +320,13 @@ const SpeciesTrendsSparklines: React.FC = () => {
                           marginBottom: 8,
                         }}
                       >
-                        Espécies com taxa de deteção muito baixa produzem intervalos de confiança
-                        extremamente grandes e não confiáveis, por isso não foram calculados.
+                        Espécies com intervalos de confiança muito amplos (&gt; {CI_RANGE_THRESHOLD}) têm estimativas
+                        de baixa precisão, geralmente devido a taxa de deteção baixa ou dados esparsos.
+                        Os intervalos de confiança podem não ser confiáveis para estas espécies.
                       </Typography.Text>
                       <List
                         size="small"
-                        dataSource={speciesWithoutCIList.map(t => t.species).sort()}
+                        dataSource={speciesWithLargeCIList.map(t => t.species).sort()}
                         renderItem={species => (
                           <List.Item style={{ padding: "4px 0" }}>
                             <Link
@@ -337,11 +341,11 @@ const SpeciesTrendsSparklines: React.FC = () => {
                       />
                     </div>
                   }
-                  title="Espécies sem IC calculado"
+                  title="Espécies com IC muito amplo"
                   trigger="hover"
                 >
                   <span style={{ color: "#faad14", cursor: "help" }}>
-                    ⚠ {speciesWithoutCI} sem IC (deteção baixa)
+                    ⚠ {speciesWithLargeCI} com IC muito amplo
                   </span>
                 </Popover>
               )}
