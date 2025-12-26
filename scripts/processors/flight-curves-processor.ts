@@ -16,15 +16,12 @@ import {
   MIN_VISITS_PER_YEAR,
   MIN_COUNTS_PER_SPECIES,
   MIN_YEARS_PER_SPECIES,
+  MIN_DETECTION_RATE,
   BASELINE_YEAR,
   MONITORING_START_MONTH,
   MONITORING_END_MONTH,
   VALID_SPECIES,
 } from "../../src/constants";
-
-// Minimum detection rate (5%) to calculate confidence intervals
-// Species with lower detection rates produce unreliable CI estimates
-const MIN_DETECTION_RATE = 0.05;
 import { getYearFromDate, getMonthFromDate } from "../utils";
 import { ALL_DATA_FILE, METADATA_FILE, TEMP_RBMS_DIR } from "../config";
 import { getQualityFilteredTransects } from "./transect-stats-processor";

@@ -26,6 +26,7 @@ export const MONITORING_END_MONTH = 9; // September (1-indexed)
 // Species-level quality criteria
 export const MIN_COUNTS_PER_SPECIES = 20; // Minimum total counts for species analysis
 export const MIN_YEARS_PER_SPECIES = 3; // Minimum years of data for species analysis
+export const MIN_DETECTION_RATE = 0.05; // Minimum detection rate (5%) to calculate confidence intervals
 
 // Mapping of species to their families
 export const SPECIES_FAMILIES: Record<string, string> = {

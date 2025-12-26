@@ -1,6 +1,6 @@
 {
   "metadata": {
-    "processingDate": "2025-12-26T00:23:43.779Z",
+    "processingDate": "2025-12-26T00:39:23.047Z",
     "baselineYear": 2021,
     "qualityCriteria": {
       "minYearsActive": 5,
@@ -1320,7 +1320,28 @@
         "rbms_version": "1.2.0",
         "bootstrap_iterations": 500
       },
-      "confidenceIntervals": {},
+      "confidenceIntervals": {
+        "2021": {
+          "ci_lower": 0,
+          "ci_upper": 0
+        },
+        "2022": {
+          "ci_lower": 100,
+          "ci_upper": 100
+        },
+        "2023": {
+          "ci_lower": 0,
+          "ci_upper": 157.46
+        },
+        "2024": {
+          "ci_lower": 0,
+          "ci_upper": 104.6
+        },
+        "2025": {
+          "ci_lower": 0,
+          "ci_upper": 175.92
+        }
+      },
       "trendClassification": {
         "category": "Uncertain",
         "annualRateOfChange": -13.75,
@@ -1334,7 +1355,7 @@
           "upper": 1.1634
         }
       },
-      "ciSkippedDueToLowDetection": true
+      "ciSkippedDueToLowDetection": false
     },
     "Argynnis pandora": {
       "collatedIndices": {
@@ -1926,7 +1947,28 @@
         "rbms_version": "1.2.0",
         "bootstrap_iterations": 500
       },
-      "confidenceIntervals": {},
+      "confidenceIntervals": {
+        "2021": {
+          "ci_lower": 100,
+          "ci_upper": 100
+        },
+        "2022": {
+          "ci_lower": 28.13,
+          "ci_upper": 1578.08
+        },
+        "2023": {
+          "ci_lower": 47.59,
+          "ci_upper": 777.72
+        },
+        "2024": {
+          "ci_lower": 102.68,
+          "ci_upper": 970.85
+        },
+        "2025": {
+          "ci_lower": 10.12,
+          "ci_upper": 369.01
+        }
+      },
       "trendClassification": {
         "category": "Uncertain",
         "annualRateOfChange": -0.38,
@@ -1940,7 +1982,7 @@
           "upper": 1.3912
         }
       },
-      "ciSkippedDueToLowDetection": true
+      "ciSkippedDueToLowDetection": false
     },
     "Aricia cramera": {
       "collatedIndices": {
@@ -3159,7 +3201,28 @@
         "rbms_version": "1.2.0",
         "bootstrap_iterations": 500
       },
-      "confidenceIntervals": {},
+      "confidenceIntervals": {
+        "2021": {
+          "ci_lower": 100,
+          "ci_upper": 100
+        },
+        "2022": {
+          "ci_lower": 40.84,
+          "ci_upper": 453.66
+        },
+        "2023": {
+          "ci_lower": 31.1,
+          "ci_upper": 252.36
+        },
+        "2024": {
+          "ci_lower": 52.44,
+          "ci_upper": 272.67
+        },
+        "2025": {
+          "ci_lower": 188.83,
+          "ci_upper": 335.82
+        }
+      },
       "trendClassification": {
         "category": "Strong increase",
         "annualRateOfChange": 15.32,
@@ -3173,7 +3236,7 @@
           "upper": 1.3291
         }
       },
-      "ciSkippedDueToLowDetection": true
+      "ciSkippedDueToLowDetection": false
     },
     "Cacyreus marshalli": {
       "collatedIndices": {
@@ -3765,7 +3828,28 @@
         "rbms_version": "1.2.0",
         "bootstrap_iterations": 500
       },
-      "confidenceIntervals": {},
+      "confidenceIntervals": {
+        "2021": {
+          "ci_lower": 100,
+          "ci_upper": 100
+        },
+        "2022": {
+          "ci_lower": 11.38,
+          "ci_upper": 103.04
+        },
+        "2023": {
+          "ci_lower": 21.07,
+          "ci_upper": 216.75
+        },
+        "2024": {
+          "ci_lower": 9.6,
+          "ci_upper": 128.14
+        },
+        "2025": {
+          "ci_lower": 0,
+          "ci_upper": 77.88
+        }
+      },
       "trendClassification": {
         "category": "Uncertain",
         "annualRateOfChange": -21.89,
@@ -3779,7 +3863,7 @@
           "upper": 1.0557
         }
       },
-      "ciSkippedDueToLowDetection": true
+      "ciSkippedDueToLowDetection": false
     },
     "Callophrys rubi": {
       "collatedIndices": {
@@ -4369,7 +4453,24 @@
         "rbms_version": "1.2.0",
         "bootstrap_iterations": 500
       },
-      "confidenceIntervals": {},
+      "confidenceIntervals": {
+        "2022": {
+          "ci_lower": 100,
+          "ci_upper": 100
+        },
+        "2023": {
+          "ci_lower": 35.06,
+          "ci_upper": 165.12
+        },
+        "2024": {
+          "ci_lower": 5.21,
+          "ci_upper": 31.1
+        },
+        "2025": {
+          "ci_lower": 0,
+          "ci_upper": 87.07
+        }
+      },
       "trendClassification": {
         "category": "Strong decline",
         "annualRateOfChange": -36.42,
@@ -4383,7 +4484,7 @@
           "upper": 0.828
         }
       },
-      "ciSkippedDueToLowDetection": true
+      "ciSkippedDueToLowDetection": false
     },
     "Carcharodus alceae": {
       "collatedIndices": {
@@ -9601,7 +9702,28 @@
         "rbms_version": "1.2.0",
         "bootstrap_iterations": 500
       },
-      "confidenceIntervals": {},
+      "confidenceIntervals": {
+        "2021": {
+          "ci_lower": 100,
+          "ci_upper": 100
+        },
+        "2022": {
+          "ci_lower": 0,
+          "ci_upper": 42471261457.6
+        },
+        "2023": {
+          "ci_lower": 0,
+          "ci_upper": 3903.51
+        },
+        "2024": {
+          "ci_lower": 360.18,
+          "ci_upper": 62643237521.9
+        },
+        "2025": {
+          "ci_lower": 0,
+          "ci_upper": 5481523787.15
+        }
+      },
       "trendClassification": {
         "category": "Uncertain",
         "annualRateOfChange": 72.45,
@@ -9615,7 +9737,7 @@
           "upper": 34.1551
         }
       },
-      "ciSkippedDueToLowDetection": true
+      "ciSkippedDueToLowDetection": false
     },
     "Euchloe crameri": {
       "collatedIndices": {
@@ -10207,7 +10329,28 @@
         "rbms_version": "1.2.0",
         "bootstrap_iterations": 500
       },
-      "confidenceIntervals": {},
+      "confidenceIntervals": {
+        "2021": {
+          "ci_lower": 100,
+          "ci_upper": 100
+        },
+        "2022": {
+          "ci_lower": 34.84,
+          "ci_upper": 459.09
+        },
+        "2023": {
+          "ci_lower": 84,
+          "ci_upper": 1372.88
+        },
+        "2024": {
+          "ci_lower": 46.75,
+          "ci_upper": 873.23
+        },
+        "2025": {
+          "ci_lower": 49.36,
+          "ci_upper": 1361.66
+        }
+      },
       "trendClassification": {
         "category": "Uncertain",
         "annualRateOfChange": 14.02,
@@ -10221,7 +10364,7 @@
           "upper": 1.9353
         }
       },
-      "ciSkippedDueToLowDetection": true
+      "ciSkippedDueToLowDetection": false
     },
     "Euphydryas aurinia": {
       "collatedIndices": {
@@ -10813,7 +10956,28 @@
         "rbms_version": "1.2.0",
         "bootstrap_iterations": 500
       },
-      "confidenceIntervals": {},
+      "confidenceIntervals": {
+        "2021": {
+          "ci_lower": 100,
+          "ci_upper": 100
+        },
+        "2022": {
+          "ci_lower": 49.8,
+          "ci_upper": 235.98
+        },
+        "2023": {
+          "ci_lower": 34.72,
+          "ci_upper": 204.52
+        },
+        "2024": {
+          "ci_lower": 25.73,
+          "ci_upper": 218.35
+        },
+        "2025": {
+          "ci_lower": 24.98,
+          "ci_upper": 94.89
+        }
+      },
       "trendClassification": {
         "category": "Uncertain",
         "annualRateOfChange": -21.34,
@@ -10827,7 +10991,7 @@
           "upper": 1.0708
         }
       },
-      "ciSkippedDueToLowDetection": true
+      "ciSkippedDueToLowDetection": false
     },
     "Fabriciana niobe": {
       "collatedIndices": {
@@ -23142,7 +23306,28 @@
         "rbms_version": "1.2.0",
         "bootstrap_iterations": 500
       },
-      "confidenceIntervals": {},
+      "confidenceIntervals": {
+        "2021": {
+          "ci_lower": 100,
+          "ci_upper": 100
+        },
+        "2022": {
+          "ci_lower": 32.66,
+          "ci_upper": 821.53
+        },
+        "2023": {
+          "ci_lower": 0,
+          "ci_upper": 1152.23
+        },
+        "2024": {
+          "ci_lower": 92.17,
+          "ci_upper": 2439.68
+        },
+        "2025": {
+          "ci_lower": 0,
+          "ci_upper": 1253.77
+        }
+      },
       "trendClassification": {
         "category": "Uncertain",
         "annualRateOfChange": -2.99,
@@ -23156,7 +23341,7 @@
           "upper": 1.8486
         }
       },
-      "ciSkippedDueToLowDetection": true
+      "ciSkippedDueToLowDetection": false
     },
     "Maniola jurtina": {
       "collatedIndices": {
@@ -24375,7 +24560,28 @@
         "rbms_version": "1.2.0",
         "bootstrap_iterations": 500
       },
-      "confidenceIntervals": {},
+      "confidenceIntervals": {
+        "2021": {
+          "ci_lower": 100,
+          "ci_upper": 100
+        },
+        "2022": {
+          "ci_lower": 28.82,
+          "ci_upper": 128.96
+        },
+        "2023": {
+          "ci_lower": 22.24,
+          "ci_upper": 192.11
+        },
+        "2024": {
+          "ci_lower": 21.94,
+          "ci_upper": 138.04
+        },
+        "2025": {
+          "ci_lower": 14.71,
+          "ci_upper": 262.44
+        }
+      },
       "trendClassification": {
         "category": "Uncertain",
         "annualRateOfChange": -22.31,
@@ -24389,7 +24595,7 @@
           "upper": 1.2119
         }
       },
-      "ciSkippedDueToLowDetection": true
+      "ciSkippedDueToLowDetection": false
     },
     "Melanargia lachesis": {
       "collatedIndices": {
@@ -26214,7 +26420,28 @@
         "rbms_version": "1.2.0",
         "bootstrap_iterations": 500
       },
-      "confidenceIntervals": {},
+      "confidenceIntervals": {
+        "2021": {
+          "ci_lower": 100,
+          "ci_upper": 100
+        },
+        "2022": {
+          "ci_lower": 10.14,
+          "ci_upper": 42.8
+        },
+        "2023": {
+          "ci_lower": 24.07,
+          "ci_upper": 95.16
+        },
+        "2024": {
+          "ci_lower": 0,
+          "ci_upper": 106.72
+        },
+        "2025": {
+          "ci_lower": 8.8,
+          "ci_upper": 121.6
+        }
+      },
       "trendClassification": {
         "category": "Uncertain",
         "annualRateOfChange": -9.38,
@@ -26228,7 +26455,7 @@
           "upper": 1.1408
         }
       },
-      "ciSkippedDueToLowDetection": true
+      "ciSkippedDueToLowDetection": false
     },
     "Melitaea phoebe": {
       "collatedIndices": {
@@ -32379,7 +32606,28 @@
         "rbms_version": "1.2.0",
         "bootstrap_iterations": 500
       },
-      "confidenceIntervals": {},
+      "confidenceIntervals": {
+        "2021": {
+          "ci_lower": 100,
+          "ci_upper": 100
+        },
+        "2022": {
+          "ci_lower": 39.53,
+          "ci_upper": 100
+        },
+        "2023": {
+          "ci_lower": 36.43,
+          "ci_upper": 97448034462487.77
+        },
+        "2024": {
+          "ci_lower": 31.78,
+          "ci_upper": 100
+        },
+        "2025": {
+          "ci_lower": 26.36,
+          "ci_upper": 100
+        }
+      },
       "trendClassification": {
         "category": "Uncertain",
         "annualRateOfChange": -22.18,
@@ -32393,7 +32641,7 @@
           "upper": 1
         }
       },
-      "ciSkippedDueToLowDetection": true
+      "ciSkippedDueToLowDetection": false
     },
     "Polyommatus icarus": {
       "collatedIndices": {
@@ -33612,7 +33860,28 @@
         "rbms_version": "1.2.0",
         "bootstrap_iterations": 500
       },
-      "confidenceIntervals": {},
+      "confidenceIntervals": {
+        "2021": {
+          "ci_lower": 100,
+          "ci_upper": 100
+        },
+        "2022": {
+          "ci_lower": 0,
+          "ci_upper": 560.6
+        },
+        "2023": {
+          "ci_lower": 100.52,
+          "ci_upper": 3082.9
+        },
+        "2024": {
+          "ci_lower": 16.48,
+          "ci_upper": 438.04
+        },
+        "2025": {
+          "ci_lower": 38.45,
+          "ci_upper": 953.3
+        }
+      },
       "trendClassification": {
         "category": "Uncertain",
         "annualRateOfChange": -9,
@@ -33626,7 +33895,7 @@
           "upper": 6.1099
         }
       },
-      "ciSkippedDueToLowDetection": true
+      "ciSkippedDueToLowDetection": false
     },
     "Pyronia bathseba": {
       "collatedIndices": {
@@ -37938,7 +38207,28 @@
         "rbms_version": "1.2.0",
         "bootstrap_iterations": 500
       },
-      "confidenceIntervals": {},
+      "confidenceIntervals": {
+        "2021": {
+          "ci_lower": 100,
+          "ci_upper": 100
+        },
+        "2022": {
+          "ci_lower": 37.41,
+          "ci_upper": 206.79
+        },
+        "2023": {
+          "ci_lower": 8.72,
+          "ci_upper": 107.67
+        },
+        "2024": {
+          "ci_lower": 12.05,
+          "ci_upper": 132.27
+        },
+        "2025": {
+          "ci_lower": 12.95,
+          "ci_upper": 142.61
+        }
+      },
       "trendClassification": {
         "category": "Moderate decline",
         "annualRateOfChange": -11.7,
@@ -37952,7 +38242,7 @@
           "upper": 0.9979
         }
       },
-      "ciSkippedDueToLowDetection": true
+      "ciSkippedDueToLowDetection": false
     },
     "Thymelicus sylvestris": {
       "collatedIndices": {
@@ -38544,7 +38834,28 @@
         "rbms_version": "1.2.0",
         "bootstrap_iterations": 500
       },
-      "confidenceIntervals": {},
+      "confidenceIntervals": {
+        "2021": {
+          "ci_lower": 100,
+          "ci_upper": 100
+        },
+        "2022": {
+          "ci_lower": 36.45,
+          "ci_upper": 103.89
+        },
+        "2023": {
+          "ci_lower": 18.64,
+          "ci_upper": 93.44
+        },
+        "2024": {
+          "ci_lower": 7.35,
+          "ci_upper": 95.98
+        },
+        "2025": {
+          "ci_lower": 37.16,
+          "ci_upper": 169.34
+        }
+      },
       "trendClassification": {
         "category": "Uncertain",
         "annualRateOfChange": -5.86,
@@ -38558,7 +38869,7 @@
           "upper": 1.0796
         }
       },
-      "ciSkippedDueToLowDetection": true
+      "ciSkippedDueToLowDetection": false
     },
     "Vanessa atalanta": {
       "collatedIndices": {
@@ -40404,7 +40715,28 @@
         "rbms_version": "1.2.0",
         "bootstrap_iterations": 500
       },
-      "confidenceIntervals": {},
+      "confidenceIntervals": {
+        "2021": {
+          "ci_lower": 100,
+          "ci_upper": 100
+        },
+        "2022": {
+          "ci_lower": 69.94,
+          "ci_upper": 946.31
+        },
+        "2023": {
+          "ci_lower": 103.02,
+          "ci_upper": 2577.72
+        },
+        "2024": {
+          "ci_lower": 69.44,
+          "ci_upper": 1971.32
+        },
+        "2025": {
+          "ci_lower": 46.38,
+          "ci_upper": 637.27
+        }
+      },
       "trendClassification": {
         "category": "Uncertain",
         "annualRateOfChange": -3.81,
@@ -40418,7 +40750,7 @@
           "upper": 1.5277
         }
       },
-      "ciSkippedDueToLowDetection": true
+      "ciSkippedDueToLowDetection": false
     },
     "Zizeeria knysna": {
       "collatedIndices": {
