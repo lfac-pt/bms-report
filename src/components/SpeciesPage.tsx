@@ -1,6 +1,6 @@
 /* eslint-env browser */
 import { useState, useEffect } from "react";
-import { Button, Card, Space, Typography, Spin, Alert, Row, Col, Select } from "antd";
+import { Button, Card, Space, Typography, Spin, Alert, Row, Col, Select, Switch } from "antd";
 import { ArrowLeftOutlined } from "@ant-design/icons";
 import { useParams, useNavigate } from "react-router-dom";
 import { SPECIES_FAMILIES } from "../constants";
@@ -13,7 +13,6 @@ import endangeredSpeciesEurope from "../utils/endangered_eu";
 import { FlightCurvesDisplay } from "./charts/FlightCurveChart";
 import { SpeciesTrendChart } from "./charts/SpeciesTrendChart";
 import TrendClassificationBadge from "./TrendClassificationBadge";
-import type { GBIData } from "../types/gbiData";
 
 const { Title, Text } = Typography;
 
@@ -41,14 +40,14 @@ function SpeciesPage() {
   const [transectData, setTransectData] = useState<TransectData | null>(null);
   const [flightCurvesData, setFlightCurvesData] = useState<any>(null);
   const [phenologyData, setPhenologyData] = useState<any>(null);
-  const [gbiData, setGbiData] = useState<GBIData | null>(null);
   const [loading, setLoading] = useState(true);
+  const [showOnlyQualityTransects, setShowOnlyQualityTransects] = useState(true);
 
   // Decode the species name from URL
   const decodedSpeciesName = speciesName ? decodeURIComponent(speciesName) : "";
   const family = SPECIES_FAMILIES[decodedSpeciesName] || "Informação não disponível";
 
-  // Load timeline, transect, flight curves, phenology, and GBI data
+  // Load timeline, transect, flight curves, and phenology data
   useEffect(() => {
     Promise.all([
       // eslint-disable-next-line no-undef
@@ -63,17 +62,12 @@ function SpeciesPage() {
       fetch("data/phenology-curves-data.json")
         .then(res => res.json())
         .catch(() => null),
-      // eslint-disable-next-line no-undef
-      fetch("data/gbi-data.json")
-        .then(res => res.json())
-        .catch(() => null),
     ])
-      .then(([timeline, transects, flightCurves, phenology, gbi]) => {
+      .then(([timeline, transects, flightCurves, phenology]) => {
         setTimelineData(timeline);
         setTransectData(transects);
         setFlightCurvesData(flightCurves);
         setPhenologyData(phenology);
-        setGbiData(gbi);
         setLoading(false);
       })
       .catch(() => {
@@ -196,12 +190,10 @@ function SpeciesPage() {
           <Text strong style={{ fontSize: 16 }}>
             Família: {family}
           </Text>
-          {/* Show trend classification from GBI data (for GBI species) or flight curves data (for all other species) */}
+          {/* Show trend classification from flight curves data */}
           {(() => {
-            const gbiTrend = gbiData?.speciesTrends?.[decodedSpeciesName]?.trendClassification;
-            const flightCurvesTrend =
+            const trendClassification =
               flightCurvesData?.species?.[decodedSpeciesName]?.trendClassification;
-            const trendClassification = gbiTrend || flightCurvesTrend;
 
             if (trendClassification) {
               return (
@@ -231,28 +223,36 @@ function SpeciesPage() {
         </Space>
       </Card>
 
-      {/* Trend Chart Card - shows whenever trend data exists (from flight curves or GBI) */}
+      {/* Trend Chart Card - shows only when flight curves data exists */}
       {(() => {
         const flightCurvesTrend = flightCurvesData?.species?.[decodedSpeciesName];
-        const gbiTrend = gbiData?.speciesTrends?.[decodedSpeciesName];
 
-        // Use flight curves data if available, otherwise GBI data
-        const trendData =
-          flightCurvesTrend ||
-          (gbiTrend
-            ? {
-                collatedIndices: gbiTrend.annualIndices,
-                trendLine: gbiTrend.trendLine,
-                confidenceIntervals: gbiTrend.confidenceIntervals,
-              }
-            : null);
-
-        if (!trendData) return null;
+        if (!flightCurvesTrend) return null;
 
         return (
-          <Card title="Tendência Populacional">
-            <SpeciesTrendChart speciesData={trendData} />
-          </Card>
+          <>
+            <Card title="Tendência Populacional">
+              <SpeciesTrendChart speciesData={flightCurvesTrend} />
+            </Card>
+            {flightCurvesTrend.ciExceedsThreshold && (
+              <Alert
+                message="Intervalos de Confiança Muito Amplos"
+                description={
+                  <>
+                    Esta espécie apresenta intervalos de confiança extremamente amplos (range
+                    máximo: {flightCurvesTrend.maxCIRange?.toFixed(0)}), o que indica que as
+                    estimativas têm baixa precisão. Isto pode dever-se a uma taxa de deteção muito
+                    baixa ({((flightCurvesTrend.dataQuality?.detectionRate || 0) * 100).toFixed(2)}
+                    %) ou dados esparsos. Os intervalos de confiança podem não ser confiáveis para
+                    esta espécie.
+                  </>
+                }
+                type="warning"
+                showIcon
+                style={{ marginTop: 16 }}
+              />
+            )}
+          </>
         );
       })()}
 
@@ -264,15 +264,43 @@ function SpeciesPage() {
         />
       </Card>
 
-      <Card title="Distribuição por Ano">
+      <Card
+        title="Distribuição por Ano"
+        extra={
+          <Space>
+            <Text type="secondary" style={{ fontSize: 12 }}>
+              {showOnlyQualityTransects
+                ? "Apenas transectos usados no cálculo de tendências"
+                : "Todos os transectos"}
+            </Text>
+            <Switch
+              checked={showOnlyQualityTransects}
+              onChange={setShowOnlyQualityTransects}
+              checkedChildren="Qualidade"
+              unCheckedChildren="Todos"
+            />
+          </Space>
+        }
+      >
         <Row gutter={[16, 16]}>
           {years.map(year => {
-            const speciesData = calculateSpeciesPresenceByYear(
+            // Get quality transect IDs from flight curves metadata
+            const qualityTransectIds = new Set(
+              flightCurvesData?.metadata?.transectsUsed?.map((t: any) => t.transectId) || []
+            );
+
+            // Calculate species presence for all transects
+            let speciesData = calculateSpeciesPresenceByYear(
               decodedSpeciesName,
               year,
               timelineData,
               transectData.transects
             );
+
+            // Filter to only quality transects if toggle is enabled
+            if (showOnlyQualityTransects && qualityTransectIds.size > 0) {
+              speciesData = speciesData.filter(t => qualityTransectIds.has(t.transectId));
+            }
 
             const withSpecies = speciesData.filter(t => t.hasSpecies).length;
             const totalTransects = speciesData.length;

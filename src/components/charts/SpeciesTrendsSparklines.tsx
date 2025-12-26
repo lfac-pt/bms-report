@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from "react";
-import { Collapse, Typography, Row, Col, Spin } from "antd";
+import { Collapse, Typography, Row, Col, Spin, Popover, List } from "antd";
 import { ArrowUpOutlined, ArrowDownOutlined, MinusOutlined } from "@ant-design/icons";
 import { Link } from "react-router-dom";
 import TrendClassificationBadge from "../TrendClassificationBadge";
 import type { SpeciesTrend as GBISpeciesTrend, TrendCategory } from "../../types/gbiData";
+import { CI_RANGE_THRESHOLD } from "../../constants";
 
 const { Title, Text } = Typography;
 
@@ -16,6 +17,8 @@ interface SpeciesTrend {
   ciLower?: number[];
   ciUpper?: number[];
   trendClassification?: GBISpeciesTrend["trendClassification"];
+  ciExceedsThreshold?: boolean;
+  maxCIRange?: number;
 }
 
 const SpeciesTrendsSparklines: React.FC = () => {
@@ -28,24 +31,24 @@ const SpeciesTrendsSparklines: React.FC = () => {
 
   const fetchFlightCurvesData = async () => {
     try {
-      // Fetch both GBI data and flight curves data
-      const [gbiResponse, flightResponse] = await Promise.all([
-        // eslint-disable-next-line no-undef
-        fetch("data/gbi-data.json").catch(() => null),
-        // eslint-disable-next-line no-undef
-        fetch("data/flight-curves-data.json").catch(() => null),
-      ]);
-
-      const gbiData = gbiResponse ? await gbiResponse.json() : null;
+      // Fetch flight curves data
+      // eslint-disable-next-line no-undef
+      const flightResponse = await fetch("data/flight-curves-data.json").catch(() => null);
       const flightData = flightResponse ? await flightResponse.json() : null;
 
-      // Process species data from both sources
+      // Process species data
       const trends: SpeciesTrend[] = [];
 
       // Helper function to process species data
       const processSpecies = (speciesName: string, speciesData: any) => {
-        const { annualIndices, collatedIndices, confidenceIntervals, trendClassification } =
-          speciesData;
+        const {
+          annualIndices,
+          collatedIndices,
+          confidenceIntervals,
+          trendClassification,
+          ciExceedsThreshold,
+          maxCIRange,
+        } = speciesData;
 
         // Use annualIndices (from GBI) or collatedIndices (from flight curves)
         const indicesData = annualIndices || collatedIndices;
@@ -82,25 +85,17 @@ const SpeciesTrendsSparklines: React.FC = () => {
             ciLower,
             ciUpper,
             trendClassification,
+            ciExceedsThreshold,
+            maxCIRange,
           });
         }
       };
 
-      // Process GBI species
-      if (gbiData?.speciesTrends) {
-        Object.entries(gbiData.speciesTrends as Record<string, GBISpeciesTrend>).forEach(
-          ([speciesName, speciesData]) => processSpecies(speciesName, speciesData)
-        );
-      }
-
-      // Process flight curves species (skip if already in GBI)
+      // Process all species from flight curves data
       if (flightData?.species) {
-        const gbiSpeciesSet = new Set(trends.map(t => t.species));
         Object.entries(flightData.species as Record<string, any>).forEach(
           ([speciesName, speciesData]) => {
-            if (!gbiSpeciesSet.has(speciesName)) {
-              processSpecies(speciesName, speciesData);
-            }
+            processSpecies(speciesName, speciesData);
           }
         );
       }
@@ -243,6 +238,12 @@ const SpeciesTrendsSparklines: React.FC = () => {
     {} as Record<TrendCategory | "Unknown", number>
   );
 
+  // Count species with excessively large CI ranges
+  const speciesWithLargeCIList = speciesTrends.filter(trend => {
+    return trend.ciExceedsThreshold === true;
+  });
+  const speciesWithLargeCI = speciesWithLargeCIList.length;
+
   const items = [
     {
       key: "1",
@@ -300,9 +301,54 @@ const SpeciesTrendsSparklines: React.FC = () => {
                 </>
               )}
               {categorySummary["Unknown"] && (
-                <span style={{ color: "#d9d9d9" }}>
-                  {categorySummary["Unknown"]} sem classificação
-                </span>
+                <>
+                  <span style={{ color: "#d9d9d9" }}>
+                    {categorySummary["Unknown"]} sem classificação
+                  </span>
+                  {" • "}
+                </>
+              )}
+              {speciesWithLargeCI > 0 && (
+                <Popover
+                  content={
+                    <div style={{ maxWidth: 400, maxHeight: 300, overflowY: "auto" }}>
+                      <Typography.Text
+                        style={{
+                          fontSize: 11,
+                          color: "#8c8c8c",
+                          display: "block",
+                          marginBottom: 8,
+                        }}
+                      >
+                        Espécies com intervalos de confiança muito amplos (&gt; {CI_RANGE_THRESHOLD}
+                        ) têm estimativas de baixa precisão, geralmente devido a taxa de deteção
+                        baixa ou dados esparsos. Os intervalos de confiança podem não ser confiáveis
+                        para estas espécies.
+                      </Typography.Text>
+                      <List
+                        size="small"
+                        dataSource={speciesWithLargeCIList.map(t => t.species).sort()}
+                        renderItem={species => (
+                          <List.Item style={{ padding: "4px 0" }}>
+                            <Link
+                              to={`/species/${encodeURIComponent(species)}`}
+                              style={{ fontSize: 12 }}
+                              onClick={e => e.stopPropagation()}
+                            >
+                              {species}
+                            </Link>
+                          </List.Item>
+                        )}
+                      />
+                    </div>
+                  }
+                  title="Espécies com IC muito amplo"
+                  trigger="hover"
+                >
+                  <span style={{ color: "#faad14", cursor: "help" }}>
+                    ⚠ {speciesWithLargeCI} com IC muito amplo
+                  </span>
+                </Popover>
               )}
             </Text>
           </div>

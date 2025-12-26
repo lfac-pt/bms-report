@@ -16,6 +16,8 @@ import {
   MIN_VISITS_PER_YEAR,
   MIN_COUNTS_PER_SPECIES,
   MIN_YEARS_PER_SPECIES,
+  CI_RANGE_THRESHOLD,
+  MAX_ABSOLUTE_INDEX,
   BASELINE_YEAR,
   MONITORING_START_MONTH,
   MONITORING_END_MONTH,
@@ -169,17 +171,48 @@ export async function calculateAllFlightCurves(
       const rbmsOutput = JSON.parse(outputJSON);
       rbmsUtils.validateRbmsOutput(rbmsOutput, species, allYears);
 
+      // Calculate detection rate (total counts / total visits)
+      const totalCounts = rbmsOutput.data_quality?.total_counts || 0;
+      const totalVisits = rbmsOutput.data_quality?.total_visits || 1;
+      const detectionRate = totalCounts / totalVisits;
+
       // Extract confidence intervals from rbms bootstrap
-      const confidenceIntervals: Record<number, { ci_lower: number; ci_upper: number }> = {};
+      let confidenceIntervals: Record<number, { ci_lower: number; ci_upper: number }> = {};
+      let maxCIRange = 0;
+      let ciExceedsThreshold = false;
+
       if (
         rbmsOutput.confidence_intervals &&
         Object.keys(rbmsOutput.confidence_intervals).length > 0
       ) {
+        // First pass: calculate max CI range
+        const tempCI: Record<number, { ci_lower: number; ci_upper: number }> = {};
         for (const [year, ci] of Object.entries(rbmsOutput.confidence_intervals)) {
-          confidenceIntervals[parseInt(year)] = {
-            ci_lower: (ci as any).ci_lower,
-            ci_upper: (ci as any).ci_upper,
+          const ciLower = (ci as any).ci_lower;
+          const ciUpper = (ci as any).ci_upper;
+          tempCI[parseInt(year)] = {
+            ci_lower: ciLower,
+            ci_upper: ciUpper,
           };
+          // Track maximum CI range
+          const range = ciUpper - ciLower;
+          if (range > maxCIRange) {
+            maxCIRange = range;
+          }
+        }
+
+        // Check if CI exceeds threshold
+        ciExceedsThreshold = maxCIRange > CI_RANGE_THRESHOLD;
+
+        if (ciExceedsThreshold) {
+          console.log(
+            `    Large CI for ${species}: max range ${maxCIRange.toFixed(0)} > ${CI_RANGE_THRESHOLD} - excluding CI from output`
+          );
+          // Don't include CI data in output
+          confidenceIntervals = {};
+        } else {
+          // Include CI data
+          confidenceIntervals = tempCI;
         }
       }
 
@@ -203,15 +236,44 @@ export async function calculateAllFlightCurves(
         };
       }
 
+      // Check for extreme index values
+      const maxAbsoluteIndex = Math.max(
+        ...Object.values(rbmsOutput.collated_indices).map(v => Math.abs(v))
+      );
+      if (maxAbsoluteIndex > MAX_ABSOLUTE_INDEX) {
+        console.log(
+          `    Excluding ${species}: extreme index value ${maxAbsoluteIndex.toFixed(0)} > ${MAX_ABSOLUTE_INDEX.toLocaleString()}`
+        );
+        // Clean up temp files before skipping
+        fs.unlinkSync(visitsFile);
+        fs.unlinkSync(countsFile);
+        fs.unlinkSync(outputFile);
+        // Skip this species - don't add to results
+        continue;
+      }
+
+      // Calculate species-specific data quality metrics
+      const speciesTransects = new Set(speciesData.counts.map(c => c.site_id));
+      const speciesObservations = speciesData.counts.reduce((sum, c) => sum + c.count, 0);
+
       // Store results
       speciesResults[species] = {
         collatedIndices: rbmsOutput.collated_indices,
         trendLine: rbmsOutput.trend_line || null,
         phenologyCurves: rbmsOutput.phenology_curves || null,
-        dataQuality: rbmsOutput.data_quality,
+        dataQuality: {
+          ...rbmsOutput.data_quality,
+          // Species-specific metrics (overriding totals)
+          transectCount: speciesTransects.size,
+          visitsWithObservations: speciesData.counts.length,
+          speciesObservations: speciesObservations,
+          detectionRate: detectionRate,
+        },
         processingInfo: rbmsOutput.processing_info,
         confidenceIntervals: confidenceIntervals,
         trendClassification: trendClassification,
+        ciExceedsThreshold: ciExceedsThreshold,
+        maxCIRange: maxCIRange,
       };
 
       successCount++;

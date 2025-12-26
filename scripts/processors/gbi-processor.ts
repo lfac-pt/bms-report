@@ -296,6 +296,14 @@ export async function calculateGBI(
     type: GRASSLAND_SPECIES.widespread.has(species) ? "widespread" : "specialist",
   }));
 
+  const widespreadSpecies = grasslandSpeciesList.filter(s => s.type === "widespread");
+  const specialistSpecies = grasslandSpeciesList.filter(s => s.type === "specialist");
+
+  console.log(`  Grassland species breakdown:`);
+  console.log(`    Total: ${grasslandSpeciesList.length}`);
+  console.log(`    Widespread: ${widespreadSpecies.length}`);
+  console.log(`    Specialist: ${specialistSpecies.length}`);
+
   const transectsUsedList = activeQualityTransects.map(t => ({
     transectId: t.transectId,
     yearsActive: t.yearsActive,
@@ -303,49 +311,92 @@ export async function calculateGBI(
     isActive: t.isActive,
   }));
 
-  const speciesMetadata = {
-    grasslandSpecies: grasslandSpeciesList,
-    qualityCriteria: {
-      minYearsActive: MIN_YEARS_ACTIVE,
-      minVisitsPerYear: MIN_VISITS_PER_YEAR,
-    },
-    transectsUsed: transectsUsedList,
-  };
-
-  // Write species metadata to JSON for R script
-  const speciesMetadataFile = path.join(TEMP_RBMS_DIR, "species_metadata.json");
-  fs.writeFileSync(speciesMetadataFile, JSON.stringify(speciesMetadata, null, 2));
-
   // Prepare paths
   const bootstrapDir = path.join(__dirname, "..", "..", ".cache", "rbms", "bootstrap");
-  const gbiOutputFile = path.join(__dirname, "..", "..", "public", "data", "gbi-data.json");
   const gbiRScript = path.join(__dirname, "..", "calculate-gbi.R");
 
-  // Call calculate-gbi.R
-  console.log(`  Calling calculate-gbi.R...`);
-  console.log(`    Bootstrap dir: ${bootstrapDir}`);
-  console.log(`    Output: ${gbiOutputFile}`);
-
-  try {
-    await rbmsUtils.callRbms(
-      gbiRScript,
-      [bootstrapDir, gbiOutputFile, baselineYear.toString(), speciesMetadataFile],
-      120000 // 2 minute timeout
-    );
-
-    console.log(`  ✓ GBI calculation complete`);
-
-    // Read the GBI results
-    if (!fs.existsSync(gbiOutputFile)) {
-      throw new Error("calculate-gbi.R did not produce output file");
+  // Helper function to calculate MSI for a species subset
+  async function calculateMSI(
+    speciesList: typeof grasslandSpeciesList,
+    outputSuffix: string,
+    label: string
+  ) {
+    if (speciesList.length === 0) {
+      console.log(`  Skipping ${label} MSI: no species`);
+      return null;
     }
 
-    const gbiData = JSON.parse(fs.readFileSync(gbiOutputFile, "utf8"));
-    const gbiByYear = gbiData.gbiByYear;
+    const speciesMetadata = {
+      grasslandSpecies: speciesList,
+      qualityCriteria: {
+        minYearsActive: MIN_YEARS_ACTIVE,
+        minVisitsPerYear: MIN_VISITS_PER_YEAR,
+      },
+      transectsUsed: transectsUsedList,
+    };
 
-    console.log(`  ✓ GBI calculated for ${Object.keys(gbiByYear).length} years using MSI`);
+    const metadataFile = path.join(TEMP_RBMS_DIR, `species_metadata_${outputSuffix}.json`);
+    const outputFile = path.join(TEMP_RBMS_DIR, `gbi_${outputSuffix}.json`);
 
-    // Add data quality metrics (transect/visit counts per year)
+    fs.writeFileSync(metadataFile, JSON.stringify(speciesMetadata, null, 2));
+
+    console.log(`\n  Calculating ${label} MSI (${speciesList.length} species)...`);
+
+    try {
+      await rbmsUtils.callRbms(
+        gbiRScript,
+        [bootstrapDir, outputFile, baselineYear.toString(), metadataFile],
+        120000 // 2 minute timeout
+      );
+
+      if (!fs.existsSync(outputFile)) {
+        throw new Error("R script did not produce output file");
+      }
+
+      const msiData = JSON.parse(fs.readFileSync(outputFile, "utf8"));
+      console.log(`  ✓ ${label} MSI calculated for ${Object.keys(msiData.gbiByYear).length} years`);
+
+      // Clean up temp files
+      try {
+        fs.unlinkSync(metadataFile);
+        fs.unlinkSync(outputFile);
+      } catch (err) {
+        // Ignore cleanup errors
+      }
+
+      return msiData;
+    } catch (error) {
+      const errorMessage = error instanceof Error ? error.message : String(error);
+      console.log(`  ✗ ${label} MSI failed: ${errorMessage}`);
+      // Clean up temp files on error
+      try {
+        fs.unlinkSync(metadataFile);
+        if (fs.existsSync(outputFile)) fs.unlinkSync(outputFile);
+      } catch (err) {
+        // Ignore cleanup errors
+      }
+      return null;
+    }
+  }
+
+  try {
+    // Calculate overall GBI (all grassland species)
+    const overallGBI = await calculateMSI(grasslandSpeciesList, "overall", "Overall GBI");
+
+    // Calculate widespread species MSI
+    const widespreadMSI = await calculateMSI(widespreadSpecies, "widespread", "Widespread");
+
+    // Calculate specialist species MSI
+    const specialistMSI = await calculateMSI(specialistSpecies, "specialist", "Specialist");
+
+    if (!overallGBI) {
+      throw new Error("Overall GBI calculation failed");
+    }
+
+    const gbiByYear = overallGBI.gbiByYear;
+    console.log(`\n  ✓ All MSI calculations complete`);
+
+    // Add data quality metrics (transect/visit counts per year) to overall GBI
     allYears.forEach(year => {
       if (gbiByYear[year]) {
         const yearData = transformedData.filter(row => row.year === year);
@@ -361,21 +412,27 @@ export async function calculateGBI(
       }
     });
 
-    // Clean up temp metadata file
-    try {
-      fs.unlinkSync(speciesMetadataFile);
-    } catch (err) {
-      // Ignore cleanup errors
-    }
-
-    // Step 6: Return GBI data (metadata is already in gbiData from R script)
-    // Merge species trends for compatibility with existing code
+    // Step 6: Return GBI data with separate MSI indexes
     return {
-      metadata: gbiData.metadata,
+      metadata: overallGBI.metadata,
       gbiByYear,
-      speciesTrends,
       years: allYears,
-      gbiTrend: gbiData.gbiTrend,
+      gbiTrend: overallGBI.gbiTrend,
+      // Add separate MSI indexes for widespread and specialist species
+      widespreadMSI: widespreadMSI
+        ? {
+            gbiByYear: widespreadMSI.gbiByYear,
+            gbiTrend: widespreadMSI.gbiTrend,
+            years: widespreadMSI.years,
+          }
+        : null,
+      specialistMSI: specialistMSI
+        ? {
+            gbiByYear: specialistMSI.gbiByYear,
+            gbiTrend: specialistMSI.gbiTrend,
+            years: specialistMSI.years,
+          }
+        : null,
     };
   } catch (gbiError) {
     const errorMessage = gbiError instanceof Error ? gbiError.message : String(gbiError);

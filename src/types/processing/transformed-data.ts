@@ -79,6 +79,19 @@ export interface TransectInfo {
   isActive?: boolean;
 }
 
+export interface MSISubset {
+  gbiByYear: Record<
+    string,
+    {
+      gbi: number;
+      dataQuality: DataQuality;
+      [key: string]: unknown;
+    }
+  >;
+  gbiTrend: unknown;
+  years: number[];
+}
+
 export interface GBIData {
   metadata: {
     processingDate: string;
@@ -98,9 +111,10 @@ export interface GBIData {
       [key: string]: unknown;
     }
   >;
-  speciesTrends: Record<string, SpeciesTrend>;
   years: number[];
   gbiTrend: unknown;
+  widespreadMSI?: MSISubset | null;
+  specialistMSI?: MSISubset | null;
 }
 
 export interface FlightCurvesData {
@@ -126,6 +140,8 @@ export interface FlightCurvesData {
       processingInfo: unknown;
       confidenceIntervals: Record<number, { ci_lower: number; ci_upper: number }>;
       trendClassification: TrendClassification | null;
+      ciExceedsThreshold: boolean;
+      maxCIRange: number;
     }
   >;
   speciesList: string[];
