@@ -320,9 +320,10 @@ const SpeciesTrendsSparklines: React.FC = () => {
                           marginBottom: 8,
                         }}
                       >
-                        Espécies com intervalos de confiança muito amplos (&gt; {CI_RANGE_THRESHOLD}) têm estimativas
-                        de baixa precisão, geralmente devido a taxa de deteção baixa ou dados esparsos.
-                        Os intervalos de confiança podem não ser confiáveis para estas espécies.
+                        Espécies com intervalos de confiança muito amplos (&gt; {CI_RANGE_THRESHOLD}
+                        ) têm estimativas de baixa precisão, geralmente devido a taxa de deteção
+                        baixa ou dados esparsos. Os intervalos de confiança podem não ser confiáveis
+                        para estas espécies.
                       </Typography.Text>
                       <List
                         size="small"
