@@ -21,6 +21,10 @@ import {
   MONITORING_END_MONTH,
   VALID_SPECIES,
 } from "../../src/constants";
+
+// Minimum detection rate (5%) to calculate confidence intervals
+// Species with lower detection rates produce unreliable CI estimates
+const MIN_DETECTION_RATE = 0.05;
 import { getYearFromDate, getMonthFromDate } from "../utils";
 import { ALL_DATA_FILE, METADATA_FILE, TEMP_RBMS_DIR } from "../config";
 import { getQualityFilteredTransects } from "./transect-stats-processor";
@@ -169,18 +173,33 @@ export async function calculateAllFlightCurves(
       const rbmsOutput = JSON.parse(outputJSON);
       rbmsUtils.validateRbmsOutput(rbmsOutput, species, allYears);
 
+      // Calculate detection rate (total counts / total visits)
+      const totalCounts = rbmsOutput.data_quality?.total_counts || 0;
+      const totalVisits = rbmsOutput.data_quality?.total_visits || 1;
+      const detectionRate = totalCounts / totalVisits;
+
       // Extract confidence intervals from rbms bootstrap
+      // Skip CI for species with very low detection rates (< 5%) as they produce unreliable estimates
       const confidenceIntervals: Record<number, { ci_lower: number; ci_upper: number }> = {};
-      if (
-        rbmsOutput.confidence_intervals &&
-        Object.keys(rbmsOutput.confidence_intervals).length > 0
-      ) {
-        for (const [year, ci] of Object.entries(rbmsOutput.confidence_intervals)) {
-          confidenceIntervals[parseInt(year)] = {
-            ci_lower: (ci as any).ci_lower,
-            ci_upper: (ci as any).ci_upper,
-          };
+      let ciSkippedDueToLowDetection = false;
+
+      if (detectionRate >= MIN_DETECTION_RATE) {
+        if (
+          rbmsOutput.confidence_intervals &&
+          Object.keys(rbmsOutput.confidence_intervals).length > 0
+        ) {
+          for (const [year, ci] of Object.entries(rbmsOutput.confidence_intervals)) {
+            confidenceIntervals[parseInt(year)] = {
+              ci_lower: (ci as any).ci_lower,
+              ci_upper: (ci as any).ci_upper,
+            };
+          }
         }
+      } else {
+        ciSkippedDueToLowDetection = true;
+        console.log(
+          `    Skipping CI calculation for ${species}: detection rate ${(detectionRate * 100).toFixed(2)}% < ${(MIN_DETECTION_RATE * 100).toFixed(0)}%`
+        );
       }
 
       // Extract trend classification from rbms output
@@ -218,10 +237,12 @@ export async function calculateAllFlightCurves(
           transectCount: speciesTransects.size,
           totalVisits: speciesData.counts.length,
           speciesObservations: speciesObservations,
+          detectionRate: detectionRate,
         },
         processingInfo: rbmsOutput.processing_info,
         confidenceIntervals: confidenceIntervals,
         trendClassification: trendClassification,
+        ciSkippedDueToLowDetection: ciSkippedDueToLowDetection,
       };
 
       successCount++;

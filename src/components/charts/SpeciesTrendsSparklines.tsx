@@ -7,9 +7,6 @@ import type { SpeciesTrend as GBISpeciesTrend, TrendCategory } from "../../types
 
 const { Title, Text } = Typography;
 
-// Threshold for flagging species with very large confidence intervals
-const LARGE_CI_THRESHOLD = 5000;
-
 interface SpeciesTrend {
   species: string;
   indices: number[];
@@ -19,6 +16,7 @@ interface SpeciesTrend {
   ciLower?: number[];
   ciUpper?: number[];
   trendClassification?: GBISpeciesTrend["trendClassification"];
+  ciSkippedDueToLowDetection?: boolean;
 }
 
 const SpeciesTrendsSparklines: React.FC = () => {
@@ -41,8 +39,13 @@ const SpeciesTrendsSparklines: React.FC = () => {
 
       // Helper function to process species data
       const processSpecies = (speciesName: string, speciesData: any) => {
-        const { annualIndices, collatedIndices, confidenceIntervals, trendClassification } =
-          speciesData;
+        const {
+          annualIndices,
+          collatedIndices,
+          confidenceIntervals,
+          trendClassification,
+          ciSkippedDueToLowDetection,
+        } = speciesData;
 
         // Use annualIndices (from GBI) or collatedIndices (from flight curves)
         const indicesData = annualIndices || collatedIndices;
@@ -79,6 +82,7 @@ const SpeciesTrendsSparklines: React.FC = () => {
             ciLower,
             ciUpper,
             trendClassification,
+            ciSkippedDueToLowDetection,
           });
         }
       };
@@ -230,19 +234,12 @@ const SpeciesTrendsSparklines: React.FC = () => {
     {} as Record<TrendCategory | "Unknown", number>
   );
 
-  // Count species with very large confidence intervals
-  const speciesWithLargeCIList = speciesTrends.filter(trend => {
-    if (!trend.ciLower || !trend.ciUpper) return false;
-    // Calculate the maximum CI range across all years
-    const maxCIRange = Math.max(
-      ...trend.ciLower.map((lower, idx) => {
-        const upper = trend.ciUpper![idx];
-        return upper - lower;
-      })
-    );
-    return maxCIRange > LARGE_CI_THRESHOLD;
+  // Count species where CI was not calculated due to low detection rate
+  const speciesWithoutCIList = speciesTrends.filter(trend => {
+    // Check if CI was skipped due to low detection (from flight curves data)
+    return trend.ciSkippedDueToLowDetection === true;
   });
-  const speciesWithLargeCI = speciesWithLargeCIList.length;
+  const speciesWithoutCI = speciesWithoutCIList.length;
 
   const items = [
     {
@@ -308,16 +305,24 @@ const SpeciesTrendsSparklines: React.FC = () => {
                   {" • "}
                 </>
               )}
-              {speciesWithLargeCI > 0 && (
+              {speciesWithoutCI > 0 && (
                 <Popover
                   content={
                     <div style={{ maxWidth: 400, maxHeight: 300, overflowY: "auto" }}>
-                      <Typography.Text strong style={{ display: "block", marginBottom: 8 }}>
-                        Espécies com IC muito largo (&gt; {LARGE_CI_THRESHOLD})
+                      <Typography.Text
+                        style={{
+                          fontSize: 11,
+                          color: "#8c8c8c",
+                          display: "block",
+                          marginBottom: 8,
+                        }}
+                      >
+                        Espécies com taxa de deteção muito baixa produzem intervalos de confiança
+                        extremamente grandes e não confiáveis, por isso não foram calculados.
                       </Typography.Text>
                       <List
                         size="small"
-                        dataSource={speciesWithLargeCIList.map(t => t.species).sort()}
+                        dataSource={speciesWithoutCIList.map(t => t.species).sort()}
                         renderItem={species => (
                           <List.Item style={{ padding: "4px 0" }}>
                             <Link
@@ -332,11 +337,11 @@ const SpeciesTrendsSparklines: React.FC = () => {
                       />
                     </div>
                   }
-                  title="Espécies com IC muito largo"
+                  title="Espécies sem IC calculado"
                   trigger="hover"
                 >
                   <span style={{ color: "#faad14", cursor: "help" }}>
-                    ⚠ {speciesWithLargeCI} com IC muito largo
+                    ⚠ {speciesWithoutCI} sem IC (deteção baixa)
                   </span>
                 </Popover>
               )}

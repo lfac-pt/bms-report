@@ -230,9 +230,28 @@ function SpeciesPage() {
         if (!flightCurvesTrend) return null;
 
         return (
-          <Card title="Tendência Populacional">
-            <SpeciesTrendChart speciesData={flightCurvesTrend} />
-          </Card>
+          <>
+            <Card title="Tendência Populacional">
+              <SpeciesTrendChart speciesData={flightCurvesTrend} />
+            </Card>
+            {flightCurvesTrend.ciSkippedDueToLowDetection && (
+              <Alert
+                message="Intervalos de Confiança Não Calculados"
+                description={
+                  <>
+                    Esta espécie tem uma taxa de deteção muito baixa (
+                    {((flightCurvesTrend.dataQuality?.detectionRate || 0) * 100).toFixed(2)}%), o
+                    que resulta em estimativas de intervalo de confiança extremamente grandes e não
+                    confiáveis. Por isso, os intervalos de confiança não foram calculados para esta
+                    espécie.
+                  </>
+                }
+                type="warning"
+                showIcon
+                style={{ marginTop: 16 }}
+              />
+            )}
+          </>
         );
       })()}
 
