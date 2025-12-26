@@ -39,6 +39,12 @@ interface SpeciesDataResult {
   counts: CountData[];
 }
 
+export interface TransectLengthData {
+  site_id: string;
+  length_km: number;
+  [key: string]: unknown; // Add index signature for compatibility
+}
+
 interface CallRbmsOptions {
   visitsFile?: string;
   countsFile?: string;
@@ -250,6 +256,45 @@ export function writeCSV(
   // Combine and write
   const csv = [header, ...rows].join("\n");
   fs.writeFileSync(filepath, csv, "utf8");
+}
+
+/**
+ * Extract transect lengths for a set of transect IDs
+ * Returns lengths in kilometers (converted from meters if needed)
+ *
+ * @param transects - Array of transect objects with transectId and length properties
+ * @param transectIds - Array of transect IDs to include
+ * @returns Array of TransectLengthData with site_id and length_km
+ */
+export function extractTransectLengths(
+  transects: Array<{ transectId: string; length?: number | null }>,
+  transectIds: string[]
+): TransectLengthData[] {
+  const transectIdSet = new Set(transectIds);
+  const lengths: TransectLengthData[] = [];
+
+  for (const transect of transects) {
+    if (!transectIdSet.has(transect.transectId)) {
+      continue;
+    }
+
+    // Get length - default to 1000m (1km) if not available
+    // Transect length is stored in meters in the processed data
+    const lengthMeters = transect.length ?? 1000;
+
+    // Convert to kilometers for the R script
+    const lengthKm = lengthMeters / 1000;
+
+    // Only include if length is valid (> 0)
+    if (lengthKm > 0) {
+      lengths.push({
+        site_id: transect.transectId,
+        length_km: Math.round(lengthKm * 1000) / 1000, // Round to 3 decimal places
+      });
+    }
+  }
+
+  return lengths;
 }
 
 /**

@@ -26,7 +26,7 @@ export const MONITORING_END_MONTH = 9; // September (1-indexed)
 // Species-level quality criteria
 export const MIN_COUNTS_PER_SPECIES = 20; // Minimum total counts for species analysis
 export const MIN_YEARS_PER_SPECIES = 3; // Minimum years of data for species analysis
-export const CI_RANGE_THRESHOLD = 1000; // Maximum acceptable CI range (upper - lower) for reliable estimates
+export const CI_RANGE_THRESHOLD = 2000; // Maximum acceptable CI range (upper - lower) for reliable estimates
 export const MAX_ABSOLUTE_INDEX = 1000000; // Maximum absolute index value - species exceeding this are excluded (modeling artifacts)
 
 // Mapping of species to their families
