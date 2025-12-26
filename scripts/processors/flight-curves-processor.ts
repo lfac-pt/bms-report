@@ -235,7 +235,7 @@ export async function calculateAllFlightCurves(
           ...rbmsOutput.data_quality,
           // Species-specific metrics (overriding totals)
           transectCount: speciesTransects.size,
-          totalVisits: speciesData.counts.length,
+          visitsWithObservations: speciesData.counts.length,
           speciesObservations: speciesObservations,
           detectionRate: detectionRate,
         },

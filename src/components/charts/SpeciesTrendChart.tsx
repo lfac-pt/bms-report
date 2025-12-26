@@ -187,8 +187,8 @@ export function SpeciesTrendChart({ speciesData }: SpeciesTrendChartProps) {
   // Extract observation counts (species-specific)
   const transectCount =
     speciesData.dataQuality?.transectCount ?? speciesData.dataQuality?.site_count;
-  const observationVisits =
-    speciesData.dataQuality?.totalVisits ?? speciesData.dataQuality?.total_visits;
+    const observationVisits =
+      speciesData.dataQuality?.visitsWithObservations ?? speciesData.dataQuality?.total_visits;
   const individualCount = (speciesData.dataQuality as any)?.speciesObservations;
 
   return (
