@@ -17,6 +17,7 @@ import {
   MIN_COUNTS_PER_SPECIES,
   MIN_YEARS_PER_SPECIES,
   CI_RANGE_THRESHOLD,
+  MAX_ABSOLUTE_INDEX,
   BASELINE_YEAR,
   MONITORING_START_MONTH,
   MONITORING_END_MONTH,
@@ -233,6 +234,22 @@ export async function calculateAllFlightCurves(
             upper: trendStats.rate_ci_upper || null,
           },
         };
+      }
+
+      // Check for extreme index values
+      const maxAbsoluteIndex = Math.max(
+        ...Object.values(rbmsOutput.collated_indices).map(v => Math.abs(v))
+      );
+      if (maxAbsoluteIndex > MAX_ABSOLUTE_INDEX) {
+        console.log(
+          `    Excluding ${species}: extreme index value ${maxAbsoluteIndex.toFixed(0)} > ${MAX_ABSOLUTE_INDEX.toLocaleString()}`
+        );
+        // Clean up temp files before skipping
+        fs.unlinkSync(visitsFile);
+        fs.unlinkSync(countsFile);
+        fs.unlinkSync(outputFile);
+        // Skip this species - don't add to results
+        continue;
       }
 
       // Calculate species-specific data quality metrics
