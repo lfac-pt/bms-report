@@ -9,7 +9,7 @@ import * as fs from "fs";
 import * as path from "path";
 
 const WFS_URL = "https://si.icnf.pt/wfs/rnap";
-const OUTPUT_DIR = path.join(__dirname, "..", "raw-data");
+const OUTPUT_DIR = path.join(__dirname, "..", "public", "data");
 const OUTPUT_FILE = path.join(OUTPUT_DIR, "protected-areas.geojson");
 
 async function downloadProtectedAreas() {
@@ -44,7 +44,7 @@ async function downloadProtectedAreas() {
       fs.mkdirSync(OUTPUT_DIR, { recursive: true });
     }
 
-    // Save to file
+    // Save to public/data directory (accessible by both server-side and client-side code)
     fs.writeFileSync(OUTPUT_FILE, JSON.stringify(geojson, null, 2));
 
     const featureCount = geojson.features?.length || 0;

@@ -5,7 +5,13 @@
 import * as fs from "fs";
 import * as path from "path";
 
-const PROTECTED_AREAS_FILE = path.join(__dirname, "..", "raw-data", "protected-areas.geojson");
+const PROTECTED_AREAS_FILE = path.join(
+  __dirname,
+  "..",
+  "public",
+  "data",
+  "protected-areas.geojson"
+);
 
 interface GeoJSONGeometry {
   type: "Polygon" | "MultiPolygon";
