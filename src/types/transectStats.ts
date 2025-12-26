@@ -21,6 +21,8 @@ export interface TransectStats {
   entidade: string;
   // Fuzzy coordinates for privacy (approximate location)
   coordinates: { lat: number; lon: number } | null;
+  // Protected area (if transect is inside one)
+  protectedArea: string | null;
 }
 
 export interface FilteredSpeciesEntry {

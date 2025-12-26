@@ -1,5 +1,7 @@
-import { MapContainer, TileLayer, CircleMarker, Popup } from "react-leaflet";
+import { MapContainer, TileLayer, CircleMarker, Popup, GeoJSON } from "react-leaflet";
 import { TransectStats } from "../types/transectStats";
+import { useEffect, useState } from "react";
+import type { FeatureCollection } from "geojson";
 import "leaflet/dist/leaflet.css";
 
 interface TransectMapProps {
@@ -7,6 +9,17 @@ interface TransectMapProps {
 }
 
 function TransectMap({ transects }: TransectMapProps) {
+  const [protectedAreas, setProtectedAreas] = useState<FeatureCollection | null>(null);
+
+  // Load protected areas GeoJSON
+  useEffect(() => {
+    // eslint-disable-next-line no-undef
+    fetch("data/protected-areas.geojson")
+      .then(res => res.json())
+      .then(data => setProtectedAreas(data))
+      // eslint-disable-next-line no-console
+      .catch(err => console.warn("Could not load protected areas:", err));
+  }, []);
   // Filter transects with coordinates
   const transectsWithCoords = transects.filter(t => t.coordinates !== null);
 
@@ -66,6 +79,30 @@ function TransectMap({ transects }: TransectMapProps) {
             attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'
             url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
           />
+
+          {/* Protected Areas Layer - rendered behind transects */}
+          {protectedAreas && (
+            <GeoJSON
+              data={protectedAreas}
+              style={{
+                fillColor: "#2d5016",
+                fillOpacity: 0.25,
+                color: "#2d5016",
+                weight: 2,
+                opacity: 0.6,
+              }}
+              pane="tilePane"
+              onEachFeature={(feature, layer) => {
+                if (feature.properties && feature.properties.nome_ap) {
+                  layer.bindPopup(`
+                    <strong>${feature.properties.nome_ap}</strong><br/>
+                    <small>${feature.properties.classifica || ""}</small>
+                  `);
+                }
+              }}
+            />
+          )}
+
           {transectsWithCoords.map(transect => (
             <CircleMarker
               key={transect.transectId}
@@ -116,6 +153,32 @@ function TransectMap({ transects }: TransectMapProps) {
           }}
         >
           <div style={{ fontWeight: 600, marginBottom: 6 }}>Legenda</div>
+
+          {/* Protected Areas */}
+          {protectedAreas && (
+            <div
+              style={{
+                display: "flex",
+                alignItems: "center",
+                marginBottom: 6,
+                paddingBottom: 6,
+                borderBottom: "1px solid #f0f0f0",
+              }}
+            >
+              <div
+                style={{
+                  width: 12,
+                  height: 12,
+                  backgroundColor: "rgba(45, 80, 22, 0.25)",
+                  border: "2px solid #2d5016",
+                  marginRight: 6,
+                }}
+              />
+              <span>Áreas Protegidas</span>
+            </div>
+          )}
+
+          {/* Transects */}
           <div style={{ display: "flex", alignItems: "center", marginBottom: 4 }}>
             <div
               style={{
