@@ -12,7 +12,7 @@ interface SpeciesTrendChartProps {
       site_count?: number;
       total_visits?: number;
       transectCount?: number;
-      totalVisits?: number;
+      visitsWithObservations?: number;
       speciesObservations?: number;
     };
   };

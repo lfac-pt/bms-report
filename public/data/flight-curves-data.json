@@ -1,6 +1,6 @@
 {
   "metadata": {
-    "processingDate": "2025-12-26T00:39:23.047Z",
+    "processingDate": "2025-12-26T00:45:48.706Z",
     "baselineYear": 2021,
     "qualityCriteria": {
       "minYearsActive": 5,
@@ -705,7 +705,7 @@
         "imputation_success": true,
         "baseline_year": 2021,
         "transectCount": 7,
-        "totalVisits": 19,
+        "visitsWithObservations": 19,
         "speciesObservations": 20,
         "detectionRate": 0.01039119804400978
       },
@@ -1310,7 +1310,7 @@
         "imputation_success": true,
         "baseline_year": 2022,
         "transectCount": 11,
-        "totalVisits": 62,
+        "visitsWithObservations": 62,
         "speciesObservations": 248,
         "detectionRate": 0.02750611246943765
       },
@@ -1320,28 +1320,7 @@
         "rbms_version": "1.2.0",
         "bootstrap_iterations": 500
       },
-      "confidenceIntervals": {
-        "2021": {
-          "ci_lower": 0,
-          "ci_upper": 0
-        },
-        "2022": {
-          "ci_lower": 100,
-          "ci_upper": 100
-        },
-        "2023": {
-          "ci_lower": 0,
-          "ci_upper": 157.46
-        },
-        "2024": {
-          "ci_lower": 0,
-          "ci_upper": 104.6
-        },
-        "2025": {
-          "ci_lower": 0,
-          "ci_upper": 175.92
-        }
-      },
+      "confidenceIntervals": {},
       "trendClassification": {
         "category": "Uncertain",
         "annualRateOfChange": -13.75,
@@ -1355,7 +1334,7 @@
           "upper": 1.1634
         }
       },
-      "ciSkippedDueToLowDetection": false
+      "ciSkippedDueToLowDetection": true
     },
     "Argynnis pandora": {
       "collatedIndices": {
@@ -1937,7 +1916,7 @@
         "imputation_success": true,
         "baseline_year": 2021,
         "transectCount": 6,
-        "totalVisits": 53,
+        "visitsWithObservations": 53,
         "speciesObservations": 94,
         "detectionRate": 0.0323960880195599
       },
@@ -1947,28 +1926,7 @@
         "rbms_version": "1.2.0",
         "bootstrap_iterations": 500
       },
-      "confidenceIntervals": {
-        "2021": {
-          "ci_lower": 100,
-          "ci_upper": 100
-        },
-        "2022": {
-          "ci_lower": 28.13,
-          "ci_upper": 1578.08
-        },
-        "2023": {
-          "ci_lower": 47.59,
-          "ci_upper": 777.72
-        },
-        "2024": {
-          "ci_lower": 102.68,
-          "ci_upper": 970.85
-        },
-        "2025": {
-          "ci_lower": 10.12,
-          "ci_upper": 369.01
-        }
-      },
+      "confidenceIntervals": {},
       "trendClassification": {
         "category": "Uncertain",
         "annualRateOfChange": -0.38,
@@ -1982,7 +1940,7 @@
           "upper": 1.3912
         }
       },
-      "ciSkippedDueToLowDetection": false
+      "ciSkippedDueToLowDetection": true
     },
     "Aricia cramera": {
       "collatedIndices": {
@@ -2564,7 +2522,7 @@
         "imputation_success": true,
         "baseline_year": 2021,
         "transectCount": 23,
-        "totalVisits": 351,
+        "visitsWithObservations": 351,
         "speciesObservations": 2336,
         "detectionRate": 0.20965770171149145
       },
@@ -3191,7 +3149,7 @@
         "imputation_success": true,
         "baseline_year": 2021,
         "transectCount": 7,
-        "totalVisits": 70,
+        "visitsWithObservations": 70,
         "speciesObservations": 145,
         "detectionRate": 0.042787286063569685
       },
@@ -3201,28 +3159,7 @@
         "rbms_version": "1.2.0",
         "bootstrap_iterations": 500
       },
-      "confidenceIntervals": {
-        "2021": {
-          "ci_lower": 100,
-          "ci_upper": 100
-        },
-        "2022": {
-          "ci_lower": 40.84,
-          "ci_upper": 453.66
-        },
-        "2023": {
-          "ci_lower": 31.1,
-          "ci_upper": 252.36
-        },
-        "2024": {
-          "ci_lower": 52.44,
-          "ci_upper": 272.67
-        },
-        "2025": {
-          "ci_lower": 188.83,
-          "ci_upper": 335.82
-        }
-      },
+      "confidenceIntervals": {},
       "trendClassification": {
         "category": "Strong increase",
         "annualRateOfChange": 15.32,
@@ -3236,7 +3173,7 @@
           "upper": 1.3291
         }
       },
-      "ciSkippedDueToLowDetection": false
+      "ciSkippedDueToLowDetection": true
     },
     "Cacyreus marshalli": {
       "collatedIndices": {
@@ -3818,7 +3755,7 @@
         "imputation_success": true,
         "baseline_year": 2021,
         "transectCount": 10,
-        "totalVisits": 69,
+        "visitsWithObservations": 69,
         "speciesObservations": 110,
         "detectionRate": 0.04095354523227384
       },
@@ -3828,28 +3765,7 @@
         "rbms_version": "1.2.0",
         "bootstrap_iterations": 500
       },
-      "confidenceIntervals": {
-        "2021": {
-          "ci_lower": 100,
-          "ci_upper": 100
-        },
-        "2022": {
-          "ci_lower": 11.38,
-          "ci_upper": 103.04
-        },
-        "2023": {
-          "ci_lower": 21.07,
-          "ci_upper": 216.75
-        },
-        "2024": {
-          "ci_lower": 9.6,
-          "ci_upper": 128.14
-        },
-        "2025": {
-          "ci_lower": 0,
-          "ci_upper": 77.88
-        }
-      },
+      "confidenceIntervals": {},
       "trendClassification": {
         "category": "Uncertain",
         "annualRateOfChange": -21.89,
@@ -3863,7 +3779,7 @@
           "upper": 1.0557
         }
       },
-      "ciSkippedDueToLowDetection": false
+      "ciSkippedDueToLowDetection": true
     },
     "Callophrys rubi": {
       "collatedIndices": {
@@ -4443,7 +4359,7 @@
         "imputation_success": true,
         "baseline_year": 2022,
         "transectCount": 21,
-        "totalVisits": 114,
+        "visitsWithObservations": 114,
         "speciesObservations": 307,
         "detectionRate": 0.028728606356968216
       },
@@ -4453,24 +4369,7 @@
         "rbms_version": "1.2.0",
         "bootstrap_iterations": 500
       },
-      "confidenceIntervals": {
-        "2022": {
-          "ci_lower": 100,
-          "ci_upper": 100
-        },
-        "2023": {
-          "ci_lower": 35.06,
-          "ci_upper": 165.12
-        },
-        "2024": {
-          "ci_lower": 5.21,
-          "ci_upper": 31.1
-        },
-        "2025": {
-          "ci_lower": 0,
-          "ci_upper": 87.07
-        }
-      },
+      "confidenceIntervals": {},
       "trendClassification": {
         "category": "Strong decline",
         "annualRateOfChange": -36.42,
@@ -4484,7 +4383,7 @@
           "upper": 0.828
         }
       },
-      "ciSkippedDueToLowDetection": false
+      "ciSkippedDueToLowDetection": true
     },
     "Carcharodus alceae": {
       "collatedIndices": {
@@ -5066,7 +4965,7 @@
         "imputation_success": true,
         "baseline_year": 2021,
         "transectCount": 13,
-        "totalVisits": 26,
+        "visitsWithObservations": 26,
         "speciesObservations": 33,
         "detectionRate": 0.014669926650366748
       },
@@ -5570,7 +5469,7 @@
         "imputation_success": true,
         "baseline_year": 2021,
         "transectCount": 7,
-        "totalVisits": 20,
+        "visitsWithObservations": 20,
         "speciesObservations": 23,
         "detectionRate": 0.012224938875305624
       },
@@ -6176,7 +6075,7 @@
         "imputation_success": true,
         "baseline_year": 2021,
         "transectCount": 23,
-        "totalVisits": 104,
+        "visitsWithObservations": 104,
         "speciesObservations": 171,
         "detectionRate": 0.055623471882640586
       },
@@ -6803,7 +6702,7 @@
         "imputation_success": true,
         "baseline_year": 2021,
         "transectCount": 13,
-        "totalVisits": 114,
+        "visitsWithObservations": 114,
         "speciesObservations": 191,
         "detectionRate": 0.06968215158924206
       },
@@ -7430,7 +7329,7 @@
         "imputation_success": true,
         "baseline_year": 2021,
         "transectCount": 1,
-        "totalVisits": 8,
+        "visitsWithObservations": 8,
         "speciesObservations": 56,
         "detectionRate": 0.004889975550122249
       },
@@ -8036,7 +7935,7 @@
         "imputation_success": true,
         "baseline_year": 2021,
         "transectCount": 15,
-        "totalVisits": 270,
+        "visitsWithObservations": 270,
         "speciesObservations": 1084,
         "detectionRate": 0.15464547677261614
       },
@@ -8663,7 +8562,7 @@
         "imputation_success": true,
         "baseline_year": 2021,
         "transectCount": 28,
-        "totalVisits": 665,
+        "visitsWithObservations": 665,
         "speciesObservations": 1657,
         "detectionRate": 0.35574572127139364
       },
@@ -9086,7 +8985,7 @@
         "imputation_success": true,
         "baseline_year": 2021,
         "transectCount": 3,
-        "totalVisits": 20,
+        "visitsWithObservations": 20,
         "speciesObservations": 38,
         "detectionRate": 0.009779951100244499
       },
@@ -9692,7 +9591,7 @@
         "imputation_success": true,
         "baseline_year": 2021,
         "transectCount": 9,
-        "totalVisits": 59,
+        "visitsWithObservations": 59,
         "speciesObservations": 317,
         "detectionRate": 0.02689486552567237
       },
@@ -9702,28 +9601,7 @@
         "rbms_version": "1.2.0",
         "bootstrap_iterations": 500
       },
-      "confidenceIntervals": {
-        "2021": {
-          "ci_lower": 100,
-          "ci_upper": 100
-        },
-        "2022": {
-          "ci_lower": 0,
-          "ci_upper": 42471261457.6
-        },
-        "2023": {
-          "ci_lower": 0,
-          "ci_upper": 3903.51
-        },
-        "2024": {
-          "ci_lower": 360.18,
-          "ci_upper": 62643237521.9
-        },
-        "2025": {
-          "ci_lower": 0,
-          "ci_upper": 5481523787.15
-        }
-      },
+      "confidenceIntervals": {},
       "trendClassification": {
         "category": "Uncertain",
         "annualRateOfChange": 72.45,
@@ -9737,7 +9615,7 @@
           "upper": 34.1551
         }
       },
-      "ciSkippedDueToLowDetection": false
+      "ciSkippedDueToLowDetection": true
     },
     "Euchloe crameri": {
       "collatedIndices": {
@@ -10319,7 +10197,7 @@
         "imputation_success": true,
         "baseline_year": 2021,
         "transectCount": 10,
-        "totalVisits": 75,
+        "visitsWithObservations": 75,
         "speciesObservations": 180,
         "detectionRate": 0.03606356968215159
       },
@@ -10329,28 +10207,7 @@
         "rbms_version": "1.2.0",
         "bootstrap_iterations": 500
       },
-      "confidenceIntervals": {
-        "2021": {
-          "ci_lower": 100,
-          "ci_upper": 100
-        },
-        "2022": {
-          "ci_lower": 34.84,
-          "ci_upper": 459.09
-        },
-        "2023": {
-          "ci_lower": 84,
-          "ci_upper": 1372.88
-        },
-        "2024": {
-          "ci_lower": 46.75,
-          "ci_upper": 873.23
-        },
-        "2025": {
-          "ci_lower": 49.36,
-          "ci_upper": 1361.66
-        }
-      },
+      "confidenceIntervals": {},
       "trendClassification": {
         "category": "Uncertain",
         "annualRateOfChange": 14.02,
@@ -10364,7 +10221,7 @@
           "upper": 1.9353
         }
       },
-      "ciSkippedDueToLowDetection": false
+      "ciSkippedDueToLowDetection": true
     },
     "Euphydryas aurinia": {
       "collatedIndices": {
@@ -10946,7 +10803,7 @@
         "imputation_success": true,
         "baseline_year": 2021,
         "transectCount": 11,
-        "totalVisits": 76,
+        "visitsWithObservations": 76,
         "speciesObservations": 331,
         "detectionRate": 0.04645476772616137
       },
@@ -10956,28 +10813,7 @@
         "rbms_version": "1.2.0",
         "bootstrap_iterations": 500
       },
-      "confidenceIntervals": {
-        "2021": {
-          "ci_lower": 100,
-          "ci_upper": 100
-        },
-        "2022": {
-          "ci_lower": 49.8,
-          "ci_upper": 235.98
-        },
-        "2023": {
-          "ci_lower": 34.72,
-          "ci_upper": 204.52
-        },
-        "2024": {
-          "ci_lower": 25.73,
-          "ci_upper": 218.35
-        },
-        "2025": {
-          "ci_lower": 24.98,
-          "ci_upper": 94.89
-        }
-      },
+      "confidenceIntervals": {},
       "trendClassification": {
         "category": "Uncertain",
         "annualRateOfChange": -21.34,
@@ -10991,7 +10827,7 @@
           "upper": 1.0708
         }
       },
-      "ciSkippedDueToLowDetection": false
+      "ciSkippedDueToLowDetection": true
     },
     "Fabriciana niobe": {
       "collatedIndices": {
@@ -11573,7 +11409,7 @@
         "imputation_success": true,
         "baseline_year": 2021,
         "transectCount": 2,
-        "totalVisits": 18,
+        "visitsWithObservations": 18,
         "speciesObservations": 53,
         "detectionRate": 0.011002444987775062
       },
@@ -12179,7 +12015,7 @@
         "imputation_success": true,
         "baseline_year": 2021,
         "transectCount": 3,
-        "totalVisits": 33,
+        "visitsWithObservations": 33,
         "speciesObservations": 88,
         "detectionRate": 0.020171149144254278
       },
@@ -12785,7 +12621,7 @@
         "imputation_success": true,
         "baseline_year": 2021,
         "transectCount": 9,
-        "totalVisits": 35,
+        "visitsWithObservations": 35,
         "speciesObservations": 123,
         "detectionRate": 0.019559902200488997
       },
@@ -13391,7 +13227,7 @@
         "imputation_success": true,
         "baseline_year": 2021,
         "transectCount": 18,
-        "totalVisits": 284,
+        "visitsWithObservations": 284,
         "speciesObservations": 1232,
         "detectionRate": 0.15831295843520782
       },
@@ -14018,7 +13854,7 @@
         "imputation_success": true,
         "baseline_year": 2021,
         "transectCount": 19,
-        "totalVisits": 103,
+        "visitsWithObservations": 103,
         "speciesObservations": 244,
         "detectionRate": 0.05134474327628362
       },
@@ -14645,7 +14481,7 @@
         "imputation_success": true,
         "baseline_year": 2021,
         "transectCount": 13,
-        "totalVisits": 97,
+        "visitsWithObservations": 97,
         "speciesObservations": 504,
         "detectionRate": 0.059290953545232276
       },
@@ -15271,7 +15107,7 @@
         "imputation_success": true,
         "baseline_year": 2022,
         "transectCount": 2,
-        "totalVisits": 14,
+        "visitsWithObservations": 14,
         "speciesObservations": 43,
         "detectionRate": 0.008557457212713936
       },
@@ -15877,7 +15713,7 @@
         "imputation_success": true,
         "baseline_year": 2021,
         "transectCount": 4,
-        "totalVisits": 20,
+        "visitsWithObservations": 20,
         "speciesObservations": 42,
         "detectionRate": 0.012224938875305624
       },
@@ -16483,7 +16319,7 @@
         "imputation_success": true,
         "baseline_year": 2021,
         "transectCount": 9,
-        "totalVisits": 118,
+        "visitsWithObservations": 118,
         "speciesObservations": 423,
         "detectionRate": 0.07212713936430318
       },
@@ -17110,7 +16946,7 @@
         "imputation_success": true,
         "baseline_year": 2021,
         "transectCount": 25,
-        "totalVisits": 259,
+        "visitsWithObservations": 259,
         "speciesObservations": 418,
         "detectionRate": 0.1466992665036675
       },
@@ -17737,7 +17573,7 @@
         "imputation_success": true,
         "baseline_year": 2021,
         "transectCount": 6,
-        "totalVisits": 30,
+        "visitsWithObservations": 30,
         "speciesObservations": 58,
         "detectionRate": 0.018337408312958436
       },
@@ -18343,7 +18179,7 @@
         "imputation_success": true,
         "baseline_year": 2021,
         "transectCount": 4,
-        "totalVisits": 27,
+        "visitsWithObservations": 27,
         "speciesObservations": 47,
         "detectionRate": 0.01650366748166259
       },
@@ -18949,7 +18785,7 @@
         "imputation_success": true,
         "baseline_year": 2021,
         "transectCount": 21,
-        "totalVisits": 188,
+        "visitsWithObservations": 188,
         "speciesObservations": 506,
         "detectionRate": 0.11308068459657701
       },
@@ -19576,7 +19412,7 @@
         "imputation_success": true,
         "baseline_year": 2021,
         "transectCount": 22,
-        "totalVisits": 351,
+        "visitsWithObservations": 351,
         "speciesObservations": 1119,
         "detectionRate": 0.2017114914425428
       },
@@ -20203,7 +20039,7 @@
         "imputation_success": true,
         "baseline_year": 2021,
         "transectCount": 11,
-        "totalVisits": 97,
+        "visitsWithObservations": 97,
         "speciesObservations": 260,
         "detectionRate": 0.05378973105134474
       },
@@ -20830,7 +20666,7 @@
         "imputation_success": true,
         "baseline_year": 2021,
         "transectCount": 27,
-        "totalVisits": 257,
+        "visitsWithObservations": 257,
         "speciesObservations": 2534,
         "detectionRate": 0.15158924205378974
       },
@@ -21457,7 +21293,7 @@
         "imputation_success": true,
         "baseline_year": 2021,
         "transectCount": 4,
-        "totalVisits": 28,
+        "visitsWithObservations": 28,
         "speciesObservations": 87,
         "detectionRate": 0.017114914425427872
       },
@@ -22063,7 +21899,7 @@
         "imputation_success": true,
         "baseline_year": 2021,
         "transectCount": 3,
-        "totalVisits": 23,
+        "visitsWithObservations": 23,
         "speciesObservations": 48,
         "detectionRate": 0.014058679706601468
       },
@@ -22669,7 +22505,7 @@
         "imputation_success": true,
         "baseline_year": 2021,
         "transectCount": 26,
-        "totalVisits": 550,
+        "visitsWithObservations": 550,
         "speciesObservations": 1463,
         "detectionRate": 0.30623471882640585
       },
@@ -23296,7 +23132,7 @@
         "imputation_success": true,
         "baseline_year": 2021,
         "transectCount": 10,
-        "totalVisits": 48,
+        "visitsWithObservations": 48,
         "speciesObservations": 96,
         "detectionRate": 0.028728606356968216
       },
@@ -23306,28 +23142,7 @@
         "rbms_version": "1.2.0",
         "bootstrap_iterations": 500
       },
-      "confidenceIntervals": {
-        "2021": {
-          "ci_lower": 100,
-          "ci_upper": 100
-        },
-        "2022": {
-          "ci_lower": 32.66,
-          "ci_upper": 821.53
-        },
-        "2023": {
-          "ci_lower": 0,
-          "ci_upper": 1152.23
-        },
-        "2024": {
-          "ci_lower": 92.17,
-          "ci_upper": 2439.68
-        },
-        "2025": {
-          "ci_lower": 0,
-          "ci_upper": 1253.77
-        }
-      },
+      "confidenceIntervals": {},
       "trendClassification": {
         "category": "Uncertain",
         "annualRateOfChange": -2.99,
@@ -23341,7 +23156,7 @@
           "upper": 1.8486
         }
       },
-      "ciSkippedDueToLowDetection": false
+      "ciSkippedDueToLowDetection": true
     },
     "Maniola jurtina": {
       "collatedIndices": {
@@ -23923,7 +23738,7 @@
         "imputation_success": true,
         "baseline_year": 2021,
         "transectCount": 25,
-        "totalVisits": 858,
+        "visitsWithObservations": 858,
         "speciesObservations": 6744,
         "detectionRate": 0.5220048899755502
       },
@@ -24550,7 +24365,7 @@
         "imputation_success": true,
         "baseline_year": 2021,
         "transectCount": 9,
-        "totalVisits": 55,
+        "visitsWithObservations": 55,
         "speciesObservations": 206,
         "detectionRate": 0.0323960880195599
       },
@@ -24560,28 +24375,7 @@
         "rbms_version": "1.2.0",
         "bootstrap_iterations": 500
       },
-      "confidenceIntervals": {
-        "2021": {
-          "ci_lower": 100,
-          "ci_upper": 100
-        },
-        "2022": {
-          "ci_lower": 28.82,
-          "ci_upper": 128.96
-        },
-        "2023": {
-          "ci_lower": 22.24,
-          "ci_upper": 192.11
-        },
-        "2024": {
-          "ci_lower": 21.94,
-          "ci_upper": 138.04
-        },
-        "2025": {
-          "ci_lower": 14.71,
-          "ci_upper": 262.44
-        }
-      },
+      "confidenceIntervals": {},
       "trendClassification": {
         "category": "Uncertain",
         "annualRateOfChange": -22.31,
@@ -24595,7 +24389,7 @@
           "upper": 1.2119
         }
       },
-      "ciSkippedDueToLowDetection": false
+      "ciSkippedDueToLowDetection": true
     },
     "Melanargia lachesis": {
       "collatedIndices": {
@@ -25177,7 +24971,7 @@
         "imputation_success": true,
         "baseline_year": 2021,
         "transectCount": 14,
-        "totalVisits": 129,
+        "visitsWithObservations": 129,
         "speciesObservations": 1704,
         "detectionRate": 0.07885085574572127
       },
@@ -25804,7 +25598,7 @@
         "imputation_success": true,
         "baseline_year": 2021,
         "transectCount": 4,
-        "totalVisits": 20,
+        "visitsWithObservations": 20,
         "speciesObservations": 49,
         "detectionRate": 0.012224938875305624
       },
@@ -26410,7 +26204,7 @@
         "imputation_success": true,
         "baseline_year": 2021,
         "transectCount": 7,
-        "totalVisits": 71,
+        "visitsWithObservations": 71,
         "speciesObservations": 504,
         "detectionRate": 0.042787286063569685
       },
@@ -26420,28 +26214,7 @@
         "rbms_version": "1.2.0",
         "bootstrap_iterations": 500
       },
-      "confidenceIntervals": {
-        "2021": {
-          "ci_lower": 100,
-          "ci_upper": 100
-        },
-        "2022": {
-          "ci_lower": 10.14,
-          "ci_upper": 42.8
-        },
-        "2023": {
-          "ci_lower": 24.07,
-          "ci_upper": 95.16
-        },
-        "2024": {
-          "ci_lower": 0,
-          "ci_upper": 106.72
-        },
-        "2025": {
-          "ci_lower": 8.8,
-          "ci_upper": 121.6
-        }
-      },
+      "confidenceIntervals": {},
       "trendClassification": {
         "category": "Uncertain",
         "annualRateOfChange": -9.38,
@@ -26455,7 +26228,7 @@
           "upper": 1.1408
         }
       },
-      "ciSkippedDueToLowDetection": false
+      "ciSkippedDueToLowDetection": true
     },
     "Melitaea phoebe": {
       "collatedIndices": {
@@ -27037,7 +26810,7 @@
         "imputation_success": true,
         "baseline_year": 2021,
         "transectCount": 3,
-        "totalVisits": 13,
+        "visitsWithObservations": 13,
         "speciesObservations": 26,
         "detectionRate": 0.007946210268948655
       },
@@ -27643,7 +27416,7 @@
         "imputation_success": true,
         "baseline_year": 2021,
         "transectCount": 10,
-        "totalVisits": 34,
+        "visitsWithObservations": 34,
         "speciesObservations": 41,
         "detectionRate": 0.01650366748166259
       },
@@ -28249,7 +28022,7 @@
         "imputation_success": true,
         "baseline_year": 2021,
         "transectCount": 22,
-        "totalVisits": 360,
+        "visitsWithObservations": 360,
         "speciesObservations": 823,
         "detectionRate": 0.18948655256723718
       },
@@ -28876,7 +28649,7 @@
         "imputation_success": true,
         "baseline_year": 2021,
         "transectCount": 28,
-        "totalVisits": 1157,
+        "visitsWithObservations": 1157,
         "speciesObservations": 5826,
         "detectionRate": 0.613080684596577
       },
@@ -29503,7 +29276,7 @@
         "imputation_success": true,
         "baseline_year": 2021,
         "transectCount": 28,
-        "totalVisits": 841,
+        "visitsWithObservations": 841,
         "speciesObservations": 4677,
         "detectionRate": 0.41992665036674814
       },
@@ -30130,7 +29903,7 @@
         "imputation_success": true,
         "baseline_year": 2021,
         "transectCount": 21,
-        "totalVisits": 205,
+        "visitsWithObservations": 205,
         "speciesObservations": 786,
         "detectionRate": 0.1069682151589242
       },
@@ -30757,7 +30530,7 @@
         "imputation_success": true,
         "baseline_year": 2021,
         "transectCount": 28,
-        "totalVisits": 784,
+        "visitsWithObservations": 784,
         "speciesObservations": 4167,
         "detectionRate": 0.41503667481662593
       },
@@ -31384,7 +31157,7 @@
         "imputation_success": true,
         "baseline_year": 2021,
         "transectCount": 2,
-        "totalVisits": 13,
+        "visitsWithObservations": 13,
         "speciesObservations": 234,
         "detectionRate": 0.007946210268948655
       },
@@ -31990,7 +31763,7 @@
         "imputation_success": true,
         "baseline_year": 2021,
         "transectCount": 6,
-        "totalVisits": 26,
+        "visitsWithObservations": 26,
         "speciesObservations": 34,
         "detectionRate": 0.01589242053789731
       },
@@ -32596,7 +32369,7 @@
         "imputation_success": true,
         "baseline_year": 2021,
         "transectCount": 2,
-        "totalVisits": 48,
+        "visitsWithObservations": 48,
         "speciesObservations": 137,
         "detectionRate": 0.029339853300733496
       },
@@ -32606,28 +32379,7 @@
         "rbms_version": "1.2.0",
         "bootstrap_iterations": 500
       },
-      "confidenceIntervals": {
-        "2021": {
-          "ci_lower": 100,
-          "ci_upper": 100
-        },
-        "2022": {
-          "ci_lower": 39.53,
-          "ci_upper": 100
-        },
-        "2023": {
-          "ci_lower": 36.43,
-          "ci_upper": 97448034462487.77
-        },
-        "2024": {
-          "ci_lower": 31.78,
-          "ci_upper": 100
-        },
-        "2025": {
-          "ci_lower": 26.36,
-          "ci_upper": 100
-        }
-      },
+      "confidenceIntervals": {},
       "trendClassification": {
         "category": "Uncertain",
         "annualRateOfChange": -22.18,
@@ -32641,7 +32393,7 @@
           "upper": 1
         }
       },
-      "ciSkippedDueToLowDetection": false
+      "ciSkippedDueToLowDetection": true
     },
     "Polyommatus icarus": {
       "collatedIndices": {
@@ -33223,7 +32975,7 @@
         "imputation_success": true,
         "baseline_year": 2021,
         "transectCount": 21,
-        "totalVisits": 161,
+        "visitsWithObservations": 161,
         "speciesObservations": 581,
         "detectionRate": 0.09229828850855745
       },
@@ -33850,7 +33602,7 @@
         "imputation_success": true,
         "baseline_year": 2021,
         "transectCount": 14,
-        "totalVisits": 47,
+        "visitsWithObservations": 47,
         "speciesObservations": 98,
         "detectionRate": 0.02750611246943765
       },
@@ -33860,28 +33612,7 @@
         "rbms_version": "1.2.0",
         "bootstrap_iterations": 500
       },
-      "confidenceIntervals": {
-        "2021": {
-          "ci_lower": 100,
-          "ci_upper": 100
-        },
-        "2022": {
-          "ci_lower": 0,
-          "ci_upper": 560.6
-        },
-        "2023": {
-          "ci_lower": 100.52,
-          "ci_upper": 3082.9
-        },
-        "2024": {
-          "ci_lower": 16.48,
-          "ci_upper": 438.04
-        },
-        "2025": {
-          "ci_lower": 38.45,
-          "ci_upper": 953.3
-        }
-      },
+      "confidenceIntervals": {},
       "trendClassification": {
         "category": "Uncertain",
         "annualRateOfChange": -9,
@@ -33895,7 +33626,7 @@
           "upper": 6.1099
         }
       },
-      "ciSkippedDueToLowDetection": false
+      "ciSkippedDueToLowDetection": true
     },
     "Pyronia bathseba": {
       "collatedIndices": {
@@ -34477,7 +34208,7 @@
         "imputation_success": true,
         "baseline_year": 2021,
         "transectCount": 19,
-        "totalVisits": 193,
+        "visitsWithObservations": 193,
         "speciesObservations": 1066,
         "detectionRate": 0.11797066014669927
       },
@@ -35104,7 +34835,7 @@
         "imputation_success": true,
         "baseline_year": 2021,
         "transectCount": 25,
-        "totalVisits": 483,
+        "visitsWithObservations": 483,
         "speciesObservations": 2489,
         "detectionRate": 0.2946210268948655
       },
@@ -35731,7 +35462,7 @@
         "imputation_success": true,
         "baseline_year": 2021,
         "transectCount": 18,
-        "totalVisits": 171,
+        "visitsWithObservations": 171,
         "speciesObservations": 1906,
         "detectionRate": 0.1039119804400978
       },
@@ -36358,7 +36089,7 @@
         "imputation_success": true,
         "baseline_year": 2021,
         "transectCount": 17,
-        "totalVisits": 140,
+        "visitsWithObservations": 140,
         "speciesObservations": 619,
         "detectionRate": 0.08496332518337409
       },
@@ -36985,7 +36716,7 @@
         "imputation_success": true,
         "baseline_year": 2021,
         "transectCount": 8,
-        "totalVisits": 38,
+        "visitsWithObservations": 38,
         "speciesObservations": 130,
         "detectionRate": 0.023227383863080684
       },
@@ -37591,7 +37322,7 @@
         "imputation_success": true,
         "baseline_year": 2021,
         "transectCount": 6,
-        "totalVisits": 41,
+        "visitsWithObservations": 41,
         "speciesObservations": 88,
         "detectionRate": 0.02444987775061125
       },
@@ -38197,7 +37928,7 @@
         "imputation_success": true,
         "baseline_year": 2021,
         "transectCount": 10,
-        "totalVisits": 68,
+        "visitsWithObservations": 68,
         "speciesObservations": 194,
         "detectionRate": 0.04156479217603912
       },
@@ -38207,28 +37938,7 @@
         "rbms_version": "1.2.0",
         "bootstrap_iterations": 500
       },
-      "confidenceIntervals": {
-        "2021": {
-          "ci_lower": 100,
-          "ci_upper": 100
-        },
-        "2022": {
-          "ci_lower": 37.41,
-          "ci_upper": 206.79
-        },
-        "2023": {
-          "ci_lower": 8.72,
-          "ci_upper": 107.67
-        },
-        "2024": {
-          "ci_lower": 12.05,
-          "ci_upper": 132.27
-        },
-        "2025": {
-          "ci_lower": 12.95,
-          "ci_upper": 142.61
-        }
-      },
+      "confidenceIntervals": {},
       "trendClassification": {
         "category": "Moderate decline",
         "annualRateOfChange": -11.7,
@@ -38242,7 +37952,7 @@
           "upper": 0.9979
         }
       },
-      "ciSkippedDueToLowDetection": false
+      "ciSkippedDueToLowDetection": true
     },
     "Thymelicus sylvestris": {
       "collatedIndices": {
@@ -38824,7 +38534,7 @@
         "imputation_success": true,
         "baseline_year": 2021,
         "transectCount": 18,
-        "totalVisits": 79,
+        "visitsWithObservations": 79,
         "speciesObservations": 242,
         "detectionRate": 0.04828850855745721
       },
@@ -38834,28 +38544,7 @@
         "rbms_version": "1.2.0",
         "bootstrap_iterations": 500
       },
-      "confidenceIntervals": {
-        "2021": {
-          "ci_lower": 100,
-          "ci_upper": 100
-        },
-        "2022": {
-          "ci_lower": 36.45,
-          "ci_upper": 103.89
-        },
-        "2023": {
-          "ci_lower": 18.64,
-          "ci_upper": 93.44
-        },
-        "2024": {
-          "ci_lower": 7.35,
-          "ci_upper": 95.98
-        },
-        "2025": {
-          "ci_lower": 37.16,
-          "ci_upper": 169.34
-        }
-      },
+      "confidenceIntervals": {},
       "trendClassification": {
         "category": "Uncertain",
         "annualRateOfChange": -5.86,
@@ -38869,7 +38558,7 @@
           "upper": 1.0796
         }
       },
-      "ciSkippedDueToLowDetection": false
+      "ciSkippedDueToLowDetection": true
     },
     "Vanessa atalanta": {
       "collatedIndices": {
@@ -39451,7 +39140,7 @@
         "imputation_success": true,
         "baseline_year": 2021,
         "transectCount": 28,
-        "totalVisits": 264,
+        "visitsWithObservations": 264,
         "speciesObservations": 498,
         "detectionRate": 0.10513447432762836
       },
@@ -40078,7 +39767,7 @@
         "imputation_success": true,
         "baseline_year": 2021,
         "transectCount": 25,
-        "totalVisits": 171,
+        "visitsWithObservations": 171,
         "speciesObservations": 389,
         "detectionRate": 0.09168704156479218
       },
@@ -40705,7 +40394,7 @@
         "imputation_success": true,
         "baseline_year": 2021,
         "transectCount": 14,
-        "totalVisits": 109,
+        "visitsWithObservations": 109,
         "speciesObservations": 443,
         "detectionRate": 0.04584352078239609
       },
@@ -40715,28 +40404,7 @@
         "rbms_version": "1.2.0",
         "bootstrap_iterations": 500
       },
-      "confidenceIntervals": {
-        "2021": {
-          "ci_lower": 100,
-          "ci_upper": 100
-        },
-        "2022": {
-          "ci_lower": 69.94,
-          "ci_upper": 946.31
-        },
-        "2023": {
-          "ci_lower": 103.02,
-          "ci_upper": 2577.72
-        },
-        "2024": {
-          "ci_lower": 69.44,
-          "ci_upper": 1971.32
-        },
-        "2025": {
-          "ci_lower": 46.38,
-          "ci_upper": 637.27
-        }
-      },
+      "confidenceIntervals": {},
       "trendClassification": {
         "category": "Uncertain",
         "annualRateOfChange": -3.81,
@@ -40750,7 +40418,7 @@
           "upper": 1.5277
         }
       },
-      "ciSkippedDueToLowDetection": false
+      "ciSkippedDueToLowDetection": true
     },
     "Zizeeria knysna": {
       "collatedIndices": {
@@ -41230,7 +40898,7 @@
         "imputation_success": true,
         "baseline_year": 2021,
         "transectCount": 5,
-        "totalVisits": 17,
+        "visitsWithObservations": 17,
         "speciesObservations": 77,
         "detectionRate": 0.01039119804400978
       },
