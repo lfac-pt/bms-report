@@ -191,6 +191,7 @@ function ButterflyTransects() {
   const [distritoFilters, setDistritoFilters] = useState<string[]>([]);
   const [climaticRegionFilters, setClimaticRegionFilters] = useState<string[]>([]);
   const [entidadeFilters, setEntidadeFilters] = useState<string[]>([]);
+  const [protectedAreaFilters, setProtectedAreaFilters] = useState<string[]>([]);
   const [pageSize, setPageSize] = useState(20);
   const [currentPage, setCurrentPage] = useState(1);
 
@@ -542,6 +543,27 @@ function ButterflyTransects() {
         .sort()
         .map(r => ({ text: r, value: r })),
       filteredValue: climaticRegionFilters,
+    },
+    {
+      title: "Área Protegida",
+      dataIndex: "protectedArea",
+      key: "protectedArea",
+      width: 200,
+      filters: [
+        { text: "Dentro de áreas protegidas", value: "inside" },
+        { text: "Fora de áreas protegidas", value: "outside" },
+        ...Array.from(new Set(data.map(t => t.protectedArea)))
+          .filter((p): p is string => p !== null && p !== "")
+          .sort()
+          .map(p => ({ text: p, value: p })),
+      ],
+      filteredValue: protectedAreaFilters,
+      onFilter: (value, record) => {
+        if (value === "inside") return record.protectedArea !== null;
+        if (value === "outside") return record.protectedArea === null;
+        return record.protectedArea === value;
+      },
+      render: (protectedArea: string | null) => protectedArea || "-",
     },
   ];
 
@@ -942,6 +964,17 @@ function ButterflyTransects() {
                   JSON.stringify(newFilters.sort()) !== JSON.stringify([...entidadeFilters].sort());
                 if (changed) {
                   setEntidadeFilters(newFilters);
+                  filtersChanged = true;
+                }
+              }
+
+              if (filters.protectedArea !== undefined) {
+                const newFilters = filters.protectedArea ? (filters.protectedArea as string[]) : [];
+                const changed =
+                  JSON.stringify(newFilters.sort()) !==
+                  JSON.stringify([...protectedAreaFilters].sort());
+                if (changed) {
+                  setProtectedAreaFilters(newFilters);
                   filtersChanged = true;
                 }
               }

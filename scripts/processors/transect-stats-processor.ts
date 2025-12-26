@@ -12,6 +12,7 @@ import {
 } from "../../src/constants";
 import { getYearFromDate, getMonthFromDate } from "../utils";
 import { getClimaticRegion } from "../config";
+import { findProtectedArea } from "../protected-areas-utils";
 
 /**
  * Calculate statistics for a transect
@@ -94,6 +95,12 @@ export function calculateTransectStats(
 
   // Note: isActive will be determined later based on the most recent year across all transects
 
+  // Check if transect is inside a protected area
+  let protectedArea: string | null = null;
+  if (coords && coords.lat !== null && coords.lon !== null) {
+    protectedArea = findProtectedArea(coords.lon, coords.lat);
+  }
+
   return {
     transectId: transectId,
     transectCode: metadata["Transect Code"] || "",
@@ -118,6 +125,8 @@ export function calculateTransectStats(
     entidade: metadata["Entidade"] || "",
     // Fuzzy coordinates for privacy (approximate location only)
     coordinates: coords,
+    // Protected area (if transect is inside one)
+    protectedArea: protectedArea,
   };
 }
 
