@@ -13,6 +13,65 @@ import {
 import { getYearFromDate, getMonthFromDate } from "../utils";
 import { getClimaticRegion } from "../config";
 import { findProtectedArea } from "../protected-areas-utils";
+import * as fs from "fs";
+import * as path from "path";
+import { parse } from "csv-parse/sync";
+
+const TRANSECTS_METADATA_FILE = path.join(
+  __dirname,
+  "..",
+  "..",
+  "raw-data",
+  "raw transects metadata.csv"
+);
+
+let transectLengthMap: Map<string, number> | null = null;
+
+/**
+ * Load transect metadata (length information) from CSV
+ */
+function loadTransectMetadata(): Map<string, number> {
+  if (transectLengthMap !== null) {
+    return transectLengthMap;
+  }
+
+  transectLengthMap = new Map();
+
+  if (!fs.existsSync(TRANSECTS_METADATA_FILE)) {
+    console.warn(`  Warning: Transects metadata file not found at ${TRANSECTS_METADATA_FILE}`);
+    return transectLengthMap;
+  }
+
+  try {
+    const csvContent = fs.readFileSync(TRANSECTS_METADATA_FILE, "utf8");
+
+    // Parse CSV with proper handling of quoted fields
+    const records = parse(csvContent, {
+      columns: true,
+      skip_empty_lines: true,
+      trim: true,
+    });
+
+    // Extract Site Code and Overall Length (m) from each record
+    for (const record of records) {
+      const siteCode = record["Site Code"];
+      const lengthStr = record["Overall Length (m)"];
+
+      if (siteCode && lengthStr) {
+        const length = parseFloat(lengthStr);
+        if (!isNaN(length)) {
+          transectLengthMap.set(siteCode, length);
+        }
+      }
+    }
+
+    console.log(`  Loaded length data for ${transectLengthMap.size} transects`);
+    return transectLengthMap;
+  } catch (error) {
+    console.error(`  Error loading transect metadata:`, error);
+    return transectLengthMap;
+  }
+}
 
 /**
  * Calculate statistics for a transect
@@ -101,6 +160,11 @@ export function calculateTransectStats(
     protectedArea = findProtectedArea(coords.lon, coords.lat);
   }
 
+  // Get transect length from metadata
+  const lengthMap = loadTransectMetadata();
+  const transectCode = metadata["Transect Code"] || "";
+  const length = lengthMap.get(transectCode) || null;
+
   return {
     transectId: transectId,
     transectCode: metadata["Transect Code"] || "",
@@ -127,6 +191,8 @@ export function calculateTransectStats(
     coordinates: coords,
     // Protected area (if transect is inside one)
     protectedArea: protectedArea,
+    // Transect length in meters
+    length: length,
   };
 }
 

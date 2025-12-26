@@ -203,7 +203,7 @@ function ButterflyTransects() {
   const [gbiData, setGbiData] = useState<GBIData | null>(null);
   const [gbiLoading, setGbiLoading] = useState(true);
 
-  // Column visibility state - Entidade, Concelho, Distrito, and Visitas hidden by default
+  // Column visibility state - Entidade, Concelho, Distrito, Visitas, and Length hidden by default
   const [visibleColumns, setVisibleColumns] = useState<Record<string, boolean>>({
     transectName: true,
     totalSpecies: true,
@@ -214,6 +214,7 @@ function ButterflyTransects() {
     entidade: false, // Hidden by default
     concelho: false, // Hidden by default
     distrito: false, // Hidden by default
+    length: false, // Hidden by default
   });
 
   useEffect(() => {
@@ -600,6 +601,15 @@ function ButterflyTransects() {
       },
       render: (protectedArea: string | null) => protectedArea || "-",
     },
+    {
+      title: "Comprimento (m)",
+      dataIndex: "length",
+      key: "length",
+      width: 120,
+      align: "right",
+      sorter: (a, b) => (a.length || 0) - (b.length || 0),
+      render: (length: number | null) => (length ? length.toLocaleString() : "-"),
+    },
   ];
 
   // Filter columns based on visibility
@@ -636,6 +646,7 @@ function ButterflyTransects() {
     entidade: "Entidade",
     concelho: "Concelho",
     distrito: "Distrito",
+    length: "Comprimento (m)",
   };
 
   const toggleColumn = (columnKey: string) => {
