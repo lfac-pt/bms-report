@@ -1,11 +1,14 @@
 import React, { useEffect, useState } from "react";
-import { Collapse, Typography, Row, Col, Spin } from "antd";
+import { Collapse, Typography, Row, Col, Spin, Popover, List } from "antd";
 import { ArrowUpOutlined, ArrowDownOutlined, MinusOutlined } from "@ant-design/icons";
 import { Link } from "react-router-dom";
 import TrendClassificationBadge from "../TrendClassificationBadge";
 import type { SpeciesTrend as GBISpeciesTrend, TrendCategory } from "../../types/gbiData";
 
 const { Title, Text } = Typography;
+
+// Threshold for flagging species with very large confidence intervals
+const LARGE_CI_THRESHOLD = 5000;
 
 interface SpeciesTrend {
   species: string;
@@ -227,6 +230,20 @@ const SpeciesTrendsSparklines: React.FC = () => {
     {} as Record<TrendCategory | "Unknown", number>
   );
 
+  // Count species with very large confidence intervals
+  const speciesWithLargeCIList = speciesTrends.filter(trend => {
+    if (!trend.ciLower || !trend.ciUpper) return false;
+    // Calculate the maximum CI range across all years
+    const maxCIRange = Math.max(
+      ...trend.ciLower.map((lower, idx) => {
+        const upper = trend.ciUpper![idx];
+        return upper - lower;
+      })
+    );
+    return maxCIRange > LARGE_CI_THRESHOLD;
+  });
+  const speciesWithLargeCI = speciesWithLargeCIList.length;
+
   const items = [
     {
       key: "1",
@@ -284,9 +301,44 @@ const SpeciesTrendsSparklines: React.FC = () => {
                 </>
               )}
               {categorySummary["Unknown"] && (
-                <span style={{ color: "#d9d9d9" }}>
-                  {categorySummary["Unknown"]} sem classificação
-                </span>
+                <>
+                  <span style={{ color: "#d9d9d9" }}>
+                    {categorySummary["Unknown"]} sem classificação
+                  </span>
+                  {" • "}
+                </>
+              )}
+              {speciesWithLargeCI > 0 && (
+                <Popover
+                  content={
+                    <div style={{ maxWidth: 400, maxHeight: 300, overflowY: "auto" }}>
+                      <Typography.Text strong style={{ display: "block", marginBottom: 8 }}>
+                        Espécies com IC muito largo (&gt; {LARGE_CI_THRESHOLD})
+                      </Typography.Text>
+                      <List
+                        size="small"
+                        dataSource={speciesWithLargeCIList.map(t => t.species).sort()}
+                        renderItem={species => (
+                          <List.Item style={{ padding: "4px 0" }}>
+                            <Link
+                              to={`/species/${encodeURIComponent(species)}`}
+                              style={{ fontSize: 12 }}
+                              onClick={e => e.stopPropagation()}
+                            >
+                              {species}
+                            </Link>
+                          </List.Item>
+                        )}
+                      />
+                    </div>
+                  }
+                  title="Espécies com IC muito largo"
+                  trigger="hover"
+                >
+                  <span style={{ color: "#faad14", cursor: "help" }}>
+                    ⚠ {speciesWithLargeCI} com IC muito largo
+                  </span>
+                </Popover>
               )}
             </Text>
           </div>
