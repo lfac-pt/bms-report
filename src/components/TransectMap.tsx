@@ -1,6 +1,7 @@
 import { MapContainer, TileLayer, CircleMarker, Popup, GeoJSON } from "react-leaflet";
 import { TransectStats } from "../types/transectStats";
 import { useEffect, useState } from "react";
+import type { FeatureCollection } from "geojson";
 import "leaflet/dist/leaflet.css";
 
 interface TransectMapProps {
@@ -8,8 +9,7 @@ interface TransectMapProps {
 }
 
 function TransectMap({ transects }: TransectMapProps) {
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const [protectedAreas, setProtectedAreas] = useState<any>(null);
+  const [protectedAreas, setProtectedAreas] = useState<FeatureCollection | null>(null);
 
   // Load protected areas GeoJSON
   useEffect(() => {
@@ -83,7 +83,7 @@ function TransectMap({ transects }: TransectMapProps) {
           {/* Protected Areas Layer - rendered behind transects */}
           {protectedAreas && (
             <GeoJSON
-              data={protectedAreas as any}
+              data={protectedAreas}
               style={{
                 fillColor: "#2d5016",
                 fillOpacity: 0.25,

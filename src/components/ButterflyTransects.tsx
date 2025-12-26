@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useMemo } from "react";
 import { Link } from "react-router-dom";
 import {
   Table,
@@ -407,6 +407,72 @@ function ButterflyTransects() {
   const totalConcelhos = 278; // Total concelhos in mainland Portugal (excluding Azores and Madeira)
   const totalDistritos = 18; // Total distritos in mainland Portugal
 
+  // Memoize filter options to avoid recalculating on every render
+  const yearsActiveFilterOptions = useMemo(
+    () => [
+      {
+        text: "Ativos na última época",
+        value: "lastSeason",
+      },
+      {
+        text: "Não ativos na última época",
+        value: "notLastSeason",
+      },
+      ...Array.from(new Set(data.map(t => t.yearsActive)))
+        .sort((a, b) => b - a)
+        .map(years => ({ text: years.toString(), value: years })),
+    ],
+    [data]
+  );
+
+  const entidadeFilterOptions = useMemo(
+    () =>
+      Array.from(new Set(data.map(t => t.entidade)))
+        .filter(e => e)
+        .sort()
+        .map(e => ({ text: e, value: e })),
+    [data]
+  );
+
+  const concelhoFilterOptions = useMemo(
+    () =>
+      Array.from(new Set(data.map(t => t.concelho)))
+        .filter(c => c)
+        .sort()
+        .map(c => ({ text: c, value: c })),
+    [data]
+  );
+
+  const distritoFilterOptions = useMemo(
+    () =>
+      Array.from(new Set(data.map(t => t.distrito)))
+        .filter(d => d)
+        .sort()
+        .map(d => ({ text: d, value: d })),
+    [data]
+  );
+
+  const climaticRegionFilterOptions = useMemo(
+    () =>
+      Array.from(new Set(data.map(t => t.climaticRegion)))
+        .filter(r => r)
+        .sort()
+        .map(r => ({ text: r, value: r })),
+    [data]
+  );
+
+  const protectedAreaFilterOptions = useMemo(
+    () => [
+      { text: "Dentro de áreas protegidas", value: "inside" },
+      { text: "Fora de áreas protegidas", value: "outside" },
+      ...Array.from(new Set(data.map(t => t.protectedArea)))
+        .filter((p): p is string => p !== null && p !== "")
+        .sort()
+        .map(p => ({ text: p, value: p })),
+    ],
+    [data]
+  );
+
   const columns: ColumnsType<TransectStats> = [
     {
       title: "Transecto",
@@ -485,19 +551,7 @@ function ButterflyTransects() {
         }
         return yearsActive;
       },
-      filters: [
-        {
-          text: "Ativos na última época",
-          value: "lastSeason",
-        },
-        {
-          text: "Não ativos na última época",
-          value: "notLastSeason",
-        },
-        ...Array.from(new Set(data.map(t => t.yearsActive)))
-          .sort((a, b) => b - a)
-          .map(years => ({ text: years.toString(), value: years })),
-      ],
+      filters: yearsActiveFilterOptions,
       filteredValue: yearsActiveFilters,
     },
     {
@@ -505,10 +559,7 @@ function ButterflyTransects() {
       dataIndex: "entidade",
       key: "entidade",
       width: 150,
-      filters: Array.from(new Set(data.map(t => t.entidade)))
-        .filter(e => e)
-        .sort()
-        .map(e => ({ text: e, value: e })),
+      filters: entidadeFilterOptions,
       filteredValue: entidadeFilters,
     },
     {
@@ -516,10 +567,7 @@ function ButterflyTransects() {
       dataIndex: "concelho",
       key: "concelho",
       width: 150,
-      filters: Array.from(new Set(data.map(t => t.concelho)))
-        .filter(c => c)
-        .sort()
-        .map(c => ({ text: c, value: c })),
+      filters: concelhoFilterOptions,
       filteredValue: concelhoFilters,
     },
     {
@@ -527,10 +575,7 @@ function ButterflyTransects() {
       dataIndex: "distrito",
       key: "distrito",
       width: 150,
-      filters: Array.from(new Set(data.map(t => t.distrito)))
-        .filter(d => d)
-        .sort()
-        .map(d => ({ text: d, value: d })),
+      filters: distritoFilterOptions,
       filteredValue: distritoFilters,
     },
     {
@@ -538,10 +583,7 @@ function ButterflyTransects() {
       dataIndex: "climaticRegion",
       key: "climaticRegion",
       width: 180,
-      filters: Array.from(new Set(data.map(t => t.climaticRegion)))
-        .filter(r => r)
-        .sort()
-        .map(r => ({ text: r, value: r })),
+      filters: climaticRegionFilterOptions,
       filteredValue: climaticRegionFilters,
     },
     {
@@ -549,14 +591,7 @@ function ButterflyTransects() {
       dataIndex: "protectedArea",
       key: "protectedArea",
       width: 200,
-      filters: [
-        { text: "Dentro de áreas protegidas", value: "inside" },
-        { text: "Fora de áreas protegidas", value: "outside" },
-        ...Array.from(new Set(data.map(t => t.protectedArea)))
-          .filter((p): p is string => p !== null && p !== "")
-          .sort()
-          .map(p => ({ text: p, value: p })),
-      ],
+      filters: protectedAreaFilterOptions,
       filteredValue: protectedAreaFilters,
       onFilter: (value, record) => {
         if (value === "inside") return record.protectedArea !== null;
