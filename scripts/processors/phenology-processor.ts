@@ -154,17 +154,33 @@ export async function calculateRegionalPhenology(
         const regionSanitized = region.replace(/\s+/g, "_").toLowerCase();
         const visitsFile = path.join(TEMP_RBMS_DIR, `visits_${sanitized}_${regionSanitized}.csv`);
         const countsFile = path.join(TEMP_RBMS_DIR, `counts_${sanitized}_${regionSanitized}.csv`);
+        const lengthsFile = path.join(TEMP_RBMS_DIR, `lengths_${sanitized}_${regionSanitized}.csv`);
         const outputFile = path.join(TEMP_RBMS_DIR, `output_${sanitized}_${regionSanitized}.json`);
 
         rbmsUtils.writeCSV(visitsFile, speciesData.visits, ["site_id", "date", "year"]);
         rbmsUtils.writeCSV(countsFile, speciesData.counts, ["site_id", "date", "count"]);
 
-        const args = [visitsFile, countsFile, outputFile, species, baselineYear.toString()];
+        // Create transect lengths CSV
+        const transectLengths = regionTransects.map(t => ({
+          site_id: t.transectId,
+          length_km: t.length / 1000, // Convert meters to km
+        }));
+        rbmsUtils.writeCSV(lengthsFile, transectLengths, ["site_id", "length_km"]);
+
+        const args = [
+          visitsFile,
+          countsFile,
+          outputFile,
+          species,
+          baselineYear.toString(),
+          lengthsFile,
+        ];
 
         // Call rbms R script with caching
         await rbmsUtils.callRbms(rScriptPath, args, 120000, {
           visitsFile,
           countsFile,
+          lengthsFile,
           sourceDataFiles: [ALL_DATA_FILE, METADATA_FILE],
         });
 
@@ -196,6 +212,7 @@ export async function calculateRegionalPhenology(
         // Clean up temp files
         fs.unlinkSync(visitsFile);
         fs.unlinkSync(countsFile);
+        fs.unlinkSync(lengthsFile);
         fs.unlinkSync(outputFile);
       } catch (error) {
         const errorMessage = error instanceof Error ? error.message : String(error);
