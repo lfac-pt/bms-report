@@ -24,13 +24,7 @@ const TRANSECTS_METADATA_FILE = path.join(
   "raw transects metadata.csv"
 );
 
-const CLIMATIC_REGIONS_FILE = path.join(
-  __dirname,
-  "..",
-  "..",
-  "raw-data",
-  "climatic-regions.json"
-);
+const CLIMATIC_REGIONS_FILE = path.join(__dirname, "..", "..", "raw-data", "climatic-regions.json");
 
 let transectLengthMap: Map<string, number> | null = null;
 let climaticRegionsMap: Record<string, string | null> | null = null;

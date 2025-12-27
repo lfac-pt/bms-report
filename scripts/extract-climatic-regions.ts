@@ -54,11 +54,7 @@ function convertToEPSG3035(lat: number, lon: number): [number, number] {
 /**
  * Extract climatic region for a single coordinate
  */
-async function extractClimaticRegion(
-  image: any,
-  lat: number,
-  lon: number
-): Promise<string | null> {
+async function extractClimaticRegion(image: any, lat: number, lon: number): Promise<string | null> {
   try {
     // Convert to EPSG:3035
     const [x, y] = convertToEPSG3035(lat, lon);
@@ -163,11 +159,7 @@ export async function extractClimaticRegions(): Promise<Record<string, string | 
   const climaticRegions: Record<string, string | null> = {};
 
   for (const transect of transects) {
-    const region = await extractClimaticRegion(
-      image,
-      transect.latitude,
-      transect.longitude
-    );
+    const region = await extractClimaticRegion(image, transect.latitude, transect.longitude);
     climaticRegions[transect.transectId] = region;
 
     if (region) {
@@ -177,7 +169,9 @@ export async function extractClimaticRegions(): Promise<Record<string, string | 
 
   // Summary
   const regionsWithData = Object.values(climaticRegions).filter(r => r !== null).length;
-  console.log(`\n✓ Extracted climatic regions for ${regionsWithData}/${transects.length} transects`);
+  console.log(
+    `\n✓ Extracted climatic regions for ${regionsWithData}/${transects.length} transects`
+  );
 
   // Count by region
   const regionCounts: Record<string, number> = {};

@@ -18,7 +18,7 @@ const ZONE_NAMES: Record<number, string> = {
 
 // Colors for climatic regions (light hues)
 const REGION_COLORS: Record<string, string> = {
-  "Lusitano": "#FFD699", // Peach/amber - Atlantic influence
+  Lusitano: "#FFD699", // Peach/amber - Atlantic influence
   "Mediterrânico Norte": "#99C2FF", // Light blue - Northern Mediterranean
   "Mediterrânico Sul": "#FF99B3", // Light pink - Southern Mediterranean
   "Mediterrânico Montanhoso": "#C299FF", // Light purple - Mountains
@@ -143,7 +143,7 @@ function TransectMap({ transects }: TransectMapProps) {
           {environmentalZones && (
             <GeoJSON
               data={environmentalZones}
-              style={(feature) => {
+              style={feature => {
                 const dn = feature?.properties?.DN as number;
                 const color = getRegionColor(dn);
                 return {
