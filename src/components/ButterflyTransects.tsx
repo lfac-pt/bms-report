@@ -214,6 +214,7 @@ function ButterflyTransects() {
     entidade: false, // Hidden by default
     concelho: false, // Hidden by default
     distrito: false, // Hidden by default
+    climaticRegion: true, // BMS environmental zone - shown by default
     length: false, // Hidden by default
   });
 
@@ -646,6 +647,7 @@ function ButterflyTransects() {
     entidade: "Entidade",
     concelho: "Concelho",
     distrito: "Distrito",
+    climaticRegion: "Região Climática",
     length: "Comprimento (m)",
   };
 

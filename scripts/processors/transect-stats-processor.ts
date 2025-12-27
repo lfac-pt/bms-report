@@ -11,7 +11,6 @@ import {
   VALID_SPECIES,
 } from "../../src/constants";
 import { getYearFromDate, getMonthFromDate } from "../utils";
-import { getClimaticRegion } from "../config";
 import { findProtectedArea } from "../protected-areas-utils";
 import * as fs from "fs";
 import * as path from "path";
@@ -25,7 +24,16 @@ const TRANSECTS_METADATA_FILE = path.join(
   "raw transects metadata.csv"
 );
 
+const CLIMATIC_REGIONS_FILE = path.join(
+  __dirname,
+  "..",
+  "..",
+  "raw-data",
+  "climatic-regions.json"
+);
+
 let transectLengthMap: Map<string, number> | null = null;
+let climaticRegionsMap: Record<string, string | null> | null = null;
 
 /**
  * Load transect metadata (length information) from CSV
@@ -70,6 +78,35 @@ function loadTransectMetadata(): Map<string, number> {
   } catch (error) {
     console.error(`  Error loading transect metadata:`, error);
     return transectLengthMap;
+  }
+}
+
+/**
+ * Load climatic regions for transects from JSON file
+ */
+function loadClimaticRegions(): Record<string, string | null> {
+  if (climaticRegionsMap !== null) {
+    return climaticRegionsMap;
+  }
+
+  if (!fs.existsSync(CLIMATIC_REGIONS_FILE)) {
+    console.warn(`  Warning: Climatic regions file not found at ${CLIMATIC_REGIONS_FILE}`);
+    climaticRegionsMap = {};
+    return climaticRegionsMap;
+  }
+
+  try {
+    const jsonContent = fs.readFileSync(CLIMATIC_REGIONS_FILE, "utf8");
+    climaticRegionsMap = JSON.parse(jsonContent);
+
+    const regionsWithData = Object.values(climaticRegionsMap).filter(r => r !== null).length;
+    console.log(`  Loaded climatic regions for ${regionsWithData} transects`);
+
+    return climaticRegionsMap;
+  } catch (error) {
+    console.error(`  Error loading climatic regions:`, error);
+    climaticRegionsMap = {};
+    return climaticRegionsMap;
   }
 }
 
@@ -165,6 +202,10 @@ export function calculateTransectStats(
   const transectCode = metadata["Transect Code"] || "";
   const length = lengthMap.get(transectCode) || null;
 
+  // Get climatic region from BMS environmental zones
+  const climaticRegionsMap = loadClimaticRegions();
+  const climaticRegion = climaticRegionsMap[transectId] || null;
+
   return {
     transectId: transectId,
     transectCode: metadata["Transect Code"] || "",
@@ -184,7 +225,7 @@ export function calculateTransectStats(
     tipologia: metadata["Tipologia"] || "",
     concelho: location ? location.concelho : metadata["Concelho"] || "",
     distrito: location ? location.distrito : "",
-    climaticRegion: getClimaticRegion(location ? location.distrito : ""),
+    climaticRegion: climaticRegion || "Desconhecido",
     responsavel: metadata["Responsável"] || "",
     entidade: metadata["Entidade"] || "",
     // Fuzzy coordinates for privacy (approximate location only)

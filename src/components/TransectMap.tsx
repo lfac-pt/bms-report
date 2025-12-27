@@ -1,6 +1,6 @@
 import { MapContainer, TileLayer, CircleMarker, Popup, GeoJSON } from "react-leaflet";
 import { TransectStats } from "../types/transectStats";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useMemo } from "react";
 import type { FeatureCollection } from "geojson";
 import "leaflet/dist/leaflet.css";
 
@@ -8,8 +8,25 @@ interface TransectMapProps {
   transects: TransectStats[];
 }
 
+// Mapping from zone numbers (DN) to Portuguese region names
+const ZONE_NAMES: Record<number, string> = {
+  9: "Lusitano",
+  11: "Mediterrânico Montanhoso",
+  12: "Mediterrânico Norte",
+  13: "Mediterrânico Sul",
+};
+
+// Colors for climatic regions (light hues)
+const REGION_COLORS: Record<string, string> = {
+  "Lusitano": "#FFD699", // Peach/amber - Atlantic influence
+  "Mediterrânico Norte": "#99C2FF", // Light blue - Northern Mediterranean
+  "Mediterrânico Sul": "#FF99B3", // Light pink - Southern Mediterranean
+  "Mediterrânico Montanhoso": "#C299FF", // Light purple - Mountains
+};
+
 function TransectMap({ transects }: TransectMapProps) {
   const [protectedAreas, setProtectedAreas] = useState<FeatureCollection | null>(null);
+  const [environmentalZones, setEnvironmentalZones] = useState<FeatureCollection | null>(null);
 
   // Load protected areas GeoJSON
   useEffect(() => {
@@ -20,8 +37,50 @@ function TransectMap({ transects }: TransectMapProps) {
       // eslint-disable-next-line no-console
       .catch(err => console.warn("Could not load protected areas:", err));
   }, []);
+
+  // Load environmental zones GeoJSON
+  useEffect(() => {
+    // eslint-disable-next-line no-undef
+    fetch("data/environmental-zones.geojson")
+      .then(res => res.json())
+      .then(data => setEnvironmentalZones(data))
+      // eslint-disable-next-line no-console
+      .catch(err => console.warn("Could not load environmental zones:", err));
+  }, []);
+
   // Filter transects with coordinates
   const transectsWithCoords = transects.filter(t => t.coordinates !== null);
+
+  // All climatic regions for legend (always show all regions)
+  const allRegions = useMemo(() => {
+    // Count transects per region
+    const regionCounts: Record<string, number> = {};
+    transectsWithCoords.forEach(t => {
+      if (t.climaticRegion) {
+        regionCounts[t.climaticRegion] = (regionCounts[t.climaticRegion] || 0) + 1;
+      }
+    });
+
+    // Always show all 4 regions in sorted order
+    const allRegionNames = Object.values(ZONE_NAMES).sort();
+
+    return allRegionNames.map(region => ({
+      region,
+      color: REGION_COLORS[region] || "#E0E0E0",
+      transectCount: regionCounts[region] || 0,
+    }));
+  }, [transectsWithCoords]);
+
+  // Helper function to get region name from zone DN
+  const getRegionName = (dn: number): string => {
+    return ZONE_NAMES[dn] || "Desconhecido";
+  };
+
+  // Helper function to get region color from zone DN
+  const getRegionColor = (dn: number): string => {
+    const regionName = getRegionName(dn);
+    return REGION_COLORS[regionName] || "#E0E0E0";
+  };
 
   // Find the most recent year
   const mostRecentYear =
@@ -79,6 +138,25 @@ function TransectMap({ transects }: TransectMapProps) {
             attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'
             url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
           />
+
+          {/* Regional climatic zones - rendered as background layer */}
+          {environmentalZones && (
+            <GeoJSON
+              data={environmentalZones}
+              style={(feature) => {
+                const dn = feature?.properties?.DN as number;
+                const color = getRegionColor(dn);
+                return {
+                  fillColor: color,
+                  fillOpacity: 0.2,
+                  color: color,
+                  weight: 1.5,
+                  opacity: 0.4,
+                };
+              }}
+              pane="tilePane"
+            />
+          )}
 
           {/* Protected Areas Layer - rendered behind transects */}
           {protectedAreas && (
@@ -153,6 +231,35 @@ function TransectMap({ transects }: TransectMapProps) {
           }}
         >
           <div style={{ fontWeight: 600, marginBottom: 6 }}>Legenda</div>
+
+          {/* Climatic Regions */}
+          {allRegions.length > 0 && (
+            <div style={{ marginBottom: 8, paddingBottom: 8, borderBottom: "1px solid #f0f0f0" }}>
+              <div style={{ fontSize: 11, fontWeight: 500, marginBottom: 4, color: "#666" }}>
+                Regiões Climáticas
+              </div>
+              {allRegions.map((region, idx) => (
+                <div
+                  key={`legend-region-${idx}`}
+                  style={{ display: "flex", alignItems: "center", marginBottom: 2 }}
+                >
+                  <div
+                    style={{
+                      width: 12,
+                      height: 12,
+                      backgroundColor: region.color,
+                      border: `1px solid ${region.color}`,
+                      marginRight: 6,
+                      opacity: 0.6,
+                    }}
+                  />
+                  <span style={{ fontSize: 11 }}>
+                    {region.region.replace("Mediterrânico", "Med.")} ({region.transectCount})
+                  </span>
+                </div>
+              ))}
+            </div>
+          )}
 
           {/* Protected Areas */}
           {protectedAreas && (

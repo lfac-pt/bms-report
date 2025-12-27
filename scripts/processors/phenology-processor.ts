@@ -42,9 +42,15 @@ export async function calculateRegionalPhenology(
   );
   console.log(`  Active in most recent year: ${activeQualityTransects.length}`);
 
-  // Step 2: Group transects by climatic region
+  // Step 2: Group transects by BMS environmental zones
   const transectsByRegion: Record<string, TransectStats[]> = {};
-  const REGIONS = ["Norte", "Centro", "Lisboa e Vale do Tejo", "Alentejo", "Algarve"];
+  // BMS Environmental Zones present in Portugal (from EEA Environmental Stratification)
+  const REGIONS = [
+    "Lusitano",
+    "Mediterrânico Norte",
+    "Mediterrânico Sul",
+    "Mediterrânico Montanhoso",
+  ];
 
   REGIONS.forEach(region => {
     transectsByRegion[region] = activeQualityTransects.filter(t => t.climaticRegion === region);
