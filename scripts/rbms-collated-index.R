@@ -7,8 +7,16 @@
 # - GAM-based flight curves for phenology modeling
 # - Imputation of missing counts using flight curves
 # - GLM-based collated indices aggregating across sites
+# - Transect length normalization for standardized 1-km abundance indices
 #
-# Usage: Rscript rbms-collated-index.R <visits_csv> <counts_csv> <output_json> <species_name> <baseline_year>
+# Usage: Rscript rbms-collated-index.R <visits_csv> <counts_csv> <output_json> <species_name> <baseline_year> <transect_lengths_csv>
+#
+# The transect_lengths_csv is REQUIRED and should contain columns:
+# - site_id: transect identifier matching visits/counts files
+# - length_km: transect length in kilometers
+#
+# Site indices (SINDEX) are normalized by dividing by length_km, producing
+# abundance estimates per 1-km transect following BMS methodology.
 
 suppressPackageStartupMessages({
   library(data.table)
@@ -19,8 +27,8 @@ suppressPackageStartupMessages({
 # Parse command line arguments
 args <- commandArgs(trailingOnly = TRUE)
 
-if (length(args) != 5) {
-  stop("Usage: Rscript rbms-collated-index.R <visits_csv> <counts_csv> <output_json> <species_name> <baseline_year>")
+if (length(args) != 6) {
+  stop("Usage: Rscript rbms-collated-index.R <visits_csv> <counts_csv> <output_json> <species_name> <baseline_year> <transect_lengths_csv>")
 }
 
 visits_file <- args[1]
@@ -28,6 +36,7 @@ counts_file <- args[2]
 output_file <- args[3]
 species_name <- args[4]
 baseline_year <- as.numeric(args[5])
+transect_lengths_file <- args[6]
 
 # Verify input files exist
 if (!file.exists(visits_file)) {
@@ -44,6 +53,27 @@ cat(paste("Reading counts from:", counts_file, "\n"))
 
 visits <- read.csv(visits_file, stringsAsFactors = FALSE)
 counts <- read.csv(counts_file, stringsAsFactors = FALSE)
+
+# Read transect lengths (REQUIRED)
+if (!file.exists(transect_lengths_file)) {
+  stop(paste("Transect lengths file not found:", transect_lengths_file))
+}
+
+cat(paste("Reading transect lengths from:", transect_lengths_file, "\n"))
+transect_lengths <- read.csv(transect_lengths_file, stringsAsFactors = FALSE)
+
+# Verify required columns
+if (!all(c("site_id", "length_km") %in% colnames(transect_lengths))) {
+  stop("Transect lengths file missing required columns (site_id, length_km)")
+}
+
+# Filter to only valid lengths (> 0)
+transect_lengths <- transect_lengths[transect_lengths$length_km > 0, ]
+if (nrow(transect_lengths) == 0) {
+  stop("No valid transect lengths found (all lengths <= 0)")
+}
+
+cat(paste("Loaded transect lengths for", nrow(transect_lengths), "sites\n"))
 
 # Verify data structure
 required_visits_cols <- c("site_id", "date", "year")
@@ -260,6 +290,63 @@ tryCatch({
   cat(paste("Error: Site index calculation failed:", e$message, "\n"))
   stop(e)
 })
+
+# Step 6b: Normalize site indices by transect length (REQUIRED)
+# This follows BMS technical report methodology for standardizing to 1-km transects
+# Instead of using offset(log(TL)) in GLM, we normalize SINDEX directly
+cat("Normalizing site indices by transect length...\n")
+
+  # Merge transect lengths with site_indices using standard R operations
+  # to preserve data.frame structure for boot_sample() compatibility
+  original_nrow <- nrow(site_indices)
+
+  # Create a lookup table for transect lengths
+  length_lookup <- setNames(transect_lengths$length_km, transect_lengths$site_id)
+
+  # Add length_km column by matching SITE_ID
+  site_indices$length_km <- length_lookup[as.character(site_indices$SITE_ID)]
+
+  # Check how many sites have length data
+  sites_with_length <- sum(!is.na(site_indices$length_km))
+  sites_without_length <- sum(is.na(site_indices$length_km))
+
+  if (sites_without_length > 0) {
+    missing_sites <- unique(site_indices$SITE_ID[is.na(site_indices$length_km)])
+    cat(sprintf("Warning: %d/%d site-year records missing transect length\n",
+                sites_without_length, nrow(site_indices)))
+    cat(sprintf("  Missing sites: %s\n", paste(head(missing_sites, 5), collapse = ", ")))
+    if (length(missing_sites) > 5) {
+      cat(sprintf("  ... and %d more\n", length(missing_sites) - 5))
+    }
+    # Use 1.0 km as default for missing lengths (no scaling)
+    site_indices$length_km[is.na(site_indices$length_km)] <- 1.0
+    cat("  Using 1.0 km as default for missing lengths (no normalization)\n")
+  }
+
+  # Check for the SINDEX column (site index value)
+  if (!"SINDEX" %in% colnames(site_indices)) {
+    stop(paste("SINDEX column not found in site_indices. Available columns:",
+               paste(colnames(site_indices), collapse = ", ")))
+  }
+
+  # Store original SINDEX for logging
+  sindex_original_first <- site_indices$SINDEX[1]
+  length_first <- site_indices$length_km[1]
+
+  # Normalize SINDEX by dividing by transect length (km)
+  # This converts to abundance per 1-km transect
+  site_indices$SINDEX <- site_indices$SINDEX / site_indices$length_km
+
+  cat(sprintf("  Normalized %d site-year SINDEX values by transect length\n", sites_with_length))
+  cat(sprintf("  Example: SINDEX %0.2f on %0.2f km transect -> normalized to %0.2f\n",
+              sindex_original_first,
+              length_first,
+              site_indices$SINDEX[1]))
+
+  # Remove the temporary length_km column to avoid interfering with rbms functions
+  site_indices$length_km <- NULL
+
+  cat("  [OK] Site indices normalized to 1-km transect equivalents\n")
 
 # Step 7: Generate bootstrap samples for confidence intervals
 cat("Generating bootstrap samples (n=500)...\n")
@@ -741,7 +828,7 @@ output <- list(
   phenology_curves = pheno_curves,
   data_quality = data_quality,
   processing_info = list(
-    method = "rbms (GAM flight curves + GLM collated index + bootstrap CI + linear trend)",
+    method = "rbms (GAM flight curves + GLM collated index + bootstrap CI + linear trend + transect length normalization)",
     timestamp = format(Sys.time(), "%Y-%m-%d %H:%M:%S"),
     rbms_version = as.character(packageVersion("rbms")),
     bootstrap_iterations = if(exists("n_boots")) n_boots else 0

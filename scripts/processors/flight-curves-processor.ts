@@ -123,6 +123,18 @@ export async function calculateAllFlightCurves(
     `  Found ${eligibleSpecies.length} species in whitelist with sufficient data (${MIN_COUNTS_PER_SPECIES}+ counts, ${MIN_YEARS_PER_SPECIES}+ years)`
   );
 
+  // Step 4b: Extract and write transect lengths for normalization (REQUIRED)
+  // This follows BMS technical report methodology for standardizing to 1-km transects
+  const transectLengths = rbmsUtils.extractTransectLengths(transects, qualityTransectIds);
+  const transectLengthsFile = path.join(TEMP_RBMS_DIR, "transect_lengths_fc.csv");
+
+  if (transectLengths.length === 0) {
+    throw new Error("No transect lengths available - cannot calculate normalized indices");
+  }
+
+  rbmsUtils.writeCSV(transectLengthsFile, transectLengths, ["site_id", "length_km"]);
+  console.log(`  Transect lengths extracted: ${transectLengths.length} transects`);
+
   // Step 5: Process each species with rbms
   const speciesResults: FlightCurvesData["species"] = {};
   const rScriptPath = path.join(__dirname, "..", "rbms-collated-index.R");
@@ -150,7 +162,15 @@ export async function calculateAllFlightCurves(
       rbmsUtils.writeCSV(visitsFile, speciesData.visits, ["site_id", "date", "year"]);
       rbmsUtils.writeCSV(countsFile, speciesData.counts, ["site_id", "date", "count"]);
 
-      const args = [visitsFile, countsFile, outputFile, species, baselineYear.toString()];
+      // Transect lengths file is REQUIRED for 1-km normalization
+      const args = [
+        visitsFile,
+        countsFile,
+        outputFile,
+        species,
+        baselineYear.toString(),
+        transectLengthsFile,
+      ];
 
       // Call rbms R script with caching
       await rbmsUtils.callRbms(rScriptPath, args, 120000, {
@@ -289,6 +309,13 @@ export async function calculateAllFlightCurves(
   }
 
   console.log(`  ✓ Successfully processed ${successCount}/${eligibleSpecies.length} species`);
+
+  // Clean up transect lengths file after processing all species
+  try {
+    fs.unlinkSync(transectLengthsFile);
+  } catch (cleanupErr) {
+    // Ignore cleanup errors
+  }
 
   if (successCount === 0) {
     console.warn("  Warning: No species successfully processed");

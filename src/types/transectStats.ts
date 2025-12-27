@@ -23,6 +23,8 @@ export interface TransectStats {
   coordinates: { lat: number; lon: number } | null;
   // Protected area (if transect is inside one)
   protectedArea: string | null;
+  // Transect length in meters
+  length: number | null;
 }
 
 export interface FilteredSpeciesEntry {

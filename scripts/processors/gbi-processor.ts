@@ -96,6 +96,21 @@ export async function calculateGBI(
 
   console.log(`  Processing ${allSpecies.length} grassland species with rbms...`);
 
+  // Step 4b: Extract and write transect lengths for normalization (REQUIRED)
+  // This follows BMS technical report methodology for standardizing to 1-km transects
+  const transectLengths = rbmsUtils.extractTransectLengths(transects, qualityTransectIds);
+  const transectLengthsFile = path.join(TEMP_RBMS_DIR, "transect_lengths.csv");
+
+  if (transectLengths.length === 0) {
+    throw new Error("No transect lengths available - cannot calculate normalized indices");
+  }
+
+  rbmsUtils.writeCSV(transectLengthsFile, transectLengths, ["site_id", "length_km"]);
+  console.log(`  Transect lengths extracted: ${transectLengths.length} transects`);
+  console.log(
+    `  Length range: ${Math.min(...transectLengths.map(t => t.length_km)).toFixed(2)} - ${Math.max(...transectLengths.map(t => t.length_km)).toFixed(2)} km`
+  );
+
   // Debug: Check what species we actually have in the data
   const speciesInData = new Set(transformedData.map(row => row.species));
   console.log(`  Species found in data (${speciesInData.size}):`);
@@ -155,7 +170,15 @@ export async function calculateGBI(
       console.log(`    Visits: ${speciesData.visits.length}, Counts: ${speciesData.counts.length}`);
 
       // Call R script with extended timeout (2 minutes per species)
-      const args = [visitsFile, countsFile, outputFile, species, baselineYear.toString()];
+      // Transect lengths file is REQUIRED for 1-km normalization
+      const args = [
+        visitsFile,
+        countsFile,
+        outputFile,
+        species,
+        baselineYear.toString(),
+        transectLengthsFile,
+      ];
 
       // Calculate bootstrap RDS file path for caching
       const bootstrapDir = path.join(__dirname, "..", "..", ".cache", "rbms", "bootstrap");
@@ -281,6 +304,13 @@ export async function calculateGBI(
   console.log(
     `\n  Species successfully processed: ${speciesWithTrends.length}/${allSpecies.length}`
   );
+
+  // Clean up transect lengths file after processing all species
+  try {
+    fs.unlinkSync(transectLengthsFile);
+  } catch (cleanupErr) {
+    // Ignore cleanup errors
+  }
 
   if (speciesWithTrends.length === 0) {
     console.warn("  Warning: No species trends calculated");

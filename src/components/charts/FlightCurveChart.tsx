@@ -190,13 +190,12 @@ export const FlightCurvesDisplay: React.FC<FlightCurvesDisplayProps> = ({
     );
   }
 
-  // Define geographical order (north to south)
+  // Define geographical order for BMS environmental zones (roughly north to south)
   const regionOrder: Record<string, number> = {
-    Norte: 1,
-    Centro: 2,
-    "Lisboa e Vale do Tejo": 3,
-    Alentejo: 4,
-    Algarve: 5,
+    Lusitano: 1, // Atlantic northwestern Portugal
+    "Mediterrânico Norte": 2, // Northern Mediterranean Portugal
+    "Mediterrânico Montanhoso": 3, // Mediterranean Mountains
+    "Mediterrânico Sul": 4, // Southern Mediterranean Portugal
   };
 
   const regions = Object.keys(phenologyData.regions).sort(

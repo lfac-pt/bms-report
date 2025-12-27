@@ -35,6 +35,7 @@ export interface TransectStats {
   entidade: string;
   coordinates: Coordinates | null;
   protectedArea: string | null;
+  length: number | null;
 }
 
 export interface TrendClassification {
