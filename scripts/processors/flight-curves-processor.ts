@@ -135,6 +135,21 @@ export async function calculateAllFlightCurves(
   rbmsUtils.writeCSV(transectLengthsFile, transectLengths, ["site_id", "length_km"]);
   console.log(`  Transect lengths extracted: ${transectLengths.length} transects`);
 
+  // Step 4c: Extract and write site regions for regional flight curve calculation (REQUIRED)
+  const siteRegions = rbmsUtils.extractSiteRegions(activeQualityTransects, qualityTransectIds);
+  const siteRegionsFile = path.join(TEMP_RBMS_DIR, "site_regions_fc.csv");
+
+  if (siteRegions.length === 0) {
+    throw new Error("No site regions available - cannot calculate regional flight curves");
+  }
+
+  rbmsUtils.writeCSV(siteRegionsFile, siteRegions, ["site_id", "region"]);
+  console.log(`  Site regions extracted: ${siteRegions.length} transects`);
+
+  // Log unique regions
+  const uniqueRegions = [...new Set(siteRegions.map(s => s.region))];
+  console.log(`  Unique climatic regions (${uniqueRegions.length}): ${uniqueRegions.join(", ")}`);
+
   // Step 5: Process each species with rbms
   const speciesResults: FlightCurvesData["species"] = {};
   const rScriptPath = path.join(__dirname, "..", "rbms-collated-index.R");
@@ -162,7 +177,7 @@ export async function calculateAllFlightCurves(
       rbmsUtils.writeCSV(visitsFile, speciesData.visits, ["site_id", "date", "year"]);
       rbmsUtils.writeCSV(countsFile, speciesData.counts, ["site_id", "date", "count"]);
 
-      // Transect lengths file is REQUIRED for 1-km normalization
+      // Transect lengths and site regions files are REQUIRED
       const args = [
         visitsFile,
         countsFile,
@@ -170,6 +185,7 @@ export async function calculateAllFlightCurves(
         species,
         baselineYear.toString(),
         transectLengthsFile,
+        siteRegionsFile, // Regional flight curves
       ];
 
       // Call rbms R script with caching
@@ -281,6 +297,7 @@ export async function calculateAllFlightCurves(
         collatedIndices: rbmsOutput.collated_indices,
         trendLine: rbmsOutput.trend_line || null,
         phenologyCurves: rbmsOutput.phenology_curves || null,
+        regionalPhenologyCurves: rbmsOutput.regional_phenology_curves || null, // Regional flight curves
         dataQuality: {
           ...rbmsOutput.data_quality,
           // Species-specific metrics (overriding totals)

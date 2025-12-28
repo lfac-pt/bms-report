@@ -45,6 +45,12 @@ export interface TransectLengthData {
   [key: string]: unknown; // Add index signature for compatibility
 }
 
+export interface SiteRegionData {
+  site_id: string;
+  region: string;
+  [key: string]: unknown; // Add index signature for compatibility
+}
+
 interface CallRbmsOptions {
   visitsFile?: string;
   countsFile?: string;
@@ -295,6 +301,37 @@ export function extractTransectLengths(
   }
 
   return lengths;
+}
+
+/**
+ * Extract climatic regions for a set of transect IDs
+ *
+ * @param transects - Array of transect objects with transectId and climaticRegion properties
+ * @param transectIds - Array of transect IDs to include
+ * @returns Array of SiteRegionData with site_id and region
+ */
+export function extractSiteRegions(
+  transects: Array<{ transectId: string; climaticRegion?: string | null }>,
+  transectIds: string[]
+): SiteRegionData[] {
+  const transectIdSet = new Set(transectIds);
+  const regions: SiteRegionData[] = [];
+
+  for (const transect of transects) {
+    if (!transectIdSet.has(transect.transectId)) {
+      continue;
+    }
+
+    // Get climatic region - default to "Desconhecido" if not available
+    const region = transect.climaticRegion || "Desconhecido";
+
+    regions.push({
+      site_id: transect.transectId,
+      region: region,
+    });
+  }
+
+  return regions;
 }
 
 /**

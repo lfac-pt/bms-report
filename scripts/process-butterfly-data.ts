@@ -7,7 +7,6 @@ import * as fs from "fs";
 import * as path from "path";
 import {
   TransectStats,
-  RegionalPhenologyData,
   FilteredSpeciesData,
   SpeciesCorrection,
   Coordinates,
@@ -36,7 +35,6 @@ import {
   calculateTransectStats,
   calculateGBI,
   calculateAllFlightCurves,
-  calculateRegionalPhenology,
   processTimelineData,
   processMunicipalityGeoJSON,
 } from "./processors";
@@ -357,16 +355,6 @@ async function processData(): Promise<void> {
   // Calculate and save flight curves for all species
   const flightCurvesData = await calculateAllFlightCurves(allData, results, BASELINE_YEAR);
 
-  // Calculate and save regional phenology curves (skip if --skip-regional flag is set)
-  const skipRegional = process.argv.includes("--skip-regional");
-  let phenologyData: RegionalPhenologyData | null = null;
-
-  if (skipRegional) {
-    console.log("\n⏭️  Skipping regional phenology curves (--skip-regional flag set)");
-  } else {
-    phenologyData = await calculateRegionalPhenology(allData, results, BASELINE_YEAR);
-  }
-
   // Write GBI data to file
   if (gbiData) {
     const GBI_OUTPUT_FILE = path.join(OUTPUT_DIR, "gbi-data.json");
@@ -388,19 +376,6 @@ async function processData(): Promise<void> {
     console.log(`  - Species with flight curves: ${flightCurvesData.speciesList.length}`);
   } else {
     console.warn("\nWarning: Flight curves calculation failed or returned no data");
-  }
-
-  // Write phenology data to file
-  if (phenologyData) {
-    const PHENOLOGY_OUTPUT_FILE = path.join(OUTPUT_DIR, "phenology-curves-data.json");
-    console.log(`\nWriting regional phenology data to ${PHENOLOGY_OUTPUT_FILE}...`);
-    fs.writeFileSync(PHENOLOGY_OUTPUT_FILE, JSON.stringify(phenologyData, null, 2), "utf-8");
-    console.log(
-      `Phenology data saved (${(fs.statSync(PHENOLOGY_OUTPUT_FILE).size / 1024).toFixed(2)} KB)`
-    );
-    console.log(`  - Species with regional phenology: ${phenologyData.speciesList.length}`);
-  } else {
-    console.warn("\nWarning: Regional phenology calculation failed or returned no data");
   }
 
   // Process municipality species map

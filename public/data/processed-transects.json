@@ -52,8 +52,8 @@
       "responsavel": "Paula Canha",
       "entidade": "ONGA",
       "coordinates": {
-        "lat": 37.146475481781245,
-        "lon": -8.613759295351532
+        "lat": 37.14205996855165,
+        "lon": -8.613214660709216
       },
       "protectedArea": null,
       "length": 1070
@@ -107,8 +107,8 @@
       "responsavel": "Paula Canha",
       "entidade": "ONGA",
       "coordinates": {
-        "lat": 37.15076747488066,
-        "lon": -8.607688898809839
+        "lat": 37.13911472713971,
+        "lon": -8.60374103547449
       },
       "protectedArea": null,
       "length": 1041
@@ -151,8 +151,8 @@
       "responsavel": "",
       "entidade": "Particular",
       "coordinates": {
-        "lat": 41.127633860620996,
-        "lon": -8.437879212512026
+        "lat": 41.130464931501336,
+        "lon": -8.443813639354358
       },
       "protectedArea": "Parque das Serras do Porto",
       "length": 1038
@@ -208,8 +208,8 @@
       "responsavel": "Luis Gaifan",
       "entidade": "ONGA",
       "coordinates": {
-        "lat": 41.543937053015846,
-        "lon": -8.79670358040363
+        "lat": 41.54158346381125,
+        "lon": -8.790429549439219
       },
       "protectedArea": "Litoral Norte",
       "length": 1130
@@ -257,8 +257,8 @@
       "responsavel": "",
       "entidade": "Particular",
       "coordinates": {
-        "lat": 39.04517436241481,
-        "lon": -7.897580925662168
+        "lat": 39.056819645180774,
+        "lon": -7.895776303157827
       },
       "protectedArea": null,
       "length": 1216
@@ -317,8 +317,8 @@
       "responsavel": "Antóno Xeria",
       "entidade": "Particular",
       "coordinates": {
-        "lat": 39.05364551408191,
-        "lon": -7.823789545341459
+        "lat": 39.04439244175349,
+        "lon": -7.8242962225409665
       },
       "protectedArea": null,
       "length": 1041
@@ -374,8 +374,8 @@
       "responsavel": "",
       "entidade": "",
       "coordinates": {
-        "lat": 40.21486451801748,
-        "lon": -8.22100065165014
+        "lat": 40.22658704604874,
+        "lon": -8.212395798774857
       },
       "protectedArea": null,
       "length": 1154
@@ -443,8 +443,8 @@
       "responsavel": "",
       "entidade": "Particular",
       "coordinates": {
-        "lat": 41.03589465224618,
-        "lon": -7.890066002303771
+        "lat": 41.03060202440662,
+        "lon": -7.885206827528472
       },
       "protectedArea": null,
       "length": 1151
@@ -491,8 +491,8 @@
       "responsavel": "Rafael Pinto",
       "entidade": "Universidade de Braga",
       "coordinates": {
-        "lat": 41.558947180045955,
-        "lon": -8.396933960107852
+        "lat": 41.56151434634114,
+        "lon": -8.396750691004877
       },
       "protectedArea": null,
       "length": 545
@@ -542,8 +542,8 @@
       "responsavel": "Paula Coelho",
       "entidade": "Particular",
       "coordinates": {
-        "lat": 38.8147808783713,
-        "lon": -9.167361599419932
+        "lat": 38.81072013020477,
+        "lon": -9.176664059629022
       },
       "protectedArea": null,
       "length": 1077
@@ -577,8 +577,8 @@
       "responsavel": "Rui Laureano",
       "entidade": "Particular",
       "coordinates": {
-        "lat": 38.64052250211779,
-        "lon": -9.120574844299545
+        "lat": 38.640921783857884,
+        "lon": -9.124630328283892
       },
       "protectedArea": null,
       "length": 969
@@ -633,8 +633,8 @@
       "responsavel": "Paulo Alves",
       "entidade": "Particular",
       "coordinates": {
-        "lat": 39.451765755997215,
-        "lon": -8.073108067041016
+        "lat": 39.451058678570355,
+        "lon": -8.063785394918513
       },
       "protectedArea": null,
       "length": 1075
@@ -678,8 +678,8 @@
       "responsavel": "Rafael Pinto",
       "entidade": "Particular",
       "coordinates": {
-        "lat": 41.3877620108099,
-        "lon": -8.413389085547045
+        "lat": 41.385089263348924,
+        "lon": -8.418937043465226
       },
       "protectedArea": null,
       "length": 1689
@@ -729,8 +729,8 @@
       "responsavel": "Diogo Silva",
       "entidade": "Município",
       "coordinates": {
-        "lat": 38.72351164057486,
-        "lon": -9.465364335128566
+        "lat": 38.729756452884644,
+        "lon": -9.464803044958156
       },
       "protectedArea": "Sintra-Cascais",
       "length": 1572
@@ -798,8 +798,8 @@
       "responsavel": "Isa Teixeira",
       "entidade": "Particular",
       "coordinates": {
-        "lat": 39.978871276589636,
-        "lon": -8.553655303468007
+        "lat": 39.99047461311666,
+        "lon": -8.551932991636294
       },
       "protectedArea": null,
       "length": 1045
@@ -836,8 +836,8 @@
       "responsavel": "Julieta Costa",
       "entidade": "Particular",
       "coordinates": {
-        "lat": 38.76110391169249,
-        "lon": -9.171573037741304
+        "lat": 38.76007875030569,
+        "lon": -9.161793074668399
       },
       "protectedArea": null,
       "length": 1757
@@ -906,8 +906,8 @@
       "responsavel": "",
       "entidade": "Município",
       "coordinates": {
-        "lat": 41.80633424909838,
-        "lon": -6.750940611233812
+        "lat": 41.80316993508816,
+        "lon": -6.752569956263808
       },
       "protectedArea": null,
       "length": 1476
@@ -955,8 +955,8 @@
       "responsavel": "Sílvia Pina",
       "entidade": "Particular",
       "coordinates": {
-        "lat": 38.52977738435167,
-        "lon": -9.00709850189797
+        "lat": 38.52579062309358,
+        "lon": -9.002502224503464
       },
       "protectedArea": null,
       "length": 1546
@@ -1027,8 +1027,8 @@
       "responsavel": "Luis Cardoso",
       "entidade": "Particular",
       "coordinates": {
-        "lat": 40.070822709915426,
-        "lon": -8.386870432480896
+        "lat": 40.06626239724962,
+        "lon": -8.397093297803098
       },
       "protectedArea": null,
       "length": 1246
@@ -1083,8 +1083,8 @@
       "responsavel": "André Oliveira",
       "entidade": "Universidade de Évora",
       "coordinates": {
-        "lat": 38.52038499018108,
-        "lon": -8.020341683806727
+        "lat": 38.524466805085574,
+        "lon": -8.02199308897585
       },
       "protectedArea": null,
       "length": 1451
@@ -1154,8 +1154,8 @@
       "responsavel": "Ana Cavaco",
       "entidade": "ICNF",
       "coordinates": {
-        "lat": 39.63430544908331,
-        "lon": -7.688770089689057
+        "lat": 39.632293447340764,
+        "lon": -7.681778677686558
       },
       "protectedArea": "Portas de Rodão",
       "length": 720
@@ -1203,8 +1203,8 @@
       "responsavel": "Diogo Mina",
       "entidade": "ICNF",
       "coordinates": {
-        "lat": 40.18085161752098,
-        "lon": -8.546178442059427
+        "lat": 40.18307541871604,
+        "lon": -8.554695675835795
       },
       "protectedArea": null,
       "length": 1063
@@ -1252,8 +1252,8 @@
       "responsavel": "",
       "entidade": "ICNF",
       "coordinates": {
-        "lat": 38.4730532560438,
-        "lon": -8.982084964812454
+        "lat": 38.476140925709466,
+        "lon": -8.984245718627005
       },
       "protectedArea": "Arrábida",
       "length": 1014
@@ -1319,8 +1319,8 @@
       "responsavel": "Ana Sofia Palma",
       "entidade": "ICNF",
       "coordinates": {
-        "lat": 38.565708151496125,
-        "lon": -8.917462983096778
+        "lat": 38.56187377463094,
+        "lon": -8.916114468798913
       },
       "protectedArea": "Arrábida",
       "length": 1064
@@ -1409,8 +1409,8 @@
       "responsavel": "João Pargana",
       "entidade": "ICNF",
       "coordinates": {
-        "lat": 41.34101854362827,
-        "lon": -7.80302077155438
+        "lat": 41.33032369949752,
+        "lon": -7.813677325204286
       },
       "protectedArea": "Alvão",
       "length": 1390
@@ -1493,8 +1493,8 @@
       "responsavel": "Helena Paulino",
       "entidade": "ICNF",
       "coordinates": {
-        "lat": 41.373981350271265,
-        "lon": -7.796146138331351
+        "lat": 41.36984033845803,
+        "lon": -7.803039899732113
       },
       "protectedArea": "Alvão",
       "length": 1241
@@ -1570,8 +1570,8 @@
       "responsavel": "Carlos Santos",
       "entidade": "ICNF",
       "coordinates": {
-        "lat": 41.313409086575206,
-        "lon": -6.523060181892346
+        "lat": 41.325492486370806,
+        "lon": -6.52138373760835
       },
       "protectedArea": "Douro Internacional",
       "length": 1096
@@ -1653,10 +1653,10 @@
       "responsavel": "Carlos Santos",
       "entidade": "ICNF",
       "coordinates": {
-        "lat": 41.31972474460305,
-        "lon": -6.595950363720136
+        "lat": 41.32815937453303,
+        "lon": -6.595686959600843
       },
-      "protectedArea": "Douro Internacional",
+      "protectedArea": null,
       "length": 1002
     },
     {
@@ -1707,8 +1707,8 @@
       "responsavel": "Belmiro Viana",
       "entidade": "ICNF",
       "coordinates": {
-        "lat": 41.50741244824424,
-        "lon": -8.755249405536539
+        "lat": 41.510829278115686,
+        "lon": -8.754928003632653
       },
       "protectedArea": null,
       "length": 614
@@ -1758,10 +1758,10 @@
       "responsavel": "Ema Veiga",
       "entidade": "ICNF",
       "coordinates": {
-        "lat": 41.840927169435574,
-        "lon": -6.73427130123423
+        "lat": 41.84249471877689,
+        "lon": -6.743345745702258
       },
-      "protectedArea": "Montesinho",
+      "protectedArea": null,
       "length": 1025
     },
     {
@@ -1807,8 +1807,8 @@
       "responsavel": "Ema Veiga",
       "entidade": "ICNF",
       "coordinates": {
-        "lat": 41.815099427548226,
-        "lon": -6.813521714534732
+        "lat": 41.821432637551204,
+        "lon": -6.811164793151338
       },
       "protectedArea": null,
       "length": 674
@@ -1876,10 +1876,10 @@
       "responsavel": "PNPG Vidoeiro",
       "entidade": "ICNF",
       "coordinates": {
-        "lat": 41.745090936617856,
-        "lon": -8.200366609691642
+        "lat": 41.73993622777835,
+        "lon": -8.205624030967483
       },
-      "protectedArea": null,
+      "protectedArea": "Peneda-Gerês",
       "length": 1013
     },
     {
@@ -1908,8 +1908,8 @@
       "responsavel": "",
       "entidade": "",
       "coordinates": {
-        "lat": 41.73958224727417,
-        "lon": -8.197931804668778
+        "lat": 41.74011240167213,
+        "lon": -8.194656009304023
       },
       "protectedArea": "Peneda-Gerês",
       "length": 1014
@@ -1945,8 +1945,8 @@
       "responsavel": "Armando Moura",
       "entidade": "ICNF",
       "coordinates": {
-        "lat": 37.0274941127244,
-        "lon": -7.815514473056892
+        "lat": 37.03175269189979,
+        "lon": -7.821416837626933
       },
       "protectedArea": "Ria Formosa",
       "length": 1089
@@ -2012,8 +2012,8 @@
       "responsavel": "Florbela Queirós",
       "entidade": "ICNF",
       "coordinates": {
-        "lat": 39.36619075800833,
-        "lon": -8.94971175277767
+        "lat": 39.36621454285959,
+        "lon": -8.947150419968583
       },
       "protectedArea": "Serras de Aire e Candeeiros",
       "length": 1097
@@ -2087,8 +2087,8 @@
       "responsavel": "Sofia Quaresma",
       "entidade": "ICNF",
       "coordinates": {
-        "lat": 39.51278270368431,
-        "lon": -8.69921579660038
+        "lat": 39.5095015370928,
+        "lon": -8.696525813210984
       },
       "protectedArea": "Serras de Aire e Candeeiros",
       "length": 1013
@@ -2149,8 +2149,8 @@
       "responsavel": "Pedro Alverca",
       "entidade": "ICNF",
       "coordinates": {
-        "lat": 37.692586778725044,
-        "lon": -8.67808762713299
+        "lat": 37.686783237438895,
+        "lon": -8.687225139990458
       },
       "protectedArea": "Sudoeste Alentejano e Costa Vicentina",
       "length": 991
@@ -2220,8 +2220,8 @@
       "responsavel": "Alexandre Cabrita",
       "entidade": "ICNF",
       "coordinates": {
-        "lat": 37.18650664511511,
-        "lon": -8.696957565377359
+        "lat": 37.182534902792675,
+        "lon": -8.686829573882358
       },
       "protectedArea": null,
       "length": 893
@@ -2273,8 +2273,8 @@
       "responsavel": "Ana Macedo",
       "entidade": "ICNF",
       "coordinates": {
-        "lat": 37.65124126500536,
-        "lon": -8.610953329927877
+        "lat": 37.65179932129422,
+        "lon": -8.6230020759136
       },
       "protectedArea": null,
       "length": 940
@@ -2343,8 +2343,8 @@
       "responsavel": "Pedro Alverca",
       "entidade": "ICNF",
       "coordinates": {
-        "lat": 37.755968254662214,
-        "lon": -8.721322191971035
+        "lat": 37.756578938182415,
+        "lon": -8.713145400657092
       },
       "protectedArea": null,
       "length": 933
@@ -2417,8 +2417,8 @@
       "responsavel": "Henrique Domingues",
       "entidade": "ICNF",
       "coordinates": {
-        "lat": 40.39638246227991,
-        "lon": -7.698365374541721
+        "lat": 40.395627476587535,
+        "lon": -7.700301544046166
       },
       "protectedArea": "Serra da Estrela",
       "length": 1057
@@ -2493,8 +2493,8 @@
       "responsavel": "Henrique Domingues",
       "entidade": "ICNF",
       "coordinates": {
-        "lat": 40.391686364674946,
-        "lon": -7.56407678440684
+        "lat": 40.399571563545955,
+        "lon": -7.571524799252461
       },
       "protectedArea": "Serra da Estrela",
       "length": 746
@@ -2564,8 +2564,8 @@
       "responsavel": "",
       "entidade": "ICNF",
       "coordinates": {
-        "lat": 40.356090144480994,
-        "lon": -7.561819529261944
+        "lat": 40.3538535962175,
+        "lon": -7.558521698224963
       },
       "protectedArea": "Serra da Estrela",
       "length": 973
@@ -2637,8 +2637,8 @@
       "responsavel": "Conceição Conde",
       "entidade": "ICNF",
       "coordinates": {
-        "lat": 39.36329119454614,
-        "lon": -7.42259922820077
+        "lat": 39.359936487483175,
+        "lon": -7.42568580741552
       },
       "protectedArea": "Serra de São Mamede",
       "length": 1025
@@ -2702,8 +2702,8 @@
       "responsavel": "Ana Cavaco",
       "entidade": "ICNF",
       "coordinates": {
-        "lat": 39.19310036146383,
-        "lon": -7.2615445647696815
+        "lat": 39.19275557900783,
+        "lon": -7.2724237715899
       },
       "protectedArea": "Serra de São Mamede",
       "length": 1043
@@ -2758,8 +2758,8 @@
       "responsavel": "Beatriz Machado",
       "entidade": "ICNF",
       "coordinates": {
-        "lat": 37.505972673380086,
-        "lon": -7.708700219684809
+        "lat": 37.49248262595228,
+        "lon": -7.694375663685485
       },
       "protectedArea": null,
       "length": 1223
@@ -2810,8 +2810,8 @@
       "responsavel": "Teresa Morais",
       "entidade": "ICNF",
       "coordinates": {
-        "lat": 38.56720134465679,
-        "lon": -9.187351465235682
+        "lat": 38.55643856887965,
+        "lon": -9.180921901495928
       },
       "protectedArea": "Arriba Fossil da Costa da Caparica",
       "length": 1270
@@ -2874,8 +2874,8 @@
       "responsavel": "",
       "entidade": "ICNF",
       "coordinates": {
-        "lat": 40.22018428406016,
-        "lon": -7.929156926887316
+        "lat": 40.21537741505906,
+        "lon": -7.919426202982437
       },
       "protectedArea": "Serra do Açor",
       "length": 1061
@@ -2937,8 +2937,8 @@
       "responsavel": "Sofia Quaresma",
       "entidade": "ICNF",
       "coordinates": {
-        "lat": 39.182755982396834,
-        "lon": -9.049523597274192
+        "lat": 39.176863815796054,
+        "lon": -9.043740561611115
       },
       "protectedArea": "Serra de Montejunto",
       "length": 817
@@ -2987,8 +2987,8 @@
       "responsavel": "Rosa Serôdio",
       "entidade": "ICNF",
       "coordinates": {
-        "lat": 40.69676821267365,
-        "lon": -8.716592376148721
+        "lat": 40.69005884718539,
+        "lon": -8.71550837715151
       },
       "protectedArea": null,
       "length": 1193
@@ -3040,8 +3040,8 @@
       "responsavel": "Maria do Céu Guerra",
       "entidade": "ICNF",
       "coordinates": {
-        "lat": 38.55279287849625,
-        "lon": -8.792794004603444
+        "lat": 38.55321807301196,
+        "lon": -8.782404603892907
       },
       "protectedArea": "Estuário do Sado",
       "length": 1099
@@ -3108,10 +3108,10 @@
       "responsavel": "Isa Figueiras",
       "entidade": "ICNF",
       "coordinates": {
-        "lat": 38.0785750765788,
-        "lon": -8.776046490790893
+        "lat": 38.08267035252651,
+        "lon": -8.776595455423028
       },
-      "protectedArea": null,
+      "protectedArea": "Lagoas de Santo André e da Sancha",
       "length": 1271
     },
     {
@@ -3158,10 +3158,10 @@
       "responsavel": "Sónia Casemiro",
       "entidade": "ICNF",
       "coordinates": {
-        "lat": 39.40671428200681,
-        "lon": -8.533002836971631
+        "lat": 39.413109507947304,
+        "lon": -8.534454846548034
       },
-      "protectedArea": "Paul do Boquilobo",
+      "protectedArea": null,
       "length": 934
     },
     {
@@ -3205,8 +3205,8 @@
       "responsavel": "Pedro Castelão",
       "entidade": "ICNF",
       "coordinates": {
-        "lat": 37.22438213593897,
-        "lon": -7.420472660989911
+        "lat": 37.232438287216716,
+        "lon": -7.432658390910534
       },
       "protectedArea": "Sapal de Castro Marim e Vila Real de Santo António",
       "length": 1030
@@ -3274,8 +3274,8 @@
       "responsavel": "Henrique Furriel",
       "entidade": "ICNF",
       "coordinates": {
-        "lat": 40.289268645599975,
-        "lon": -6.976816515339839
+        "lat": 40.28271803856077,
+        "lon": -6.9732691357382
       },
       "protectedArea": "Serra Malcata",
       "length": 1019
@@ -3327,8 +3327,8 @@
       "responsavel": "Isa Teixeira",
       "entidade": "ICNF",
       "coordinates": {
-        "lat": 39.167115484467075,
-        "lon": -9.348311825430141
+        "lat": 39.17241224597778,
+        "lon": -9.346084330714438
       },
       "protectedArea": null,
       "length": 1254
@@ -3372,8 +3372,8 @@
       "responsavel": "Albano Soares",
       "entidade": "Particular",
       "coordinates": {
-        "lat": 38.760767413248026,
-        "lon": -9.130201673362496
+        "lat": 38.762307492298255,
+        "lon": -9.135664580164487
       },
       "protectedArea": null,
       "length": 816
@@ -3423,8 +3423,8 @@
       "responsavel": "Orkhan Abbasov",
       "entidade": "Particular",
       "coordinates": {
-        "lat": 38.79480329200588,
-        "lon": -9.258196205498287
+        "lat": 38.782455546146224,
+        "lon": -9.26597323403682
       },
       "protectedArea": null,
       "length": 1354
@@ -3485,8 +3485,8 @@
       "responsavel": "Filipa Coelho",
       "entidade": "ONGA",
       "coordinates": {
-        "lat": 39.60185741371906,
-        "lon": -8.421019125696834
+        "lat": 39.607242668325014,
+        "lon": -8.416609916835261
       },
       "protectedArea": null,
       "length": 815
@@ -3535,8 +3535,8 @@
       "responsavel": "Francisco Aguilar",
       "entidade": "Particular",
       "coordinates": {
-        "lat": 38.73155685781816,
-        "lon": -9.308714929756153
+        "lat": 38.722979777681374,
+        "lon": -9.30213776365513
       },
       "protectedArea": null,
       "length": 1158
@@ -3577,8 +3577,8 @@
       "responsavel": "",
       "entidade": "",
       "coordinates": {
-        "lat": 37.91367003599958,
-        "lon": -8.038170602679804
+        "lat": 37.91339450776732,
+        "lon": -8.035312191170002
       },
       "protectedArea": null,
       "length": 2435
@@ -3654,8 +3654,8 @@
       "responsavel": "",
       "entidade": "Particular",
       "coordinates": {
-        "lat": 41.04542613669126,
-        "lon": -7.841546673040075
+        "lat": 41.05852601605112,
+        "lon": -7.841686126926509
       },
       "protectedArea": null,
       "length": 1770
@@ -3700,8 +3700,8 @@
       "responsavel": "Pedro Borges",
       "entidade": "ONGA",
       "coordinates": {
-        "lat": 39.62092329348824,
-        "lon": -8.387227616489232
+        "lat": 39.619820848815344,
+        "lon": -8.386106661427277
       },
       "protectedArea": null,
       "length": 700
@@ -3743,8 +3743,8 @@
       "responsavel": "Daniele Cataldo",
       "entidade": "Particular",
       "coordinates": {
-        "lat": 41.768792620825224,
-        "lon": -7.4457145843021655
+        "lat": 41.76057361687232,
+        "lon": -7.440338978739288
       },
       "protectedArea": null,
       "length": 1001
@@ -3808,8 +3808,8 @@
       "responsavel": "Sónia Mendes",
       "entidade": "Município",
       "coordinates": {
-        "lat": 39.45065508946721,
-        "lon": -8.317408020783759
+        "lat": 39.45173321529404,
+        "lon": -8.316315080812451
       },
       "protectedArea": null,
       "length": 589
@@ -3863,8 +3863,8 @@
       "responsavel": "Jorge Gomes",
       "entidade": "Município",
       "coordinates": {
-        "lat": 41.099219735933396,
-        "lon": -8.552986427404099
+        "lat": 41.092108615978965,
+        "lon": -8.55503181238251
       },
       "protectedArea": null,
       "length": 875
@@ -3908,8 +3908,8 @@
       "responsavel": "Jorge Gomes",
       "entidade": "Município",
       "coordinates": {
-        "lat": 41.10585363867488,
-        "lon": -8.561337954194387
+        "lat": 41.0985883967809,
+        "lon": -8.55430809133631
       },
       "protectedArea": null,
       "length": 430
@@ -3956,8 +3956,8 @@
       "responsavel": "Guimarães",
       "entidade": "Município",
       "coordinates": {
-        "lat": 41.44073834764371,
-        "lon": -8.288354748486823
+        "lat": 41.44331230324257,
+        "lon": -8.28577676109714
       },
       "protectedArea": null,
       "length": 854
@@ -4004,8 +4004,8 @@
       "responsavel": "Eva Monteiro",
       "entidade": "Particular",
       "coordinates": {
-        "lat": 38.74189061287744,
-        "lon": -9.177212173569089
+        "lat": 38.74242007719371,
+        "lon": -9.166516337851357
       },
       "protectedArea": null,
       "length": 1157
@@ -4049,8 +4049,8 @@
       "responsavel": "Darinka Gonçalves",
       "entidade": "Município",
       "coordinates": {
-        "lat": 41.296936057030706,
-        "lon": -7.737057103715991
+        "lat": 41.30181655605958,
+        "lon": -7.741112478532589
       },
       "protectedArea": null,
       "length": 1319
@@ -4104,8 +4104,8 @@
       "responsavel": "Fernando Pinto",
       "entidade": "Município",
       "coordinates": {
-        "lat": 38.563728767065726,
-        "lon": -9.032542357151062
+        "lat": 38.571941358293245,
+        "lon": -9.028537237155657
       },
       "protectedArea": null,
       "length": 745
@@ -4146,8 +4146,8 @@
       "responsavel": "Letícia Figueiredo",
       "entidade": "Particular",
       "coordinates": {
-        "lat": 41.555573430788414,
-        "lon": -8.403300714825434
+        "lat": 41.56217062045476,
+        "lon": -8.40124898627486
       },
       "protectedArea": null,
       "length": 958
@@ -4192,8 +4192,8 @@
       "responsavel": "Julieta Costa",
       "entidade": "ONGA",
       "coordinates": {
-        "lat": 38.75121789052598,
-        "lon": -9.126911680325854
+        "lat": 38.746480172686354,
+        "lon": -9.128223062492776
       },
       "protectedArea": null,
       "length": 851
@@ -4270,8 +4270,8 @@
       "responsavel": "",
       "entidade": "Particular",
       "coordinates": {
-        "lat": 41.08376501492017,
-        "lon": -7.849513488434463
+        "lat": 41.080278299918284,
+        "lon": -7.857892831595154
       },
       "protectedArea": null,
       "length": 1431
@@ -4323,8 +4323,8 @@
       "responsavel": "Scott Forbes",
       "entidade": "Particular",
       "coordinates": {
-        "lat": 40.21539675843989,
-        "lon": -8.290921542490592
+        "lat": 40.22277302464572,
+        "lon": -8.289691910684509
       },
       "protectedArea": null,
       "length": 1082
@@ -4378,8 +4378,8 @@
       "responsavel": "Soraia Castro",
       "entidade": "Município",
       "coordinates": {
-        "lat": 41.6944482309797,
-        "lon": -8.821251950139157
+        "lat": 41.70234565009088,
+        "lon": -8.823455751848396
       },
       "protectedArea": null,
       "length": 1238
@@ -4427,8 +4427,8 @@
       "responsavel": "",
       "entidade": "Particular",
       "coordinates": {
-        "lat": 39.927102485487616,
-        "lon": -8.457613046164084
+        "lat": 39.92280288044396,
+        "lon": -8.449367321091628
       },
       "protectedArea": null,
       "length": 1030
@@ -4476,8 +4476,8 @@
       "responsavel": "Hélder Cardoso",
       "entidade": "ONGA",
       "coordinates": {
-        "lat": 39.30801117473879,
-        "lon": -9.229234036643712
+        "lat": 39.293580777639484,
+        "lon": -9.224436797774125
       },
       "protectedArea": null,
       "length": 1242
@@ -4539,10 +4539,10 @@
       "responsavel": "Luis Jordão",
       "entidade": "Particular",
       "coordinates": {
-        "lat": 38.80158730463145,
-        "lon": -9.368350850936444
+        "lat": 38.797341803489765,
+        "lon": -9.380318179774545
       },
-      "protectedArea": null,
+      "protectedArea": "Sintra-Cascais",
       "length": 1023
     },
     {
@@ -4598,8 +4598,8 @@
       "responsavel": "Diogo Silva",
       "entidade": "Município",
       "coordinates": {
-        "lat": 38.768903526260914,
-        "lon": -9.469395795302514
+        "lat": 38.76984324102529,
+        "lon": -9.463613903007726
       },
       "protectedArea": "Sintra-Cascais",
       "length": 1122
@@ -4659,8 +4659,8 @@
       "responsavel": "Diogo Silva",
       "entidade": "Município",
       "coordinates": {
-        "lat": 38.762334374074264,
-        "lon": -9.464540859697605
+        "lat": 38.75881538593192,
+        "lon": -9.45201258823202
       },
       "protectedArea": "Sintra-Cascais",
       "length": 1091
@@ -4723,8 +4723,8 @@
       "responsavel": "Diogo Silva",
       "entidade": "Município",
       "coordinates": {
-        "lat": 38.746445779980306,
-        "lon": -9.416497415534462
+        "lat": 38.74416167162277,
+        "lon": -9.416551104265553
       },
       "protectedArea": "Sintra-Cascais",
       "length": 1188
@@ -4779,8 +4779,8 @@
       "responsavel": "Diogo Silva",
       "entidade": "Município",
       "coordinates": {
-        "lat": 38.74242702742467,
-        "lon": -9.4152239204429
+        "lat": 38.75085074378893,
+        "lon": -9.423257832405396
       },
       "protectedArea": "Sintra-Cascais",
       "length": 1112
@@ -4839,8 +4839,8 @@
       "responsavel": "Diogo Silva",
       "entidade": "Município",
       "coordinates": {
-        "lat": 38.76363653921648,
-        "lon": -9.422310836513173
+        "lat": 38.75412972926591,
+        "lon": -9.422700145040183
       },
       "protectedArea": "Sintra-Cascais",
       "length": 947
@@ -4891,8 +4891,8 @@
       "responsavel": "",
       "entidade": "ONGA",
       "coordinates": {
-        "lat": 37.04731183443821,
-        "lon": -7.816275481019518
+        "lat": 37.05148799216532,
+        "lon": -7.805756165903177
       },
       "protectedArea": null,
       "length": 1028
@@ -4950,8 +4950,8 @@
       "responsavel": "Joaquim Pífano",
       "entidade": "Particular",
       "coordinates": {
-        "lat": 38.91491841070935,
-        "lon": -7.8065310425444965
+        "lat": 38.923394898692855,
+        "lon": -7.805904665372298
       },
       "protectedArea": null,
       "length": 1107
@@ -5006,8 +5006,8 @@
       "responsavel": "Joaquim Pífano",
       "entidade": "Particular",
       "coordinates": {
-        "lat": 38.90676940735592,
-        "lon": -7.788108478607092
+        "lat": 38.900700260545214,
+        "lon": -7.785501574959752
       },
       "protectedArea": null,
       "length": 1303
@@ -5059,8 +5059,8 @@
       "responsavel": "",
       "entidade": "Empresa",
       "coordinates": {
-        "lat": 37.073587092231605,
-        "lon": -8.834356212244536
+        "lat": 37.07612821371308,
+        "lon": -8.831892195552147
       },
       "protectedArea": "Sudoeste Alentejano e Costa Vicentina",
       "length": 1040
@@ -5092,8 +5092,8 @@
       "responsavel": "Joana Barata",
       "entidade": "Particular",
       "coordinates": {
-        "lat": 38.64520124366233,
-        "lon": -9.235353115889879
+        "lat": 38.64773553979682,
+        "lon": -9.244591288414576
       },
       "protectedArea": null,
       "length": 1049
@@ -5185,8 +5185,8 @@
       "responsavel": "Ângela Cordeiro",
       "entidade": "Município",
       "coordinates": {
-        "lat": 41.62465987315909,
-        "lon": -6.46264799122809
+        "lat": 41.63320790139204,
+        "lon": -6.450311209808605
       },
       "protectedArea": null,
       "length": 837
@@ -5247,8 +5247,8 @@
       "responsavel": "Raquel Eiró",
       "entidade": "Particular",
       "coordinates": {
-        "lat": 38.79605775022593,
-        "lon": -9.266483243665977
+        "lat": 38.7937146822738,
+        "lon": -9.266125875588271
       },
       "protectedArea": null,
       "length": 1475
@@ -5289,8 +5289,8 @@
       "responsavel": "",
       "entidade": "Particular",
       "coordinates": {
-        "lat": 41.14203872653517,
-        "lon": -8.482798240978106
+        "lat": 41.15383328444235,
+        "lon": -8.485138655615007
       },
       "protectedArea": "Parque das Serras do Porto",
       "length": 916
@@ -5344,10 +5344,10 @@
       "responsavel": "",
       "entidade": "Particular",
       "coordinates": {
-        "lat": 41.12119596582802,
-        "lon": -8.484655975449252
+        "lat": 41.12106679183514,
+        "lon": -8.479364126370283
       },
-      "protectedArea": null,
+      "protectedArea": "Parque das Serras do Porto",
       "length": 931
     },
     {
@@ -5408,8 +5408,8 @@
       "responsavel": "Armindo Paulo Salvador",
       "entidade": "Particular",
       "coordinates": {
-        "lat": 41.564053538355004,
-        "lon": -8.396905910630009
+        "lat": 41.56659858444477,
+        "lon": -8.40943617057178
       },
       "protectedArea": null,
       "length": 1153
@@ -5450,8 +5450,8 @@
       "responsavel": "Julieta Costa",
       "entidade": "Particular",
       "coordinates": {
-        "lat": 38.755752899745715,
-        "lon": -9.162143748848967
+        "lat": 38.76454040971798,
+        "lon": -9.173543155895686
       },
       "protectedArea": null,
       "length": 1214
@@ -5507,8 +5507,8 @@
       "responsavel": "",
       "entidade": "Particular",
       "coordinates": {
-        "lat": 41.07218774966881,
-        "lon": -7.827995724953787
+        "lat": 41.08025152756289,
+        "lon": -7.823730477886218
       },
       "protectedArea": null,
       "length": 667
@@ -5555,8 +5555,8 @@
       "responsavel": "Hélder Cardoso",
       "entidade": "ONGA",
       "coordinates": {
-        "lat": 39.30064311087418,
-        "lon": -9.211276979920298
+        "lat": 39.300814526729305,
+        "lon": -9.223299296913064
       },
       "protectedArea": null,
       "length": 1006
@@ -5608,8 +5608,8 @@
       "responsavel": "Orkhan Abbasov",
       "entidade": "Particular",
       "coordinates": {
-        "lat": 38.78496912063546,
-        "lon": -9.269506541909644
+        "lat": 38.78536847485407,
+        "lon": -9.281054556299317
       },
       "protectedArea": null,
       "length": 1061
@@ -5687,8 +5687,8 @@
       "responsavel": "Isabel Sá",
       "entidade": "ONGA",
       "coordinates": {
-        "lat": 41.53316653193148,
-        "lon": -6.503015375375423
+        "lat": 41.532046829784115,
+        "lon": -6.5035836609316435
       },
       "protectedArea": null,
       "length": 849
