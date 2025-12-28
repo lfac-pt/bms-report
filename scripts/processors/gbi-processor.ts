@@ -113,19 +113,11 @@ export async function calculateGBI(
 
   // Step 4c: Extract and write site regions for GBI calculation (REQUIRED)
   // The R script uses regional flight curves for imputation within the GBI calculation
-  const siteRegions = rbmsUtils.extractSiteRegions(activeQualityTransects, qualityTransectIds);
-  const siteRegionsFile = path.join(TEMP_RBMS_DIR, "site_regions.csv");
-
-  if (siteRegions.length === 0) {
-    throw new Error("No site regions available - cannot calculate regional flight curves");
-  }
-
-  rbmsUtils.writeCSV(siteRegionsFile, siteRegions, ["site_id", "region"]);
-  console.log(`  Site regions extracted: ${siteRegions.length} transects`);
-
-  // Log unique regions
-  const uniqueRegions = [...new Set(siteRegions.map(s => s.region))];
-  console.log(`  Unique climatic regions (${uniqueRegions.length}): ${uniqueRegions.join(", ")}`);
+  const siteRegionsFile = rbmsUtils.prepareSiteRegionsFile(
+    activeQualityTransects,
+    qualityTransectIds,
+    TEMP_RBMS_DIR
+  );
 
   // Debug: Check what species we actually have in the data
   const speciesInData = new Set(transformedData.map(row => row.species));

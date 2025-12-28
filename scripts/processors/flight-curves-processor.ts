@@ -136,19 +136,12 @@ export async function calculateAllFlightCurves(
   console.log(`  Transect lengths extracted: ${transectLengths.length} transects`);
 
   // Step 4c: Extract and write site regions for regional flight curve calculation (REQUIRED)
-  const siteRegions = rbmsUtils.extractSiteRegions(activeQualityTransects, qualityTransectIds);
-  const siteRegionsFile = path.join(TEMP_RBMS_DIR, "site_regions_fc.csv");
-
-  if (siteRegions.length === 0) {
-    throw new Error("No site regions available - cannot calculate regional flight curves");
-  }
-
-  rbmsUtils.writeCSV(siteRegionsFile, siteRegions, ["site_id", "region"]);
-  console.log(`  Site regions extracted: ${siteRegions.length} transects`);
-
-  // Log unique regions
-  const uniqueRegions = [...new Set(siteRegions.map(s => s.region))];
-  console.log(`  Unique climatic regions (${uniqueRegions.length}): ${uniqueRegions.join(", ")}`);
+  const siteRegionsFile = rbmsUtils.prepareSiteRegionsFile(
+    activeQualityTransects,
+    qualityTransectIds,
+    TEMP_RBMS_DIR,
+    "site_regions_fc.csv"
+  );
 
   // Step 5: Process each species with rbms
   const speciesResults: FlightCurvesData["species"] = {};
@@ -296,7 +289,6 @@ export async function calculateAllFlightCurves(
       speciesResults[species] = {
         collatedIndices: rbmsOutput.collated_indices,
         trendLine: rbmsOutput.trend_line || null,
-        phenologyCurves: rbmsOutput.phenology_curves || null,
         regionalPhenologyCurves: rbmsOutput.regional_phenology_curves || null, // Regional flight curves
         dataQuality: {
           ...rbmsOutput.data_quality,

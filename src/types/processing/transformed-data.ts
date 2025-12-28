@@ -137,7 +137,6 @@ export interface FlightCurvesData {
     {
       collatedIndices: Record<string, number>;
       trendLine: Record<string, number> | null;
-      phenologyCurves: Record<string, unknown> | null;
       regionalPhenologyCurves: Record<string, unknown> | null; // Regional flight curves by region
       dataQuality: DataQuality;
       processingInfo: unknown;
