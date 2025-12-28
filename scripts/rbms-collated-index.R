@@ -805,17 +805,8 @@ if (nrow(collated_by_year) >= 2) {
     years_numeric <- as.numeric(collated_valid$year)
     indices_values <- collated_valid$index_normalized
 
-    # Adjust LOESS span based on number of data points
-    # For short time series, use larger span for more smoothing
-    # For longer time series, use standard 0.75 (EU GBI standard)
-    n_years <- length(years_numeric)
-    loess_span <- if (n_years <= 5) {
-      1.0  # Use all points for short series (maximum smoothing)
-    } else if (n_years <= 7) {
-      0.9  # Still high smoothing for medium-short series
-    } else {
-      0.75  # Standard EU GBI span for longer series
-    }
+    # Use standard LOESS span of 0.75 (EU GBI standard)
+    loess_span <- 0.75
 
     # LOESS smoothing on normalized indices
     loess_trend <- try(
