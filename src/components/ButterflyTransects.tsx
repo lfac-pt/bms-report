@@ -33,7 +33,6 @@ import { groupSpeciesByFamily } from "../constants";
 import TransectMap from "./TransectMap";
 import TransectTimeline from "./TransectTimeline";
 import SpeciesLink from "./SpeciesLink";
-import GrasslandButterflyIndex from "./charts/GrasslandButterflyIndex";
 import SpeciesTrendsSparklines from "./charts/SpeciesTrendsSparklines";
 import MunicipalitySpeciesMap from "./charts/MunicipalitySpeciesMap";
 
@@ -41,6 +40,19 @@ const { Title } = Typography;
 
 // Define the canonical family order
 const FAMILY_ORDER = ["Hesperiidae", "Papilionidae", "Pieridae", "Nymphalidae", "Lycaenidae"];
+
+// Helper function to get color based on trend category (same as GrasslandButterflyIndex)
+const getTrendColor = (category: string): string => {
+  const colors: Record<string, string> = {
+    "Strong increase": "#52c41a",
+    "Moderate increase": "#95de64",
+    Stable: "#1890ff",
+    Uncertain: "#faad14",
+    "Moderate decline": "#ff7875",
+    "Strong decline": "#cf1322",
+  };
+  return colors[category] || "#8c8c8c";
+};
 
 // Component for species list with search and family grouping
 function SpeciesList({ species, title }: { species: string[]; title: string }) {
@@ -682,7 +694,7 @@ function ButterflyTransects() {
 
       {/* Summary Statistics */}
       <Row gutter={16}>
-        <Col span={5}>
+        <Col span={4}>
           <Card>
             <Popover
               content={
@@ -757,7 +769,7 @@ function ButterflyTransects() {
             </Popover>
           </Card>
         </Col>
-        <Col span={5}>
+        <Col span={4}>
           <Card>
             <Popover
               content={
@@ -894,12 +906,31 @@ function ButterflyTransects() {
             />
           </Card>
         </Col>
+        <Col span={4}>
+          <Card
+            hoverable
+            style={{ cursor: "pointer" }}
+            onClick={() => (window.location.hash = "#/gbi")}
+          >
+            <Statistic
+              title="Tendência GBI"
+              value={
+                gbiLoading
+                  ? "..."
+                  : gbiData?.gbiTrend?.pc1
+                    ? `${gbiData.gbiTrend.pc1.toFixed(1)}%`
+                    : "N/A"
+              }
+              valueStyle={{
+                color: gbiData?.gbiTrend?.category
+                  ? getTrendColor(gbiData.gbiTrend.category)
+                  : "#8c8c8c",
+              }}
+              suffix={gbiData?.gbiTrend?.pc1 ? "/ano" : ""}
+            />
+          </Card>
+        </Col>
       </Row>
-
-      {/* Grassland Butterfly Index Chart */}
-      <div style={{ marginTop: 24 }}>
-        <GrasslandButterflyIndex gbiData={gbiData} loading={gbiLoading} />
-      </div>
 
       {/* Species Trends Sparklines */}
       <div style={{ marginTop: 24 }}>
