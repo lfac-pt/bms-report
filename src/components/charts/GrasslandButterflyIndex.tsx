@@ -1,12 +1,24 @@
 import { Line } from "react-chartjs-2";
-import { Card, Alert, Collapse, Row, Col } from "antd";
+import { Card, Alert, Collapse, Row, Col, Divider, Typography } from "antd";
 import { GBIData } from "../../types/gbiData";
 import { BASELINE_YEAR } from "../../constants";
 
 const { Panel } = Collapse;
+const { Text } = Typography;
+
+interface FlightCurvesData {
+  species: Record<string, {
+    collatedIndices: Record<number, number>;
+    confidenceIntervals?: Record<number, {
+      ci_lower: number | null;
+      ci_upper: number | null;
+    }>;
+  }>;
+}
 
 interface GrasslandButterflyIndexProps {
   gbiData: GBIData | null;
+  flightCurvesData: FlightCurvesData | null;
   loading: boolean;
 }
 
@@ -93,7 +105,7 @@ const chartOptions = {
   },
 };
 
-function GrasslandButterflyIndex({ gbiData, loading }: GrasslandButterflyIndexProps) {
+function GrasslandButterflyIndex({ gbiData, flightCurvesData, loading }: GrasslandButterflyIndexProps) {
   if (loading) {
     return (
       <Card title="Índice de Borboletas de Prados (GBI)" size="small" loading={true}>
@@ -426,6 +438,222 @@ function GrasslandButterflyIndex({ gbiData, loading }: GrasslandButterflyIndexPr
         <div style={{ height: "400px", marginBottom: "16px" }}>
           <Line options={chartOptions} data={chartData} />
         </div>
+      </Card>
+
+      <Card title="Tendências por Espécie" size="small" style={{ marginTop: 16 }}>
+        {(() => {
+          // Separate species by type
+          const widespreadSpecies = gbiData.metadata.grasslandSpecies
+            .filter(s => s.type === "widespread")
+            .map(s => s.scientificName)
+            .sort();
+          const specialistSpecies = gbiData.metadata.grasslandSpecies
+            .filter(s => s.type === "specialist")
+            .map(s => s.scientificName)
+            .sort();
+
+          // Helper function to create species chart data
+          const createSpeciesChartData = (speciesName: string) => {
+            const speciesData = years.map(year => {
+              return flightCurvesData?.species?.[speciesName]?.collatedIndices?.[year] ?? null;
+            });
+
+            // Extract CI data
+            const ciLower = years.map(year => {
+              return flightCurvesData?.species?.[speciesName]?.confidenceIntervals?.[year]?.ci_lower ?? null;
+            });
+            const ciUpper = years.map(year => {
+              return flightCurvesData?.species?.[speciesName]?.confidenceIntervals?.[year]?.ci_upper ?? null;
+            });
+
+            // Check if this species has CI data
+            const hasCI = ciLower.some(val => val !== null && val !== undefined);
+
+            const datasets = [];
+
+            // Add CI bands if available
+            if (hasCI) {
+              // CI Upper (hidden)
+              datasets.push({
+                label: "CI Upper",
+                data: ciUpper,
+                borderColor: "transparent",
+                backgroundColor: "transparent",
+                borderWidth: 0,
+                pointRadius: 0,
+                pointHoverRadius: 0,
+                fill: false,
+              });
+              // CI Lower (filled)
+              datasets.push({
+                label: "IC 95%",
+                data: ciLower,
+                borderColor: "rgba(24, 144, 255, 0.3)",
+                backgroundColor: "rgba(24, 144, 255, 0.15)",
+                borderWidth: 1,
+                pointRadius: 0,
+                pointHoverRadius: 0,
+                fill: "-1",
+                spanGaps: true,
+              });
+            }
+
+            // Main species line
+            datasets.push({
+              label: speciesName,
+              data: speciesData,
+              borderColor: "#1890ff",
+              backgroundColor: "#1890ff",
+              borderWidth: 2,
+              pointRadius: 3,
+              pointHoverRadius: 5,
+              tension: 0.2,
+              spanGaps: true,
+            });
+
+            // Baseline
+            datasets.push({
+              label: `Baseline ${BASELINE_YEAR}`,
+              data: Array(years.length).fill(100),
+              borderColor: "#d9d9d9",
+              borderWidth: 1,
+              borderDash: [3, 3],
+              pointRadius: 0,
+              pointHoverRadius: 0,
+            });
+
+            return {
+              labels,
+              datasets,
+            };
+          };
+
+          // Helper function to create mini chart options with individual y-axis scale
+          const createMiniChartOptions = (speciesName: string) => {
+            // Get all values for this species to calculate scale
+            const speciesValues = years.map(year =>
+              flightCurvesData?.species?.[speciesName]?.collatedIndices?.[year]
+            ).filter((v): v is number => v !== null && v !== undefined);
+
+            const ciLowerValues = years.map(year =>
+              flightCurvesData?.species?.[speciesName]?.confidenceIntervals?.[year]?.ci_lower
+            ).filter((v): v is number => v !== null && v !== undefined);
+
+            const ciUpperValues = years.map(year =>
+              flightCurvesData?.species?.[speciesName]?.confidenceIntervals?.[year]?.ci_upper
+            ).filter((v): v is number => v !== null && v !== undefined);
+
+            const allValues = [...speciesValues, ...ciLowerValues, ...ciUpperValues, 100]; // Include baseline
+            const minVal = Math.min(...allValues);
+            const maxVal = Math.max(...allValues);
+            const speciesYAxisMin = Math.floor(minVal * 0.9);
+            const speciesYAxisMax = Math.ceil(maxVal * 1.1);
+
+            return {
+              responsive: true,
+              maintainAspectRatio: false,
+              plugins: {
+                legend: {
+                  display: false,
+                },
+                tooltip: {
+                  callbacks: {
+                    title: (context: any) => `${context[0].label}`,
+                    label: (context: any) => {
+                      const datasetLabel = context.dataset.label || "";
+
+                      // Skip CI Upper and Baseline in tooltips
+                      if (datasetLabel === "CI Upper" || datasetLabel === `Baseline ${BASELINE_YEAR}`) {
+                        return undefined;
+                      }
+
+                      // For CI band, show range
+                      if (datasetLabel === "IC 95%") {
+                        const yearIdx = context.dataIndex;
+                        const datasets = context.chart.data.datasets;
+                        const ciUpperDataset = datasets.find((d: any) => d.label === "CI Upper");
+                        if (ciUpperDataset) {
+                          const lower = context.parsed.y;
+                          const upper = ciUpperDataset.data[yearIdx];
+                          if (lower != null && upper != null) {
+                            return `IC 95%: ${lower.toFixed(1)} - ${upper.toFixed(1)}`;
+                          }
+                        }
+                        return undefined;
+                      }
+
+                      return `Índice: ${context.parsed.y?.toFixed(1) ?? 'N/A'}`;
+                    },
+                  },
+                  filter: (item: any) =>
+                    item.dataset.label !== `Baseline ${BASELINE_YEAR}` &&
+                    item.dataset.label !== "CI Upper",
+                },
+              },
+              scales: {
+                y: {
+                  beginAtZero: false,
+                  min: speciesYAxisMin,
+                  max: speciesYAxisMax,
+                  ticks: {
+                    font: {
+                      size: 10,
+                    },
+                  },
+                },
+                x: {
+                  ticks: {
+                    font: {
+                      size: 10,
+                    },
+                  },
+                },
+              },
+            };
+          };
+
+          return (
+            <>
+              <Text strong style={{ display: "block", marginBottom: 16, color: "#52c41a" }}>
+                Generalistas
+              </Text>
+              <Row gutter={[16, 16]}>
+                {widespreadSpecies.map(species => (
+                  <Col span={8} key={species}>
+                    <Card size="small" title={<span style={{ fontSize: 12 }}>{species}</span>}>
+                      <div style={{ height: "200px" }}>
+                        <Line
+                          options={createMiniChartOptions(species)}
+                          data={createSpeciesChartData(species)}
+                        />
+                      </div>
+                    </Card>
+                  </Col>
+                ))}
+              </Row>
+
+              <Divider />
+
+              <Text strong style={{ display: "block", marginBottom: 16, color: "#722ed1" }}>
+                Especialistas
+              </Text>
+              <Row gutter={[16, 16]}>
+                {specialistSpecies.map(species => (
+                  <Col span={8} key={species}>
+                    <Card size="small" title={<span style={{ fontSize: 12 }}>{species}</span>}>
+                      <div style={{ height: "200px" }}>
+                        <Line
+                          options={createMiniChartOptions(species)}
+                          data={createSpeciesChartData(species)}
+                        />
+                      </div>
+                    </Card>
+                  </Col>
+                ))}
+              </Row>
+            </>
+          );
+        })()}
       </Card>
 
       <Collapse style={{ marginTop: 16 }}>

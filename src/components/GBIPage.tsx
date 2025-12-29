@@ -8,6 +8,17 @@ import GrasslandButterflyIndex from "./charts/GrasslandButterflyIndex";
 import SpeciesLink from "./SpeciesLink";
 import { GRASSLAND_SPECIES } from "../constants";
 
+// Flight curves data type (minimal interface for what we need)
+interface FlightCurvesData {
+  species: Record<string, {
+    collatedIndices: Record<number, number>;
+    confidenceIntervals?: Record<number, {
+      ci_lower: number | null;
+      ci_upper: number | null;
+    }>;
+  }>;
+}
+
 // Helper function to translate trend categories to Portuguese
 const getTrendCategoryLabel = (category: string): string => {
   const labels: Record<string, string> = {
@@ -38,19 +49,23 @@ function GBIPage() {
   const navigate = useNavigate();
   const [gbiData, setGbiData] = useState<GBIData | null>(null);
   const [transectData, setTransectData] = useState<TransectData | null>(null);
+  const [flightCurvesData, setFlightCurvesData] = useState<FlightCurvesData | null>(null);
   const [loading, setLoading] = useState(true);
 
-  // Load GBI data and transect data
+  // Load GBI data, transect data, and flight curves data
   useEffect(() => {
     Promise.all([
       // eslint-disable-next-line no-undef
       fetch("data/gbi-data.json").then(res => res.json()),
       // eslint-disable-next-line no-undef
       fetch("data/processed-transects.json").then(res => res.json()),
+      // eslint-disable-next-line no-undef
+      fetch("data/flight-curves-data.json").then(res => res.json()),
     ])
-      .then(([gbi, transects]) => {
+      .then(([gbi, transects, flightCurves]) => {
         setGbiData(gbi);
         setTransectData(transects);
+        setFlightCurvesData(flightCurves);
         setLoading(false);
       })
       .catch(() => {
@@ -295,7 +310,7 @@ function GBIPage() {
         </Col>
       </Row>
 
-      <GrasslandButterflyIndex gbiData={gbiData} loading={loading} />
+      <GrasslandButterflyIndex gbiData={gbiData} flightCurvesData={flightCurvesData} loading={loading} />
     </Space>
   );
 }
