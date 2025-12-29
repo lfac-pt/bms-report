@@ -1,12 +1,38 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { Space, Typography, Button, Row, Col, Card, Statistic, Popover, List } from "antd";
+import { Space, Typography, Button, Row, Col, Card, Statistic, Popover, List, Alert, Tooltip } from "antd";
 import { ArrowLeftOutlined, InfoCircleOutlined, CloseCircleOutlined } from "@ant-design/icons";
 import { GBIData } from "../types/gbiData";
 import { TransectData } from "../types/transectStats";
 import GrasslandButterflyIndex from "./charts/GrasslandButterflyIndex";
 import SpeciesLink from "./SpeciesLink";
 import { GRASSLAND_SPECIES } from "../constants";
+
+// Helper function to translate trend categories to Portuguese
+const getTrendCategoryLabel = (category: string): string => {
+  const labels: Record<string, string> = {
+    "Strong increase": "Aumento Forte",
+    "Moderate increase": "Aumento Moderado",
+    Stable: "Estável",
+    Uncertain: "Incerto",
+    "Moderate decline": "Declínio Moderado",
+    "Strong decline": "Declínio Forte",
+  };
+  return labels[category] || category;
+};
+
+// Helper function to get color based on trend category
+const getTrendColor = (category: string): string => {
+  const colors: Record<string, string> = {
+    "Strong increase": "#52c41a",
+    "Moderate increase": "#95de64",
+    Stable: "#1890ff",
+    Uncertain: "#faad14",
+    "Moderate decline": "#ff7875",
+    "Strong decline": "#cf1322",
+  };
+  return colors[category] || "#8c8c8c";
+};
 
 function GBIPage() {
   const navigate = useNavigate();
@@ -55,8 +81,70 @@ function GBIPage() {
         </Button>
       </div>
 
+      <Alert
+        message="Índice de Borboletas de Prados (GBI)"
+        description={
+          gbiData ? (
+            <>
+              Este índice rastreia a saúde das populações de borboletas de pastagens em Portugal
+              usando uma média geométrica de tendências log-lineares de {speciesCount} espécies (
+              {gbiData.metadata.grasslandSpecies.filter((s: any) => s.type === "widespread").length}{" "}
+              generalistas, {gbiData.metadata.grasslandSpecies.filter((s: any) => s.type === "specialist").length}{" "}
+              especialistas) de {transectCount} transectos de alta qualidade. Ano base{" "}
+              {gbiData.metadata.baselineYear} = 100. Os valores acima de 100 indicam crescimento
+              populacional; abaixo de 100 indicam declínio.
+            </>
+          ) : (
+            "A carregar informação..."
+          )
+        }
+        type="info"
+        showIcon
+      />
+
       <Row gutter={16}>
-        <Col span={12}>
+        <Col span={8}>
+          <Card loading={loading}>
+            {gbiData?.gbiTrend ? (
+              <Tooltip
+                title={
+                  <div>
+                    <div>
+                      Taxa anual: {gbiData.gbiTrend.pc1.toFixed(1)}% [
+                      {gbiData.gbiTrend.pc1CI.lower.toFixed(1)}%,{" "}
+                      {gbiData.gbiTrend.pc1CI.upper.toFixed(1)}%]
+                    </div>
+                    <div>
+                      Mudança total: {gbiData.gbiTrend.pcn.toFixed(1)}% [
+                      {gbiData.gbiTrend.pcnCI.lower.toFixed(1)}%,{" "}
+                      {gbiData.gbiTrend.pcnCI.upper.toFixed(1)}%]
+                    </div>
+                    <div style={{ marginTop: 4, fontSize: 11, opacity: 0.8 }}>
+                      Classificação baseada em intervalos de confiança de 95% da taxa de mudança anual
+                    </div>
+                  </div>
+                }
+              >
+                <div style={{ cursor: "help" }}>
+                  <Statistic
+                    title={
+                      <span>
+                        Tendência <InfoCircleOutlined style={{ fontSize: 12 }} />
+                      </span>
+                    }
+                    value={`${getTrendCategoryLabel(gbiData.gbiTrend.category)} (${gbiData.gbiTrend.pc1.toFixed(1)}%/ano)`}
+                    valueStyle={{
+                      color: getTrendColor(gbiData.gbiTrend.category),
+                    }}
+                  />
+                </div>
+              </Tooltip>
+            ) : (
+              <Statistic title="Tendência" value="N/A" />
+            )}
+          </Card>
+        </Col>
+        <Col span={8}>
           <Card loading={loading}>
             <Popover
               content={
@@ -161,7 +249,7 @@ function GBIPage() {
             </Popover>
           </Card>
         </Col>
-        <Col span={12}>
+        <Col span={8}>
           <Card loading={loading}>
             <Popover
               content={

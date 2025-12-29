@@ -1,40 +1,14 @@
 import { Line } from "react-chartjs-2";
-import { Card, Alert, Row, Col, Statistic, Space, Tooltip, Typography, Switch } from "antd";
-import { InfoCircleOutlined } from "@ant-design/icons";
+import { Card, Alert, Collapse, Row, Col } from "antd";
 import { GBIData } from "../../types/gbiData";
-import { useState } from "react";
 import { BASELINE_YEAR } from "../../constants";
+
+const { Panel } = Collapse;
 
 interface GrasslandButterflyIndexProps {
   gbiData: GBIData | null;
   loading: boolean;
 }
-
-// Helper function to translate trend categories to Portuguese
-const getTrendCategoryLabel = (category: string): string => {
-  const labels: Record<string, string> = {
-    "Strong increase": "Aumento Forte",
-    "Moderate increase": "Aumento Moderado",
-    Stable: "Estável",
-    Uncertain: "Incerto",
-    "Moderate decline": "Declínio Moderado",
-    "Strong decline": "Declínio Forte",
-  };
-  return labels[category] || category;
-};
-
-// Helper function to get color based on trend category
-const getTrendColor = (category: string): string => {
-  const colors: Record<string, string> = {
-    "Strong increase": "#52c41a",
-    "Moderate increase": "#95de64",
-    Stable: "#1890ff",
-    Uncertain: "#faad14",
-    "Moderate decline": "#ff7875",
-    "Strong decline": "#cf1322",
-  };
-  return colors[category] || "#8c8c8c";
-};
 
 const chartOptions = {
   responsive: true,
@@ -120,8 +94,6 @@ const chartOptions = {
 };
 
 function GrasslandButterflyIndex({ gbiData, loading }: GrasslandButterflyIndexProps) {
-  const [showGroupComparison, setShowGroupComparison] = useState(false);
-
   if (loading) {
     return (
       <Card title="Índice de Borboletas de Prados (GBI)" size="small" loading={true}>
@@ -143,7 +115,7 @@ function GrasslandButterflyIndex({ gbiData, loading }: GrasslandButterflyIndexPr
     );
   }
 
-  const { metadata, gbiByYear, years } = gbiData;
+  const { gbiByYear, years } = gbiData;
 
   // Prepare chart data
   const labels = years.map(year => year.toString());
@@ -173,207 +145,11 @@ function GrasslandButterflyIndex({ gbiData, loading }: GrasslandButterflyIndexPr
     {} as Record<number, any>
   );
 
-  // Create datasets based on mode
-  let datasets;
+  // Create datasets for main GBI chart
+  const baseDatasets = [];
 
-  if (showGroupComparison) {
-    // Group comparison mode: show overall, widespread MSI, and specialist MSI
-    // Use the properly calculated MSI values from R script instead of manual geometric means
-    const widespreadIndices = gbiData.widespreadMSI
-      ? years.map(year => gbiData.widespreadMSI!.gbiByYear[year]?.smoothedValue ?? 100)
-      : [];
-
-    const specialistIndices = gbiData.specialistMSI
-      ? years.map(year => gbiData.specialistMSI!.gbiByYear[year]?.smoothedValue ?? 100)
-      : [];
-
-    // Extract CI data for widespread MSI
-    const widespreadCILower = gbiData.widespreadMSI
-      ? years.map(
-          year =>
-            gbiData.widespreadMSI!.gbiByYear[year]?.ci_lower ??
-            gbiData.widespreadMSI!.gbiByYear[year]?.smoothedValue ??
-            100
-        )
-      : [];
-    const widespreadCIUpper = gbiData.widespreadMSI
-      ? years.map(
-          year =>
-            gbiData.widespreadMSI!.gbiByYear[year]?.ci_upper ??
-            gbiData.widespreadMSI!.gbiByYear[year]?.smoothedValue ??
-            100
-        )
-      : [];
-
-    // Extract CI data for specialist MSI
-    const specialistCILower = gbiData.specialistMSI
-      ? years.map(
-          year =>
-            gbiData.specialistMSI!.gbiByYear[year]?.ci_lower ??
-            gbiData.specialistMSI!.gbiByYear[year]?.smoothedValue ??
-            100
-        )
-      : [];
-    const specialistCIUpper = gbiData.specialistMSI
-      ? years.map(
-          year =>
-            gbiData.specialistMSI!.gbiByYear[year]?.ci_upper ??
-            gbiData.specialistMSI!.gbiByYear[year]?.smoothedValue ??
-            100
-        )
-      : [];
-
-    const baseDatasets = [];
-
-    // Don't show overall GBI CI bands in group comparison mode
-
-    // Check if widespread MSI has CI data
-    const hasWidespreadCI =
-      gbiData.widespreadMSI &&
-      years.some(
-        year =>
-          gbiData.widespreadMSI!.gbiByYear[year]?.ci_lower !== null &&
-          gbiData.widespreadMSI!.gbiByYear[year]?.ci_lower !== undefined
-      );
-
-    // Add CI bands for Widespread MSI if available
-    if (hasWidespreadCI) {
-      // Widespread CI Upper (hidden)
-      baseDatasets.push({
-        label: "Generalistas CI Upper",
-        data: widespreadCIUpper,
-        borderColor: "transparent",
-        backgroundColor: "transparent",
-        borderWidth: 0,
-        pointRadius: 0,
-        pointHoverRadius: 0,
-        fill: false,
-        order: 4,
-      });
-
-      // Widespread CI Lower (filled)
-      baseDatasets.push({
-        label: "IC 95% Generalistas",
-        data: widespreadCILower,
-        borderColor: "rgba(82, 196, 26, 0.3)",
-        backgroundColor: "rgba(82, 196, 26, 0.15)",
-        borderWidth: 1,
-        pointRadius: 0,
-        pointHoverRadius: 0,
-        fill: "-1",
-        order: 4,
-      });
-    }
-
-    // Check if specialist MSI has CI data
-    const hasSpecialistCI =
-      gbiData.specialistMSI &&
-      years.some(
-        year =>
-          gbiData.specialistMSI!.gbiByYear[year]?.ci_lower !== null &&
-          gbiData.specialistMSI!.gbiByYear[year]?.ci_lower !== undefined
-      );
-
-    // Add CI bands for Specialist MSI if available
-    if (hasSpecialistCI) {
-      // Specialist CI Upper (hidden)
-      baseDatasets.push({
-        label: "Especialistas CI Upper",
-        data: specialistCIUpper,
-        borderColor: "transparent",
-        backgroundColor: "transparent",
-        borderWidth: 0,
-        pointRadius: 0,
-        pointHoverRadius: 0,
-        fill: false,
-        order: 4,
-      });
-
-      // Specialist CI Lower (filled)
-      baseDatasets.push({
-        label: "IC 95% Especialistas",
-        data: specialistCILower,
-        borderColor: "rgba(114, 46, 209, 0.3)",
-        backgroundColor: "rgba(114, 46, 209, 0.15)",
-        borderWidth: 1,
-        pointRadius: 0,
-        pointHoverRadius: 0,
-        fill: "-1",
-        order: 4,
-      });
-    }
-
-    // Add trend line (LOESS smoothed)
-    baseDatasets.push({
-      label: "Linha de Tendência",
-      data: smoothedValues,
-      borderColor: "#1890ff",
-      backgroundColor: "#1890ff",
-      borderWidth: 4,
-      pointRadius: 0,
-      pointHoverRadius: 0,
-      tension: 0.4,
-      fill: false,
-      order: 2,
-    });
-
-    baseDatasets.push(
-      {
-        label: "GBI (Todas as Espécies)",
-        data: gbiValues,
-        borderColor: "#1890ff",
-        backgroundColor: "#1890ff",
-        borderWidth: 0,
-        pointRadius: 5,
-        pointHoverRadius: 7,
-        showLine: false,
-        fill: false,
-        order: 1,
-      },
-      {
-        label: "Generalistas",
-        data: widespreadIndices,
-        borderColor: "#52c41a",
-        backgroundColor: "#52c41a",
-        borderWidth: 2,
-        pointRadius: 4,
-        pointHoverRadius: 6,
-        tension: 0.2,
-        fill: false,
-        order: 2,
-      },
-      {
-        label: "Especialistas",
-        data: specialistIndices,
-        borderColor: "#722ed1",
-        backgroundColor: "#722ed1",
-        borderWidth: 2,
-        pointRadius: 4,
-        pointHoverRadius: 6,
-        tension: 0.2,
-        fill: false,
-        order: 2,
-      },
-      {
-        label: `Baseline ${BASELINE_YEAR}`,
-        data: Array(years.length).fill(100),
-        borderColor: "#d9d9d9",
-        borderWidth: 2,
-        borderDash: [5, 5],
-        pointRadius: 0,
-        pointHoverRadius: 0,
-        fill: false,
-        order: 5,
-      }
-    );
-
-    datasets = baseDatasets;
-  } else {
-    // When group comparison is off, show only overall GBI
-    const baseDatasets = [];
-
-    // Add CI band datasets if available
-    if (hasConfidenceIntervals) {
+  // Add CI band datasets if available
+  if (hasConfidenceIntervals) {
       // CI Upper bound (hidden line - serves as fill target)
       baseDatasets.push({
         label: "CI Upper",
@@ -442,107 +218,233 @@ function GrasslandButterflyIndex({ gbiData, loading }: GrasslandButterflyIndexPr
       order: 5,
     });
 
-    datasets = baseDatasets;
-  }
-
   const chartData = {
     labels,
-    datasets,
+    datasets: baseDatasets,
     yearData, // Attach year data for tooltip
   };
 
-  // Calculate summary statistics
-  const latestYear = years[years.length - 1];
-  const latestGBI = gbiByYear[latestYear].gbiValue;
-  const firstYear = years[0];
-  const firstGBI = gbiByYear[firstYear].gbiValue;
-  const trendPercent = ((latestGBI - firstGBI) / firstGBI) * 100;
-  const speciesCount = metadata.grasslandSpecies.length;
-  const transectCount = metadata.transectsUsed.length;
+  // Prepare data for group comparison charts
+  const widespreadIndices = gbiData.widespreadMSI
+    ? years.map(year => gbiData.widespreadMSI!.gbiByYear[year]?.smoothedValue ?? 100)
+    : [];
+  const specialistIndices = gbiData.specialistMSI
+    ? years.map(year => gbiData.specialistMSI!.gbiByYear[year]?.smoothedValue ?? 100)
+    : [];
 
-  const gbiCardTitleTooltip = `Este índice rastreia a saúde das populações de borboletas de pastagens em Portugal
-              usando uma média geométrica de tendências log-lineares de ${speciesCount} espécies (
-              ${metadata.grasslandSpecies.filter(s => s.type === "widespread").length} generalistas,${" "}
-              ${metadata.grasslandSpecies.filter(s => s.type === "specialist").length} especialistas)
-              de ${transectCount} transectos de alta qualidade. Ano base ${metadata.baselineYear} =
-              100. Os valores acima de 100 indicam crescimento populacional; abaixo de 100 indicam
-              declínio.`;
+  // Extract CI data for widespread MSI
+  const widespreadCILower = gbiData.widespreadMSI
+    ? years.map(
+        year =>
+          gbiData.widespreadMSI!.gbiByYear[year]?.ci_lower ??
+          gbiData.widespreadMSI!.gbiByYear[year]?.smoothedValue ??
+          100
+      )
+    : [];
+  const widespreadCIUpper = gbiData.widespreadMSI
+    ? years.map(
+        year =>
+          gbiData.widespreadMSI!.gbiByYear[year]?.ci_upper ??
+          gbiData.widespreadMSI!.gbiByYear[year]?.smoothedValue ??
+          100
+      )
+    : [];
+
+  // Extract CI data for specialist MSI
+  const specialistCILower = gbiData.specialistMSI
+    ? years.map(
+        year =>
+          gbiData.specialistMSI!.gbiByYear[year]?.ci_lower ??
+          gbiData.specialistMSI!.gbiByYear[year]?.smoothedValue ??
+          100
+      )
+    : [];
+  const specialistCIUpper = gbiData.specialistMSI
+    ? years.map(
+        year =>
+          gbiData.specialistMSI!.gbiByYear[year]?.ci_upper ??
+          gbiData.specialistMSI!.gbiByYear[year]?.smoothedValue ??
+          100
+      )
+    : [];
+
+  // Calculate max value across all charts for shared y-axis scale
+  const allValues = [
+    ...gbiValues,
+    ...widespreadIndices,
+    ...specialistIndices,
+    ...widespreadCIUpper,
+    ...widespreadCILower,
+    ...specialistCIUpper,
+    ...specialistCILower,
+  ];
+  const maxValue = Math.max(...allValues);
+  const minValue = Math.min(...allValues);
+  const yAxisMax = Math.ceil(maxValue * 1.1);
+  const yAxisMin = Math.floor(minValue * 0.9);
+
+  // Check if widespread MSI has CI data
+  const hasWidespreadCI =
+    gbiData.widespreadMSI &&
+    years.some(
+      year =>
+        gbiData.widespreadMSI!.gbiByYear[year]?.ci_lower !== null &&
+        gbiData.widespreadMSI!.gbiByYear[year]?.ci_lower !== undefined
+    );
+
+  // Check if specialist MSI has CI data
+  const hasSpecialistCI =
+    gbiData.specialistMSI &&
+    years.some(
+      year =>
+        gbiData.specialistMSI!.gbiByYear[year]?.ci_lower !== null &&
+        gbiData.specialistMSI!.gbiByYear[year]?.ci_lower !== undefined
+    );
+
+  // Create chart data for Widespread MSI
+  const widespreadDatasets = [];
+  if (hasWidespreadCI) {
+    // CI Upper (hidden)
+    widespreadDatasets.push({
+      label: "CI Upper",
+      data: widespreadCIUpper,
+      borderColor: "transparent",
+      backgroundColor: "transparent",
+      borderWidth: 0,
+      pointRadius: 0,
+      pointHoverRadius: 0,
+      fill: false,
+    });
+    // CI Lower (filled)
+    widespreadDatasets.push({
+      label: "IC 95%",
+      data: widespreadCILower,
+      borderColor: "rgba(82, 196, 26, 0.3)",
+      backgroundColor: "rgba(82, 196, 26, 0.15)",
+      borderWidth: 1,
+      pointRadius: 0,
+      pointHoverRadius: 0,
+      fill: "-1",
+    });
+  }
+  widespreadDatasets.push(
+    {
+      label: "Generalistas",
+      data: widespreadIndices,
+      borderColor: "#52c41a",
+      backgroundColor: "#52c41a",
+      borderWidth: 2,
+      pointRadius: 4,
+      pointHoverRadius: 6,
+      tension: 0.2,
+    },
+    {
+      label: `Baseline ${BASELINE_YEAR}`,
+      data: Array(years.length).fill(100),
+      borderColor: "#d9d9d9",
+      borderWidth: 2,
+      borderDash: [5, 5],
+      pointRadius: 0,
+      pointHoverRadius: 0,
+    }
+  );
+
+  const widespreadChartData = {
+    labels,
+    datasets: widespreadDatasets,
+  };
+
+  // Create chart data for Specialist MSI
+  const specialistDatasets = [];
+  if (hasSpecialistCI) {
+    // CI Upper (hidden)
+    specialistDatasets.push({
+      label: "CI Upper",
+      data: specialistCIUpper,
+      borderColor: "transparent",
+      backgroundColor: "transparent",
+      borderWidth: 0,
+      pointRadius: 0,
+      pointHoverRadius: 0,
+      fill: false,
+    });
+    // CI Lower (filled)
+    specialistDatasets.push({
+      label: "IC 95%",
+      data: specialistCILower,
+      borderColor: "rgba(114, 46, 209, 0.3)",
+      backgroundColor: "rgba(114, 46, 209, 0.15)",
+      borderWidth: 1,
+      pointRadius: 0,
+      pointHoverRadius: 0,
+      fill: "-1",
+    });
+  }
+  specialistDatasets.push(
+    {
+      label: "Especialistas",
+      data: specialistIndices,
+      borderColor: "#722ed1",
+      backgroundColor: "#722ed1",
+      borderWidth: 2,
+      pointRadius: 4,
+      pointHoverRadius: 6,
+      tension: 0.2,
+    },
+    {
+      label: `Baseline ${BASELINE_YEAR}`,
+      data: Array(years.length).fill(100),
+      borderColor: "#d9d9d9",
+      borderWidth: 2,
+      borderDash: [5, 5],
+      pointRadius: 0,
+      pointHoverRadius: 0,
+    }
+  );
+
+  const specialistChartData = {
+    labels,
+    datasets: specialistDatasets,
+  };
+
+  // Chart options with shared y-axis scale
+  const groupChartOptions = {
+    ...chartOptions,
+    scales: {
+      ...chartOptions.scales,
+      y: {
+        ...chartOptions.scales.y,
+        min: yAxisMin,
+        max: yAxisMax,
+      },
+    },
+  };
 
   return (
-    <Card
-      title={
-        <Space>
-          Índice de Borboletas de Prados (GBI)
-          <Tooltip title={gbiCardTitleTooltip}>
-            <InfoCircleOutlined style={{ color: "#1890ff" }} />
-          </Tooltip>
-        </Space>
-      }
-      size="small"
-    >
-      <Row gutter={[16, 16]} style={{ marginBottom: "16px" }}>
-        <Col xs={24} sm={12}>
-          {gbiData.gbiTrend ? (
-            <Tooltip
-              title={
-                <div>
-                  <div>
-                    Taxa anual: {gbiData.gbiTrend.pc1.toFixed(1)}% [
-                    {gbiData.gbiTrend.pc1CI.lower.toFixed(1)}%,{" "}
-                    {gbiData.gbiTrend.pc1CI.upper.toFixed(1)}%]
-                  </div>
-                  <div>
-                    Mudança total: {gbiData.gbiTrend.pcn.toFixed(1)}% [
-                    {gbiData.gbiTrend.pcnCI.lower.toFixed(1)}%,{" "}
-                    {gbiData.gbiTrend.pcnCI.upper.toFixed(1)}%]
-                  </div>
-                  <div style={{ marginTop: 4, fontSize: 11, opacity: 0.8 }}>
-                    Classificação baseada em intervalos de confiança de 95% da taxa de mudança anual
-                  </div>
-                </div>
-              }
-            >
-              <div style={{ cursor: "help" }}>
-                <Statistic
-                  title={
-                    <span>
-                      Tendência <InfoCircleOutlined style={{ fontSize: 12 }} />
-                    </span>
-                  }
-                  value={`${getTrendCategoryLabel(gbiData.gbiTrend.category)} (${gbiData.gbiTrend.pc1.toFixed(1)}%/ano)`}
-                  valueStyle={{
-                    color: getTrendColor(gbiData.gbiTrend.category),
-                    fontSize: 16,
-                  }}
-                />
-              </div>
-            </Tooltip>
-          ) : (
-            <Statistic
-              title="Tendência"
-              value={Math.abs(trendPercent).toFixed(1)}
-              prefix={trendPercent >= 0 ? "+" : "-"}
-              suffix="%"
-              valueStyle={{ color: trendPercent >= 0 ? "#3f8600" : "#cf1322" }}
-            />
-          )}
-        </Col>
-        <Col xs={24} sm={12}>
-          <div style={{ display: "flex", alignItems: "center", height: "100%" }}>
-            <Space>
-              <Switch checked={showGroupComparison} onChange={setShowGroupComparison} />
-              <Typography.Text style={{ whiteSpace: "nowrap" }}>
-                Generalistas vs. especialistas
-              </Typography.Text>
-            </Space>
-          </div>
-        </Col>
-      </Row>
+    <>
+      <Card title="Índice de Borboletas de Prados (GBI)" size="small">
+        <div style={{ height: "400px", marginBottom: "16px" }}>
+          <Line options={chartOptions} data={chartData} />
+        </div>
+      </Card>
 
-      <div style={{ height: "400px", marginBottom: "16px" }}>
-        <Line options={chartOptions} data={chartData} />
-      </div>
-    </Card>
+      <Collapse style={{ marginTop: 16 }}>
+        <Panel header="Generalistas vs. Especialistas" key="1">
+          <Row gutter={16}>
+            <Col span={12}>
+              <div style={{ height: "350px" }}>
+                <Line options={groupChartOptions} data={widespreadChartData} />
+              </div>
+            </Col>
+            <Col span={12}>
+              <div style={{ height: "350px" }}>
+                <Line options={groupChartOptions} data={specialistChartData} />
+              </div>
+            </Col>
+          </Row>
+        </Panel>
+      </Collapse>
+    </>
   );
 }
 
