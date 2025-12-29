@@ -39,10 +39,12 @@ const FlightCurveChart: React.FC<FlightCurveChartProps> = ({ region, regionalDat
 
     return {
       label: year,
-      data: yearData.weeks.map((week, idx) => ({
-        x: week,
-        y: yearData.abundance[idx],
-      })),
+      data: yearData.weeks
+        .map((week, idx) => ({
+          x: week,
+          y: yearData.abundance[idx],
+        }))
+        .filter(point => point.x !== 40), // Exclude week 40 (no data)
       borderColor: color,
       backgroundColor: color,
       borderWidth: 2,

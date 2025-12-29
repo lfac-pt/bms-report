@@ -142,11 +142,7 @@ global.fetch = jest.fn(url => {
       json: () => Promise.resolve(mockTransectData),
     });
   }
-  if (
-    url === "data/flight-curves-data.json" ||
-    url === "data/phenology-curves-data.json" ||
-    url === "data/gbi-data.json"
-  ) {
+  if (url === "data/flight-curves-data.json" || url === "data/gbi-data.json") {
     return Promise.resolve({
       json: () => Promise.resolve(null),
     });

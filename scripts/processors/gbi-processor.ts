@@ -111,6 +111,14 @@ export async function calculateGBI(
     `  Length range: ${Math.min(...transectLengths.map(t => t.length_km)).toFixed(2)} - ${Math.max(...transectLengths.map(t => t.length_km)).toFixed(2)} km`
   );
 
+  // Step 4c: Extract and write site regions for GBI calculation (REQUIRED)
+  // The R script uses regional flight curves for imputation within the GBI calculation
+  const siteRegionsFile = rbmsUtils.prepareSiteRegionsFile(
+    activeQualityTransects,
+    qualityTransectIds,
+    TEMP_RBMS_DIR
+  );
+
   // Debug: Check what species we actually have in the data
   const speciesInData = new Set(transformedData.map(row => row.species));
   console.log(`  Species found in data (${speciesInData.size}):`);
@@ -170,7 +178,7 @@ export async function calculateGBI(
       console.log(`    Visits: ${speciesData.visits.length}, Counts: ${speciesData.counts.length}`);
 
       // Call R script with extended timeout (2 minutes per species)
-      // Transect lengths file is REQUIRED for 1-km normalization
+      // Transect lengths and site regions files are REQUIRED
       const args = [
         visitsFile,
         countsFile,
@@ -178,6 +186,7 @@ export async function calculateGBI(
         species,
         baselineYear.toString(),
         transectLengthsFile,
+        siteRegionsFile, // Regional flight curves
       ];
 
       // Calculate bootstrap RDS file path for caching

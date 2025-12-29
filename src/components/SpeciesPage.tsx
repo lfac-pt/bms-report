@@ -39,7 +39,6 @@ function SpeciesPage() {
   const [timelineData, setTimelineData] = useState<TimelineData | null>(null);
   const [transectData, setTransectData] = useState<TransectData | null>(null);
   const [flightCurvesData, setFlightCurvesData] = useState<any>(null);
-  const [phenologyData, setPhenologyData] = useState<any>(null);
   const [loading, setLoading] = useState(true);
   const [showOnlyQualityTransects, setShowOnlyQualityTransects] = useState(true);
 
@@ -47,7 +46,8 @@ function SpeciesPage() {
   const decodedSpeciesName = speciesName ? decodeURIComponent(speciesName) : "";
   const family = SPECIES_FAMILIES[decodedSpeciesName] || "Informação não disponível";
 
-  // Load timeline, transect, flight curves, and phenology data
+  // Load timeline, transect, and flight curves data
+  // Note: Regional phenology data is now included in flight-curves-data.json
   useEffect(() => {
     Promise.all([
       // eslint-disable-next-line no-undef
@@ -58,16 +58,11 @@ function SpeciesPage() {
       fetch("data/flight-curves-data.json")
         .then(res => res.json())
         .catch(() => null),
-      // eslint-disable-next-line no-undef
-      fetch("data/phenology-curves-data.json")
-        .then(res => res.json())
-        .catch(() => null),
     ])
-      .then(([timeline, transects, flightCurves, phenology]) => {
+      .then(([timeline, transects, flightCurves]) => {
         setTimelineData(timeline);
         setTransectData(transects);
         setFlightCurvesData(flightCurves);
-        setPhenologyData(phenology);
         setLoading(false);
       })
       .catch(() => {
@@ -259,7 +254,11 @@ function SpeciesPage() {
       <Card title="Curvas de Voo (Regionais)">
         <FlightCurvesDisplay
           speciesName={decodedSpeciesName}
-          phenologyData={phenologyData?.species?.[decodedSpeciesName]}
+          phenologyData={
+            flightCurvesData?.species?.[decodedSpeciesName]?.regionalPhenologyCurves
+              ? { regions: flightCurvesData.species[decodedSpeciesName].regionalPhenologyCurves }
+              : null
+          }
           loading={loading}
         />
       </Card>

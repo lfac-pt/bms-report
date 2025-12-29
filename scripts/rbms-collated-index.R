@@ -27,8 +27,8 @@ suppressPackageStartupMessages({
 # Parse command line arguments
 args <- commandArgs(trailingOnly = TRUE)
 
-if (length(args) != 6) {
-  stop("Usage: Rscript rbms-collated-index.R <visits_csv> <counts_csv> <output_json> <species_name> <baseline_year> <transect_lengths_csv>")
+if (length(args) != 7) {
+  stop("Usage: Rscript rbms-collated-index.R <visits_csv> <counts_csv> <output_json> <species_name> <baseline_year> <transect_lengths_csv> <site_regions_csv>")
 }
 
 visits_file <- args[1]
@@ -37,6 +37,7 @@ output_file <- args[3]
 species_name <- args[4]
 baseline_year <- as.numeric(args[5])
 transect_lengths_file <- args[6]
+site_regions_file <- args[7]
 
 # Verify input files exist
 if (!file.exists(visits_file)) {
@@ -74,6 +75,25 @@ if (nrow(transect_lengths) == 0) {
 }
 
 cat(paste("Loaded transect lengths for", nrow(transect_lengths), "sites\n"))
+
+# Read site regions (required)
+if (!file.exists(site_regions_file)) {
+  stop(paste("Site regions file not found:", site_regions_file))
+}
+
+cat(paste("Reading site regions from:", site_regions_file, "\n"))
+site_regions <- read.csv(site_regions_file, stringsAsFactors = FALSE)
+
+# Verify required columns
+if (!all(c("site_id", "region") %in% colnames(site_regions))) {
+  stop("Site regions file missing required columns (site_id, region)")
+}
+
+cat(paste("Loaded regions for", nrow(site_regions), "sites\n"))
+
+# Log unique regions
+unique_regions <- unique(site_regions$region)
+cat(paste("  Unique regions:", paste(unique_regions, collapse = ", "), "\n"))
 
 # Verify data structure
 required_visits_cols <- c("site_id", "date", "year")
@@ -165,108 +185,164 @@ cat(paste("Count data prepared:", nrow(m_count), "rows\n"))
 cat("First few rows:\n")
 print(head(m_count, 3))
 
-# Step 4: Calculate flight curves using GAM
-cat("Calculating GAM flight curves...\n")
-pheno_curves <- NULL  # Initialize for scope
-tryCatch({
-  ts_flight_curve <- rbms::flight_curve( # Parameters taken from VS2025.014 EU Grassland Butterfly Index 1991-2023 Technical report.pdf
-    m_count,
-    NbrSample = 300,
-    MinVisit = 3,
-    MinOccur = 1,
-    MinNbrSite = 1,
-    MaxTrial = 4,
-    GamFamily = 'nb',
-    SpeedGam = FALSE,
-    CompltSeason = TRUE,
-    TimeUnit = 'w'
-  )
+# Step 4: Calculate regional GAM flight curves
+regional_flight_curves <- list()
+regional_pheno_curves <- list()
+flight_curve_success <- FALSE
+regions_with_data <- c()
+regions_excluded <- c()
 
-  flight_curve_success <- TRUE
+cat("Calculating regional GAM flight curves...\n")
 
-  # Debug: Check flight curve structure
-  cat("Flight curve structure:\n")
-  cat(paste("  Names:", paste(names(ts_flight_curve), collapse = ", "), "\n"))
-  if ("pheno" %in% names(ts_flight_curve)) {
-    cat(paste("  Pheno rows:", nrow(ts_flight_curve$pheno), "\n"))
-    if (nrow(ts_flight_curve$pheno) > 0) {
-      cat("  Pheno sample:\n")
-      print(head(ts_flight_curve$pheno[, c("SPECIES", "M_YEAR", "WEEK")], 3))
-    }
-  }
+  # Get unique regions
+  unique_regions <- unique(site_regions$region)
+  cat(paste("  Processing", length(unique_regions), "regions\n"))
 
-  # Extract phenology curves (weekly abundance predictions)
-  if ("pheno" %in% names(ts_flight_curve) && nrow(ts_flight_curve$pheno) > 0) {
-    cat("Extracting phenology curves...\n")
-    pheno_df <- as.data.frame(ts_flight_curve$pheno)
+  # For each region, calculate flight curve if sufficient data
+  for (region in unique_regions) {
+    # Get sites in this region
+    region_sites <- site_regions$site_id[site_regions$region == region]
+    region_data <- m_count[m_count$SITE_ID %in% region_sites, ]
 
-    # Check available columns
-    cat(paste("  Pheno columns:", paste(colnames(pheno_df), collapse = ", "), "\n"))
+    # Check minimum requirements (1+ transect, 5+ visits)
+    n_sites <- length(unique(region_data$SITE_ID))
+    # Count unique site-week combinations where there was actual monitoring
+    n_visits <- nrow(unique(region_data[!is.na(region_data$DATE) & region_data$M_SEASON == 1, c("SITE_ID", "WEEK", "M_YEAR")]))
 
-    # Select relevant columns: year, week, and normalized abundance
-    # NM is the key column - normalized mean abundance prediction
-    required_cols <- c("M_YEAR", "WEEK", "NM")
-    if (all(required_cols %in% colnames(pheno_df))) {
-      # Filter to unique year-week combinations (avoid duplicates)
-      pheno_output <- pheno_df[, required_cols]
-      colnames(pheno_output) <- c("year", "week", "abundance")
+    cat(paste("  Region:", region, "-", n_sites, "sites,", n_visits, "visits"))
 
-      # Remove duplicates if any (keep first occurrence per year-week)
-      pheno_output <- pheno_output[!duplicated(pheno_output[, c("year", "week")]), ]
-
-      # Convert to list structure grouped by year for easier JSON output
-      pheno_by_year <- split(pheno_output, pheno_output$year)
-      pheno_curves <- lapply(pheno_by_year, function(year_data) {
-        # Sort by week to ensure proper order
-        year_data <- year_data[order(year_data$week), ]
-
-        list(
-          year = unique(year_data$year),
-          weeks = as.list(year_data$week),
-          abundance = as.list(round(year_data$abundance, 4))
+    if (n_sites >= 1 && n_visits >= 5) {
+      # Calculate regional flight curve
+      tryCatch({
+        regional_fc <- rbms::flight_curve(
+          region_data,
+          NbrSample = 300,
+          MinVisit = 3,
+          MinOccur = 1,
+          MinNbrSite = 1,
+          MaxTrial = 4,
+          GamFamily = 'nb',
+          SpeedGam = FALSE,
+          CompltSeason = TRUE,
+          TimeUnit = 'w'
         )
-      })
-      names(pheno_curves) <- sapply(pheno_curves, function(x) as.character(x$year))
 
-      cat(paste("  Extracted phenology for", length(pheno_curves), "years\n"))
-      cat(paste("  Weeks per year: ", paste(sapply(pheno_curves, function(x) length(x$weeks)), collapse = ", "), "\n"))
+        regional_flight_curves[[region]] <- regional_fc
+        regions_with_data <- c(regions_with_data, region)
+        cat(" -> Flight curve calculated\n")
+
+        # Extract phenology for this region
+        if ("pheno" %in% names(regional_fc) && nrow(regional_fc$pheno) > 0) {
+          pheno_df <- as.data.frame(regional_fc$pheno)
+          required_cols <- c("M_YEAR", "WEEK", "NM")
+
+          if (all(required_cols %in% colnames(pheno_df))) {
+            pheno_output <- pheno_df[, required_cols]
+            colnames(pheno_output) <- c("year", "week", "abundance")
+            pheno_output <- pheno_output[!duplicated(pheno_output[, c("year", "week")]), ]
+
+            # Group by year
+            pheno_by_year <- split(pheno_output, pheno_output$year)
+            regional_pheno <- lapply(pheno_by_year, function(year_data) {
+              year_data <- year_data[order(year_data$week), ]
+              list(
+                year = unique(year_data$year),
+                weeks = as.list(year_data$week),
+                abundance = as.list(round(year_data$abundance, 4))
+              )
+            })
+            names(regional_pheno) <- sapply(regional_pheno, function(x) as.character(x$year))
+
+            # Calculate total counts for this region
+            total_counts <- sum(region_data$COUNT, na.rm = TRUE)
+
+            # Store with data quality info
+            regional_pheno_curves[[region]] <- list(
+              phenologyCurves = regional_pheno,
+              dataQuality = list(
+                transectCount = n_sites,
+                totalVisits = n_visits,
+                totalCounts = total_counts
+              )
+            )
+          }
+        }
+
+      }, error = function(e) {
+        cat(paste(" -> Failed:", e$message, "\n"))
+        regions_excluded <- c(regions_excluded, region)
+      })
     } else {
-      cat("  Warning: Required pheno columns not found\n")
-      pheno_curves <- NULL
+      cat(" -> Excluded (insufficient data)\n")
+      regions_excluded <- c(regions_excluded, region)
     }
-  } else {
-    cat("  No phenology data available\n")
-    pheno_curves <- NULL
   }
 
-}, error = function(e) {
-  cat(paste("Warning: Flight curve calculation failed:", e$message, "\n"))
-  ts_flight_curve <<- NULL
-  flight_curve_success <<- FALSE
-  pheno_curves <<- NULL
-})
+  # Check if ANY region has sufficient data
+  if (length(regions_with_data) == 0) {
+    stop("No regions have sufficient data (need 1+ transect and 5+ visits). Cannot calculate indices.")
+  }
+
+flight_curve_success <- TRUE
+cat(paste("  Regions with flight curves:", paste(regions_with_data, collapse = ", "), "\n"))
+if (length(regions_excluded) > 0) {
+  cat(paste("  Regions excluded:", paste(regions_excluded, collapse = ", "), "\n"))
+}
 
 # Step 5: Impute missing counts using flight curves
-if (flight_curve_success && !is.null(ts_flight_curve)) {
-  cat("Imputing missing counts...\n")
+ts_season_count <- NULL
+imputation_success <- FALSE
 
-  tryCatch({
-    ts_season_count <- rbms::impute_count(
-      ts_season_count = m_count,
-      ts_flight_curve = ts_flight_curve,
-      YearLimit = NULL,
-      TimeUnit = "w"
-    )
-    imputation_success <- TRUE
-    cat("Imputation successful\n")
-  }, error = function(e) {
-    cat(paste("Warning: Count imputation failed:", e$message, "\n"))
-    cat("Continuing without imputation...\n")
-    ts_season_count <<- m_count
-    imputation_success <<- FALSE
-  })
+if (flight_curve_success && length(regional_flight_curves) > 0) {
+  # Regional imputation - use region-specific flight curves
+  cat("Imputing missing counts using regional flight curves...\n")
+
+    imputed_data <- data.frame()
+    sites_imputed <- 0
+    sites_excluded <- 0
+
+    # Group sites by region
+    for (region in names(regional_flight_curves)) {
+      region_sites <- site_regions$site_id[site_regions$region == region]
+      region_data <- m_count[m_count$SITE_ID %in% region_sites, ]
+
+      if (nrow(region_data) > 0) {
+        cat(paste("  Imputing region:", region, "-", length(unique(region_data$SITE_ID)), "sites\n"))
+
+        tryCatch({
+          region_imputed <- rbms::impute_count(
+            ts_season_count = region_data,
+            ts_flight_curve = regional_flight_curves[[region]],
+            YearLimit = NULL,
+            TimeUnit = "w"
+          )
+          imputed_data <- rbind(imputed_data, region_imputed)
+          sites_imputed <- sites_imputed + length(unique(region_data$SITE_ID))
+        }, error = function(e) {
+          cat(paste("    Warning: Imputation failed for region", region, ":", e$message, "\n"))
+          # Still include the un-imputed data
+          imputed_data <<- rbind(imputed_data, region_data)
+        })
+      }
+    }
+
+    # Exclude sites from regions without flight curves
+    if (length(regions_excluded) > 0) {
+      for (region in regions_excluded) {
+        region_sites <- site_regions$site_id[site_regions$region == region]
+        excluded_count <- length(region_sites)
+        if (excluded_count > 0) {
+          sites_excluded <- sites_excluded + excluded_count
+          cat(paste("  Excluding", excluded_count, "sites from region:", region, "\n"))
+        }
+      }
+    }
+
+  ts_season_count <- imputed_data
+  imputation_success <- TRUE
+  cat(paste("Regional imputation complete:", sites_imputed, "sites imputed,", sites_excluded, "sites excluded\n"))
 } else {
-  cat("Skipping imputation (flight curve unavailable)\n")
+  cat("No regional flight curves available - cannot perform imputation\n")
   ts_season_count <- m_count
   imputation_success <- FALSE
 }
@@ -741,17 +817,8 @@ if (nrow(collated_by_year) >= 2) {
     years_numeric <- as.numeric(collated_valid$year)
     indices_values <- collated_valid$index_normalized
 
-    # Adjust LOESS span based on number of data points
-    # For short time series, use larger span for more smoothing
-    # For longer time series, use standard 0.75 (EU GBI standard)
-    n_years <- length(years_numeric)
-    loess_span <- if (n_years <= 5) {
-      1.0  # Use all points for short series (maximum smoothing)
-    } else if (n_years <= 7) {
-      0.9  # Still high smoothing for medium-short series
-    } else {
-      0.75  # Standard EU GBI span for longer series
-    }
+    # Use standard LOESS span of 0.75 (EU GBI standard)
+    loess_span <- 0.75
 
     # LOESS smoothing on normalized indices
     loess_trend <- try(
@@ -825,10 +892,10 @@ output <- list(
   confidence_intervals = confidence_intervals,
   trend_statistics = trend_statistics,
   trend_line = if(length(trend_line) > 0) trend_line else NULL,
-  phenology_curves = pheno_curves,
+  regional_phenology_curves = if(length(regional_pheno_curves) > 0) regional_pheno_curves else NULL,
   data_quality = data_quality,
   processing_info = list(
-    method = "rbms (GAM flight curves + GLM collated index + bootstrap CI + linear trend + transect length normalization)",
+    method = "rbms (regional GAM flight curves + GLM collated index + bootstrap CI + linear trend + transect length normalization)",
     timestamp = format(Sys.time(), "%Y-%m-%d %H:%M:%S"),
     rbms_version = as.character(packageVersion("rbms")),
     bootstrap_iterations = if(exists("n_boots")) n_boots else 0

@@ -434,16 +434,9 @@ co_index[, LOGDENSITY := log10(COL_INDEX)]
 co_index[, TRMOBS := LOGDENSITY - mean(LOGDENSITY) + LOG10_CENTER, by = .(SPECIES, BOOTi)]
 cat("   [OK] TRMOBS recalculated and centered\n")
 
-# Determine LOESS span once for consistency
-# For short time series, use larger span for more smoothing
+# Use standard LOESS span of 0.75 (EU GBI standard)
+loess_span <- 0.75
 n_years <- uniqueN(co_index$M_YEAR)
-loess_span <- if (n_years <= 5) {
-  1.0  # Use all points for short series (maximum smoothing)
-} else if (n_years <= 7) {
-  0.9  # Still high smoothing for medium-short series
-} else {
-  0.75  # Standard EU GBI span for longer series
-}
 cat(sprintf("\n   Time series length: %d years -> Using LOESS span: %.2f\n", n_years, loess_span))
 
 cat("\n3. Calculating main indicator (BOOTi == 0)...\n")

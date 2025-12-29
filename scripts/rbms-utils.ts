@@ -10,6 +10,7 @@
  */
 
 import * as fs from "fs";
+import * as path from "path";
 import { spawn } from "child_process";
 import * as cacheUtils from "./cache-utils";
 import { TransformedDataRow } from "../src/types/processing";
@@ -42,6 +43,12 @@ interface SpeciesDataResult {
 export interface TransectLengthData {
   site_id: string;
   length_km: number;
+  [key: string]: unknown; // Add index signature for compatibility
+}
+
+export interface SiteRegionData {
+  site_id: string;
+  region: string;
   [key: string]: unknown; // Add index signature for compatibility
 }
 
@@ -298,6 +305,37 @@ export function extractTransectLengths(
 }
 
 /**
+ * Extract climatic regions for a set of transect IDs
+ *
+ * @param transects - Array of transect objects with transectId and climaticRegion properties
+ * @param transectIds - Array of transect IDs to include
+ * @returns Array of SiteRegionData with site_id and region
+ */
+export function extractSiteRegions(
+  transects: Array<{ transectId: string; climaticRegion?: string | null }>,
+  transectIds: string[]
+): SiteRegionData[] {
+  const transectIdSet = new Set(transectIds);
+  const regions: SiteRegionData[] = [];
+
+  for (const transect of transects) {
+    if (!transectIdSet.has(transect.transectId)) {
+      continue;
+    }
+
+    // Get climatic region - default to "Desconhecido" if not available
+    const region = transect.climaticRegion || "Desconhecido";
+
+    regions.push({
+      site_id: transect.transectId,
+      region: region,
+    });
+  }
+
+  return regions;
+}
+
+/**
  * Call R script for rbms processing
  */
 export function callRbms(
@@ -442,4 +480,40 @@ export function validateRbmsOutput(
   }
 
   return output;
+}
+
+/**
+ * Prepares site regions file for rbms processing
+ * Extracts site regions, validates data, writes CSV file, and logs results
+ *
+ * @param transects - Array of transect statistics
+ * @param transectIds - Array of transect IDs to include
+ * @param outputDir - Directory where the CSV file will be written
+ * @param fileName - Name of the CSV file (default: "site_regions.csv")
+ * @returns Path to the created CSV file
+ */
+export function prepareSiteRegionsFile(
+  transects: Array<{ transectId: string; climaticRegion?: string | null }>,
+  transectIds: string[],
+  outputDir: string,
+  fileName = "site_regions.csv"
+): string {
+  // Extract site regions
+  const siteRegions = extractSiteRegions(transects, transectIds);
+  const siteRegionsFile = path.join(outputDir, fileName);
+
+  // Validate that we have regions
+  if (siteRegions.length === 0) {
+    throw new Error("No site regions available - cannot calculate regional flight curves");
+  }
+
+  // Write CSV file
+  writeCSV(siteRegionsFile, siteRegions, ["site_id", "region"]);
+  console.log(`  Site regions extracted: ${siteRegions.length} transects`);
+
+  // Log unique regions
+  const uniqueRegions = [...new Set(siteRegions.map(s => s.region))];
+  console.log(`  Unique climatic regions (${uniqueRegions.length}): ${uniqueRegions.join(", ")}`);
+
+  return siteRegionsFile;
 }
