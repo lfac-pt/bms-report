@@ -1,22 +1,9 @@
 import { Line } from "react-chartjs-2";
-import {
-  Card,
-  Alert,
-  Row,
-  Col,
-  Statistic,
-  Space,
-  Tooltip,
-  Popover,
-  List,
-  Typography,
-  Switch,
-} from "antd";
+import { Card, Alert, Row, Col, Statistic, Space, Tooltip, Typography, Switch } from "antd";
 import { InfoCircleOutlined } from "@ant-design/icons";
 import { GBIData } from "../../types/gbiData";
-import SpeciesLink from "../SpeciesLink";
 import { useState } from "react";
-import { GRASSLAND_SPECIES, BASELINE_YEAR } from "../../constants";
+import { BASELINE_YEAR } from "../../constants";
 
 interface GrasslandButterflyIndexProps {
   gbiData: GBIData | null;
@@ -494,7 +481,7 @@ function GrasslandButterflyIndex({ gbiData, loading }: GrasslandButterflyIndexPr
       size="small"
     >
       <Row gutter={[16, 16]} style={{ marginBottom: "16px" }}>
-        <Col xs={24} sm={12} md={6}>
+        <Col xs={24} sm={12}>
           {gbiData.gbiTrend ? (
             <Tooltip
               title={
@@ -540,114 +527,7 @@ function GrasslandButterflyIndex({ gbiData, loading }: GrasslandButterflyIndexPr
             />
           )}
         </Col>
-        <Col xs={24} sm={12} md={6}>
-          <Popover
-            content={
-              <div style={{ maxWidth: 400, maxHeight: 400, overflowY: "auto" }}>
-                <div style={{ marginBottom: 16 }}>
-                  <Typography.Text
-                    strong
-                    style={{ display: "block", marginBottom: 8, color: "#52c41a" }}
-                  >
-                    Generalistas ({GRASSLAND_SPECIES.widespread.size})
-                  </Typography.Text>
-                  <List
-                    size="small"
-                    dataSource={[...GRASSLAND_SPECIES.widespread].sort()}
-                    renderItem={species => {
-                      return (
-                        <List.Item style={{ padding: "4px 0" }}>
-                          <div style={{ fontSize: 12 }}>
-                            <SpeciesLink species={species} />
-                          </div>
-                        </List.Item>
-                      );
-                    }}
-                  />
-                </div>
-                <div>
-                  <Typography.Text
-                    strong
-                    style={{ display: "block", marginBottom: 8, color: "#1890ff" }}
-                  >
-                    Especialistas ({GRASSLAND_SPECIES.specialist.size})
-                  </Typography.Text>
-                  <List
-                    size="small"
-                    dataSource={[...GRASSLAND_SPECIES.specialist].sort()}
-                    renderItem={species => {
-                      return (
-                        <List.Item style={{ padding: "4px 0" }}>
-                          <div style={{ fontSize: 12 }}>
-                            <SpeciesLink species={species} />
-                          </div>
-                        </List.Item>
-                      );
-                    }}
-                  />
-                </div>
-              </div>
-            }
-            title="Espécies de Pastagens"
-            trigger="click"
-            placement="bottom"
-          >
-            <div style={{ cursor: "pointer" }}>
-              <Statistic
-                title={
-                  <span>
-                    Espécies <InfoCircleOutlined style={{ fontSize: 12 }} />
-                  </span>
-                }
-                value={speciesCount}
-                suffix={`de ${GRASSLAND_SPECIES.widespread.size + GRASSLAND_SPECIES.specialist.size}`}
-              />
-            </div>
-          </Popover>
-        </Col>
-        <Col xs={24} sm={12} md={6}>
-          <Popover
-            content={
-              <div style={{ maxWidth: 400, maxHeight: 400, overflowY: "auto" }}>
-                <Typography.Text strong style={{ display: "block", marginBottom: 8 }}>
-                  Transectos Qualificados ({transectCount})
-                </Typography.Text>
-                <Typography.Text
-                  style={{ fontSize: 12, color: "#8c8c8c", display: "block", marginBottom: 8 }}
-                >
-                  Critérios: 5+ anos ativos, 5+ visitas/ano
-                </Typography.Text>
-                <List
-                  size="small"
-                  dataSource={metadata.transectsUsed}
-                  renderItem={transect => (
-                    <List.Item style={{ padding: "4px 0" }}>
-                      <Typography.Text style={{ fontSize: 12 }}>
-                        {transect.transectName}
-                      </Typography.Text>
-                    </List.Item>
-                  )}
-                />
-              </div>
-            }
-            title="Transectos Utilizados no GBI"
-            trigger="click"
-            placement="bottom"
-          >
-            <div style={{ cursor: "pointer" }}>
-              <Statistic
-                title={
-                  <span>
-                    Transectos <InfoCircleOutlined style={{ fontSize: 12 }} />
-                  </span>
-                }
-                value={transectCount}
-                suffix="qualificados"
-              />
-            </div>
-          </Popover>
-        </Col>
-        <Col xs={24} sm={12} md={6}>
+        <Col xs={24} sm={12}>
           <div style={{ display: "flex", alignItems: "center", height: "100%" }}>
             <Space>
               <Switch checked={showGroupComparison} onChange={setShowGroupComparison} />
