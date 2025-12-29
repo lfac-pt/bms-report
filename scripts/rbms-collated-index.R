@@ -252,7 +252,19 @@ cat("Calculating regional GAM flight curves...\n")
               )
             })
             names(regional_pheno) <- sapply(regional_pheno, function(x) as.character(x$year))
-            regional_pheno_curves[[region]] <- regional_pheno
+
+            # Calculate total counts for this region
+            total_counts <- sum(region_data$COUNT, na.rm = TRUE)
+
+            # Store with data quality info
+            regional_pheno_curves[[region]] <- list(
+              phenologyCurves = regional_pheno,
+              dataQuality = list(
+                transectCount = n_sites,
+                totalVisits = n_visits,
+                totalCounts = total_counts
+              )
+            )
           }
         }
 
