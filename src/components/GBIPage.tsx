@@ -18,7 +18,7 @@ import { GBIData, RegionalGBICollection } from "../types/gbiData";
 import { TransectData } from "../types/transectStats";
 import GrasslandButterflyIndex from "./charts/GrasslandButterflyIndex";
 import SpeciesLink from "./SpeciesLink";
-import { GRASSLAND_SPECIES, getTrendColor, getTrendLabel } from "../constants";
+import { GRASSLAND_SPECIES, getTrendColor, getTrendLabel, MIN_YEARS_ACTIVE, MIN_VISITS_PER_YEAR } from "../constants";
 
 // Flight curves data type (minimal interface for what we need)
 interface FlightCurvesData {
@@ -286,13 +286,10 @@ function GBIPage() {
             <Popover
               content={
                 <div style={{ maxWidth: 400, maxHeight: 400, overflowY: "auto" }}>
-                  <Typography.Text strong style={{ display: "block", marginBottom: 8 }}>
-                    Transectos Qualificados ({transectCount})
-                  </Typography.Text>
                   <Typography.Text
                     style={{ fontSize: 12, color: "#8c8c8c", display: "block", marginBottom: 8 }}
                   >
-                    Critérios: 5+ anos ativos, 5+ visitas/ano
+                    Critérios: {MIN_YEARS_ACTIVE}+ anos ativos, {MIN_VISITS_PER_YEAR}+ visitas/ano
                   </Typography.Text>
                   <List
                     size="small"
