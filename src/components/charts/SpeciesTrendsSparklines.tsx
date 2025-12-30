@@ -257,7 +257,8 @@ const SpeciesTrendsSparklines: React.FC = () => {
               {categorySummary["Strong increase"] && (
                 <>
                   <span style={{ color: TREND_COLORS["Strong increase"] }}>
-                    ↑↑ {categorySummary["Strong increase"]} {getTrendLabel("Strong increase").toLowerCase()}
+                    ↑↑ {categorySummary["Strong increase"]}{" "}
+                    {getTrendLabel("Strong increase").toLowerCase()}
                   </span>
                   {" • "}
                 </>
@@ -265,7 +266,8 @@ const SpeciesTrendsSparklines: React.FC = () => {
               {categorySummary["Moderate increase"] && (
                 <>
                   <span style={{ color: TREND_COLORS["Moderate increase"] }}>
-                    ↑ {categorySummary["Moderate increase"]} {getTrendLabel("Moderate increase").toLowerCase()}
+                    ↑ {categorySummary["Moderate increase"]}{" "}
+                    {getTrendLabel("Moderate increase").toLowerCase()}
                   </span>
                   {" • "}
                 </>
@@ -281,7 +283,8 @@ const SpeciesTrendsSparklines: React.FC = () => {
               {categorySummary["Moderate decline"] && (
                 <>
                   <span style={{ color: TREND_COLORS["Moderate decline"] }}>
-                    ↓ {categorySummary["Moderate decline"]} {getTrendLabel("Moderate decline").toLowerCase()}
+                    ↓ {categorySummary["Moderate decline"]}{" "}
+                    {getTrendLabel("Moderate decline").toLowerCase()}
                   </span>
                   {" • "}
                 </>
@@ -289,7 +292,8 @@ const SpeciesTrendsSparklines: React.FC = () => {
               {categorySummary["Strong decline"] && (
                 <>
                   <span style={{ color: TREND_COLORS["Strong decline"] }}>
-                    ↓↓ {categorySummary["Strong decline"]} {getTrendLabel("Strong decline").toLowerCase()}
+                    ↓↓ {categorySummary["Strong decline"]}{" "}
+                    {getTrendLabel("Strong decline").toLowerCase()}
                   </span>
                   {" • "}
                 </>

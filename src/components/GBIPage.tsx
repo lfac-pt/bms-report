@@ -1,6 +1,18 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { Space, Typography, Button, Row, Col, Card, Statistic, Popover, List, Alert, Tooltip } from "antd";
+import {
+  Space,
+  Typography,
+  Button,
+  Row,
+  Col,
+  Card,
+  Statistic,
+  Popover,
+  List,
+  Alert,
+  Tooltip,
+} from "antd";
 import { ArrowLeftOutlined, InfoCircleOutlined, CloseCircleOutlined } from "@ant-design/icons";
 import { GBIData } from "../types/gbiData";
 import { TransectData } from "../types/transectStats";
@@ -10,16 +22,22 @@ import { GRASSLAND_SPECIES, getTrendColor, getTrendLabel } from "../constants";
 
 // Flight curves data type (minimal interface for what we need)
 interface FlightCurvesData {
-  species: Record<string, {
-    collatedIndices: Record<number, number>;
-    confidenceIntervals?: Record<number, {
-      ci_lower: number | null;
-      ci_upper: number | null;
-    }>;
-    trendClassification?: {
-      category: string;
-    };
-  }>;
+  species: Record<
+    string,
+    {
+      collatedIndices: Record<number, number>;
+      confidenceIntervals?: Record<
+        number,
+        {
+          ci_lower: number | null;
+          ci_upper: number | null;
+        }
+      >;
+      trendClassification?: {
+        category: string;
+      };
+    }
+  >;
 }
 
 function GBIPage() {
@@ -81,7 +99,8 @@ function GBIPage() {
               Este índice rastreia a saúde das populações de borboletas de pastagens em Portugal
               usando uma média geométrica de tendências log-lineares de {speciesCount} espécies (
               {gbiData.metadata.grasslandSpecies.filter((s: any) => s.type === "widespread").length}{" "}
-              generalistas, {gbiData.metadata.grasslandSpecies.filter((s: any) => s.type === "specialist").length}{" "}
+              generalistas,{" "}
+              {gbiData.metadata.grasslandSpecies.filter((s: any) => s.type === "specialist").length}{" "}
               especialistas) de {transectCount} transectos de alta qualidade. Ano base{" "}
               {gbiData.metadata.baselineYear} = 100. Os valores acima de 100 indicam crescimento
               populacional; abaixo de 100 indicam declínio.
@@ -112,7 +131,8 @@ function GBIPage() {
                       {gbiData.gbiTrend.pcnCI.upper.toFixed(1)}%]
                     </div>
                     <div style={{ marginTop: 4, fontSize: 11, opacity: 0.8 }}>
-                      Classificação baseada em intervalos de confiança de 95% da taxa de mudança anual
+                      Classificação baseada em intervalos de confiança de 95% da taxa de mudança
+                      anual
                     </div>
                   </div>
                 }
@@ -151,8 +171,12 @@ function GBIPage() {
                     const widespreadAll = [...GRASSLAND_SPECIES.widespread].sort();
                     const specialistAll = [...GRASSLAND_SPECIES.specialist].sort();
 
-                    const widespreadIncludedCount = widespreadAll.filter(s => includedSpeciesNames.has(s)).length;
-                    const specialistIncludedCount = specialistAll.filter(s => includedSpeciesNames.has(s)).length;
+                    const widespreadIncludedCount = widespreadAll.filter(s =>
+                      includedSpeciesNames.has(s)
+                    ).length;
+                    const specialistIncludedCount = specialistAll.filter(s =>
+                      includedSpeciesNames.has(s)
+                    ).length;
 
                     return (
                       <>
@@ -161,7 +185,8 @@ function GBIPage() {
                             strong
                             style={{ display: "block", marginBottom: 8, color: "#52c41a" }}
                           >
-                            Generalistas ({widespreadIncludedCount} de {GRASSLAND_SPECIES.widespread.size})
+                            Generalistas ({widespreadIncludedCount} de{" "}
+                            {GRASSLAND_SPECIES.widespread.size})
                           </Typography.Text>
                           <List
                             size="small"
@@ -170,15 +195,19 @@ function GBIPage() {
                               const isIncluded = includedSpeciesNames.has(species);
                               return (
                                 <List.Item style={{ padding: "4px 0" }}>
-                                  <div style={{
-                                    fontSize: 12,
-                                    color: isIncluded ? "inherit" : "#8c8c8c",
-                                    display: "flex",
-                                    alignItems: "center",
-                                    gap: 4
-                                  }}>
+                                  <div
+                                    style={{
+                                      fontSize: 12,
+                                      color: isIncluded ? "inherit" : "#8c8c8c",
+                                      display: "flex",
+                                      alignItems: "center",
+                                      gap: 4,
+                                    }}
+                                  >
                                     {!isIncluded && (
-                                      <CloseCircleOutlined style={{ color: "#ff4d4f", fontSize: 12 }} />
+                                      <CloseCircleOutlined
+                                        style={{ color: "#ff4d4f", fontSize: 12 }}
+                                      />
                                     )}
                                     <SpeciesLink species={species} />
                                   </div>
@@ -192,7 +221,8 @@ function GBIPage() {
                             strong
                             style={{ display: "block", marginBottom: 8, color: "#1890ff" }}
                           >
-                            Especialistas ({specialistIncludedCount} de {GRASSLAND_SPECIES.specialist.size})
+                            Especialistas ({specialistIncludedCount} de{" "}
+                            {GRASSLAND_SPECIES.specialist.size})
                           </Typography.Text>
                           <List
                             size="small"
@@ -201,15 +231,19 @@ function GBIPage() {
                               const isIncluded = includedSpeciesNames.has(species);
                               return (
                                 <List.Item style={{ padding: "4px 0" }}>
-                                  <div style={{
-                                    fontSize: 12,
-                                    color: isIncluded ? "inherit" : "#8c8c8c",
-                                    display: "flex",
-                                    alignItems: "center",
-                                    gap: 4
-                                  }}>
+                                  <div
+                                    style={{
+                                      fontSize: 12,
+                                      color: isIncluded ? "inherit" : "#8c8c8c",
+                                      display: "flex",
+                                      alignItems: "center",
+                                      gap: 4,
+                                    }}
+                                  >
                                     {!isIncluded && (
-                                      <CloseCircleOutlined style={{ color: "#ff4d4f", fontSize: 12 }} />
+                                      <CloseCircleOutlined
+                                        style={{ color: "#ff4d4f", fontSize: 12 }}
+                                      />
                                     )}
                                     <SpeciesLink species={species} />
                                   </div>
@@ -287,7 +321,11 @@ function GBIPage() {
         </Col>
       </Row>
 
-      <GrasslandButterflyIndex gbiData={gbiData} flightCurvesData={flightCurvesData} loading={loading} />
+      <GrasslandButterflyIndex
+        gbiData={gbiData}
+        flightCurvesData={flightCurvesData}
+        loading={loading}
+      />
     </Space>
   );
 }

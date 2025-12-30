@@ -258,9 +258,17 @@ export async function calculateAllFlightCurves(
             lower: trendStats.pc1_ci_lower || null,
             upper: trendStats.pc1_ci_upper || null,
           },
+          confidenceInterval80: {
+            lower: trendStats.pc1_ci_80_lower || null,
+            upper: trendStats.pc1_ci_80_upper || null,
+          },
           rateCI: {
             lower: trendStats.rate_ci_lower || null,
             upper: trendStats.rate_ci_upper || null,
+          },
+          rateCI80: {
+            lower: trendStats.rate_ci_80_lower || null,
+            upper: trendStats.rate_ci_80_upper || null,
           },
         };
       }

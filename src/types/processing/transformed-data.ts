@@ -46,7 +46,15 @@ export interface TrendClassification {
     lower: number | null;
     upper: number | null;
   };
+  confidenceInterval80?: {
+    lower: number | null;
+    upper: number | null;
+  };
   rateCI: {
+    lower: number | null;
+    upper: number | null;
+  };
+  rateCI80?: {
     lower: number | null;
     upper: number | null;
   };

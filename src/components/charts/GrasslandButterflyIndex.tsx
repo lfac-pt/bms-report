@@ -1,4 +1,4 @@
-import { Line } from "react-chartjs-2";
+import { Line, Bar } from "react-chartjs-2";
 import { Card, Alert, Collapse, Row, Col, Divider, Typography } from "antd";
 import { GBIData } from "../../types/gbiData";
 import { BASELINE_YEAR, getTrendColor, TREND_COLORS, TREND_LABELS } from "../../constants";
@@ -7,16 +7,31 @@ const { Panel } = Collapse;
 const { Text } = Typography;
 
 interface FlightCurvesData {
-  species: Record<string, {
-    collatedIndices: Record<number, number>;
-    confidenceIntervals?: Record<number, {
-      ci_lower: number | null;
-      ci_upper: number | null;
-    }>;
-    trendClassification?: {
-      category: string;
-    };
-  }>;
+  species: Record<
+    string,
+    {
+      collatedIndices: Record<number, number>;
+      confidenceIntervals?: Record<
+        number,
+        {
+          ci_lower: number | null;
+          ci_upper: number | null;
+        }
+      >;
+      trendClassification?: {
+        category: string;
+        annualRateOfChange?: number | null;
+        confidenceInterval?: {
+          lower: number | null;
+          upper: number | null;
+        };
+        confidenceInterval80?: {
+          lower: number | null;
+          upper: number | null;
+        };
+      };
+    }
+  >;
 }
 
 interface GrasslandButterflyIndexProps {
@@ -108,7 +123,11 @@ const chartOptions = {
   },
 };
 
-function GrasslandButterflyIndex({ gbiData, flightCurvesData, loading }: GrasslandButterflyIndexProps) {
+function GrasslandButterflyIndex({
+  gbiData,
+  flightCurvesData,
+  loading,
+}: GrasslandButterflyIndexProps) {
   if (loading) {
     return (
       <Card title="Índice de Borboletas de Prados (GBI)" size="small" loading={true}>
@@ -165,73 +184,73 @@ function GrasslandButterflyIndex({ gbiData, flightCurvesData, loading }: Grassla
 
   // Add CI band datasets if available
   if (hasConfidenceIntervals) {
-      // CI Upper bound (hidden line - serves as fill target)
-      baseDatasets.push({
-        label: "CI Upper",
-        data: ciUpperData,
-        borderColor: "transparent",
-        backgroundColor: "transparent",
-        borderWidth: 0,
-        pointRadius: 0,
-        pointHoverRadius: 0,
-        fill: false,
-        order: 4,
-      });
-
-      // CI Lower bound with fill to upper
-      baseDatasets.push({
-        label: "IC 95%",
-        data: ciLowerData,
-        borderColor: "rgb(208,224,230)",
-        backgroundColor: "rgba(208,224,230, 0.45)",
-        borderWidth: 1,
-        pointRadius: 0,
-        pointHoverRadius: 0,
-        fill: "-1", // Fill to previous dataset (CI Upper)
-        order: 4,
-      });
-    }
-
-    // Add trend line (LOESS smoothed)
+    // CI Upper bound (hidden line - serves as fill target)
     baseDatasets.push({
-      label: "Linha de Tendência",
-      data: smoothedValues,
-      borderColor: "rgb(44,103,135)",
-      backgroundColor: "rgb(44,103,135)",
-      borderWidth: 4,
-      pointRadius: 0,
-      pointHoverRadius: 0,
-      tension: 0.4,
-      fill: false,
-      order: 2,
-    });
-
-    // Main GBI line
-    baseDatasets.push({
-      label: "GBI (Todas as Espécies)",
-      data: gbiValues,
-      borderColor: "rgb(44,103,135)",
-      backgroundColor: "rgb(44,103,135)",
+      label: "CI Upper",
+      data: ciUpperData,
+      borderColor: "transparent",
+      backgroundColor: "transparent",
       borderWidth: 0,
-      pointRadius: 5,
-      pointHoverRadius: 7,
-      showLine: false,
-      fill: false,
-      order: 1,
-    });
-
-    // Add baseline reference line at 100
-    baseDatasets.push({
-      label: `Baseline ${BASELINE_YEAR}`,
-      data: Array(years.length).fill(100),
-      borderColor: "#d9d9d9",
-      borderWidth: 2,
-      borderDash: [5, 5],
       pointRadius: 0,
       pointHoverRadius: 0,
       fill: false,
-      order: 5,
+      order: 4,
     });
+
+    // CI Lower bound with fill to upper
+    baseDatasets.push({
+      label: "IC 95%",
+      data: ciLowerData,
+      borderColor: "rgb(208,224,230)",
+      backgroundColor: "rgba(208,224,230, 0.45)",
+      borderWidth: 1,
+      pointRadius: 0,
+      pointHoverRadius: 0,
+      fill: "-1", // Fill to previous dataset (CI Upper)
+      order: 4,
+    });
+  }
+
+  // Add trend line (LOESS smoothed)
+  baseDatasets.push({
+    label: "Linha de Tendência",
+    data: smoothedValues,
+    borderColor: "rgb(44,103,135)",
+    backgroundColor: "rgb(44,103,135)",
+    borderWidth: 4,
+    pointRadius: 0,
+    pointHoverRadius: 0,
+    tension: 0.4,
+    fill: false,
+    order: 2,
+  });
+
+  // Main GBI line
+  baseDatasets.push({
+    label: "GBI (Todas as Espécies)",
+    data: gbiValues,
+    borderColor: "rgb(44,103,135)",
+    backgroundColor: "rgb(44,103,135)",
+    borderWidth: 0,
+    pointRadius: 5,
+    pointHoverRadius: 7,
+    showLine: false,
+    fill: false,
+    order: 1,
+  });
+
+  // Add baseline reference line at 100
+  baseDatasets.push({
+    label: `Baseline ${BASELINE_YEAR}`,
+    data: Array(years.length).fill(100),
+    borderColor: "#d9d9d9",
+    borderWidth: 2,
+    borderDash: [5, 5],
+    pointRadius: 0,
+    pointHoverRadius: 0,
+    fill: false,
+    order: 5,
+  });
 
   const chartData = {
     labels,
@@ -463,14 +482,21 @@ function GrasslandButterflyIndex({ gbiData, flightCurvesData, loading }: Grassla
 
             // Extract CI data
             const ciLower = years.map(year => {
-              return flightCurvesData?.species?.[speciesName]?.confidenceIntervals?.[year]?.ci_lower ?? null;
+              return (
+                flightCurvesData?.species?.[speciesName]?.confidenceIntervals?.[year]?.ci_lower ??
+                null
+              );
             });
             const ciUpper = years.map(year => {
-              return flightCurvesData?.species?.[speciesName]?.confidenceIntervals?.[year]?.ci_upper ?? null;
+              return (
+                flightCurvesData?.species?.[speciesName]?.confidenceIntervals?.[year]?.ci_upper ??
+                null
+              );
             });
 
             // Get trend category and color
-            const trendCategory = flightCurvesData?.species?.[speciesName]?.trendClassification?.category || "Stable";
+            const trendCategory =
+              flightCurvesData?.species?.[speciesName]?.trendClassification?.category || "Stable";
             const trendColor = getTrendColor(trendCategory);
 
             // Check if this species has CI data
@@ -538,17 +564,23 @@ function GrasslandButterflyIndex({ gbiData, flightCurvesData, loading }: Grassla
           // Helper function to create mini chart options with individual y-axis scale
           const createMiniChartOptions = (speciesName: string) => {
             // Get all values for this species to calculate scale
-            const speciesValues = years.map(year =>
-              flightCurvesData?.species?.[speciesName]?.collatedIndices?.[year]
-            ).filter((v): v is number => v !== null && v !== undefined);
+            const speciesValues = years
+              .map(year => flightCurvesData?.species?.[speciesName]?.collatedIndices?.[year])
+              .filter((v): v is number => v !== null && v !== undefined);
 
-            const ciLowerValues = years.map(year =>
-              flightCurvesData?.species?.[speciesName]?.confidenceIntervals?.[year]?.ci_lower
-            ).filter((v): v is number => v !== null && v !== undefined);
+            const ciLowerValues = years
+              .map(
+                year =>
+                  flightCurvesData?.species?.[speciesName]?.confidenceIntervals?.[year]?.ci_lower
+              )
+              .filter((v): v is number => v !== null && v !== undefined);
 
-            const ciUpperValues = years.map(year =>
-              flightCurvesData?.species?.[speciesName]?.confidenceIntervals?.[year]?.ci_upper
-            ).filter((v): v is number => v !== null && v !== undefined);
+            const ciUpperValues = years
+              .map(
+                year =>
+                  flightCurvesData?.species?.[speciesName]?.confidenceIntervals?.[year]?.ci_upper
+              )
+              .filter((v): v is number => v !== null && v !== undefined);
 
             const allValues = [...speciesValues, ...ciLowerValues, ...ciUpperValues, 100]; // Include baseline
             const minVal = Math.min(...allValues);
@@ -570,7 +602,10 @@ function GrasslandButterflyIndex({ gbiData, flightCurvesData, loading }: Grassla
                       const datasetLabel = context.dataset.label || "";
 
                       // Skip CI Upper and Baseline in tooltips
-                      if (datasetLabel === "CI Upper" || datasetLabel === `Baseline ${BASELINE_YEAR}`) {
+                      if (
+                        datasetLabel === "CI Upper" ||
+                        datasetLabel === `Baseline ${BASELINE_YEAR}`
+                      ) {
                         return undefined;
                       }
 
@@ -589,7 +624,7 @@ function GrasslandButterflyIndex({ gbiData, flightCurvesData, loading }: Grassla
                         return undefined;
                       }
 
-                      return `Índice: ${context.parsed.y?.toFixed(1) ?? 'N/A'}`;
+                      return `Índice: ${context.parsed.y?.toFixed(1) ?? "N/A"}`;
                     },
                   },
                   filter: (item: any) =>
@@ -664,10 +699,399 @@ function GrasslandButterflyIndex({ gbiData, flightCurvesData, loading }: Grassla
               <div style={{ display: "flex", justifyContent: "center", gap: 24, flexWrap: "wrap" }}>
                 {Object.entries(TREND_COLORS).map(([category, color]) => (
                   <div key={category} style={{ display: "flex", alignItems: "center", gap: 8 }}>
-                    <div style={{ width: 16, height: 16, backgroundColor: color, borderRadius: 2 }} />
+                    <div
+                      style={{ width: 16, height: 16, backgroundColor: color, borderRadius: 2 }}
+                    />
                     <Text style={{ fontSize: 12 }}>{TREND_LABELS[category]}</Text>
                   </div>
                 ))}
+              </div>
+            </>
+          );
+        })()}
+      </Card>
+
+      {/* Species Annual Change Chart */}
+      <Card title="Taxa Anual de Alteração por Espécie" size="small" style={{ marginTop: 16 }}>
+        {(() => {
+          // Gather species data with trend classification
+          const speciesWithTrends: Array<{
+            species: string;
+            type: "widespread" | "specialist";
+            annualChange: number | null;
+            ciLower: number | null;
+            ciUpper: number | null;
+            ci80Lower: number | null;
+            ci80Upper: number | null;
+            yearsWithData: number[];
+            trendCategory: string;
+          }> = [];
+
+          // Collect data from grassland species
+          gbiData.metadata.grasslandSpecies.forEach(speciesInfo => {
+            const speciesName = speciesInfo.scientificName;
+            const trendClassification =
+              flightCurvesData?.species?.[speciesName]?.trendClassification;
+
+            // Get years with data for this species
+            const yearsWithData: number[] = [];
+            years.forEach(year => {
+              const index = flightCurvesData?.species?.[speciesName]?.collatedIndices?.[year];
+              if (index !== null && index !== undefined) {
+                yearsWithData.push(year);
+              }
+            });
+
+            if (
+              trendClassification?.annualRateOfChange !== null &&
+              trendClassification?.annualRateOfChange !== undefined
+            ) {
+              speciesWithTrends.push({
+                species: speciesName,
+                type: speciesInfo.type,
+                annualChange: trendClassification.annualRateOfChange,
+                ciLower: trendClassification.confidenceInterval?.lower ?? null,
+                ciUpper: trendClassification.confidenceInterval?.upper ?? null,
+                ci80Lower: trendClassification.confidenceInterval80?.lower ?? null,
+                ci80Upper: trendClassification.confidenceInterval80?.upper ?? null,
+                yearsWithData,
+                trendCategory: trendClassification.category || "Stable",
+              });
+            }
+          });
+
+          // Sort by annual change (most declining first, most increasing last)
+          speciesWithTrends.sort((a, b) => (a.annualChange ?? 0) - (b.annualChange ?? 0));
+
+          if (speciesWithTrends.length === 0) {
+            return (
+              <Alert
+                message="Dados insuficientes"
+                description="Nao ha dados de tendencia suficientes para gerar este grafico."
+                type="warning"
+                showIcon
+              />
+            );
+          }
+
+          // Prepare data for horizontal bar chart
+          const speciesLabels = speciesWithTrends.map(s => s.species);
+          const annualChangeValues = speciesWithTrends.map(s => s.annualChange ?? 0);
+          const trendCategories = speciesWithTrends.map(s => s.trendCategory);
+
+          // Calculate error bar data for 95% CI (distance from value to CI bounds)
+          const errorBarsLower = speciesWithTrends.map(s => {
+            if (s.ciLower !== null && s.annualChange !== null) {
+              return s.annualChange - s.ciLower;
+            }
+            return 0;
+          });
+          const errorBarsUpper = speciesWithTrends.map(s => {
+            if (s.ciUpper !== null && s.annualChange !== null) {
+              return s.ciUpper - s.annualChange;
+            }
+            return 0;
+          });
+
+          // Calculate error bar data for 80% CI (distance from value to CI bounds)
+          const errorBars80Lower = speciesWithTrends.map(s => {
+            if (s.ci80Lower !== null && s.annualChange !== null) {
+              return s.annualChange - s.ci80Lower;
+            }
+            return 0;
+          });
+          const errorBars80Upper = speciesWithTrends.map(s => {
+            if (s.ci80Upper !== null && s.annualChange !== null) {
+              return s.ci80Upper - s.annualChange;
+            }
+            return 0;
+          });
+
+          // Calculate x-axis range to accommodate all CI bars
+          const allValues: number[] = [];
+          speciesWithTrends.forEach(s => {
+            if (s.ciLower !== null) allValues.push(s.ciLower);
+            if (s.ciUpper !== null) allValues.push(s.ciUpper);
+            if (s.annualChange !== null) allValues.push(s.annualChange);
+          });
+
+          // Find the range and cap at ±300
+          const minValue = Math.max(Math.min(...allValues, 0), -300);
+          const maxValue = Math.min(Math.max(...allValues, 0), 300);
+          const xAxisMin = Math.floor(minValue - 2);
+          const xAxisMax = Math.ceil(maxValue + 2);
+
+          // Calculate time periods for each species
+          const timePeriods = speciesWithTrends.map(s => {
+            if (s.yearsWithData.length > 0) {
+              const minYear = Math.min(...s.yearsWithData);
+              const maxYear = Math.max(...s.yearsWithData);
+              return `${minYear}-${maxYear}`;
+            }
+            return "";
+          });
+
+          // Custom plugin to draw error bars and point estimates
+          const errorBarPlugin = {
+            id: "errorBarPlugin",
+            afterDatasetsDraw: (chart: any) => {
+              const ctx = chart.ctx;
+              const meta = chart.getDatasetMeta(0);
+
+              meta.data.forEach((bar: any, index: number) => {
+                const y = bar.y;
+                const value = annualChangeValues[index];
+                const errorLower = errorBarsLower[index];
+                const errorUpper = errorBarsUpper[index];
+                const error80Lower = errorBars80Lower[index];
+                const error80Upper = errorBars80Upper[index];
+
+                // Calculate error bar positions
+                const xScale = chart.scales.x;
+
+                // 95% CI positions
+                const xLower = xScale.getPixelForValue(value - errorLower);
+                const xUpper = xScale.getPixelForValue(value + errorUpper);
+
+                // 80% CI positions
+                const x80Lower = xScale.getPixelForValue(value - error80Lower);
+                const x80Upper = xScale.getPixelForValue(value + error80Upper);
+
+                ctx.save();
+
+                // Draw 95% CI error bar (thinner, lighter - outer bar)
+                ctx.strokeStyle = "#8c8c8c";
+                ctx.lineWidth = 1;
+
+                // Horizontal line (95% CI error bar)
+                ctx.beginPath();
+                ctx.moveTo(xLower, y);
+                ctx.lineTo(xUpper, y);
+                ctx.stroke();
+
+                // Left cap (95% CI)
+                ctx.beginPath();
+                ctx.moveTo(xLower, y - 3);
+                ctx.lineTo(xLower, y + 3);
+                ctx.stroke();
+
+                // Right cap (95% CI)
+                ctx.beginPath();
+                ctx.moveTo(xUpper, y - 3);
+                ctx.lineTo(xUpper, y + 3);
+                ctx.stroke();
+
+                // Draw 80% CI error bar (thicker, darker - inner bar)
+                ctx.strokeStyle = "#333";
+                ctx.lineWidth = 2;
+
+                // Horizontal line (80% CI error bar)
+                ctx.beginPath();
+                ctx.moveTo(x80Lower, y);
+                ctx.lineTo(x80Upper, y);
+                ctx.stroke();
+
+                // Left cap (80% CI)
+                ctx.beginPath();
+                ctx.moveTo(x80Lower, y - 5);
+                ctx.lineTo(x80Lower, y + 5);
+                ctx.stroke();
+
+                // Right cap (80% CI)
+                ctx.beginPath();
+                ctx.moveTo(x80Upper, y - 5);
+                ctx.lineTo(x80Upper, y + 5);
+                ctx.stroke();
+
+                // Draw point estimate (orange diamond)
+                const xPoint = xScale.getPixelForValue(value);
+                const diamondSize = 6;
+                ctx.beginPath();
+                ctx.moveTo(xPoint, y - diamondSize); // Top
+                ctx.lineTo(xPoint + diamondSize, y); // Right
+                ctx.lineTo(xPoint, y + diamondSize); // Bottom
+                ctx.lineTo(xPoint - diamondSize, y); // Left
+                ctx.closePath();
+                ctx.fillStyle = "#d46b08";
+                ctx.fill();
+                ctx.strokeStyle = "#ad4e00";
+                ctx.lineWidth = 1;
+                ctx.stroke();
+
+                // Draw time period on right
+                const chartArea = chart.chartArea;
+                const timePeriod = timePeriods[index];
+                if (timePeriod) {
+                  ctx.font = "11px sans-serif";
+                  ctx.fillStyle = "#595959";
+                  ctx.textAlign = "left";
+                  ctx.textBaseline = "middle";
+                  ctx.fillText(timePeriod, chartArea.right + 10, y);
+                }
+
+                ctx.restore();
+              });
+            },
+          };
+
+          // Chart data
+          const chartData = {
+            labels: speciesLabels,
+            datasets: [
+              {
+                label: "Taxa de Alteracao Anual (%)",
+                data: annualChangeValues,
+                backgroundColor: "transparent",
+                borderColor: "transparent",
+                borderWidth: 0,
+                barThickness: 18,
+              },
+            ],
+          };
+
+          // Chart options
+          const horizontalBarOptions = {
+            indexAxis: "y" as const,
+            responsive: true,
+            maintainAspectRatio: false,
+            layout: {
+              padding: {
+                left: 20,
+                right: 80,
+              },
+            },
+            plugins: {
+              legend: {
+                display: false,
+              },
+              tooltip: {
+                callbacks: {
+                  label: (context: any) => {
+                    const idx = context.dataIndex;
+                    const species = speciesWithTrends[idx];
+                    const lines = [`Taxa: ${species.annualChange?.toFixed(1)}%/ano`];
+                    if (species.ci80Lower !== null && species.ci80Upper !== null) {
+                      lines.push(
+                        `IC 80%: [${species.ci80Lower.toFixed(1)}%, ${species.ci80Upper.toFixed(1)}%]`
+                      );
+                    }
+                    if (species.ciLower !== null && species.ciUpper !== null) {
+                      lines.push(
+                        `IC 95%: [${species.ciLower.toFixed(1)}%, ${species.ciUpper.toFixed(1)}%]`
+                      );
+                    }
+                    if (species.yearsWithData.length > 0) {
+                      lines.push(
+                        `Periodo: ${Math.min(...species.yearsWithData)}-${Math.max(...species.yearsWithData)}`
+                      );
+                    }
+                    return lines;
+                  },
+                  title: (items: any) => items[0]?.label || "",
+                },
+              },
+              // Add annotation for zero line
+              annotation: {
+                annotations: {
+                  zeroLine: {
+                    type: "line",
+                    xMin: 0,
+                    xMax: 0,
+                    borderColor: "#595959",
+                    borderWidth: 1,
+                    borderDash: [5, 5],
+                  },
+                },
+              },
+            },
+            scales: {
+              x: {
+                min: xAxisMin,
+                max: xAxisMax,
+                title: {
+                  display: true,
+                  text: "Taxa de Alteracao Anual (%)",
+                  font: {
+                    size: 12,
+                  },
+                },
+                grid: {
+                  color: (context: any) => {
+                    if (context.tick.value === 0) {
+                      return "#595959";
+                    }
+                    return "rgba(0, 0, 0, 0.1)";
+                  },
+                  lineWidth: (context: any) => {
+                    if (context.tick.value === 0) {
+                      return 2;
+                    }
+                    return 1;
+                  },
+                },
+              },
+              y: {
+                title: {
+                  display: true,
+                  text: "Especies",
+                  font: {
+                    size: 12,
+                  },
+                },
+                ticks: {
+                  font: {
+                    size: 11,
+                    style: "italic" as const,
+                  },
+                  color: (context: any) => {
+                    const index = context.index;
+                    const category = trendCategories[index];
+                    return getTrendColor(category);
+                  },
+                },
+              },
+            },
+          };
+
+          // Calculate chart height based on number of species
+          const chartHeight = Math.max(400, speciesWithTrends.length * 35);
+
+          return (
+            <>
+              <div style={{ height: `${chartHeight}px`, marginBottom: "16px", paddingTop: "8px" }}>
+                <Bar options={horizontalBarOptions} data={chartData} plugins={[errorBarPlugin]} />
+              </div>
+
+              {/* Legend for CI levels */}
+              <div
+                style={{
+                  display: "flex",
+                  justifyContent: "center",
+                  gap: 24,
+                  marginTop: 8,
+                  flexWrap: "wrap",
+                }}
+              >
+                <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
+                  <div
+                    style={{
+                      width: 10,
+                      height: 10,
+                      backgroundColor: "#d46b08",
+                      border: "1px solid #ad4e00",
+                      transform: "rotate(45deg)",
+                    }}
+                  />
+                  <Text style={{ fontSize: 12 }}>Estimativa pontual</Text>
+                </div>
+                <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
+                  <div style={{ width: 24, height: 2, backgroundColor: "#333" }} />
+                  <Text style={{ fontSize: 12 }}>IC 80%</Text>
+                </div>
+                <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
+                  <div style={{ width: 24, height: 1, backgroundColor: "#8c8c8c" }} />
+                  <Text style={{ fontSize: 12 }}>IC 95%</Text>
+                </div>
               </div>
             </>
           );
