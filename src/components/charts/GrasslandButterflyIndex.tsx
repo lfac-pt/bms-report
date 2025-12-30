@@ -815,9 +815,9 @@ function GrasslandButterflyIndex({
             if (s.annualChange !== null) allValues.push(s.annualChange);
           });
 
-          // Find the range and cap at ±300
-          const minValue = Math.max(Math.min(...allValues, 0), -300);
-          const maxValue = Math.min(Math.max(...allValues, 0), 300);
+          // Find the range and cap at ±110
+          const minValue = Math.max(Math.min(...allValues, 0), -110);
+          const maxValue = Math.min(Math.max(...allValues, 0), 110);
           const xAxisMin = Math.floor(minValue - 2);
           const xAxisMax = Math.ceil(maxValue + 2);
 
@@ -834,9 +834,33 @@ function GrasslandButterflyIndex({
           // Custom plugin to draw error bars and point estimates
           const errorBarPlugin = {
             id: "errorBarPlugin",
+            beforeDatasetsDraw: (chart: any) => {
+              // Draw dashed zero line
+              const ctx = chart.ctx;
+              const chartArea = chart.chartArea;
+              const xScale = chart.scales.x;
+              const zeroX = xScale.getPixelForValue(0);
+
+              ctx.save();
+              ctx.setLineDash([8, 4]);
+              ctx.strokeStyle = "#595959";
+              ctx.lineWidth = 2;
+              ctx.beginPath();
+              ctx.moveTo(zeroX, chartArea.top);
+              ctx.lineTo(zeroX, chartArea.bottom);
+              ctx.stroke();
+              ctx.restore();
+            },
             afterDatasetsDraw: (chart: any) => {
               const ctx = chart.ctx;
               const meta = chart.getDatasetMeta(0);
+              const chartArea = chart.chartArea;
+
+              // Set up clipping to chart area
+              ctx.save();
+              ctx.beginPath();
+              ctx.rect(chartArea.left, chartArea.top, chartArea.right - chartArea.left, chartArea.bottom - chartArea.top);
+              ctx.clip();
 
               meta.data.forEach((bar: any, index: number) => {
                 const y = bar.y;
@@ -918,8 +942,15 @@ function GrasslandButterflyIndex({
                 ctx.lineWidth = 1;
                 ctx.stroke();
 
-                // Draw time period on right
-                const chartArea = chart.chartArea;
+                ctx.restore();
+              });
+
+              // Restore clipping
+              ctx.restore();
+
+              // Draw time periods outside clipping region
+              meta.data.forEach((bar: any, index: number) => {
+                const y = bar.y;
                 const timePeriod = timePeriods[index];
                 if (timePeriod) {
                   ctx.font = "11px sans-serif";
@@ -928,8 +959,6 @@ function GrasslandButterflyIndex({
                   ctx.textBaseline = "middle";
                   ctx.fillText(timePeriod, chartArea.right + 10, y);
                 }
-
-                ctx.restore();
               });
             },
           };
@@ -990,19 +1019,6 @@ function GrasslandButterflyIndex({
                   title: (items: any) => items[0]?.label || "",
                 },
               },
-              // Add annotation for zero line
-              annotation: {
-                annotations: {
-                  zeroLine: {
-                    type: "line",
-                    xMin: 0,
-                    xMax: 0,
-                    borderColor: "#595959",
-                    borderWidth: 1,
-                    borderDash: [5, 5],
-                  },
-                },
-              },
             },
             scales: {
               x: {
@@ -1018,13 +1034,13 @@ function GrasslandButterflyIndex({
                 grid: {
                   color: (context: any) => {
                     if (context.tick.value === 0) {
-                      return "#595959";
+                      return "transparent"; // Hide the solid zero line
                     }
                     return "rgba(0, 0, 0, 0.1)";
                   },
                   lineWidth: (context: any) => {
                     if (context.tick.value === 0) {
-                      return 2;
+                      return 0; // Don't draw the solid zero line
                     }
                     return 1;
                   },
@@ -1032,11 +1048,7 @@ function GrasslandButterflyIndex({
               },
               y: {
                 title: {
-                  display: true,
-                  text: "Especies",
-                  font: {
-                    size: 12,
-                  },
+                  display: false,
                 },
                 ticks: {
                   font: {
