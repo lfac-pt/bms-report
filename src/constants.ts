@@ -29,6 +29,10 @@ export const MIN_YEARS_PER_SPECIES = 3; // Minimum years of data for species ana
 export const CI_RANGE_THRESHOLD = 2000; // Maximum acceptable CI range (upper - lower) for reliable estimates
 export const MAX_ABSOLUTE_INDEX = 1000000; // Maximum absolute index value - species exceeding this are excluded (modeling artifacts)
 
+// Regional GBI quality criteria
+export const MIN_TRANSECTS_FOR_REGIONAL_GBI = 3; // Minimum transects per region for GBI calculation
+export const MIN_YEARS_FOR_REGIONAL_GBI = 3; // Minimum years with data for regional GBI
+
 // Mapping of species to their families
 export const SPECIES_FAMILIES: Record<string, string> = {
   "Carcharodus alceae": "Hesperiidae",
@@ -200,6 +204,36 @@ export const ALL_GRASSLAND_SPECIES = new Set([
   ...GRASSLAND_SPECIES.widespread,
   ...GRASSLAND_SPECIES.specialist,
 ]);
+
+// Trend category color scheme
+export const TREND_COLORS: Record<string, string> = {
+  "Strong increase": "#52c41a",
+  "Moderate increase": "#95de64",
+  Stable: "#1890ff",
+  Uncertain: "#8c8c8c",
+  "Moderate decline": "#ff7875",
+  "Strong decline": "#cf1322",
+};
+
+// Portuguese labels for trend categories
+export const TREND_LABELS: Record<string, string> = {
+  "Strong increase": "Aumento Forte",
+  "Moderate increase": "Aumento Moderado",
+  Stable: "Estável",
+  Uncertain: "Incerto",
+  "Moderate decline": "Declínio Moderado",
+  "Strong decline": "Declínio Forte",
+};
+
+// Helper function to get color based on trend category
+export function getTrendColor(category: string): string {
+  return TREND_COLORS[category] || "#1890ff"; // Default to blue
+}
+
+// Helper function to get Portuguese label for trend category
+export function getTrendLabel(category: string): string {
+  return TREND_LABELS[category] || category;
+}
 
 // Helper function to group species by family and sort them
 export function groupSpeciesByFamily(speciesList: string[]): Record<string, string[]> {

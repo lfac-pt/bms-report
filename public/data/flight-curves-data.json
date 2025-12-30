@@ -1,6 +1,6 @@
 {
   "metadata": {
-    "processingDate": "2025-12-29T00:13:02.720Z",
+    "processingDate": "2025-12-30T01:43:11.046Z",
     "baselineYear": 2021,
     "qualityCriteria": {
       "minYearsActive": 5,
@@ -1134,7 +1134,7 @@
       },
       "processingInfo": {
         "method": "rbms (regional GAM flight curves + GLM collated index + bootstrap CI + linear trend + transect length normalization)",
-        "timestamp": "2025-12-29 00:07:13",
+        "timestamp": "2025-12-30 00:33:49",
         "rbms_version": "1.2.0",
         "bootstrap_iterations": 500
       },
@@ -1147,9 +1147,17 @@
           "lower": -99.87,
           "upper": 859.6
         },
+        "confidenceInterval80": {
+          "lower": -98.43,
+          "upper": -23.71
+        },
         "rateCI": {
           "lower": 0.0013,
           "upper": 9.596
+        },
+        "rateCI80": {
+          "lower": 0.0157,
+          "upper": 0.7629
         }
       },
       "ciExceedsThreshold": true,
@@ -2368,7 +2376,7 @@
       },
       "processingInfo": {
         "method": "rbms (regional GAM flight curves + GLM collated index + bootstrap CI + linear trend + transect length normalization)",
-        "timestamp": "2025-12-29 00:07:18",
+        "timestamp": "2025-12-30 00:33:54",
         "rbms_version": "1.2.0",
         "bootstrap_iterations": 500
       },
@@ -2402,9 +2410,17 @@
           "lower": -87.99,
           "upper": 26.56
         },
+        "confidenceInterval80": {
+          "lower": -28.5,
+          "upper": 18.96
+        },
         "rateCI": {
           "lower": 0.1201,
           "upper": 1.2656
+        },
+        "rateCI80": {
+          "lower": 0.715,
+          "upper": 1.1896
         }
       },
       "ciExceedsThreshold": false,
@@ -4031,7 +4047,7 @@
       },
       "processingInfo": {
         "method": "rbms (regional GAM flight curves + GLM collated index + bootstrap CI + linear trend + transect length normalization)",
-        "timestamp": "2025-12-29 00:07:24",
+        "timestamp": "2025-12-30 00:33:59",
         "rbms_version": "1.2.0",
         "bootstrap_iterations": 500
       },
@@ -4044,9 +4060,17 @@
           "lower": -47.21,
           "upper": 42.19
         },
+        "confidenceInterval80": {
+          "lower": -33.59,
+          "upper": 26.54
+        },
         "rateCI": {
           "lower": 0.5279,
           "upper": 1.4219
+        },
+        "rateCI80": {
+          "lower": 0.6641,
+          "upper": 1.2654
         }
       },
       "ciExceedsThreshold": true,
@@ -5775,7 +5799,7 @@
       },
       "processingInfo": {
         "method": "rbms (regional GAM flight curves + GLM collated index + bootstrap CI + linear trend + transect length normalization)",
-        "timestamp": "2025-12-29 00:07:29",
+        "timestamp": "2025-12-30 00:34:04",
         "rbms_version": "1.2.0",
         "bootstrap_iterations": 500
       },
@@ -5809,9 +5833,17 @@
           "lower": 8.09,
           "upper": 43.98
         },
+        "confidenceInterval80": {
+          "lower": 14.7,
+          "upper": 38.77
+        },
         "rateCI": {
           "lower": 1.0809,
           "upper": 1.4398
+        },
+        "rateCI80": {
+          "lower": 1.147,
+          "upper": 1.3877
         }
       },
       "ciExceedsThreshold": false,
@@ -7540,7 +7572,7 @@
       },
       "processingInfo": {
         "method": "rbms (regional GAM flight curves + GLM collated index + bootstrap CI + linear trend + transect length normalization)",
-        "timestamp": "2025-12-29 00:07:33",
+        "timestamp": "2025-12-30 00:34:08",
         "rbms_version": "1.2.0",
         "bootstrap_iterations": 500
       },
@@ -7574,9 +7606,17 @@
           "lower": 0.11,
           "upper": 35.61
         },
+        "confidenceInterval80": {
+          "lower": 2.6,
+          "upper": 25.44
+        },
         "rateCI": {
           "lower": 1.0011,
           "upper": 1.3561
+        },
+        "rateCI80": {
+          "lower": 1.026,
+          "upper": 1.2544
         }
       },
       "ciExceedsThreshold": false,
@@ -9203,7 +9243,7 @@
       },
       "processingInfo": {
         "method": "rbms (regional GAM flight curves + GLM collated index + bootstrap CI + linear trend + transect length normalization)",
-        "timestamp": "2025-12-29 00:07:39",
+        "timestamp": "2025-12-30 00:34:14",
         "rbms_version": "1.2.0",
         "bootstrap_iterations": 500
       },
@@ -9237,9 +9277,17 @@
           "lower": -98.09,
           "upper": -12.24
         },
+        "confidenceInterval80": {
+          "lower": -97.32,
+          "upper": -20.22
+        },
         "rateCI": {
           "lower": 0.0191,
           "upper": 0.8776
+        },
+        "rateCI80": {
+          "lower": 0.0268,
+          "upper": 0.7978
         }
       },
       "ciExceedsThreshold": false,
@@ -10866,7 +10914,7 @@
       },
       "processingInfo": {
         "method": "rbms (regional GAM flight curves + GLM collated index + bootstrap CI + linear trend + transect length normalization)",
-        "timestamp": "2025-12-29 00:07:45",
+        "timestamp": "2025-12-30 00:34:20",
         "rbms_version": "1.2.0",
         "bootstrap_iterations": 500
       },
@@ -10900,9 +10948,17 @@
           "lower": -22.62,
           "upper": 19.34
         },
+        "confidenceInterval80": {
+          "lower": -11.62,
+          "upper": 14.2
+        },
         "rateCI": {
           "lower": 0.7738,
           "upper": 1.1934
+        },
+        "rateCI80": {
+          "lower": 0.8838,
+          "upper": 1.142
         }
       },
       "ciExceedsThreshold": false,
@@ -12223,7 +12279,7 @@
       },
       "processingInfo": {
         "method": "rbms (regional GAM flight curves + GLM collated index + bootstrap CI + linear trend + transect length normalization)",
-        "timestamp": "2025-12-29 00:07:52",
+        "timestamp": "2025-12-30 00:34:27",
         "rbms_version": "1.2.0",
         "bootstrap_iterations": 500
       },
@@ -12257,9 +12313,17 @@
           "lower": -97.76,
           "upper": 540.51
         },
+        "confidenceInterval80": {
+          "lower": -96.38,
+          "upper": 297.31
+        },
         "rateCI": {
           "lower": 0.0224,
           "upper": 6.4051
+        },
+        "rateCI80": {
+          "lower": 0.0362,
+          "upper": 3.9731
         }
       },
       "ciExceedsThreshold": false,
@@ -13172,7 +13236,7 @@
       },
       "processingInfo": {
         "method": "rbms (regional GAM flight curves + GLM collated index + bootstrap CI + linear trend + transect length normalization)",
-        "timestamp": "2025-12-29 00:07:57",
+        "timestamp": "2025-12-30 00:34:32",
         "rbms_version": "1.2.0",
         "bootstrap_iterations": 500
       },
@@ -13206,9 +13270,17 @@
           "lower": -98.91,
           "upper": -87.92
         },
+        "confidenceInterval80": {
+          "lower": -98.14,
+          "upper": -97.09
+        },
         "rateCI": {
           "lower": 0.0109,
           "upper": 0.1208
+        },
+        "rateCI80": {
+          "lower": 0.0186,
+          "upper": 0.0291
         }
       },
       "ciExceedsThreshold": false,
@@ -14937,7 +15009,7 @@
       },
       "processingInfo": {
         "method": "rbms (regional GAM flight curves + GLM collated index + bootstrap CI + linear trend + transect length normalization)",
-        "timestamp": "2025-12-29 00:08:02",
+        "timestamp": "2025-12-30 00:34:36",
         "rbms_version": "1.2.0",
         "bootstrap_iterations": 500
       },
@@ -14971,9 +15043,17 @@
           "lower": -12.72,
           "upper": 37.66
         },
+        "confidenceInterval80": {
+          "lower": -2.8,
+          "upper": 29.32
+        },
         "rateCI": {
           "lower": 0.8728,
           "upper": 1.3766
+        },
+        "rateCI80": {
+          "lower": 0.972,
+          "upper": 1.2932
         }
       },
       "ciExceedsThreshold": false,
@@ -16702,7 +16782,7 @@
       },
       "processingInfo": {
         "method": "rbms (regional GAM flight curves + GLM collated index + bootstrap CI + linear trend + transect length normalization)",
-        "timestamp": "2025-12-29 00:08:07",
+        "timestamp": "2025-12-30 00:34:42",
         "rbms_version": "1.2.0",
         "bootstrap_iterations": 500
       },
@@ -16736,9 +16816,17 @@
           "lower": -22.19,
           "upper": 669.92
         },
+        "confidenceInterval80": {
+          "lower": -16.58,
+          "upper": 41.65
+        },
         "rateCI": {
           "lower": 0.7781,
           "upper": 7.6992
+        },
+        "rateCI80": {
+          "lower": 0.8342,
+          "upper": 1.4165
         }
       },
       "ciExceedsThreshold": false,
@@ -17447,7 +17535,7 @@
       },
       "processingInfo": {
         "method": "rbms (regional GAM flight curves + GLM collated index + bootstrap CI + linear trend + transect length normalization)",
-        "timestamp": "2025-12-29 00:08:11",
+        "timestamp": "2025-12-30 00:34:46",
         "rbms_version": "1.2.0",
         "bootstrap_iterations": 500
       },
@@ -17481,7 +17569,15 @@
           "lower": -13.5,
           "upper": -13.5
         },
+        "confidenceInterval80": {
+          "lower": -13.5,
+          "upper": -13.5
+        },
         "rateCI": {
+          "lower": 0.865,
+          "upper": 0.865
+        },
+        "rateCI80": {
           "lower": 0.865,
           "upper": 0.865
         }
@@ -19212,7 +19308,7 @@
       },
       "processingInfo": {
         "method": "rbms (regional GAM flight curves + GLM collated index + bootstrap CI + linear trend + transect length normalization)",
-        "timestamp": "2025-12-29 00:08:16",
+        "timestamp": "2025-12-30 00:34:50",
         "rbms_version": "1.2.0",
         "bootstrap_iterations": 500
       },
@@ -19246,9 +19342,17 @@
           "lower": -27.37,
           "upper": -1.1
         },
+        "confidenceInterval80": {
+          "lower": -23.85,
+          "upper": -8.5
+        },
         "rateCI": {
           "lower": 0.7263,
           "upper": 0.989
+        },
+        "rateCI80": {
+          "lower": 0.7615,
+          "upper": 0.915
         }
       },
       "ciExceedsThreshold": false,
@@ -20977,7 +21081,7 @@
       },
       "processingInfo": {
         "method": "rbms (regional GAM flight curves + GLM collated index + bootstrap CI + linear trend + transect length normalization)",
-        "timestamp": "2025-12-29 00:08:20",
+        "timestamp": "2025-12-30 00:34:55",
         "rbms_version": "1.2.0",
         "bootstrap_iterations": 500
       },
@@ -21011,9 +21115,17 @@
           "lower": -10.97,
           "upper": 11.18
         },
+        "confidenceInterval80": {
+          "lower": -7.72,
+          "upper": 6.52
+        },
         "rateCI": {
           "lower": 0.8903,
           "upper": 1.1118
+        },
+        "rateCI80": {
+          "lower": 0.9228,
+          "upper": 1.0652
         }
       },
       "ciExceedsThreshold": false,
@@ -22232,7 +22344,7 @@
       },
       "processingInfo": {
         "method": "rbms (regional GAM flight curves + GLM collated index + bootstrap CI + linear trend + transect length normalization)",
-        "timestamp": "2025-12-29 00:08:31",
+        "timestamp": "2025-12-30 00:35:05",
         "rbms_version": "1.2.0",
         "bootstrap_iterations": 500
       },
@@ -22245,9 +22357,17 @@
           "lower": -96.98,
           "upper": 132.42
         },
+        "confidenceInterval80": {
+          "lower": -26.66,
+          "upper": 102.99
+        },
         "rateCI": {
           "lower": 0.0302,
           "upper": 2.3242
+        },
+        "rateCI80": {
+          "lower": 0.7334,
+          "upper": 2.0299
         }
       },
       "ciExceedsThreshold": true,
@@ -23976,7 +24096,7 @@
       },
       "processingInfo": {
         "method": "rbms (regional GAM flight curves + GLM collated index + bootstrap CI + linear trend + transect length normalization)",
-        "timestamp": "2025-12-29 00:08:37",
+        "timestamp": "2025-12-30 00:35:11",
         "rbms_version": "1.2.0",
         "bootstrap_iterations": 500
       },
@@ -24010,9 +24130,17 @@
           "lower": -7.87,
           "upper": 66.01
         },
+        "confidenceInterval80": {
+          "lower": 0.13,
+          "upper": 41.31
+        },
         "rateCI": {
           "lower": 0.9213,
           "upper": 1.6601
+        },
+        "rateCI80": {
+          "lower": 1.0013,
+          "upper": 1.4131
         }
       },
       "ciExceedsThreshold": false,
@@ -25333,7 +25461,7 @@
       },
       "processingInfo": {
         "method": "rbms (regional GAM flight curves + GLM collated index + bootstrap CI + linear trend + transect length normalization)",
-        "timestamp": "2025-12-29 00:08:42",
+        "timestamp": "2025-12-30 00:35:16",
         "rbms_version": "1.2.0",
         "bootstrap_iterations": 500
       },
@@ -25367,9 +25495,17 @@
           "lower": -25.61,
           "upper": 3.91
         },
+        "confidenceInterval80": {
+          "lower": -23.28,
+          "upper": -10.48
+        },
         "rateCI": {
           "lower": 0.7439,
           "upper": 1.0391
+        },
+        "rateCI80": {
+          "lower": 0.7672,
+          "upper": 0.8952
         }
       },
       "ciExceedsThreshold": false,
@@ -26078,7 +26214,7 @@
       },
       "processingInfo": {
         "method": "rbms (regional GAM flight curves + GLM collated index + bootstrap CI + linear trend + transect length normalization)",
-        "timestamp": "2025-12-29 00:08:47",
+        "timestamp": "2025-12-30 00:35:21",
         "rbms_version": "1.2.0",
         "bootstrap_iterations": 500
       },
@@ -26112,7 +26248,15 @@
           "lower": 102.8,
           "upper": 1459.02
         },
+        "confidenceInterval80": {
+          "lower": 102.8,
+          "upper": 1459.02
+        },
         "rateCI": {
+          "lower": 2.028,
+          "upper": 15.5902
+        },
+        "rateCI80": {
           "lower": 2.028,
           "upper": 15.5902
         }
@@ -27027,7 +27171,7 @@
       },
       "processingInfo": {
         "method": "rbms (regional GAM flight curves + GLM collated index + bootstrap CI + linear trend + transect length normalization)",
-        "timestamp": "2025-12-29 00:08:52",
+        "timestamp": "2025-12-30 00:35:26",
         "rbms_version": "1.2.0",
         "bootstrap_iterations": 500
       },
@@ -27061,9 +27205,17 @@
           "lower": -10.59,
           "upper": 35.48
         },
+        "confidenceInterval80": {
+          "lower": -10.1,
+          "upper": 33.97
+        },
         "rateCI": {
           "lower": 0.8941,
           "upper": 1.3548
+        },
+        "rateCI80": {
+          "lower": 0.899,
+          "upper": 1.3397
         }
       },
       "ciExceedsThreshold": false,
@@ -28282,7 +28434,7 @@
       },
       "processingInfo": {
         "method": "rbms (regional GAM flight curves + GLM collated index + bootstrap CI + linear trend + transect length normalization)",
-        "timestamp": "2025-12-29 00:08:59",
+        "timestamp": "2025-12-30 00:35:33",
         "rbms_version": "1.2.0",
         "bootstrap_iterations": 500
       },
@@ -28295,9 +28447,17 @@
           "lower": -90.71,
           "upper": 62134.61
         },
+        "confidenceInterval80": {
+          "lower": -87.75,
+          "upper": 1798.93
+        },
         "rateCI": {
           "lower": 0.0929,
           "upper": 622.3461
+        },
+        "rateCI80": {
+          "lower": 0.1225,
+          "upper": 18.9893
         }
       },
       "ciExceedsThreshold": true,
@@ -30026,7 +30186,7 @@
       },
       "processingInfo": {
         "method": "rbms (regional GAM flight curves + GLM collated index + bootstrap CI + linear trend + transect length normalization)",
-        "timestamp": "2025-12-29 00:09:04",
+        "timestamp": "2025-12-30 00:35:38",
         "rbms_version": "1.2.0",
         "bootstrap_iterations": 500
       },
@@ -30060,9 +30220,17 @@
           "lower": -22.28,
           "upper": 3.33
         },
+        "confidenceInterval80": {
+          "lower": -19.74,
+          "upper": -4.96
+        },
         "rateCI": {
           "lower": 0.7772,
           "upper": 1.0333
+        },
+        "rateCI80": {
+          "lower": 0.8026,
+          "upper": 0.9504
         }
       },
       "ciExceedsThreshold": false,
@@ -31689,7 +31857,7 @@
       },
       "processingInfo": {
         "method": "rbms (regional GAM flight curves + GLM collated index + bootstrap CI + linear trend + transect length normalization)",
-        "timestamp": "2025-12-29 00:09:10",
+        "timestamp": "2025-12-30 00:35:43",
         "rbms_version": "1.2.0",
         "bootstrap_iterations": 500
       },
@@ -31723,9 +31891,17 @@
           "lower": -44.53,
           "upper": 6.92
         },
+        "confidenceInterval80": {
+          "lower": -36.09,
+          "upper": -1.78
+        },
         "rateCI": {
           "lower": 0.5547,
           "upper": 1.0692
+        },
+        "rateCI80": {
+          "lower": 0.6391,
+          "upper": 0.9822
         }
       },
       "ciExceedsThreshold": false,
@@ -33454,7 +33630,7 @@
       },
       "processingInfo": {
         "method": "rbms (regional GAM flight curves + GLM collated index + bootstrap CI + linear trend + transect length normalization)",
-        "timestamp": "2025-12-29 00:09:15",
+        "timestamp": "2025-12-30 00:35:49",
         "rbms_version": "1.2.0",
         "bootstrap_iterations": 500
       },
@@ -33488,9 +33664,17 @@
           "lower": 1.42,
           "upper": 36.82
         },
+        "confidenceInterval80": {
+          "lower": 8.84,
+          "upper": 27.35
+        },
         "rateCI": {
           "lower": 1.0142,
           "upper": 1.3682
+        },
+        "rateCI80": {
+          "lower": 1.0884,
+          "upper": 1.2735
         }
       },
       "ciExceedsThreshold": false,
@@ -34198,7 +34382,7 @@
       },
       "processingInfo": {
         "method": "rbms (regional GAM flight curves + GLM collated index + bootstrap CI + linear trend + transect length normalization)",
-        "timestamp": "2025-12-29 00:09:21",
+        "timestamp": "2025-12-30 00:35:55",
         "rbms_version": "1.2.0",
         "bootstrap_iterations": 500
       },
@@ -34211,7 +34395,15 @@
           "lower": -30.97,
           "upper": 263107.05
         },
+        "confidenceInterval80": {
+          "lower": -30.97,
+          "upper": 263107.05
+        },
         "rateCI": {
+          "lower": 0.6903,
+          "upper": 2632.0705
+        },
+        "rateCI80": {
           "lower": 0.6903,
           "upper": 2632.0705
         }
@@ -35636,7 +35828,7 @@
       },
       "processingInfo": {
         "method": "rbms (regional GAM flight curves + GLM collated index + bootstrap CI + linear trend + transect length normalization)",
-        "timestamp": "2025-12-29 00:09:29",
+        "timestamp": "2025-12-30 00:36:03",
         "rbms_version": "1.2.0",
         "bootstrap_iterations": 500
       },
@@ -35649,9 +35841,17 @@
           "lower": -98.95,
           "upper": 483.8
         },
+        "confidenceInterval80": {
+          "lower": -87.22,
+          "upper": 89.47
+        },
         "rateCI": {
           "lower": 0.0105,
           "upper": 5.838
+        },
+        "rateCI80": {
+          "lower": 0.1278,
+          "upper": 1.8947
         }
       },
       "ciExceedsThreshold": true,
@@ -37278,7 +37478,7 @@
       },
       "processingInfo": {
         "method": "rbms (regional GAM flight curves + GLM collated index + bootstrap CI + linear trend + transect length normalization)",
-        "timestamp": "2025-12-29 00:09:37",
+        "timestamp": "2025-12-30 00:36:10",
         "rbms_version": "1.2.0",
         "bootstrap_iterations": 500
       },
@@ -37312,9 +37512,17 @@
           "lower": -22.83,
           "upper": 6.12
         },
+        "confidenceInterval80": {
+          "lower": -16.71,
+          "upper": 3.93
+        },
         "rateCI": {
           "lower": 0.7717,
           "upper": 1.0612
+        },
+        "rateCI80": {
+          "lower": 0.8329,
+          "upper": 1.0393
         }
       },
       "ciExceedsThreshold": false,
@@ -39043,7 +39251,7 @@
       },
       "processingInfo": {
         "method": "rbms (regional GAM flight curves + GLM collated index + bootstrap CI + linear trend + transect length normalization)",
-        "timestamp": "2025-12-29 00:09:42",
+        "timestamp": "2025-12-30 00:36:15",
         "rbms_version": "1.2.0",
         "bootstrap_iterations": 500
       },
@@ -39077,9 +39285,17 @@
           "lower": -10.93,
           "upper": 17.56
         },
+        "confidenceInterval80": {
+          "lower": -5.65,
+          "upper": 13.21
+        },
         "rateCI": {
           "lower": 0.8907,
           "upper": 1.1756
+        },
+        "rateCI80": {
+          "lower": 0.9435,
+          "upper": 1.1321
         }
       },
       "ciExceedsThreshold": false,
@@ -40502,7 +40718,7 @@
       },
       "processingInfo": {
         "method": "rbms (regional GAM flight curves + GLM collated index + bootstrap CI + linear trend + transect length normalization)",
-        "timestamp": "2025-12-29 00:09:48",
+        "timestamp": "2025-12-30 00:36:22",
         "rbms_version": "1.2.0",
         "bootstrap_iterations": 500
       },
@@ -40515,9 +40731,17 @@
           "lower": -97.33,
           "upper": 5062.19
         },
+        "confidenceInterval80": {
+          "lower": -49.63,
+          "upper": 864.54
+        },
         "rateCI": {
           "lower": 0.0267,
           "upper": 51.6219
+        },
+        "rateCI80": {
+          "lower": 0.5037,
+          "upper": 9.6454
         }
       },
       "ciExceedsThreshold": true,
@@ -41634,7 +41858,7 @@
       },
       "processingInfo": {
         "method": "rbms (regional GAM flight curves + GLM collated index + bootstrap CI + linear trend + transect length normalization)",
-        "timestamp": "2025-12-29 00:09:53",
+        "timestamp": "2025-12-30 00:36:26",
         "rbms_version": "1.2.0",
         "bootstrap_iterations": 500
       },
@@ -41668,9 +41892,17 @@
           "lower": -99.88,
           "upper": 5.17
         },
+        "confidenceInterval80": {
+          "lower": -99.13,
+          "upper": -2.08
+        },
         "rateCI": {
           "lower": 0.0012,
           "upper": 1.0517
+        },
+        "rateCI80": {
+          "lower": 0.0087,
+          "upper": 0.9792
         }
       },
       "ciExceedsThreshold": false,
@@ -43297,7 +43529,7 @@
       },
       "processingInfo": {
         "method": "rbms (regional GAM flight curves + GLM collated index + bootstrap CI + linear trend + transect length normalization)",
-        "timestamp": "2025-12-29 00:09:58",
+        "timestamp": "2025-12-30 00:36:31",
         "rbms_version": "1.2.0",
         "bootstrap_iterations": 500
       },
@@ -43331,9 +43563,17 @@
           "lower": -24.89,
           "upper": 20.01
         },
+        "confidenceInterval80": {
+          "lower": -19.4,
+          "upper": 7.1
+        },
         "rateCI": {
           "lower": 0.7511,
           "upper": 1.2001
+        },
+        "rateCI80": {
+          "lower": 0.806,
+          "upper": 1.071
         }
       },
       "ciExceedsThreshold": false,
@@ -45062,7 +45302,7 @@
       },
       "processingInfo": {
         "method": "rbms (regional GAM flight curves + GLM collated index + bootstrap CI + linear trend + transect length normalization)",
-        "timestamp": "2025-12-29 00:10:03",
+        "timestamp": "2025-12-30 00:36:36",
         "rbms_version": "1.2.0",
         "bootstrap_iterations": 500
       },
@@ -45096,9 +45336,17 @@
           "lower": -7.03,
           "upper": 21.22
         },
+        "confidenceInterval80": {
+          "lower": -1.4,
+          "upper": 18.04
+        },
         "rateCI": {
           "lower": 0.9297,
           "upper": 1.2122
+        },
+        "rateCI80": {
+          "lower": 0.986,
+          "upper": 1.1804
         }
       },
       "ciExceedsThreshold": false,
@@ -46317,7 +46565,7 @@
       },
       "processingInfo": {
         "method": "rbms (regional GAM flight curves + GLM collated index + bootstrap CI + linear trend + transect length normalization)",
-        "timestamp": "2025-12-29 00:10:07",
+        "timestamp": "2025-12-30 00:36:40",
         "rbms_version": "1.2.0",
         "bootstrap_iterations": 500
       },
@@ -46351,9 +46599,17 @@
           "lower": -94.1,
           "upper": 12.23
         },
+        "confidenceInterval80": {
+          "lower": -14.28,
+          "upper": 3.1
+        },
         "rateCI": {
           "lower": 0.059,
           "upper": 1.1223
+        },
+        "rateCI80": {
+          "lower": 0.8572,
+          "upper": 1.031
         }
       },
       "ciExceedsThreshold": false,
@@ -48082,7 +48338,7 @@
       },
       "processingInfo": {
         "method": "rbms (regional GAM flight curves + GLM collated index + bootstrap CI + linear trend + transect length normalization)",
-        "timestamp": "2025-12-29 00:10:12",
+        "timestamp": "2025-12-30 00:36:45",
         "rbms_version": "1.2.0",
         "bootstrap_iterations": 500
       },
@@ -48116,9 +48372,17 @@
           "lower": -25.63,
           "upper": 15.87
         },
+        "confidenceInterval80": {
+          "lower": -21.25,
+          "upper": 5.61
+        },
         "rateCI": {
           "lower": 0.7437,
           "upper": 1.1587
+        },
+        "rateCI80": {
+          "lower": 0.7875,
+          "upper": 1.0561
         }
       },
       "ciExceedsThreshold": false,
@@ -49337,7 +49601,7 @@
       },
       "processingInfo": {
         "method": "rbms (regional GAM flight curves + GLM collated index + bootstrap CI + linear trend + transect length normalization)",
-        "timestamp": "2025-12-29 00:10:17",
+        "timestamp": "2025-12-30 00:36:50",
         "rbms_version": "1.2.0",
         "bootstrap_iterations": 500
       },
@@ -49350,9 +49614,17 @@
           "lower": -91.06,
           "upper": 126172.06
         },
+        "confidenceInterval80": {
+          "lower": -31.19,
+          "upper": 85.96
+        },
         "rateCI": {
           "lower": 0.0894,
           "upper": 1262.7206
+        },
+        "rateCI80": {
+          "lower": 0.6881,
+          "upper": 1.8596
         }
       },
       "ciExceedsThreshold": true,
@@ -50265,7 +50537,7 @@
       },
       "processingInfo": {
         "method": "rbms (regional GAM flight curves + GLM collated index + bootstrap CI + linear trend + transect length normalization)",
-        "timestamp": "2025-12-29 00:10:23",
+        "timestamp": "2025-12-30 00:36:56",
         "rbms_version": "1.2.0",
         "bootstrap_iterations": 500
       },
@@ -50299,9 +50571,17 @@
           "lower": 28.64,
           "upper": 76.68
         },
+        "confidenceInterval80": {
+          "lower": 30.71,
+          "upper": 75.35
+        },
         "rateCI": {
           "lower": 1.2864,
           "upper": 1.7668
+        },
+        "rateCI80": {
+          "lower": 1.3071,
+          "upper": 1.7535
         }
       },
       "ciExceedsThreshold": false,
@@ -52030,7 +52310,7 @@
       },
       "processingInfo": {
         "method": "rbms (regional GAM flight curves + GLM collated index + bootstrap CI + linear trend + transect length normalization)",
-        "timestamp": "2025-12-29 00:10:28",
+        "timestamp": "2025-12-30 00:37:01",
         "rbms_version": "1.2.0",
         "bootstrap_iterations": 500
       },
@@ -52064,9 +52344,17 @@
           "lower": -5.36,
           "upper": 12.79
         },
+        "confidenceInterval80": {
+          "lower": -0.94,
+          "upper": 10.43
+        },
         "rateCI": {
           "lower": 0.9464,
           "upper": 1.1279
+        },
+        "rateCI80": {
+          "lower": 0.9906,
+          "upper": 1.1043
         }
       },
       "ciExceedsThreshold": false,
@@ -53387,7 +53675,7 @@
       },
       "processingInfo": {
         "method": "rbms (regional GAM flight curves + GLM collated index + bootstrap CI + linear trend + transect length normalization)",
-        "timestamp": "2025-12-29 00:10:34",
+        "timestamp": "2025-12-30 00:37:07",
         "rbms_version": "1.2.0",
         "bootstrap_iterations": 500
       },
@@ -53400,9 +53688,17 @@
           "lower": -98.33,
           "upper": 98.39
         },
+        "confidenceInterval80": {
+          "lower": -98.11,
+          "upper": 23.83
+        },
         "rateCI": {
           "lower": 0.0167,
           "upper": 1.9839
+        },
+        "rateCI80": {
+          "lower": 0.0189,
+          "upper": 1.2383
         }
       },
       "ciExceedsThreshold": true,
@@ -55131,7 +55427,7 @@
       },
       "processingInfo": {
         "method": "rbms (regional GAM flight curves + GLM collated index + bootstrap CI + linear trend + transect length normalization)",
-        "timestamp": "2025-12-29 00:10:39",
+        "timestamp": "2025-12-30 00:37:11",
         "rbms_version": "1.2.0",
         "bootstrap_iterations": 500
       },
@@ -55165,9 +55461,17 @@
           "lower": -5.85,
           "upper": 18.44
         },
+        "confidenceInterval80": {
+          "lower": -1.92,
+          "upper": 14.92
+        },
         "rateCI": {
           "lower": 0.9415,
           "upper": 1.1844
+        },
+        "rateCI80": {
+          "lower": 0.9808,
+          "upper": 1.1492
         }
       },
       "ciExceedsThreshold": false,
@@ -56386,7 +56690,7 @@
       },
       "processingInfo": {
         "method": "rbms (regional GAM flight curves + GLM collated index + bootstrap CI + linear trend + transect length normalization)",
-        "timestamp": "2025-12-29 00:10:44",
+        "timestamp": "2025-12-30 00:37:16",
         "rbms_version": "1.2.0",
         "bootstrap_iterations": 500
       },
@@ -56420,9 +56724,17 @@
           "lower": -39.69,
           "upper": 23.39
         },
+        "confidenceInterval80": {
+          "lower": -37.3,
+          "upper": 9.65
+        },
         "rateCI": {
           "lower": 0.6031,
           "upper": 1.2339
+        },
+        "rateCI80": {
+          "lower": 0.627,
+          "upper": 1.0965
         }
       },
       "ciExceedsThreshold": false,
@@ -58151,7 +58463,7 @@
       },
       "processingInfo": {
         "method": "rbms (regional GAM flight curves + GLM collated index + bootstrap CI + linear trend + transect length normalization)",
-        "timestamp": "2025-12-29 00:10:49",
+        "timestamp": "2025-12-30 00:37:22",
         "rbms_version": "1.2.0",
         "bootstrap_iterations": 500
       },
@@ -58185,9 +58497,17 @@
           "lower": -30.21,
           "upper": 13.26
         },
+        "confidenceInterval80": {
+          "lower": -13.45,
+          "upper": 7.3
+        },
         "rateCI": {
           "lower": 0.6979,
           "upper": 1.1326
+        },
+        "rateCI80": {
+          "lower": 0.8655,
+          "upper": 1.073
         }
       },
       "ciExceedsThreshold": false,
@@ -59202,7 +59522,7 @@
       },
       "processingInfo": {
         "method": "rbms (regional GAM flight curves + GLM collated index + bootstrap CI + linear trend + transect length normalization)",
-        "timestamp": "2025-12-29 00:10:54",
+        "timestamp": "2025-12-30 00:37:26",
         "rbms_version": "1.2.0",
         "bootstrap_iterations": 500
       },
@@ -59215,9 +59535,17 @@
           "lower": -90.15,
           "upper": 10688.68
         },
+        "confidenceInterval80": {
+          "lower": -83.88,
+          "upper": 25.31
+        },
         "rateCI": {
           "lower": 0.0985,
           "upper": 107.8868
+        },
+        "rateCI80": {
+          "lower": 0.1612,
+          "upper": 1.2531
         }
       },
       "ciExceedsThreshold": true,
@@ -60334,7 +60662,7 @@
       },
       "processingInfo": {
         "method": "rbms (regional GAM flight curves + GLM collated index + bootstrap CI + linear trend + transect length normalization)",
-        "timestamp": "2025-12-29 00:10:59",
+        "timestamp": "2025-12-30 00:37:31",
         "rbms_version": "1.2.0",
         "bootstrap_iterations": 500
       },
@@ -60368,9 +60696,17 @@
           "lower": -88.99,
           "upper": 25.25
         },
+        "confidenceInterval80": {
+          "lower": -41.4,
+          "upper": 22.15
+        },
         "rateCI": {
           "lower": 0.1101,
           "upper": 1.2525
+        },
+        "rateCI80": {
+          "lower": 0.586,
+          "upper": 1.2215
         }
       },
       "ciExceedsThreshold": false,
@@ -61181,7 +61517,7 @@
       },
       "processingInfo": {
         "method": "rbms (regional GAM flight curves + GLM collated index + bootstrap CI + linear trend + transect length normalization)",
-        "timestamp": "2025-12-29 00:11:04",
+        "timestamp": "2025-12-30 00:37:36",
         "rbms_version": "1.2.0",
         "bootstrap_iterations": 500
       },
@@ -61194,9 +61530,17 @@
           "lower": -99.93,
           "upper": 20.75
         },
+        "confidenceInterval80": {
+          "lower": -90.87,
+          "upper": 15.03
+        },
         "rateCI": {
           "lower": 0.0007,
           "upper": 1.2075
+        },
+        "rateCI80": {
+          "lower": 0.0913,
+          "upper": 1.1503
         }
       },
       "ciExceedsThreshold": true,
@@ -62721,7 +63065,7 @@
       },
       "processingInfo": {
         "method": "rbms (regional GAM flight curves + GLM collated index + bootstrap CI + linear trend + transect length normalization)",
-        "timestamp": "2025-12-29 00:11:12",
+        "timestamp": "2025-12-30 00:37:44",
         "rbms_version": "1.2.0",
         "bootstrap_iterations": 500
       },
@@ -62734,9 +63078,17 @@
           "lower": -97.51,
           "upper": 1061.89
         },
+        "confidenceInterval80": {
+          "lower": -81.19,
+          "upper": 87.84
+        },
         "rateCI": {
           "lower": 0.0249,
           "upper": 11.6189
+        },
+        "rateCI80": {
+          "lower": 0.1881,
+          "upper": 1.8784
         }
       },
       "ciExceedsThreshold": true,
@@ -64465,7 +64817,7 @@
       },
       "processingInfo": {
         "method": "rbms (regional GAM flight curves + GLM collated index + bootstrap CI + linear trend + transect length normalization)",
-        "timestamp": "2025-12-29 00:11:16",
+        "timestamp": "2025-12-30 00:37:49",
         "rbms_version": "1.2.0",
         "bootstrap_iterations": 500
       },
@@ -64499,9 +64851,17 @@
           "lower": -10.32,
           "upper": 12.37
         },
+        "confidenceInterval80": {
+          "lower": -6.14,
+          "upper": 6.84
+        },
         "rateCI": {
           "lower": 0.8968,
           "upper": 1.1237
+        },
+        "rateCI80": {
+          "lower": 0.9386,
+          "upper": 1.0684
         }
       },
       "ciExceedsThreshold": false,
@@ -66230,7 +66590,7 @@
       },
       "processingInfo": {
         "method": "rbms (regional GAM flight curves + GLM collated index + bootstrap CI + linear trend + transect length normalization)",
-        "timestamp": "2025-12-29 00:11:21",
+        "timestamp": "2025-12-30 00:37:53",
         "rbms_version": "1.2.0",
         "bootstrap_iterations": 500
       },
@@ -66264,9 +66624,17 @@
           "lower": -0.03,
           "upper": 11.37
         },
+        "confidenceInterval80": {
+          "lower": 1.8,
+          "upper": 9.56
+        },
         "rateCI": {
           "lower": 0.9997,
           "upper": 1.1137
+        },
+        "rateCI80": {
+          "lower": 1.018,
+          "upper": 1.0956
         }
       },
       "ciExceedsThreshold": false,
@@ -67995,7 +68363,7 @@
       },
       "processingInfo": {
         "method": "rbms (regional GAM flight curves + GLM collated index + bootstrap CI + linear trend + transect length normalization)",
-        "timestamp": "2025-12-29 00:11:25",
+        "timestamp": "2025-12-30 00:37:58",
         "rbms_version": "1.2.0",
         "bootstrap_iterations": 500
       },
@@ -68029,9 +68397,17 @@
           "lower": -6.38,
           "upper": 17.49
         },
+        "confidenceInterval80": {
+          "lower": -2.29,
+          "upper": 13.53
+        },
         "rateCI": {
           "lower": 0.9362,
           "upper": 1.1749
+        },
+        "rateCI80": {
+          "lower": 0.9771,
+          "upper": 1.1353
         }
       },
       "ciExceedsThreshold": false,
@@ -69556,7 +69932,7 @@
       },
       "processingInfo": {
         "method": "rbms (regional GAM flight curves + GLM collated index + bootstrap CI + linear trend + transect length normalization)",
-        "timestamp": "2025-12-29 00:11:30",
+        "timestamp": "2025-12-30 00:38:02",
         "rbms_version": "1.2.0",
         "bootstrap_iterations": 500
       },
@@ -69590,9 +69966,17 @@
           "lower": -24.64,
           "upper": 26.8
         },
+        "confidenceInterval80": {
+          "lower": -20.34,
+          "upper": 16.49
+        },
         "rateCI": {
           "lower": 0.7536,
           "upper": 1.268
+        },
+        "rateCI80": {
+          "lower": 0.7966,
+          "upper": 1.1649
         }
       },
       "ciExceedsThreshold": false,
@@ -71321,7 +71705,7 @@
       },
       "processingInfo": {
         "method": "rbms (regional GAM flight curves + GLM collated index + bootstrap CI + linear trend + transect length normalization)",
-        "timestamp": "2025-12-29 00:11:35",
+        "timestamp": "2025-12-30 00:38:07",
         "rbms_version": "1.2.0",
         "bootstrap_iterations": 500
       },
@@ -71355,9 +71739,17 @@
           "lower": -4.17,
           "upper": 9.9
         },
+        "confidenceInterval80": {
+          "lower": -0.94,
+          "upper": 8.08
+        },
         "rateCI": {
           "lower": 0.9583,
           "upper": 1.099
+        },
+        "rateCI80": {
+          "lower": 0.9906,
+          "upper": 1.0808
         }
       },
       "ciExceedsThreshold": false,
@@ -72066,7 +72458,7 @@
       },
       "processingInfo": {
         "method": "rbms (regional GAM flight curves + GLM collated index + bootstrap CI + linear trend + transect length normalization)",
-        "timestamp": "2025-12-29 00:11:39",
+        "timestamp": "2025-12-30 00:38:12",
         "rbms_version": "1.2.0",
         "bootstrap_iterations": 500
       },
@@ -72100,7 +72492,15 @@
           "lower": -99.23,
           "upper": 41.16
         },
+        "confidenceInterval80": {
+          "lower": -99.23,
+          "upper": 41.16
+        },
         "rateCI": {
+          "lower": 0.0077,
+          "upper": 1.4116
+        },
+        "rateCI80": {
           "lower": 0.0077,
           "upper": 1.4116
         }
@@ -73321,7 +73721,7 @@
       },
       "processingInfo": {
         "method": "rbms (regional GAM flight curves + GLM collated index + bootstrap CI + linear trend + transect length normalization)",
-        "timestamp": "2025-12-29 00:11:45",
+        "timestamp": "2025-12-30 00:38:18",
         "rbms_version": "1.2.0",
         "bootstrap_iterations": 500
       },
@@ -73334,9 +73734,17 @@
           "lower": -99.83,
           "upper": 6282.9
         },
+        "confidenceInterval80": {
+          "lower": -83.72,
+          "upper": 318.7
+        },
         "rateCI": {
           "lower": 0.0017,
           "upper": 63.829
+        },
+        "rateCI80": {
+          "lower": 0.1628,
+          "upper": 4.187
         }
       },
       "ciExceedsThreshold": true,
@@ -74045,7 +74453,7 @@
       },
       "processingInfo": {
         "method": "rbms (regional GAM flight curves + GLM collated index + bootstrap CI + linear trend + transect length normalization)",
-        "timestamp": "2025-12-29 00:11:49",
+        "timestamp": "2025-12-30 00:38:22",
         "rbms_version": "1.2.0",
         "bootstrap_iterations": 500
       },
@@ -74058,7 +74466,15 @@
           "lower": -26.35,
           "upper": null
         },
+        "confidenceInterval80": {
+          "lower": -26.35,
+          "upper": null
+        },
         "rateCI": {
+          "lower": 0.7365,
+          "upper": 1
+        },
+        "rateCI80": {
           "lower": 0.7365,
           "upper": 1
         }
@@ -75789,7 +76205,7 @@
       },
       "processingInfo": {
         "method": "rbms (regional GAM flight curves + GLM collated index + bootstrap CI + linear trend + transect length normalization)",
-        "timestamp": "2025-12-29 00:11:55",
+        "timestamp": "2025-12-30 00:38:27",
         "rbms_version": "1.2.0",
         "bootstrap_iterations": 500
       },
@@ -75823,9 +76239,17 @@
           "lower": -55.6,
           "upper": -11.32
         },
+        "confidenceInterval80": {
+          "lower": -48.51,
+          "upper": -15.62
+        },
         "rateCI": {
           "lower": 0.444,
           "upper": 0.8868
+        },
+        "rateCI80": {
+          "lower": 0.5149,
+          "upper": 0.8438
         }
       },
       "ciExceedsThreshold": false,
@@ -77350,7 +77774,7 @@
       },
       "processingInfo": {
         "method": "rbms (regional GAM flight curves + GLM collated index + bootstrap CI + linear trend + transect length normalization)",
-        "timestamp": "2025-12-29 00:12:01",
+        "timestamp": "2025-12-30 00:38:33",
         "rbms_version": "1.2.0",
         "bootstrap_iterations": 500
       },
@@ -77384,9 +77808,17 @@
           "lower": -19.02,
           "upper": 564.98
         },
+        "confidenceInterval80": {
+          "lower": -11.53,
+          "upper": 468.49
+        },
         "rateCI": {
           "lower": 0.8098,
           "upper": 6.6498
+        },
+        "rateCI80": {
+          "lower": 0.8847,
+          "upper": 5.6849
         }
       },
       "ciExceedsThreshold": false,
@@ -79115,7 +79547,7 @@
       },
       "processingInfo": {
         "method": "rbms (regional GAM flight curves + GLM collated index + bootstrap CI + linear trend + transect length normalization)",
-        "timestamp": "2025-12-29 00:12:05",
+        "timestamp": "2025-12-30 00:38:38",
         "rbms_version": "1.2.0",
         "bootstrap_iterations": 500
       },
@@ -79149,9 +79581,17 @@
           "lower": -31.05,
           "upper": -12.61
         },
+        "confidenceInterval80": {
+          "lower": -26.06,
+          "upper": -14.75
+        },
         "rateCI": {
           "lower": 0.6895,
           "upper": 0.8739
+        },
+        "rateCI80": {
+          "lower": 0.7394,
+          "upper": 0.8525
         }
       },
       "ciExceedsThreshold": false,
@@ -80880,7 +81320,7 @@
       },
       "processingInfo": {
         "method": "rbms (regional GAM flight curves + GLM collated index + bootstrap CI + linear trend + transect length normalization)",
-        "timestamp": "2025-12-29 00:12:10",
+        "timestamp": "2025-12-30 00:38:42",
         "rbms_version": "1.2.0",
         "bootstrap_iterations": 500
       },
@@ -80914,9 +81354,17 @@
           "lower": -11.58,
           "upper": 3.66
         },
+        "confidenceInterval80": {
+          "lower": -9.67,
+          "upper": 0.68
+        },
         "rateCI": {
           "lower": 0.8842,
           "upper": 1.0366
+        },
+        "rateCI80": {
+          "lower": 0.9033,
+          "upper": 1.0068
         }
       },
       "ciExceedsThreshold": false,
@@ -82543,7 +82991,7 @@
       },
       "processingInfo": {
         "method": "rbms (regional GAM flight curves + GLM collated index + bootstrap CI + linear trend + transect length normalization)",
-        "timestamp": "2025-12-29 00:12:14",
+        "timestamp": "2025-12-30 00:38:47",
         "rbms_version": "1.2.0",
         "bootstrap_iterations": 500
       },
@@ -82577,9 +83025,17 @@
           "lower": -11.59,
           "upper": 12.35
         },
+        "confidenceInterval80": {
+          "lower": -7.99,
+          "upper": 8.86
+        },
         "rateCI": {
           "lower": 0.8841,
           "upper": 1.1235
+        },
+        "rateCI80": {
+          "lower": 0.9201,
+          "upper": 1.0886
         }
       },
       "ciExceedsThreshold": false,
@@ -84308,7 +84764,7 @@
       },
       "processingInfo": {
         "method": "rbms (regional GAM flight curves + GLM collated index + bootstrap CI + linear trend + transect length normalization)",
-        "timestamp": "2025-12-29 00:12:19",
+        "timestamp": "2025-12-30 00:38:52",
         "rbms_version": "1.2.0",
         "bootstrap_iterations": 500
       },
@@ -84342,9 +84798,17 @@
           "lower": -1.62,
           "upper": 24.94
         },
+        "confidenceInterval80": {
+          "lower": 5.11,
+          "upper": 20.98
+        },
         "rateCI": {
           "lower": 0.9838,
           "upper": 1.2494
+        },
+        "rateCI80": {
+          "lower": 1.0511,
+          "upper": 1.2098
         }
       },
       "ciExceedsThreshold": false,
@@ -85665,7 +86129,7 @@
       },
       "processingInfo": {
         "method": "rbms (regional GAM flight curves + GLM collated index + bootstrap CI + linear trend + transect length normalization)",
-        "timestamp": "2025-12-29 00:12:25",
+        "timestamp": "2025-12-30 00:38:58",
         "rbms_version": "1.2.0",
         "bootstrap_iterations": 500
       },
@@ -85699,9 +86163,17 @@
           "lower": -99.74,
           "upper": 0.45
         },
+        "confidenceInterval80": {
+          "lower": -93.16,
+          "upper": -4.69
+        },
         "rateCI": {
           "lower": 0.0026,
           "upper": 1.0045
+        },
+        "rateCI80": {
+          "lower": 0.0684,
+          "upper": 0.9531
         }
       },
       "ciExceedsThreshold": false,
@@ -87022,7 +87494,7 @@
       },
       "processingInfo": {
         "method": "rbms (regional GAM flight curves + GLM collated index + bootstrap CI + linear trend + transect length normalization)",
-        "timestamp": "2025-12-29 00:12:30",
+        "timestamp": "2025-12-30 00:39:03",
         "rbms_version": "1.2.0",
         "bootstrap_iterations": 500
       },
@@ -87035,9 +87507,17 @@
           "lower": -99.03,
           "upper": 14742.02
         },
+        "confidenceInterval80": {
+          "lower": -91.43,
+          "upper": -10.41
+        },
         "rateCI": {
           "lower": 0.0097,
           "upper": 148.4202
+        },
+        "rateCI80": {
+          "lower": 0.0857,
+          "upper": 0.8959
         }
       },
       "ciExceedsThreshold": true,
@@ -88562,7 +89042,7 @@
       },
       "processingInfo": {
         "method": "rbms (regional GAM flight curves + GLM collated index + bootstrap CI + linear trend + transect length normalization)",
-        "timestamp": "2025-12-29 00:12:36",
+        "timestamp": "2025-12-30 00:39:08",
         "rbms_version": "1.2.0",
         "bootstrap_iterations": 500
       },
@@ -88596,9 +89076,17 @@
           "lower": -30.3,
           "upper": 10.38
         },
+        "confidenceInterval80": {
+          "lower": -18.13,
+          "upper": 5.35
+        },
         "rateCI": {
           "lower": 0.697,
           "upper": 1.1038
+        },
+        "rateCI80": {
+          "lower": 0.8187,
+          "upper": 1.0535
         }
       },
       "ciExceedsThreshold": false,
@@ -90225,7 +90713,7 @@
       },
       "processingInfo": {
         "method": "rbms (regional GAM flight curves + GLM collated index + bootstrap CI + linear trend + transect length normalization)",
-        "timestamp": "2025-12-29 00:12:41",
+        "timestamp": "2025-12-30 00:39:13",
         "rbms_version": "1.2.0",
         "bootstrap_iterations": 500
       },
@@ -90259,9 +90747,17 @@
           "lower": -28.11,
           "upper": 6.64
         },
+        "confidenceInterval80": {
+          "lower": -21.9,
+          "upper": 1.86
+        },
         "rateCI": {
           "lower": 0.7189,
           "upper": 1.0664
+        },
+        "rateCI80": {
+          "lower": 0.781,
+          "upper": 1.0186
         }
       },
       "ciExceedsThreshold": false,
@@ -91990,7 +92486,7 @@
       },
       "processingInfo": {
         "method": "rbms (regional GAM flight curves + GLM collated index + bootstrap CI + linear trend + transect length normalization)",
-        "timestamp": "2025-12-29 00:12:46",
+        "timestamp": "2025-12-30 00:39:18",
         "rbms_version": "1.2.0",
         "bootstrap_iterations": 500
       },
@@ -92024,9 +92520,17 @@
           "lower": -4.42,
           "upper": 17.03
         },
+        "confidenceInterval80": {
+          "lower": -1.13,
+          "upper": 12.73
+        },
         "rateCI": {
           "lower": 0.9558,
           "upper": 1.1703
+        },
+        "rateCI80": {
+          "lower": 0.9887,
+          "upper": 1.1273
         }
       },
       "ciExceedsThreshold": false,
@@ -93755,7 +94259,7 @@
       },
       "processingInfo": {
         "method": "rbms (regional GAM flight curves + GLM collated index + bootstrap CI + linear trend + transect length normalization)",
-        "timestamp": "2025-12-29 00:12:51",
+        "timestamp": "2025-12-30 00:39:22",
         "rbms_version": "1.2.0",
         "bootstrap_iterations": 500
       },
@@ -93789,9 +94293,17 @@
           "lower": -18.48,
           "upper": 36.45
         },
+        "confidenceInterval80": {
+          "lower": -8.32,
+          "upper": 28.99
+        },
         "rateCI": {
           "lower": 0.8152,
           "upper": 1.3645
+        },
+        "rateCI80": {
+          "lower": 0.9168,
+          "upper": 1.2899
         }
       },
       "ciExceedsThreshold": false,
@@ -95418,7 +95930,7 @@
       },
       "processingInfo": {
         "method": "rbms (regional GAM flight curves + GLM collated index + bootstrap CI + linear trend + transect length normalization)",
-        "timestamp": "2025-12-29 00:12:56",
+        "timestamp": "2025-12-30 00:39:27",
         "rbms_version": "1.2.0",
         "bootstrap_iterations": 500
       },
@@ -95452,9 +95964,17 @@
           "lower": -8.72,
           "upper": 48.89
         },
+        "confidenceInterval80": {
+          "lower": -2.98,
+          "upper": 37.85
+        },
         "rateCI": {
           "lower": 0.9128,
           "upper": 1.4889
+        },
+        "rateCI80": {
+          "lower": 0.9702,
+          "upper": 1.3785
         }
       },
       "ciExceedsThreshold": false,

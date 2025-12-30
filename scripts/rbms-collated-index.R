@@ -696,9 +696,13 @@ calculate_trend_with_ci <- function(collind_boot, baseline_year) {
       rate = NA,
       rate_ci_lower = NA,
       rate_ci_upper = NA,
+      rate_ci_80_lower = NA,
+      rate_ci_80_upper = NA,
       pc1 = NA,
       pc1_ci_lower = NA,
       pc1_ci_upper = NA,
+      pc1_ci_80_lower = NA,
+      pc1_ci_80_upper = NA,
       trend_class = "Uncertain"
     ))
   }
@@ -725,19 +729,28 @@ calculate_trend_with_ci <- function(collind_boot, baseline_year) {
       rate = if(nrow(point_est) > 0) point_est$rate else NA,
       rate_ci_lower = NA,
       rate_ci_upper = NA,
+      rate_ci_80_lower = NA,
+      rate_ci_80_upper = NA,
       pc1 = if(nrow(point_est) > 0) point_est$pc1 else NA,
       pc1_ci_lower = NA,
       pc1_ci_upper = NA,
+      pc1_ci_80_lower = NA,
+      pc1_ci_80_upper = NA,
       trend_class = "Uncertain"
     ))
   }
 
-  rate_ci <- quantile(boot_only$rate, c(0.025, 0.975), na.rm = TRUE)
-  pc1_ci <- quantile(boot_only$pc1, c(0.025, 0.975), na.rm = TRUE)
+  # Calculate 95% CI (alpha = 0.05)
+  rate_ci_95 <- quantile(boot_only$rate, c(0.025, 0.975), na.rm = TRUE)
+  pc1_ci_95 <- quantile(boot_only$pc1, c(0.025, 0.975), na.rm = TRUE)
 
-  # Classify trend based on rate CI bounds
-  ci_lower <- rate_ci[1]
-  ci_upper <- rate_ci[2]
+  # Calculate 80% CI (alpha = 0.20)
+  rate_ci_80 <- quantile(boot_only$rate, c(0.10, 0.90), na.rm = TRUE)
+  pc1_ci_80 <- quantile(boot_only$pc1, c(0.10, 0.90), na.rm = TRUE)
+
+  # Classify trend based on 95% rate CI bounds
+  ci_lower <- rate_ci_95[1]
+  ci_upper <- rate_ci_95[2]
 
   trend_class <- if (ci_lower > 1.05) {
     "Strong increase"
@@ -756,14 +769,20 @@ calculate_trend_with_ci <- function(collind_boot, baseline_year) {
   cat(paste("  Trend classification:", trend_class, "\n"))
   cat(paste("  Annual rate:", round(if(nrow(point_est) > 0) point_est$rate else NA, 4), "\n"))
   cat(paste("  Annual % change:", round(if(nrow(point_est) > 0) point_est$pc1 else NA, 2), "%\n"))
+  cat(paste("  95% CI:", round(pc1_ci_95[1], 2), "to", round(pc1_ci_95[2], 2), "%\n"))
+  cat(paste("  80% CI:", round(pc1_ci_80[1], 2), "to", round(pc1_ci_80[2], 2), "%\n"))
 
   return(list(
     rate = if(nrow(point_est) > 0) round(point_est$rate, 4) else NA,
-    rate_ci_lower = round(rate_ci[1], 4),
-    rate_ci_upper = round(rate_ci[2], 4),
+    rate_ci_lower = round(rate_ci_95[1], 4),
+    rate_ci_upper = round(rate_ci_95[2], 4),
+    rate_ci_80_lower = round(rate_ci_80[1], 4),
+    rate_ci_80_upper = round(rate_ci_80[2], 4),
     pc1 = if(nrow(point_est) > 0) round(point_est$pc1, 2) else NA,
-    pc1_ci_lower = round(pc1_ci[1], 2),
-    pc1_ci_upper = round(pc1_ci[2], 2),
+    pc1_ci_lower = round(pc1_ci_95[1], 2),
+    pc1_ci_upper = round(pc1_ci_95[2], 2),
+    pc1_ci_80_lower = round(pc1_ci_80[1], 2),
+    pc1_ci_80_upper = round(pc1_ci_80[2], 2),
     trend_class = trend_class
   ))
 }
@@ -793,9 +812,13 @@ if (exists("collated_result_all") && !is.null(collated_result_all) && nrow(colla
     rate = NA,
     rate_ci_lower = NA,
     rate_ci_upper = NA,
+    rate_ci_80_lower = NA,
+    rate_ci_80_upper = NA,
     pc1 = NA,
     pc1_ci_lower = NA,
     pc1_ci_upper = NA,
+    pc1_ci_80_lower = NA,
+    pc1_ci_80_upper = NA,
     trend_class = "Uncertain"
   )
 }

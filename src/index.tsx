@@ -4,6 +4,7 @@ import { HashRouter, Routes, Route, useNavigate, useLocation, Navigate } from "r
 import MyApp from "./components/App";
 import SpeciesPage from "./components/SpeciesPage";
 import MunicipalityPage from "./components/MunicipalityPage";
+import GBIPage from "./components/GBIPage";
 import reportWebVitals from "./reportWebVitals";
 import { App, Layout, Radio } from "antd";
 import {
@@ -75,6 +76,7 @@ function AppContent() {
       <Route path="/diurnal" element={<MyApp datasetType="diurnal" />} />
       <Route path="/nocturnal" element={<MyApp datasetType="nocturnal" />} />
       <Route path="/transects" element={<MyApp datasetType="transects" />} />
+      <Route path="/gbi" element={<GBIPage />} />
       <Route path="/species/:speciesName" element={<SpeciesPage />} />
       <Route path="/municipality/:municipalityName" element={<MunicipalityPage />} />
       <Route path="*" element={<Navigate to="/diurnal" replace />} />

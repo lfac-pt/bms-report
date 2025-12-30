@@ -4,7 +4,7 @@ import { ArrowUpOutlined, ArrowDownOutlined, MinusOutlined } from "@ant-design/i
 import { Link } from "react-router-dom";
 import TrendClassificationBadge from "../TrendClassificationBadge";
 import type { SpeciesTrend as GBISpeciesTrend, TrendCategory } from "../../types/gbiData";
-import { CI_RANGE_THRESHOLD } from "../../constants";
+import { CI_RANGE_THRESHOLD, TREND_COLORS, getTrendLabel } from "../../constants";
 
 const { Title, Text } = Typography;
 
@@ -256,45 +256,51 @@ const SpeciesTrendsSparklines: React.FC = () => {
             <Text type="secondary">
               {categorySummary["Strong increase"] && (
                 <>
-                  <span style={{ color: "#52c41a" }}>
-                    ↑↑ {categorySummary["Strong increase"]} aumento forte
+                  <span style={{ color: TREND_COLORS["Strong increase"] }}>
+                    ↑↑ {categorySummary["Strong increase"]}{" "}
+                    {getTrendLabel("Strong increase").toLowerCase()}
                   </span>
                   {" • "}
                 </>
               )}
               {categorySummary["Moderate increase"] && (
                 <>
-                  <span style={{ color: "#95de64" }}>
-                    ↑ {categorySummary["Moderate increase"]} aumento moderado
+                  <span style={{ color: TREND_COLORS["Moderate increase"] }}>
+                    ↑ {categorySummary["Moderate increase"]}{" "}
+                    {getTrendLabel("Moderate increase").toLowerCase()}
                   </span>
                   {" • "}
                 </>
               )}
               {categorySummary["Stable"] && (
                 <>
-                  <span style={{ color: "#1890ff" }}>− {categorySummary["Stable"]} estáveis</span>
+                  <span style={{ color: TREND_COLORS["Stable"] }}>
+                    − {categorySummary["Stable"]} estáveis
+                  </span>
                   {" • "}
                 </>
               )}
               {categorySummary["Moderate decline"] && (
                 <>
-                  <span style={{ color: "#fa8c16" }}>
-                    ↓ {categorySummary["Moderate decline"]} declínio moderado
+                  <span style={{ color: TREND_COLORS["Moderate decline"] }}>
+                    ↓ {categorySummary["Moderate decline"]}{" "}
+                    {getTrendLabel("Moderate decline").toLowerCase()}
                   </span>
                   {" • "}
                 </>
               )}
               {categorySummary["Strong decline"] && (
                 <>
-                  <span style={{ color: "#f5222d" }}>
-                    ↓↓ {categorySummary["Strong decline"]} declínio forte
+                  <span style={{ color: TREND_COLORS["Strong decline"] }}>
+                    ↓↓ {categorySummary["Strong decline"]}{" "}
+                    {getTrendLabel("Strong decline").toLowerCase()}
                   </span>
                   {" • "}
                 </>
               )}
               {categorySummary["Uncertain"] && (
                 <>
-                  <span style={{ color: "#8c8c8c" }}>
+                  <span style={{ color: TREND_COLORS["Uncertain"] }}>
                     ? {categorySummary["Uncertain"]} incertos
                   </span>
                   {" • "}

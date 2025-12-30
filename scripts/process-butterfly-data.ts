@@ -38,6 +38,7 @@ import {
   processTimelineData,
   processMunicipalityGeoJSON,
 } from "./processors";
+import { calculateRegionalGBI } from "./processors/regional-gbi-processor";
 
 /**
  * Main processing function
@@ -376,6 +377,21 @@ async function processData(): Promise<void> {
     console.log(`  - Species with flight curves: ${flightCurvesData.speciesList.length}`);
   } else {
     console.warn("\nWarning: Flight curves calculation failed or returned no data");
+  }
+
+  // Calculate and save regional GBI data
+  const regionalGBIData = await calculateRegionalGBI(allData, results, BASELINE_YEAR);
+
+  if (regionalGBIData && Object.keys(regionalGBIData.regions).length > 0) {
+    const REGIONAL_GBI_OUTPUT_FILE = path.join(OUTPUT_DIR, "regional-gbi-data.json");
+    console.log(`\nWriting regional GBI data to ${REGIONAL_GBI_OUTPUT_FILE}...`);
+    fs.writeFileSync(REGIONAL_GBI_OUTPUT_FILE, JSON.stringify(regionalGBIData, null, 2), "utf-8");
+    console.log(
+      `Regional GBI data saved (${(fs.statSync(REGIONAL_GBI_OUTPUT_FILE).size / 1024).toFixed(2)} KB)`
+    );
+    console.log(`  - Regions with GBI: ${Object.keys(regionalGBIData.regions).length}`);
+  } else {
+    console.warn("\nWarning: Regional GBI calculation failed or returned no data");
   }
 
   // Process municipality species map

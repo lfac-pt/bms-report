@@ -1,5 +1,5 @@
 import { useState, useEffect, useMemo } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import {
   Table,
   Input,
@@ -29,11 +29,10 @@ import {
   WarningOutlined,
   SettingOutlined,
 } from "@ant-design/icons";
-import { groupSpeciesByFamily } from "../constants";
+import { groupSpeciesByFamily, getTrendColor } from "../constants";
 import TransectMap from "./TransectMap";
 import TransectTimeline from "./TransectTimeline";
 import SpeciesLink from "./SpeciesLink";
-import GrasslandButterflyIndex from "./charts/GrasslandButterflyIndex";
 import SpeciesTrendsSparklines from "./charts/SpeciesTrendsSparklines";
 import MunicipalitySpeciesMap from "./charts/MunicipalitySpeciesMap";
 
@@ -194,6 +193,7 @@ function ButterflyTransects() {
   const [protectedAreaFilters, setProtectedAreaFilters] = useState<string[]>([]);
   const [pageSize, setPageSize] = useState(20);
   const [currentPage, setCurrentPage] = useState(1);
+  const navigate = useNavigate();
 
   // Timeline data state
   const [timelineData, setTimelineData] = useState<TimelineData | null>(null);
@@ -682,7 +682,7 @@ function ButterflyTransects() {
 
       {/* Summary Statistics */}
       <Row gutter={16}>
-        <Col span={5}>
+        <Col span={4}>
           <Card>
             <Popover
               content={
@@ -757,7 +757,7 @@ function ButterflyTransects() {
             </Popover>
           </Card>
         </Col>
-        <Col span={5}>
+        <Col span={4}>
           <Card>
             <Popover
               content={
@@ -894,12 +894,27 @@ function ButterflyTransects() {
             />
           </Card>
         </Col>
+        <Col span={4}>
+          <Card hoverable style={{ cursor: "pointer" }} onClick={() => navigate("/gbi")}>
+            <Statistic
+              title="Tendência GBI"
+              value={
+                gbiLoading
+                  ? "..."
+                  : gbiData?.gbiTrend?.pc1
+                    ? `${gbiData.gbiTrend.pc1.toFixed(1)}%`
+                    : "N/A"
+              }
+              valueStyle={{
+                color: gbiData?.gbiTrend?.category
+                  ? getTrendColor(gbiData.gbiTrend.category)
+                  : "#8c8c8c",
+              }}
+              suffix={gbiData?.gbiTrend?.pc1 ? "/ano" : ""}
+            />
+          </Card>
+        </Col>
       </Row>
-
-      {/* Grassland Butterfly Index Chart */}
-      <div style={{ marginTop: 24 }}>
-        <GrasslandButterflyIndex gbiData={gbiData} loading={gbiLoading} />
-      </div>
 
       {/* Species Trends Sparklines */}
       <div style={{ marginTop: 24 }}>

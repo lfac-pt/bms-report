@@ -160,3 +160,34 @@ export interface GBIData {
   widespreadMSI?: MSISubset | null;
   specialistMSI?: MSISubset | null;
 }
+
+/**
+ * Regional GBI data for a specific climatic zone
+ */
+export interface RegionalGBIData {
+  region: string;
+  transectCount: number;
+  transectIds: string[];
+  gbiByYear: Record<number, YearlyGBI>;
+  years: number[];
+  gbiTrend: GBITrend | null;
+  dataQuality: {
+    sufficientData: boolean;
+    minTransectsRequired: number;
+    minYearsRequired: number;
+    speciesIncluded: number;
+  };
+}
+
+/**
+ * Complete regional GBI dataset
+ */
+export interface RegionalGBICollection {
+  regions: Record<string, RegionalGBIData>;
+  metadata: {
+    calculatedAt: string;
+    baselineYear: number;
+    minimumTransects: number;
+    minimumYears: number;
+  };
+}
