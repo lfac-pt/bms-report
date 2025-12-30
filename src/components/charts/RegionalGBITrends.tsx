@@ -52,7 +52,10 @@ export function RegionalGBITrends({ regionalGBIData }: RegionalGBITrendsProps) {
   const yMax = Math.ceil(globalMax + padding);
 
   // Base chart options factory
-  const getChartOptions = (isFirstChart: boolean, regionInfo: { name: string; transectCount: number; trend: string; trendColor: string }) => ({
+  const getChartOptions = (
+    isFirstChart: boolean,
+    regionInfo: { name: string; transectCount: number; trend: string; trendColor: string }
+  ) => ({
     responsive: true,
     maintainAspectRatio: false,
     layout: {

@@ -862,7 +862,12 @@ function GrasslandButterflyIndex({
               // Set up clipping to chart area
               ctx.save();
               ctx.beginPath();
-              ctx.rect(chartArea.left, chartArea.top, chartArea.right - chartArea.left, chartArea.bottom - chartArea.top);
+              ctx.rect(
+                chartArea.left,
+                chartArea.top,
+                chartArea.right - chartArea.left,
+                chartArea.bottom - chartArea.top
+              );
               ctx.clip();
 
               meta.data.forEach((bar: any, index: number) => {
