@@ -254,3 +254,16 @@ export function groupSpeciesByFamily(speciesList: string[]): Record<string, stri
 
   return grouped;
 }
+
+// Helper function to filter for quality active transects
+export function getQualityFilteredTransects<T extends {
+  yearsActive: number;
+  avgVisitsPerYear: number;
+  isActive: boolean;
+}>(transects: T[]): T[] {
+  return transects.filter(
+    t => t.yearsActive >= MIN_YEARS_ACTIVE &&
+         t.avgVisitsPerYear >= MIN_VISITS_PER_YEAR &&
+         t.isActive
+  );
+}

@@ -19,9 +19,9 @@ import {
   VALID_SPECIES,
   MONITORING_START_MONTH,
   MONITORING_END_MONTH,
+  getQualityFilteredTransects,
 } from "../../src/constants";
 import { ALL_DATA_FILE, METADATA_FILE, TEMP_RBMS_DIR } from "../config";
-import { getQualityFilteredTransects } from "./transect-stats-processor";
 
 /**
  * Calculate phenology curves (weekly abundance predictions) by region using rbms
@@ -33,14 +33,12 @@ export async function calculateRegionalPhenology(
 ): Promise<RegionalPhenologyData | null> {
   console.log("\nCalculating regional phenology curves using rbms...");
 
-  // Step 1: Get quality transects (same criteria as GBI)
-  const qualityTransects = getQualityFilteredTransects(transects);
-  const activeQualityTransects = qualityTransects.filter(t => t.isActive);
+  // Step 1: Get quality active transects (same criteria as GBI)
+  const activeQualityTransects = getQualityFilteredTransects(transects);
 
   console.log(
-    `  Quality transects: ${qualityTransects.length} (${MIN_YEARS_ACTIVE}+ years, ${MIN_VISITS_PER_YEAR}+ visits/year)`
+    `  Quality active transects: ${activeQualityTransects.length} (${MIN_YEARS_ACTIVE}+ years, ${MIN_VISITS_PER_YEAR}+ visits/year, active in most recent year)`
   );
-  console.log(`  Active in most recent year: ${activeQualityTransects.length}`);
 
   // Step 2: Group transects by BMS environmental zones
   const transectsByRegion: Record<string, TransectStats[]> = {};

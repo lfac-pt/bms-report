@@ -4,13 +4,13 @@
  */
 
 import { calculateGBI } from "./gbi-processor";
-import { getQualityFilteredTransects } from "./transect-stats-processor";
 import { TransectStats } from "../../src/types/processing";
 import type { RegionalGBICollection, RegionalGBIData } from "../../src/types/gbiData";
 import {
   MIN_TRANSECTS_FOR_REGIONAL_GBI,
   MIN_YEARS_FOR_REGIONAL_GBI,
   BASELINE_YEAR,
+  getQualityFilteredTransects,
 } from "../../src/constants";
 
 /**
@@ -23,9 +23,8 @@ export async function calculateRegionalGBI(
 ): Promise<RegionalGBICollection> {
   console.log("\nCalculating Regional Grassland Butterfly Index (GBI)...");
 
-  // Step 1: Get quality transects and filter to active ones
-  const qualityTransects = getQualityFilteredTransects(transects);
-  const activeQualityTransects = qualityTransects.filter(t => t.isActive);
+  // Step 1: Get quality active transects
+  const activeQualityTransects = getQualityFilteredTransects(transects);
 
   console.log(`  Total active quality transects: ${activeQualityTransects.length}`);
 

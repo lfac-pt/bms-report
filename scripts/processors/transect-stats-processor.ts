@@ -230,13 +230,3 @@ export function calculateTransectStats(
     length: length,
   };
 }
-
-/**
- * Filter transects based on quality criteria for GBI
- * Criteria: MIN_YEARS_ACTIVE years active, MIN_VISITS_PER_YEAR visits per year average
- */
-export function getQualityFilteredTransects(transects: TransectStats[]): TransectStats[] {
-  return transects.filter(
-    t => t.yearsActive >= MIN_YEARS_ACTIVE && t.avgVisitsPerYear >= MIN_VISITS_PER_YEAR
-  );
-}

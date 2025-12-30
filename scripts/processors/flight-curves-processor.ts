@@ -22,10 +22,10 @@ import {
   MONITORING_START_MONTH,
   MONITORING_END_MONTH,
   VALID_SPECIES,
+  getQualityFilteredTransects,
 } from "../../src/constants";
 import { getYearFromDate, getMonthFromDate } from "../utils";
 import { ALL_DATA_FILE, METADATA_FILE, TEMP_RBMS_DIR } from "../config";
-import { getQualityFilteredTransects } from "./transect-stats-processor";
 
 /**
  * Calculate flight curves for all species with sufficient data using rbms
