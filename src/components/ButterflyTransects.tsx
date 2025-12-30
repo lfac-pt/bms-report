@@ -29,7 +29,7 @@ import {
   WarningOutlined,
   SettingOutlined,
 } from "@ant-design/icons";
-import { groupSpeciesByFamily } from "../constants";
+import { groupSpeciesByFamily, getTrendColor } from "../constants";
 import TransectMap from "./TransectMap";
 import TransectTimeline from "./TransectTimeline";
 import SpeciesLink from "./SpeciesLink";
@@ -40,19 +40,6 @@ const { Title } = Typography;
 
 // Define the canonical family order
 const FAMILY_ORDER = ["Hesperiidae", "Papilionidae", "Pieridae", "Nymphalidae", "Lycaenidae"];
-
-// Helper function to get color based on trend category (same as GrasslandButterflyIndex)
-const getTrendColor = (category: string): string => {
-  const colors: Record<string, string> = {
-    "Strong increase": "#52c41a",
-    "Moderate increase": "#95de64",
-    Stable: "#1890ff",
-    Uncertain: "#faad14",
-    "Moderate decline": "#ff7875",
-    "Strong decline": "#cf1322",
-  };
-  return colors[category] || "#8c8c8c";
-};
 
 // Component for species list with search and family grouping
 function SpeciesList({ species, title }: { species: string[]; title: string }) {

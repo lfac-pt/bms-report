@@ -6,7 +6,7 @@ import { GBIData } from "../types/gbiData";
 import { TransectData } from "../types/transectStats";
 import GrasslandButterflyIndex from "./charts/GrasslandButterflyIndex";
 import SpeciesLink from "./SpeciesLink";
-import { GRASSLAND_SPECIES } from "../constants";
+import { GRASSLAND_SPECIES, getTrendColor, getTrendLabel } from "../constants";
 
 // Flight curves data type (minimal interface for what we need)
 interface FlightCurvesData {
@@ -16,34 +16,11 @@ interface FlightCurvesData {
       ci_lower: number | null;
       ci_upper: number | null;
     }>;
+    trendClassification?: {
+      category: string;
+    };
   }>;
 }
-
-// Helper function to translate trend categories to Portuguese
-const getTrendCategoryLabel = (category: string): string => {
-  const labels: Record<string, string> = {
-    "Strong increase": "Aumento Forte",
-    "Moderate increase": "Aumento Moderado",
-    Stable: "Estável",
-    Uncertain: "Incerto",
-    "Moderate decline": "Declínio Moderado",
-    "Strong decline": "Declínio Forte",
-  };
-  return labels[category] || category;
-};
-
-// Helper function to get color based on trend category
-const getTrendColor = (category: string): string => {
-  const colors: Record<string, string> = {
-    "Strong increase": "#52c41a",
-    "Moderate increase": "#95de64",
-    Stable: "#1890ff",
-    Uncertain: "#faad14",
-    "Moderate decline": "#ff7875",
-    "Strong decline": "#cf1322",
-  };
-  return colors[category] || "#8c8c8c";
-};
 
 function GBIPage() {
   const navigate = useNavigate();
@@ -147,7 +124,7 @@ function GBIPage() {
                         Tendência <InfoCircleOutlined style={{ fontSize: 12 }} />
                       </span>
                     }
-                    value={`${getTrendCategoryLabel(gbiData.gbiTrend.category)} (${gbiData.gbiTrend.pc1.toFixed(1)}%/ano)`}
+                    value={`${getTrendLabel(gbiData.gbiTrend.category)} (${gbiData.gbiTrend.pc1.toFixed(1)}%/ano)`}
                     valueStyle={{
                       color: getTrendColor(gbiData.gbiTrend.category),
                     }}

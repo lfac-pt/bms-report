@@ -1,7 +1,7 @@
 import { Line } from "react-chartjs-2";
 import { Card, Alert, Collapse, Row, Col, Divider, Typography } from "antd";
 import { GBIData } from "../../types/gbiData";
-import { BASELINE_YEAR } from "../../constants";
+import { BASELINE_YEAR, getTrendColor, TREND_COLORS, TREND_LABELS } from "../../constants";
 
 const { Panel } = Collapse;
 const { Text } = Typography;
@@ -13,6 +13,9 @@ interface FlightCurvesData {
       ci_lower: number | null;
       ci_upper: number | null;
     }>;
+    trendClassification?: {
+      category: string;
+    };
   }>;
 }
 
@@ -28,7 +31,7 @@ const chartOptions = {
   plugins: {
     legend: {
       display: true,
-      position: "top" as const,
+      position: "bottom" as const,
       labels: {
         filter: (legendItem: any) => {
           // Hide CI Upper datasets from legend (technical datasets)
@@ -179,8 +182,8 @@ function GrasslandButterflyIndex({ gbiData, flightCurvesData, loading }: Grassla
       baseDatasets.push({
         label: "IC 95%",
         data: ciLowerData,
-        borderColor: "rgba(24, 144, 255, 0.3)",
-        backgroundColor: "rgba(24, 144, 255, 0.15)",
+        borderColor: "rgb(208,224,230)",
+        backgroundColor: "rgba(208,224,230, 0.45)",
         borderWidth: 1,
         pointRadius: 0,
         pointHoverRadius: 0,
@@ -193,8 +196,8 @@ function GrasslandButterflyIndex({ gbiData, flightCurvesData, loading }: Grassla
     baseDatasets.push({
       label: "Linha de Tendência",
       data: smoothedValues,
-      borderColor: "#1890ff",
-      backgroundColor: "#1890ff",
+      borderColor: "rgb(44,103,135)",
+      backgroundColor: "rgb(44,103,135)",
       borderWidth: 4,
       pointRadius: 0,
       pointHoverRadius: 0,
@@ -207,8 +210,8 @@ function GrasslandButterflyIndex({ gbiData, flightCurvesData, loading }: Grassla
     baseDatasets.push({
       label: "GBI (Todas as Espécies)",
       data: gbiValues,
-      borderColor: "#1890ff",
-      backgroundColor: "#1890ff",
+      borderColor: "rgb(44,103,135)",
+      backgroundColor: "rgb(44,103,135)",
       borderWidth: 0,
       pointRadius: 5,
       pointHoverRadius: 7,
@@ -435,7 +438,7 @@ function GrasslandButterflyIndex({ gbiData, flightCurvesData, loading }: Grassla
   return (
     <>
       <Card title="Índice de Borboletas de Prados (GBI)" size="small">
-        <div style={{ height: "400px", marginBottom: "16px" }}>
+        <div style={{ height: "400px", marginBottom: "16px", paddingTop: "16px" }}>
           <Line options={chartOptions} data={chartData} />
         </div>
       </Card>
@@ -466,6 +469,10 @@ function GrasslandButterflyIndex({ gbiData, flightCurvesData, loading }: Grassla
               return flightCurvesData?.species?.[speciesName]?.confidenceIntervals?.[year]?.ci_upper ?? null;
             });
 
+            // Get trend category and color
+            const trendCategory = flightCurvesData?.species?.[speciesName]?.trendClassification?.category || "Stable";
+            const trendColor = getTrendColor(trendCategory);
+
             // Check if this species has CI data
             const hasCI = ciLower.some(val => val !== null && val !== undefined);
 
@@ -484,12 +491,12 @@ function GrasslandButterflyIndex({ gbiData, flightCurvesData, loading }: Grassla
                 pointHoverRadius: 0,
                 fill: false,
               });
-              // CI Lower (filled)
+              // CI Lower (filled) - use trend color with transparency
               datasets.push({
                 label: "IC 95%",
                 data: ciLower,
-                borderColor: "rgba(24, 144, 255, 0.3)",
-                backgroundColor: "rgba(24, 144, 255, 0.15)",
+                borderColor: trendColor + "4D", // 30% opacity
+                backgroundColor: trendColor + "26", // 15% opacity
                 borderWidth: 1,
                 pointRadius: 0,
                 pointHoverRadius: 0,
@@ -498,12 +505,12 @@ function GrasslandButterflyIndex({ gbiData, flightCurvesData, loading }: Grassla
               });
             }
 
-            // Main species line
+            // Main species line - use trend color
             datasets.push({
               label: speciesName,
               data: speciesData,
-              borderColor: "#1890ff",
-              backgroundColor: "#1890ff",
+              borderColor: trendColor,
+              backgroundColor: trendColor,
               borderWidth: 2,
               pointRadius: 3,
               pointHoverRadius: 5,
@@ -651,6 +658,17 @@ function GrasslandButterflyIndex({ gbiData, flightCurvesData, loading }: Grassla
                   </Col>
                 ))}
               </Row>
+
+              <Divider />
+
+              <div style={{ display: "flex", justifyContent: "center", gap: 24, flexWrap: "wrap" }}>
+                {Object.entries(TREND_COLORS).map(([category, color]) => (
+                  <div key={category} style={{ display: "flex", alignItems: "center", gap: 8 }}>
+                    <div style={{ width: 16, height: 16, backgroundColor: color, borderRadius: 2 }} />
+                    <Text style={{ fontSize: 12 }}>{TREND_LABELS[category]}</Text>
+                  </div>
+                ))}
+              </div>
             </>
           );
         })()}

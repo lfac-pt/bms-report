@@ -1,6 +1,5 @@
 import { Line } from "react-chartjs-2";
 import { Alert } from "antd";
-import { SERIES_COLORS } from "../../utils/utils";
 import { BASELINE_YEAR } from "../../constants";
 
 interface SpeciesTrendChartProps {
@@ -75,8 +74,8 @@ export function SpeciesTrendChart({ speciesData }: SpeciesTrendChartProps) {
     datasets.push({
       label: "IC 95%",
       data: ciLower,
-      borderColor: `${SERIES_COLORS[0]}33`,
-      backgroundColor: `${SERIES_COLORS[0]}22`,
+      borderColor: "rgb(208,224,230)",
+      backgroundColor: "rgba(208,224,230, 0.45)",
       borderWidth: 1,
       pointRadius: 0,
       fill: "-1",
@@ -89,8 +88,8 @@ export function SpeciesTrendChart({ speciesData }: SpeciesTrendChartProps) {
     datasets.push({
       label: "Linha de Tendência",
       data: trendLineValues,
-      borderColor: SERIES_COLORS[0],
-      backgroundColor: SERIES_COLORS[0],
+      borderColor: "rgb(44,103,135)",
+      backgroundColor: "rgb(44,103,135)",
       borderWidth: 6,
       pointRadius: 0,
       pointHoverRadius: 0,
@@ -104,7 +103,7 @@ export function SpeciesTrendChart({ speciesData }: SpeciesTrendChartProps) {
   datasets.push({
     label: `Índice Populacional (${BASELINE_YEAR} = 100)`,
     data: indices,
-    borderColor: `${SERIES_COLORS[0]}99`,
+    borderColor: "rgba(44,103,135,0.6)",
     backgroundColor: "transparent",
     borderDash: [5, 5],
     borderWidth: 2,

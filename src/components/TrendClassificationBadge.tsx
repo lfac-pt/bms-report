@@ -2,6 +2,7 @@ import React from "react";
 import { Tag, Tooltip } from "antd";
 import { RiseOutlined, FallOutlined, MinusOutlined, QuestionOutlined } from "@ant-design/icons";
 import type { TrendClassification } from "../types/gbiData";
+import { getTrendColor, getTrendLabel } from "../constants";
 
 interface TrendClassificationBadgeProps {
   classification: TrendClassification;
@@ -14,28 +15,19 @@ const TrendClassificationBadge: React.FC<TrendClassificationBadgeProps> = ({
 }) => {
   const { category, annualRateOfChange, confidenceInterval } = classification;
 
-  // Portuguese labels mapping
-  const labelMap: Record<string, string> = {
-    "Strong increase": "Aumento forte",
-    "Moderate increase": "Aumento moderado",
-    Stable: "Estável",
-    Uncertain: "Incerto",
-    "Moderate decline": "Declínio moderado",
-    "Strong decline": "Declínio forte",
+  // Icon mapping
+  const iconMap: Record<string, React.ReactElement> = {
+    "Strong increase": <RiseOutlined />,
+    "Moderate increase": <RiseOutlined />,
+    Stable: <MinusOutlined />,
+    Uncertain: <QuestionOutlined />,
+    "Moderate decline": <FallOutlined />,
+    "Strong decline": <FallOutlined />,
   };
 
-  // Color and icon mapping
-  const config: Record<string, { color: string; icon: React.ReactElement }> = {
-    "Strong increase": { color: "#52c41a", icon: <RiseOutlined /> },
-    "Moderate increase": { color: "#95de64", icon: <RiseOutlined /> },
-    Stable: { color: "#1890ff", icon: <MinusOutlined /> },
-    Uncertain: { color: "#8c8c8c", icon: <QuestionOutlined /> },
-    "Moderate decline": { color: "#fa8c16", icon: <FallOutlined /> },
-    "Strong decline": { color: "#f5222d", icon: <FallOutlined /> },
-  };
-
-  const { color, icon } = config[category] || config["Uncertain"];
-  const label = labelMap[category] || category;
+  const color = getTrendColor(category);
+  const icon = iconMap[category] || iconMap["Uncertain"];
+  const label = getTrendLabel(category);
 
   // Format rate of change
   const rateText =
