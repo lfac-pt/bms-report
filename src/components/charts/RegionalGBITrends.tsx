@@ -55,6 +55,11 @@ export function RegionalGBITrends({ regionalGBIData }: RegionalGBITrendsProps) {
   const getChartOptions = (isFirstChart: boolean, regionInfo: { name: string; transectCount: number; trend: string; trendColor: string }) => ({
     responsive: true,
     maintainAspectRatio: false,
+    layout: {
+      padding: {
+        top: isFirstChart ? 0 : 10, // Add padding to align with first chart's y-axis labels
+      },
+    },
     plugins: {
       legend: {
         display: false,
