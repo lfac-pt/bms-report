@@ -1,7 +1,8 @@
 import { Line, Bar } from "react-chartjs-2";
 import { Card, Alert, Collapse, Row, Col, Divider, Typography } from "antd";
-import { GBIData } from "../../types/gbiData";
+import { GBIData, RegionalGBICollection } from "../../types/gbiData";
 import { BASELINE_YEAR, getTrendColor, TREND_COLORS, TREND_LABELS } from "../../constants";
+import { RegionalGBITrends } from "./RegionalGBITrends";
 
 const { Panel } = Collapse;
 const { Text } = Typography;
@@ -37,6 +38,7 @@ interface FlightCurvesData {
 interface GrasslandButterflyIndexProps {
   gbiData: GBIData | null;
   flightCurvesData: FlightCurvesData | null;
+  regionalGBIData: RegionalGBICollection | null;
   loading: boolean;
 }
 
@@ -126,6 +128,7 @@ const chartOptions = {
 function GrasslandButterflyIndex({
   gbiData,
   flightCurvesData,
+  regionalGBIData,
   loading,
 }: GrasslandButterflyIndexProps) {
   if (loading) {
@@ -1126,6 +1129,8 @@ function GrasslandButterflyIndex({
           </Row>
         </Panel>
       </Collapse>
+
+      <RegionalGBITrends regionalGBIData={regionalGBIData} />
     </>
   );
 }

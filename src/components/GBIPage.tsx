@@ -14,7 +14,7 @@ import {
   Tooltip,
 } from "antd";
 import { ArrowLeftOutlined, InfoCircleOutlined, CloseCircleOutlined } from "@ant-design/icons";
-import { GBIData } from "../types/gbiData";
+import { GBIData, RegionalGBICollection } from "../types/gbiData";
 import { TransectData } from "../types/transectStats";
 import GrasslandButterflyIndex from "./charts/GrasslandButterflyIndex";
 import SpeciesLink from "./SpeciesLink";
@@ -45,9 +45,10 @@ function GBIPage() {
   const [gbiData, setGbiData] = useState<GBIData | null>(null);
   const [transectData, setTransectData] = useState<TransectData | null>(null);
   const [flightCurvesData, setFlightCurvesData] = useState<FlightCurvesData | null>(null);
+  const [regionalGBIData, setRegionalGBIData] = useState<RegionalGBICollection | null>(null);
   const [loading, setLoading] = useState(true);
 
-  // Load GBI data, transect data, and flight curves data
+  // Load GBI data, transect data, flight curves data, and regional GBI data
   useEffect(() => {
     Promise.all([
       // eslint-disable-next-line no-undef
@@ -56,11 +57,16 @@ function GBIPage() {
       fetch("data/processed-transects.json").then(res => res.json()),
       // eslint-disable-next-line no-undef
       fetch("data/flight-curves-data.json").then(res => res.json()),
+      // eslint-disable-next-line no-undef
+      fetch("data/regional-gbi-data.json")
+        .then(res => res.json())
+        .catch(() => null), // Optional: regional data may not exist yet
     ])
-      .then(([gbi, transects, flightCurves]) => {
+      .then(([gbi, transects, flightCurves, regionalGBI]) => {
         setGbiData(gbi);
         setTransectData(transects);
         setFlightCurvesData(flightCurves);
+        setRegionalGBIData(regionalGBI);
         setLoading(false);
       })
       .catch(() => {
@@ -324,6 +330,7 @@ function GBIPage() {
       <GrasslandButterflyIndex
         gbiData={gbiData}
         flightCurvesData={flightCurvesData}
+        regionalGBIData={regionalGBIData}
         loading={loading}
       />
     </Space>

@@ -29,6 +29,10 @@ export const MIN_YEARS_PER_SPECIES = 3; // Minimum years of data for species ana
 export const CI_RANGE_THRESHOLD = 2000; // Maximum acceptable CI range (upper - lower) for reliable estimates
 export const MAX_ABSOLUTE_INDEX = 1000000; // Maximum absolute index value - species exceeding this are excluded (modeling artifacts)
 
+// Regional GBI quality criteria
+export const MIN_TRANSECTS_FOR_REGIONAL_GBI = 3; // Minimum transects per region for GBI calculation
+export const MIN_YEARS_FOR_REGIONAL_GBI = 3; // Minimum years with data for regional GBI
+
 // Mapping of species to their families
 export const SPECIES_FAMILIES: Record<string, string> = {
   "Carcharodus alceae": "Hesperiidae",
