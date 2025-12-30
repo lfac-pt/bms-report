@@ -1,5 +1,7 @@
+import React from "react";
 import { render, screen, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
+import { MemoryRouter } from "react-router-dom";
 import ButterflyTransects from "./ButterflyTransects";
 
 // Mock TransectMap to avoid react-leaflet issues in tests
@@ -25,6 +27,11 @@ jest.mock("./charts/SpeciesTrendsSparklines", () => ({
   __esModule: true,
   default: () => <div data-testid="species-trends-sparklines">Species Trends Component</div>,
 }));
+
+// Helper function to render with router
+const renderWithRouter = (component: React.ReactElement) => {
+  return render(<MemoryRouter>{component}</MemoryRouter>);
+};
 
 // Mock data
 const mockTransectsData = {
@@ -117,14 +124,14 @@ describe("ButterflyTransects - Smoke Tests", () => {
 
   describe("Basic rendering", () => {
     it("renders without crashing and displays title", async () => {
-      render(<ButterflyTransects />);
+      renderWithRouter(<ButterflyTransects />);
       await waitFor(() => {
         expect(screen.getByText(/BMS Diurnas Portugal Continental/i)).toBeInTheDocument();
       });
     });
 
     it("displays summary statistics cards", async () => {
-      render(<ButterflyTransects />);
+      renderWithRouter(<ButterflyTransects />);
       await waitFor(() => {
         expect(screen.getByText("Cobertura Geográfica")).toBeInTheDocument();
         expect(screen.getByText("Total de Borboletas Contadas")).toBeInTheDocument();
@@ -132,7 +139,7 @@ describe("ButterflyTransects - Smoke Tests", () => {
     });
 
     it("renders the table with transect data", async () => {
-      render(<ButterflyTransects />);
+      renderWithRouter(<ButterflyTransects />);
       await waitFor(() => {
         expect(screen.getByText("Transect A")).toBeInTheDocument();
         expect(screen.getByText("Transect B")).toBeInTheDocument();
@@ -142,7 +149,7 @@ describe("ButterflyTransects - Smoke Tests", () => {
     });
 
     it("fetches data from the correct endpoint", async () => {
-      render(<ButterflyTransects />);
+      renderWithRouter(<ButterflyTransects />);
       await waitFor(() => {
         // eslint-disable-next-line no-undef
         expect(global.fetch).toHaveBeenCalledWith("data/processed-transects.json");
@@ -152,7 +159,7 @@ describe("ButterflyTransects - Smoke Tests", () => {
 
   describe("Search functionality", () => {
     it("filters transects by search term", async () => {
-      render(<ButterflyTransects />);
+      renderWithRouter(<ButterflyTransects />);
 
       await waitFor(() => {
         expect(screen.getByText("Transect A")).toBeInTheDocument();
@@ -170,14 +177,14 @@ describe("ButterflyTransects - Smoke Tests", () => {
 
   describe("Table pagination", () => {
     it("displays pagination information", async () => {
-      render(<ButterflyTransects />);
+      renderWithRouter(<ButterflyTransects />);
       await waitFor(() => {
         expect(screen.getByText(/1-4 de 4 transectos/i)).toBeInTheDocument();
       });
     });
 
     it("resets to page 1 when search filter is applied", async () => {
-      render(<ButterflyTransects />);
+      renderWithRouter(<ButterflyTransects />);
 
       await waitFor(() => {
         expect(screen.getByText("Transect A")).toBeInTheDocument();
@@ -194,7 +201,7 @@ describe("ButterflyTransects - Smoke Tests", () => {
 
   describe("Table filters", () => {
     it("shows table headers with filter capabilities", async () => {
-      render(<ButterflyTransects />);
+      renderWithRouter(<ButterflyTransects />);
       await waitFor(() => {
         expect(screen.getByText("Anos Ativos")).toBeInTheDocument();
         expect(screen.getByText("Visitas/Ano")).toBeInTheDocument();
@@ -202,7 +209,7 @@ describe("ButterflyTransects - Smoke Tests", () => {
     });
 
     it("maintains filtered state correctly", async () => {
-      render(<ButterflyTransects />);
+      renderWithRouter(<ButterflyTransects />);
 
       await waitFor(() => {
         expect(screen.getByText("Transect A")).toBeInTheDocument();
@@ -233,14 +240,14 @@ describe("ButterflyTransects - Smoke Tests", () => {
 
   describe("Interactive features", () => {
     it("has column configuration button", async () => {
-      render(<ButterflyTransects />);
+      renderWithRouter(<ButterflyTransects />);
       await waitFor(() => {
         expect(screen.getByRole("button", { name: /configurar colunas/i })).toBeInTheDocument();
       });
     });
 
     it("renders map component", async () => {
-      render(<ButterflyTransects />);
+      renderWithRouter(<ButterflyTransects />);
       await waitFor(() => {
         expect(screen.getByTestId("transect-map")).toBeInTheDocument();
       });
@@ -249,7 +256,7 @@ describe("ButterflyTransects - Smoke Tests", () => {
 
   describe("Transects gained/lost popover", () => {
     it("displays transects active card with gained/lost counts", async () => {
-      render(<ButterflyTransects />);
+      renderWithRouter(<ButterflyTransects />);
       await waitFor(() => {
         const activeTransectsElements = screen.getAllByText(/Transectos Ativos em 2025/i);
         expect(activeTransectsElements.length).toBeGreaterThan(0);
@@ -258,7 +265,7 @@ describe("ButterflyTransects - Smoke Tests", () => {
     });
 
     it("shows popover with lists of gained and lost transects when clicked", async () => {
-      render(<ButterflyTransects />);
+      renderWithRouter(<ButterflyTransects />);
 
       await waitFor(() => {
         const activeTransectsElements = screen.getAllByText(/Transectos Ativos em 2025/i);
@@ -296,7 +303,7 @@ describe("ButterflyTransects - Smoke Tests", () => {
     });
 
     it("correctly identifies transects gained in most recent year", async () => {
-      render(<ButterflyTransects />);
+      renderWithRouter(<ButterflyTransects />);
 
       await waitFor(() => {
         expect(screen.getByText(/\+1/i)).toBeInTheDocument(); // +1 gained
@@ -304,7 +311,7 @@ describe("ButterflyTransects - Smoke Tests", () => {
     });
 
     it("correctly identifies transects lost before most recent year", async () => {
-      render(<ButterflyTransects />);
+      renderWithRouter(<ButterflyTransects />);
 
       await waitFor(() => {
         expect(screen.getByText(/-1/i)).toBeInTheDocument(); // -1 lost
