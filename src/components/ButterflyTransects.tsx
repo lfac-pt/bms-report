@@ -895,11 +895,7 @@ function ButterflyTransects() {
           </Card>
         </Col>
         <Col span={4}>
-          <Card
-            hoverable
-            style={{ cursor: "pointer" }}
-            onClick={() => navigate("/gbi")}
-          >
+          <Card hoverable style={{ cursor: "pointer" }} onClick={() => navigate("/gbi")}>
             <Statistic
               title="Tendência GBI"
               value={
