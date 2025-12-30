@@ -1,5 +1,5 @@
 import { useState, useEffect, useMemo } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import {
   Table,
   Input,
@@ -193,6 +193,7 @@ function ButterflyTransects() {
   const [protectedAreaFilters, setProtectedAreaFilters] = useState<string[]>([]);
   const [pageSize, setPageSize] = useState(20);
   const [currentPage, setCurrentPage] = useState(1);
+  const navigate = useNavigate();
 
   // Timeline data state
   const [timelineData, setTimelineData] = useState<TimelineData | null>(null);
@@ -897,7 +898,7 @@ function ButterflyTransects() {
           <Card
             hoverable
             style={{ cursor: "pointer" }}
-            onClick={() => (window.location.hash = "#/gbi")}
+            onClick={() => navigate("/gbi")}
           >
             <Statistic
               title="Tendência GBI"
