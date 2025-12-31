@@ -640,6 +640,47 @@ rate_ci_upper <- quantile(boot_rates, 0.975)`}
                   </li>
                 </ul>
 
+                <Title level={5} style={{ marginTop: 24 }}>
+                  Referência
+                </Title>
+                <Paragraph type="secondary" style={{ fontSize: 11, lineHeight: 1.6 }}>
+                  A metodologia aqui apresentada baseia-se no relatório técnico do Indicador Europeu
+                  de Borboletas de Pastagens:
+                </Paragraph>
+                <Paragraph
+                  type="secondary"
+                  style={{
+                    fontSize: 11,
+                    lineHeight: 1.6,
+                    paddingLeft: 16,
+                    fontStyle: "italic",
+                  }}
+                >
+                  Van Swaay C.A.M., Schmucki R., Roy D.B., Dennis E.B., Collins S., Fox R., Kolev
+                  Z.D., Sevilleja C.G., Warren M.S., Whitfield A., Wynhoff I., Arnberg H.J.H.,
+                  Balalaikins M., Barea-Azcón J.M., Boe A.M.B., Bonelli S., Botham M.S., Bourn
+                  N.A.D., Cancela J.P., Caritg R., Dapporto L., Ducry A., Dušej G., de Flores M.,
+                  Dopagne C., Escobés R., Eskildsen A.E., Fric Z.F., Fernández-García J.M., Fontaine
+                  B., Glogovčan P., Gohli J., Gracianteparaluceta A., Grill A., Harpke A., Harrower
+                  C., Heliölä J.K., Høye T.T., Judge M., Kati V., Krenn H.W., Kühn E., Kuussaari M.,
+                  Lang A., Lehner D., Lysaght L., Maes D., McGowan D., Melero Y., Mestdagh X.,
+                  Middlebrook I., Monasterio Y., Monteiro E., Montes A., Munguira M.L., Musche M.,
+                  Olivares F.J., Ozden O., Pladevall C., Pavličko A., Pettersson L.B., Rákosy L.,
+                  Roth T., Rüdisser J., Šašić M., Scalercio S., Schönwälder M., Settele J.,
+                  Sielezniew I., Sielezniew M., Sobczyk-Moran G., Stefanescu C., Švitra G.,
+                  Svabadfalvi A., Tiitsaar A., Titeux N., Tzirkalli E., Tzortzakaki O.,
+                  Ubach-Permanyer A., Vičiuvienė E., Vray S., Zografou K. (2025). EU Grassland
+                  Butterfly Indicator 1990-2023 Technical report. Butterfly Conservation Europe &
+                  EMBRACE/eBMS (www.butterfly-monitoring.net) & Vlinderstichting report VS2025.014.{" "}
+                  <a
+                    href="https://doi.org/10.5281/zenodo.16281873"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    https://doi.org/10.5281/zenodo.16281873
+                  </a>
+                </Paragraph>
+
                 <Paragraph type="secondary" style={{ fontSize: 12, marginTop: 16 }}>
                   <a
                     href="https://github.com/lfac-pt/bms-report/blob/main/scripts/rbms-collated-index.R"
