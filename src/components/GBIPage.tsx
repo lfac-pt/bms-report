@@ -14,12 +14,26 @@ import {
   Tooltip,
   Collapse,
 } from "antd";
-import { ArrowLeftOutlined, InfoCircleOutlined, CloseCircleOutlined, GithubOutlined } from "@ant-design/icons";
+import {
+  ArrowLeftOutlined,
+  InfoCircleOutlined,
+  CloseCircleOutlined,
+  GithubOutlined,
+} from "@ant-design/icons";
 import { GBIData, RegionalGBICollection } from "../types/gbiData";
 import { TransectData } from "../types/transectStats";
 import GrasslandButterflyIndex from "./charts/GrasslandButterflyIndex";
 import SpeciesLink from "./SpeciesLink";
-import { GRASSLAND_SPECIES, getTrendColor, getTrendLabel, MIN_YEARS_ACTIVE, MIN_VISITS_PER_YEAR, MONITORING_START_MONTH, MONITORING_END_MONTH, BASELINE_YEAR } from "../constants";
+import {
+  GRASSLAND_SPECIES,
+  getTrendColor,
+  getTrendLabel,
+  MIN_YEARS_ACTIVE,
+  MIN_VISITS_PER_YEAR,
+  MONITORING_START_MONTH,
+  MONITORING_END_MONTH,
+  BASELINE_YEAR,
+} from "../constants";
 
 const { Text, Paragraph, Title } = Typography;
 
@@ -342,8 +356,8 @@ function GBIPage() {
             children: (
               <div style={{ maxWidth: 900 }}>
                 <Paragraph>
-                  O Índice de Borboletas de Prados (GBI) é calculado seguindo a metodologia
-                  europeia padronizada para indicadores de biodiversidade, utilizando a biblioteca{" "}
+                  O Índice de Borboletas de Prados (GBI) é calculado seguindo a metodologia europeia
+                  padronizada para indicadores de biodiversidade, utilizando a biblioteca{" "}
                   <Text code>rbms</Text> em R. Todos os índices são normalizados ao ano base de{" "}
                   <Text strong>{BASELINE_YEAR}</Text> (índice = 100).
                 </Paragraph>
@@ -474,9 +488,9 @@ rbms::collated_index(
                 <Title level={5}>5. Intervalos de Confiança (Bootstrap)</Title>
                 <Paragraph>
                   A incerteza é quantificada através de 500 iterações de bootstrap. Para cada
-                  amostra bootstrap, todo o pipeline de cálculo do índice é recalculado,
-                  permitindo estimar intervalos de confiança de 95% para os índices anuais através
-                  dos percentis 2.5% e 97.5% das distribuições bootstrap.
+                  amostra bootstrap, todo o pipeline de cálculo do índice é recalculado, permitindo
+                  estimar intervalos de confiança de 95% para os índices anuais através dos
+                  percentis 2.5% e 97.5% das distribuições bootstrap.
                 </Paragraph>
                 <pre
                   style={{
@@ -578,8 +592,8 @@ ci_upper <- apply(
 
                 <Title level={5}>8. Tendência Linear e Classificação</Title>
                 <Paragraph>
-                  A tendência do GBI é estimada ajustando um modelo linear aos índices suavizados
-                  em escala logarítmica. A classificação da tendência baseia-se nos intervalos de
+                  A tendência do GBI é estimada ajustando um modelo linear aos índices suavizados em
+                  escala logarítmica. A classificação da tendência baseia-se nos intervalos de
                   confiança de 95% da taxa anual de alteração:
                 </Paragraph>
                 <pre
@@ -608,8 +622,7 @@ rate_ci_upper <- quantile(boot_rates, 0.975)`}
                     <Text style={{ color: "#52c41a" }}>Aumento Forte:</Text> IC inferior &gt; 1.05
                   </li>
                   <li>
-                    <Text style={{ color: "#95de64" }}>Aumento Moderado:</Text> IC inferior &gt;
-                    1.0
+                    <Text style={{ color: "#95de64" }}>Aumento Moderado:</Text> IC inferior &gt; 1.0
                   </li>
                   <li>
                     <Text style={{ color: "#cf1322" }}>Declínio Forte:</Text> IC superior &lt; 0.95

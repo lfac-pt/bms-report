@@ -256,14 +256,15 @@ export const MIN_YEARS_ACTIVE = 6; // Minimum number of years a transect must be
 export const MIN_VISITS_PER_YEAR = 5; // Minimum average visits per year
 
 // Helper function to filter for quality active transects
-export function getQualityFilteredTransects<T extends {
-  yearsActive: number;
-  avgVisitsPerYear: number;
-  isActive: boolean;
-}>(transects: T[]): T[] {
+export function getQualityFilteredTransects<
+  T extends {
+    yearsActive: number;
+    avgVisitsPerYear: number;
+    isActive: boolean;
+  },
+>(transects: T[]): T[] {
   return transects.filter(
-    t => t.yearsActive >= MIN_YEARS_ACTIVE &&
-         t.avgVisitsPerYear >= MIN_VISITS_PER_YEAR &&
-         t.isActive
+    t =>
+      t.yearsActive >= MIN_YEARS_ACTIVE && t.avgVisitsPerYear >= MIN_VISITS_PER_YEAR && t.isActive
   );
 }
