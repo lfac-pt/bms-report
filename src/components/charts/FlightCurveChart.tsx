@@ -200,9 +200,45 @@ export const FlightCurvesDisplay: React.FC<FlightCurvesDisplayProps> = ({
     "Mediterrânico Sul": 4, // Southern Mediterranean Portugal
   };
 
-  const regions = Object.keys(phenologyData.regions).sort(
-    (a, b) => (regionOrder[a] || 999) - (regionOrder[b] || 999)
-  );
+  // Filter out regions without valid phenology curves data
+  const regions = Object.keys(phenologyData.regions)
+    .filter(region => {
+      const regionData = phenologyData.regions[region];
+      if (!regionData.phenologyCurves || Object.keys(regionData.phenologyCurves).length === 0) {
+        return false;
+      }
+
+      // Check if at least one year has valid (non-NA) abundance data
+      return Object.values(regionData.phenologyCurves).some(yearData => {
+        if (!yearData.abundance || yearData.abundance.length === 0) return false;
+        // Check if there's at least one non-NA value (abundance can be number or "NA" string in practice)
+        return yearData.abundance.some(val => {
+          const strVal = String(val);
+          return strVal !== "NA" && val !== null && !isNaN(Number(val));
+        });
+      });
+    })
+    .sort((a, b) => (regionOrder[a] || 999) - (regionOrder[b] || 999));
+
+  // If no regions have data after filtering, show empty state
+  if (regions.length === 0) {
+    return (
+      <Card>
+        <Empty
+          description={
+            <>
+              <p>
+                Curvas de voo não disponíveis para <strong>{speciesName}</strong>
+              </p>
+              <p style={{ fontSize: "0.9em", color: "#666" }}>
+                Dados insuficientes em todas as regiões climáticas
+              </p>
+            </>
+          }
+        />
+      </Card>
+    );
+  }
 
   // Calculate maximum abundance across all regions and years for consistent y-axis
   const allAbundanceValues: number[] = [];
