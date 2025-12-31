@@ -1,6 +1,6 @@
 {
   "metadata": {
-    "processingDate": "2025-12-30T15:45:13.285Z",
+    "processingDate": "2025-12-31T01:06:47.126Z",
     "baselineYear": 2021,
     "qualityCriteria": {
       "minYearsActive": 6,
@@ -902,7 +902,7 @@
       },
       "processingInfo": {
         "method": "rbms (regional GAM flight curves + GLM collated index + bootstrap CI + linear trend + transect length normalization)",
-        "timestamp": "2025-12-30 15:40:42",
+        "timestamp": "2025-12-30 15:51:54",
         "rbms_version": "1.2.0",
         "bootstrap_iterations": 500
       },
@@ -2063,7 +2063,7 @@
       },
       "processingInfo": {
         "method": "rbms (regional GAM flight curves + GLM collated index + bootstrap CI + linear trend + transect length normalization)",
-        "timestamp": "2025-12-30 15:40:47",
+        "timestamp": "2025-12-30 15:51:59",
         "rbms_version": "1.2.0",
         "bootstrap_iterations": 500
       },
@@ -3611,7 +3611,7 @@
       },
       "processingInfo": {
         "method": "rbms (regional GAM flight curves + GLM collated index + bootstrap CI + linear trend + transect length normalization)",
-        "timestamp": "2025-12-30 15:40:52",
+        "timestamp": "2025-12-30 15:52:05",
         "rbms_version": "1.2.0",
         "bootstrap_iterations": 500
       },
@@ -4874,7 +4874,7 @@
       },
       "processingInfo": {
         "method": "rbms (regional GAM flight curves + GLM collated index + bootstrap CI + linear trend + transect length normalization)",
-        "timestamp": "2025-12-30 15:40:57",
+        "timestamp": "2025-12-30 15:52:09",
         "rbms_version": "1.2.0",
         "bootstrap_iterations": 500
       },
@@ -6320,7 +6320,7 @@
       },
       "processingInfo": {
         "method": "rbms (regional GAM flight curves + GLM collated index + bootstrap CI + linear trend + transect length normalization)",
-        "timestamp": "2025-12-30 15:41:03",
+        "timestamp": "2025-12-30 15:52:16",
         "rbms_version": "1.2.0",
         "bootstrap_iterations": 500
       },
@@ -7481,7 +7481,7 @@
       },
       "processingInfo": {
         "method": "rbms (regional GAM flight curves + GLM collated index + bootstrap CI + linear trend + transect length normalization)",
-        "timestamp": "2025-12-30 15:41:10",
+        "timestamp": "2025-12-30 15:52:23",
         "rbms_version": "1.2.0",
         "bootstrap_iterations": 500
       },
@@ -9050,7 +9050,7 @@
       },
       "processingInfo": {
         "method": "rbms (regional GAM flight curves + GLM collated index + bootstrap CI + linear trend + transect length normalization)",
-        "timestamp": "2025-12-30 15:41:17",
+        "timestamp": "2025-12-30 15:52:30",
         "rbms_version": "1.2.0",
         "bootstrap_iterations": 500
       },
@@ -10619,7 +10619,7 @@
       },
       "processingInfo": {
         "method": "rbms (regional GAM flight curves + GLM collated index + bootstrap CI + linear trend + transect length normalization)",
-        "timestamp": "2025-12-30 15:41:25",
+        "timestamp": "2025-12-30 15:52:37",
         "rbms_version": "1.2.0",
         "bootstrap_iterations": 500
       },
@@ -12290,7 +12290,7 @@
       },
       "processingInfo": {
         "method": "rbms (regional GAM flight curves + GLM collated index + bootstrap CI + linear trend + transect length normalization)",
-        "timestamp": "2025-12-30 15:41:30",
+        "timestamp": "2025-12-30 15:52:43",
         "rbms_version": "1.2.0",
         "bootstrap_iterations": 500
       },
@@ -14063,7 +14063,7 @@
       },
       "processingInfo": {
         "method": "rbms (regional GAM flight curves + GLM collated index + bootstrap CI + linear trend + transect length normalization)",
-        "timestamp": "2025-12-30 15:41:34",
+        "timestamp": "2025-12-30 15:52:47",
         "rbms_version": "1.2.0",
         "bootstrap_iterations": 500
       },
@@ -15326,7 +15326,7 @@
       },
       "processingInfo": {
         "method": "rbms (regional GAM flight curves + GLM collated index + bootstrap CI + linear trend + transect length normalization)",
-        "timestamp": "2025-12-30 15:41:40",
+        "timestamp": "2025-12-30 15:52:53",
         "rbms_version": "1.2.0",
         "bootstrap_iterations": 500
       },
@@ -16568,7 +16568,7 @@
       },
       "processingInfo": {
         "method": "rbms (regional GAM flight curves + GLM collated index + bootstrap CI + linear trend + transect length normalization)",
-        "timestamp": "2025-12-30 15:41:44",
+        "timestamp": "2025-12-30 15:52:57",
         "rbms_version": "1.2.0",
         "bootstrap_iterations": 500
       },
@@ -17933,7 +17933,7 @@
       },
       "processingInfo": {
         "method": "rbms (regional GAM flight curves + GLM collated index + bootstrap CI + linear trend + transect length normalization)",
-        "timestamp": "2025-12-30 15:41:49",
+        "timestamp": "2025-12-30 15:53:02",
         "rbms_version": "1.2.0",
         "bootstrap_iterations": 500
       },
@@ -18686,7 +18686,7 @@
       },
       "processingInfo": {
         "method": "rbms (regional GAM flight curves + GLM collated index + bootstrap CI + linear trend + transect length normalization)",
-        "timestamp": "2025-12-30 15:41:54",
+        "timestamp": "2025-12-30 15:53:07",
         "rbms_version": "1.2.0",
         "bootstrap_iterations": 500
       },
@@ -19439,7 +19439,7 @@
       },
       "processingInfo": {
         "method": "rbms (regional GAM flight curves + GLM collated index + bootstrap CI + linear trend + transect length normalization)",
-        "timestamp": "2025-12-30 15:41:58",
+        "timestamp": "2025-12-30 15:53:11",
         "rbms_version": "1.2.0",
         "bootstrap_iterations": 500
       },
@@ -20600,7 +20600,7 @@
       },
       "processingInfo": {
         "method": "rbms (regional GAM flight curves + GLM collated index + bootstrap CI + linear trend + transect length normalization)",
-        "timestamp": "2025-12-30 15:42:03",
+        "timestamp": "2025-12-30 15:53:16",
         "rbms_version": "1.2.0",
         "bootstrap_iterations": 500
       },
@@ -21944,7 +21944,7 @@
       },
       "processingInfo": {
         "method": "rbms (regional GAM flight curves + GLM collated index + bootstrap CI + linear trend + transect length normalization)",
-        "timestamp": "2025-12-30 15:42:08",
+        "timestamp": "2025-12-30 15:53:21",
         "rbms_version": "1.2.0",
         "bootstrap_iterations": 500
       },
@@ -23513,7 +23513,7 @@
       },
       "processingInfo": {
         "method": "rbms (regional GAM flight curves + GLM collated index + bootstrap CI + linear trend + transect length normalization)",
-        "timestamp": "2025-12-30 15:42:16",
+        "timestamp": "2025-12-30 15:53:29",
         "rbms_version": "1.2.0",
         "bootstrap_iterations": 500
       },
@@ -24776,7 +24776,7 @@
       },
       "processingInfo": {
         "method": "rbms (regional GAM flight curves + GLM collated index + bootstrap CI + linear trend + transect length normalization)",
-        "timestamp": "2025-12-30 15:42:20",
+        "timestamp": "2025-12-30 15:53:33",
         "rbms_version": "1.2.0",
         "bootstrap_iterations": 500
       },
@@ -26018,7 +26018,7 @@
       },
       "processingInfo": {
         "method": "rbms (regional GAM flight curves + GLM collated index + bootstrap CI + linear trend + transect length normalization)",
-        "timestamp": "2025-12-30 15:42:24",
+        "timestamp": "2025-12-30 15:53:37",
         "rbms_version": "1.2.0",
         "bootstrap_iterations": 500
       },
@@ -27791,7 +27791,7 @@
       },
       "processingInfo": {
         "method": "rbms (regional GAM flight curves + GLM collated index + bootstrap CI + linear trend + transect length normalization)",
-        "timestamp": "2025-12-30 15:42:29",
+        "timestamp": "2025-12-30 15:53:42",
         "rbms_version": "1.2.0",
         "bootstrap_iterations": 500
       },
@@ -28952,7 +28952,7 @@
       },
       "processingInfo": {
         "method": "rbms (regional GAM flight curves + GLM collated index + bootstrap CI + linear trend + transect length normalization)",
-        "timestamp": "2025-12-30 15:42:34",
+        "timestamp": "2025-12-30 15:53:47",
         "rbms_version": "1.2.0",
         "bootstrap_iterations": 500
       },
@@ -30602,7 +30602,7 @@
       },
       "processingInfo": {
         "method": "rbms (regional GAM flight curves + GLM collated index + bootstrap CI + linear trend + transect length normalization)",
-        "timestamp": "2025-12-30 15:42:38",
+        "timestamp": "2025-12-30 15:53:52",
         "rbms_version": "1.2.0",
         "bootstrap_iterations": 500
       },
@@ -32375,7 +32375,7 @@
       },
       "processingInfo": {
         "method": "rbms (regional GAM flight curves + GLM collated index + bootstrap CI + linear trend + transect length normalization)",
-        "timestamp": "2025-12-30 15:42:43",
+        "timestamp": "2025-12-30 15:53:56",
         "rbms_version": "1.2.0",
         "bootstrap_iterations": 500
       },
@@ -33128,7 +33128,7 @@
       },
       "processingInfo": {
         "method": "rbms (regional GAM flight curves + GLM collated index + bootstrap CI + linear trend + transect length normalization)",
-        "timestamp": "2025-12-30 15:42:47",
+        "timestamp": "2025-12-30 15:54:01",
         "rbms_version": "1.2.0",
         "bootstrap_iterations": 500
       },
@@ -34901,7 +34901,7 @@
       },
       "processingInfo": {
         "method": "rbms (regional GAM flight curves + GLM collated index + bootstrap CI + linear trend + transect length normalization)",
-        "timestamp": "2025-12-30 15:42:52",
+        "timestamp": "2025-12-30 15:54:05",
         "rbms_version": "1.2.0",
         "bootstrap_iterations": 500
       },
@@ -35654,7 +35654,7 @@
       },
       "processingInfo": {
         "method": "rbms (regional GAM flight curves + GLM collated index + bootstrap CI + linear trend + transect length normalization)",
-        "timestamp": "2025-12-30 15:42:56",
+        "timestamp": "2025-12-30 15:54:10",
         "rbms_version": "1.2.0",
         "bootstrap_iterations": 500
       },
@@ -37121,7 +37121,7 @@
       },
       "processingInfo": {
         "method": "rbms (regional GAM flight curves + GLM collated index + bootstrap CI + linear trend + transect length normalization)",
-        "timestamp": "2025-12-30 15:43:02",
+        "timestamp": "2025-12-30 15:54:15",
         "rbms_version": "1.2.0",
         "bootstrap_iterations": 500
       },
@@ -38282,7 +38282,7 @@
       },
       "processingInfo": {
         "method": "rbms (regional GAM flight curves + GLM collated index + bootstrap CI + linear trend + transect length normalization)",
-        "timestamp": "2025-12-30 15:43:08",
+        "timestamp": "2025-12-30 15:54:22",
         "rbms_version": "1.2.0",
         "bootstrap_iterations": 500
       },
@@ -40055,7 +40055,7 @@
       },
       "processingInfo": {
         "method": "rbms (regional GAM flight curves + GLM collated index + bootstrap CI + linear trend + transect length normalization)",
-        "timestamp": "2025-12-30 15:43:13",
+        "timestamp": "2025-12-30 15:54:26",
         "rbms_version": "1.2.0",
         "bootstrap_iterations": 500
       },
@@ -41216,7 +41216,7 @@
       },
       "processingInfo": {
         "method": "rbms (regional GAM flight curves + GLM collated index + bootstrap CI + linear trend + transect length normalization)",
-        "timestamp": "2025-12-30 15:43:18",
+        "timestamp": "2025-12-30 15:54:32",
         "rbms_version": "1.2.0",
         "bootstrap_iterations": 500
       },
@@ -42479,7 +42479,7 @@
       },
       "processingInfo": {
         "method": "rbms (regional GAM flight curves + GLM collated index + bootstrap CI + linear trend + transect length normalization)",
-        "timestamp": "2025-12-30 15:43:23",
+        "timestamp": "2025-12-30 15:54:37",
         "rbms_version": "1.2.0",
         "bootstrap_iterations": 500
       },
@@ -43742,7 +43742,7 @@
       },
       "processingInfo": {
         "method": "rbms (regional GAM flight curves + GLM collated index + bootstrap CI + linear trend + transect length normalization)",
-        "timestamp": "2025-12-30 15:43:28",
+        "timestamp": "2025-12-30 15:54:42",
         "rbms_version": "1.2.0",
         "bootstrap_iterations": 500
       },
@@ -45515,7 +45515,7 @@
       },
       "processingInfo": {
         "method": "rbms (regional GAM flight curves + GLM collated index + bootstrap CI + linear trend + transect length normalization)",
-        "timestamp": "2025-12-30 15:43:33",
+        "timestamp": "2025-12-30 15:54:47",
         "rbms_version": "1.2.0",
         "bootstrap_iterations": 500
       },
@@ -47288,7 +47288,7 @@
       },
       "processingInfo": {
         "method": "rbms (regional GAM flight curves + GLM collated index + bootstrap CI + linear trend + transect length normalization)",
-        "timestamp": "2025-12-30 15:43:37",
+        "timestamp": "2025-12-30 15:54:51",
         "rbms_version": "1.2.0",
         "bootstrap_iterations": 500
       },
@@ -49061,7 +49061,7 @@
       },
       "processingInfo": {
         "method": "rbms (regional GAM flight curves + GLM collated index + bootstrap CI + linear trend + transect length normalization)",
-        "timestamp": "2025-12-30 15:43:42",
+        "timestamp": "2025-12-30 15:54:56",
         "rbms_version": "1.2.0",
         "bootstrap_iterations": 500
       },
@@ -50528,7 +50528,7 @@
       },
       "processingInfo": {
         "method": "rbms (regional GAM flight curves + GLM collated index + bootstrap CI + linear trend + transect length normalization)",
-        "timestamp": "2025-12-30 15:43:46",
+        "timestamp": "2025-12-30 15:55:00",
         "rbms_version": "1.2.0",
         "bootstrap_iterations": 500
       },
@@ -52301,7 +52301,7 @@
       },
       "processingInfo": {
         "method": "rbms (regional GAM flight curves + GLM collated index + bootstrap CI + linear trend + transect length normalization)",
-        "timestamp": "2025-12-30 15:43:51",
+        "timestamp": "2025-12-30 15:55:05",
         "rbms_version": "1.2.0",
         "bootstrap_iterations": 500
       },
@@ -53462,7 +53462,7 @@
       },
       "processingInfo": {
         "method": "rbms (regional GAM flight curves + GLM collated index + bootstrap CI + linear trend + transect length normalization)",
-        "timestamp": "2025-12-30 15:43:57",
+        "timestamp": "2025-12-30 15:55:12",
         "rbms_version": "1.2.0",
         "bootstrap_iterations": 500
       },
@@ -54194,7 +54194,7 @@
       },
       "processingInfo": {
         "method": "rbms (regional GAM flight curves + GLM collated index + bootstrap CI + linear trend + transect length normalization)",
-        "timestamp": "2025-12-30 15:44:01",
+        "timestamp": "2025-12-30 15:55:15",
         "rbms_version": "1.2.0",
         "bootstrap_iterations": 500
       },
@@ -55763,7 +55763,7 @@
       },
       "processingInfo": {
         "method": "rbms (regional GAM flight curves + GLM collated index + bootstrap CI + linear trend + transect length normalization)",
-        "timestamp": "2025-12-30 15:44:06",
+        "timestamp": "2025-12-30 15:55:20",
         "rbms_version": "1.2.0",
         "bootstrap_iterations": 500
       },
@@ -57128,7 +57128,7 @@
       },
       "processingInfo": {
         "method": "rbms (regional GAM flight curves + GLM collated index + bootstrap CI + linear trend + transect length normalization)",
-        "timestamp": "2025-12-30 15:44:13",
+        "timestamp": "2025-12-30 15:55:27",
         "rbms_version": "1.2.0",
         "bootstrap_iterations": 500
       },
@@ -58574,7 +58574,7 @@
       },
       "processingInfo": {
         "method": "rbms (regional GAM flight curves + GLM collated index + bootstrap CI + linear trend + transect length normalization)",
-        "timestamp": "2025-12-30 15:44:18",
+        "timestamp": "2025-12-30 15:55:32",
         "rbms_version": "1.2.0",
         "bootstrap_iterations": 500
       },
@@ -60347,7 +60347,7 @@
       },
       "processingInfo": {
         "method": "rbms (regional GAM flight curves + GLM collated index + bootstrap CI + linear trend + transect length normalization)",
-        "timestamp": "2025-12-30 15:44:23",
+        "timestamp": "2025-12-30 15:55:37",
         "rbms_version": "1.2.0",
         "bootstrap_iterations": 500
       },
@@ -62018,7 +62018,7 @@
       },
       "processingInfo": {
         "method": "rbms (regional GAM flight curves + GLM collated index + bootstrap CI + linear trend + transect length normalization)",
-        "timestamp": "2025-12-30 15:44:27",
+        "timestamp": "2025-12-30 15:55:41",
         "rbms_version": "1.2.0",
         "bootstrap_iterations": 500
       },
@@ -63587,7 +63587,7 @@
       },
       "processingInfo": {
         "method": "rbms (regional GAM flight curves + GLM collated index + bootstrap CI + linear trend + transect length normalization)",
-        "timestamp": "2025-12-30 15:44:34",
+        "timestamp": "2025-12-30 15:55:48",
         "rbms_version": "1.2.0",
         "bootstrap_iterations": 500
       },
@@ -64748,7 +64748,7 @@
       },
       "processingInfo": {
         "method": "rbms (regional GAM flight curves + GLM collated index + bootstrap CI + linear trend + transect length normalization)",
-        "timestamp": "2025-12-30 15:44:38",
+        "timestamp": "2025-12-30 15:55:53",
         "rbms_version": "1.2.0",
         "bootstrap_iterations": 500
       },
@@ -65807,7 +65807,7 @@
       },
       "processingInfo": {
         "method": "rbms (regional GAM flight curves + GLM collated index + bootstrap CI + linear trend + transect length normalization)",
-        "timestamp": "2025-12-30 15:44:43",
+        "timestamp": "2025-12-30 15:55:58",
         "rbms_version": "1.2.0",
         "bootstrap_iterations": 500
       },
@@ -66947,7 +66947,7 @@
       },
       "processingInfo": {
         "method": "rbms (regional GAM flight curves + GLM collated index + bootstrap CI + linear trend + transect length normalization)",
-        "timestamp": "2025-12-30 15:44:50",
+        "timestamp": "2025-12-30 15:56:04",
         "rbms_version": "1.2.0",
         "bootstrap_iterations": 500
       },
@@ -68210,7 +68210,7 @@
       },
       "processingInfo": {
         "method": "rbms (regional GAM flight curves + GLM collated index + bootstrap CI + linear trend + transect length normalization)",
-        "timestamp": "2025-12-30 15:44:55",
+        "timestamp": "2025-12-30 15:56:09",
         "rbms_version": "1.2.0",
         "bootstrap_iterations": 500
       },
@@ -69983,7 +69983,7 @@
       },
       "processingInfo": {
         "method": "rbms (regional GAM flight curves + GLM collated index + bootstrap CI + linear trend + transect length normalization)",
-        "timestamp": "2025-12-30 15:44:59",
+        "timestamp": "2025-12-30 15:56:13",
         "rbms_version": "1.2.0",
         "bootstrap_iterations": 500
       },
@@ -71654,7 +71654,7 @@
       },
       "processingInfo": {
         "method": "rbms (regional GAM flight curves + GLM collated index + bootstrap CI + linear trend + transect length normalization)",
-        "timestamp": "2025-12-30 15:45:04",
+        "timestamp": "2025-12-30 15:56:18",
         "rbms_version": "1.2.0",
         "bootstrap_iterations": 500
       },
@@ -72917,7 +72917,7 @@
       },
       "processingInfo": {
         "method": "rbms (regional GAM flight curves + GLM collated index + bootstrap CI + linear trend + transect length normalization)",
-        "timestamp": "2025-12-30 15:45:08",
+        "timestamp": "2025-12-30 15:56:22",
         "rbms_version": "1.2.0",
         "bootstrap_iterations": 500
       },
