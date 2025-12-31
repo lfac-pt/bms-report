@@ -20,10 +20,10 @@ import {
   MONITORING_END_MONTH,
   ALL_GRASSLAND_SPECIES,
   GRASSLAND_SPECIES,
+  getQualityFilteredTransects,
 } from "../../src/constants";
 import { getYearFromDate, getMonthFromDate } from "../utils";
 import { ALL_DATA_FILE, METADATA_FILE, TEMP_RBMS_DIR } from "../config";
-import { getQualityFilteredTransects } from "./transect-stats-processor";
 
 /**
  * Main GBI calculation function
@@ -35,17 +35,13 @@ export async function calculateGBI(
 ): Promise<GBIData | null> {
   console.log("\nCalculating Grassland Butterfly Index (GBI) using rbms...");
 
-  // Step 1: Filter quality transects
-  const qualityTransects = getQualityFilteredTransects(transects);
-
-  // Filter to only include transects active in the most recent year
-  const activeQualityTransects = qualityTransects.filter(t => t.isActive);
+  // Step 1: Filter quality transects (active in most recent year)
+  const activeQualityTransects = getQualityFilteredTransects(transects);
   const qualityTransectIds = activeQualityTransects.map(t => t.transectId);
 
   console.log(
-    `  Quality transects: ${qualityTransects.length} (${MIN_YEARS_ACTIVE}+ years, ${MIN_VISITS_PER_YEAR}+ visits/year)`
+    `  Quality transects (active): ${activeQualityTransects.length} (${MIN_YEARS_ACTIVE}+ years, ${MIN_VISITS_PER_YEAR}+ visits/year)`
   );
-  console.log(`  Active in most recent year: ${activeQualityTransects.length}`);
 
   if (activeQualityTransects.length === 0) {
     console.warn("  Warning: No active quality transects found for GBI calculation");

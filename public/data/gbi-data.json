@@ -23,10 +23,6 @@
         "type": "widespread"
       },
       {
-        "scientificName": "Ochlodes sylvanus",
-        "type": "widespread"
-      },
-      {
         "scientificName": "Polyommatus icarus",
         "type": "widespread"
       },
@@ -48,7 +44,7 @@
       }
     ],
     "qualityCriteria": {
-      "minYearsActive": 5,
+      "minYearsActive": 6,
       "minVisitsPerYear": 5
     },
     "transectsUsed": [
@@ -71,12 +67,6 @@
         "isActive": true
       },
       {
-        "transectId": "267250",
-        "yearsActive": 5,
-        "avgVisitsPerYear": 13.2,
-        "isActive": true
-      },
-      {
         "transectId": "243747",
         "yearsActive": 6,
         "avgVisitsPerYear": 11.3,
@@ -86,12 +76,6 @@
         "transectId": "256572",
         "yearsActive": 6,
         "avgVisitsPerYear": 26.2,
-        "isActive": true
-      },
-      {
-        "transectId": "255860",
-        "yearsActive": 5,
-        "avgVisitsPerYear": 9.2,
         "isActive": true
       },
       {
@@ -110,18 +94,6 @@
         "transectId": "242415",
         "yearsActive": 6,
         "avgVisitsPerYear": 20.2,
-        "isActive": true
-      },
-      {
-        "transectId": "255958",
-        "yearsActive": 5,
-        "avgVisitsPerYear": 11.8,
-        "isActive": true
-      },
-      {
-        "transectId": "295724",
-        "yearsActive": 5,
-        "avgVisitsPerYear": 8.6,
         "isActive": true
       },
       {
@@ -146,24 +118,6 @@
         "transectId": "272901",
         "yearsActive": 6,
         "avgVisitsPerYear": 28.3,
-        "isActive": true
-      },
-      {
-        "transectId": "240324",
-        "yearsActive": 5,
-        "avgVisitsPerYear": 27,
-        "isActive": true
-      },
-      {
-        "transectId": "265800",
-        "yearsActive": 5,
-        "avgVisitsPerYear": 9.2,
-        "isActive": true
-      },
-      {
-        "transectId": "243008",
-        "yearsActive": 5,
-        "avgVisitsPerYear": 12.6,
         "isActive": true
       },
       {
@@ -243,75 +197,75 @@
       "dataQuality": {
         "transectCount": 51,
         "totalVisits": 178,
-        "speciesWithData": 11
+        "speciesWithData": 10
       }
     },
     "2022": {
       "year": 2022,
-      "gbiValue": 80.1,
-      "ci_lower": 56.37,
-      "ci_upper": 119.01,
-      "ci80_lower": 64.36,
-      "ci80_upper": 97.44,
-      "ci90_lower": 60.99,
-      "ci90_upper": 107.59,
-      "smoothedValue": 80.1,
+      "gbiValue": 77.41,
+      "ci_lower": 41.52,
+      "ci_upper": 126.94,
+      "ci80_lower": 51,
+      "ci80_upper": 100.31,
+      "ci90_lower": 47.18,
+      "ci90_upper": 114.37,
+      "smoothedValue": 77.41,
       "speciesIndices": [],
       "dataQuality": {
         "transectCount": 46,
         "totalVisits": 182,
-        "speciesWithData": 11
+        "speciesWithData": 10
       }
     },
     "2023": {
       "year": 2023,
-      "gbiValue": 60.61,
-      "ci_lower": 37.52,
-      "ci_upper": 86.49,
-      "ci80_lower": 44.05,
-      "ci80_upper": 71.6,
-      "ci90_lower": 40.14,
-      "ci90_upper": 77.51,
-      "smoothedValue": 60.61,
+      "gbiValue": 60.13,
+      "ci_lower": 25.18,
+      "ci_upper": 80.8,
+      "ci80_lower": 32.36,
+      "ci80_upper": 72.73,
+      "ci90_lower": 28.56,
+      "ci90_upper": 77.7,
+      "smoothedValue": 60.13,
       "speciesIndices": [],
       "dataQuality": {
         "transectCount": 73,
         "totalVisits": 201,
-        "speciesWithData": 11
+        "speciesWithData": 10
       }
     },
     "2024": {
       "year": 2024,
-      "gbiValue": 68.5,
-      "ci_lower": 43.35,
-      "ci_upper": 94.34,
-      "ci80_lower": 50.83,
-      "ci80_upper": 83.6,
-      "ci90_lower": 46.89,
-      "ci90_upper": 89.41,
-      "smoothedValue": 68.5,
+      "gbiValue": 80.48,
+      "ci_lower": 35.06,
+      "ci_upper": 110.68,
+      "ci80_lower": 43.53,
+      "ci80_upper": 98.09,
+      "ci90_lower": 38.02,
+      "ci90_upper": 104.94,
+      "smoothedValue": 80.48,
       "speciesIndices": [],
       "dataQuality": {
         "transectCount": 80,
         "totalVisits": 185,
-        "speciesWithData": 11
+        "speciesWithData": 10
       }
     },
     "2025": {
       "year": 2025,
-      "gbiValue": 66.99,
-      "ci_lower": 32.27,
-      "ci_upper": 118.88,
-      "ci80_lower": 39.06,
-      "ci80_upper": 86.51,
-      "ci90_lower": 35.52,
-      "ci90_upper": 100.45,
-      "smoothedValue": 66.99,
+      "gbiValue": 34.68,
+      "ci_lower": 18.88,
+      "ci_upper": 62.72,
+      "ci80_lower": 23.19,
+      "ci80_upper": 46.43,
+      "ci90_lower": 20.78,
+      "ci90_upper": 54.84,
+      "smoothedValue": 34.68,
       "speciesIndices": [],
       "dataQuality": {
         "transectCount": 72,
         "totalVisits": 180,
-        "speciesWithData": 11
+        "speciesWithData": 10
       }
     }
   },
@@ -323,21 +277,21 @@
     2025
   ],
   "gbiTrend": {
-    "category": "Uncertain",
-    "rate": 0.9087,
+    "category": "Strong decline",
+    "rate": 0.8123,
     "rateCI": {
-      "lower": 0.7814,
-      "upper": 1.0122
+      "lower": 0.6927,
+      "upper": 0.9084
     },
-    "pcn": -31.82,
+    "pcn": -56.46,
     "pcnCI": {
-      "lower": -62.71,
-      "upper": 4.98
+      "lower": -76.97,
+      "upper": -31.92
     },
-    "pc1": -9.13,
+    "pc1": -18.77,
     "pc1CI": {
-      "lower": -21.86,
-      "upper": 1.22
+      "lower": -30.73,
+      "upper": -9.16
     }
   },
   "widespreadMSI": {
@@ -356,94 +310,94 @@
         "dataQuality": {
           "transectCount": 0,
           "totalVisits": 0,
-          "speciesWithData": 7
+          "speciesWithData": 6
         }
       },
       "2022": {
         "year": 2022,
-        "gbiValue": 92.8,
-        "ci_lower": 72.15,
-        "ci_upper": 106.95,
-        "ci80_lower": 77.87,
-        "ci80_upper": 101.4,
-        "ci90_lower": 74.83,
-        "ci90_upper": 104.91,
-        "smoothedValue": 92.8,
+        "gbiValue": 93.68,
+        "ci_lower": 69.45,
+        "ci_upper": 117.29,
+        "ci80_lower": 76.12,
+        "ci80_upper": 106.57,
+        "ci90_lower": 72.61,
+        "ci90_upper": 113.95,
+        "smoothedValue": 93.68,
         "speciesIndices": [],
         "dataQuality": {
           "transectCount": 0,
           "totalVisits": 0,
-          "speciesWithData": 7
+          "speciesWithData": 6
         }
       },
       "2023": {
         "year": 2023,
-        "gbiValue": 71.86,
-        "ci_lower": 45.38,
-        "ci_upper": 93.78,
-        "ci80_lower": 56.23,
-        "ci80_upper": 84.8,
-        "ci90_lower": 52.09,
-        "ci90_upper": 88.75,
-        "smoothedValue": 71.86,
+        "gbiValue": 70.07,
+        "ci_lower": 30.61,
+        "ci_upper": 96.24,
+        "ci80_lower": 36.21,
+        "ci80_upper": 85.66,
+        "ci90_lower": 32.34,
+        "ci90_upper": 92.18,
+        "smoothedValue": 70.07,
         "speciesIndices": [],
         "dataQuality": {
           "transectCount": 0,
           "totalVisits": 0,
-          "speciesWithData": 7
+          "speciesWithData": 6
         }
       },
       "2024": {
         "year": 2024,
-        "gbiValue": 68.95,
-        "ci_lower": 35.73,
-        "ci_upper": 99.86,
-        "ci80_lower": 49.94,
-        "ci80_upper": 87.58,
-        "ci90_lower": 42.72,
-        "ci90_upper": 92.66,
-        "smoothedValue": 68.95,
+        "gbiValue": 85.23,
+        "ci_lower": 30.26,
+        "ci_upper": 120.35,
+        "ci80_lower": 41.46,
+        "ci80_upper": 104.78,
+        "ci90_lower": 34.37,
+        "ci90_upper": 114.99,
+        "smoothedValue": 85.23,
         "speciesIndices": [],
         "dataQuality": {
           "transectCount": 0,
           "totalVisits": 0,
-          "speciesWithData": 7
+          "speciesWithData": 6
         }
       },
       "2025": {
         "year": 2025,
-        "gbiValue": 93.45,
-        "ci_lower": 55.88,
-        "ci_upper": 119.78,
-        "ci80_lower": 67.33,
-        "ci80_upper": 110.17,
-        "ci90_lower": 59.68,
-        "ci90_upper": 115.47,
-        "smoothedValue": 93.45,
+        "gbiValue": 78.65,
+        "ci_lower": 33.24,
+        "ci_upper": 102.55,
+        "ci80_lower": 44,
+        "ci80_upper": 92.5,
+        "ci90_lower": 37.19,
+        "ci90_upper": 97.04,
+        "smoothedValue": 78.65,
         "speciesIndices": [],
         "dataQuality": {
           "transectCount": 0,
           "totalVisits": 0,
-          "speciesWithData": 7
+          "speciesWithData": 6
         }
       }
     },
     "gbiTrend": {
       "category": "Uncertain",
-      "rate": 0.9577,
+      "rate": 0.9441,
       "rateCI": {
-        "lower": 0.8486,
-        "upper": 1.0211
+        "lower": 0.7386,
+        "upper": 1.0115
       },
-      "pcn": -15.89,
+      "pcn": -20.54,
       "pcnCI": {
-        "lower": -48.14,
-        "upper": 8.71
+        "lower": -70.24,
+        "upper": 4.68
       },
-      "pc1": -4.23,
+      "pc1": -5.59,
       "pc1CI": {
-        "lower": -15.14,
-        "upper": 2.11
+        "lower": -26.14,
+        "upper": 1.15
       }
     },
     "years": [
@@ -475,14 +429,14 @@
       },
       "2022": {
         "year": 2022,
-        "gbiValue": 61.9,
-        "ci_lower": 28.63,
-        "ci_upper": 182.45,
-        "ci80_lower": 41.21,
-        "ci80_upper": 106.24,
-        "ci90_lower": 34.26,
-        "ci90_upper": 151.38,
-        "smoothedValue": 61.9,
+        "gbiValue": 58.16,
+        "ci_lower": 16.94,
+        "ci_upper": 225.82,
+        "ci80_lower": 21.6,
+        "ci80_upper": 98.51,
+        "ci90_lower": 18.54,
+        "ci90_upper": 186.38,
+        "smoothedValue": 58.16,
         "speciesIndices": [],
         "dataQuality": {
           "transectCount": 0,
@@ -492,14 +446,14 @@
       },
       "2023": {
         "year": 2023,
-        "gbiValue": 44.99,
-        "ci_lower": 14.81,
-        "ci_upper": 121.03,
-        "ci80_lower": 23.68,
-        "ci80_upper": 70.02,
-        "ci90_lower": 17.93,
-        "ci90_upper": 90.22,
-        "smoothedValue": 44.99,
+        "gbiValue": 47.79,
+        "ci_lower": 10.74,
+        "ci_upper": 87.99,
+        "ci80_lower": 15.83,
+        "ci80_upper": 70.88,
+        "ci90_lower": 13.04,
+        "ci90_upper": 80.36,
+        "smoothedValue": 47.79,
         "speciesIndices": [],
         "dataQuality": {
           "transectCount": 0,
@@ -509,14 +463,14 @@
       },
       "2024": {
         "year": 2024,
-        "gbiValue": 67.72,
-        "ci_lower": 23.06,
-        "ci_upper": 138.77,
-        "ci80_lower": 36.6,
-        "ci80_upper": 98.36,
-        "ci90_lower": 27.72,
-        "ci90_upper": 115.35,
-        "smoothedValue": 67.72,
+        "gbiValue": 73.84,
+        "ci_lower": 18.87,
+        "ci_upper": 132.75,
+        "ci80_lower": 30.97,
+        "ci80_upper": 106.26,
+        "ci90_lower": 25.29,
+        "ci90_upper": 121.28,
+        "smoothedValue": 73.84,
         "speciesIndices": [],
         "dataQuality": {
           "transectCount": 0,
@@ -526,14 +480,14 @@
       },
       "2025": {
         "year": 2025,
-        "gbiValue": 37.41,
-        "ci_lower": 8.53,
-        "ci_upper": 174.06,
-        "ci80_lower": 12.88,
-        "ci80_upper": 78.29,
-        "ci90_lower": 11.23,
-        "ci90_upper": 117.9,
-        "smoothedValue": 37.41,
+        "gbiValue": 10.16,
+        "ci_lower": 4.22,
+        "ci_upper": 51.92,
+        "ci80_lower": 5.67,
+        "ci80_upper": 36.39,
+        "ci90_lower": 4.8,
+        "ci90_upper": 47.24,
+        "smoothedValue": 10.16,
         "speciesIndices": [],
         "dataQuality": {
           "transectCount": 0,
@@ -543,21 +497,21 @@
       }
     },
     "gbiTrend": {
-      "category": "Uncertain",
-      "rate": 0.8289,
+      "category": "Strong decline",
+      "rate": 0.6482,
       "rateCI": {
-        "lower": 0.5909,
-        "upper": 1.1134
+        "lower": 0.5381,
+        "upper": 0.9328
       },
-      "pcn": -52.79,
+      "pcn": -82.35,
       "pcnCI": {
-        "lower": -87.81,
-        "upper": 53.66
+        "lower": -91.61,
+        "upper": -24.26
       },
-      "pc1": -17.11,
+      "pc1": -35.18,
       "pc1CI": {
-        "lower": -40.91,
-        "upper": 11.34
+        "lower": -46.19,
+        "upper": -6.72
       }
     },
     "years": [

@@ -12,13 +12,30 @@ import {
   List,
   Alert,
   Tooltip,
+  Collapse,
 } from "antd";
-import { ArrowLeftOutlined, InfoCircleOutlined, CloseCircleOutlined } from "@ant-design/icons";
+import {
+  ArrowLeftOutlined,
+  InfoCircleOutlined,
+  CloseCircleOutlined,
+  GithubOutlined,
+} from "@ant-design/icons";
 import { GBIData, RegionalGBICollection } from "../types/gbiData";
 import { TransectData } from "../types/transectStats";
 import GrasslandButterflyIndex from "./charts/GrasslandButterflyIndex";
 import SpeciesLink from "./SpeciesLink";
-import { GRASSLAND_SPECIES, getTrendColor, getTrendLabel } from "../constants";
+import {
+  GRASSLAND_SPECIES,
+  getTrendColor,
+  getTrendLabel,
+  MIN_YEARS_ACTIVE,
+  MIN_VISITS_PER_YEAR,
+  MONITORING_START_MONTH,
+  MONITORING_END_MONTH,
+  BASELINE_YEAR,
+} from "../constants";
+
+const { Text, Paragraph, Title } = Typography;
 
 // Flight curves data type (minimal interface for what we need)
 interface FlightCurvesData {
@@ -286,13 +303,10 @@ function GBIPage() {
             <Popover
               content={
                 <div style={{ maxWidth: 400, maxHeight: 400, overflowY: "auto" }}>
-                  <Typography.Text strong style={{ display: "block", marginBottom: 8 }}>
-                    Transectos Qualificados ({transectCount})
-                  </Typography.Text>
                   <Typography.Text
                     style={{ fontSize: 12, color: "#8c8c8c", display: "block", marginBottom: 8 }}
                   >
-                    Critérios: 5+ anos ativos, 5+ visitas/ano
+                    Critérios: {MIN_YEARS_ACTIVE}+ anos ativos, {MIN_VISITS_PER_YEAR}+ visitas/ano
                   </Typography.Text>
                   <List
                     size="small"
@@ -332,6 +346,370 @@ function GBIPage() {
         flightCurvesData={flightCurvesData}
         regionalGBIData={regionalGBIData}
         loading={loading}
+      />
+
+      <Collapse
+        items={[
+          {
+            key: "metodologia",
+            label: "Metodologia",
+            children: (
+              <div style={{ maxWidth: 900 }}>
+                <Paragraph>
+                  O Índice de Borboletas de Prados (GBI) é calculado seguindo a metodologia europeia
+                  padronizada para indicadores de biodiversidade, utilizando a biblioteca{" "}
+                  <Text code>rbms</Text> em R. Todos os índices são normalizados ao ano base de{" "}
+                  <Text strong>{BASELINE_YEAR}</Text> (índice = 100).
+                </Paragraph>
+
+                <Title level={5}>1. Filtragem de Dados e Controlo de Qualidade</Title>
+                <Paragraph>
+                  Apenas transectos de alta qualidade são incluídos no cálculo. Os critérios são:
+                </Paragraph>
+                <ul>
+                  <li>
+                    Mínimo de <Text strong>{MIN_YEARS_ACTIVE} anos ativos</Text> de monitorização
+                  </li>
+                  <li>
+                    Média de <Text strong>{MIN_VISITS_PER_YEAR}+ visitas por ano</Text>
+                  </li>
+                  <li>
+                    Época de monitorização:{" "}
+                    <Text strong>
+                      {new Date(2000, MONITORING_START_MONTH - 1).toLocaleString("pt-PT", {
+                        month: "long",
+                      })}{" "}
+                      a{" "}
+                      {new Date(2000, MONITORING_END_MONTH - 1).toLocaleString("pt-PT", {
+                        month: "long",
+                      })}
+                    </Text>
+                  </li>
+                </ul>
+                <Paragraph type="secondary" style={{ fontSize: 12 }}>
+                  <a
+                    href="https://github.com/lfac-pt/bms-report/blob/main/src/constants.ts"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    <GithubOutlined /> Ver critérios no código fonte
+                  </a>
+                </Paragraph>
+
+                <Title level={5}>2. Curva de Voo (GAM)</Title>
+                <Paragraph>
+                  Para cada espécie e região climática, é calculada uma curva de voo sazonal usando
+                  Modelos Aditivos Generalizados (GAM) com distribuição binomial negativa. Esta
+                  curva modela a fenologia da espécie ao longo da época.
+                </Paragraph>
+                <pre
+                  style={{
+                    backgroundColor: "#f5f5f5",
+                    padding: 12,
+                    borderRadius: 4,
+                    fontSize: 11,
+                    overflow: "auto",
+                  }}
+                >
+                  {`rbms::flight_curve(
+  region_data,
+  NbrSample = 300,       # Número de amostras para GAM
+  MinVisit = 3,          # Mínimo de visitas
+  MinOccur = 1,          # Mínimo de ocorrências
+  MinNbrSite = 1,        # Mínimo de transectos
+  MaxTrial = 4,          # Máximo de tentativas
+  GamFamily = 'nb',      # Distribuição binomial negativa
+  SpeedGam = FALSE,      # GAM completo (não rápido)
+  CompltSeason = TRUE,   # Época completa
+  TimeUnit = 'w'         # Unidade temporal: semana
+)`}
+                </pre>
+
+                <Title level={5}>3. Imputação de Dados em Falta</Title>
+                <Paragraph>
+                  Utilizando as curvas de voo regionais, os dados em falta são imputados para
+                  semanas não visitadas durante a época de monitorização. Isto permite estimar a
+                  abundância total anual mesmo com amostragem incompleta. A imputação é feita por
+                  região, usando a curva de voo específica de cada região climática.
+                </Paragraph>
+                <pre
+                  style={{
+                    backgroundColor: "#f5f5f5",
+                    padding: 12,
+                    borderRadius: 4,
+                    fontSize: 11,
+                    overflow: "auto",
+                  }}
+                >
+                  {`# Imputação regional - para cada região climática
+rbms::impute_count(
+  ts_season_count = region_data,      # Contagens da região
+  ts_flight_curve = regional_fc,      # Curva de voo regional
+  YearLimit = NULL,                   # Sem limite de anos
+  TimeUnit = "w"                      # Unidade temporal: semana
+)`}
+                </pre>
+
+                <Title level={5}>4. Cálculo do Índice (GLM)</Title>
+                <Paragraph>
+                  Os índices de abundância por transecto são normalizados pelo comprimento do
+                  transecto (para equivalentes de 1 km) e depois agregados usando um Modelo Linear
+                  Generalizado (GLM) ponderado para obter o índice colacionado por ano.
+                </Paragraph>
+                <pre
+                  style={{
+                    backgroundColor: "#f5f5f5",
+                    padding: 12,
+                    borderRadius: 4,
+                    fontSize: 11,
+                    overflow: "auto",
+                  }}
+                >
+                  {`# Cálculo de índices por transecto
+rbms::site_index(
+  butterfly_count = ts_season_count,
+  MinFC = 0.10           # Mínimo de curva de voo (10%)
+)
+
+# Normalização por comprimento do transecto
+site_indices$SINDEX <- site_indices$SINDEX / site_indices$length_km
+
+# Índice colacionado com GLM ponderado
+rbms::collated_index(
+  data = site_indices,
+  s_sp = species_name,   # Nome da espécie
+  bootID = i,            # ID da iteração bootstrap
+  boot_ind = bootsample, # Amostra bootstrap
+  glm_weights = TRUE,    # Usar pesos no GLM
+  rm_zero = TRUE         # Remover zeros
+)`}
+                </pre>
+
+                <Title level={5}>5. Intervalos de Confiança (Bootstrap)</Title>
+                <Paragraph>
+                  A incerteza é quantificada através de 500 iterações de bootstrap. Para cada
+                  amostra bootstrap, todo o pipeline de cálculo do índice é recalculado, permitindo
+                  estimar intervalos de confiança de 95% para os índices anuais através dos
+                  percentis 2.5% e 97.5% das distribuições bootstrap.
+                </Paragraph>
+                <pre
+                  style={{
+                    backgroundColor: "#f5f5f5",
+                    padding: 12,
+                    borderRadius: 4,
+                    fontSize: 11,
+                    overflow: "auto",
+                  }}
+                >
+                  {`# Gerar amostras bootstrap
+set.seed(218795)  # Para reprodutibilidade
+bootsample <- rbms::boot_sample(
+  site_indices,
+  boot_n = 500                        # 500 iterações bootstrap
+)
+
+# Calcular índice para cada amostra bootstrap
+for(i in c(0, seq_len(500))) {
+  rbms::collated_index(
+    data = site_indices,
+    bootID = i,                       # ID da iteração (0 = original)
+    boot_ind = bootsample,            # Amostra bootstrap
+    glm_weights = TRUE,
+    rm_zero = TRUE
+  )
+}`}
+                </pre>
+
+                <Title level={5}>6. Agregação Multi-Espécie (GBI)</Title>
+                <Paragraph>
+                  Após calcular índices para cada espécie de pastagem (generalistas e
+                  especialistas), estes são combinados num único indicador multi-espécie usando a
+                  média geométrica. Este método, recomendado pela UE, trata todas as espécies de
+                  forma equitativa e é robusto a valores extremos.
+                </Paragraph>
+                <pre
+                  style={{
+                    backgroundColor: "#f5f5f5",
+                    padding: 12,
+                    borderRadius: 4,
+                    fontSize: 11,
+                    overflow: "auto",
+                  }}
+                >
+                  {`# Centrar espécies em log-espaço para comparabilidade
+co_index[, LOGDENSITY := log10(COL_INDEX)]
+co_index[, TRMOBS := LOGDENSITY - mean(LOGDENSITY) + 2,
+         by = .(SPECIES, BOOTi)]
+
+# Média geométrica das espécies
+geomean <- function(x) exp(mean(log(x), na.rm = TRUE))
+
+# Calcular indicador multi-espécie
+indicator_func(
+  data.table::dcast(co_index, year ~ SPECIES, value.var = "TRMOBS100")
+)`}
+                </pre>
+
+                <Title level={5}>7. Suavização LOESS e Intervalos de Confiança</Title>
+                <Paragraph>
+                  O índice multi-espécie é suavizado usando regressão LOESS (span = 0.75, grau 2)
+                  para reduzir variação de curto prazo. Os intervalos de confiança de 95% são
+                  calculados a partir dos percentis 2.5% e 97.5% das 500 distribuições bootstrap
+                  suavizadas.
+                </Paragraph>
+                <pre
+                  style={{
+                    backgroundColor: "#f5f5f5",
+                    padding: 12,
+                    borderRadius: 4,
+                    fontSize: 11,
+                    overflow: "auto",
+                  }}
+                >
+                  {`# Suavização LOESS do indicador principal
+loess_fit <- loess(
+  indicator ~ year,
+  span = 0.75,              # Suavização padrão UE
+  degree = 2,               # Polinómio quadrático
+  na.action = na.exclude
+)
+smoothed_indicator <- predict(loess_fit)
+
+# Calcular IC 95% a partir dos bootstraps
+ci_lower <- apply(
+  smoothed_boot_indicators,
+  1,                        # Por ano
+  quantile,
+  0.025                     # Percentil 2.5%
+)
+ci_upper <- apply(
+  smoothed_boot_indicators,
+  1,
+  quantile,
+  0.975                     # Percentil 97.5%
+)`}
+                </pre>
+
+                <Title level={5}>8. Tendência Linear e Classificação</Title>
+                <Paragraph>
+                  A tendência do GBI é estimada ajustando um modelo linear aos índices suavizados em
+                  escala logarítmica. A classificação da tendência baseia-se nos intervalos de
+                  confiança de 95% da taxa anual de alteração:
+                </Paragraph>
+                <pre
+                  style={{
+                    backgroundColor: "#f5f5f5",
+                    padding: 12,
+                    borderRadius: 4,
+                    fontSize: 11,
+                    overflow: "auto",
+                  }}
+                >
+                  {`# Tendência linear em log-espaço
+lm_obj <- lm(log(smoothed_indicator) ~ year)
+annual_rate <- exp(coef(lm_obj)[2])      # Taxa anual multiplicativa
+pc1 <- 100 * (annual_rate - 1)           # Taxa anual percentual
+
+# Calcular IC a partir dos bootstraps
+boot_rates <- apply(boot_trends, 1, function(x) {
+  exp(coef(lm(log(x) ~ year))[2])
+})
+rate_ci_lower <- quantile(boot_rates, 0.025)
+rate_ci_upper <- quantile(boot_rates, 0.975)`}
+                </pre>
+                <ul>
+                  <li>
+                    <Text style={{ color: "#52c41a" }}>Aumento Forte:</Text> IC inferior &gt; 1.05
+                  </li>
+                  <li>
+                    <Text style={{ color: "#95de64" }}>Aumento Moderado:</Text> IC inferior &gt; 1.0
+                  </li>
+                  <li>
+                    <Text style={{ color: "#cf1322" }}>Declínio Forte:</Text> IC superior &lt; 0.95
+                  </li>
+                  <li>
+                    <Text style={{ color: "#ff7875" }}>Declínio Moderado:</Text> IC superior &lt;
+                    1.0
+                  </li>
+                  <li>
+                    <Text style={{ color: "#1890ff" }}>Estável:</Text> IC contém 1.0 e não excede
+                    ±5%
+                  </li>
+                  <li>
+                    <Text style={{ color: "#8c8c8c" }}>Incerto:</Text> IC muito largo
+                  </li>
+                </ul>
+
+                <Title level={5} style={{ marginTop: 24 }}>
+                  Referência
+                </Title>
+                <Paragraph type="secondary" style={{ fontSize: 11, lineHeight: 1.6 }}>
+                  A metodologia aqui apresentada baseia-se no relatório técnico do Indicador Europeu
+                  de Borboletas de Pastagens:
+                </Paragraph>
+                <Paragraph
+                  type="secondary"
+                  style={{
+                    fontSize: 11,
+                    lineHeight: 1.6,
+                    paddingLeft: 16,
+                    fontStyle: "italic",
+                  }}
+                >
+                  Van Swaay C.A.M., Schmucki R., Roy D.B., Dennis E.B., Collins S., Fox R., Kolev
+                  Z.D., Sevilleja C.G., Warren M.S., Whitfield A., Wynhoff I., Arnberg H.J.H.,
+                  Balalaikins M., Barea-Azcón J.M., Boe A.M.B., Bonelli S., Botham M.S., Bourn
+                  N.A.D., Cancela J.P., Caritg R., Dapporto L., Ducry A., Dušej G., de Flores M.,
+                  Dopagne C., Escobés R., Eskildsen A.E., Fric Z.F., Fernández-García J.M., Fontaine
+                  B., Glogovčan P., Gohli J., Gracianteparaluceta A., Grill A., Harpke A., Harrower
+                  C., Heliölä J.K., Høye T.T., Judge M., Kati V., Krenn H.W., Kühn E., Kuussaari M.,
+                  Lang A., Lehner D., Lysaght L., Maes D., McGowan D., Melero Y., Mestdagh X.,
+                  Middlebrook I., Monasterio Y., Monteiro E., Montes A., Munguira M.L., Musche M.,
+                  Olivares F.J., Ozden O., Pladevall C., Pavličko A., Pettersson L.B., Rákosy L.,
+                  Roth T., Rüdisser J., Šašić M., Scalercio S., Schönwälder M., Settele J.,
+                  Sielezniew I., Sielezniew M., Sobczyk-Moran G., Stefanescu C., Švitra G.,
+                  Svabadfalvi A., Tiitsaar A., Titeux N., Tzirkalli E., Tzortzakaki O.,
+                  Ubach-Permanyer A., Vičiuvienė E., Vray S., Zografou K. (2025). EU Grassland
+                  Butterfly Indicator 1990-2023 Technical report. Butterfly Conservation Europe &
+                  EMBRACE/eBMS (www.butterfly-monitoring.net) & Vlinderstichting report VS2025.014.{" "}
+                  <a
+                    href="https://doi.org/10.5281/zenodo.16281873"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    https://doi.org/10.5281/zenodo.16281873
+                  </a>
+                </Paragraph>
+
+                <Paragraph type="secondary" style={{ fontSize: 12, marginTop: 16 }}>
+                  <a
+                    href="https://github.com/lfac-pt/bms-report/blob/main/scripts/rbms-collated-index.R"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    <GithubOutlined /> Script R - índices por espécie
+                  </a>
+                  {" | "}
+                  <a
+                    href="https://github.com/lfac-pt/bms-report/blob/main/scripts/calculate-gbi.R"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    <GithubOutlined /> Script R - cálculo GBI
+                  </a>
+                  {" | "}
+                  <a
+                    href="https://github.com/RetoSchmucki/rbms"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    <GithubOutlined /> Documentação rbms
+                  </a>
+                </Paragraph>
+              </div>
+            ),
+          },
+        ]}
       />
     </Space>
   );

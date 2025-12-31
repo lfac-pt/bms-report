@@ -22,10 +22,10 @@ import {
   MONITORING_START_MONTH,
   MONITORING_END_MONTH,
   VALID_SPECIES,
+  getQualityFilteredTransects,
 } from "../../src/constants";
 import { getYearFromDate, getMonthFromDate } from "../utils";
 import { ALL_DATA_FILE, METADATA_FILE, TEMP_RBMS_DIR } from "../config";
-import { getQualityFilteredTransects } from "./transect-stats-processor";
 
 /**
  * Calculate flight curves for all species with sufficient data using rbms
@@ -39,15 +39,14 @@ export async function calculateAllFlightCurves(
 
   // Step 1: Use same quality transect filtering as GBI
   const qualityTransects = getQualityFilteredTransects(transects);
-  const activeQualityTransects = qualityTransects.filter(t => t.isActive);
-  const qualityTransectIds = activeQualityTransects.map(t => t.transectId);
+  const qualityTransectIds = qualityTransects.map(t => t.transectId);
 
   console.log(
     `  Quality transects: ${qualityTransects.length} (${MIN_YEARS_ACTIVE}+ years, ${MIN_VISITS_PER_YEAR}+ visits/year)`
   );
-  console.log(`  Active in most recent year: ${activeQualityTransects.length}`);
+  console.log(`  Active in most recent year: ${qualityTransects.length}`);
 
-  if (activeQualityTransects.length === 0) {
+  if (qualityTransects.length === 0) {
     console.warn("  Warning: No active quality transects found");
     return null;
   }
@@ -137,7 +136,7 @@ export async function calculateAllFlightCurves(
 
   // Step 4c: Extract and write site regions for regional flight curve calculation (REQUIRED)
   const siteRegionsFile = rbmsUtils.prepareSiteRegionsFile(
-    activeQualityTransects,
+    qualityTransects,
     qualityTransectIds,
     TEMP_RBMS_DIR,
     "site_regions_fc.csv"
@@ -340,7 +339,7 @@ export async function calculateAllFlightCurves(
   }
 
   // Step 6: Compile metadata
-  const transectsUsedList = activeQualityTransects
+  const transectsUsedList = qualityTransects
     .map(t => ({
       transectId: t.transectId,
       transectName: t.transectName,

@@ -9,10 +9,6 @@
  * quality criteria and baseline years.
  */
 
-// Data quality criteria for transect filtering
-export const MIN_YEARS_ACTIVE = 5; // Minimum number of years a transect must be active
-export const MIN_VISITS_PER_YEAR = 5; // Minimum average visits per year
-
 // R-specific quality criteria (used in rbms-collated-index.R)
 export const MIN_VISITS_FOR_FLIGHT_CURVE = 3; // Minimum visits required for GAM flight curve
 
@@ -253,4 +249,22 @@ export function groupSpeciesByFamily(speciesList: string[]): Record<string, stri
   });
 
   return grouped;
+}
+
+// Data quality criteria for transect filtering
+export const MIN_YEARS_ACTIVE = 6; // Minimum number of years a transect must be active
+export const MIN_VISITS_PER_YEAR = 5; // Minimum average visits per year
+
+// Helper function to filter for quality active transects
+export function getQualityFilteredTransects<
+  T extends {
+    yearsActive: number;
+    avgVisitsPerYear: number;
+    isActive: boolean;
+  },
+>(transects: T[]): T[] {
+  return transects.filter(
+    t =>
+      t.yearsActive >= MIN_YEARS_ACTIVE && t.avgVisitsPerYear >= MIN_VISITS_PER_YEAR && t.isActive
+  );
 }
