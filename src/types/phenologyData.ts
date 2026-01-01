@@ -5,11 +5,12 @@
 
 /**
  * Weekly abundance predictions for a single year
+ * Note: abundance values can be numbers or "NA" strings when data is insufficient
  */
 export interface YearlyPhenology {
   year: number;
   weeks: number[];
-  abundance: number[];
+  abundance: (number | string)[];
 }
 
 /**

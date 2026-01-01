@@ -330,6 +330,26 @@ function ButterflyTransects() {
       }
     }
 
+    // Protected Area filter
+    if (protectedAreaFilters.length > 0) {
+      const hasInside = protectedAreaFilters.includes("inside");
+      const hasOutside = protectedAreaFilters.includes("outside");
+      const specificAreas = protectedAreaFilters.filter(f => f !== "inside" && f !== "outside");
+
+      const isTransectInside = transect.protectedArea && transect.protectedArea !== "";
+
+      const matchesFilter =
+        (hasInside && isTransectInside) ||
+        (hasOutside && !isTransectInside) ||
+        (isTransectInside &&
+          transect.protectedArea &&
+          specificAreas.includes(transect.protectedArea));
+
+      if (!matchesFilter) {
+        return false;
+      }
+    }
+
     return true;
   });
 

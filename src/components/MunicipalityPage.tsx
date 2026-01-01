@@ -374,6 +374,7 @@ function MunicipalityPage() {
             min={MONITORING_MONTHS[0]}
             max={MONITORING_MONTHS[MONITORING_MONTHS.length - 1]}
             value={selectedMonth}
+            trackStyle={{ display: "none" }}
             onChange={(value: number) => {
               // Find the closest monitoring month
               const closest = MONITORING_MONTHS.reduce((prev, curr) =>
