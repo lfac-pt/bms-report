@@ -336,24 +336,14 @@ function ButterflyTransects() {
       const hasOutside = protectedAreaFilters.includes("outside");
       const specificAreas = protectedAreaFilters.filter(f => f !== "inside" && f !== "outside");
 
-      let matchesFilter = false;
+      const isTransectInside = transect.protectedArea && transect.protectedArea !== "";
 
-      // Check "inside" filter (any protected area)
-      if (hasInside && transect.protectedArea && transect.protectedArea !== "") {
-        matchesFilter = true;
-      }
-
-      // Check "outside" filter (no protected area)
-      if (hasOutside && (!transect.protectedArea || transect.protectedArea === "")) {
-        matchesFilter = true;
-      }
-
-      // Check specific protected area filters
-      if (specificAreas.length > 0) {
-        if (specificAreas.includes(transect.protectedArea || "Nenhuma")) {
-          matchesFilter = true;
-        }
-      }
+      const matchesFilter =
+        (hasInside && isTransectInside) ||
+        (hasOutside && !isTransectInside) ||
+        (isTransectInside &&
+          transect.protectedArea &&
+          specificAreas.includes(transect.protectedArea));
 
       if (!matchesFilter) {
         return false;

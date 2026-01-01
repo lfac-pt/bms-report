@@ -211,11 +211,8 @@ export const FlightCurvesDisplay: React.FC<FlightCurvesDisplayProps> = ({
       // Check if at least one year has valid (non-NA) abundance data
       return Object.values(regionData.phenologyCurves).some(yearData => {
         if (!yearData.abundance || yearData.abundance.length === 0) return false;
-        // Check if there's at least one non-NA value (abundance can be number or "NA" string in practice)
-        return yearData.abundance.some(val => {
-          const strVal = String(val);
-          return strVal !== "NA" && val !== null && !isNaN(Number(val));
-        });
+        // Check if there's at least one valid numeric value (Number("NA") returns NaN)
+        return yearData.abundance.some(val => val !== null && !isNaN(Number(val)));
       });
     })
     .sort((a, b) => (regionOrder[a] || 999) - (regionOrder[b] || 999));
