@@ -15,49 +15,96 @@ const RARITY_LEVELS: RarityLevel[] = [
   { label: 'Muito Rara', color: '#ff4d4f', percentageThreshold: 0 }, // <20%
 ];
 
+export interface RarityData {
+  level: RarityLevel;
+  observedSeasons: number;
+  totalSeasons: number;
+  percentage: number;
+}
+
 /**
- * Calculate rarity based on temporal-weighted observation frequency
- * Uses "transect-years" as the metric: if a species was observed in a transect
- * that was active for 5 years, we assume it was potentially observable across
- * those 5 monitoring seasons.
+ * Calculate rarity based on actual year-by-year observations
+ * Uses timeline data to count how many transect-years actually observed the species
+ * compared to total transect-years in the municipality.
  */
 export function calculateRarity(
   speciesName: string,
-  municipalityTransects: TransectStats[]
-): RarityLevel {
-  if (municipalityTransects.length === 0) {
-    return RARITY_LEVELS[RARITY_LEVELS.length - 1]; // Muito Rara if no transects
+  municipalityTransects: TransectStats[],
+  timelineData: any
+): RarityData {
+  const defaultRarity: RarityData = {
+    level: RARITY_LEVELS[RARITY_LEVELS.length - 1],
+    observedSeasons: 0,
+    totalSeasons: 0,
+    percentage: 0,
+  };
+
+  if (municipalityTransects.length === 0 || !timelineData) {
+    return defaultRarity;
   }
 
-  // Calculate total possible "transect-years" (monitoring seasons)
-  // This is the sum of yearsActive for all transects in the municipality
-  const totalTransectYears = municipalityTransects.reduce(
-    (sum, t) => sum + (t.yearsActive || 0),
-    0
-  );
+  // Get transect IDs for this municipality
+  const transectIds = new Set(municipalityTransects.map(t => t.transectId));
+
+  // Count total transect-years and transect-years with species observations
+  let totalTransectYears = 0;
+  let transectYearsWithSpecies = 0;
+
+  // Iterate through each year in the timeline
+  for (const year of timelineData.years || []) {
+    const yearData = timelineData.transectsByYear?.[year];
+    if (!yearData) continue;
+
+    // For each transect in this municipality
+    for (const transectId of transectIds) {
+      // Check if this transect was active this year
+      if (yearData.includes(transectId)) {
+        totalTransectYears++;
+
+        // Check if this species was observed in this transect this year
+        const yearObservations = timelineData.observationsByYearDate?.[year];
+        if (yearObservations) {
+          let foundSpecies = false;
+          // Check all dates in this year
+          for (const dateObservations of Object.values(yearObservations)) {
+            for (const [obsTransectId, obsSpecies] of dateObservations as [string, string][]) {
+              if (obsTransectId === transectId && obsSpecies === speciesName) {
+                foundSpecies = true;
+                break;
+              }
+            }
+            if (foundSpecies) break;
+          }
+          if (foundSpecies) {
+            transectYearsWithSpecies++;
+          }
+        }
+      }
+    }
+  }
 
   if (totalTransectYears === 0) {
-    return RARITY_LEVELS[RARITY_LEVELS.length - 1];
+    return defaultRarity;
   }
 
-  // Calculate "transect-years" where species was observed
-  // For each transect that observed the species, count its yearsActive
-  // This assumes if a species was observed in a transect, it was potentially
-  // observable across all the years that transect was monitored
-  const transectYearsWithSpecies = municipalityTransects
-    .filter(t => t.speciesList.includes(speciesName))
-    .reduce((sum, t) => sum + (t.yearsActive || 0), 0);
-
-  // Calculate percentage of monitoring seasons where species was observed
+  // Calculate percentage of transect-years where species was observed
   const percentage = (transectYearsWithSpecies / totalTransectYears) * 100;
 
   // Find matching rarity level
-  for (const level of RARITY_LEVELS) {
-    if (percentage >= level.percentageThreshold) {
-      return level;
+  let level = RARITY_LEVELS[RARITY_LEVELS.length - 1];
+  for (const rarityLevel of RARITY_LEVELS) {
+    if (percentage >= rarityLevel.percentageThreshold) {
+      level = rarityLevel;
+      break;
     }
   }
-  return RARITY_LEVELS[RARITY_LEVELS.length - 1];
+
+  return {
+    level,
+    observedSeasons: transectYearsWithSpecies,
+    totalSeasons: totalTransectYears,
+    percentage,
+  };
 }
 
 // Averaged flight curve data

@@ -21,6 +21,7 @@ interface SpeciesCardProps {
   climaticRegion: string;
   municipalityTransects: TransectStats[];
   flightCurvesData: any;
+  timelineData: any;
 }
 
 const SpeciesCard: React.FC<SpeciesCardProps> = ({
@@ -30,9 +31,10 @@ const SpeciesCard: React.FC<SpeciesCardProps> = ({
   climaticRegion,
   municipalityTransects,
   flightCurvesData,
+  timelineData,
 }) => {
   // Calculate rarity
-  const rarity = calculateRarity(speciesName, municipalityTransects);
+  const rarityData = calculateRarity(speciesName, municipalityTransects, timelineData);
 
   // Get conservation status
   const ptStatus = endangeredPT[speciesName];
@@ -82,7 +84,7 @@ const SpeciesCard: React.FC<SpeciesCardProps> = ({
 
           {/* Badges */}
           <Space size={4} wrap>
-            <RarityBadge rarity={rarity} />
+            <RarityBadge rarityData={rarityData} />
             {trendCategory && <TrendBadge category={trendCategory} />}
             {ptStatus && (
               <Tag color="orange" style={{ margin: 0, fontSize: 11 }}>

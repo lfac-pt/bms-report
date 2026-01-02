@@ -101,6 +101,7 @@ function MunicipalityPage() {
   const [loading, setLoading] = useState(true);
   const [commonNamesMap, setCommonNamesMap] = useState<Record<string, string>>({});
   const [flightCurvesData, setFlightCurvesData] = useState<any>(null);
+  const [timelineData, setTimelineData] = useState<any>(null);
 
   // Initialize month from URL or default
   const monthParam = searchParams.get("month");
@@ -113,7 +114,7 @@ function MunicipalityPage() {
   // Decode the municipality name from URL
   const decodedMunicipalityName = municipalityName ? decodeURIComponent(municipalityName) : "";
 
-  // Load GeoJSON, transects, common names, and flight curves data
+  // Load GeoJSON, transects, common names, flight curves, and timeline data
   useEffect(() => {
     Promise.all([
       // eslint-disable-next-line no-undef
@@ -124,12 +125,15 @@ function MunicipalityPage() {
       fetch("data/common-names.json").then(res => res.json()).catch(() => ({})),
       // eslint-disable-next-line no-undef
       fetch("data/flight-curves-data.json").then(res => res.json()).catch(() => null),
+      // eslint-disable-next-line no-undef
+      fetch("data/timeline-data.json").then(res => res.json()).catch(() => null),
     ])
-      .then(([geoJsonData, transectsData, commonNames, flightCurves]) => {
+      .then(([geoJsonData, transectsData, commonNames, flightCurves, timeline]) => {
         setGeoData(geoJsonData);
         setTransects(transectsData.transects || []);
         setCommonNamesMap(commonNames);
         setFlightCurvesData(flightCurves);
+        setTimelineData(timeline);
         setLoading(false);
       })
       .catch(() => {
@@ -439,6 +443,7 @@ function MunicipalityPage() {
                       climaticRegion={municipalityClimaticRegion}
                       municipalityTransects={municipalityTransects}
                       flightCurvesData={flightCurvesData}
+                      timelineData={timelineData}
                     />
                   ))}
                 </div>
