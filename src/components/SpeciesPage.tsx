@@ -178,44 +178,66 @@ function SpeciesPage() {
       </div>
 
       <Card>
-        <Space direction="vertical" size="middle" style={{ width: "100%" }}>
-          <Title level={2} italic style={{ marginBottom: 0 }}>
-            {decodedSpeciesName}
-          </Title>
-          <Text strong style={{ fontSize: 16 }}>
-            Família: {family}
-          </Text>
-          {/* Show trend classification from flight curves data */}
-          {(() => {
-            const trendClassification =
-              flightCurvesData?.species?.[decodedSpeciesName]?.trendClassification;
+        <div style={{ display: 'flex', gap: 24 }}>
+          {/* Species Information */}
+          <Space direction="vertical" size="middle" style={{ flex: 1 }}>
+            <Title level={2} italic style={{ marginBottom: 0 }}>
+              {decodedSpeciesName}
+            </Title>
+            <Text strong style={{ fontSize: 16 }}>
+              Família: {family}
+            </Text>
+            {/* Show trend classification from flight curves data */}
+            {(() => {
+              const trendClassification =
+                flightCurvesData?.species?.[decodedSpeciesName]?.trendClassification;
 
-            if (trendClassification) {
-              return (
-                <div style={{ marginTop: 8 }}>
-                  <Text strong>Tendência Populacional: </Text>
-                  <TrendClassificationBadge
-                    classification={trendClassification}
-                    showDetails={true}
-                  />
-                </div>
-              );
-            }
-            return null;
-          })()}
-          {(endangeredSpeciesPT[decodedSpeciesName] ||
-            endangeredSpeciesEurope[decodedSpeciesName]) && (
-            <Alert
-              message={
-                endangeredSpeciesPT[decodedSpeciesName]
-                  ? `Espécie Ameaçada: ${endangeredSpeciesPT[decodedSpeciesName]} (${getEndangermentDescription(endangeredSpeciesPT[decodedSpeciesName])}) em Portugal.`
-                  : `Espécie Ameaçada: ${endangeredSpeciesEurope[decodedSpeciesName]} (${getEndangermentDescription(endangeredSpeciesEurope[decodedSpeciesName])}) na União Europeia.`
+              if (trendClassification) {
+                return (
+                  <div style={{ marginTop: 8 }}>
+                    <Text strong>Tendência Populacional: </Text>
+                    <TrendClassificationBadge
+                      classification={trendClassification}
+                      showDetails={true}
+                    />
+                  </div>
+                );
               }
-              type="warning"
-              showIcon
+              return null;
+            })()}
+            {(endangeredSpeciesPT[decodedSpeciesName] ||
+              endangeredSpeciesEurope[decodedSpeciesName]) && (
+              <Alert
+                message={
+                  endangeredSpeciesPT[decodedSpeciesName]
+                    ? `Espécie Ameaçada: ${endangeredSpeciesPT[decodedSpeciesName]} (${getEndangermentDescription(endangeredSpeciesPT[decodedSpeciesName])}) em Portugal.`
+                    : `Espécie Ameaçada: ${endangeredSpeciesEurope[decodedSpeciesName]} (${getEndangermentDescription(endangeredSpeciesEurope[decodedSpeciesName])}) na União Europeia.`
+                }
+                type="warning"
+                showIcon
+              />
+            )}
+          </Space>
+
+          {/* Species Photo */}
+          <div style={{ flexShrink: 0 }}>
+            <img
+              src={`imgs/sp/${family}/${decodedSpeciesName}.jpg`}
+              alt={`Fotografia de ${decodedSpeciesName}`}
+              style={{
+                width: 300,
+                height: 300,
+                objectFit: 'cover',
+                borderRadius: 8,
+                backgroundColor: '#f0f0f0',
+              }}
+              onError={(e) => {
+                // Hide image if it fails to load
+                e.currentTarget.style.display = 'none';
+              }}
             />
-          )}
-        </Space>
+          </div>
+        </div>
       </Card>
 
       {/* Trend Chart Card - shows only when flight curves data exists */}

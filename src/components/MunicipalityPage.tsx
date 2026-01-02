@@ -435,6 +435,7 @@ function MunicipalityPage() {
                       key={speciesName}
                       speciesName={speciesName}
                       commonName={commonNamesMap[speciesName]}
+                      family={family}
                       climaticRegion={municipalityClimaticRegion}
                       municipalityTransects={municipalityTransects}
                       flightCurvesData={flightCurvesData}

@@ -17,6 +17,7 @@ const { Text } = Typography;
 interface SpeciesCardProps {
   speciesName: string;
   commonName?: string;
+  family: string;
   climaticRegion: string;
   municipalityTransects: TransectStats[];
   flightCurvesData: any;
@@ -25,6 +26,7 @@ interface SpeciesCardProps {
 const SpeciesCard: React.FC<SpeciesCardProps> = ({
   speciesName,
   commonName,
+  family,
   climaticRegion,
   municipalityTransects,
   flightCurvesData,
@@ -42,15 +44,19 @@ const SpeciesCard: React.FC<SpeciesCardProps> = ({
   // Get trend classification
   const trendCategory = flightCurvesData?.species?.[speciesName]?.trendClassification?.category;
 
+  // Construct image path
+  const imagePath = `imgs/sp/${family}/${speciesName}.jpg`;
+
   return (
     <Card
       size="small"
       styles={{ body: { padding: 12 } }}
     >
       <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
-        {/* Photo placeholder - 50px thumbnail */}
+        {/* Photo - 50px thumbnail */}
         <Avatar
           size={50}
+          src={imagePath}
           icon={<BugOutlined />}
           style={{ backgroundColor: '#f0f0f0', color: '#8c8c8c', flexShrink: 0 }}
           aria-label={`Fotografia de ${speciesName}`}
