@@ -1,6 +1,6 @@
 /* eslint-env browser */
 import { useState, useEffect } from "react";
-import { Button, Card, Space, Typography, Spin, Alert, Row, Col, Select, Switch } from "antd";
+import { Button, Card, Space, Typography, Spin, Alert, Row, Col, Select, Switch, Tooltip } from "antd";
 import { ArrowLeftOutlined } from "@ant-design/icons";
 import { useParams, useNavigate } from "react-router-dom";
 import { SPECIES_FAMILIES } from "../constants";
@@ -13,6 +13,7 @@ import endangeredSpeciesEurope from "../utils/endangered_eu";
 import { FlightCurvesDisplay } from "./charts/FlightCurveChart";
 import { SpeciesTrendChart } from "./charts/SpeciesTrendChart";
 import TrendClassificationBadge from "./TrendClassificationBadge";
+import { getPlantFamilyIcon, getPlantFamilyCommonName } from "../utils/plantFamilyIcons";
 
 const { Title, Text } = Typography;
 
@@ -39,6 +40,7 @@ function SpeciesPage() {
   const [timelineData, setTimelineData] = useState<TimelineData | null>(null);
   const [transectData, setTransectData] = useState<TransectData | null>(null);
   const [flightCurvesData, setFlightCurvesData] = useState<any>(null);
+  const [ecologyData, setEcologyData] = useState<any>(null);
   const [loading, setLoading] = useState(true);
   const [showOnlyQualityTransects, setShowOnlyQualityTransects] = useState(true);
 
@@ -58,11 +60,16 @@ function SpeciesPage() {
       fetch("data/flight-curves-data.json")
         .then(res => res.json())
         .catch(() => null),
+      // eslint-disable-next-line no-undef
+      fetch("data/species-ecology.json")
+        .then(res => res.json())
+        .catch(() => null),
     ])
-      .then(([timeline, transects, flightCurves]) => {
+      .then(([timeline, transects, flightCurves, ecology]) => {
         setTimelineData(timeline);
         setTransectData(transects);
         setFlightCurvesData(flightCurves);
+        setEcologyData(ecology);
         setLoading(false);
       })
       .catch(() => {
@@ -205,6 +212,61 @@ function SpeciesPage() {
               }
               return null;
             })()}
+            {/* Show ecology information */}
+            {ecologyData && ecologyData[decodedSpeciesName] && (
+              <div style={{ marginTop: 16 }}>
+                <div style={{ marginBottom: 8 }}>
+                  <Text strong>Habitat: </Text>
+                  <Text>{ecologyData[decodedSpeciesName].habitat}</Text>
+                </div>
+                {ecologyData[decodedSpeciesName].hostPlantFamilies && ecologyData[decodedSpeciesName].hostPlantFamilies.length > 0 && (
+                  <div style={{ marginBottom: 8 }}>
+                    <Text strong>Plantas Hospedeiras: </Text>
+                    <Space size={8}>
+                      {ecologyData[decodedSpeciesName].hostPlantFamilies.map((family: string) => {
+                        const speciesList = ecologyData[decodedSpeciesName].hostPlantSpecies || [];
+                        const commonName = getPlantFamilyCommonName(family);
+                        const familyDisplay = commonName ? `${family} (${commonName})` : family;
+                        const tooltipContent = (
+                          <div>
+                            <div style={{ fontWeight: 'bold', marginBottom: 4 }}>{familyDisplay}</div>
+                            {speciesList.length > 0 && (
+                              <div style={{ fontSize: 12, fontStyle: 'italic' }}>
+                                {speciesList.map((species: string) => (
+                                  <div key={species}>{species}</div>
+                                ))}
+                              </div>
+                            )}
+                          </div>
+                        );
+                        return (
+                          <Tooltip key={family} title={tooltipContent}>
+                            <span style={{ fontSize: 24, cursor: 'help' }}>
+                              {getPlantFamilyIcon(family)}
+                            </span>
+                          </Tooltip>
+                        );
+                      })}
+                    </Space>
+                  </div>
+                )}
+                {ecologyData[decodedSpeciesName].sources && ecologyData[decodedSpeciesName].sources.length > 0 && (
+                  <div style={{ marginTop: 12 }}>
+                    <Text type="secondary" style={{ fontSize: 12 }}>
+                      Fontes:{' '}
+                      {ecologyData[decodedSpeciesName].sources.map((source: string, idx: number) => (
+                        <span key={idx}>
+                          <a href={source} target="_blank" rel="noopener noreferrer" style={{ fontSize: 12 }}>
+                            [{idx + 1}]
+                          </a>
+                          {idx < ecologyData[decodedSpeciesName].sources.length - 1 ? ' ' : ''}
+                        </span>
+                      ))}
+                    </Text>
+                  </div>
+                )}
+              </div>
+            )}
             {(endangeredSpeciesPT[decodedSpeciesName] ||
               endangeredSpeciesEurope[decodedSpeciesName]) && (
               <Alert

@@ -1,0 +1,1255 @@
+{
+  "Colias crocea": {
+    "habitat": "open land, fields, meadows",
+    "hostPlantFamilies": [
+      "Fabaceae"
+    ],
+    "hostPlantSpecies": [],
+    "sources": [
+      "http://www.pyrgus.de/Colias_croceus_en.html",
+      "https://en.wikipedia.org/wiki/Colias_croceus",
+      "https://www.first-nature.com/insects/lb-colias-croceus.php"
+    ]
+  },
+  "Lasiommata megera": {
+    "habitat": "grassland, rocky areas, cliffs",
+    "hostPlantFamilies": [
+      "Poaceae"
+    ],
+    "hostPlantSpecies": [
+      "Holcus lanatus"
+    ],
+    "sources": [
+      "http://www.pyrgus.de/Lasiommata_megera_en.html",
+      "https://www.first-nature.com/insects/lb-lasiommata-megera.php",
+      "https://www.wildlifetrusts.org/wildlife-explorer/invertebrates/butterflies/wall-brown"
+    ]
+  },
+  "Pieris rapae": {
+    "habitat": "open areas, gardens, disturbed habitats",
+    "hostPlantFamilies": [
+      "Brassicaceae"
+    ],
+    "hostPlantSpecies": [],
+    "sources": [
+      "http://www.pyrgus.de/Pieris_rapae_en.html",
+      "https://en.wikipedia.org/wiki/Pieris_rapae",
+      "https://butterfly.ucdavis.edu/butterfly/pieris/rapae"
+    ]
+  },
+  "Maniola jurtina": {
+    "habitat": "grassland, meadows, pastures",
+    "hostPlantFamilies": [
+      "Poaceae"
+    ],
+    "hostPlantSpecies": [],
+    "sources": [
+      "https://www.first-nature.com/insects/lb-maniola-jurtina.php",
+      "https://resjournals.onlinelibrary.wiley.com/doi/abs/10.1111/icad.12222",
+      "https://www.sciencedirect.com/science/article/abs/pii/S0167880907002356"
+    ]
+  },
+  "Vanessa atalanta": {
+    "habitat": "moist woodlands, woodland edges, gardens",
+    "hostPlantFamilies": [
+      "Urticaceae"
+    ],
+    "hostPlantSpecies": [],
+    "sources": [
+      "https://en.wikipedia.org/wiki/Vanessa_atalanta",
+      "https://www.fs.usda.gov/wildflowers/pollinators/pollinator-of-the-month/red-admiral-butterfly.shtml",
+      "https://www.butterfliesandmoths.org/species/Vanessa-atalanta"
+    ]
+  },
+  "Polyommatus icarus": {
+    "habitat": "grassland, meadows, coastal dunes",
+    "hostPlantFamilies": [
+      "Fabaceae"
+    ],
+    "hostPlantSpecies": [],
+    "sources": [
+      "http://www.pyrgus.de/Polyommatus_icarus_en.html",
+      "https://en.wikipedia.org/wiki/Common_blue",
+      "https://www.first-nature.com/insects/lb-polyommatus-icarus.php"
+    ]
+  },
+  "Gonepteryx rhamni": {
+    "habitat": "woodland, wetlands, forest edges",
+    "hostPlantFamilies": [
+      "Rhamnaceae"
+    ],
+    "hostPlantSpecies": [
+      "Frangula alnus"
+    ],
+    "sources": [
+      "http://www.pyrgus.de/Gonepteryx_rhamni_en.html",
+      "https://en.wikipedia.org/wiki/Gonepteryx_rhamni",
+      "https://resjournals.onlinelibrary.wiley.com/doi/abs/10.1046/j.1365-2311.2000.00241.x"
+    ]
+  },
+  "Pararge aegeria": {
+    "habitat": "woodland edges, clearings, parks",
+    "hostPlantFamilies": [
+      "Poaceae"
+    ],
+    "hostPlantSpecies": [
+      "Brachypodium sylvaticum"
+    ],
+    "sources": [
+      "https://www.woodlandtrust.org.uk/trees-woods-and-wildlife/animals/butterflies/speckled-wood/",
+      "https://www.first-nature.com/insects/lb-pararge-aegeria.php",
+      "https://resjournals.onlinelibrary.wiley.com/doi/10.1111/j.1365-2311.1986.tb00298.x"
+    ]
+  },
+  "Aglais io": {
+    "habitat": "gardens, woodland, meadows",
+    "hostPlantFamilies": [
+      "Urticaceae"
+    ],
+    "hostPlantSpecies": [
+      "Urtica dioica"
+    ],
+    "sources": [
+      "https://www.ukbutterflies.co.uk/species.php?species=urticae",
+      "https://en.wikipedia.org/wiki/Small_tortoiseshell",
+      "https://www.first-nature.com/insects/lb-aglais-urticae.php"
+    ]
+  },
+  "Aglais urticae": {
+    "habitat": "gardens, meadows, grassland, woodland",
+    "hostPlantFamilies": [
+      "Urticaceae"
+    ],
+    "hostPlantSpecies": [
+      "Urtica dioica"
+    ],
+    "sources": [
+      "https://www.ukbutterflies.co.uk/species.php?species=urticae",
+      "https://en.wikipedia.org/wiki/Small_tortoiseshell",
+      "https://www.first-nature.com/insects/lb-aglais-urticae.php"
+    ]
+  },
+  "Anthocharis cardamines": {
+    "habitat": "woodland edges, riparian forests, meadows",
+    "hostPlantFamilies": [
+      "Brassicaceae"
+    ],
+    "hostPlantSpecies": [
+      "Alliaria petiolata",
+      "Cardamine pratensis"
+    ],
+    "sources": [
+      "http://www.pyrgus.de/Anthocharis_cardamines_en.html",
+      "https://www.first-nature.com/insects/lb-anthocharis-cardamines.php",
+      "https://en.wikipedia.org/wiki/Anthocharis_cardamines"
+    ]
+  },
+  "Anthocharis euphenoides": {
+    "habitat": "woodland edges, roadsides, open areas",
+    "hostPlantFamilies": [
+      "Brassicaceae"
+    ],
+    "hostPlantSpecies": [],
+    "sources": [
+      "https://www.first-nature.com/insects/lb-anthocharis-euphenoides.php",
+      "https://www.butterfliesoffrance.com/html/Anthocharis%20euphenoides.htm"
+    ]
+  },
+  "Pieris brassicae": {
+    "habitat": "open land, agricultural areas, gardens",
+    "hostPlantFamilies": [
+      "Brassicaceae"
+    ],
+    "hostPlantSpecies": [
+      "Brussels sprouts"
+    ],
+    "sources": [
+      "http://www.pyrgus.de/Pieris_brassicae_en.html",
+      "https://en.wikipedia.org/wiki/Pieris_brassicae",
+      "https://www.sciencedirect.com/topics/agricultural-and-biological-sciences/pieris-brassicae"
+    ]
+  },
+  "Pieris napi": {
+    "habitat": "open areas, woodland clearings, gardens",
+    "hostPlantFamilies": [
+      "Brassicaceae"
+    ],
+    "hostPlantSpecies": [],
+    "sources": [
+      "https://en.wikipedia.org/wiki/Pieris_(butterfly)",
+      "https://link.springer.com/chapter/10.1007/978-1-4615-1765-8_6"
+    ]
+  },
+  "Vanessa cardui": {
+    "habitat": "open areas, fields, meadows, diverse habitats",
+    "hostPlantFamilies": [
+      "Asteraceae",
+      "Fabaceae",
+      "Malvaceae"
+    ],
+    "hostPlantSpecies": [],
+    "sources": [
+      "https://en.wikipedia.org/wiki/Vanessa_cardui",
+      "https://www.butterfliesandmoths.org/species/Vanessa-cardui",
+      "https://www.gardenia.net/guide/painted-lady-butterfly"
+    ]
+  },
+  "Papilio machaon": {
+    "habitat": "grasslands, alpine meadows, hillsides",
+    "hostPlantFamilies": [
+      "Apiaceae"
+    ],
+    "hostPlantSpecies": [],
+    "sources": [
+      "https://en.wikipedia.org/wiki/Papilio_machaon",
+      "https://resjournals.onlinelibrary.wiley.com/doi/10.1111/icad.12371",
+      "https://www.britannica.com/animal/Old-World-swallowtail-butterfly"
+    ]
+  },
+  "Pyronia tithonus": {
+    "habitat": "scrubby grassland, woodland rides, hedgerows",
+    "hostPlantFamilies": [
+      "Poaceae"
+    ],
+    "hostPlantSpecies": [],
+    "sources": [
+      "https://www.first-nature.com/insects/lb-pyronia-tithonus.php",
+      "https://butterfly-conservation.org/butterflies/gatekeeper",
+      "https://en.wikipedia.org/wiki/Gatekeeper_(butterfly)"
+    ]
+  },
+  "Pyronia bathseba": {
+    "habitat": "grassland, scrubby areas",
+    "hostPlantFamilies": [
+      "Poaceae"
+    ],
+    "hostPlantSpecies": [],
+    "sources": [
+      "https://www.jungledragon.com/specie/7739/spanish_gatekeeper.html",
+      "https://en.wikipedia.org/wiki/Pyronia_bathseba"
+    ]
+  },
+  "Pyronia cecilia": {
+    "habitat": "grassland, scrubby areas",
+    "hostPlantFamilies": [
+      "Poaceae"
+    ],
+    "hostPlantSpecies": [],
+    "sources": [
+      "https://www.first-nature.com/insects/lb-pyronia-cecilia.php",
+      "https://en.wikipedia.org/wiki/Gatekeeper_(butterfly)"
+    ]
+  },
+  "Lycaena phlaeas": {
+    "habitat": "grassland, heathland, disturbed areas",
+    "hostPlantFamilies": [
+      "Polygonaceae"
+    ],
+    "hostPlantSpecies": [
+      "Rumex acetosella",
+      "Rumex crispus"
+    ],
+    "sources": [
+      "https://en.wikipedia.org/wiki/Lycaena_phlaeas",
+      "https://www.butterfliesandmoths.org/species/Lycaena-phlaeas",
+      "https://animaldiversity.org/accounts/Lycaena_phlaeas/"
+    ]
+  },
+  "Melanargia ines": {
+    "habitat": "grassland",
+    "hostPlantFamilies": [
+      "Poaceae"
+    ],
+    "hostPlantSpecies": [],
+    "sources": [
+      "https://www.first-nature.com/insects/lb-melanargia-galathea.php",
+      "https://butterfly-conservation.org/butterflies/marbled-white"
+    ]
+  },
+  "Melanargia lachesis": {
+    "habitat": "grassland",
+    "hostPlantFamilies": [
+      "Poaceae"
+    ],
+    "hostPlantSpecies": [],
+    "sources": [
+      "https://irishnaturalist.com/butterflies/iberian-marbled-white-melanargia-lachesis/",
+      "https://www.first-nature.com/insects/lb-melanargia-galathea.php"
+    ]
+  },
+  "Melanargia occitanica": {
+    "habitat": "grassland",
+    "hostPlantFamilies": [
+      "Poaceae"
+    ],
+    "hostPlantSpecies": [],
+    "sources": [
+      "https://www.first-nature.com/insects/lb-melanargia-galathea.php",
+      "https://butterfly-conservation.org/butterflies/marbled-white"
+    ]
+  },
+  "Melanargia russiae": {
+    "habitat": "grassland",
+    "hostPlantFamilies": [
+      "Poaceae"
+    ],
+    "hostPlantSpecies": [],
+    "sources": [
+      "https://www.first-nature.com/insects/lb-melanargia-galathea.php",
+      "https://butterfly-conservation.org/butterflies/marbled-white"
+    ]
+  },
+  "Argynnis paphia": {
+    "habitat": "woodland, clearings, glades",
+    "hostPlantFamilies": [
+      "Violaceae"
+    ],
+    "hostPlantSpecies": [
+      "Viola riviniana"
+    ],
+    "sources": [
+      "https://butterfly-conservation.org/butterflies/silver-washed-fritillary",
+      "https://www.monaconatureencyclopedia.com/argynnis-paphia/?lang=en",
+      "https://ukbms.org/species/silver-washed-fritillary"
+    ]
+  },
+  "Argynnis pandora": {
+    "habitat": "woodland, open areas",
+    "hostPlantFamilies": [
+      "Violaceae"
+    ],
+    "hostPlantSpecies": [
+      "Viola species"
+    ],
+    "sources": [
+      "https://www.mdpi.com/2673-7159/5/4/58",
+      "https://www.nababutterfly.com/violet.html"
+    ]
+  },
+  "Hipparchia semele": {
+    "habitat": "sand dunes, heathland, dry grassland",
+    "hostPlantFamilies": [
+      "Poaceae"
+    ],
+    "hostPlantSpecies": [
+      "Agrostis curtisii",
+      "Aira praecox"
+    ],
+    "sources": [
+      "https://plantiary.com/insect/hipparchia-semele_4548.html",
+      "https://en.wikipedia.org/wiki/Grayling_(butterfly)",
+      "https://butterfly-conservation.org/sites/default/files/grayling-species-factsheet.pdf"
+    ]
+  },
+  "Hipparchia fidia": {
+    "habitat": "dry grassland, rocky areas",
+    "hostPlantFamilies": [
+      "Poaceae"
+    ],
+    "hostPlantSpecies": [],
+    "sources": [
+      "https://plantiary.com/insect/hipparchia-semele_4548.html",
+      "https://en.wikipedia.org/wiki/Grayling_(butterfly)"
+    ]
+  },
+  "Hipparchia hermione": {
+    "habitat": "rocky areas, grassland",
+    "hostPlantFamilies": [
+      "Poaceae"
+    ],
+    "hostPlantSpecies": [],
+    "sources": [
+      "https://plantiary.com/insect/hipparchia-hermione_3559.html",
+      "https://en.wikipedia.org/wiki/Grayling_(butterfly)"
+    ]
+  },
+  "Hipparchia statilinus": {
+    "habitat": "dry grassland, stony areas",
+    "hostPlantFamilies": [
+      "Poaceae"
+    ],
+    "hostPlantSpecies": [],
+    "sources": [
+      "https://en.wikipedia.org/wiki/Hipparchia_statilinus",
+      "https://plantiary.com/insect/hipparchia-semele_4548.html"
+    ]
+  },
+  "Coenonympha pamphilus": {
+    "habitat": "grassland, meadows, heathland",
+    "hostPlantFamilies": [
+      "Poaceae"
+    ],
+    "hostPlantSpecies": [],
+    "sources": [
+      "http://www.pyrgus.de/Coenonympha_pamphilus_en.html",
+      "https://en.wikipedia.org/wiki/Coenonympha_pamphilus",
+      "https://www.first-nature.com/insects/lb-coenonympha-pamphilus.php"
+    ]
+  },
+  "Coenonympha dorus": {
+    "habitat": "grassland, heathland",
+    "hostPlantFamilies": [
+      "Poaceae"
+    ],
+    "hostPlantSpecies": [],
+    "sources": [
+      "http://www.pyrgus.de/Coenonympha_pamphilus_en.html",
+      "https://www.first-nature.com/insects/lb-coenonympha-pamphilus.php"
+    ]
+  },
+  "Coenonympha arcania": {
+    "habitat": "woodland edges, clearings",
+    "hostPlantFamilies": [
+      "Poaceae"
+    ],
+    "hostPlantSpecies": [],
+    "sources": [
+      "https://www.monaconatureencyclopedia.com/coenonympha-arcania/?lang=en",
+      "https://www.first-nature.com/insects/lb-coenonympha-arcania.php"
+    ]
+  },
+  "Coenonympha glycerion iphioides": {
+    "habitat": "grassland, heathland",
+    "hostPlantFamilies": [
+      "Poaceae"
+    ],
+    "hostPlantSpecies": [],
+    "sources": [
+      "http://www.pyrgus.de/Coenonympha_pamphilus_en.html",
+      "https://www.first-nature.com/insects/lb-coenonympha-pamphilus.php"
+    ]
+  },
+  "Polygonia c-album": {
+    "habitat": "woodland, fields, gardens",
+    "hostPlantFamilies": [
+      "Urticaceae"
+    ],
+    "hostPlantSpecies": [
+      "Urtica dioica"
+    ],
+    "sources": [
+      "https://en.wikipedia.org/wiki/Polygonia_c-album",
+      "https://www.first-nature.com/insects/lb-polygonia-c-album.php",
+      "https://link.springer.com/article/10.1007/BF00317093"
+    ]
+  },
+  "Satyrium ilicis": {
+    "habitat": "oak woodland, clearings, forest edges",
+    "hostPlantFamilies": [
+      "Fagaceae",
+      "Rosaceae",
+      "Ulmaceae"
+    ],
+    "hostPlantSpecies": [],
+    "sources": [
+      "http://www.pyrgus.de/Satyrium_ilicis_en.html",
+      "https://en.wikipedia.org/wiki/Satyrium_ilicis",
+      "https://butterflies.spnl.org/ilex-hairstreak-satyrium-ilicis/"
+    ]
+  },
+  "Satyrium esculi": {
+    "habitat": "oak woodland, scrubland",
+    "hostPlantFamilies": [
+      "Fagaceae"
+    ],
+    "hostPlantSpecies": [
+      "Quercus species"
+    ],
+    "sources": [
+      "https://www.first-nature.com/insects/lb-satyrium-esculi.php",
+      "https://en.wikipedia.org/wiki/Satyrium_esculi"
+    ]
+  },
+  "Satyrium spini": {
+    "habitat": "calcareous grassland with shrubs",
+    "hostPlantFamilies": [
+      "Rhamnaceae",
+      "Rosaceae"
+    ],
+    "hostPlantSpecies": [
+      "Prunus spinosa"
+    ],
+    "sources": [
+      "http://www.eje.cz/artkey/eje-201301-0020_how_much_care_does_a_shrub-feeding_hairstreak_butterfly_satyrium_spini_lepidoptera_lycaenidae_need_in_calc.php",
+      "https://butterflies.spnl.org/blue-spot-hairstreak-satyrium-spini/"
+    ]
+  },
+  "Cupido minimus": {
+    "habitat": "calcareous grassland, quarries",
+    "hostPlantFamilies": [
+      "Fabaceae"
+    ],
+    "hostPlantSpecies": [
+      "Anthyllis vulneraria"
+    ],
+    "sources": [
+      "https://www.first-nature.com/insects/lb-cupido-minimus.php",
+      "https://en.wikipedia.org/wiki/Small_Blue",
+      "https://link.springer.com/article/10.1007/s10841-021-00360-5"
+    ]
+  },
+  "Cupido lorquinii": {
+    "habitat": "grassland",
+    "hostPlantFamilies": [
+      "Fabaceae"
+    ],
+    "hostPlantSpecies": [
+      "Anthyllis vulneraria"
+    ],
+    "sources": [
+      "https://www.first-nature.com/insects/lb-cupido-lorquinii.php"
+    ]
+  },
+  "Iphiclides feisthamelii": {
+    "habitat": "forest edges, scrubland, abandoned orchards",
+    "hostPlantFamilies": [
+      "Rosaceae"
+    ],
+    "hostPlantSpecies": [],
+    "sources": [
+      "https://en.wikipedia.org/wiki/Iphiclides_feisthamelii",
+      "https://www.tandfonline.com/doi/abs/10.1080/713834709",
+      "https://animalia.bio/iphiclides-feisthamelii"
+    ]
+  },
+  "Zerynthia rumina": {
+    "habitat": "scrubby grassland, woodland clearings, dry slopes",
+    "hostPlantFamilies": [
+      "Aristolochiaceae"
+    ],
+    "hostPlantSpecies": [
+      "Aristolochia species"
+    ],
+    "sources": [
+      "https://www.first-nature.com/insects/lb-zerynthia-rumina.php",
+      "https://en.wikipedia.org/wiki/Zerynthia_rumina",
+      "http://www.eurobutterflies.com/sp/rumina.php"
+    ]
+  },
+  "Melitaea aetherie": {
+    "habitat": "grassland, meadows",
+    "hostPlantFamilies": [
+      "Plantaginaceae"
+    ],
+    "hostPlantSpecies": [],
+    "sources": [
+      "http://www.pyrgus.de/Melitaea_britomartis_en.html",
+      "https://link.springer.com/article/10.1007/s11829-008-9039-2"
+    ]
+  },
+  "Melitaea celadussa": {
+    "habitat": "grassland, meadows",
+    "hostPlantFamilies": [
+      "Plantaginaceae"
+    ],
+    "hostPlantSpecies": [],
+    "sources": [
+      "http://www.pyrgus.de/Melitaea_britomartis_en.html",
+      "https://link.springer.com/article/10.1007/s11829-008-9039-2"
+    ]
+  },
+  "Melitaea cinxia": {
+    "habitat": "grassland, meadows",
+    "hostPlantFamilies": [
+      "Plantaginaceae"
+    ],
+    "hostPlantSpecies": [
+      "Plantago lanceolata"
+    ],
+    "sources": [
+      "http://www.pyrgus.de/Melitaea_britomartis_en.html",
+      "https://link.springer.com/article/10.1007/s11829-008-9039-2"
+    ]
+  },
+  "Melitaea deione": {
+    "habitat": "grassland, scrubland",
+    "hostPlantFamilies": [
+      "Plantaginaceae",
+      "Scrophulariaceae"
+    ],
+    "hostPlantSpecies": [
+      "Plantago lanceolata"
+    ],
+    "sources": [
+      "https://www.malaga.es/en/laprovincia/naturaleza/lis_cd-9724/manto-bicolor-lycaena-phlaeas-linnaeus-1760",
+      "http://www.filming-varwild.com/a-didyma.html"
+    ]
+  },
+  "Melitaea didyma": {
+    "habitat": "grassland, meadows",
+    "hostPlantFamilies": [
+      "Plantaginaceae",
+      "Scrophulariaceae"
+    ],
+    "hostPlantSpecies": [],
+    "sources": [
+      "http://www.filming-varwild.com/a-didyma.html",
+      "https://link.springer.com/article/10.1007/s11829-008-9039-2"
+    ]
+  },
+  "Melitaea parthenoides": {
+    "habitat": "grassland, meadows",
+    "hostPlantFamilies": [
+      "Plantaginaceae"
+    ],
+    "hostPlantSpecies": [],
+    "sources": [
+      "https://www.malaga.es/en/laprovincia/naturaleza/lis_cd-9838/meadow-fritillary-melitaea-parthenoides-keferstein-1851"
+    ]
+  },
+  "Melitaea phoebe": {
+    "habitat": "grassland, meadows",
+    "hostPlantFamilies": [
+      "Plantaginaceae"
+    ],
+    "hostPlantSpecies": [],
+    "sources": [
+      "http://www.pyrgus.de/Melitaea_britomartis_en.html",
+      "https://link.springer.com/article/10.1007/s11829-008-9039-2"
+    ]
+  },
+  "Melitaea trivia": {
+    "habitat": "grassland, meadows",
+    "hostPlantFamilies": [
+      "Plantaginaceae"
+    ],
+    "hostPlantSpecies": [],
+    "sources": [
+      "http://www.pyrgus.de/Melitaea_britomartis_en.html",
+      "https://link.springer.com/article/10.1007/s11829-008-9039-2"
+    ]
+  },
+  "Boloria dia": {
+    "habitat": "woodland clearings, meadows",
+    "hostPlantFamilies": [
+      "Violaceae"
+    ],
+    "hostPlantSpecies": [
+      "Viola species"
+    ],
+    "sources": [
+      "https://www.researchgate.net/publication/229493834_Fritillary_phylogeny_classification_and_larval_host_plants_Reconstructed_mainly_on_the_basis_of_male_and_female_genitalic_morphology_Lepidoptera_Nymphalidae_Argynnini"
+    ]
+  },
+  "Boloria euphrosyne": {
+    "habitat": "woodland clearings, meadows",
+    "hostPlantFamilies": [
+      "Violaceae"
+    ],
+    "hostPlantSpecies": [
+      "Viola species"
+    ],
+    "sources": [
+      "https://www.researchgate.net/publication/229493834_Fritillary_phylogeny_classification_and_larval_host_plants_Reconstructed_mainly_on_the_basis_of_male_and_female_genitalic_morphology_Lepidoptera_Nymphalidae_Argynnini"
+    ]
+  },
+  "Boloria selene": {
+    "habitat": "woodland clearings, meadows, wetlands",
+    "hostPlantFamilies": [
+      "Violaceae"
+    ],
+    "hostPlantSpecies": [
+      "Viola palustris"
+    ],
+    "sources": [
+      "https://www.researchgate.net/publication/229493834_Fritillary_phylogeny_classification_and_larval_host_plants_Reconstructed_mainly_on_the_basis_of_male_and_female_genitalic_morphology_Lepidoptera_Nymphalidae_Argynnini"
+    ]
+  },
+  "Brenthis daphne": {
+    "habitat": "woodland, forest edges",
+    "hostPlantFamilies": [
+      "Rosaceae"
+    ],
+    "hostPlantSpecies": [],
+    "sources": [
+      "https://www.researchgate.net/publication/229493834_Fritillary_phylogeny_classification_and_larval_host_plants_Reconstructed_mainly_on_the_basis_of_male_and_female_genitalic_morphology_Lepidoptera_Nymphalidae_Argynnini"
+    ]
+  },
+  "Brenthis hecate": {
+    "habitat": "grassland, woodland edges",
+    "hostPlantFamilies": [
+      "Rosaceae"
+    ],
+    "hostPlantSpecies": [],
+    "sources": [
+      "https://www.researchgate.net/publication/229493834_Fritillary_phylogeny_classification_and_larval_host_plants_Reconstructed_mainly_on_the_basis_of_male_and_female_genitalic_morphology_Lepidoptera_Nymphalidae_Argynnini"
+    ]
+  },
+  "Brenthis ino": {
+    "habitat": "meadows, wetlands",
+    "hostPlantFamilies": [
+      "Rosaceae"
+    ],
+    "hostPlantSpecies": [
+      "Filipendula ulmaria"
+    ],
+    "sources": [
+      "https://www.researchgate.net/publication/229493834_Fritillary_phylogeny_classification_and_larval_host_plants_Reconstructed_mainly_on_the_basis_of_male_and_female_genitalic_morphology_Lepidoptera_Nymphalidae_Argynnini"
+    ]
+  },
+  "Fabriciana adippe": {
+    "habitat": "woodland, grassland",
+    "hostPlantFamilies": [
+      "Violaceae"
+    ],
+    "hostPlantSpecies": [
+      "Viola species"
+    ],
+    "sources": [
+      "https://www.researchgate.net/publication/229493834_Fritillary_phylogeny_classification_and_larval_host_plants_Reconstructed_mainly_on_the_basis_of_male_and_female_genitalic_morphology_Lepidoptera_Nymphalidae_Argynnini"
+    ]
+  },
+  "Fabriciana niobe": {
+    "habitat": "grassland, woodland",
+    "hostPlantFamilies": [
+      "Violaceae"
+    ],
+    "hostPlantSpecies": [
+      "Viola species"
+    ],
+    "sources": [
+      "https://www.researchgate.net/publication/229493834_Fritillary_phylogeny_classification_and_larval_host_plants_Reconstructed_mainly_on_the_basis_of_male_and_female_genitalic_morphology_Lepidoptera_Nymphalidae_Argynnini"
+    ]
+  },
+  "Issoria lathonia": {
+    "habitat": "grassland, open areas",
+    "hostPlantFamilies": [
+      "Violaceae"
+    ],
+    "hostPlantSpecies": [
+      "Viola tricolor"
+    ],
+    "sources": [
+      "https://bioone.org/journals/florida-entomologist/volume-91/issue-2/0015-4040_2008_91_237_BOTQOS_2.0.CO_2/Biology-of-the-Queen-of-Spain-Fritillary-Issoria-Lathonia-Lepidoptera/10.1653/0015-4040(2008)91%5B237:BOTQOS%5D2.0.CO;2.full"
+    ]
+  },
+  "Lycaena tityrus": {
+    "habitat": "grassland, meadows",
+    "hostPlantFamilies": [
+      "Polygonaceae"
+    ],
+    "hostPlantSpecies": [
+      "Rumex acetosa"
+    ],
+    "sources": [
+      "http://www.pyrgus.de/Lycaena_tityrus_en.html",
+      "https://en.wikipedia.org/wiki/Lycaena_tityrus"
+    ]
+  },
+  "Lycaena virgaureae": {
+    "habitat": "mountainous forests, clearings",
+    "hostPlantFamilies": [
+      "Polygonaceae"
+    ],
+    "hostPlantSpecies": [
+      "Rumex acetosa"
+    ],
+    "sources": [
+      "http://www.pyrgus.de/Lycaena_virgaureae_en.html",
+      "https://www.monaconatureencyclopedia.com/lycaena-virgaureae/?lang=en"
+    ]
+  },
+  "Lycaena alciphron": {
+    "habitat": "grassland, rocky slopes",
+    "hostPlantFamilies": [
+      "Polygonaceae"
+    ],
+    "hostPlantSpecies": [
+      "Rumex acetosella"
+    ],
+    "sources": [
+      "http://www.pyrgus.de/Lycaena_alciphron_en.html"
+    ]
+  },
+  "Lycaena bleusei": {
+    "habitat": "grassland, meadows",
+    "hostPlantFamilies": [
+      "Polygonaceae"
+    ],
+    "hostPlantSpecies": [
+      "Rumex species"
+    ],
+    "sources": [
+      "http://www.pyrgus.de/Lycaena_alciphron_en.html"
+    ]
+  },
+  "Lysandra bellargus": {
+    "habitat": "calcareous grassland",
+    "hostPlantFamilies": [
+      "Fabaceae"
+    ],
+    "hostPlantSpecies": [
+      "Hippocrepis comosa"
+    ],
+    "sources": [
+      "https://en.wikipedia.org/wiki/Adonis_blue",
+      "https://www.catalanbms.org/en/especies/lycpbe/"
+    ]
+  },
+  "Plebejus argus": {
+    "habitat": "heathland, grassland",
+    "hostPlantFamilies": [
+      "Ericaceae",
+      "Fabaceae"
+    ],
+    "hostPlantSpecies": [],
+    "sources": [
+      "https://www.first-nature.com/insects/lb-plebejus-argus.php",
+      "https://petdemy.com/types-of-blue-butterfly/"
+    ]
+  },
+  "Cyaniris semiargus": {
+    "habitat": "grassland, meadows",
+    "hostPlantFamilies": [
+      "Fabaceae"
+    ],
+    "hostPlantSpecies": [],
+    "sources": [
+      "https://americangardener.net/types-of-blue-butterfly-species/"
+    ]
+  },
+  "Glaucopsyche alexis": {
+    "habitat": "woodland edges, grassland",
+    "hostPlantFamilies": [
+      "Fabaceae"
+    ],
+    "hostPlantSpecies": [],
+    "sources": [
+      "https://peecnature.org/butterflies-of-new-mexico/blues-lycaenidae-polyommatinae/"
+    ]
+  },
+  "Glaucopsyche melanops": {
+    "habitat": "grassland, woodland edges",
+    "hostPlantFamilies": [
+      "Fabaceae"
+    ],
+    "hostPlantSpecies": [],
+    "sources": [
+      "https://peecnature.org/butterflies-of-new-mexico/blues-lycaenidae-polyommatinae/"
+    ]
+  },
+  "Thymelicus acteon": {
+    "habitat": "grassland",
+    "hostPlantFamilies": [
+      "Poaceae"
+    ],
+    "hostPlantSpecies": [],
+    "sources": [
+      "https://butterfliesofcrete.com/family-hesperiidae/thymelicus-acteon-2/",
+      "http://www.eurobutterflies.com/sp/sylvestris.php"
+    ]
+  },
+  "Thymelicus lineola": {
+    "habitat": "grassland, meadows",
+    "hostPlantFamilies": [
+      "Poaceae"
+    ],
+    "hostPlantSpecies": [],
+    "sources": [
+      "http://www.pyrgus.de/Thymelicus_lineola_en.html",
+      "https://www.butterfliesandmoths.org/species/Thymelicus-lineola"
+    ]
+  },
+  "Thymelicus sylvestris": {
+    "habitat": "grassland, dry slopes",
+    "hostPlantFamilies": [
+      "Poaceae"
+    ],
+    "hostPlantSpecies": [],
+    "sources": [
+      "https://www.ukbutterflies.co.uk/species.php?species=sylvestris",
+      "https://en.wikipedia.org/wiki/Small_skipper"
+    ]
+  },
+  "Pyrgus alveus": {
+    "habitat": "grassland, woodland edges",
+    "hostPlantFamilies": [
+      "Rosaceae"
+    ],
+    "hostPlantSpecies": [],
+    "sources": [
+      "https://www.first-nature.com/insects/lb-pyrgus-malvae.php",
+      "https://peecnature.org/butterflies-of-new-mexico/skippers-spread-wing-hesperiidae-pyrginae/"
+    ]
+  },
+  "Pyrgus armoricanus": {
+    "habitat": "grassland, heathland",
+    "hostPlantFamilies": [
+      "Rosaceae"
+    ],
+    "hostPlantSpecies": [],
+    "sources": [
+      "https://www.first-nature.com/insects/lb-pyrgus-malvae.php",
+      "https://peecnature.org/butterflies-of-new-mexico/skippers-spread-wing-hesperiidae-pyrginae/"
+    ]
+  },
+  "Pyrgus malvoides": {
+    "habitat": "grassland",
+    "hostPlantFamilies": [
+      "Rosaceae"
+    ],
+    "hostPlantSpecies": [],
+    "sources": [
+      "https://www.first-nature.com/insects/lb-pyrgus-malvae.php"
+    ]
+  },
+  "Pyrgus onopordi": {
+    "habitat": "grassland, open areas",
+    "hostPlantFamilies": [
+      "Rosaceae"
+    ],
+    "hostPlantSpecies": [],
+    "sources": [
+      "https://www.first-nature.com/insects/lb-pyrgus-malvae.php"
+    ]
+  },
+  "Pyrgus serratulae": {
+    "habitat": "grassland, meadows",
+    "hostPlantFamilies": [
+      "Rosaceae"
+    ],
+    "hostPlantSpecies": [],
+    "sources": [
+      "https://www.first-nature.com/insects/lb-pyrgus-malvae.php"
+    ]
+  },
+  "Carcharodus alceae": {
+    "habitat": "open areas, grassland",
+    "hostPlantFamilies": [
+      "Malvaceae"
+    ],
+    "hostPlantSpecies": [],
+    "sources": [
+      "http://www.pyrgus.de/Carcharodus_alceae_en.html"
+    ]
+  },
+  "Carcharodus baeticus": {
+    "habitat": "grassland, scrubland",
+    "hostPlantFamilies": [
+      "Malvaceae"
+    ],
+    "hostPlantSpecies": [
+      "Malva species"
+    ],
+    "sources": [
+      "http://www.pyrgus.de/Carcharodus_alceae_en.html"
+    ]
+  },
+  "Carcharodus tripolinus": {
+    "habitat": "grassland, open areas",
+    "hostPlantFamilies": [
+      "Malvaceae"
+    ],
+    "hostPlantSpecies": [
+      "Malva species"
+    ],
+    "sources": [
+      "http://www.pyrgus.de/Carcharodus_alceae_en.html"
+    ]
+  },
+  "Spialia sertorius": {
+    "habitat": "grassland, scrubland",
+    "hostPlantFamilies": [
+      "Rosaceae"
+    ],
+    "hostPlantSpecies": [],
+    "sources": [
+      "https://www.researchgate.net/publication/305110553_Integrative_analyses_unveil_speciation_linked_to_host_plant_shift_in_Spialia_butterflies"
+    ]
+  },
+  "Erynnis tages": {
+    "habitat": "grassland, meadows",
+    "hostPlantFamilies": [
+      "Fabaceae",
+      "Rosaceae"
+    ],
+    "hostPlantSpecies": [],
+    "sources": [
+      "http://www.pyrgus.de/Erynnis_marloyi_en.html"
+    ]
+  },
+  "Muschampia proto": {
+    "habitat": "grassland, scrubland",
+    "hostPlantFamilies": [
+      "Lamiaceae"
+    ],
+    "hostPlantSpecies": [],
+    "sources": [
+      "http://www.pyrgus.de/Muschampia_tessellum_en.html"
+    ]
+  },
+  "Leptidea sinapis": {
+    "habitat": "woodland edges, meadows",
+    "hostPlantFamilies": [
+      "Fabaceae"
+    ],
+    "hostPlantSpecies": [
+      "Lathyrus pratensis",
+      "Lotus corniculatus"
+    ],
+    "sources": [
+      "https://pmc.ncbi.nlm.nih.gov/articles/PMC10071140/",
+      "https://www.first-nature.com/insects/lb-leptidea-sinapis.php",
+      "https://en.wikipedia.org/wiki/Leptidea_sinapis"
+    ]
+  },
+  "Nymphalis antiopa": {
+    "habitat": "forests, mountainous areas",
+    "hostPlantFamilies": [
+      "Betulaceae",
+      "Salicaceae"
+    ],
+    "hostPlantSpecies": [
+      "Salix species"
+    ],
+    "sources": [
+      "http://www.pyrgus.de/Nymphalis_antiopa_en.html",
+      "https://en.wikipedia.org/wiki/Nymphalis_antiopa"
+    ]
+  },
+  "Nymphalis polychloros": {
+    "habitat": "forests, parklands, hedges",
+    "hostPlantFamilies": [
+      "Rosaceae",
+      "Salicaceae",
+      "Ulmaceae"
+    ],
+    "hostPlantSpecies": [],
+    "sources": [
+      "http://www.pyrgus.de/Nymphalis_polychloros_en.html"
+    ]
+  },
+  "Apatura ilia": {
+    "habitat": "fluvial woodland, floodplains",
+    "hostPlantFamilies": [
+      "Salicaceae"
+    ],
+    "hostPlantSpecies": [
+      "Populus nigra",
+      "Salix cinerea"
+    ],
+    "sources": [
+      "http://www.pyrgus.de/Apatura_ilia_en.html",
+      "https://butterfliesofcroatia.com/apatura-ilia/"
+    ]
+  },
+  "Aporia crataegi": {
+    "habitat": "forest clearings, shrubby grasslands",
+    "hostPlantFamilies": [
+      "Rosaceae"
+    ],
+    "hostPlantSpecies": [],
+    "sources": [
+      "http://www.pyrgus.de/Aporia_crataegi_en.html",
+      "https://en.wikipedia.org/wiki/Aporia_crataegi"
+    ]
+  },
+  "Aricia cramera": {
+    "habitat": "grassland, scrubland, uncultivated areas",
+    "hostPlantFamilies": [
+      "Cistaceae",
+      "Geraniaceae"
+    ],
+    "hostPlantSpecies": [],
+    "sources": [
+      "https://www.malaga.es/en/laprovincia/naturaleza/lis_cd-9731/morena-aricia-cramera-eschscholtz-1821",
+      "https://www.nature.com/articles/s41598-021-82433-8"
+    ]
+  },
+  "Aricia montensis": {
+    "habitat": "grassland, mountain areas",
+    "hostPlantFamilies": [
+      "Cistaceae",
+      "Geraniaceae"
+    ],
+    "hostPlantSpecies": [],
+    "sources": [
+      "https://www.nature.com/articles/s41598-021-82433-8"
+    ]
+  },
+  "Eumedonia eumedon": {
+    "habitat": "grassland, woodland edges",
+    "hostPlantFamilies": [
+      "Geraniaceae"
+    ],
+    "hostPlantSpecies": [
+      "Geranium species"
+    ],
+    "sources": [
+      "https://onlinelibrary.wiley.com/doi/10.1111/mec.16728"
+    ]
+  },
+  "Danaus chrysippus": {
+    "habitat": "open country, various habitats",
+    "hostPlantFamilies": [
+      "Apocynaceae"
+    ],
+    "hostPlantSpecies": [],
+    "sources": [
+      "https://en.wikipedia.org/wiki/Danaus_chrysippus"
+    ]
+  },
+  "Danaus plexippus": {
+    "habitat": "open country, milkweed habitats",
+    "hostPlantFamilies": [
+      "Apocynaceae"
+    ],
+    "hostPlantSpecies": [
+      "Asclepias species"
+    ],
+    "sources": [
+      "https://pmc.ncbi.nlm.nih.gov/articles/PMC9197062/",
+      "https://edis.ifas.ufl.edu/publication/IN780"
+    ]
+  },
+  "Cacyreus marshalli": {
+    "habitat": "urban areas, gardens",
+    "hostPlantFamilies": [
+      "Geraniaceae"
+    ],
+    "hostPlantSpecies": [],
+    "sources": [
+      "https://en.wikipedia.org/wiki/Geranium_bronze",
+      "http://www.pyrgus.de/Cacyreus_marshalli_en.html"
+    ]
+  },
+  "Callophrys avis": {
+    "habitat": "scrubland, grassland",
+    "hostPlantFamilies": [
+      "Fabaceae"
+    ],
+    "hostPlantSpecies": [],
+    "sources": [
+      "https://www.catalanbms.org/en/especies/lyccav/"
+    ]
+  },
+  "Callophrys rubi": {
+    "habitat": "heaths, moors, grassland",
+    "hostPlantFamilies": [
+      "Fabaceae",
+      "Rhamnaceae"
+    ],
+    "hostPlantSpecies": [],
+    "sources": [
+      "http://www.pyrgus.de/Callophrys_rubi_en.html",
+      "https://en.wikipedia.org/wiki/Green_hairstreak"
+    ]
+  },
+  "Thecla betulae": {
+    "habitat": "scrubland, hedgerows",
+    "hostPlantFamilies": [
+      "Betulaceae",
+      "Rosaceae"
+    ],
+    "hostPlantSpecies": [
+      "Prunus spinosa"
+    ],
+    "sources": [
+      "https://plantiary.com/insect/thecla-betulae_3263.html"
+    ]
+  },
+  "Favonius quercus": {
+    "habitat": "oak woodland",
+    "hostPlantFamilies": [
+      "Fagaceae"
+    ],
+    "hostPlantSpecies": [
+      "Quercus species"
+    ],
+    "sources": [
+      "https://www.butterfliesandmoths.org/species/Satyrium-favonius"
+    ]
+  },
+  "Euchloe belemia": {
+    "habitat": "scrubland, disturbed areas",
+    "hostPlantFamilies": [
+      "Brassicaceae"
+    ],
+    "hostPlantSpecies": [],
+    "sources": [
+      "https://www.first-nature.com/insects/lb-euchloe-belemia.php"
+    ]
+  },
+  "Euchloe crameri": {
+    "habitat": "scrubland, Mediterranean maquis",
+    "hostPlantFamilies": [
+      "Brassicaceae"
+    ],
+    "hostPlantSpecies": [],
+    "sources": [
+      "http://www.pyrgus.de/Euchloe_crameri_en.html",
+      "http://www.eurobutterflies.com/sp/crameri.php"
+    ]
+  },
+  "Euchloe tagis": {
+    "habitat": "scrubland, grassland",
+    "hostPlantFamilies": [
+      "Brassicaceae"
+    ],
+    "hostPlantSpecies": [
+      "Iberis species"
+    ],
+    "sources": [
+      "https://www.first-nature.com/insects/lb-euchloe-tagis.php"
+    ]
+  },
+  "Lampides boeticus": {
+    "habitat": "gardens, agricultural areas, open areas",
+    "hostPlantFamilies": [
+      "Fabaceae"
+    ],
+    "hostPlantSpecies": [],
+    "sources": [
+      "http://www.pyrgus.de/Lampides_boeticus_en.html",
+      "https://en.wikipedia.org/wiki/Lampides_boeticus"
+    ]
+  },
+  "Leptotes pirithous": {
+    "habitat": "gardens, agricultural areas",
+    "hostPlantFamilies": [
+      "Fabaceae"
+    ],
+    "hostPlantSpecies": [],
+    "sources": [
+      "https://www.first-nature.com/insects/lb-lampides-boeticus.php"
+    ]
+  },
+  "Charaxes jasius": {
+    "habitat": "Mediterranean scrubland, forests",
+    "hostPlantFamilies": [
+      "Ericaceae",
+      "Lauraceae"
+    ],
+    "hostPlantSpecies": [
+      "Arbutus unedo"
+    ],
+    "sources": [
+      "https://en.wikipedia.org/wiki/Charaxes_jasius",
+      "https://www.first-nature.com/insects/lb-charaxes-jasius.php"
+    ]
+  },
+  "Limenitis camilla": {
+    "habitat": "woodland, forest edges",
+    "hostPlantFamilies": [
+      "Caprifoliaceae"
+    ],
+    "hostPlantSpecies": [
+      "Lonicera species"
+    ],
+    "sources": [
+      "https://peecnature.org/butterflies-of-new-mexico/brushfoots-admirals-nymphalidae-limenitidinae/"
+    ]
+  },
+  "Limenitis reducta": {
+    "habitat": "woodland, scrubland",
+    "hostPlantFamilies": [
+      "Caprifoliaceae"
+    ],
+    "hostPlantSpecies": [
+      "Lonicera species"
+    ],
+    "sources": [
+      "https://peecnature.org/butterflies-of-new-mexico/brushfoots-admirals-nymphalidae-limenitidinae/"
+    ]
+  }
+}
