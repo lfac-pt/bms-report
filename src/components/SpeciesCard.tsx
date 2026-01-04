@@ -43,8 +43,8 @@ const SpeciesCard: React.FC<SpeciesCardProps> = ({
   // Get last year's flight curve for sparkline
   const flightCurve = getLastYearFlightCurve(speciesName, climaticRegion, flightCurvesData);
 
-  // Get trend classification
-  const trendCategory = flightCurvesData?.species?.[speciesName]?.trendClassification?.category;
+  // Get trend classification, default to "Uncertain" if not available
+  const trendCategory = flightCurvesData?.species?.[speciesName]?.trendClassification?.category || 'Uncertain';
 
   // Construct image path
   const imagePath = `imgs/sp/${family}/${speciesName}.jpg`;
@@ -85,7 +85,7 @@ const SpeciesCard: React.FC<SpeciesCardProps> = ({
           {/* Badges */}
           <Space size={4} wrap>
             <RarityBadge rarityData={rarityData} />
-            {trendCategory && <TrendBadge category={trendCategory} />}
+            <TrendBadge category={trendCategory} />
             {ptStatus && (
               <Tag color="orange" style={{ margin: 0, fontSize: 11 }}>
                 PT: {ptStatus}
