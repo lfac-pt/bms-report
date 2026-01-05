@@ -8,6 +8,7 @@ import { TimelineData } from "../types/timelineData";
 import { TransectData } from "../types/transectStats";
 import { calculateSpeciesPresenceByYear } from "../utils/speciesMapUtils";
 import SpeciesMap from "./SpeciesMap";
+import SpeciesDistrictMap from "./SpeciesDistrictMap";
 import endangeredSpeciesPT from "../utils/endangered_pt";
 import endangeredSpeciesEurope from "../utils/endangered_eu";
 import { FlightCurvesDisplay } from "./charts/FlightCurveChart";
@@ -466,6 +467,15 @@ function SpeciesPage() {
           loading={loading}
         />
       </Card>
+
+      {/* District Distribution Map */}
+      {transectData && transectData.transects && timelineData && (
+        <SpeciesDistrictMap
+          speciesName={decodedSpeciesName}
+          transectData={transectData.transects}
+          timelineData={timelineData}
+        />
+      )}
 
       <Card
         title="Distribuição por Ano"
