@@ -14,6 +14,7 @@ import { FlightCurvesDisplay } from "./charts/FlightCurveChart";
 import { SpeciesTrendChart } from "./charts/SpeciesTrendChart";
 import TrendClassificationBadge from "./TrendClassificationBadge";
 import { getPlantFamilyIcon, getPlantFamilyCommonName } from "../utils/plantFamilyIcons";
+import { getHabitatTypeIcon } from "../utils/habitatTypeIcons";
 
 const { Title, Text } = Typography;
 
@@ -217,7 +218,20 @@ function SpeciesPage() {
               <div style={{ marginTop: 16 }}>
                 <div style={{ marginBottom: 8 }}>
                   <Text strong>Habitat: </Text>
-                  <Text>{ecologyData[decodedSpeciesName].habitat.join(', ')}</Text>
+                  <Tooltip title={
+                    <div>
+                      <div style={{ fontWeight: 'bold', marginBottom: 4 }}>
+                        {ecologyData[decodedSpeciesName].habitatType}
+                      </div>
+                      <div style={{ fontSize: 12 }}>
+                        {ecologyData[decodedSpeciesName].habitats.join(', ')}
+                      </div>
+                    </div>
+                  }>
+                    <span style={{ fontSize: 24, cursor: 'help', marginLeft: 4 }}>
+                      {getHabitatTypeIcon(ecologyData[decodedSpeciesName].habitatType)}
+                    </span>
+                  </Tooltip>
                 </div>
                 {ecologyData[decodedSpeciesName].hostPlantFamilies && ecologyData[decodedSpeciesName].hostPlantFamilies.length > 0 && (
                   <div style={{ marginBottom: 8 }}>

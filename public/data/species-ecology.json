@@ -1,10 +1,11 @@
 {
   "Colias crocea": {
-    "habitat": [
+    "habitats": [
       "open areas",
       "agricultural areas",
       "meadow"
     ],
+    "habitatType": "Urban/Agricultural",
     "hostPlantFamilies": [
       "Fabaceae"
     ],
@@ -16,10 +17,11 @@
     ]
   },
   "Lasiommata megera": {
-    "habitat": [
+    "habitats": [
       "grassland",
       "rocky areas"
     ],
+    "habitatType": "Grassland",
     "hostPlantFamilies": [
       "Poaceae"
     ],
@@ -33,11 +35,12 @@
     ]
   },
   "Pieris rapae": {
-    "habitat": [
+    "habitats": [
       "open areas",
       "gardens",
       "disturbed areas"
     ],
+    "habitatType": "Urban/Agricultural",
     "hostPlantFamilies": [
       "Brassicaceae"
     ],
@@ -49,11 +52,12 @@
     ]
   },
   "Maniola jurtina": {
-    "habitat": [
+    "habitats": [
       "grassland",
       "meadow",
       "pastures"
     ],
+    "habitatType": "Grassland",
     "hostPlantFamilies": [
       "Poaceae"
     ],
@@ -65,11 +69,12 @@
     ]
   },
   "Vanessa atalanta": {
-    "habitat": [
+    "habitats": [
       "woodland",
       "woodland edges",
       "gardens"
     ],
+    "habitatType": "Woodland",
     "hostPlantFamilies": [
       "Urticaceae"
     ],
@@ -81,11 +86,12 @@
     ]
   },
   "Polyommatus icarus": {
-    "habitat": [
+    "habitats": [
       "grassland",
       "meadow",
       "coastal dunes"
     ],
+    "habitatType": "Grassland",
     "hostPlantFamilies": [
       "Fabaceae"
     ],
@@ -97,11 +103,12 @@
     ]
   },
   "Gonepteryx rhamni": {
-    "habitat": [
+    "habitats": [
       "woodland",
       "wetlands",
       "woodland edges"
     ],
+    "habitatType": "Woodland",
     "hostPlantFamilies": [
       "Rhamnaceae"
     ],
@@ -115,11 +122,12 @@
     ]
   },
   "Pararge aegeria": {
-    "habitat": [
+    "habitats": [
       "woodland edges",
       "woodland clearings",
       "parks"
     ],
+    "habitatType": "Woodland",
     "hostPlantFamilies": [
       "Poaceae"
     ],
@@ -133,11 +141,12 @@
     ]
   },
   "Aglais io": {
-    "habitat": [
+    "habitats": [
       "gardens",
       "woodland",
       "meadow"
     ],
+    "habitatType": "Urban/Agricultural",
     "hostPlantFamilies": [
       "Urticaceae"
     ],
@@ -151,12 +160,13 @@
     ]
   },
   "Aglais urticae": {
-    "habitat": [
+    "habitats": [
       "gardens",
       "meadow",
       "grassland",
       "woodland"
     ],
+    "habitatType": "Grassland",
     "hostPlantFamilies": [
       "Urticaceae"
     ],
@@ -170,11 +180,12 @@
     ]
   },
   "Anthocharis cardamines": {
-    "habitat": [
+    "habitats": [
       "woodland edges",
       "riparian woodland",
       "meadow"
     ],
+    "habitatType": "Woodland",
     "hostPlantFamilies": [
       "Brassicaceae"
     ],
@@ -189,11 +200,12 @@
     ]
   },
   "Anthocharis euphenoides": {
-    "habitat": [
+    "habitats": [
       "woodland edges",
       "roadsides",
       "open areas"
     ],
+    "habitatType": "Urban/Agricultural",
     "hostPlantFamilies": [
       "Brassicaceae"
     ],
@@ -204,11 +216,12 @@
     ]
   },
   "Pieris brassicae": {
-    "habitat": [
+    "habitats": [
       "open areas",
       "agricultural areas",
       "gardens"
     ],
+    "habitatType": "Urban/Agricultural",
     "hostPlantFamilies": [
       "Brassicaceae"
     ],
@@ -222,11 +235,12 @@
     ]
   },
   "Pieris napi": {
-    "habitat": [
+    "habitats": [
       "open areas",
       "woodland clearings",
       "gardens"
     ],
+    "habitatType": "Urban/Agricultural",
     "hostPlantFamilies": [
       "Brassicaceae"
     ],
@@ -237,12 +251,13 @@
     ]
   },
   "Vanessa cardui": {
-    "habitat": [
+    "habitats": [
       "open areas",
       "agricultural areas",
       "meadow",
       "diverse habitats"
     ],
+    "habitatType": "Generalist",
     "hostPlantFamilies": [
       "Asteraceae",
       "Fabaceae",
@@ -256,11 +271,12 @@
     ]
   },
   "Papilio machaon": {
-    "habitat": [
+    "habitats": [
       "grassland",
       "alpine meadows",
       "hillsides"
     ],
+    "habitatType": "Grassland",
     "hostPlantFamilies": [
       "Apiaceae"
     ],
@@ -272,11 +288,12 @@
     ]
   },
   "Pyronia tithonus": {
-    "habitat": [
+    "habitats": [
       "grassland",
       "woodland rides",
       "hedgerow"
     ],
+    "habitatType": "Grassland",
     "hostPlantFamilies": [
       "Poaceae"
     ],
@@ -288,10 +305,11 @@
     ]
   },
   "Pyronia bathseba": {
-    "habitat": [
+    "habitats": [
       "grassland",
       "scrubland"
     ],
+    "habitatType": "Grassland",
     "hostPlantFamilies": [
       "Poaceae"
     ],
@@ -302,10 +320,11 @@
     ]
   },
   "Pyronia cecilia": {
-    "habitat": [
+    "habitats": [
       "grassland",
       "scrubland"
     ],
+    "habitatType": "Grassland",
     "hostPlantFamilies": [
       "Poaceae"
     ],
@@ -316,11 +335,12 @@
     ]
   },
   "Lycaena phlaeas": {
-    "habitat": [
+    "habitats": [
       "grassland",
       "heathland",
       "disturbed areas"
     ],
+    "habitatType": "Grassland",
     "hostPlantFamilies": [
       "Polygonaceae"
     ],
@@ -335,9 +355,10 @@
     ]
   },
   "Melanargia ines": {
-    "habitat": [
+    "habitats": [
       "grassland"
     ],
+    "habitatType": "Grassland",
     "hostPlantFamilies": [
       "Poaceae"
     ],
@@ -348,9 +369,10 @@
     ]
   },
   "Melanargia lachesis": {
-    "habitat": [
+    "habitats": [
       "grassland"
     ],
+    "habitatType": "Grassland",
     "hostPlantFamilies": [
       "Poaceae"
     ],
@@ -361,9 +383,10 @@
     ]
   },
   "Melanargia occitanica": {
-    "habitat": [
+    "habitats": [
       "grassland"
     ],
+    "habitatType": "Grassland",
     "hostPlantFamilies": [
       "Poaceae"
     ],
@@ -374,9 +397,10 @@
     ]
   },
   "Melanargia russiae": {
-    "habitat": [
+    "habitats": [
       "grassland"
     ],
+    "habitatType": "Grassland",
     "hostPlantFamilies": [
       "Poaceae"
     ],
@@ -387,10 +411,11 @@
     ]
   },
   "Argynnis paphia": {
-    "habitat": [
+    "habitats": [
       "woodland",
       "woodland clearings"
     ],
+    "habitatType": "Woodland",
     "hostPlantFamilies": [
       "Violaceae"
     ],
@@ -404,10 +429,11 @@
     ]
   },
   "Argynnis pandora": {
-    "habitat": [
+    "habitats": [
       "woodland",
       "open areas"
     ],
+    "habitatType": "Woodland",
     "hostPlantFamilies": [
       "Violaceae"
     ],
@@ -420,11 +446,12 @@
     ]
   },
   "Hipparchia semele": {
-    "habitat": [
+    "habitats": [
       "sand dunes",
       "heathland",
       "dry grassland"
     ],
+    "habitatType": "Coastal",
     "hostPlantFamilies": [
       "Poaceae"
     ],
@@ -439,10 +466,11 @@
     ]
   },
   "Hipparchia fidia": {
-    "habitat": [
+    "habitats": [
       "dry grassland",
       "rocky areas"
     ],
+    "habitatType": "Grassland",
     "hostPlantFamilies": [
       "Poaceae"
     ],
@@ -453,10 +481,11 @@
     ]
   },
   "Hipparchia hermione": {
-    "habitat": [
+    "habitats": [
       "rocky areas",
       "grassland"
     ],
+    "habitatType": "Rocky/Mountain",
     "hostPlantFamilies": [
       "Poaceae"
     ],
@@ -467,10 +496,11 @@
     ]
   },
   "Hipparchia statilinus": {
-    "habitat": [
+    "habitats": [
       "dry grassland",
       "rocky areas"
     ],
+    "habitatType": "Grassland",
     "hostPlantFamilies": [
       "Poaceae"
     ],
@@ -481,11 +511,12 @@
     ]
   },
   "Coenonympha pamphilus": {
-    "habitat": [
+    "habitats": [
       "grassland",
       "meadow",
       "heathland"
     ],
+    "habitatType": "Grassland",
     "hostPlantFamilies": [
       "Poaceae"
     ],
@@ -497,10 +528,11 @@
     ]
   },
   "Coenonympha dorus": {
-    "habitat": [
+    "habitats": [
       "grassland",
       "heathland"
     ],
+    "habitatType": "Grassland",
     "hostPlantFamilies": [
       "Poaceae"
     ],
@@ -511,10 +543,11 @@
     ]
   },
   "Coenonympha arcania": {
-    "habitat": [
+    "habitats": [
       "woodland edges",
       "woodland clearings"
     ],
+    "habitatType": "Woodland",
     "hostPlantFamilies": [
       "Poaceae"
     ],
@@ -525,10 +558,11 @@
     ]
   },
   "Coenonympha glycerion iphioides": {
-    "habitat": [
+    "habitats": [
       "grassland",
       "heathland"
     ],
+    "habitatType": "Grassland",
     "hostPlantFamilies": [
       "Poaceae"
     ],
@@ -539,11 +573,12 @@
     ]
   },
   "Polygonia c-album": {
-    "habitat": [
+    "habitats": [
       "woodland",
       "agricultural areas",
       "gardens"
     ],
+    "habitatType": "Urban/Agricultural",
     "hostPlantFamilies": [
       "Urticaceae"
     ],
@@ -557,11 +592,12 @@
     ]
   },
   "Satyrium ilicis": {
-    "habitat": [
+    "habitats": [
       "woodland",
       "woodland clearings",
       "woodland edges"
     ],
+    "habitatType": "Woodland",
     "hostPlantFamilies": [
       "Fagaceae",
       "Rosaceae",
@@ -575,10 +611,11 @@
     ]
   },
   "Satyrium esculi": {
-    "habitat": [
+    "habitats": [
       "woodland",
       "scrubland"
     ],
+    "habitatType": "Woodland",
     "hostPlantFamilies": [
       "Fagaceae"
     ],
@@ -591,9 +628,10 @@
     ]
   },
   "Satyrium spini": {
-    "habitat": [
+    "habitats": [
       "calcareous grassland"
     ],
+    "habitatType": "Grassland",
     "hostPlantFamilies": [
       "Rhamnaceae",
       "Rosaceae"
@@ -607,10 +645,11 @@
     ]
   },
   "Cupido minimus": {
-    "habitat": [
+    "habitats": [
       "calcareous grassland",
       "quarries"
     ],
+    "habitatType": "Grassland",
     "hostPlantFamilies": [
       "Fabaceae"
     ],
@@ -624,9 +663,10 @@
     ]
   },
   "Cupido lorquinii": {
-    "habitat": [
+    "habitats": [
       "grassland"
     ],
+    "habitatType": "Grassland",
     "hostPlantFamilies": [
       "Fabaceae"
     ],
@@ -638,11 +678,12 @@
     ]
   },
   "Iphiclides feisthamelii": {
-    "habitat": [
+    "habitats": [
       "woodland edges",
       "scrubland",
       "abandoned orchards"
     ],
+    "habitatType": "Woodland",
     "hostPlantFamilies": [
       "Rosaceae"
     ],
@@ -654,11 +695,12 @@
     ]
   },
   "Zerynthia rumina": {
-    "habitat": [
+    "habitats": [
       "grassland",
       "woodland clearings",
       "dry slopes"
     ],
+    "habitatType": "Grassland",
     "hostPlantFamilies": [
       "Aristolochiaceae"
     ],
@@ -672,10 +714,11 @@
     ]
   },
   "Melitaea aetherie": {
-    "habitat": [
+    "habitats": [
       "grassland",
       "meadow"
     ],
+    "habitatType": "Grassland",
     "hostPlantFamilies": [
       "Plantaginaceae"
     ],
@@ -686,10 +729,11 @@
     ]
   },
   "Melitaea celadussa": {
-    "habitat": [
+    "habitats": [
       "grassland",
       "meadow"
     ],
+    "habitatType": "Grassland",
     "hostPlantFamilies": [
       "Plantaginaceae"
     ],
@@ -700,10 +744,11 @@
     ]
   },
   "Melitaea cinxia": {
-    "habitat": [
+    "habitats": [
       "grassland",
       "meadow"
     ],
+    "habitatType": "Grassland",
     "hostPlantFamilies": [
       "Plantaginaceae"
     ],
@@ -716,10 +761,11 @@
     ]
   },
   "Melitaea deione": {
-    "habitat": [
+    "habitats": [
       "grassland",
       "scrubland"
     ],
+    "habitatType": "Grassland",
     "hostPlantFamilies": [
       "Plantaginaceae",
       "Scrophulariaceae"
@@ -733,10 +779,11 @@
     ]
   },
   "Melitaea didyma": {
-    "habitat": [
+    "habitats": [
       "grassland",
       "meadow"
     ],
+    "habitatType": "Grassland",
     "hostPlantFamilies": [
       "Plantaginaceae",
       "Scrophulariaceae"
@@ -748,10 +795,11 @@
     ]
   },
   "Melitaea parthenoides": {
-    "habitat": [
+    "habitats": [
       "grassland",
       "meadow"
     ],
+    "habitatType": "Grassland",
     "hostPlantFamilies": [
       "Plantaginaceae"
     ],
@@ -761,10 +809,11 @@
     ]
   },
   "Melitaea phoebe": {
-    "habitat": [
+    "habitats": [
       "grassland",
       "meadow"
     ],
+    "habitatType": "Grassland",
     "hostPlantFamilies": [
       "Plantaginaceae"
     ],
@@ -775,10 +824,11 @@
     ]
   },
   "Melitaea trivia": {
-    "habitat": [
+    "habitats": [
       "grassland",
       "meadow"
     ],
+    "habitatType": "Grassland",
     "hostPlantFamilies": [
       "Plantaginaceae"
     ],
@@ -789,10 +839,11 @@
     ]
   },
   "Boloria dia": {
-    "habitat": [
+    "habitats": [
       "woodland clearings",
       "meadow"
     ],
+    "habitatType": "Woodland",
     "hostPlantFamilies": [
       "Violaceae"
     ],
@@ -804,10 +855,11 @@
     ]
   },
   "Boloria euphrosyne": {
-    "habitat": [
+    "habitats": [
       "woodland clearings",
       "meadow"
     ],
+    "habitatType": "Woodland",
     "hostPlantFamilies": [
       "Violaceae"
     ],
@@ -819,11 +871,12 @@
     ]
   },
   "Boloria selene": {
-    "habitat": [
+    "habitats": [
       "woodland clearings",
       "meadow",
       "wetlands"
     ],
+    "habitatType": "Woodland",
     "hostPlantFamilies": [
       "Violaceae"
     ],
@@ -835,10 +888,11 @@
     ]
   },
   "Brenthis daphne": {
-    "habitat": [
+    "habitats": [
       "woodland",
       "woodland edges"
     ],
+    "habitatType": "Woodland",
     "hostPlantFamilies": [
       "Rosaceae"
     ],
@@ -848,10 +902,11 @@
     ]
   },
   "Brenthis hecate": {
-    "habitat": [
+    "habitats": [
       "grassland",
       "woodland edges"
     ],
+    "habitatType": "Grassland",
     "hostPlantFamilies": [
       "Rosaceae"
     ],
@@ -861,10 +916,11 @@
     ]
   },
   "Brenthis ino": {
-    "habitat": [
+    "habitats": [
       "meadow",
       "wetlands"
     ],
+    "habitatType": "Grassland",
     "hostPlantFamilies": [
       "Rosaceae"
     ],
@@ -876,10 +932,11 @@
     ]
   },
   "Fabriciana adippe": {
-    "habitat": [
+    "habitats": [
       "woodland",
       "grassland"
     ],
+    "habitatType": "Woodland",
     "hostPlantFamilies": [
       "Violaceae"
     ],
@@ -891,10 +948,11 @@
     ]
   },
   "Fabriciana niobe": {
-    "habitat": [
+    "habitats": [
       "grassland",
       "woodland"
     ],
+    "habitatType": "Grassland",
     "hostPlantFamilies": [
       "Violaceae"
     ],
@@ -906,10 +964,11 @@
     ]
   },
   "Issoria lathonia": {
-    "habitat": [
+    "habitats": [
       "grassland",
       "open areas"
     ],
+    "habitatType": "Grassland",
     "hostPlantFamilies": [
       "Violaceae"
     ],
@@ -921,10 +980,11 @@
     ]
   },
   "Lycaena tityrus": {
-    "habitat": [
+    "habitats": [
       "grassland",
       "meadow"
     ],
+    "habitatType": "Grassland",
     "hostPlantFamilies": [
       "Polygonaceae"
     ],
@@ -937,10 +997,11 @@
     ]
   },
   "Lycaena virgaureae": {
-    "habitat": [
+    "habitats": [
       "mountain forest",
       "woodland clearings"
     ],
+    "habitatType": "Woodland",
     "hostPlantFamilies": [
       "Polygonaceae"
     ],
@@ -953,10 +1014,11 @@
     ]
   },
   "Lycaena alciphron": {
-    "habitat": [
+    "habitats": [
       "grassland",
       "rocky areas"
     ],
+    "habitatType": "Grassland",
     "hostPlantFamilies": [
       "Polygonaceae"
     ],
@@ -968,10 +1030,11 @@
     ]
   },
   "Lycaena bleusei": {
-    "habitat": [
+    "habitats": [
       "grassland",
       "meadow"
     ],
+    "habitatType": "Grassland",
     "hostPlantFamilies": [
       "Polygonaceae"
     ],
@@ -983,9 +1046,10 @@
     ]
   },
   "Lysandra bellargus": {
-    "habitat": [
+    "habitats": [
       "calcareous grassland"
     ],
+    "habitatType": "Grassland",
     "hostPlantFamilies": [
       "Fabaceae"
     ],
@@ -998,10 +1062,11 @@
     ]
   },
   "Plebejus argus": {
-    "habitat": [
+    "habitats": [
       "heathland",
       "grassland"
     ],
+    "habitatType": "Scrubland",
     "hostPlantFamilies": [
       "Ericaceae",
       "Fabaceae"
@@ -1013,10 +1078,11 @@
     ]
   },
   "Cyaniris semiargus": {
-    "habitat": [
+    "habitats": [
       "grassland",
       "meadow"
     ],
+    "habitatType": "Grassland",
     "hostPlantFamilies": [
       "Fabaceae"
     ],
@@ -1026,10 +1092,11 @@
     ]
   },
   "Glaucopsyche alexis": {
-    "habitat": [
+    "habitats": [
       "woodland edges",
       "grassland"
     ],
+    "habitatType": "Woodland",
     "hostPlantFamilies": [
       "Fabaceae"
     ],
@@ -1039,10 +1106,11 @@
     ]
   },
   "Glaucopsyche melanops": {
-    "habitat": [
+    "habitats": [
       "grassland",
       "woodland edges"
     ],
+    "habitatType": "Grassland",
     "hostPlantFamilies": [
       "Fabaceae"
     ],
@@ -1052,9 +1120,10 @@
     ]
   },
   "Thymelicus acteon": {
-    "habitat": [
+    "habitats": [
       "grassland"
     ],
+    "habitatType": "Grassland",
     "hostPlantFamilies": [
       "Poaceae"
     ],
@@ -1065,10 +1134,11 @@
     ]
   },
   "Thymelicus lineola": {
-    "habitat": [
+    "habitats": [
       "grassland",
       "meadow"
     ],
+    "habitatType": "Grassland",
     "hostPlantFamilies": [
       "Poaceae"
     ],
@@ -1079,10 +1149,11 @@
     ]
   },
   "Thymelicus sylvestris": {
-    "habitat": [
+    "habitats": [
       "grassland",
       "dry slopes"
     ],
+    "habitatType": "Grassland",
     "hostPlantFamilies": [
       "Poaceae"
     ],
@@ -1093,10 +1164,11 @@
     ]
   },
   "Pyrgus alveus": {
-    "habitat": [
+    "habitats": [
       "grassland",
       "woodland edges"
     ],
+    "habitatType": "Grassland",
     "hostPlantFamilies": [
       "Rosaceae"
     ],
@@ -1107,10 +1179,11 @@
     ]
   },
   "Pyrgus armoricanus": {
-    "habitat": [
+    "habitats": [
       "grassland",
       "heathland"
     ],
+    "habitatType": "Grassland",
     "hostPlantFamilies": [
       "Rosaceae"
     ],
@@ -1121,9 +1194,10 @@
     ]
   },
   "Pyrgus malvoides": {
-    "habitat": [
+    "habitats": [
       "grassland"
     ],
+    "habitatType": "Grassland",
     "hostPlantFamilies": [
       "Rosaceae"
     ],
@@ -1133,10 +1207,11 @@
     ]
   },
   "Pyrgus onopordi": {
-    "habitat": [
+    "habitats": [
       "grassland",
       "open areas"
     ],
+    "habitatType": "Grassland",
     "hostPlantFamilies": [
       "Rosaceae"
     ],
@@ -1146,10 +1221,11 @@
     ]
   },
   "Pyrgus serratulae": {
-    "habitat": [
+    "habitats": [
       "grassland",
       "meadow"
     ],
+    "habitatType": "Grassland",
     "hostPlantFamilies": [
       "Rosaceae"
     ],
@@ -1159,10 +1235,11 @@
     ]
   },
   "Carcharodus alceae": {
-    "habitat": [
+    "habitats": [
       "open areas",
       "grassland"
     ],
+    "habitatType": "Urban/Agricultural",
     "hostPlantFamilies": [
       "Malvaceae"
     ],
@@ -1172,10 +1249,11 @@
     ]
   },
   "Carcharodus baeticus": {
-    "habitat": [
+    "habitats": [
       "grassland",
       "scrubland"
     ],
+    "habitatType": "Grassland",
     "hostPlantFamilies": [
       "Malvaceae"
     ],
@@ -1187,10 +1265,11 @@
     ]
   },
   "Carcharodus tripolinus": {
-    "habitat": [
+    "habitats": [
       "grassland",
       "open areas"
     ],
+    "habitatType": "Grassland",
     "hostPlantFamilies": [
       "Malvaceae"
     ],
@@ -1202,10 +1281,11 @@
     ]
   },
   "Spialia sertorius": {
-    "habitat": [
+    "habitats": [
       "grassland",
       "scrubland"
     ],
+    "habitatType": "Grassland",
     "hostPlantFamilies": [
       "Rosaceae"
     ],
@@ -1215,10 +1295,11 @@
     ]
   },
   "Erynnis tages": {
-    "habitat": [
+    "habitats": [
       "grassland",
       "meadow"
     ],
+    "habitatType": "Grassland",
     "hostPlantFamilies": [
       "Fabaceae",
       "Rosaceae"
@@ -1229,10 +1310,11 @@
     ]
   },
   "Muschampia proto": {
-    "habitat": [
+    "habitats": [
       "grassland",
       "scrubland"
     ],
+    "habitatType": "Grassland",
     "hostPlantFamilies": [
       "Lamiaceae"
     ],
@@ -1242,10 +1324,11 @@
     ]
   },
   "Leptidea sinapis": {
-    "habitat": [
+    "habitats": [
       "woodland edges",
       "meadow"
     ],
+    "habitatType": "Woodland",
     "hostPlantFamilies": [
       "Fabaceae"
     ],
@@ -1260,10 +1343,11 @@
     ]
   },
   "Nymphalis antiopa": {
-    "habitat": [
+    "habitats": [
       "woodland",
       "mountain areas"
     ],
+    "habitatType": "Woodland",
     "hostPlantFamilies": [
       "Betulaceae",
       "Salicaceae"
@@ -1277,11 +1361,12 @@
     ]
   },
   "Nymphalis polychloros": {
-    "habitat": [
+    "habitats": [
       "woodland",
       "parks",
       "hedgerow"
     ],
+    "habitatType": "Woodland",
     "hostPlantFamilies": [
       "Rosaceae",
       "Salicaceae",
@@ -1293,10 +1378,11 @@
     ]
   },
   "Apatura ilia": {
-    "habitat": [
+    "habitats": [
       "riparian woodland",
       "floodplains"
     ],
+    "habitatType": "Woodland",
     "hostPlantFamilies": [
       "Salicaceae"
     ],
@@ -1310,10 +1396,11 @@
     ]
   },
   "Aporia crataegi": {
-    "habitat": [
+    "habitats": [
       "woodland clearings",
       "grassland"
     ],
+    "habitatType": "Woodland",
     "hostPlantFamilies": [
       "Rosaceae"
     ],
@@ -1324,11 +1411,12 @@
     ]
   },
   "Aricia cramera": {
-    "habitat": [
+    "habitats": [
       "grassland",
       "scrubland",
       "uncultivated areas"
     ],
+    "habitatType": "Grassland",
     "hostPlantFamilies": [
       "Cistaceae",
       "Geraniaceae"
@@ -1340,10 +1428,11 @@
     ]
   },
   "Aricia montensis": {
-    "habitat": [
+    "habitats": [
       "grassland",
       "mountain areas"
     ],
+    "habitatType": "Grassland",
     "hostPlantFamilies": [
       "Cistaceae",
       "Geraniaceae"
@@ -1354,10 +1443,11 @@
     ]
   },
   "Eumedonia eumedon": {
-    "habitat": [
+    "habitats": [
       "grassland",
       "woodland edges"
     ],
+    "habitatType": "Grassland",
     "hostPlantFamilies": [
       "Geraniaceae"
     ],
@@ -1369,10 +1459,11 @@
     ]
   },
   "Danaus chrysippus": {
-    "habitat": [
+    "habitats": [
       "open areas",
       "diverse habitats"
     ],
+    "habitatType": "Generalist",
     "hostPlantFamilies": [
       "Apocynaceae"
     ],
@@ -1382,9 +1473,10 @@
     ]
   },
   "Danaus plexippus": {
-    "habitat": [
+    "habitats": [
       "open areas"
     ],
+    "habitatType": "Urban/Agricultural",
     "hostPlantFamilies": [
       "Apocynaceae"
     ],
@@ -1397,10 +1489,11 @@
     ]
   },
   "Cacyreus marshalli": {
-    "habitat": [
+    "habitats": [
       "urban areas",
       "gardens"
     ],
+    "habitatType": "Urban/Agricultural",
     "hostPlantFamilies": [
       "Geraniaceae"
     ],
@@ -1411,10 +1504,11 @@
     ]
   },
   "Callophrys avis": {
-    "habitat": [
+    "habitats": [
       "scrubland",
       "grassland"
     ],
+    "habitatType": "Scrubland",
     "hostPlantFamilies": [
       "Fabaceae"
     ],
@@ -1424,10 +1518,11 @@
     ]
   },
   "Callophrys rubi": {
-    "habitat": [
+    "habitats": [
       "heathland",
       "grassland"
     ],
+    "habitatType": "Scrubland",
     "hostPlantFamilies": [
       "Fabaceae",
       "Rhamnaceae"
@@ -1439,10 +1534,11 @@
     ]
   },
   "Thecla betulae": {
-    "habitat": [
+    "habitats": [
       "scrubland",
       "hedgerow"
     ],
+    "habitatType": "Scrubland",
     "hostPlantFamilies": [
       "Betulaceae",
       "Rosaceae"
@@ -1455,9 +1551,10 @@
     ]
   },
   "Favonius quercus": {
-    "habitat": [
+    "habitats": [
       "woodland"
     ],
+    "habitatType": "Woodland",
     "hostPlantFamilies": [
       "Fagaceae"
     ],
@@ -1469,10 +1566,11 @@
     ]
   },
   "Euchloe belemia": {
-    "habitat": [
+    "habitats": [
       "scrubland",
       "disturbed areas"
     ],
+    "habitatType": "Scrubland",
     "hostPlantFamilies": [
       "Brassicaceae"
     ],
@@ -1482,10 +1580,11 @@
     ]
   },
   "Euchloe crameri": {
-    "habitat": [
+    "habitats": [
       "scrubland",
       "Mediterranean maquis"
     ],
+    "habitatType": "Scrubland",
     "hostPlantFamilies": [
       "Brassicaceae"
     ],
@@ -1496,10 +1595,11 @@
     ]
   },
   "Euchloe tagis": {
-    "habitat": [
+    "habitats": [
       "scrubland",
       "grassland"
     ],
+    "habitatType": "Scrubland",
     "hostPlantFamilies": [
       "Brassicaceae"
     ],
@@ -1511,11 +1611,12 @@
     ]
   },
   "Lampides boeticus": {
-    "habitat": [
+    "habitats": [
       "gardens",
       "agricultural areas",
       "open areas"
     ],
+    "habitatType": "Urban/Agricultural",
     "hostPlantFamilies": [
       "Fabaceae"
     ],
@@ -1526,10 +1627,11 @@
     ]
   },
   "Leptotes pirithous": {
-    "habitat": [
+    "habitats": [
       "gardens",
       "agricultural areas"
     ],
+    "habitatType": "Urban/Agricultural",
     "hostPlantFamilies": [
       "Fabaceae"
     ],
@@ -1539,10 +1641,11 @@
     ]
   },
   "Charaxes jasius": {
-    "habitat": [
+    "habitats": [
       "Mediterranean scrubland",
       "woodland"
     ],
+    "habitatType": "Scrubland",
     "hostPlantFamilies": [
       "Ericaceae",
       "Lauraceae"
@@ -1556,10 +1659,11 @@
     ]
   },
   "Limenitis camilla": {
-    "habitat": [
+    "habitats": [
       "woodland",
       "woodland edges"
     ],
+    "habitatType": "Woodland",
     "hostPlantFamilies": [
       "Caprifoliaceae"
     ],
@@ -1571,10 +1675,11 @@
     ]
   },
   "Limenitis reducta": {
-    "habitat": [
+    "habitats": [
       "woodland",
       "scrubland"
     ],
+    "habitatType": "Woodland",
     "hostPlantFamilies": [
       "Caprifoliaceae"
     ],
