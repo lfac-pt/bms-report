@@ -1,7 +1,7 @@
 /* eslint-env browser */
 import { useState, useEffect } from "react";
 import { Button, Card, Space, Typography, Spin, Alert, Row, Col, Select, Switch, Tooltip, Divider, Tag } from "antd";
-import { ArrowLeftOutlined } from "@ant-design/icons";
+import { ArrowLeftOutlined, BugOutlined } from "@ant-design/icons";
 import { useParams, useNavigate } from "react-router-dom";
 import { SPECIES_FAMILIES } from "../constants";
 import { TimelineData } from "../types/timelineData";
@@ -45,10 +45,16 @@ function SpeciesPage() {
   const [commonNames, setCommonNames] = useState<Record<string, string>>({});
   const [loading, setLoading] = useState(true);
   const [showOnlyQualityTransects, setShowOnlyQualityTransects] = useState(true);
+  const [imageError, setImageError] = useState(false);
 
   // Decode the species name from URL
   const decodedSpeciesName = speciesName ? decodeURIComponent(speciesName) : "";
   const family = SPECIES_FAMILIES[decodedSpeciesName] || "Informação não disponível";
+
+  // Reset image error state when species changes
+  useEffect(() => {
+    setImageError(false);
+  }, [decodedSpeciesName]);
 
   // Load timeline, transect, and flight curves data
   // Note: Regional phenology data is now included in flight-curves-data.json
@@ -204,22 +210,38 @@ function SpeciesPage() {
               justifyContent: 'center',
               borderRadius: 12,
               overflow: 'hidden',
-              boxShadow: '0 2px 8px rgba(0,0,0,.1), 0 4px 12px rgba(0,0,0,.06)'
+              boxShadow: '0 2px 8px rgba(0,0,0,.1), 0 4px 12px rgba(0,0,0,.06)',
+              background: imageError ? 'linear-gradient(135deg, #f5f5f5 0%, #e8e8e8 100%)' : 'transparent'
             }}>
-              <img
-                src={`imgs/sp/${family}/${decodedSpeciesName}.jpg`}
-                alt={`Fotografia de ${decodedSpeciesName}`}
-                style={{
-                  width: '100%',
-                  height: '100%',
-                  objectFit: 'cover',
-                  borderRadius: 12
-                }}
-                onError={(e) => {
-                  // Hide image if it fails to load
-                  e.currentTarget.style.display = 'none';
-                }}
-              />
+              {!imageError ? (
+                <img
+                  src={`imgs/sp/${family}/${decodedSpeciesName}.jpg`}
+                  alt={`Fotografia de ${decodedSpeciesName}`}
+                  style={{
+                    width: '100%',
+                    height: '100%',
+                    objectFit: 'cover',
+                    borderRadius: 12
+                  }}
+                  onError={() => {
+                    setImageError(true);
+                  }}
+                />
+              ) : (
+                <div style={{
+                  display: 'flex',
+                  flexDirection: 'column',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  gap: 12,
+                  padding: 24
+                }}>
+                  <BugOutlined style={{ fontSize: 64, color: '#bfbfbf' }} />
+                  <Text type="secondary" style={{ fontSize: 14, textAlign: 'center' }}>
+                    Fotografia não disponível
+                  </Text>
+                </div>
+              )}
             </div>
           </Col>
 
