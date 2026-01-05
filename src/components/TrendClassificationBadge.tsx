@@ -7,11 +7,13 @@ import { getTrendColor, getTrendLabel } from "../constants";
 interface TrendClassificationBadgeProps {
   classification: TrendClassification;
   showDetails?: boolean;
+  style?: React.CSSProperties;
 }
 
 const TrendClassificationBadge: React.FC<TrendClassificationBadgeProps> = ({
   classification,
   showDetails = false,
+  style,
 }) => {
   const { category, annualRateOfChange, confidenceInterval } = classification;
 
@@ -58,7 +60,7 @@ const TrendClassificationBadge: React.FC<TrendClassificationBadgeProps> = ({
 
   return (
     <Tooltip title={tooltipContent}>
-      <Tag color={color} icon={icon} style={{ cursor: "help" }}>
+      <Tag color={color} icon={icon} style={{ cursor: "help", ...style }}>
         {label}
         {showDetails && annualRateOfChange !== null && (
           <span style={{ marginLeft: 8 }}>

@@ -1,6 +1,6 @@
 /* eslint-env browser */
 import { useState, useEffect } from "react";
-import { Button, Card, Space, Typography, Spin, Alert, Row, Col, Select, Switch, Tooltip } from "antd";
+import { Button, Card, Space, Typography, Spin, Alert, Row, Col, Select, Switch, Tooltip, Divider, Tag } from "antd";
 import { ArrowLeftOutlined } from "@ant-design/icons";
 import { useParams, useNavigate } from "react-router-dom";
 import { SPECIES_FAMILIES } from "../constants";
@@ -42,6 +42,7 @@ function SpeciesPage() {
   const [transectData, setTransectData] = useState<TransectData | null>(null);
   const [flightCurvesData, setFlightCurvesData] = useState<any>(null);
   const [ecologyData, setEcologyData] = useState<any>(null);
+  const [commonNames, setCommonNames] = useState<Record<string, string>>({});
   const [loading, setLoading] = useState(true);
   const [showOnlyQualityTransects, setShowOnlyQualityTransects] = useState(true);
 
@@ -65,12 +66,17 @@ function SpeciesPage() {
       fetch("data/species-ecology.json")
         .then(res => res.json())
         .catch(() => null),
+      // eslint-disable-next-line no-undef
+      fetch("data/common-names.json")
+        .then(res => res.json())
+        .catch(() => ({})),
     ])
-      .then(([timeline, transects, flightCurves, ecology]) => {
+      .then(([timeline, transects, flightCurves, ecology, commonNamesData]) => {
         setTimelineData(timeline);
         setTransectData(transects);
         setFlightCurvesData(flightCurves);
         setEcologyData(ecology);
+        setCommonNames(commonNamesData);
         setLoading(false);
       })
       .catch(() => {
@@ -186,134 +192,213 @@ function SpeciesPage() {
       </div>
 
       <Card>
-        <div style={{ display: 'flex', gap: 24 }}>
-          {/* Species Information */}
-          <Space direction="vertical" size="middle" style={{ flex: 1 }}>
-            <Title level={2} italic style={{ marginBottom: 0 }}>
-              {decodedSpeciesName}
-            </Title>
-            <Text strong style={{ fontSize: 16 }}>
-              Família: {family}
-            </Text>
-            {/* Show trend classification from flight curves data */}
-            {(() => {
-              const trendClassification =
-                flightCurvesData?.species?.[decodedSpeciesName]?.trendClassification;
+        <Row gutter={24}>
+          {/* Species Photo */}
+          <Col xs={24} md={8}>
+            <div style={{
+              width: '100%',
+              height: '100%',
+              minHeight: 280,
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              backgroundColor: '#fafafa',
+              borderRadius: 12,
+              overflow: 'hidden',
+              border: '1px solid #f0f0f0'
+            }}>
+              <img
+                src={`imgs/sp/${family}/${decodedSpeciesName}.jpg`}
+                alt={`Fotografia de ${decodedSpeciesName}`}
+                style={{
+                  width: '100%',
+                  height: '100%',
+                  objectFit: 'contain',
+                  padding: 12,
+                }}
+                onError={(e) => {
+                  // Hide image if it fails to load
+                  e.currentTarget.style.display = 'none';
+                }}
+              />
+            </div>
+          </Col>
 
-              if (trendClassification) {
-                return (
-                  <div style={{ marginTop: 8 }}>
-                    <Text strong>Tendência Populacional: </Text>
-                    <TrendClassificationBadge
-                      classification={trendClassification}
-                      showDetails={true}
-                    />
-                  </div>
-                );
-              }
-              return null;
-            })()}
-            {/* Show ecology information */}
-            {ecologyData && ecologyData[decodedSpeciesName] && (
-              <div style={{ marginTop: 16 }}>
-                <div style={{ marginBottom: 8 }}>
-                  <Text strong>Habitat: </Text>
-                  <Tooltip title={
-                    <div>
-                      <div style={{ fontWeight: 'bold', marginBottom: 4 }}>
-                        {ecologyData[decodedSpeciesName].habitatType}
-                      </div>
-                      <div style={{ fontSize: 12 }}>
-                        {ecologyData[decodedSpeciesName].habitats.join(', ')}
-                      </div>
-                    </div>
-                  }>
-                    <span style={{ fontSize: 24, cursor: 'help', marginLeft: 4 }}>
-                      {getHabitatTypeIcon(ecologyData[decodedSpeciesName].habitatType)}
-                    </span>
+          {/* Species Information */}
+          <Col xs={24} md={16}>
+            {/* Species Name and Family */}
+            <div style={{ marginBottom: 20 }}>
+              <Title
+                level={1}
+                italic
+                style={{
+                  marginBottom: 4,
+                  color: '#262626',
+                  fontFamily: 'Baskerville, "Baskerville Old Face", "Hoefler Text", Garamond, "Times New Roman", serif',
+                  fontSize: 52,
+                  fontWeight: 400
+                }}
+              >
+                {decodedSpeciesName}
+              </Title>
+              {commonNames[decodedSpeciesName] && (
+                <Text
+                  style={{
+                    fontSize: 20,
+                    color: '#595959',
+                    display: 'block',
+                    marginBottom: 12
+                  }}
+                >
+                  {commonNames[decodedSpeciesName]}
+                </Text>
+              )}
+              <Space size={8} wrap>
+                <Tag color="blue" style={{ fontSize: 14, padding: '4px 12px' }}>
+                  {family}
+                </Tag>
+                {endangeredSpeciesPT[decodedSpeciesName] && (
+                  <Tooltip title={`${getEndangermentDescription(endangeredSpeciesPT[decodedSpeciesName])} em Portugal`}>
+                    <Tag color="orange" style={{ fontSize: 14, padding: '4px 12px', cursor: 'help' }}>
+                      {endangeredSpeciesPT[decodedSpeciesName]} - PT
+                    </Tag>
                   </Tooltip>
-                </div>
-                {ecologyData[decodedSpeciesName].hostPlantFamilies && ecologyData[decodedSpeciesName].hostPlantFamilies.length > 0 && (
-                  <div style={{ marginBottom: 8 }}>
-                    <Text strong>Plantas Hospedeiras: </Text>
-                    <Space size={8}>
-                      {ecologyData[decodedSpeciesName].hostPlantFamilies.map((family: string) => {
-                        const speciesList = ecologyData[decodedSpeciesName].hostPlantSpecies || [];
-                        const commonName = getPlantFamilyCommonName(family);
-                        const familyDisplay = commonName ? `${family} (${commonName})` : family;
-                        const tooltipContent = (
-                          <div>
-                            <div style={{ fontWeight: 'bold', marginBottom: 4 }}>{familyDisplay}</div>
-                            {speciesList.length > 0 && (
-                              <div style={{ fontSize: 12, fontStyle: 'italic' }}>
-                                {speciesList.map((species: string) => (
-                                  <div key={species}>{species}</div>
-                                ))}
-                              </div>
-                            )}
-                          </div>
-                        );
-                        return (
-                          <Tooltip key={family} title={tooltipContent}>
-                            <span style={{ fontSize: 24, cursor: 'help' }}>
-                              {getPlantFamilyIcon(family)}
-                            </span>
-                          </Tooltip>
-                        );
-                      })}
-                    </Space>
-                  </div>
                 )}
-                {ecologyData[decodedSpeciesName].sources && ecologyData[decodedSpeciesName].sources.length > 0 && (
-                  <div style={{ marginTop: 12 }}>
+                {!endangeredSpeciesPT[decodedSpeciesName] && endangeredSpeciesEurope[decodedSpeciesName] && (
+                  <Tooltip title={`${getEndangermentDescription(endangeredSpeciesEurope[decodedSpeciesName])} na União Europeia`}>
+                    <Tag color="orange" style={{ fontSize: 14, padding: '4px 12px', cursor: 'help' }}>
+                      {endangeredSpeciesEurope[decodedSpeciesName]} - UE
+                    </Tag>
+                  </Tooltip>
+                )}
+                {(() => {
+                  const trendClassification =
+                    flightCurvesData?.species?.[decodedSpeciesName]?.trendClassification;
+
+                  if (trendClassification) {
+                    return (
+                      <TrendClassificationBadge
+                        classification={trendClassification}
+                        showDetails={true}
+                        style={{ fontSize: 14, padding: '4px 12px' }}
+                      />
+                    );
+                  }
+                  return null;
+                })()}
+              </Space>
+            </div>
+
+            <Divider style={{ margin: '16px 0' }} />
+
+            {/* Ecology Information */}
+            {ecologyData && ecologyData[decodedSpeciesName] && (
+              <Row gutter={24}>
+                {/* Habitat */}
+                <Col xs={24} sm={12}>
+                  <div>
+                    <Text strong style={{ fontSize: 15, display: 'block', marginBottom: 8 }}>
+                      Habitat
+                    </Text>
+                    <Tooltip title={
+                      <div>
+                        <div style={{ fontWeight: 'bold', marginBottom: 4 }}>
+                          {ecologyData[decodedSpeciesName].habitatType}
+                        </div>
+                        <div style={{ fontSize: 12 }}>
+                          {ecologyData[decodedSpeciesName].habitats.join(', ')}
+                        </div>
+                      </div>
+                    }>
+                      <Tag
+                        color="green"
+                        style={{
+                          fontSize: 28,
+                          padding: '8px 16px',
+                          cursor: 'help',
+                          border: '2px solid #52c41a',
+                          borderRadius: 8
+                        }}
+                      >
+                        {getHabitatTypeIcon(ecologyData[decodedSpeciesName].habitatType)}
+                      </Tag>
+                    </Tooltip>
+                  </div>
+                </Col>
+
+                {/* Host Plants */}
+                {ecologyData[decodedSpeciesName].hostPlantFamilies &&
+                 ecologyData[decodedSpeciesName].hostPlantFamilies.length > 0 && (
+                  <Col xs={24} sm={12}>
+                    <div>
+                      <Text strong style={{ fontSize: 15, display: 'block', marginBottom: 8 }}>
+                        Plantas Hospedeiras
+                      </Text>
+                      <Space size={12} wrap>
+                        {ecologyData[decodedSpeciesName].hostPlantFamilies.map((family: string) => {
+                          const speciesList = ecologyData[decodedSpeciesName].hostPlantSpecies || [];
+                          const commonName = getPlantFamilyCommonName(family);
+                          const familyDisplay = commonName ? `${family} (${commonName})` : family;
+                          const tooltipContent = (
+                            <div>
+                              <div style={{ fontWeight: 'bold', marginBottom: 4 }}>{familyDisplay}</div>
+                              {speciesList.length > 0 && (
+                                <div style={{ fontSize: 12, fontStyle: 'italic' }}>
+                                  {speciesList.map((species: string) => (
+                                    <div key={species}>{species}</div>
+                                  ))}
+                                </div>
+                              )}
+                            </div>
+                          );
+                          return (
+                            <Tooltip key={family} title={tooltipContent}>
+                              <Tag
+                                color="orange"
+                                style={{
+                                  fontSize: 28,
+                                  padding: '8px 16px',
+                                  cursor: 'help',
+                                  border: '2px solid #fa8c16',
+                                  borderRadius: 8
+                                }}
+                              >
+                                {getPlantFamilyIcon(family)}
+                              </Tag>
+                            </Tooltip>
+                          );
+                        })}
+                      </Space>
+                    </div>
+                  </Col>
+                )}
+
+                {/* Sources */}
+                {ecologyData[decodedSpeciesName].sources &&
+                 ecologyData[decodedSpeciesName].sources.length > 0 && (
+                  <Col xs={24} style={{ marginTop: 16 }}>
                     <Text type="secondary" style={{ fontSize: 12 }}>
                       Fontes:{' '}
                       {ecologyData[decodedSpeciesName].sources.map((source: string, idx: number) => (
                         <span key={idx}>
-                          <a href={source} target="_blank" rel="noopener noreferrer" style={{ fontSize: 12 }}>
+                          <a
+                            href={source}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            style={{ fontSize: 12, fontWeight: 500 }}
+                          >
                             [{idx + 1}]
                           </a>
                           {idx < ecologyData[decodedSpeciesName].sources.length - 1 ? ' ' : ''}
                         </span>
                       ))}
                     </Text>
-                  </div>
+                  </Col>
                 )}
-              </div>
+              </Row>
             )}
-            {(endangeredSpeciesPT[decodedSpeciesName] ||
-              endangeredSpeciesEurope[decodedSpeciesName]) && (
-              <Alert
-                message={
-                  endangeredSpeciesPT[decodedSpeciesName]
-                    ? `Espécie Ameaçada: ${endangeredSpeciesPT[decodedSpeciesName]} (${getEndangermentDescription(endangeredSpeciesPT[decodedSpeciesName])}) em Portugal.`
-                    : `Espécie Ameaçada: ${endangeredSpeciesEurope[decodedSpeciesName]} (${getEndangermentDescription(endangeredSpeciesEurope[decodedSpeciesName])}) na União Europeia.`
-                }
-                type="warning"
-                showIcon
-              />
-            )}
-          </Space>
-
-          {/* Species Photo */}
-          <div style={{ flexShrink: 0 }}>
-            <img
-              src={`imgs/sp/${family}/${decodedSpeciesName}.jpg`}
-              alt={`Fotografia de ${decodedSpeciesName}`}
-              style={{
-                width: 300,
-                height: 300,
-                objectFit: 'cover',
-                borderRadius: 8,
-                backgroundColor: '#f0f0f0',
-              }}
-              onError={(e) => {
-                // Hide image if it fails to load
-                e.currentTarget.style.display = 'none';
-              }}
-            />
-          </div>
-        </div>
+          </Col>
+        </Row>
       </Card>
 
       {/* Trend Chart Card - shows only when flight curves data exists */}
