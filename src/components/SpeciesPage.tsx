@@ -217,7 +217,7 @@ function SpeciesPage() {
               <div style={{ marginTop: 16 }}>
                 <div style={{ marginBottom: 8 }}>
                   <Text strong>Habitat: </Text>
-                  <Text>{ecologyData[decodedSpeciesName].habitat}</Text>
+                  <Text>{ecologyData[decodedSpeciesName].habitat.join(', ')}</Text>
                 </div>
                 {ecologyData[decodedSpeciesName].hostPlantFamilies && ecologyData[decodedSpeciesName].hostPlantFamilies.length > 0 && (
                   <div style={{ marginBottom: 8 }}>
