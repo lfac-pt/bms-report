@@ -202,10 +202,9 @@ function SpeciesPage() {
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'center',
-              backgroundColor: '#fafafa',
               borderRadius: 12,
               overflow: 'hidden',
-              border: '1px solid #f0f0f0'
+              boxShadow: '0 2px 8px rgba(0,0,0,.1), 0 4px 12px rgba(0,0,0,.06)'
             }}>
               <img
                 src={`imgs/sp/${family}/${decodedSpeciesName}.jpg`}
@@ -213,8 +212,8 @@ function SpeciesPage() {
                 style={{
                   width: '100%',
                   height: '100%',
-                  objectFit: 'contain',
-                  padding: 12,
+                  objectFit: 'cover',
+                  borderRadius: 12
                 }}
                 onError={(e) => {
                   // Hide image if it fails to load
