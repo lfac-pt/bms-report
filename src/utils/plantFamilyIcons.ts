@@ -1,81 +1,39 @@
-// Icons/emojis for plant families
-// Each family is mapped to an appropriate emoji that represents common plants in that family
+// Sprite positions for plant families
+// The plant_family_sprite.png is 2816px × 6144px (4 columns × 8 rows)
+// Each cell is 704px × 768px
+// Scaled to 88px icons: backgroundSize is 352px × 768px, each cell is 88px × 96px
 
-export const PLANT_FAMILY_ICONS: Record<string, string> = {
-  // Grasses
-  'Poaceae': '🌾', // Sheaf of rice - represents grasses
+export interface PlantFamilySpritePosition {
+  x: number;
+  y: number;
+}
 
-  // Legumes/Peas
-  'Fabaceae': '🫘', // Beans - represents legumes
-
-  // Cabbage family
-  'Brassicaceae': '🥬', // Leafy green - represents crucifers
-
-  // Rose family (includes roses, cherries, apples)
-  'Rosaceae': '🌹', // Rose
-
-  // Sunflower/Daisy family
-  'Asteraceae': '🌻', // Sunflower
-
-  // Carrot/Parsley family
-  'Apiaceae': '🥕', // Carrot
-
-  // Mint family
-  'Lamiaceae': '🌿', // Herb
-
-  // Violet family
-  'Violaceae': '💜', // Purple heart - violets are purple
-
-  // Willow family
-  'Salicaceae': '🌳', // Deciduous tree - willows and poplars
-
-  // Oak/Beech family
-  'Fagaceae': '🍂', // Fallen leaf - represents oak
-
-  // Birch family
-  'Betulaceae': '🌳', // Deciduous tree - birches
-
-  // Elm family
-  'Ulmaceae': '🌳', // Deciduous tree - elms
-
-  // Nettle family
-  'Urticaceae': '🪴', // Potted plant - nettles are common weedy plants
-
-  // Knotweed family (includes sorrels and docks)
-  'Polygonaceae': '🌿', // Herb
-
-  // Mallow family
-  'Malvaceae': '🌺', // Hibiscus - a mallow
-
-  // Heather family (includes heathers, rhododendrons, blueberries)
-  'Ericaceae': '🫐', // Blueberries
-
-  // Buckthorn family
-  'Rhamnaceae': '🌳', // Tree/shrub
-
-  // Geranium family
-  'Geraniaceae': '🌸', // Cherry blossom - represents geranium flowers
-
-  // Plantain family
-  'Plantaginaceae': '🌿', // Herb - plantains are herbaceous
-
-  // Figwort family (now mostly moved to Plantaginaceae)
-  'Scrophulariaceae': '🌿', // Herb
-
-  // Rockrose family
-  'Cistaceae': '🌸', // Cherry blossom - rockroses have simple flowers
-
-  // Milkweed/Dogbane family
-  'Apocynaceae': '🦋', // Butterfly - milkweed is famous for monarch butterflies
-
-  // Birthwort family
-  'Aristolochiaceae': '🌿', // Herb
-
-  // Honeysuckle family
-  'Caprifoliaceae': '🌸', // Cherry blossom - honeysuckle flowers
-
-  // Laurel family (includes bay laurel, avocado)
-  'Lauraceae': '🥑', // Avocado - a well-known member
+export const PLANT_FAMILY_SPRITES: Record<string, PlantFamilySpritePosition> = {
+  'Poaceae': { x: -4, y: -8 },              // Row 1, Col 1
+  'Fabaceae': { x: -89, y: -8 },            // Row 1, Col 2
+  'Brassicaceae': { x: -175, y: -8 },       // Row 1, Col 3
+  'Rosaceae': { x: -260, y: -8 },           // Row 1, Col 4
+  'Asteraceae': { x: -4, y: -99 },          // Row 2, Col 1
+  'Apiaceae': { x: -89, y: -99 },           // Row 2, Col 2
+  'Lamiaceae': { x: -175, y: -99 },         // Row 2, Col 3
+  'Violaceae': { x: -260, y: -99 },         // Row 2, Col 4
+  'Salicaceae': { x: -4, y: -200 },         // Row 3, Col 1
+  'Rutaceae': { x: -89, y: -200 },          // Row 3, Col 2
+  'Polygalaceae': { x: -175, y: -200 },     // Row 3, Col 3
+  'Linaceae': { x: -260, y: -200 },         // Row 3, Col 4
+  'Urticaceae': { x: -4, y: -291 },         // Row 4, Col 1
+  'Polygonaceae': { x: -89, y: -291 },      // Row 4, Col 2
+  'Malvaceae': { x: -175, y: -291 },        // Row 4, Col 3
+  'Ericaceae': { x: -260, y: -291 },        // Row 4, Col 4
+  'Rhamnaceae': { x: -4, y: -392 },         // Row 5, Col 1
+  'Geraniaceae': { x: -89, y: -392 },       // Row 5, Col 2
+  'Plantaginaceae': { x: -175, y: -392 },   // Row 5, Col 3
+  'Scrophulariaceae': { x: -260, y: -392 }, // Row 5, Col 4
+  'Cistaceae': { x: -4, y: -483 },          // Row 6, Col 1
+  'Apocynaceae': { x: -89, y: -483 },       // Row 6, Col 2
+  'Aristolochiaceae': { x: -175, y: -483 }, // Row 6, Col 3
+  'Caprifoliaceae': { x: -260, y: -483 },   // Row 6, Col 4
+  'Lauraceae': { x: -1, y: -577 },          // Row 7, Col 1
 };
 
 // Common names for plant families (Portuguese)
@@ -107,20 +65,12 @@ export const PLANT_FAMILY_COMMON_NAMES: Record<string, string> = {
   'Lauraceae': 'Lauráceas',
 };
 
-// Get icon for a plant family, with fallback to generic plant
-export function getPlantFamilyIcon(family: string): string {
-  return PLANT_FAMILY_ICONS[family] || '🌱'; // Default to seedling
+// Get sprite position for a plant family
+export function getPlantFamilySpritePosition(family: string): PlantFamilySpritePosition | null {
+  return PLANT_FAMILY_SPRITES[family] || null;
 }
 
 // Get common name for a plant family
 export function getPlantFamilyCommonName(family: string): string | undefined {
   return PLANT_FAMILY_COMMON_NAMES[family];
-}
-
-// Get all families with their icons
-export function getAllPlantFamilyIcons(): Array<{ family: string; icon: string }> {
-  return Object.entries(PLANT_FAMILY_ICONS).map(([family, icon]) => ({
-    family,
-    icon,
-  }));
 }

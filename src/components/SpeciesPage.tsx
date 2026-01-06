@@ -14,7 +14,7 @@ import endangeredSpeciesEurope from "../utils/endangered_eu";
 import { FlightCurvesDisplay } from "./charts/FlightCurveChart";
 import { SpeciesTrendChart } from "./charts/SpeciesTrendChart";
 import TrendClassificationBadge from "./TrendClassificationBadge";
-import { getPlantFamilyIcon, getPlantFamilyCommonName } from "../utils/plantFamilyIcons";
+import { getPlantFamilySpritePosition, getPlantFamilyCommonName } from "../utils/plantFamilyIcons";
 import { getHabitatSpritePosition } from "../utils/habitatTypeIcons";
 
 const { Title, Text } = Typography;
@@ -373,20 +373,23 @@ function SpeciesPage() {
                               )}
                             </div>
                           );
+                          const spritePos = getPlantFamilySpritePosition(family);
+                          if (!spritePos) return null;
+
                           return (
                             <Tooltip key={family} title={tooltipContent}>
-                              <Tag
-                                color="orange"
+                              <div
                                 style={{
-                                  fontSize: 28,
-                                  padding: '8px 16px',
+                                  width: 88,
+                                  height: 88,
+                                  backgroundImage: 'url(imgs/plant_family_sprite.png)',
+                                  backgroundPosition: `${spritePos.x}px ${spritePos.y}px`,
+                                  backgroundSize: '352px 768px',
+                                  borderRadius: 8,
                                   cursor: 'help',
-                                  border: '2px solid #fa8c16',
-                                  borderRadius: 8
+                                  boxShadow: '0 2px 8px rgba(0,0,0,0.1)'
                                 }}
-                              >
-                                {getPlantFamilyIcon(family)}
-                              </Tag>
+                              />
                             </Tooltip>
                           );
                         })}
