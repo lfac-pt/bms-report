@@ -12,10 +12,12 @@ function latLonToMercator(lon: number, lat: number): [number, number] {
 }
 
 // Helper function to convert GeoJSON coordinates to SVG path
-function coordinatesToPath(geometry: any, bounds: any): string {
+function coordinatesToPath(geometry: any, bounds: any, viewBoxWidth: number, viewBoxHeight: number, paddingX: number, paddingY: number): string {
   if (!bounds) return '';
 
   const paths: string[] = [];
+  const mapWidth = viewBoxWidth - (paddingX * 2);
+  const mapHeight = viewBoxHeight - (paddingY * 2);
 
   function processRing(ring: number[][]): string {
     if (!ring || ring.length === 0) return '';
@@ -24,8 +26,8 @@ function coordinatesToPath(geometry: any, bounds: any): string {
       const lon = coord[0];
       const lat = coord[1];
       const [mercX, mercY] = latLonToMercator(lon, lat);
-      const x = ((mercX - bounds.minMercX) / (bounds.maxMercX - bounds.minMercX)) * 100;
-      const y = ((bounds.maxMercY - mercY) / (bounds.maxMercY - bounds.minMercY)) * 100;
+      const x = ((mercX - bounds.minMercX) / (bounds.maxMercX - bounds.minMercX)) * mapWidth + paddingX;
+      const y = ((bounds.maxMercY - mercY) / (bounds.maxMercY - bounds.minMercY)) * mapHeight + paddingY;
       return `${x.toFixed(2)},${y.toFixed(2)}`;
     });
     return `M ${points.join(' L ')} Z`;
@@ -321,16 +323,24 @@ const SpeciesDistrictMap: React.FC<SpeciesDistrictMapProps> = ({
 
   const mapHeight = compact ? 350 : 600;
 
+  // Calculate proper aspect ratio from bounds with padding
+  const paddingX = 0.5; // Left/right padding
+  const paddingY = 8; // Top/bottom padding (larger to balance the visual spacing)
+  const viewBoxWidth = 100 + (paddingX * 2);
+  const viewBoxHeight = bounds
+    ? ((bounds.maxMercY - bounds.minMercY) / (bounds.maxMercX - bounds.minMercX)) * 100 + (paddingY * 2)
+    : 100 + (paddingY * 2);
+
   const mapContent = (
     <>
       <div style={{
         height: mapHeight,
         position: "relative",
-        maxWidth: compact ? 280 : "100%",
+        maxWidth: compact ? 200 : "100%",
         margin: compact ? "0 0 0 auto" : 0
       }}>
         <svg
-          viewBox="0 0 100 100"
+          viewBox={`0 0 ${viewBoxWidth} ${viewBoxHeight}`}
           preserveAspectRatio="xMidYMid meet"
           style={{
             width: "100%",
@@ -351,7 +361,7 @@ const SpeciesDistrictMap: React.FC<SpeciesDistrictMapProps> = ({
             const districtName = feature.properties.dis_name || district;
             const observations = districtObservations.get(district);
             const color = getColor(observations);
-            const path = coordinatesToPath(feature.geometry, bounds);
+            const path = coordinatesToPath(feature.geometry, bounds, viewBoxWidth, viewBoxHeight, paddingX, paddingY);
 
             const tooltipContent = !observations
               ? `${districtName}\n\nSem transectos monitorizados neste distrito`
