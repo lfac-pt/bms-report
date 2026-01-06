@@ -247,7 +247,7 @@ function SpeciesPage() {
           </Col>
 
           {/* Species Information */}
-          <Col xs={24} md={10}>
+          <Col xs={24} md={12}>
             {/* Species Name and Family */}
             <div style={{ marginBottom: 20 }}>
               <Title
@@ -422,7 +422,7 @@ function SpeciesPage() {
           </Col>
 
           {/* District Distribution Map */}
-          <Col xs={24} md={8}>
+          <Col xs={24} md={6}>
             {transectData && transectData.transects && timelineData && (
               <SpeciesDistrictMap
                 speciesName={decodedSpeciesName}

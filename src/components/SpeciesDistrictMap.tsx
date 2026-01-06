@@ -1,5 +1,6 @@
 import React, { useEffect, useState, useMemo } from "react";
-import { Card, Typography, Spin } from "antd";
+import { Card, Typography, Spin, Tooltip } from "antd";
+import { InfoCircleOutlined } from "@ant-design/icons";
 import type { TransectStats } from "../types/transectStats";
 
 const { Text } = Typography;
@@ -321,7 +322,7 @@ const SpeciesDistrictMap: React.FC<SpeciesDistrictMapProps> = ({
     );
   }
 
-  const mapHeight = compact ? 350 : 600;
+  const mapHeight = compact ? 320 : 570; // Reduced to make room for legend below
 
   // Calculate proper aspect ratio from bounds with padding
   const paddingX = 0.5; // Left/right padding
@@ -334,22 +335,24 @@ const SpeciesDistrictMap: React.FC<SpeciesDistrictMapProps> = ({
   const mapContent = (
     <>
       <div style={{
-        height: mapHeight,
-        position: "relative",
-        maxWidth: compact ? 200 : "100%",
+        maxWidth: compact ? 180 : "100%",
         margin: compact ? "0 0 0 auto" : 0
       }}>
-        <svg
-          viewBox={`0 0 ${viewBoxWidth} ${viewBoxHeight}`}
-          preserveAspectRatio="xMidYMid meet"
-          style={{
-            width: "100%",
-            height: "100%",
-            background: "#f8f9fa",
-            border: "1px solid #e0e0e0",
-            borderRadius: 4
-          }}
-        >
+        <div style={{
+          height: mapHeight,
+          position: "relative"
+        }}>
+          <svg
+            viewBox={`0 0 ${viewBoxWidth} ${viewBoxHeight}`}
+            preserveAspectRatio="xMidYMid meet"
+            style={{
+              width: "100%",
+              height: "100%",
+              background: "#f8f9fa",
+              border: "1px solid #e0e0e0",
+              borderRadius: 4
+            }}
+          >
           {geoData && bounds && geoData.features
             .filter((feature: GeoJSONFeature) => {
               const districtName = feature.properties.dis_name_upper || feature.properties.Distrito;
@@ -394,7 +397,21 @@ const SpeciesDistrictMap: React.FC<SpeciesDistrictMapProps> = ({
               </g>
             );
           })}
-        </svg>
+          </svg>
+        </div>
+
+        {/* Legend */}
+        <div style={{
+          fontSize: 11,
+          color: '#595959',
+          textAlign: 'center',
+          marginTop: 4
+        }}>
+          Mapa de distribuição{' '}
+          <Tooltip title="Dados de todos os transectos">
+            <InfoCircleOutlined style={{ fontSize: 10, cursor: 'help' }} />
+          </Tooltip>
+        </div>
       </div>
     </>
   );
