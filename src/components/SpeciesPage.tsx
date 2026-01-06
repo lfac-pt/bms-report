@@ -201,7 +201,7 @@ function SpeciesPage() {
       <Card>
         <Row gutter={24}>
           {/* Species Photo */}
-          <Col xs={24} md={8}>
+          <Col xs={24} md={6}>
             <div style={{
               width: '100%',
               height: '100%',
@@ -247,7 +247,7 @@ function SpeciesPage() {
           </Col>
 
           {/* Species Information */}
-          <Col xs={24} md={16}>
+          <Col xs={24} md={10}>
             {/* Species Name and Family */}
             <div style={{ marginBottom: 20 }}>
               <Title
@@ -420,6 +420,18 @@ function SpeciesPage() {
               </Row>
             )}
           </Col>
+
+          {/* District Distribution Map */}
+          <Col xs={24} md={8}>
+            {transectData && transectData.transects && timelineData && (
+              <SpeciesDistrictMap
+                speciesName={decodedSpeciesName}
+                transectData={transectData.transects}
+                timelineData={timelineData}
+                compact={true}
+              />
+            )}
+          </Col>
         </Row>
       </Card>
 
@@ -467,15 +479,6 @@ function SpeciesPage() {
           loading={loading}
         />
       </Card>
-
-      {/* District Distribution Map */}
-      {transectData && transectData.transects && timelineData && (
-        <SpeciesDistrictMap
-          speciesName={decodedSpeciesName}
-          transectData={transectData.transects}
-          timelineData={timelineData}
-        />
-      )}
 
       <Card
         title="Distribuição por Ano"
