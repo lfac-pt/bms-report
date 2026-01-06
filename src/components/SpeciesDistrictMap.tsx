@@ -322,7 +322,7 @@ const SpeciesDistrictMap: React.FC<SpeciesDistrictMapProps> = ({
     );
   }
 
-  const mapHeight = compact ? 320 : 570; // Reduced to make room for legend below
+  const mapHeight = compact ? 340 : 590; // Reduced to make room for legend below
 
   // Calculate proper aspect ratio from bounds with padding
   const paddingX = 0.5; // Left/right padding
@@ -349,7 +349,6 @@ const SpeciesDistrictMap: React.FC<SpeciesDistrictMapProps> = ({
               width: "100%",
               height: "100%",
               background: "#f8f9fa",
-              border: "1px solid #e0e0e0",
               borderRadius: 4
             }}
           >
@@ -405,7 +404,7 @@ const SpeciesDistrictMap: React.FC<SpeciesDistrictMapProps> = ({
           fontSize: 11,
           color: '#595959',
           textAlign: 'center',
-          marginTop: 4
+          marginTop: 6
         }}>
           Mapa de distribuição{' '}
           <Tooltip title="Dados de todos os transectos">

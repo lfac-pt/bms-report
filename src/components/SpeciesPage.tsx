@@ -201,7 +201,7 @@ function SpeciesPage() {
       <Card>
         <Row gutter={24}>
           {/* Species Photo */}
-          <Col xs={24} md={6}>
+          <Col xs={24} md={7}>
             <div style={{
               width: '100%',
               height: '100%',
@@ -422,7 +422,7 @@ function SpeciesPage() {
           </Col>
 
           {/* District Distribution Map */}
-          <Col xs={24} md={6}>
+          <Col xs={24} md={5}>
             {transectData && transectData.transects && timelineData && (
               <SpeciesDistrictMap
                 speciesName={decodedSpeciesName}
