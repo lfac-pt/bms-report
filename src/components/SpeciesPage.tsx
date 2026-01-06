@@ -15,7 +15,7 @@ import { FlightCurvesDisplay } from "./charts/FlightCurveChart";
 import { SpeciesTrendChart } from "./charts/SpeciesTrendChart";
 import TrendClassificationBadge from "./TrendClassificationBadge";
 import { getPlantFamilyIcon, getPlantFamilyCommonName } from "../utils/plantFamilyIcons";
-import { getHabitatTypeIcon } from "../utils/habitatTypeIcons";
+import { getHabitatSpritePosition } from "../utils/habitatTypeIcons";
 
 const { Title, Text } = Typography;
 
@@ -332,18 +332,18 @@ function SpeciesPage() {
                         </div>
                       </div>
                     }>
-                      <Tag
-                        color="green"
+                      <div
                         style={{
-                          fontSize: 28,
-                          padding: '8px 16px',
+                          width: 88,
+                          height: 88,
+                          backgroundImage: 'url(imgs/habitats.jpg)',
+                          backgroundPosition: `${getHabitatSpritePosition(ecologyData[decodedSpeciesName].habitatType).x}px ${getHabitatSpritePosition(ecologyData[decodedSpeciesName].habitatType).y}px`,
+                          backgroundSize: '352px 192px',
+                          borderRadius: 8,
                           cursor: 'help',
-                          border: '2px solid #52c41a',
-                          borderRadius: 8
+                          boxShadow: '0 2px 8px rgba(0,0,0,0.1)'
                         }}
-                      >
-                        {getHabitatTypeIcon(ecologyData[decodedSpeciesName].habitatType)}
-                      </Tag>
+                      />
                     </Tooltip>
                   </div>
                 </Col>
