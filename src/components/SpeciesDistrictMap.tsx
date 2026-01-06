@@ -366,34 +366,51 @@ const SpeciesDistrictMap: React.FC<SpeciesDistrictMapProps> = ({
             const path = coordinatesToPath(feature.geometry, bounds, viewBoxWidth, viewBoxHeight, paddingX, paddingY);
 
             const tooltipContent = !observations
-              ? `${districtName}\n\nSem transectos monitorizados neste distrito`
+              ? (
+                <div>
+                  <strong>{districtName}</strong>
+                  <div style={{ marginTop: 4 }}>Sem transectos monitorizados neste distrito</div>
+                </div>
+              )
               : observations.percentage === 0
-              ? `${districtName}\n\nNão observada neste distrito\nÉpocas de monitorização: ${observations.totalSeasons}`
-              : `${districtName}\n\n${observations.rarityLevel.label}\nObservado em ${observations.seasonsWithSpecies} de ${observations.totalSeasons} ${
-                  observations.totalSeasons === 1 ? 'época' : 'épocas'
-                } de monitorização no distrito (${observations.seasonPercentage.toFixed(1)}%)`;
+              ? (
+                <div>
+                  <strong>{districtName}</strong>
+                  <div style={{ marginTop: 4 }}>Não observada neste distrito</div>
+                  <div>Épocas de monitorização: {observations.totalSeasons}</div>
+                </div>
+              )
+              : (
+                <div>
+                  <strong>{districtName}</strong>
+                  <div style={{ marginTop: 4 }}><strong>{observations.rarityLevel.label}</strong></div>
+                  <div>Observado em {observations.seasonsWithSpecies} de {observations.totalSeasons} {
+                    observations.totalSeasons === 1 ? 'época' : 'épocas'
+                  } de monitorização no distrito ({observations.seasonPercentage.toFixed(1)}%)</div>
+                </div>
+              );
 
             return (
-              <g key={district}>
-                <path
-                  d={path}
-                  fill={color}
-                  stroke="#666"
-                  strokeWidth="0.3"
-                  opacity={0.9}
-                  style={{ cursor: 'pointer', transition: 'opacity 0.2s' }}
-                  onMouseEnter={(e) => {
-                    e.currentTarget.style.opacity = '1';
-                    e.currentTarget.style.strokeWidth = '0.6';
-                  }}
-                  onMouseLeave={(e) => {
-                    e.currentTarget.style.opacity = '0.9';
-                    e.currentTarget.style.strokeWidth = '0.3';
-                  }}
-                >
-                  <title>{tooltipContent}</title>
-                </path>
-              </g>
+              <Tooltip key={district} title={tooltipContent} mouseEnterDelay={0.3}>
+                <g>
+                  <path
+                    d={path}
+                    fill={color}
+                    stroke="#666"
+                    strokeWidth="0.3"
+                    opacity={0.9}
+                    style={{ cursor: 'pointer', transition: 'opacity 0.2s' }}
+                    onMouseEnter={(e) => {
+                      e.currentTarget.style.opacity = '1';
+                      e.currentTarget.style.strokeWidth = '0.6';
+                    }}
+                    onMouseLeave={(e) => {
+                      e.currentTarget.style.opacity = '0.9';
+                      e.currentTarget.style.strokeWidth = '0.3';
+                    }}
+                  />
+                </g>
+              </Tooltip>
             );
           })}
           </svg>
