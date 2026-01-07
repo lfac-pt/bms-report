@@ -44,6 +44,7 @@ function SpeciesPage() {
   const [flightCurvesData, setFlightCurvesData] = useState<any>(null);
   const [ecologyData, setEcologyData] = useState<any>(null);
   const [commonNames, setCommonNames] = useState<Record<string, string>>({});
+  const [photoCredits, setPhotoCredits] = useState<any>(null);
   const [loading, setLoading] = useState(true);
   const [showOnlyQualityTransects, setShowOnlyQualityTransects] = useState(true);
   const [imageError, setImageError] = useState(false);
@@ -77,13 +78,18 @@ function SpeciesPage() {
       fetch("data/common-names.json")
         .then(res => res.json())
         .catch(() => ({})),
+      // eslint-disable-next-line no-undef
+      fetch("data/photo-credits.json")
+        .then(res => res.json())
+        .catch(() => null),
     ])
-      .then(([timeline, transects, flightCurves, ecology, commonNamesData]) => {
+      .then(([timeline, transects, flightCurves, ecology, commonNamesData, credits]) => {
         setTimelineData(timeline);
         setTransectData(transects);
         setFlightCurvesData(flightCurves);
         setEcologyData(ecology);
         setCommonNames(commonNamesData);
+        setPhotoCredits(credits);
         setLoading(false);
       })
       .catch(() => {
@@ -543,6 +549,19 @@ function SpeciesPage() {
           })}
         </Row>
       </Card>
+
+      {/* Photo Credits */}
+      {!imageError && photoCredits && photoCredits[decodedSpeciesName] && (
+        <div style={{
+          textAlign: 'center',
+          padding: '16px 0',
+          color: '#8c8c8c',
+          fontSize: 12,
+          borderTop: '1px solid #f0f0f0'
+        }}>
+          Fotografia: {photoCredits[decodedSpeciesName].photographer}
+        </div>
+      )}
     </Space>
   );
 }
