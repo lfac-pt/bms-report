@@ -1,7 +1,7 @@
 {
   "regions": {
-    "Lusitano": {
-      "region": "Lusitano",
+    "Lusitânico": {
+      "region": "Lusitânico",
       "transectCount": 3,
       "transectIds": [
         "242415",
@@ -395,7 +395,7 @@
     }
   },
   "metadata": {
-    "calculatedAt": "2025-12-31T01:06:54.198Z",
+    "calculatedAt": "2026-01-07T19:17:09.473Z",
     "baselineYear": 2021,
     "minimumTransects": 3,
     "minimumYears": 3

@@ -10,7 +10,7 @@ interface TransectMapProps {
 
 // Mapping from zone numbers (DN) to Portuguese region names
 const ZONE_NAMES: Record<number, string> = {
-  9: "Lusitano",
+  9: "Lusitânico",
   11: "Mediterrânico Montanhoso",
   12: "Mediterrânico Norte",
   13: "Mediterrânico Sul",
@@ -18,7 +18,7 @@ const ZONE_NAMES: Record<number, string> = {
 
 // Colors for climatic regions (light hues)
 const REGION_COLORS: Record<string, string> = {
-  Lusitano: "#FFD699", // Peach/amber - Atlantic influence
+  Lusitânico: "#FFD699", // Peach/amber - Atlantic influence
   "Mediterrânico Norte": "#99C2FF", // Light blue - Northern Mediterranean
   "Mediterrânico Sul": "#FF99B3", // Light pink - Southern Mediterranean
   "Mediterrânico Montanhoso": "#C299FF", // Light purple - Mountains

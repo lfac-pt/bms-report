@@ -1,10 +1,11 @@
 import { useState, useEffect } from "react";
 import { Button, Card, Space, Typography, Spin, Alert, Checkbox, Slider } from "antd";
 import { ArrowLeftOutlined } from "@ant-design/icons";
-import { useParams, useNavigate, useSearchParams, Link } from "react-router-dom";
+import { useParams, useNavigate, useSearchParams } from "react-router-dom";
 import { MapContainer, TileLayer, GeoJSON, CircleMarker, Popup } from "react-leaflet";
 import { SPECIES_FAMILIES } from "../constants";
 import { TransectStats } from "../types/transectStats";
+import SpeciesCard from "./SpeciesCard";
 import "leaflet/dist/leaflet.css";
 
 const { Title, Text } = Typography;
@@ -98,6 +99,9 @@ function MunicipalityPage() {
   const [geoData, setGeoData] = useState<MunicipalityGeoJSON | null>(null);
   const [transects, setTransects] = useState<TransectStats[]>([]);
   const [loading, setLoading] = useState(true);
+  const [commonNamesMap, setCommonNamesMap] = useState<Record<string, string>>({});
+  const [flightCurvesData, setFlightCurvesData] = useState<any>(null);
+  const [timelineData, setTimelineData] = useState<any>(null);
 
   // Initialize month from URL or default
   const monthParam = searchParams.get("month");
@@ -110,17 +114,26 @@ function MunicipalityPage() {
   // Decode the municipality name from URL
   const decodedMunicipalityName = municipalityName ? decodeURIComponent(municipalityName) : "";
 
-  // Load GeoJSON and transects data
+  // Load GeoJSON, transects, common names, flight curves, and timeline data
   useEffect(() => {
     Promise.all([
       // eslint-disable-next-line no-undef
       fetch("data/municipalities-species-map.geojson").then(res => res.json()),
       // eslint-disable-next-line no-undef
       fetch("data/processed-transects.json").then(res => res.json()),
+      // eslint-disable-next-line no-undef
+      fetch("data/common-names.json").then(res => res.json()).catch(() => ({})),
+      // eslint-disable-next-line no-undef
+      fetch("data/flight-curves-data.json").then(res => res.json()).catch(() => null),
+      // eslint-disable-next-line no-undef
+      fetch("data/timeline-data.json").then(res => res.json()).catch(() => null),
     ])
-      .then(([geoJsonData, transectsData]) => {
+      .then(([geoJsonData, transectsData, commonNames, flightCurves, timeline]) => {
         setGeoData(geoJsonData);
         setTransects(transectsData.transects || []);
+        setCommonNamesMap(commonNames);
+        setFlightCurvesData(flightCurves);
+        setTimelineData(timeline);
         setLoading(false);
       })
       .catch(() => {
@@ -189,6 +202,10 @@ function MunicipalityPage() {
   const municipalityTransects = transects.filter(
     t => t.concelho.toLowerCase() === decodedMunicipalityName.toLowerCase()
   );
+
+  // Determine municipality's climatic region from first transect
+  const firstTransect = municipalityTransects.find(t => t.climaticRegion);
+  const municipalityClimaticRegion = firstTransect?.climaticRegion || 'Lusitânico'; // Default fallback
 
   // Filter transects with coordinates
   const transectsWithCoords = municipalityTransects.filter(t => t.coordinates !== null);
@@ -406,22 +423,30 @@ function MunicipalityPage() {
         {displayedSpecies.length === 0 ? (
           <Alert message="Sem dados de espécies para este município" type="info" />
         ) : (
-          <Space direction="vertical" size="large" style={{ width: "100%" }}>
+          <Space direction="vertical" size="middle" style={{ width: "100%" }}>
             {sortedFamilies.map(family => (
               <div key={family}>
-                <Title level={4}>{family}</Title>
-                <ul style={{ listStyleType: "none", paddingLeft: 0 }}>
+                <Title level={4} style={{ marginBottom: 12 }}>{family}</Title>
+                <div
+                  style={{
+                    display: "grid",
+                    gridTemplateColumns: "repeat(2, 1fr)",
+                    gap: "8px",
+                  }}
+                >
                   {familyGroups[family].map(speciesName => (
-                    <li key={speciesName} style={{ marginBottom: 8 }}>
-                      <Link
-                        to={`/species/${encodeURIComponent(speciesName)}`}
-                        style={{ fontSize: 15 }}
-                      >
-                        <Text italic>{speciesName}</Text>
-                      </Link>
-                    </li>
+                    <SpeciesCard
+                      key={speciesName}
+                      speciesName={speciesName}
+                      commonName={commonNamesMap[speciesName]}
+                      family={family}
+                      climaticRegion={municipalityClimaticRegion}
+                      municipalityTransects={municipalityTransects}
+                      flightCurvesData={flightCurvesData}
+                      timelineData={timelineData}
+                    />
                   ))}
-                </ul>
+                </div>
               </div>
             ))}
           </Space>
