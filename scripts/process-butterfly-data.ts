@@ -39,7 +39,6 @@ import {
   processMunicipalityGeoJSON,
 } from "./processors";
 import { calculateRegionalGBI } from "./processors/regional-gbi-processor";
-import { processCommonNames } from "./processors/common-names-processor";
 
 /**
  * Main processing function
@@ -397,9 +396,6 @@ async function processData(): Promise<void> {
 
   // Process municipality species map
   processMunicipalityGeoJSON(results, allData);
-
-  // Process common names from CSV
-  await processCommonNames();
 
   console.log("\n✓ Processing complete!");
   console.log(`\nSummary:`);
