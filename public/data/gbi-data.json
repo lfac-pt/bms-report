@@ -1,6 +1,6 @@
 {
   "metadata": {
-    "baselineYear": 2021,
+    "baselineYear": 2020,
     "grasslandSpecies": [
       {
         "scientificName": "Anthocharis cardamines",
@@ -23,8 +23,12 @@
         "type": "widespread"
       },
       {
-        "scientificName": "Polyommatus icarus",
+        "scientificName": "Ochlodes sylvanus",
         "type": "widespread"
+      },
+      {
+        "scientificName": "Cupido minimus",
+        "type": "specialist"
       },
       {
         "scientificName": "Euphydryas aurinia",
@@ -44,7 +48,7 @@
       }
     ],
     "qualityCriteria": {
-      "minYearsActive": 6,
+      "minYearsActive": 2,
       "minVisitsPerYear": 5
     },
     "transectsUsed": [
@@ -61,9 +65,81 @@
         "isActive": true
       },
       {
+        "transectId": "314210",
+        "yearsActive": 3,
+        "avgVisitsPerYear": 11.3,
+        "isActive": true
+      },
+      {
+        "transectId": "341825",
+        "yearsActive": 2,
+        "avgVisitsPerYear": 24.5,
+        "isActive": true
+      },
+      {
+        "transectId": "309311",
+        "yearsActive": 3,
+        "avgVisitsPerYear": 13,
+        "isActive": true
+      },
+      {
+        "transectId": "340155",
+        "yearsActive": 2,
+        "avgVisitsPerYear": 5.5,
+        "isActive": true
+      },
+      {
+        "transectId": "316845",
+        "yearsActive": 3,
+        "avgVisitsPerYear": 7.3,
+        "isActive": true
+      },
+      {
+        "transectId": "315938",
+        "yearsActive": 2,
+        "avgVisitsPerYear": 7,
+        "isActive": false
+      },
+      {
+        "transectId": "254989",
+        "yearsActive": 2,
+        "avgVisitsPerYear": 5.5,
+        "isActive": false
+      },
+      {
+        "transectId": "303737",
+        "yearsActive": 3,
+        "avgVisitsPerYear": 5.7,
+        "isActive": true
+      },
+      {
         "transectId": "228038",
         "yearsActive": 6,
         "avgVisitsPerYear": 5.7,
+        "isActive": true
+      },
+      {
+        "transectId": "267250",
+        "yearsActive": 5,
+        "avgVisitsPerYear": 13.2,
+        "isActive": true
+      },
+      {
+        "transectId": "336687",
+        "yearsActive": 2,
+        "avgVisitsPerYear": 10,
+        "isActive": true
+      },
+      {
+        "transectId": "330931",
+        "yearsActive": 2,
+        "avgVisitsPerYear": 52.5,
+        "isActive": true
+      },
+      {
+        "transectId": "309105",
+        "yearsActive": 2,
+        "avgVisitsPerYear": 8.5,
         "isActive": true
       },
       {
@@ -73,9 +149,27 @@
         "isActive": true
       },
       {
+        "transectId": "338236",
+        "yearsActive": 2,
+        "avgVisitsPerYear": 18,
+        "isActive": true
+      },
+      {
         "transectId": "256572",
         "yearsActive": 6,
         "avgVisitsPerYear": 26.2,
+        "isActive": true
+      },
+      {
+        "transectId": "255860",
+        "yearsActive": 5,
+        "avgVisitsPerYear": 9.2,
+        "isActive": true
+      },
+      {
+        "transectId": "228413",
+        "yearsActive": 4,
+        "avgVisitsPerYear": 12,
         "isActive": true
       },
       {
@@ -97,6 +191,72 @@
         "isActive": true
       },
       {
+        "transectId": "321934",
+        "yearsActive": 2,
+        "avgVisitsPerYear": 6.5,
+        "isActive": false
+      },
+      {
+        "transectId": "227678",
+        "yearsActive": 3,
+        "avgVisitsPerYear": 11,
+        "isActive": false
+      },
+      {
+        "transectId": "265814",
+        "yearsActive": 4,
+        "avgVisitsPerYear": 14.8,
+        "isActive": true
+      },
+      {
+        "transectId": "265795",
+        "yearsActive": 4,
+        "avgVisitsPerYear": 15.3,
+        "isActive": true
+      },
+      {
+        "transectId": "241710",
+        "yearsActive": 2,
+        "avgVisitsPerYear": 15.5,
+        "isActive": false
+      },
+      {
+        "transectId": "255958",
+        "yearsActive": 5,
+        "avgVisitsPerYear": 11.8,
+        "isActive": true
+      },
+      {
+        "transectId": "242632",
+        "yearsActive": 4,
+        "avgVisitsPerYear": 6.8,
+        "isActive": true
+      },
+      {
+        "transectId": "241707",
+        "yearsActive": 2,
+        "avgVisitsPerYear": 16.5,
+        "isActive": false
+      },
+      {
+        "transectId": "295724",
+        "yearsActive": 5,
+        "avgVisitsPerYear": 8.6,
+        "isActive": true
+      },
+      {
+        "transectId": "298076",
+        "yearsActive": 4,
+        "avgVisitsPerYear": 7.3,
+        "isActive": true
+      },
+      {
+        "transectId": "304132",
+        "yearsActive": 2,
+        "avgVisitsPerYear": 10,
+        "isActive": true
+      },
+      {
         "transectId": "216760",
         "yearsActive": 7,
         "avgVisitsPerYear": 14.7,
@@ -115,10 +275,76 @@
         "isActive": true
       },
       {
+        "transectId": "291783",
+        "yearsActive": 4,
+        "avgVisitsPerYear": 14.8,
+        "isActive": true
+      },
+      {
+        "transectId": "256525",
+        "yearsActive": 4,
+        "avgVisitsPerYear": 22.3,
+        "isActive": true
+      },
+      {
         "transectId": "272901",
         "yearsActive": 6,
         "avgVisitsPerYear": 28.3,
         "isActive": true
+      },
+      {
+        "transectId": "240324",
+        "yearsActive": 5,
+        "avgVisitsPerYear": 27,
+        "isActive": true
+      },
+      {
+        "transectId": "307951",
+        "yearsActive": 3,
+        "avgVisitsPerYear": 7,
+        "isActive": true
+      },
+      {
+        "transectId": "316058",
+        "yearsActive": 2,
+        "avgVisitsPerYear": 10,
+        "isActive": true
+      },
+      {
+        "transectId": "270599",
+        "yearsActive": 4,
+        "avgVisitsPerYear": 9.3,
+        "isActive": true
+      },
+      {
+        "transectId": "265800",
+        "yearsActive": 5,
+        "avgVisitsPerYear": 9.2,
+        "isActive": true
+      },
+      {
+        "transectId": "243008",
+        "yearsActive": 5,
+        "avgVisitsPerYear": 12.6,
+        "isActive": true
+      },
+      {
+        "transectId": "319947",
+        "yearsActive": 3,
+        "avgVisitsPerYear": 5,
+        "isActive": true
+      },
+      {
+        "transectId": "340178",
+        "yearsActive": 2,
+        "avgVisitsPerYear": 7,
+        "isActive": true
+      },
+      {
+        "transectId": "257109",
+        "yearsActive": 2,
+        "avgVisitsPerYear": 15,
+        "isActive": false
       },
       {
         "transectId": "240301",
@@ -127,10 +353,58 @@
         "isActive": true
       },
       {
+        "transectId": "306541",
+        "yearsActive": 3,
+        "avgVisitsPerYear": 37,
+        "isActive": true
+      },
+      {
+        "transectId": "306547",
+        "yearsActive": 3,
+        "avgVisitsPerYear": 30.7,
+        "isActive": true
+      },
+      {
+        "transectId": "243024",
+        "yearsActive": 2,
+        "avgVisitsPerYear": 5,
+        "isActive": false
+      },
+      {
+        "transectId": "216727",
+        "yearsActive": 6,
+        "avgVisitsPerYear": 7.2,
+        "isActive": false
+      },
+      {
         "transectId": "243659",
         "yearsActive": 6,
         "avgVisitsPerYear": 10.2,
         "isActive": true
+      },
+      {
+        "transectId": "303743",
+        "yearsActive": 3,
+        "avgVisitsPerYear": 11,
+        "isActive": true
+      },
+      {
+        "transectId": "308808",
+        "yearsActive": 3,
+        "avgVisitsPerYear": 5.7,
+        "isActive": true
+      },
+      {
+        "transectId": "340164",
+        "yearsActive": 2,
+        "avgVisitsPerYear": 8.5,
+        "isActive": true
+      },
+      {
+        "transectId": "292171",
+        "yearsActive": 3,
+        "avgVisitsPerYear": 14.7,
+        "isActive": false
       },
       {
         "transectId": "218548",
@@ -139,10 +413,34 @@
         "isActive": true
       },
       {
+        "transectId": "337718",
+        "yearsActive": 2,
+        "avgVisitsPerYear": 16,
+        "isActive": true
+      },
+      {
+        "transectId": "241125",
+        "yearsActive": 2,
+        "avgVisitsPerYear": 5,
+        "isActive": false
+      },
+      {
         "transectId": "241378",
         "yearsActive": 6,
         "avgVisitsPerYear": 27.2,
         "isActive": true
+      },
+      {
+        "transectId": "227933",
+        "yearsActive": 5,
+        "avgVisitsPerYear": 6.8,
+        "isActive": false
+      },
+      {
+        "transectId": "228032",
+        "yearsActive": 5,
+        "avgVisitsPerYear": 7.2,
+        "isActive": false
       },
       {
         "transectId": "227915",
@@ -163,6 +461,42 @@
         "isActive": true
       },
       {
+        "transectId": "316954",
+        "yearsActive": 3,
+        "avgVisitsPerYear": 23.7,
+        "isActive": true
+      },
+      {
+        "transectId": "308805",
+        "yearsActive": 3,
+        "avgVisitsPerYear": 24,
+        "isActive": true
+      },
+      {
+        "transectId": "344392",
+        "yearsActive": 2,
+        "avgVisitsPerYear": 23.5,
+        "isActive": true
+      },
+      {
+        "transectId": "220698",
+        "yearsActive": 5,
+        "avgVisitsPerYear": 12,
+        "isActive": false
+      },
+      {
+        "transectId": "216761",
+        "yearsActive": 6,
+        "avgVisitsPerYear": 8,
+        "isActive": false
+      },
+      {
+        "transectId": "336745",
+        "yearsActive": 2,
+        "avgVisitsPerYear": 5.5,
+        "isActive": true
+      },
+      {
         "transectId": "222006",
         "yearsActive": 6,
         "avgVisitsPerYear": 10.8,
@@ -171,8 +505,26 @@
       {
         "transectId": "216728",
         "yearsActive": 7,
-        "avgVisitsPerYear": 6.6,
+        "avgVisitsPerYear": 6.9,
         "isActive": true
+      },
+      {
+        "transectId": "342048",
+        "yearsActive": 2,
+        "avgVisitsPerYear": 5,
+        "isActive": true
+      },
+      {
+        "transectId": "241113",
+        "yearsActive": 2,
+        "avgVisitsPerYear": 5,
+        "isActive": false
+      },
+      {
+        "transectId": "255969",
+        "yearsActive": 3,
+        "avgVisitsPerYear": 10.3,
+        "isActive": false
       }
     ],
     "calculationMethod": "rbms + MSI (LOESS smoothing span=0.75, bootstrap CIs)",
@@ -183,8 +535,8 @@
     }
   },
   "gbiByYear": {
-    "2021": {
-      "year": 2021,
+    "2020": {
+      "year": 2020,
       "gbiValue": 100,
       "ci_lower": 100,
       "ci_upper": 100,
@@ -195,55 +547,72 @@
       "smoothedValue": 100,
       "speciesIndices": [],
       "dataQuality": {
+        "transectCount": 36,
+        "totalVisits": 155,
+        "speciesWithData": 11
+      }
+    },
+    "2021": {
+      "year": 2021,
+      "gbiValue": 137.86,
+      "ci_lower": 70.66,
+      "ci_upper": 260.21,
+      "ci80_lower": 90.76,
+      "ci80_upper": 223.37,
+      "ci90_lower": 79.85,
+      "ci90_upper": 252.9,
+      "smoothedValue": 137.86,
+      "speciesIndices": [],
+      "dataQuality": {
         "transectCount": 51,
         "totalVisits": 178,
-        "speciesWithData": 10
+        "speciesWithData": 11
       }
     },
     "2022": {
       "year": 2022,
-      "gbiValue": 77.41,
-      "ci_lower": 41.52,
-      "ci_upper": 126.94,
-      "ci80_lower": 51,
-      "ci80_upper": 100.31,
-      "ci90_lower": 47.18,
-      "ci90_upper": 114.37,
-      "smoothedValue": 77.41,
+      "gbiValue": 163.89,
+      "ci_lower": 57.36,
+      "ci_upper": 295.18,
+      "ci80_lower": 79.26,
+      "ci80_upper": 240.98,
+      "ci90_lower": 64.94,
+      "ci90_upper": 269.79,
+      "smoothedValue": 163.89,
       "speciesIndices": [],
       "dataQuality": {
         "transectCount": 46,
         "totalVisits": 182,
-        "speciesWithData": 10
+        "speciesWithData": 11
       }
     },
     "2023": {
       "year": 2023,
-      "gbiValue": 60.13,
-      "ci_lower": 25.18,
-      "ci_upper": 80.8,
-      "ci80_lower": 32.36,
-      "ci80_upper": 72.73,
-      "ci90_lower": 28.56,
-      "ci90_upper": 77.7,
-      "smoothedValue": 60.13,
+      "gbiValue": 167.95,
+      "ci_lower": 59.76,
+      "ci_upper": 299.49,
+      "ci80_lower": 82.28,
+      "ci80_upper": 251.37,
+      "ci90_lower": 68.78,
+      "ci90_upper": 277.11,
+      "smoothedValue": 167.95,
       "speciesIndices": [],
       "dataQuality": {
         "transectCount": 73,
         "totalVisits": 201,
-        "speciesWithData": 10
+        "speciesWithData": 11
       }
     },
     "2024": {
       "year": 2024,
-      "gbiValue": 80.48,
-      "ci_lower": 35.06,
-      "ci_upper": 110.68,
-      "ci80_lower": 43.53,
-      "ci80_upper": 98.09,
-      "ci90_lower": 38.02,
-      "ci90_upper": 104.94,
-      "smoothedValue": 80.48,
+      "gbiValue": 167.37,
+      "ci_lower": 61.91,
+      "ci_upper": 292.31,
+      "ci80_lower": 86.01,
+      "ci80_upper": 250.94,
+      "ci90_lower": 70.5,
+      "ci90_upper": 274.18,
+      "smoothedValue": 167.37,
       "speciesIndices": [],
       "dataQuality": {
         "transectCount": 80,
@@ -253,14 +622,14 @@
     },
     "2025": {
       "year": 2025,
-      "gbiValue": 34.68,
-      "ci_lower": 18.88,
-      "ci_upper": 62.72,
-      "ci80_lower": 23.19,
-      "ci80_upper": 46.43,
-      "ci90_lower": 20.78,
-      "ci90_upper": 54.84,
-      "smoothedValue": 34.68,
+      "gbiValue": 183.24,
+      "ci_lower": 63.26,
+      "ci_upper": 333.98,
+      "ci80_lower": 93.25,
+      "ci80_upper": 272.25,
+      "ci90_lower": 74.43,
+      "ci90_upper": 298.14,
+      "smoothedValue": 183.24,
       "speciesIndices": [],
       "dataQuality": {
         "transectCount": 72,
@@ -270,6 +639,7 @@
     }
   },
   "years": [
+    2020,
     2021,
     2022,
     2023,
@@ -277,27 +647,27 @@
     2025
   ],
   "gbiTrend": {
-    "category": "Strong decline",
-    "rate": 0.8123,
+    "category": "Uncertain",
+    "rate": 1.1094,
     "rateCI": {
-      "lower": 0.6927,
-      "upper": 0.9084
+      "lower": 0.9095,
+      "upper": 1.2229
     },
-    "pcn": -56.46,
+    "pcn": 68.07,
     "pcnCI": {
-      "lower": -76.97,
-      "upper": -31.92
+      "lower": -37.77,
+      "upper": 173.52
     },
-    "pc1": -18.77,
+    "pc1": 10.94,
     "pc1CI": {
-      "lower": -30.73,
-      "upper": -9.16
+      "lower": -9.05,
+      "upper": 22.29
     }
   },
   "widespreadMSI": {
     "gbiByYear": {
-      "2021": {
-        "year": 2021,
+      "2020": {
+        "year": 2020,
         "gbiValue": 100,
         "ci_lower": 100,
         "ci_upper": 100,
@@ -313,16 +683,33 @@
           "speciesWithData": 6
         }
       },
+      "2021": {
+        "year": 2021,
+        "gbiValue": 112.72,
+        "ci_lower": 43.43,
+        "ci_upper": 286.18,
+        "ci80_lower": 50.06,
+        "ci80_upper": 256.48,
+        "ci90_lower": 46.56,
+        "ci90_upper": 270.41,
+        "smoothedValue": 112.72,
+        "speciesIndices": [],
+        "dataQuality": {
+          "transectCount": 0,
+          "totalVisits": 0,
+          "speciesWithData": 6
+        }
+      },
       "2022": {
         "year": 2022,
-        "gbiValue": 93.68,
-        "ci_lower": 69.45,
-        "ci_upper": 117.29,
-        "ci80_lower": 76.12,
-        "ci80_upper": 106.57,
-        "ci90_lower": 72.61,
-        "ci90_upper": 113.95,
-        "smoothedValue": 93.68,
+        "gbiValue": 100.22,
+        "ci_lower": 37.26,
+        "ci_upper": 265.72,
+        "ci80_lower": 41.05,
+        "ci80_upper": 234.75,
+        "ci90_lower": 38.41,
+        "ci90_upper": 253.42,
+        "smoothedValue": 100.22,
         "speciesIndices": [],
         "dataQuality": {
           "transectCount": 0,
@@ -332,14 +719,14 @@
       },
       "2023": {
         "year": 2023,
-        "gbiValue": 70.07,
-        "ci_lower": 30.61,
-        "ci_upper": 96.24,
-        "ci80_lower": 36.21,
-        "ci80_upper": 85.66,
-        "ci90_lower": 32.34,
-        "ci90_upper": 92.18,
-        "smoothedValue": 70.07,
+        "gbiValue": 110.27,
+        "ci_lower": 38.44,
+        "ci_upper": 389.92,
+        "ci80_lower": 44.69,
+        "ci80_upper": 256.21,
+        "ci90_lower": 41.2,
+        "ci90_upper": 282.72,
+        "smoothedValue": 110.27,
         "speciesIndices": [],
         "dataQuality": {
           "transectCount": 0,
@@ -349,14 +736,14 @@
       },
       "2024": {
         "year": 2024,
-        "gbiValue": 85.23,
-        "ci_lower": 30.26,
-        "ci_upper": 120.35,
-        "ci80_lower": 41.46,
-        "ci80_upper": 104.78,
-        "ci90_lower": 34.37,
-        "ci90_upper": 114.99,
-        "smoothedValue": 85.23,
+        "gbiValue": 116.09,
+        "ci_lower": 40.82,
+        "ci_upper": 290.25,
+        "ci80_lower": 50.6,
+        "ci80_upper": 255.24,
+        "ci90_lower": 43.68,
+        "ci90_upper": 276.58,
+        "smoothedValue": 116.09,
         "speciesIndices": [],
         "dataQuality": {
           "transectCount": 0,
@@ -366,14 +753,14 @@
       },
       "2025": {
         "year": 2025,
-        "gbiValue": 78.65,
-        "ci_lower": 33.24,
-        "ci_upper": 102.55,
-        "ci80_lower": 44,
-        "ci80_upper": 92.5,
-        "ci90_lower": 37.19,
-        "ci90_upper": 97.04,
-        "smoothedValue": 78.65,
+        "gbiValue": 127.23,
+        "ci_lower": 42.92,
+        "ci_upper": 344.63,
+        "ci80_lower": 54.39,
+        "ci80_upper": 297.56,
+        "ci90_lower": 47.13,
+        "ci90_upper": 315.78,
+        "smoothedValue": 127.23,
         "speciesIndices": [],
         "dataQuality": {
           "transectCount": 0,
@@ -384,23 +771,24 @@
     },
     "gbiTrend": {
       "category": "Uncertain",
-      "rate": 0.9441,
+      "rate": 1.0405,
       "rateCI": {
-        "lower": 0.7386,
-        "upper": 1.0115
+        "lower": 0.8821,
+        "upper": 1.2088
       },
-      "pcn": -20.54,
+      "pcn": 21.93,
       "pcnCI": {
-        "lower": -70.24,
-        "upper": 4.68
+        "lower": -46.58,
+        "upper": 158.05
       },
-      "pc1": -5.59,
+      "pc1": 4.05,
       "pc1CI": {
-        "lower": -26.14,
-        "upper": 1.15
+        "lower": -11.79,
+        "upper": 20.88
       }
     },
     "years": [
+      2020,
       2021,
       2022,
       2023,
@@ -410,8 +798,8 @@
   },
   "specialistMSI": {
     "gbiByYear": {
-      "2021": {
-        "year": 2021,
+      "2020": {
+        "year": 2020,
         "gbiValue": 100,
         "ci_lower": 100,
         "ci_upper": 100,
@@ -424,53 +812,70 @@
         "dataQuality": {
           "transectCount": 0,
           "totalVisits": 0,
-          "speciesWithData": 4
+          "speciesWithData": 5
+        }
+      },
+      "2021": {
+        "year": 2021,
+        "gbiValue": 175.54,
+        "ci_lower": 81.86,
+        "ci_upper": 375.14,
+        "ci80_lower": 101.98,
+        "ci80_upper": 285.56,
+        "ci90_lower": 88.36,
+        "ci90_upper": 334.79,
+        "smoothedValue": 175.54,
+        "speciesIndices": [],
+        "dataQuality": {
+          "transectCount": 0,
+          "totalVisits": 0,
+          "speciesWithData": 5
         }
       },
       "2022": {
         "year": 2022,
-        "gbiValue": 58.16,
-        "ci_lower": 16.94,
-        "ci_upper": 225.82,
-        "ci80_lower": 21.6,
-        "ci80_upper": 98.51,
-        "ci90_lower": 18.54,
-        "ci90_upper": 186.38,
-        "smoothedValue": 58.16,
+        "gbiValue": 295.69,
+        "ci_lower": 64.54,
+        "ci_upper": 540.08,
+        "ci80_lower": 98.4,
+        "ci80_upper": 393.32,
+        "ci90_lower": 77.98,
+        "ci90_upper": 459.85,
+        "smoothedValue": 295.69,
         "speciesIndices": [],
         "dataQuality": {
           "transectCount": 0,
           "totalVisits": 0,
-          "speciesWithData": 4
+          "speciesWithData": 5
         }
       },
       "2023": {
         "year": 2023,
-        "gbiValue": 47.79,
-        "ci_lower": 10.74,
-        "ci_upper": 87.99,
-        "ci80_lower": 15.83,
-        "ci80_upper": 70.88,
-        "ci90_lower": 13.04,
-        "ci90_upper": 80.36,
-        "smoothedValue": 47.79,
+        "gbiValue": 278.25,
+        "ci_lower": 57.35,
+        "ci_upper": 460.9,
+        "ci80_lower": 88.18,
+        "ci80_upper": 333.6,
+        "ci90_lower": 68.03,
+        "ci90_upper": 379.98,
+        "smoothedValue": 278.25,
         "speciesIndices": [],
         "dataQuality": {
           "transectCount": 0,
           "totalVisits": 0,
-          "speciesWithData": 4
+          "speciesWithData": 5
         }
       },
       "2024": {
         "year": 2024,
-        "gbiValue": 73.84,
-        "ci_lower": 18.87,
-        "ci_upper": 132.75,
-        "ci80_lower": 30.97,
-        "ci80_upper": 106.26,
-        "ci90_lower": 25.29,
-        "ci90_upper": 121.28,
-        "smoothedValue": 73.84,
+        "gbiValue": 259.62,
+        "ci_lower": 55.48,
+        "ci_upper": 465.7,
+        "ci80_lower": 83.82,
+        "ci80_upper": 344.64,
+        "ci90_lower": 68.83,
+        "ci90_upper": 406.2,
+        "smoothedValue": 259.62,
         "speciesIndices": [],
         "dataQuality": {
           "transectCount": 0,
@@ -480,14 +885,14 @@
       },
       "2025": {
         "year": 2025,
-        "gbiValue": 10.16,
-        "ci_lower": 4.22,
-        "ci_upper": 51.92,
-        "ci80_lower": 5.67,
-        "ci80_upper": 36.39,
-        "ci90_lower": 4.8,
-        "ci90_upper": 47.24,
-        "smoothedValue": 10.16,
+        "gbiValue": 283.87,
+        "ci_lower": 50.05,
+        "ci_upper": 526.26,
+        "ci80_lower": 81.54,
+        "ci80_upper": 353.24,
+        "ci90_lower": 67.01,
+        "ci90_upper": 437.21,
+        "smoothedValue": 283.87,
         "speciesIndices": [],
         "dataQuality": {
           "transectCount": 0,
@@ -497,24 +902,25 @@
       }
     },
     "gbiTrend": {
-      "category": "Strong decline",
-      "rate": 0.6482,
+      "category": "Uncertain",
+      "rate": 1.1982,
       "rateCI": {
-        "lower": 0.5381,
-        "upper": 0.9328
+        "lower": 0.8422,
+        "upper": 1.3184
       },
-      "pcn": -82.35,
+      "pcn": 147.02,
       "pcnCI": {
-        "lower": -91.61,
-        "upper": -24.26
+        "lower": -57.63,
+        "upper": 298.35
       },
-      "pc1": -35.18,
+      "pc1": 19.82,
       "pc1CI": {
-        "lower": -46.19,
-        "upper": -6.72
+        "lower": -15.78,
+        "upper": 31.84
       }
     },
     "years": [
+      2020,
       2021,
       2022,
       2023,
