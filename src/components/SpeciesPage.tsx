@@ -182,7 +182,10 @@ function SpeciesPage() {
   }
 
   // Get available years and calculate species data for each year
-  const years = [...timelineData.years].reverse(); // Most recent first
+  // Exclude 2019 when showing only quality transects (baseline year moved to 2020)
+  const years = [...timelineData.years]
+    .filter(year => !showOnlyQualityTransects || year !== 2019)
+    .reverse(); // Most recent first
 
   return (
     <Space direction="vertical" size="large" style={{ width: "100%", padding: 24 }}>
