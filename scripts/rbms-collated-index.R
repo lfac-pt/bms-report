@@ -908,7 +908,32 @@ data_quality <- list(
   baseline_year = baseline_year_used
 )
 
-# Step 13: Create output structure
+# Step 13: Prepare site indices for output (transect-level indices per year)
+site_indices_output <- NULL
+if (site_index_success && exists("site_indices") && nrow(site_indices) > 0) {
+  # Extract relevant columns: SITE_ID, M_YEAR, SINDEX
+  # SINDEX is already normalized to 1-km transect length
+  site_indices_df <- data.frame(
+    site_id = as.character(site_indices$SITE_ID),
+    year = as.integer(site_indices$M_YEAR),
+    index = as.numeric(site_indices$SINDEX)
+  )
+
+  # Convert to list format for JSON
+  site_indices_output <- split(site_indices_df, site_indices_df$site_id)
+  site_indices_output <- lapply(site_indices_output, function(site_data) {
+    # Create year -> index mapping
+    indices_by_year <- setNames(
+      as.list(site_data$index),
+      as.character(site_data$year)
+    )
+    return(indices_by_year)
+  })
+
+  cat(paste("Prepared site indices for", length(site_indices_output), "transects\n"))
+}
+
+# Step 14: Create output structure
 output <- list(
   species = species_name,
   collated_indices = normalized_indices,
@@ -916,6 +941,7 @@ output <- list(
   trend_statistics = trend_statistics,
   trend_line = if(length(trend_line) > 0) trend_line else NULL,
   regional_phenology_curves = if(length(regional_pheno_curves) > 0) regional_pheno_curves else NULL,
+  site_indices = if(!is.null(site_indices_output)) site_indices_output else NULL,
   data_quality = data_quality,
   processing_info = list(
     method = "rbms (regional GAM flight curves + GLM collated index + bootstrap CI + linear trend + transect length normalization)",
@@ -925,7 +951,7 @@ output <- list(
   )
 )
 
-# Step 14: Write JSON output
+# Step 15: Write JSON output
 cat(paste("Writing output to:", output_file, "\n"))
 json_output <- jsonlite::toJSON(output, pretty = TRUE, auto_unbox = TRUE)
 write(json_output, file = output_file)

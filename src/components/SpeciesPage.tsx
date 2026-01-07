@@ -14,6 +14,7 @@ import endangeredSpeciesEurope from "../utils/endangered_eu";
 import { FlightCurvesDisplay } from "./charts/FlightCurveChart";
 import { SpeciesTrendChart } from "./charts/SpeciesTrendChart";
 import TrendClassificationBadge from "./TrendClassificationBadge";
+import TransectIndicesTable from "./TransectIndicesTable";
 import { getPlantFamilySpritePosition, getPlantFamilyCommonName } from "../utils/plantFamilyIcons";
 import { getHabitatSpritePosition } from "../utils/habitatTypeIcons";
 
@@ -551,6 +552,15 @@ function SpeciesPage() {
             );
           })}
         </Row>
+      </Card>
+
+      {/* Transect Indices Table */}
+      <Card title="Índices de Abundância por Transecto">
+        <TransectIndicesTable
+          speciesName={decodedSpeciesName}
+          flightCurvesData={flightCurvesData}
+          transectData={transectData}
+        />
       </Card>
 
       {/* Photo Credits */}

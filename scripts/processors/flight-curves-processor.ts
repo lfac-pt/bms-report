@@ -297,6 +297,7 @@ export async function calculateAllFlightCurves(
         collatedIndices: rbmsOutput.collated_indices,
         trendLine: rbmsOutput.trend_line || null,
         regionalPhenologyCurves: rbmsOutput.regional_phenology_curves || null, // Regional flight curves
+        site_indices: rbmsOutput.site_indices || null, // Transect-level indices per year
         dataQuality: {
           ...rbmsOutput.data_quality,
           // Species-specific metrics (overriding totals)
