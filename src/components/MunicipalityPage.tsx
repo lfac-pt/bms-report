@@ -205,7 +205,7 @@ function MunicipalityPage() {
 
   // Determine municipality's climatic region from first transect
   const firstTransect = municipalityTransects.find(t => t.climaticRegion);
-  const municipalityClimaticRegion = firstTransect?.climaticRegion || 'Lusitano'; // Default fallback
+  const municipalityClimaticRegion = firstTransect?.climaticRegion || 'Lusitânico'; // Default fallback
 
   // Filter transects with coordinates
   const transectsWithCoords = municipalityTransects.filter(t => t.coordinates !== null);

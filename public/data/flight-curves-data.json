@@ -1,6 +1,6 @@
 {
   "metadata": {
-    "processingDate": "2025-12-31T01:06:47.126Z",
+    "processingDate": "2026-01-07T19:17:01.848Z",
     "baselineYear": 2021,
     "qualityCriteria": {
       "minYearsActive": 6,
@@ -833,7 +833,7 @@
             "totalCounts": 103
           }
         },
-        "Lusitano": {
+        "Lusitânico": {
           "phenologyCurves": {
             "2021": {
               "year": "2021",
@@ -902,7 +902,7 @@
       },
       "processingInfo": {
         "method": "rbms (regional GAM flight curves + GLM collated index + bootstrap CI + linear trend + transect length normalization)",
-        "timestamp": "2025-12-30 15:51:54",
+        "timestamp": "2026-01-07 19:11:25",
         "rbms_version": "1.2.0",
         "bootstrap_iterations": 500
       },
@@ -1994,7 +1994,7 @@
             "totalCounts": 46
           }
         },
-        "Lusitano": {
+        "Lusitânico": {
           "phenologyCurves": {
             "2021": {
               "year": "2021",
@@ -2063,7 +2063,7 @@
       },
       "processingInfo": {
         "method": "rbms (regional GAM flight curves + GLM collated index + bootstrap CI + linear trend + transect length normalization)",
-        "timestamp": "2025-12-30 15:51:59",
+        "timestamp": "2026-01-07 19:11:31",
         "rbms_version": "1.2.0",
         "bootstrap_iterations": 500
       },
@@ -3236,7 +3236,7 @@
             "totalCounts": 1220
           }
         },
-        "Lusitano": {
+        "Lusitânico": {
           "phenologyCurves": {
             "2021": {
               "year": "2021",
@@ -3611,7 +3611,7 @@
       },
       "processingInfo": {
         "method": "rbms (regional GAM flight curves + GLM collated index + bootstrap CI + linear trend + transect length normalization)",
-        "timestamp": "2025-12-30 15:52:05",
+        "timestamp": "2026-01-07 19:11:38",
         "rbms_version": "1.2.0",
         "bootstrap_iterations": 500
       },
@@ -4805,7 +4805,7 @@
             "totalCounts": 58
           }
         },
-        "Lusitano": {
+        "Lusitânico": {
           "phenologyCurves": {
             "2021": {
               "year": "2021",
@@ -4874,7 +4874,7 @@
       },
       "processingInfo": {
         "method": "rbms (regional GAM flight curves + GLM collated index + bootstrap CI + linear trend + transect length normalization)",
-        "timestamp": "2025-12-30 15:52:09",
+        "timestamp": "2026-01-07 19:11:44",
         "rbms_version": "1.2.0",
         "bootstrap_iterations": 500
       },
@@ -5945,7 +5945,7 @@
             "totalCounts": 15
           }
         },
-        "Lusitano": {
+        "Lusitânico": {
           "phenologyCurves": {
             "2021": {
               "year": "2021",
@@ -6320,7 +6320,7 @@
       },
       "processingInfo": {
         "method": "rbms (regional GAM flight curves + GLM collated index + bootstrap CI + linear trend + transect length normalization)",
-        "timestamp": "2025-12-30 15:52:16",
+        "timestamp": "2026-01-07 19:11:53",
         "rbms_version": "1.2.0",
         "bootstrap_iterations": 500
       },
@@ -7412,7 +7412,7 @@
             "totalCounts": 205
           }
         },
-        "Lusitano": {
+        "Lusitânico": {
           "phenologyCurves": {
             "2021": {
               "year": "2021",
@@ -7481,7 +7481,7 @@
       },
       "processingInfo": {
         "method": "rbms (regional GAM flight curves + GLM collated index + bootstrap CI + linear trend + transect length normalization)",
-        "timestamp": "2025-12-30 15:52:23",
+        "timestamp": "2026-01-07 19:12:03",
         "rbms_version": "1.2.0",
         "bootstrap_iterations": 500
       },
@@ -8675,7 +8675,7 @@
             "totalCounts": 58
           }
         },
-        "Lusitano": {
+        "Lusitânico": {
           "phenologyCurves": {
             "2021": {
               "year": "2021",
@@ -9050,7 +9050,7 @@
       },
       "processingInfo": {
         "method": "rbms (regional GAM flight curves + GLM collated index + bootstrap CI + linear trend + transect length normalization)",
-        "timestamp": "2025-12-30 15:52:30",
+        "timestamp": "2026-01-07 19:12:16",
         "rbms_version": "1.2.0",
         "bootstrap_iterations": 500
       },
@@ -10244,7 +10244,7 @@
             "totalCounts": 80
           }
         },
-        "Lusitano": {
+        "Lusitânico": {
           "phenologyCurves": {
             "2021": {
               "year": "2021",
@@ -10619,7 +10619,7 @@
       },
       "processingInfo": {
         "method": "rbms (regional GAM flight curves + GLM collated index + bootstrap CI + linear trend + transect length normalization)",
-        "timestamp": "2025-12-30 15:52:37",
+        "timestamp": "2026-01-07 19:12:30",
         "rbms_version": "1.2.0",
         "bootstrap_iterations": 500
       },
@@ -11813,7 +11813,7 @@
             "totalCounts": 556
           }
         },
-        "Lusitano": {
+        "Lusitânico": {
           "phenologyCurves": {
             "2021": {
               "year": "2021",
@@ -12290,7 +12290,7 @@
       },
       "processingInfo": {
         "method": "rbms (regional GAM flight curves + GLM collated index + bootstrap CI + linear trend + transect length normalization)",
-        "timestamp": "2025-12-30 15:52:43",
+        "timestamp": "2026-01-07 19:12:41",
         "rbms_version": "1.2.0",
         "bootstrap_iterations": 500
       },
@@ -13484,7 +13484,7 @@
             "totalCounts": 698
           }
         },
-        "Lusitano": {
+        "Lusitânico": {
           "phenologyCurves": {
             "2021": {
               "year": "2021",
@@ -14063,7 +14063,7 @@
       },
       "processingInfo": {
         "method": "rbms (regional GAM flight curves + GLM collated index + bootstrap CI + linear trend + transect length normalization)",
-        "timestamp": "2025-12-30 15:52:47",
+        "timestamp": "2026-01-07 19:12:47",
         "rbms_version": "1.2.0",
         "bootstrap_iterations": 500
       },
@@ -15257,7 +15257,7 @@
             "totalCounts": 232
           }
         },
-        "Lusitano": {
+        "Lusitânico": {
           "phenologyCurves": {
             "2021": {
               "year": "2021",
@@ -15326,7 +15326,7 @@
       },
       "processingInfo": {
         "method": "rbms (regional GAM flight curves + GLM collated index + bootstrap CI + linear trend + transect length normalization)",
-        "timestamp": "2025-12-30 15:52:53",
+        "timestamp": "2026-01-07 19:12:54",
         "rbms_version": "1.2.0",
         "bootstrap_iterations": 500
       },
@@ -16499,7 +16499,7 @@
             "totalCounts": 92
           }
         },
-        "Lusitano": {
+        "Lusitânico": {
           "phenologyCurves": {
             "2021": {
               "year": "2021",
@@ -16568,7 +16568,7 @@
       },
       "processingInfo": {
         "method": "rbms (regional GAM flight curves + GLM collated index + bootstrap CI + linear trend + transect length normalization)",
-        "timestamp": "2025-12-30 15:52:57",
+        "timestamp": "2026-01-07 19:12:59",
         "rbms_version": "1.2.0",
         "bootstrap_iterations": 500
       },
@@ -17354,7 +17354,7 @@
             "totalCounts": 98
           }
         },
-        "Lusitano": {
+        "Lusitânico": {
           "phenologyCurves": {
             "2021": {
               "year": "2021",
@@ -17933,7 +17933,7 @@
       },
       "processingInfo": {
         "method": "rbms (regional GAM flight curves + GLM collated index + bootstrap CI + linear trend + transect length normalization)",
-        "timestamp": "2025-12-30 15:53:02",
+        "timestamp": "2026-01-07 19:13:05",
         "rbms_version": "1.2.0",
         "bootstrap_iterations": 500
       },
@@ -18617,7 +18617,7 @@
             "totalCounts": 53
           }
         },
-        "Lusitano": {
+        "Lusitânico": {
           "phenologyCurves": {
             "2021": {
               "year": "2021",
@@ -18686,7 +18686,7 @@
       },
       "processingInfo": {
         "method": "rbms (regional GAM flight curves + GLM collated index + bootstrap CI + linear trend + transect length normalization)",
-        "timestamp": "2025-12-30 15:53:07",
+        "timestamp": "2026-01-07 19:13:15",
         "rbms_version": "1.2.0",
         "bootstrap_iterations": 500
       },
@@ -19370,7 +19370,7 @@
             "totalCounts": 86
           }
         },
-        "Lusitano": {
+        "Lusitânico": {
           "phenologyCurves": {
             "2021": {
               "year": "2021",
@@ -19439,7 +19439,7 @@
       },
       "processingInfo": {
         "method": "rbms (regional GAM flight curves + GLM collated index + bootstrap CI + linear trend + transect length normalization)",
-        "timestamp": "2025-12-30 15:53:11",
+        "timestamp": "2026-01-07 19:13:19",
         "rbms_version": "1.2.0",
         "bootstrap_iterations": 500
       },
@@ -20123,7 +20123,7 @@
             "totalCounts": 14
           }
         },
-        "Lusitano": {
+        "Lusitânico": {
           "phenologyCurves": {
             "2021": {
               "year": "2021",
@@ -20600,7 +20600,7 @@
       },
       "processingInfo": {
         "method": "rbms (regional GAM flight curves + GLM collated index + bootstrap CI + linear trend + transect length normalization)",
-        "timestamp": "2025-12-30 15:53:16",
+        "timestamp": "2026-01-07 19:13:27",
         "rbms_version": "1.2.0",
         "bootstrap_iterations": 500
       },
@@ -21773,7 +21773,7 @@
             "totalCounts": 606
           }
         },
-        "Lusitano": {
+        "Lusitânico": {
           "phenologyCurves": {
             "2021": {
               "year": "2021",
@@ -21944,7 +21944,7 @@
       },
       "processingInfo": {
         "method": "rbms (regional GAM flight curves + GLM collated index + bootstrap CI + linear trend + transect length normalization)",
-        "timestamp": "2025-12-30 15:53:21",
+        "timestamp": "2026-01-07 19:13:32",
         "rbms_version": "1.2.0",
         "bootstrap_iterations": 500
       },
@@ -22934,7 +22934,7 @@
             "totalCounts": 81
           }
         },
-        "Lusitano": {
+        "Lusitânico": {
           "phenologyCurves": {
             "2021": {
               "year": "2021",
@@ -23513,7 +23513,7 @@
       },
       "processingInfo": {
         "method": "rbms (regional GAM flight curves + GLM collated index + bootstrap CI + linear trend + transect length normalization)",
-        "timestamp": "2025-12-30 15:53:29",
+        "timestamp": "2026-01-07 19:13:40",
         "rbms_version": "1.2.0",
         "bootstrap_iterations": 500
       },
@@ -24707,7 +24707,7 @@
             "totalCounts": 125
           }
         },
-        "Lusitano": {
+        "Lusitânico": {
           "phenologyCurves": {
             "2021": {
               "year": "2021",
@@ -24776,7 +24776,7 @@
       },
       "processingInfo": {
         "method": "rbms (regional GAM flight curves + GLM collated index + bootstrap CI + linear trend + transect length normalization)",
-        "timestamp": "2025-12-30 15:53:33",
+        "timestamp": "2026-01-07 19:13:45",
         "rbms_version": "1.2.0",
         "bootstrap_iterations": 500
       },
@@ -25949,7 +25949,7 @@
             "totalCounts": 203
           }
         },
-        "Lusitano": {
+        "Lusitânico": {
           "phenologyCurves": {
             "2021": {
               "year": "2021",
@@ -26018,7 +26018,7 @@
       },
       "processingInfo": {
         "method": "rbms (regional GAM flight curves + GLM collated index + bootstrap CI + linear trend + transect length normalization)",
-        "timestamp": "2025-12-30 15:53:37",
+        "timestamp": "2026-01-07 19:13:51",
         "rbms_version": "1.2.0",
         "bootstrap_iterations": 500
       },
@@ -27212,7 +27212,7 @@
             "totalCounts": 234
           }
         },
-        "Lusitano": {
+        "Lusitânico": {
           "phenologyCurves": {
             "2021": {
               "year": "2021",
@@ -27791,7 +27791,7 @@
       },
       "processingInfo": {
         "method": "rbms (regional GAM flight curves + GLM collated index + bootstrap CI + linear trend + transect length normalization)",
-        "timestamp": "2025-12-30 15:53:42",
+        "timestamp": "2026-01-07 19:13:56",
         "rbms_version": "1.2.0",
         "bootstrap_iterations": 500
       },
@@ -28781,7 +28781,7 @@
             "totalCounts": 37
           }
         },
-        "Lusitano": {
+        "Lusitânico": {
           "phenologyCurves": {
             "2021": {
               "year": "2021",
@@ -28952,7 +28952,7 @@
       },
       "processingInfo": {
         "method": "rbms (regional GAM flight curves + GLM collated index + bootstrap CI + linear trend + transect length normalization)",
-        "timestamp": "2025-12-30 15:53:47",
+        "timestamp": "2026-01-07 19:14:02",
         "rbms_version": "1.2.0",
         "bootstrap_iterations": 500
       },
@@ -30023,7 +30023,7 @@
             "totalCounts": 171
           }
         },
-        "Lusitano": {
+        "Lusitânico": {
           "phenologyCurves": {
             "2021": {
               "year": "2021",
@@ -30602,7 +30602,7 @@
       },
       "processingInfo": {
         "method": "rbms (regional GAM flight curves + GLM collated index + bootstrap CI + linear trend + transect length normalization)",
-        "timestamp": "2025-12-30 15:53:52",
+        "timestamp": "2026-01-07 19:14:07",
         "rbms_version": "1.2.0",
         "bootstrap_iterations": 500
       },
@@ -31796,7 +31796,7 @@
             "totalCounts": 682
           }
         },
-        "Lusitano": {
+        "Lusitânico": {
           "phenologyCurves": {
             "2021": {
               "year": "2021",
@@ -32375,7 +32375,7 @@
       },
       "processingInfo": {
         "method": "rbms (regional GAM flight curves + GLM collated index + bootstrap CI + linear trend + transect length normalization)",
-        "timestamp": "2025-12-30 15:53:56",
+        "timestamp": "2026-01-07 19:14:12",
         "rbms_version": "1.2.0",
         "bootstrap_iterations": 500
       },
@@ -33059,7 +33059,7 @@
             "totalCounts": 33
           }
         },
-        "Lusitano": {
+        "Lusitânico": {
           "phenologyCurves": {
             "2021": {
               "year": "2021",
@@ -33128,7 +33128,7 @@
       },
       "processingInfo": {
         "method": "rbms (regional GAM flight curves + GLM collated index + bootstrap CI + linear trend + transect length normalization)",
-        "timestamp": "2025-12-30 15:54:01",
+        "timestamp": "2026-01-07 19:14:18",
         "rbms_version": "1.2.0",
         "bootstrap_iterations": 500
       },
@@ -34322,7 +34322,7 @@
             "totalCounts": 146
           }
         },
-        "Lusitano": {
+        "Lusitânico": {
           "phenologyCurves": {
             "2021": {
               "year": "2021",
@@ -34901,7 +34901,7 @@
       },
       "processingInfo": {
         "method": "rbms (regional GAM flight curves + GLM collated index + bootstrap CI + linear trend + transect length normalization)",
-        "timestamp": "2025-12-30 15:54:05",
+        "timestamp": "2026-01-07 19:14:22",
         "rbms_version": "1.2.0",
         "bootstrap_iterations": 500
       },
@@ -35585,7 +35585,7 @@
             "totalCounts": 46
           }
         },
-        "Lusitano": {
+        "Lusitânico": {
           "phenologyCurves": {
             "2021": {
               "year": "2021",
@@ -35654,7 +35654,7 @@
       },
       "processingInfo": {
         "method": "rbms (regional GAM flight curves + GLM collated index + bootstrap CI + linear trend + transect length normalization)",
-        "timestamp": "2025-12-30 15:54:10",
+        "timestamp": "2026-01-07 19:14:27",
         "rbms_version": "1.2.0",
         "bootstrap_iterations": 500
       },
@@ -36848,7 +36848,7 @@
             "totalCounts": 764
           }
         },
-        "Lusitano": {
+        "Lusitânico": {
           "phenologyCurves": {
             "2021": {
               "year": "2021",
@@ -37121,7 +37121,7 @@
       },
       "processingInfo": {
         "method": "rbms (regional GAM flight curves + GLM collated index + bootstrap CI + linear trend + transect length normalization)",
-        "timestamp": "2025-12-30 15:54:15",
+        "timestamp": "2026-01-07 19:14:34",
         "rbms_version": "1.2.0",
         "bootstrap_iterations": 500
       },
@@ -38111,7 +38111,7 @@
             "totalCounts": 59
           }
         },
-        "Lusitano": {
+        "Lusitânico": {
           "phenologyCurves": {
             "2021": {
               "year": "2021",
@@ -38282,7 +38282,7 @@
       },
       "processingInfo": {
         "method": "rbms (regional GAM flight curves + GLM collated index + bootstrap CI + linear trend + transect length normalization)",
-        "timestamp": "2025-12-30 15:54:22",
+        "timestamp": "2026-01-07 19:14:42",
         "rbms_version": "1.2.0",
         "bootstrap_iterations": 500
       },
@@ -39476,7 +39476,7 @@
             "totalCounts": 2205
           }
         },
-        "Lusitano": {
+        "Lusitânico": {
           "phenologyCurves": {
             "2021": {
               "year": "2021",
@@ -40055,7 +40055,7 @@
       },
       "processingInfo": {
         "method": "rbms (regional GAM flight curves + GLM collated index + bootstrap CI + linear trend + transect length normalization)",
-        "timestamp": "2025-12-30 15:54:26",
+        "timestamp": "2026-01-07 19:14:47",
         "rbms_version": "1.2.0",
         "bootstrap_iterations": 500
       },
@@ -41147,7 +41147,7 @@
             "totalCounts": 11
           }
         },
-        "Lusitano": {
+        "Lusitânico": {
           "phenologyCurves": {
             "2021": {
               "year": "2021",
@@ -41216,7 +41216,7 @@
       },
       "processingInfo": {
         "method": "rbms (regional GAM flight curves + GLM collated index + bootstrap CI + linear trend + transect length normalization)",
-        "timestamp": "2025-12-30 15:54:32",
+        "timestamp": "2026-01-07 19:14:53",
         "rbms_version": "1.2.0",
         "bootstrap_iterations": 500
       },
@@ -42410,7 +42410,7 @@
             "totalCounts": 553
           }
         },
-        "Lusitano": {
+        "Lusitânico": {
           "phenologyCurves": {
             "2021": {
               "year": "2021",
@@ -42479,7 +42479,7 @@
       },
       "processingInfo": {
         "method": "rbms (regional GAM flight curves + GLM collated index + bootstrap CI + linear trend + transect length normalization)",
-        "timestamp": "2025-12-30 15:54:37",
+        "timestamp": "2026-01-07 19:14:58",
         "rbms_version": "1.2.0",
         "bootstrap_iterations": 500
       },
@@ -43571,7 +43571,7 @@
             "totalCounts": 18
           }
         },
-        "Lusitano": {
+        "Lusitânico": {
           "phenologyCurves": {
             "2021": {
               "year": "2021",
@@ -43742,7 +43742,7 @@
       },
       "processingInfo": {
         "method": "rbms (regional GAM flight curves + GLM collated index + bootstrap CI + linear trend + transect length normalization)",
-        "timestamp": "2025-12-30 15:54:42",
+        "timestamp": "2026-01-07 19:15:04",
         "rbms_version": "1.2.0",
         "bootstrap_iterations": 500
       },
@@ -44936,7 +44936,7 @@
             "totalCounts": 599
           }
         },
-        "Lusitano": {
+        "Lusitânico": {
           "phenologyCurves": {
             "2021": {
               "year": "2021",
@@ -45515,7 +45515,7 @@
       },
       "processingInfo": {
         "method": "rbms (regional GAM flight curves + GLM collated index + bootstrap CI + linear trend + transect length normalization)",
-        "timestamp": "2025-12-30 15:54:47",
+        "timestamp": "2026-01-07 19:15:10",
         "rbms_version": "1.2.0",
         "bootstrap_iterations": 500
       },
@@ -46709,7 +46709,7 @@
             "totalCounts": 2334
           }
         },
-        "Lusitano": {
+        "Lusitânico": {
           "phenologyCurves": {
             "2021": {
               "year": "2021",
@@ -47288,7 +47288,7 @@
       },
       "processingInfo": {
         "method": "rbms (regional GAM flight curves + GLM collated index + bootstrap CI + linear trend + transect length normalization)",
-        "timestamp": "2025-12-30 15:54:51",
+        "timestamp": "2026-01-07 19:15:15",
         "rbms_version": "1.2.0",
         "bootstrap_iterations": 500
       },
@@ -48482,7 +48482,7 @@
             "totalCounts": 2716
           }
         },
-        "Lusitano": {
+        "Lusitânico": {
           "phenologyCurves": {
             "2021": {
               "year": "2021",
@@ -49061,7 +49061,7 @@
       },
       "processingInfo": {
         "method": "rbms (regional GAM flight curves + GLM collated index + bootstrap CI + linear trend + transect length normalization)",
-        "timestamp": "2025-12-30 15:54:56",
+        "timestamp": "2026-01-07 19:15:20",
         "rbms_version": "1.2.0",
         "bootstrap_iterations": 500
       },
@@ -49949,7 +49949,7 @@
             "totalCounts": 309
           }
         },
-        "Lusitano": {
+        "Lusitânico": {
           "phenologyCurves": {
             "2021": {
               "year": "2021",
@@ -50528,7 +50528,7 @@
       },
       "processingInfo": {
         "method": "rbms (regional GAM flight curves + GLM collated index + bootstrap CI + linear trend + transect length normalization)",
-        "timestamp": "2025-12-30 15:55:00",
+        "timestamp": "2026-01-07 19:15:25",
         "rbms_version": "1.2.0",
         "bootstrap_iterations": 500
       },
@@ -51722,7 +51722,7 @@
             "totalCounts": 1052
           }
         },
-        "Lusitano": {
+        "Lusitânico": {
           "phenologyCurves": {
             "2021": {
               "year": "2021",
@@ -52301,7 +52301,7 @@
       },
       "processingInfo": {
         "method": "rbms (regional GAM flight curves + GLM collated index + bootstrap CI + linear trend + transect length normalization)",
-        "timestamp": "2025-12-30 15:55:05",
+        "timestamp": "2026-01-07 19:15:31",
         "rbms_version": "1.2.0",
         "bootstrap_iterations": 500
       },
@@ -52985,7 +52985,7 @@
             "totalCounts": 10
           }
         },
-        "Lusitano": {
+        "Lusitânico": {
           "phenologyCurves": {
             "2021": {
               "year": "2021",
@@ -53462,7 +53462,7 @@
       },
       "processingInfo": {
         "method": "rbms (regional GAM flight curves + GLM collated index + bootstrap CI + linear trend + transect length normalization)",
-        "timestamp": "2025-12-30 15:55:12",
+        "timestamp": "2026-01-07 19:15:40",
         "rbms_version": "1.2.0",
         "bootstrap_iterations": 500
       },
@@ -54125,7 +54125,7 @@
             "totalCounts": 129
           }
         },
-        "Lusitano": {
+        "Lusitânico": {
           "phenologyCurves": {
             "2021": {
               "year": "2021",
@@ -54194,7 +54194,7 @@
       },
       "processingInfo": {
         "method": "rbms (regional GAM flight curves + GLM collated index + bootstrap CI + linear trend + transect length normalization)",
-        "timestamp": "2025-12-30 15:55:15",
+        "timestamp": "2026-01-07 19:15:44",
         "rbms_version": "1.2.0",
         "bootstrap_iterations": 500
       },
@@ -55286,7 +55286,7 @@
             "totalCounts": 106
           }
         },
-        "Lusitano": {
+        "Lusitânico": {
           "phenologyCurves": {
             "2021": {
               "year": "2021",
@@ -55763,7 +55763,7 @@
       },
       "processingInfo": {
         "method": "rbms (regional GAM flight curves + GLM collated index + bootstrap CI + linear trend + transect length normalization)",
-        "timestamp": "2025-12-30 15:55:20",
+        "timestamp": "2026-01-07 19:15:50",
         "rbms_version": "1.2.0",
         "bootstrap_iterations": 500
       },
@@ -56753,7 +56753,7 @@
             "totalCounts": 46
           }
         },
-        "Lusitano": {
+        "Lusitânico": {
           "phenologyCurves": {
             "2021": {
               "year": "2021",
@@ -57128,7 +57128,7 @@
       },
       "processingInfo": {
         "method": "rbms (regional GAM flight curves + GLM collated index + bootstrap CI + linear trend + transect length normalization)",
-        "timestamp": "2025-12-30 15:55:27",
+        "timestamp": "2026-01-07 19:15:57",
         "rbms_version": "1.2.0",
         "bootstrap_iterations": 500
       },
@@ -58301,7 +58301,7 @@
             "totalCounts": 596
           }
         },
-        "Lusitano": {
+        "Lusitânico": {
           "phenologyCurves": {
             "2021": {
               "year": "2021",
@@ -58574,7 +58574,7 @@
       },
       "processingInfo": {
         "method": "rbms (regional GAM flight curves + GLM collated index + bootstrap CI + linear trend + transect length normalization)",
-        "timestamp": "2025-12-30 15:55:32",
+        "timestamp": "2026-01-07 19:16:02",
         "rbms_version": "1.2.0",
         "bootstrap_iterations": 500
       },
@@ -59768,7 +59768,7 @@
             "totalCounts": 718
           }
         },
-        "Lusitano": {
+        "Lusitânico": {
           "phenologyCurves": {
             "2021": {
               "year": "2021",
@@ -60347,7 +60347,7 @@
       },
       "processingInfo": {
         "method": "rbms (regional GAM flight curves + GLM collated index + bootstrap CI + linear trend + transect length normalization)",
-        "timestamp": "2025-12-30 15:55:37",
+        "timestamp": "2026-01-07 19:16:07",
         "rbms_version": "1.2.0",
         "bootstrap_iterations": 500
       },
@@ -61439,7 +61439,7 @@
             "totalCounts": 1255
           }
         },
-        "Lusitano": {
+        "Lusitânico": {
           "phenologyCurves": {
             "2021": {
               "year": "2021",
@@ -62018,7 +62018,7 @@
       },
       "processingInfo": {
         "method": "rbms (regional GAM flight curves + GLM collated index + bootstrap CI + linear trend + transect length normalization)",
-        "timestamp": "2025-12-30 15:55:41",
+        "timestamp": "2026-01-07 19:16:12",
         "rbms_version": "1.2.0",
         "bootstrap_iterations": 500
       },
@@ -63212,7 +63212,7 @@
             "totalCounts": 220
           }
         },
-        "Lusitano": {
+        "Lusitânico": {
           "phenologyCurves": {
             "2021": {
               "year": "2021",
@@ -63587,7 +63587,7 @@
       },
       "processingInfo": {
         "method": "rbms (regional GAM flight curves + GLM collated index + bootstrap CI + linear trend + transect length normalization)",
-        "timestamp": "2025-12-30 15:55:48",
+        "timestamp": "2026-01-07 19:16:19",
         "rbms_version": "1.2.0",
         "bootstrap_iterations": 500
       },
@@ -64679,7 +64679,7 @@
             "totalCounts": 66
           }
         },
-        "Lusitano": {
+        "Lusitânico": {
           "phenologyCurves": {
             "2021": {
               "year": "2021",
@@ -64748,7 +64748,7 @@
       },
       "processingInfo": {
         "method": "rbms (regional GAM flight curves + GLM collated index + bootstrap CI + linear trend + transect length normalization)",
-        "timestamp": "2025-12-30 15:55:53",
+        "timestamp": "2026-01-07 19:16:24",
         "rbms_version": "1.2.0",
         "bootstrap_iterations": 500
       },
@@ -65738,7 +65738,7 @@
             "totalCounts": 55
           }
         },
-        "Lusitano": {
+        "Lusitânico": {
           "phenologyCurves": {
             "2021": {
               "year": "2021",
@@ -65807,7 +65807,7 @@
       },
       "processingInfo": {
         "method": "rbms (regional GAM flight curves + GLM collated index + bootstrap CI + linear trend + transect length normalization)",
-        "timestamp": "2025-12-30 15:55:58",
+        "timestamp": "2026-01-07 19:16:29",
         "rbms_version": "1.2.0",
         "bootstrap_iterations": 500
       },
@@ -66674,7 +66674,7 @@
             "totalCounts": 4
           }
         },
-        "Lusitano": {
+        "Lusitânico": {
           "phenologyCurves": {
             "2021": {
               "year": "2021",
@@ -66947,7 +66947,7 @@
       },
       "processingInfo": {
         "method": "rbms (regional GAM flight curves + GLM collated index + bootstrap CI + linear trend + transect length normalization)",
-        "timestamp": "2025-12-30 15:56:04",
+        "timestamp": "2026-01-07 19:16:35",
         "rbms_version": "1.2.0",
         "bootstrap_iterations": 500
       },
@@ -68141,7 +68141,7 @@
             "totalCounts": 117
           }
         },
-        "Lusitano": {
+        "Lusitânico": {
           "phenologyCurves": {
             "2021": {
               "year": "2021",
@@ -68210,7 +68210,7 @@
       },
       "processingInfo": {
         "method": "rbms (regional GAM flight curves + GLM collated index + bootstrap CI + linear trend + transect length normalization)",
-        "timestamp": "2025-12-30 15:56:09",
+        "timestamp": "2026-01-07 19:16:42",
         "rbms_version": "1.2.0",
         "bootstrap_iterations": 500
       },
@@ -69404,7 +69404,7 @@
             "totalCounts": 271
           }
         },
-        "Lusitano": {
+        "Lusitânico": {
           "phenologyCurves": {
             "2021": {
               "year": "2021",
@@ -69983,7 +69983,7 @@
       },
       "processingInfo": {
         "method": "rbms (regional GAM flight curves + GLM collated index + bootstrap CI + linear trend + transect length normalization)",
-        "timestamp": "2025-12-30 15:56:13",
+        "timestamp": "2026-01-07 19:16:46",
         "rbms_version": "1.2.0",
         "bootstrap_iterations": 500
       },
@@ -71177,7 +71177,7 @@
             "totalCounts": 277
           }
         },
-        "Lusitano": {
+        "Lusitânico": {
           "phenologyCurves": {
             "2021": {
               "year": "2021",
@@ -71654,7 +71654,7 @@
       },
       "processingInfo": {
         "method": "rbms (regional GAM flight curves + GLM collated index + bootstrap CI + linear trend + transect length normalization)",
-        "timestamp": "2025-12-30 15:56:18",
+        "timestamp": "2026-01-07 19:16:51",
         "rbms_version": "1.2.0",
         "bootstrap_iterations": 500
       },
@@ -72848,7 +72848,7 @@
             "totalCounts": 270
           }
         },
-        "Lusitano": {
+        "Lusitânico": {
           "phenologyCurves": {
             "2021": {
               "year": "2021",
@@ -72917,7 +72917,7 @@
       },
       "processingInfo": {
         "method": "rbms (regional GAM flight curves + GLM collated index + bootstrap CI + linear trend + transect length normalization)",
-        "timestamp": "2025-12-30 15:56:22",
+        "timestamp": "2026-01-07 19:16:56",
         "rbms_version": "1.2.0",
         "bootstrap_iterations": 500
       },
