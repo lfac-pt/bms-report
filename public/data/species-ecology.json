@@ -1689,5 +1689,437 @@
     "sources": [
       "https://peecnature.org/butterflies-of-new-mexico/brushfoots-admirals-nymphalidae-limenitidinae/"
     ]
+  },
+  "Arethusana arethusa": {
+    "habitats": [
+      "dry grassland",
+      "rocky areas",
+      "sparse woodland"
+    ],
+    "habitatType": "Grassland",
+    "hostPlantFamilies": [
+      "Poaceae"
+    ],
+    "hostPlantSpecies": [
+      "Festuca species",
+      "Bromus erectus",
+      "Brachypodium pinnatum"
+    ],
+    "sources": [
+      "https://en.wikipedia.org/wiki/Arethusana_arethusa",
+      "https://butterfliesofcroatia.com/arethusana-arethusa/"
+    ]
+  },
+  "Brintesia circe": {
+    "habitats": [
+      "grassland",
+      "rocky areas"
+    ],
+    "habitatType": "Grassland",
+    "hostPlantFamilies": [
+      "Poaceae"
+    ],
+    "hostPlantSpecies": [
+      "Bromus species",
+      "Festuca species",
+      "Sesleria species"
+    ],
+    "sources": [
+      "https://en.wikipedia.org/wiki/Brintesia",
+      "https://butterfliesofcrete.com/family-nymphalidae/brintesia-circe/"
+    ]
+  },
+  "Celastrina argiolus": {
+    "habitats": [
+      "woodland",
+      "gardens",
+      "parks"
+    ],
+    "habitatType": "Woodland",
+    "hostPlantFamilies": [
+      "Aquifoliaceae",
+      "Araliaceae",
+      "Celastraceae",
+      "Rhamnaceae",
+      "Fabaceae"
+    ],
+    "hostPlantSpecies": [
+      "Ilex aquifolium",
+      "Hedera helix"
+    ],
+    "sources": [
+      "https://en.wikipedia.org/wiki/Holly_blue",
+      "https://www.woodlandtrust.org.uk/trees-woods-and-wildlife/animals/butterflies/holly-blue/",
+      "https://butterfly-conservation.org/butterflies/holly-blue"
+    ]
+  },
+  "Coenonympha glycerion": {
+    "habitats": [
+      "grassland",
+      "heathland"
+    ],
+    "habitatType": "Grassland",
+    "hostPlantFamilies": [
+      "Poaceae"
+    ],
+    "hostPlantSpecies": [],
+    "sources": [
+      "http://www.pyrgus.de/Coenonympha_pamphilus_en.html"
+    ]
+  },
+  "Euphydryas aurinia": {
+    "habitats": [
+      "damp grassland",
+      "chalk grassland",
+      "coastal grassland"
+    ],
+    "habitatType": "Wetland",
+    "hostPlantFamilies": [
+      "Caprifoliaceae"
+    ],
+    "hostPlantSpecies": [
+      "Succisa pratensis",
+      "Knautia arvensis",
+      "Scabiosa columbaria"
+    ],
+    "sources": [
+      "https://en.wikipedia.org/wiki/Marsh_fritillary",
+      "https://butterfly-conservation.org/butterflies/marsh-fritillary",
+      "https://www.first-nature.com/insects/lb-euphydryas-aurinia.php"
+    ]
+  },
+  "Gegenes nostrodamus": {
+    "habitats": [
+      "dry grassland",
+      "coastal areas",
+      "rocky slopes"
+    ],
+    "habitatType": "Coastal",
+    "hostPlantFamilies": [
+      "Poaceae"
+    ],
+    "hostPlantSpecies": [
+      "Aeluropus species",
+      "Panicum species"
+    ],
+    "sources": [
+      "https://butterfliesofcrete.com/family-hesperiidae/gegenes-nostrodamus/",
+      "http://www.eurobutterflies.com/sp/nostrodamus.php",
+      "https://en.wikipedia.org/wiki/Gegenes_nostrodamus"
+    ]
+  },
+  "Gonepteryx cleopatra": {
+    "habitats": [
+      "woodland edges",
+      "scrubland",
+      "Mediterranean maquis"
+    ],
+    "habitatType": "Woodland",
+    "hostPlantFamilies": [
+      "Rhamnaceae"
+    ],
+    "hostPlantSpecies": [
+      "Rhamnus alaternus",
+      "Rhamnus catharticus"
+    ],
+    "sources": [
+      "https://en.wikipedia.org/wiki/Gonepteryx_cleopatra",
+      "https://www.monaconatureencyclopedia.com/gonepteryx-cleopatra/?lang=en",
+      "https://www.first-nature.com/insects/lb-gonepteryx-cleopatra.php"
+    ]
+  },
+  "Hesperia comma": {
+    "habitats": [
+      "chalk grassland",
+      "calcareous grassland"
+    ],
+    "habitatType": "Grassland",
+    "hostPlantFamilies": [
+      "Poaceae"
+    ],
+    "hostPlantSpecies": [
+      "Festuca ovina"
+    ],
+    "sources": [
+      "https://en.wikipedia.org/wiki/Hesperia_comma",
+      "https://www.first-nature.com/insects/lb-hesperia-comma.php",
+      "https://butterfly-conservation.org/butterflies/silver-spotted-skipper"
+    ]
+  },
+  "Hyponephele lycaon": {
+    "habitats": [
+      "dry grassland",
+      "rocky terrain"
+    ],
+    "habitatType": "Grassland",
+    "hostPlantFamilies": [
+      "Poaceae"
+    ],
+    "hostPlantSpecies": [
+      "Poa annua",
+      "Festuca species",
+      "Stipa species",
+      "Aira species"
+    ],
+    "sources": [
+      "https://en.wikipedia.org/wiki/Hyponephele_lycaon",
+      "https://butterflies.spnl.org/dusky-meadow-brown-hyponephele-lycaon/"
+    ]
+  },
+  "Laeosopis roboris": {
+    "habitats": [
+      "riparian woodland",
+      "riverside groves"
+    ],
+    "habitatType": "Woodland",
+    "hostPlantFamilies": [
+      "Oleaceae"
+    ],
+    "hostPlantSpecies": [
+      "Fraxinus species"
+    ],
+    "sources": [
+      "https://en.wikipedia.org/wiki/Laeosopis",
+      "https://www.butterfliesoffrance.com/html/Laeosopis%20roboris.htm",
+      "http://www.eurobutterflies.com/sp/roboris.php"
+    ]
+  },
+  "Lasiommata maera": {
+    "habitats": [
+      "rocky areas",
+      "dry grassland",
+      "mountain slopes"
+    ],
+    "habitatType": "Rocky/Mountain",
+    "hostPlantFamilies": [
+      "Poaceae"
+    ],
+    "hostPlantSpecies": [
+      "Poa species",
+      "Festuca species",
+      "Dactylis species"
+    ],
+    "sources": [
+      "https://en.wikipedia.org/wiki/Lasiommata_maera",
+      "https://www.first-nature.com/insects/lb-lasiommata-maera.php",
+      "http://www.eurobutterflies.com/sp/maera.php"
+    ]
+  },
+  "Libythea celtis": {
+    "habitats": [
+      "riparian woodland",
+      "woodland edges"
+    ],
+    "habitatType": "Woodland",
+    "hostPlantFamilies": [
+      "Cannabaceae"
+    ],
+    "hostPlantSpecies": [
+      "Celtis australis",
+      "Ulmus minor"
+    ],
+    "sources": [
+      "https://www.malaga.es/en/laprovincia/naturaleza/lis_cd-9808/repicoteada-libythea-celtis-laicharting-1782",
+      "http://www.eurobutterflies.com/sp/celtis.php"
+    ]
+  },
+  "Ochlodes sylvanus": {
+    "habitats": [
+      "woodland clearings",
+      "hedgerows",
+      "grassland"
+    ],
+    "habitatType": "Grassland",
+    "hostPlantFamilies": [
+      "Poaceae"
+    ],
+    "hostPlantSpecies": [
+      "Dactylis glomerata",
+      "Molinia caerulea",
+      "Brachypodium sylvaticum"
+    ],
+    "sources": [
+      "https://www.first-nature.com/insects/lb-ochlodes-sylvanus.php",
+      "https://en.wikipedia.org/wiki/Large_skipper",
+      "https://butterfly-conservation.org/butterflies/large-skipper"
+    ]
+  },
+  "Phengaris alcon": {
+    "habitats": [
+      "damp meadows",
+      "wet heathlands",
+      "fen-meadows"
+    ],
+    "habitatType": "Wetland",
+    "hostPlantFamilies": [
+      "Gentianaceae"
+    ],
+    "hostPlantSpecies": [
+      "Gentiana pneumonanthe",
+      "Gentiana asclepiadea"
+    ],
+    "sources": [
+      "https://en.wikipedia.org/wiki/Phengaris_alcon",
+      "https://butterfly-conservation.org/butterflies/alcon-blue",
+      "http://www.eurobutterflies.com/sp/alcon.php"
+    ]
+  },
+  "Polyommatus celina": {
+    "habitats": [
+      "grassland",
+      "flowery meadows"
+    ],
+    "habitatType": "Grassland",
+    "hostPlantFamilies": [
+      "Fabaceae"
+    ],
+    "hostPlantSpecies": [],
+    "sources": [
+      "http://www.eurobutterflies.com/sp/celina.php"
+    ]
+  },
+  "Pontia daplidice": {
+    "habitats": [
+      "dry slopes",
+      "rocky areas",
+      "disturbed areas"
+    ],
+    "habitatType": "Scrubland",
+    "hostPlantFamilies": [
+      "Brassicaceae",
+      "Resedaceae"
+    ],
+    "hostPlantSpecies": [
+      "Arabis glabra",
+      "Cakile maritima",
+      "Diplotaxis tenuifolia"
+    ],
+    "sources": [
+      "https://en.wikipedia.org/wiki/Pontia_daplidice",
+      "https://www.ukbutterflies.co.uk/species.php?species=daplidice",
+      "http://www.eurobutterflies.com/sp/daplidice.php"
+    ]
+  },
+  "Pseudophilotes baton": {
+    "habitats": [
+      "dry grassland",
+      "rocky areas"
+    ],
+    "habitatType": "Grassland",
+    "hostPlantFamilies": [
+      "Lamiaceae"
+    ],
+    "hostPlantSpecies": [
+      "Thymus species",
+      "Lavandula species",
+      "Mentha species",
+      "Clinopodium acinos"
+    ],
+    "sources": [
+      "http://www.eurobutterflies.com/sp/baton.php",
+      "https://en.wikipedia.org/wiki/Pseudophilotes_baton"
+    ]
+  },
+  "Satyrus actaea": {
+    "habitats": [
+      "rocky slopes",
+      "mountain grassland"
+    ],
+    "habitatType": "Rocky/Mountain",
+    "hostPlantFamilies": [
+      "Poaceae"
+    ],
+    "hostPlantSpecies": [
+      "Stipa offneri",
+      "Festuca species"
+    ],
+    "sources": [
+      "http://www.eurobutterflies.com/sp/actaea.php",
+      "https://en.wikipedia.org/wiki/Satyrus_actaea",
+      "https://www.malaga.es/en/laprovincia/naturaleza/lis_cd-9827/satiro-negro-satyrus-actaea-esper-1781"
+    ]
+  },
+  "Speyeria aglaja": {
+    "habitats": [
+      "grassland",
+      "moorland",
+      "woodland clearings"
+    ],
+    "habitatType": "Grassland",
+    "hostPlantFamilies": [
+      "Violaceae"
+    ],
+    "hostPlantSpecies": [
+      "Viola riviniana",
+      "Viola palustris",
+      "Viola canina"
+    ],
+    "sources": [
+      "https://en.wikipedia.org/wiki/Dark_green_fritillary",
+      "https://www.first-nature.com/insects/lb-argynnis-aglaja.php",
+      "https://butterfly-conservation.org/butterflies/dark-green-fritillary"
+    ]
+  },
+  "Tomares ballus": {
+    "habitats": [
+      "dry grassland",
+      "wildflower meadows"
+    ],
+    "habitatType": "Grassland",
+    "hostPlantFamilies": [
+      "Fabaceae"
+    ],
+    "hostPlantSpecies": [
+      "Medicago species",
+      "Trifolium species",
+      "Dorycnium hirsutum"
+    ],
+    "sources": [
+      "https://en.wikipedia.org/wiki/Tomares_ballus",
+      "https://www.first-nature.com/insects/lb-tomares-ballus.php",
+      "http://www.eurobutterflies.com/sp/ballus.php"
+    ]
+  },
+  "Vanessa virginiensis": {
+    "habitats": [
+      "open areas",
+      "weedy fields",
+      "woodland clearings"
+    ],
+    "habitatType": "Urban/Agricultural",
+    "hostPlantFamilies": [
+      "Asteraceae"
+    ],
+    "hostPlantSpecies": [
+      "Gnaphalium species",
+      "Anaphalis margaritacea",
+      "Antennaria plantaginifolia"
+    ],
+    "sources": [
+      "https://www.butterfliesandmoths.org/species/Vanessa-virginiensis",
+      "https://en.wikipedia.org/wiki/American_lady",
+      "https://edis.ifas.ufl.edu/publication/IN823"
+    ]
+  },
+  "Zizeeria knysna": {
+    "habitats": [
+      "grassland",
+      "urban areas",
+      "damp meadows"
+    ],
+    "habitatType": "Urban/Agricultural",
+    "hostPlantFamilies": [
+      "Fabaceae"
+    ],
+    "hostPlantSpecies": [
+      "Medicago species",
+      "Trifolium species",
+      "Melilotus species"
+    ],
+    "sources": [
+      "https://en.wikipedia.org/wiki/Zizeeria_knysna",
+      "http://www.eurobutterflies.com/sp/knysna.php",
+      "https://plantiary.com/insect/zizeeria-knysna_4462.html"
+    ]
   }
 }
