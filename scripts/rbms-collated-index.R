@@ -883,8 +883,8 @@ if (exists("collated_result_all") && !is.null(collated_result_all) && nrow(colla
   dir.create(bootstrap_output_dir, recursive = TRUE, showWarnings = FALSE)
   cat(sprintf("  Bootstrap output dir: %s\n", bootstrap_output_dir))
 
-  # Create safe filename from species name
-  species_safe <- gsub(" ", "_", tolower(species_name))
+  # Create safe filename from species name (remove special characters including slashes)
+  species_safe <- gsub("[^a-z0-9]+", "_", tolower(species_name))
   bootstrap_file <- file.path(bootstrap_output_dir, paste0(species_safe, "_boot.rds"))
 
   # Prepare data for MSI: Add SPECIES column and keep only necessary columns
