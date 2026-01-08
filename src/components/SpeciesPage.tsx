@@ -1,6 +1,20 @@
 /* eslint-env browser */
 import { useState, useEffect } from "react";
-import { Button, Card, Space, Typography, Spin, Alert, Row, Col, Select, Switch, Tooltip, Divider, Tag } from "antd";
+import {
+  Button,
+  Card,
+  Space,
+  Typography,
+  Spin,
+  Alert,
+  Row,
+  Col,
+  Select,
+  Switch,
+  Tooltip,
+  Divider,
+  Tag,
+} from "antd";
 import { ArrowLeftOutlined, BugOutlined } from "@ant-design/icons";
 import { useParams, useNavigate } from "react-router-dom";
 import { SPECIES_FAMILIES } from "../constants";
@@ -56,6 +70,7 @@ function SpeciesPage() {
 
   // Reset image error state when species changes
   useEffect(() => {
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     setImageError(false);
   }, [decodedSpeciesName]);
 
@@ -212,43 +227,49 @@ function SpeciesPage() {
         <Row gutter={24}>
           {/* Species Photo */}
           <Col xs={24} md={7} xxl={4}>
-            <div style={{
-              width: '100%',
-              height: '100%',
-              minHeight: 280,
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              borderRadius: 12,
-              overflow: 'hidden',
-              boxShadow: '0 2px 8px rgba(0,0,0,.1), 0 4px 12px rgba(0,0,0,.06)',
-              background: imageError ? 'linear-gradient(135deg, #f5f5f5 0%, #e8e8e8 100%)' : 'transparent'
-            }}>
+            <div
+              style={{
+                width: "100%",
+                height: "100%",
+                minHeight: 280,
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                borderRadius: 12,
+                overflow: "hidden",
+                boxShadow: "0 2px 8px rgba(0,0,0,.1), 0 4px 12px rgba(0,0,0,.06)",
+                background: imageError
+                  ? "linear-gradient(135deg, #f5f5f5 0%, #e8e8e8 100%)"
+                  : "transparent",
+              }}
+            >
               {!imageError ? (
                 <img
                   src={`imgs/sp/${family}/${decodedSpeciesName}.jpg`}
                   alt={`Fotografia de ${decodedSpeciesName}`}
                   style={{
-                    width: '100%',
-                    height: '100%',
-                    objectFit: 'cover',
-                    borderRadius: 12
+                    width: "100%",
+                    height: "100%",
+                    objectFit: "cover",
+                    borderRadius: 12,
                   }}
                   onError={() => {
                     setImageError(true);
                   }}
                 />
               ) : (
-                <div style={{
-                  display: 'flex',
-                  flexDirection: 'column',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  gap: 12,
-                  padding: 24
-                }}>
-                  <BugOutlined style={{ fontSize: 64, color: '#bfbfbf' }} />
-                  <Text type="secondary" style={{ fontSize: 14, textAlign: 'center' }}>
+                <div
+                  style={{
+                    display: "flex",
+                    flexDirection: "column",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    gap: 12,
+                    padding: 24,
+                  }}
+                >
+                  <BugOutlined style={{ fontSize: 64, color: "#bfbfbf" }} />
+                  <Text type="secondary" style={{ fontSize: 14, textAlign: "center" }}>
                     Fotografia não disponível
                   </Text>
                 </div>
@@ -265,10 +286,11 @@ function SpeciesPage() {
                 italic
                 style={{
                   marginBottom: 4,
-                  color: '#262626',
-                  fontFamily: 'Baskerville, "Baskerville Old Face", "Hoefler Text", Garamond, "Times New Roman", serif',
+                  color: "#262626",
+                  fontFamily:
+                    'Baskerville, "Baskerville Old Face", "Hoefler Text", Garamond, "Times New Roman", serif',
                   fontSize: 52,
-                  fontWeight: 400
+                  fontWeight: 400,
                 }}
               >
                 {decodedSpeciesName}
@@ -277,32 +299,43 @@ function SpeciesPage() {
                 <Text
                   style={{
                     fontSize: 20,
-                    color: '#595959',
-                    display: 'block',
-                    marginBottom: 12
+                    color: "#595959",
+                    display: "block",
+                    marginBottom: 12,
                   }}
                 >
                   {commonNames[decodedSpeciesName]}
                 </Text>
               )}
               <Space size={8} wrap>
-                <Tag color="blue" style={{ fontSize: 14, padding: '4px 12px' }}>
+                <Tag color="blue" style={{ fontSize: 14, padding: "4px 12px" }}>
                   {family}
                 </Tag>
                 {endangeredSpeciesPT[decodedSpeciesName] && (
-                  <Tooltip title={`${getEndangermentDescription(endangeredSpeciesPT[decodedSpeciesName])} em Portugal`}>
-                    <Tag color="orange" style={{ fontSize: 14, padding: '4px 12px', cursor: 'help' }}>
+                  <Tooltip
+                    title={`${getEndangermentDescription(endangeredSpeciesPT[decodedSpeciesName])} em Portugal`}
+                  >
+                    <Tag
+                      color="orange"
+                      style={{ fontSize: 14, padding: "4px 12px", cursor: "help" }}
+                    >
                       {endangeredSpeciesPT[decodedSpeciesName]} - PT
                     </Tag>
                   </Tooltip>
                 )}
-                {!endangeredSpeciesPT[decodedSpeciesName] && endangeredSpeciesEurope[decodedSpeciesName] && (
-                  <Tooltip title={`${getEndangermentDescription(endangeredSpeciesEurope[decodedSpeciesName])} na União Europeia`}>
-                    <Tag color="orange" style={{ fontSize: 14, padding: '4px 12px', cursor: 'help' }}>
-                      {endangeredSpeciesEurope[decodedSpeciesName]} - UE
-                    </Tag>
-                  </Tooltip>
-                )}
+                {!endangeredSpeciesPT[decodedSpeciesName] &&
+                  endangeredSpeciesEurope[decodedSpeciesName] && (
+                    <Tooltip
+                      title={`${getEndangermentDescription(endangeredSpeciesEurope[decodedSpeciesName])} na União Europeia`}
+                    >
+                      <Tag
+                        color="orange"
+                        style={{ fontSize: 14, padding: "4px 12px", cursor: "help" }}
+                      >
+                        {endangeredSpeciesEurope[decodedSpeciesName]} - UE
+                      </Tag>
+                    </Tooltip>
+                  )}
                 {(() => {
                   const trendClassification =
                     flightCurvesData?.species?.[decodedSpeciesName]?.trendClassification;
@@ -312,7 +345,7 @@ function SpeciesPage() {
                       <TrendClassificationBadge
                         classification={trendClassification}
                         showDetails={true}
-                        style={{ fontSize: 14, padding: '4px 12px' }}
+                        style={{ fontSize: 14, padding: "4px 12px" }}
                       />
                     );
                   }
@@ -321,7 +354,7 @@ function SpeciesPage() {
               </Space>
             </div>
 
-            <Divider style={{ margin: '16px 0' }} />
+            <Divider style={{ margin: "16px 0" }} />
 
             {/* Ecology Information */}
             {ecologyData && ecologyData[decodedSpeciesName] && (
@@ -329,29 +362,31 @@ function SpeciesPage() {
                 {/* Habitat */}
                 <Col xs={24} sm={12}>
                   <div>
-                    <Text strong style={{ fontSize: 15, display: 'block', marginBottom: 8 }}>
+                    <Text strong style={{ fontSize: 15, display: "block", marginBottom: 8 }}>
                       Habitat
                     </Text>
-                    <Tooltip title={
-                      <div>
-                        <div style={{ fontWeight: 'bold', marginBottom: 4 }}>
-                          {ecologyData[decodedSpeciesName].habitatType}
+                    <Tooltip
+                      title={
+                        <div>
+                          <div style={{ fontWeight: "bold", marginBottom: 4 }}>
+                            {ecologyData[decodedSpeciesName].habitatType}
+                          </div>
+                          <div style={{ fontSize: 12 }}>
+                            {ecologyData[decodedSpeciesName].habitats.join(", ")}
+                          </div>
                         </div>
-                        <div style={{ fontSize: 12 }}>
-                          {ecologyData[decodedSpeciesName].habitats.join(', ')}
-                        </div>
-                      </div>
-                    }>
+                      }
+                    >
                       <div
                         style={{
                           width: 88,
                           height: 88,
-                          backgroundImage: 'url(imgs/habitats.jpg)',
+                          backgroundImage: "url(imgs/habitats.jpg)",
                           backgroundPosition: `${getHabitatSpritePosition(ecologyData[decodedSpeciesName].habitatType).x}px ${getHabitatSpritePosition(ecologyData[decodedSpeciesName].habitatType).y}px`,
-                          backgroundSize: '352px 192px',
+                          backgroundSize: "352px 192px",
                           borderRadius: 8,
-                          cursor: 'help',
-                          boxShadow: '0 2px 8px rgba(0,0,0,0.1)'
+                          cursor: "help",
+                          boxShadow: "0 2px 8px rgba(0,0,0,0.1)",
                         }}
                       />
                     </Tooltip>
@@ -360,76 +395,85 @@ function SpeciesPage() {
 
                 {/* Host Plants */}
                 {ecologyData[decodedSpeciesName].hostPlantFamilies &&
-                 ecologyData[decodedSpeciesName].hostPlantFamilies.length > 0 && (
-                  <Col xs={24} sm={12}>
-                    <div>
-                      <Text strong style={{ fontSize: 15, display: 'block', marginBottom: 8 }}>
-                        Plantas Hospedeiras
-                      </Text>
-                      <Space size={12} wrap>
-                        {ecologyData[decodedSpeciesName].hostPlantFamilies.map((family: string) => {
-                          const speciesList = ecologyData[decodedSpeciesName].hostPlantSpecies || [];
-                          const commonName = getPlantFamilyCommonName(family);
-                          const familyDisplay = commonName ? `${family} (${commonName})` : family;
-                          const tooltipContent = (
-                            <div>
-                              <div style={{ fontWeight: 'bold', marginBottom: 4 }}>{familyDisplay}</div>
-                              {speciesList.length > 0 && (
-                                <div style={{ fontSize: 12, fontStyle: 'italic' }}>
-                                  {speciesList.map((species: string) => (
-                                    <div key={species}>{species}</div>
-                                  ))}
+                  ecologyData[decodedSpeciesName].hostPlantFamilies.length > 0 && (
+                    <Col xs={24} sm={12}>
+                      <div>
+                        <Text strong style={{ fontSize: 15, display: "block", marginBottom: 8 }}>
+                          Plantas Hospedeiras
+                        </Text>
+                        <Space size={12} wrap>
+                          {ecologyData[decodedSpeciesName].hostPlantFamilies.map(
+                            (family: string) => {
+                              const speciesList =
+                                ecologyData[decodedSpeciesName].hostPlantSpecies || [];
+                              const commonName = getPlantFamilyCommonName(family);
+                              const familyDisplay = commonName
+                                ? `${family} (${commonName})`
+                                : family;
+                              const tooltipContent = (
+                                <div>
+                                  <div style={{ fontWeight: "bold", marginBottom: 4 }}>
+                                    {familyDisplay}
+                                  </div>
+                                  {speciesList.length > 0 && (
+                                    <div style={{ fontSize: 12, fontStyle: "italic" }}>
+                                      {speciesList.map((species: string) => (
+                                        <div key={species}>{species}</div>
+                                      ))}
+                                    </div>
+                                  )}
                                 </div>
-                              )}
-                            </div>
-                          );
-                          const spritePos = getPlantFamilySpritePosition(family);
-                          if (!spritePos) return null;
+                              );
+                              const spritePos = getPlantFamilySpritePosition(family);
+                              if (!spritePos) return null;
 
-                          return (
-                            <Tooltip key={family} title={tooltipContent}>
-                              <div
-                                style={{
-                                  width: 88,
-                                  height: 88,
-                                  backgroundImage: 'url(imgs/plant_family_sprite.png)',
-                                  backgroundPosition: `${spritePos.x}px ${spritePos.y}px`,
-                                  backgroundSize: '352px 768px',
-                                  borderRadius: 8,
-                                  cursor: 'help',
-                                  boxShadow: '0 2px 8px rgba(0,0,0,0.1)'
-                                }}
-                              />
-                            </Tooltip>
-                          );
-                        })}
-                      </Space>
-                    </div>
-                  </Col>
-                )}
+                              return (
+                                <Tooltip key={family} title={tooltipContent}>
+                                  <div
+                                    style={{
+                                      width: 88,
+                                      height: 88,
+                                      backgroundImage: "url(imgs/plant_family_sprite.png)",
+                                      backgroundPosition: `${spritePos.x}px ${spritePos.y}px`,
+                                      backgroundSize: "352px 768px",
+                                      borderRadius: 8,
+                                      cursor: "help",
+                                      boxShadow: "0 2px 8px rgba(0,0,0,0.1)",
+                                    }}
+                                  />
+                                </Tooltip>
+                              );
+                            }
+                          )}
+                        </Space>
+                      </div>
+                    </Col>
+                  )}
 
                 {/* Sources */}
                 {ecologyData[decodedSpeciesName].sources &&
-                 ecologyData[decodedSpeciesName].sources.length > 0 && (
-                  <Col xs={24} style={{ marginTop: 16 }}>
-                    <Text type="secondary" style={{ fontSize: 12 }}>
-                      Fontes:{' '}
-                      {ecologyData[decodedSpeciesName].sources.map((source: string, idx: number) => (
-                        <span key={idx}>
-                          <a
-                            href={source}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            style={{ fontSize: 12, fontWeight: 500 }}
-                          >
-                            [{idx + 1}]
-                          </a>
-                          {idx < ecologyData[decodedSpeciesName].sources.length - 1 ? ' ' : ''}
-                        </span>
-                      ))}
-                    </Text>
-                  </Col>
-                )}
+                  ecologyData[decodedSpeciesName].sources.length > 0 && (
+                    <Col xs={24} style={{ marginTop: 16 }}>
+                      <Text type="secondary" style={{ fontSize: 12 }}>
+                        Fontes:{" "}
+                        {ecologyData[decodedSpeciesName].sources.map(
+                          (source: string, idx: number) => (
+                            <span key={idx}>
+                              <a
+                                href={source}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                style={{ fontSize: 12, fontWeight: 500 }}
+                              >
+                                [{idx + 1}]
+                              </a>
+                              {idx < ecologyData[decodedSpeciesName].sources.length - 1 ? " " : ""}
+                            </span>
+                          )
+                        )}
+                      </Text>
+                    </Col>
+                  )}
               </Row>
             )}
           </Col>
@@ -565,13 +609,15 @@ function SpeciesPage() {
 
       {/* Photo Credits */}
       {!imageError && photoCredits && photoCredits[decodedSpeciesName] && (
-        <div style={{
-          textAlign: 'center',
-          padding: '16px 0',
-          color: '#8c8c8c',
-          fontSize: 12,
-          borderTop: '1px solid #f0f0f0'
-        }}>
+        <div
+          style={{
+            textAlign: "center",
+            padding: "16px 0",
+            color: "#8c8c8c",
+            fontSize: 12,
+            borderTop: "1px solid #f0f0f0",
+          }}
+        >
           Fotografia: {photoCredits[decodedSpeciesName].photographer}
         </div>
       )}

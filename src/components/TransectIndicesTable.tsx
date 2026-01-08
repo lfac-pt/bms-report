@@ -1,11 +1,19 @@
 import React, { useMemo, useState } from "react";
 import { Table, Alert, Checkbox, Space, Switch } from "antd";
 import type { ColumnsType } from "antd/es/table";
+import type { FlightCurvesData } from "../types/processing/transformed-data";
+
+interface TransectData {
+  transects: Array<{
+    transectId: string;
+    transectName: string;
+  }>;
+}
 
 interface TransectIndicesTableProps {
   speciesName: string;
-  flightCurvesData: any;
-  transectData: any;
+  flightCurvesData: FlightCurvesData | null;
+  transectData: TransectData | null;
 }
 
 interface TransectIndexRow {
@@ -33,21 +41,19 @@ const TransectIndicesTable: React.FC<TransectIndicesTableProps> = ({
     }
 
     // Create a map of transect IDs to names
-    const transectMap = new Map(
-      transectData.transects.map((t: any) => [t.transectId, t.transectName])
-    );
+    const transectMap = new Map(transectData.transects.map(t => [t.transectId, t.transectName]));
 
     // Collect all years
     const yearsSet = new Set<number>();
-    Object.values(siteIndices).forEach((indices: any) => {
+    Object.values(siteIndices).forEach((indices: Record<string, number>) => {
       Object.keys(indices).forEach(year => yearsSet.add(parseInt(year)));
     });
     const years = Array.from(yearsSet).sort();
 
     // Build table data
     const data: TransectIndexRow[] = Object.entries(siteIndices).map(
-      ([transectId, indices]: [string, any]) => {
-        const row: any = {
+      ([transectId, indices]: [string, Record<string, number>]) => {
+        const row: Record<string, string | number> = {
           key: transectId,
           transectId,
           transectName: transectMap.get(transectId) || transectId,
@@ -139,9 +145,7 @@ const TransectIndicesTable: React.FC<TransectIndicesTableProps> = ({
     <div>
       <Alert
         message={
-          showRawCounts
-            ? "Contagens Brutas por Transecto"
-            : "Índices de Abundância por Transecto"
+          showRawCounts ? "Contagens Brutas por Transecto" : "Índices de Abundância por Transecto"
         }
         description={
           showRawCounts ? (
@@ -153,10 +157,9 @@ const TransectIndicesTable: React.FC<TransectIndicesTableProps> = ({
           ) : (
             <>
               <p>
-                Esta tabela mostra os índices anuais de abundância calculados pelo método rbms
-                para cada transecto. Os valores são normalizados para transectos de 1 km de
-                comprimento e representam a abundância estimada de <strong>{speciesName}</strong>{" "}
-                por ano.
+                Esta tabela mostra os índices anuais de abundância calculados pelo método rbms para
+                cada transecto. Os valores são normalizados para transectos de 1 km de comprimento e
+                representam a abundância estimada de <strong>{speciesName}</strong> por ano.
               </p>
               <p style={{ marginTop: 8, marginBottom: 0 }}>
                 <strong>Nota:</strong> Os índices são expressos relativamente ao ano baseline

@@ -265,7 +265,6 @@ export function getQualityFilteredTransects<
   },
 >(transects: T[]): T[] {
   return transects.filter(
-    t =>
-      t.yearsActive >= MIN_YEARS_ACTIVE && t.avgVisitsPerYear >= MIN_VISITS_PER_YEAR
+    t => t.yearsActive >= MIN_YEARS_ACTIVE && t.avgVisitsPerYear >= MIN_VISITS_PER_YEAR
   );
 }

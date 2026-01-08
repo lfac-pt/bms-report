@@ -8,55 +8,66 @@ const { Text } = Typography;
 // Helper function to convert lat/lon to Web Mercator projection
 function latLonToMercator(lon: number, lat: number): [number, number] {
   const x = lon;
-  const y = Math.log(Math.tan((Math.PI / 4) + (lat * Math.PI / 360))) * (180 / Math.PI);
+  const y = Math.log(Math.tan(Math.PI / 4 + (lat * Math.PI) / 360)) * (180 / Math.PI);
   return [x, y];
 }
 
 // Helper function to convert GeoJSON coordinates to SVG path
-function coordinatesToPath(geometry: any, bounds: any, viewBoxWidth: number, viewBoxHeight: number, paddingX: number, paddingY: number): string {
-  if (!bounds) return '';
+function coordinatesToPath(
+  geometry: any,
+  bounds: any,
+  viewBoxWidth: number,
+  viewBoxHeight: number,
+  paddingX: number,
+  paddingY: number
+): string {
+  if (!bounds) return "";
 
   const paths: string[] = [];
-  const mapWidth = viewBoxWidth - (paddingX * 2);
-  const mapHeight = viewBoxHeight - (paddingY * 2);
+  const mapWidth = viewBoxWidth - paddingX * 2;
+  const mapHeight = viewBoxHeight - paddingY * 2;
 
   function processRing(ring: number[][]): string {
-    if (!ring || ring.length === 0) return '';
+    if (!ring || ring.length === 0) return "";
 
-    const points = ring.map((coord) => {
+    const points = ring.map(coord => {
       const lon = coord[0];
       const lat = coord[1];
       const [mercX, mercY] = latLonToMercator(lon, lat);
-      const x = ((mercX - bounds.minMercX) / (bounds.maxMercX - bounds.minMercX)) * mapWidth + paddingX;
-      const y = ((bounds.maxMercY - mercY) / (bounds.maxMercY - bounds.minMercY)) * mapHeight + paddingY;
+      const x =
+        ((mercX - bounds.minMercX) / (bounds.maxMercX - bounds.minMercX)) * mapWidth + paddingX;
+      const y =
+        ((bounds.maxMercY - mercY) / (bounds.maxMercY - bounds.minMercY)) * mapHeight + paddingY;
       return `${x.toFixed(2)},${y.toFixed(2)}`;
     });
-    return `M ${points.join(' L ')} Z`;
+    return `M ${points.join(" L ")} Z`;
   }
 
   function processPoly(rings: number[][][]): string {
-    if (!rings || rings.length === 0) return '';
-    return rings.map(ring => processRing(ring)).join(' ');
+    if (!rings || rings.length === 0) return "";
+    return rings.map(ring => processRing(ring)).join(" ");
   }
 
-  if (geometry.type === 'Polygon') {
+  if (geometry.type === "Polygon") {
     paths.push(processPoly(geometry.coordinates));
-  } else if (geometry.type === 'MultiPolygon') {
+  } else if (geometry.type === "MultiPolygon") {
     geometry.coordinates.forEach((poly: number[][][]) => {
       paths.push(processPoly(poly));
     });
   }
 
-  return paths.join(' ');
+  return paths.join(" ");
 }
 
 // Calculate bounds for the GeoJSON in Mercator projection
 function calculateBounds(features: any[]): any {
-  let minMercX = Infinity, maxMercX = -Infinity;
-  let minMercY = Infinity, maxMercY = -Infinity;
+  let minMercX = Infinity,
+    maxMercX = -Infinity;
+  let minMercY = Infinity,
+    maxMercY = -Infinity;
 
   function processCoords(coords: any) {
-    if (typeof coords[0] === 'number') {
+    if (typeof coords[0] === "number") {
       const [mercX, mercY] = latLonToMercator(coords[0], coords[1]);
       minMercX = Math.min(minMercX, mercX);
       maxMercX = Math.max(maxMercX, mercX);
@@ -82,11 +93,11 @@ interface RarityLevel {
 }
 
 const RARITY_LEVELS: RarityLevel[] = [
-  { label: 'Muito Comum', color: '#52c41a', percentageThreshold: 80 },
-  { label: 'Comum', color: '#95de64', percentageThreshold: 60 },
-  { label: 'Pouco Comum', color: '#ffd666', percentageThreshold: 40 },
-  { label: 'Rara', color: '#ff9c6e', percentageThreshold: 20 },
-  { label: 'Muito Rara', color: '#ff4d4f', percentageThreshold: 0 },
+  { label: "Muito Comum", color: "#52c41a", percentageThreshold: 80 },
+  { label: "Comum", color: "#95de64", percentageThreshold: 60 },
+  { label: "Pouco Comum", color: "#ffd666", percentageThreshold: 40 },
+  { label: "Rara", color: "#ff9c6e", percentageThreshold: 20 },
+  { label: "Muito Rara", color: "#ff4d4f", percentageThreshold: 0 },
 ];
 
 interface DistrictObservations {
@@ -135,6 +146,7 @@ const SpeciesDistrictMap: React.FC<SpeciesDistrictMapProps> = ({
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
+    // eslint-disable-next-line no-undef
     fetch("data/portugal-districts.geojson")
       .then(res => res.json())
       .then(data => {
@@ -142,6 +154,7 @@ const SpeciesDistrictMap: React.FC<SpeciesDistrictMapProps> = ({
         setLoading(false);
       })
       .catch(error => {
+        // eslint-disable-next-line no-console
         console.error("Error loading geographic data:", error);
         setLoading(false);
       });
@@ -224,15 +237,12 @@ const SpeciesDistrictMap: React.FC<SpeciesDistrictMapProps> = ({
       }
 
       // Calculate percentages
-      const percentage = totalTransectYears > 0
-        ? (transectYearsWithSpecies / totalTransectYears) * 100
-        : 0;
+      const percentage =
+        totalTransectYears > 0 ? (transectYearsWithSpecies / totalTransectYears) * 100 : 0;
 
       const totalSeasons = yearsWithMonitoring.size;
       const seasonsWithSpecies = yearsWithSpecies.size;
-      const seasonPercentage = totalSeasons > 0
-        ? (seasonsWithSpecies / totalSeasons) * 100
-        : 0;
+      const seasonPercentage = totalSeasons > 0 ? (seasonsWithSpecies / totalSeasons) * 100 : 0;
 
       // Find matching rarity level
       let rarityLevel = RARITY_LEVELS[RARITY_LEVELS.length - 1]; // Default to "Muito Rara"
@@ -289,7 +299,7 @@ const SpeciesDistrictMap: React.FC<SpeciesDistrictMapProps> = ({
     // Only calculate bounds for continental Portugal (exclude islands)
     const continentalFeatures = geoData.features.filter((feature: GeoJSONFeature) => {
       const districtName = feature.properties.dis_name_upper || feature.properties.Distrito;
-      return districtName !== 'AÇORES' && districtName !== 'MADEIRA';
+      return districtName !== "AÇORES" && districtName !== "MADEIRA";
     });
     return calculateBounds(continentalFeatures);
   }, [geoData]);
@@ -327,21 +337,26 @@ const SpeciesDistrictMap: React.FC<SpeciesDistrictMapProps> = ({
   // Calculate proper aspect ratio from bounds with padding
   const paddingX = 0.5; // Left/right padding
   const paddingY = 8; // Top/bottom padding (larger to balance the visual spacing)
-  const viewBoxWidth = 100 + (paddingX * 2);
+  const viewBoxWidth = 100 + paddingX * 2;
   const viewBoxHeight = bounds
-    ? ((bounds.maxMercY - bounds.minMercY) / (bounds.maxMercX - bounds.minMercX)) * 100 + (paddingY * 2)
-    : 100 + (paddingY * 2);
+    ? ((bounds.maxMercY - bounds.minMercY) / (bounds.maxMercX - bounds.minMercX)) * 100 +
+      paddingY * 2
+    : 100 + paddingY * 2;
 
   const mapContent = (
     <>
-      <div style={{
-        maxWidth: compact ? 180 : "100%",
-        margin: compact ? "0 0 0 auto" : 0
-      }}>
-        <div style={{
-          height: mapHeight,
-          position: "relative"
-        }}>
+      <div
+        style={{
+          maxWidth: compact ? 180 : "100%",
+          margin: compact ? "0 0 0 auto" : 0,
+        }}
+      >
+        <div
+          style={{
+            height: mapHeight,
+            position: "relative",
+          }}
+        >
           <svg
             viewBox={`0 0 ${viewBoxWidth} ${viewBoxHeight}`}
             preserveAspectRatio="xMidYMid meet"
@@ -349,83 +364,98 @@ const SpeciesDistrictMap: React.FC<SpeciesDistrictMapProps> = ({
               width: "100%",
               height: "100%",
               background: "#f8f9fa",
-              borderRadius: 4
+              borderRadius: 4,
             }}
           >
-          {geoData && bounds && geoData.features
-            .filter((feature: GeoJSONFeature) => {
-              const districtName = feature.properties.dis_name_upper || feature.properties.Distrito;
-              // Only show continental Portugal (exclude islands)
-              return districtName !== 'AÇORES' && districtName !== 'MADEIRA';
-            })
-            .map((feature: GeoJSONFeature) => {
-            const district = feature.properties.dis_name_upper || feature.properties.Distrito;
-            const districtName = feature.properties.dis_name || district;
-            const observations = districtObservations.get(district);
-            const color = getColor(observations);
-            const path = coordinatesToPath(feature.geometry, bounds, viewBoxWidth, viewBoxHeight, paddingX, paddingY);
+            {geoData &&
+              bounds &&
+              geoData.features
+                .filter((feature: GeoJSONFeature) => {
+                  const districtName =
+                    feature.properties.dis_name_upper || feature.properties.Distrito;
+                  // Only show continental Portugal (exclude islands)
+                  return districtName !== "AÇORES" && districtName !== "MADEIRA";
+                })
+                .map((feature: GeoJSONFeature) => {
+                  const district = feature.properties.dis_name_upper || feature.properties.Distrito;
+                  const districtName = feature.properties.dis_name || district;
+                  const observations = districtObservations.get(district);
+                  const color = getColor(observations);
+                  const path = coordinatesToPath(
+                    feature.geometry,
+                    bounds,
+                    viewBoxWidth,
+                    viewBoxHeight,
+                    paddingX,
+                    paddingY
+                  );
 
-            const tooltipContent = !observations
-              ? (
-                <div>
-                  <strong>{districtName}</strong>
-                  <div style={{ marginTop: 4 }}>Sem transectos monitorizados neste distrito</div>
-                </div>
-              )
-              : observations.percentage === 0
-              ? (
-                <div>
-                  <strong>{districtName}</strong>
-                  <div style={{ marginTop: 4 }}>Não observada neste distrito</div>
-                  <div>Épocas de monitorização: {observations.totalSeasons}</div>
-                </div>
-              )
-              : (
-                <div>
-                  <strong>{districtName}</strong>
-                  <div style={{ marginTop: 4 }}><strong>{observations.rarityLevel.label}</strong></div>
-                  <div>Observado em {observations.seasonsWithSpecies} de {observations.totalSeasons} {
-                    observations.totalSeasons === 1 ? 'época' : 'épocas'
-                  } de monitorização no distrito ({observations.seasonPercentage.toFixed(1)}%)</div>
-                </div>
-              );
+                  const tooltipContent = !observations ? (
+                    <div>
+                      <strong>{districtName}</strong>
+                      <div style={{ marginTop: 4 }}>
+                        Sem transectos monitorizados neste distrito
+                      </div>
+                    </div>
+                  ) : observations.percentage === 0 ? (
+                    <div>
+                      <strong>{districtName}</strong>
+                      <div style={{ marginTop: 4 }}>Não observada neste distrito</div>
+                      <div>Épocas de monitorização: {observations.totalSeasons}</div>
+                    </div>
+                  ) : (
+                    <div>
+                      <strong>{districtName}</strong>
+                      <div style={{ marginTop: 4 }}>
+                        <strong>{observations.rarityLevel.label}</strong>
+                      </div>
+                      <div>
+                        Observado em {observations.seasonsWithSpecies} de{" "}
+                        {observations.totalSeasons}{" "}
+                        {observations.totalSeasons === 1 ? "época" : "épocas"} de monitorização no
+                        distrito ({observations.seasonPercentage.toFixed(1)}%)
+                      </div>
+                    </div>
+                  );
 
-            return (
-              <Tooltip key={district} title={tooltipContent} mouseEnterDelay={0.3}>
-                <g>
-                  <path
-                    d={path}
-                    fill={color}
-                    stroke="#666"
-                    strokeWidth="0.3"
-                    opacity={0.9}
-                    style={{ cursor: 'pointer', transition: 'opacity 0.2s' }}
-                    onMouseEnter={(e) => {
-                      e.currentTarget.style.opacity = '1';
-                      e.currentTarget.style.strokeWidth = '0.6';
-                    }}
-                    onMouseLeave={(e) => {
-                      e.currentTarget.style.opacity = '0.9';
-                      e.currentTarget.style.strokeWidth = '0.3';
-                    }}
-                  />
-                </g>
-              </Tooltip>
-            );
-          })}
+                  return (
+                    <Tooltip key={district} title={tooltipContent} mouseEnterDelay={0.3}>
+                      <g>
+                        <path
+                          d={path}
+                          fill={color}
+                          stroke="#666"
+                          strokeWidth="0.3"
+                          opacity={0.9}
+                          style={{ cursor: "pointer", transition: "opacity 0.2s" }}
+                          onMouseEnter={e => {
+                            e.currentTarget.style.opacity = "1";
+                            e.currentTarget.style.strokeWidth = "0.6";
+                          }}
+                          onMouseLeave={e => {
+                            e.currentTarget.style.opacity = "0.9";
+                            e.currentTarget.style.strokeWidth = "0.3";
+                          }}
+                        />
+                      </g>
+                    </Tooltip>
+                  );
+                })}
           </svg>
         </div>
 
         {/* Legend */}
-        <div style={{
-          fontSize: 11,
-          color: '#595959',
-          textAlign: 'center',
-          marginTop: 6
-        }}>
-          Mapa de distribuição{' '}
+        <div
+          style={{
+            fontSize: 11,
+            color: "#595959",
+            textAlign: "center",
+            marginTop: 6,
+          }}
+        >
+          Mapa de distribuição{" "}
           <Tooltip title="Dados de todos os transectos">
-            <InfoCircleOutlined style={{ fontSize: 10, cursor: 'help' }} />
+            <InfoCircleOutlined style={{ fontSize: 10, cursor: "help" }} />
           </Tooltip>
         </div>
       </div>

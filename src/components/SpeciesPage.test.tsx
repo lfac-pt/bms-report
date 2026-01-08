@@ -147,6 +147,11 @@ global.fetch = jest.fn(url => {
       json: () => Promise.resolve(null),
     });
   }
+  if (url === "data/portugal-districts.geojson") {
+    return Promise.resolve({
+      json: () => Promise.resolve({ type: "FeatureCollection", features: [] }),
+    });
+  }
   return Promise.reject(new Error("Unknown URL"));
 }) as jest.Mock;
 
@@ -234,7 +239,9 @@ describe("SpeciesPage - Data Correctness", () => {
 
         await waitFor(() => {
           const status = endangeredSpeciesPT[testSpecies];
-          expect(screen.getByText(new RegExp(`${status}.*PT`, "i"))).toBeInTheDocument();
+          // Use getAllByText since status might appear in multiple places (tag + selectors)
+          const elements = screen.getAllByText(new RegExp(`${status}.*PT`, "i"));
+          expect(elements.length).toBeGreaterThan(0);
         });
       }
     });
@@ -283,7 +290,9 @@ describe("SpeciesPage - Data Correctness", () => {
 
         await waitFor(() => {
           const ptStatus = endangeredSpeciesPT[inBothLists];
-          expect(screen.getByText(new RegExp(`${ptStatus}.*PT`, "i"))).toBeInTheDocument();
+          // Use getAllByText since status might appear in multiple places
+          const elements = screen.getAllByText(new RegExp(`${ptStatus}.*PT`, "i"));
+          expect(elements.length).toBeGreaterThan(0);
         });
       }
     });
@@ -325,7 +334,8 @@ describe("SpeciesPage - Data Correctness", () => {
       renderSpeciesPage("Maniola jurtina");
 
       await waitFor(() => {
-        expect(screen.getByText(/Família: Nymphalidae/i)).toBeInTheDocument();
+        // Family is now displayed as a Tag with just the family name
+        expect(screen.getByText(/Nymphalidae/i)).toBeInTheDocument();
       });
     });
 
@@ -334,7 +344,8 @@ describe("SpeciesPage - Data Correctness", () => {
       renderSpeciesPage("Unknown Species");
 
       await waitFor(() => {
-        expect(screen.getByText(/Família: Informação não disponível/i)).toBeInTheDocument();
+        // Family fallback is now displayed as "Informação não disponível" in a Tag
+        expect(screen.getByText(/Informação não disponível/i)).toBeInTheDocument();
       });
     });
   });
