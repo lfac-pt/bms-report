@@ -1,5 +1,5 @@
 import React, { useMemo, useState } from "react";
-import { Table, Alert, Checkbox, Space, Switch } from "antd";
+import { Table, Alert, Checkbox, Space, Switch, Input } from "antd";
 import type { ColumnsType } from "antd/es/table";
 import type { FlightCurvesData } from "../types/processing/transformed-data";
 
@@ -30,6 +30,7 @@ const TransectIndicesTable: React.FC<TransectIndicesTableProps> = ({
 }) => {
   const [hideZeroRows, setHideZeroRows] = useState(false);
   const [showRawCounts, setShowRawCounts] = useState(false);
+  const [searchText, setSearchText] = useState("");
 
   const tableData = useMemo(() => {
     // Get site indices or raw counts for this species
@@ -84,8 +85,15 @@ const TransectIndicesTable: React.FC<TransectIndicesTableProps> = ({
       });
     }
 
+    // Filter by search text
+    if (searchText.trim()) {
+      filteredData = filteredData.filter(row =>
+        row.transectName.toLowerCase().includes(searchText.toLowerCase())
+      );
+    }
+
     return { data: filteredData, years, totalRows: data.length };
-  }, [speciesName, flightCurvesData, transectData, hideZeroRows, showRawCounts]);
+  }, [speciesName, flightCurvesData, transectData, hideZeroRows, showRawCounts, searchText]);
 
   if (tableData.data.length === 0) {
     return (
@@ -174,27 +182,24 @@ const TransectIndicesTable: React.FC<TransectIndicesTableProps> = ({
         style={{ marginBottom: 16 }}
       />
 
-      <Space style={{ marginBottom: 16 }}>
+      <Space style={{ marginBottom: 16 }} wrap size="large">
+        <Input.Search
+          placeholder="Procurar por nome de transecto..."
+          value={searchText}
+          onChange={e => setSearchText(e.target.value)}
+          onSearch={value => setSearchText(value)}
+          allowClear
+          style={{ width: 300 }}
+        />
         <Checkbox checked={hideZeroRows} onChange={e => setHideZeroRows(e.target.checked)}>
           Ocultar transectos sem dados (apenas zeros)
         </Checkbox>
-        {hideZeroRows &&
-          tableData.totalRows !== undefined &&
-          tableData.totalRows > tableData.data.length && (
-            <span style={{ color: "#8c8c8c", fontSize: 13 }}>
-              ({tableData.totalRows - tableData.data.length} transectos ocultos)
-            </span>
-          )}
         <Switch
           checked={showRawCounts}
           onChange={setShowRawCounts}
           checkedChildren="Contagens"
           unCheckedChildren="Índices"
-          style={{ marginLeft: 16 }}
         />
-        <span style={{ fontSize: 13, color: "#595959" }}>
-          {showRawCounts ? "A mostrar contagens brutas" : "A mostrar índices calculados"}
-        </span>
       </Space>
 
       <Table
