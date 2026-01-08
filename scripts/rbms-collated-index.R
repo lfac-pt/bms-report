@@ -933,6 +933,49 @@ if (site_index_success && exists("site_indices") && nrow(site_indices) > 0) {
   cat(paste("Prepared site indices for", length(site_indices_output), "transects\n"))
 }
 
+# Step 13b: Prepare raw count totals by site and year (monitoring season only)
+site_raw_counts_output <- NULL
+if (nrow(counts) > 0) {
+  # Filter counts to monitoring season only (March-September, same as rbms)
+  counts_season <- counts
+  counts_season$DATE <- as.Date(counts_season$DATE)
+  counts_season$year <- as.integer(format(counts_season$DATE, "%Y"))
+  counts_season$month <- as.integer(format(counts_season$DATE, "%m"))
+
+  # Keep only counts from monitoring season (months 3-9)
+  counts_season <- counts_season[counts_season$month >= 3 & counts_season$month <= 9, ]
+
+  if (nrow(counts_season) > 0) {
+    # Aggregate raw counts by site and year (monitoring season only)
+    raw_counts_df <- aggregate(
+      COUNT ~ SITE_ID + year,
+      data = counts_season,
+      FUN = sum
+    )
+
+    raw_counts_df <- data.frame(
+      site_id = as.character(raw_counts_df$SITE_ID),
+      year = as.integer(raw_counts_df$year),
+      count = as.integer(raw_counts_df$COUNT)
+    )
+
+    # Convert to list format for JSON
+    site_raw_counts_output <- split(raw_counts_df, raw_counts_df$site_id)
+    site_raw_counts_output <- lapply(site_raw_counts_output, function(site_data) {
+      # Create year -> count mapping
+      counts_by_year <- setNames(
+        as.list(site_data$count),
+        as.character(site_data$year)
+      )
+      return(counts_by_year)
+    })
+
+    cat(paste("Prepared raw counts (monitoring season only) for", length(site_raw_counts_output), "transects\n"))
+  } else {
+    cat("Warning: No counts found in monitoring season (March-September)\n")
+  }
+}
+
 # Step 14: Create output structure
 output <- list(
   species = species_name,
@@ -942,6 +985,7 @@ output <- list(
   trend_line = if(length(trend_line) > 0) trend_line else NULL,
   regional_phenology_curves = if(length(regional_pheno_curves) > 0) regional_pheno_curves else NULL,
   site_indices = if(!is.null(site_indices_output)) site_indices_output else NULL,
+  site_raw_counts = if(!is.null(site_raw_counts_output)) site_raw_counts_output else NULL,
   data_quality = data_quality,
   processing_info = list(
     method = "rbms (regional GAM flight curves + GLM collated index + bootstrap CI + linear trend + transect length normalization)",

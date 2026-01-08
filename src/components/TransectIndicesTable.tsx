@@ -1,5 +1,5 @@
 import React, { useMemo, useState } from "react";
-import { Table, Alert, Checkbox, Space } from "antd";
+import { Table, Alert, Checkbox, Space, Switch } from "antd";
 import type { ColumnsType } from "antd/es/table";
 
 interface TransectIndicesTableProps {
@@ -21,11 +21,12 @@ const TransectIndicesTable: React.FC<TransectIndicesTableProps> = ({
   transectData,
 }) => {
   const [hideZeroRows, setHideZeroRows] = useState(false);
+  const [showRawCounts, setShowRawCounts] = useState(false);
 
   const tableData = useMemo(() => {
-    // Get site indices for this species
+    // Get site indices or raw counts for this species
     const speciesData = flightCurvesData?.species?.[speciesName];
-    const siteIndices = speciesData?.site_indices;
+    const siteIndices = showRawCounts ? speciesData?.site_raw_counts : speciesData?.site_indices;
 
     if (!siteIndices || !transectData?.transects) {
       return { data: [], years: [] };
@@ -78,7 +79,7 @@ const TransectIndicesTable: React.FC<TransectIndicesTableProps> = ({
     }
 
     return { data: filteredData, years, totalRows: data.length };
-  }, [speciesName, flightCurvesData, transectData, hideZeroRows]);
+  }, [speciesName, flightCurvesData, transectData, hideZeroRows, showRawCounts]);
 
   if (tableData.data.length === 0) {
     return (
@@ -113,16 +114,23 @@ const TransectIndicesTable: React.FC<TransectIndicesTableProps> = ({
         }
         return (
           <span style={{ fontFamily: "monospace" }}>
-            {typeof value === "number" ? value.toFixed(1) : value}
+            {typeof value === "number"
+              ? showRawCounts
+                ? Math.round(value).toString()
+                : value.toFixed(1)
+              : value}
           </span>
         );
       },
       sorter: (a: TransectIndexRow, b: TransectIndexRow) => {
         const aVal = a[year.toString()];
         const bVal = b[year.toString()];
-        if (aVal === "-") return 1;
-        if (bVal === "-") return -1;
-        return (aVal as number) - (bVal as number);
+
+        // Treat "-" as less than zero (-Infinity for sorting purposes)
+        const aNum = aVal === "-" ? -Infinity : (aVal as number);
+        const bNum = bVal === "-" ? -Infinity : (bVal as number);
+
+        return aNum - bNum;
       },
     })),
   ];
@@ -130,20 +138,33 @@ const TransectIndicesTable: React.FC<TransectIndicesTableProps> = ({
   return (
     <div>
       <Alert
-        message="Índices de Abundância por Transecto"
+        message={
+          showRawCounts
+            ? "Contagens Brutas por Transecto"
+            : "Índices de Abundância por Transecto"
+        }
         description={
-          <>
+          showRawCounts ? (
             <p>
-              Esta tabela mostra os índices anuais de abundância calculados pelo método rbms para
-              cada transecto. Os valores são normalizados para transectos de 1 km de comprimento e
-              representam a abundância estimada de <strong>{speciesName}</strong> por ano.
+              Esta tabela mostra o número total de indivíduos de <strong>{speciesName}</strong>{" "}
+              contados em cada transecto durante a época de monitorização (Março-Setembro) de cada
+              ano.
             </p>
-            <p style={{ marginTop: 8, marginBottom: 0 }}>
-              <strong>Nota:</strong> Os índices são expressos relativamente ao ano baseline
-              (definido como 100). Valores superiores a 100 indicam maior abundância que o baseline,
-              valores inferiores indicam menor abundância.
-            </p>
-          </>
+          ) : (
+            <>
+              <p>
+                Esta tabela mostra os índices anuais de abundância calculados pelo método rbms
+                para cada transecto. Os valores são normalizados para transectos de 1 km de
+                comprimento e representam a abundância estimada de <strong>{speciesName}</strong>{" "}
+                por ano.
+              </p>
+              <p style={{ marginTop: 8, marginBottom: 0 }}>
+                <strong>Nota:</strong> Os índices são expressos relativamente ao ano baseline
+                (definido como 100). Valores superiores a 100 indicam maior abundância que o
+                baseline, valores inferiores indicam menor abundância.
+              </p>
+            </>
+          )
         }
         type="info"
         showIcon
@@ -161,6 +182,16 @@ const TransectIndicesTable: React.FC<TransectIndicesTableProps> = ({
               ({tableData.totalRows - tableData.data.length} transectos ocultos)
             </span>
           )}
+        <Switch
+          checked={showRawCounts}
+          onChange={setShowRawCounts}
+          checkedChildren="Contagens"
+          unCheckedChildren="Índices"
+          style={{ marginLeft: 16 }}
+        />
+        <span style={{ fontSize: 13, color: "#595959" }}>
+          {showRawCounts ? "A mostrar contagens brutas" : "A mostrar índices calculados"}
+        </span>
       </Space>
 
       <Table
