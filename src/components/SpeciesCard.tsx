@@ -45,8 +45,8 @@ const SpeciesCard: React.FC<SpeciesCardProps> = ({
   const trendCategory =
     flightCurvesData?.species?.[speciesName]?.trendClassification?.category || "Uncertain";
 
-  // Construct image path
-  const imagePath = `imgs/sp/${family}/${speciesName}.jpg`;
+  // Construct image path (replace "/" with "_" for species names like "Polyommatus icarus/celina")
+  const imagePath = `imgs/sp/${family}/${speciesName.replace(/\//g, "_")}.jpg`;
 
   return (
     <Card size="small" styles={{ body: { padding: 12 } }}>

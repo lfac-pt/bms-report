@@ -245,7 +245,7 @@ function SpeciesPage() {
             >
               {!imageError ? (
                 <img
-                  src={`imgs/sp/${family}/${decodedSpeciesName}.jpg`}
+                  src={`imgs/sp/${family}/${decodedSpeciesName.replace(/\//g, "_")}.jpg`}
                   alt={`Fotografia de ${decodedSpeciesName}`}
                   style={{
                     width: "100%",
