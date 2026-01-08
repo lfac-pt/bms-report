@@ -549,7 +549,7 @@ function SpeciesPage() {
             <Switch
               checked={showOnlyQualityTransects}
               onChange={setShowOnlyQualityTransects}
-              checkedChildren="Qualidade"
+              checkedChildren="Qualificados"
               unCheckedChildren="Todos"
             />
           </Space>

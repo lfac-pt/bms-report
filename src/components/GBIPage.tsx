@@ -124,7 +124,7 @@ function GBIPage() {
               {gbiData.metadata.grasslandSpecies.filter((s: any) => s.type === "widespread").length}{" "}
               generalistas,{" "}
               {gbiData.metadata.grasslandSpecies.filter((s: any) => s.type === "specialist").length}{" "}
-              especialistas) de {transectCount} transectos de alta qualidade. Ano base{" "}
+              especialistas) de {transectCount} transectos qualificados. Ano base{" "}
               {gbiData.metadata.baselineYear} = 100. Os valores acima de 100 indicam crescimento
               populacional; abaixo de 100 indicam declínio.
             </>
@@ -364,7 +364,7 @@ function GBIPage() {
 
                 <Title level={5}>1. Filtragem de Dados e Controlo de Qualidade</Title>
                 <Paragraph>
-                  Apenas transectos de alta qualidade são incluídos no cálculo. Os critérios são:
+                  Apenas transectos qualificados são incluídos no cálculo. Os critérios são:
                 </Paragraph>
                 <ul>
                   <li>

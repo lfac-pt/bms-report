@@ -3,6 +3,7 @@ import { Line } from "react-chartjs-2";
 import { Card, Alert, Empty } from "antd";
 import { InfoCircleOutlined } from "@ant-design/icons";
 import type { RegionalPhenology } from "../../types/phenologyData";
+import { MIN_YEARS_ACTIVE, MIN_VISITS_PER_YEAR } from "../../constants";
 
 interface FlightCurveChartProps {
   region: string;
@@ -275,9 +276,9 @@ export const FlightCurvesDisplay: React.FC<FlightCurvesDisplayProps> = ({
             </p>
             <p style={{ marginTop: 8, marginBottom: 0 }}>
               <strong>Metodologia:</strong> As curvas são calculadas separadamente por região
-              climática, usando apenas transectos de qualidade (5+ anos ativos, 5+ visitas/ano).
-              Cada linha representa um ano diferente, permitindo comparar padrões fenológicos entre
-              anos.
+              climática, usando apenas transectos qualificados ({MIN_YEARS_ACTIVE}+ anos ativos,{" "}
+              {MIN_VISITS_PER_YEAR}+ visitas/ano). Cada linha representa um ano diferente,
+              permitindo comparar padrões fenológicos entre anos.
             </p>
           </>
         }
