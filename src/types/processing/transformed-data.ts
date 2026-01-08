@@ -146,6 +146,8 @@ export interface FlightCurvesData {
       collatedIndices: Record<string, number>;
       trendLine: Record<string, number> | null;
       regionalPhenologyCurves: Record<string, unknown> | null; // Regional flight curves by region
+      site_indices: Record<string, Record<string, number>> | null; // Transect-level indices: { transect_id: { year: index } }
+      site_raw_counts: Record<string, Record<string, number>> | null; // Transect-level raw counts: { transect_id: { year: count } }
       dataQuality: DataQuality;
       processingInfo: unknown;
       confidenceIntervals: Record<number, { ci_lower: number; ci_upper: number }>;

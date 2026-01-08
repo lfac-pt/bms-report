@@ -20,6 +20,8 @@ import {
   MONITORING_END_MONTH,
   ALL_GRASSLAND_SPECIES,
   GRASSLAND_SPECIES,
+  MIN_COUNTS_PER_SPECIES,
+  MAX_ABSOLUTE_INDEX,
   getQualityFilteredTransects,
 } from "../../src/constants";
 import { getYearFromDate, getMonthFromDate } from "../utils";
@@ -305,9 +307,49 @@ export async function calculateGBI(
     }
   }
 
+  // Filter out species that don't meet quality criteria
+  console.log(`\n  Applying quality filters to species...`);
+  const speciesBeforeFiltering = Object.keys(speciesTrends).length;
+  const excludedSpecies: { species: string; reason: string }[] = [];
+
+  for (const [species, trend] of Object.entries(speciesTrends)) {
+    // Count total observations for this species
+    const speciesData = transformedData.filter(r => r.species === species);
+    const totalCounts = speciesData.reduce((sum, r) => sum + r.count, 0);
+
+    // Check minimum counts criterion
+    if (totalCounts < MIN_COUNTS_PER_SPECIES) {
+      excludedSpecies.push({
+        species,
+        reason: `insufficient counts (${totalCounts} < ${MIN_COUNTS_PER_SPECIES})`,
+      });
+      delete speciesTrends[species];
+      continue;
+    }
+
+    // Check for unrealistic index values (modeling artifacts)
+    const indices = Object.values(trend.annualIndices);
+    const maxIndex = Math.max(...indices);
+    if (maxIndex > MAX_ABSOLUTE_INDEX) {
+      excludedSpecies.push({
+        species,
+        reason: `unrealistic index values (max: ${maxIndex.toFixed(0)} > ${MAX_ABSOLUTE_INDEX})`,
+      });
+      delete speciesTrends[species];
+      continue;
+    }
+  }
+
+  if (excludedSpecies.length > 0) {
+    console.log(`  Excluded ${excludedSpecies.length} species due to quality criteria:`);
+    excludedSpecies.forEach(({ species, reason }) => {
+      console.log(`    - ${species}: ${reason}`);
+    });
+  }
+
   const speciesWithTrends = Object.keys(speciesTrends);
   console.log(
-    `\n  Species successfully processed: ${speciesWithTrends.length}/${allSpecies.length}`
+    `\n  Species successfully processed: ${speciesWithTrends.length}/${allSpecies.length} (${speciesBeforeFiltering - speciesWithTrends.length} excluded)`
   );
 
   // Clean up transect lengths file after processing all species

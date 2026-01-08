@@ -36,7 +36,7 @@
         "Pararge aegeria",
         "Pieris brassicae",
         "Pieris rapae",
-        "Polyommatus icarus",
+        "Polyommatus icarus/celina",
         "Pontia daplidice",
         "Pyronia cecilia",
         "Pyronia tithonus",
@@ -52,8 +52,8 @@
       "responsavel": "Paula Canha",
       "entidade": "ONGA",
       "coordinates": {
-        "lat": 37.140386790797486,
-        "lon": -8.609750576772903
+        "lat": 37.14076035007317,
+        "lon": -8.603938730865462
       },
       "protectedArea": null,
       "length": 1070
@@ -93,7 +93,7 @@
         "Pararge aegeria",
         "Pieris brassicae",
         "Pieris rapae",
-        "Polyommatus icarus",
+        "Polyommatus icarus/celina",
         "Pyronia cecilia",
         "Pyronia tithonus",
         "Thymelicus acteon",
@@ -107,8 +107,8 @@
       "responsavel": "Paula Canha",
       "entidade": "ONGA",
       "coordinates": {
-        "lat": 37.136457168824045,
-        "lon": -8.60290191759728
+        "lat": 37.14759257089113,
+        "lon": -8.60633832614915
       },
       "protectedArea": null,
       "length": 1041
@@ -151,8 +151,8 @@
       "responsavel": "",
       "entidade": "Particular",
       "coordinates": {
-        "lat": 41.120567401260445,
-        "lon": -8.446372347693364
+        "lat": 41.12057360117304,
+        "lon": -8.437910500517312
       },
       "protectedArea": "Parque das Serras do Porto",
       "length": 1038
@@ -192,7 +192,7 @@
         "Pieris napi",
         "Pieris rapae",
         "Polygonia c-album",
-        "Polyommatus icarus",
+        "Polyommatus icarus/celina",
         "Pontia daplidice",
         "Pyronia cecilia",
         "Pyronia tithonus",
@@ -208,10 +208,10 @@
       "responsavel": "Luis Gaifan",
       "entidade": "ONGA",
       "coordinates": {
-        "lat": 41.55312687327731,
-        "lon": -8.786577995336787
+        "lat": 41.55209513668921,
+        "lon": -8.787823877256441
       },
-      "protectedArea": null,
+      "protectedArea": "Litoral Norte",
       "length": 1130
     },
     {
@@ -219,11 +219,11 @@
       "transectCode": "EBMS:Portugal:153",
       "transectName": "Avis",
       "isActive": true,
-      "totalSpecies": 21,
+      "totalSpecies": 22,
       "totalVisits": 49,
-      "totalAbundance": 809,
+      "totalAbundance": 830,
       "avgVisitsPerYear": 24.5,
-      "avgButterfliesPerVisit": 16.5,
+      "avgButterfliesPerVisit": 16.9,
       "yearsActive": 2,
       "firstMonitoringYear": 2024,
       "lastMonitoringYear": 2025,
@@ -245,6 +245,7 @@
         "Pararge aegeria",
         "Pieris brassicae",
         "Pieris rapae",
+        "Polyommatus icarus/celina",
         "Pyronia cecilia",
         "Vanessa atalanta",
         "Vanessa cardui",
@@ -257,8 +258,8 @@
       "responsavel": "",
       "entidade": "Particular",
       "coordinates": {
-        "lat": 39.047802700740306,
-        "lon": -7.896200011132368
+        "lat": 39.04825659156008,
+        "lon": -7.896684922354783
       },
       "protectedArea": null,
       "length": 1216
@@ -270,9 +271,9 @@
       "isActive": true,
       "totalSpecies": 32,
       "totalVisits": 39,
-      "totalAbundance": 1288,
+      "totalAbundance": 1353,
       "avgVisitsPerYear": 13,
-      "avgButterfliesPerVisit": 33,
+      "avgButterfliesPerVisit": 34.7,
       "yearsActive": 3,
       "firstMonitoringYear": 2023,
       "lastMonitoringYear": 2025,
@@ -299,7 +300,7 @@
         "Pararge aegeria",
         "Pieris brassicae",
         "Pieris rapae",
-        "Polyommatus celina",
+        "Polyommatus icarus/celina",
         "Pontia daplidice",
         "Pyronia cecilia",
         "Satyrium esculi",
@@ -317,8 +318,8 @@
       "responsavel": "Antóno Xeria",
       "entidade": "Particular",
       "coordinates": {
-        "lat": 39.05741815772236,
-        "lon": -7.814957257498979
+        "lat": 39.04494157559817,
+        "lon": -7.825162453174432
       },
       "protectedArea": null,
       "length": 1041
@@ -359,7 +360,7 @@
         "Pararge aegeria",
         "Pieris rapae",
         "Plebejus argus",
-        "Polyommatus icarus",
+        "Polyommatus icarus/celina",
         "Pontia daplidice",
         "Pyronia cecilia",
         "Pyronia tithonus",
@@ -374,8 +375,8 @@
       "responsavel": "",
       "entidade": "",
       "coordinates": {
-        "lat": 40.22169091390655,
-        "lon": -8.221103467661363
+        "lat": 40.21979682273205,
+        "lon": -8.213997017718421
       },
       "protectedArea": null,
       "length": 1154
@@ -385,11 +386,11 @@
       "transectCode": "EBMS:Portugal:148",
       "transectName": "Barragem de Petrarouca",
       "isActive": true,
-      "totalSpecies": 41,
+      "totalSpecies": 42,
       "totalVisits": 11,
-      "totalAbundance": 2167,
+      "totalAbundance": 2176,
       "avgVisitsPerYear": 5.5,
-      "avgButterfliesPerVisit": 197,
+      "avgButterfliesPerVisit": 197.8,
       "yearsActive": 2,
       "firstMonitoringYear": 2024,
       "lastMonitoringYear": 2025,
@@ -428,6 +429,7 @@
         "Pieris brassicae",
         "Pieris napi",
         "Pieris rapae",
+        "Polyommatus icarus/celina",
         "Pontia daplidice",
         "Pyronia tithonus",
         "Satyrium spini",
@@ -443,8 +445,8 @@
       "responsavel": "",
       "entidade": "Particular",
       "coordinates": {
-        "lat": 41.02735773277677,
-        "lon": -7.883213943914746
+        "lat": 41.03022204295547,
+        "lon": -7.894775772451036
       },
       "protectedArea": null,
       "length": 1151
@@ -454,11 +456,11 @@
       "transectCode": "EBMS:Portugal:130",
       "transectName": "Campus de Gualtar",
       "isActive": true,
-      "totalSpecies": 20,
+      "totalSpecies": 21,
       "totalVisits": 22,
-      "totalAbundance": 326,
+      "totalAbundance": 329,
       "avgVisitsPerYear": 7.3,
-      "avgButterfliesPerVisit": 14.8,
+      "avgButterfliesPerVisit": 15,
       "yearsActive": 3,
       "firstMonitoringYear": 2023,
       "lastMonitoringYear": 2025,
@@ -479,6 +481,7 @@
         "Pieris brassicae",
         "Pieris napi",
         "Pieris rapae",
+        "Polyommatus icarus/celina",
         "Pyronia cecilia",
         "Pyronia tithonus",
         "Satyrium esculi",
@@ -491,8 +494,8 @@
       "responsavel": "Rafael Pinto",
       "entidade": "Universidade de Braga",
       "coordinates": {
-        "lat": 41.551634675258136,
-        "lon": -8.396345314259158
+        "lat": 41.55411880595706,
+        "lon": -8.393432610205554
       },
       "protectedArea": null,
       "length": 545
@@ -502,11 +505,11 @@
       "transectCode": "EBMS:Portugal:127",
       "transectName": "Casal de Pipa",
       "isActive": false,
-      "totalSpecies": 23,
+      "totalSpecies": 24,
       "totalVisits": 14,
-      "totalAbundance": 245,
+      "totalAbundance": 251,
       "avgVisitsPerYear": 7,
-      "avgButterfliesPerVisit": 17.5,
+      "avgButterfliesPerVisit": 17.9,
       "yearsActive": 2,
       "firstMonitoringYear": 2023,
       "lastMonitoringYear": 2024,
@@ -526,6 +529,7 @@
         "Pararge aegeria",
         "Pieris brassicae",
         "Pieris rapae",
+        "Polyommatus icarus/celina",
         "Pontia daplidice",
         "Pyronia bathseba",
         "Pyronia cecilia",
@@ -542,8 +546,8 @@
       "responsavel": "Paula Coelho",
       "entidade": "Particular",
       "coordinates": {
-        "lat": 38.82184501994524,
-        "lon": -9.173432463191105
+        "lat": 38.817908163183105,
+        "lon": -9.166187295747411
       },
       "protectedArea": null,
       "length": 1077
@@ -577,8 +581,8 @@
       "responsavel": "Rui Laureano",
       "entidade": "Particular",
       "coordinates": {
-        "lat": 38.64071889608684,
-        "lon": -9.122340437414133
+        "lat": 38.63898964946818,
+        "lon": -9.118841375699981
       },
       "protectedArea": null,
       "length": 969
@@ -615,7 +619,7 @@
         "Pararge aegeria",
         "Pieris brassicae",
         "Pieris rapae",
-        "Polyommatus icarus",
+        "Polyommatus icarus/celina",
         "Pontia daplidice",
         "Pyronia bathseba",
         "Pyronia cecilia",
@@ -633,8 +637,8 @@
       "responsavel": "Paulo Alves",
       "entidade": "Particular",
       "coordinates": {
-        "lat": 39.45661719956874,
-        "lon": -8.064853959063226
+        "lat": 39.45864252572082,
+        "lon": -8.065034460069985
       },
       "protectedArea": null,
       "length": 1075
@@ -678,8 +682,8 @@
       "responsavel": "Rafael Pinto",
       "entidade": "Particular",
       "coordinates": {
-        "lat": 41.38686805332432,
-        "lon": -8.418761794949774
+        "lat": 41.37434017336972,
+        "lon": -8.412699510113313
       },
       "protectedArea": null,
       "length": 1689
@@ -716,7 +720,7 @@
         "Pieris brassicae",
         "Pieris napi",
         "Pieris rapae",
-        "Polyommatus icarus",
+        "Polyommatus icarus/celina",
         "Pontia daplidice",
         "Pyronia cecilia",
         "Vanessa atalanta",
@@ -729,8 +733,8 @@
       "responsavel": "Diogo Silva",
       "entidade": "Município",
       "coordinates": {
-        "lat": 38.73273083322018,
-        "lon": -9.476127205488828
+        "lat": 38.73053564836814,
+        "lon": -9.475382329475924
       },
       "protectedArea": null,
       "length": 1572
@@ -778,7 +782,7 @@
         "Pieris napi",
         "Pieris rapae",
         "Plebejus argus",
-        "Polyommatus icarus",
+        "Polyommatus icarus/celina",
         "Pyronia bathseba",
         "Pyronia cecilia",
         "Pyronia tithonus",
@@ -798,8 +802,8 @@
       "responsavel": "Isa Teixeira",
       "entidade": "Particular",
       "coordinates": {
-        "lat": 39.97718437082845,
-        "lon": -8.549564880240172
+        "lat": 39.981273795937824,
+        "lon": -8.553379904113008
       },
       "protectedArea": null,
       "length": 1045
@@ -836,8 +840,8 @@
       "responsavel": "Julieta Costa",
       "entidade": "Particular",
       "coordinates": {
-        "lat": 38.761906653785594,
-        "lon": -9.166148758457318
+        "lat": 38.758131664842146,
+        "lon": -9.17260778321044
       },
       "protectedArea": null,
       "length": 1757
@@ -889,7 +893,7 @@
         "Pieris napi",
         "Pieris rapae",
         "Polygonia c-album",
-        "Polyommatus icarus",
+        "Polyommatus icarus/celina",
         "Pontia daplidice",
         "Pyronia bathseba",
         "Pyronia cecilia",
@@ -906,8 +910,8 @@
       "responsavel": "",
       "entidade": "Município",
       "coordinates": {
-        "lat": 41.80370644627034,
-        "lon": -6.750970303624776
+        "lat": 41.79843620485826,
+        "lon": -6.751616595842955
       },
       "protectedArea": null,
       "length": 1476
@@ -940,7 +944,7 @@
         "Pararge aegeria",
         "Pieris brassicae",
         "Pieris rapae",
-        "Polyommatus icarus",
+        "Polyommatus icarus/celina",
         "Pontia daplidice",
         "Pyronia cecilia",
         "Thymelicus acteon",
@@ -955,8 +959,8 @@
       "responsavel": "Sílvia Pina",
       "entidade": "Particular",
       "coordinates": {
-        "lat": 38.52926912609473,
-        "lon": -9.005862136782016
+        "lat": 38.531438495663394,
+        "lon": -9.011246834978188
       },
       "protectedArea": null,
       "length": 1546
@@ -1005,7 +1009,7 @@
         "Pararge aegeria",
         "Pieris brassicae",
         "Pieris rapae",
-        "Polyommatus icarus",
+        "Polyommatus icarus/celina",
         "Pontia daplidice",
         "Pyronia bathseba",
         "Pyronia cecilia",
@@ -1027,8 +1031,8 @@
       "responsavel": "Luis Cardoso",
       "entidade": "Particular",
       "coordinates": {
-        "lat": 40.071413506144154,
-        "lon": -8.396494851521604
+        "lat": 40.06242347622357,
+        "lon": -8.393526540471486
       },
       "protectedArea": null,
       "length": 1246
@@ -1040,9 +1044,9 @@
       "isActive": true,
       "totalSpecies": 28,
       "totalVisits": 17,
-      "totalAbundance": 1213,
+      "totalAbundance": 1216,
       "avgVisitsPerYear": 8.5,
-      "avgButterfliesPerVisit": 71.4,
+      "avgButterfliesPerVisit": 71.5,
       "yearsActive": 2,
       "firstMonitoringYear": 2024,
       "lastMonitoringYear": 2025,
@@ -1066,7 +1070,7 @@
         "Pararge aegeria",
         "Pieris brassicae",
         "Pieris rapae",
-        "Polyommatus icarus",
+        "Polyommatus icarus/celina",
         "Pontia daplidice",
         "Pyronia bathseba",
         "Pyronia cecilia",
@@ -1083,8 +1087,8 @@
       "responsavel": "André Oliveira",
       "entidade": "Universidade de Évora",
       "coordinates": {
-        "lat": 38.52006540406789,
-        "lon": -8.020632291638682
+        "lat": 38.52618745713001,
+        "lon": -8.020302429240784
       },
       "protectedArea": null,
       "length": 1451
@@ -1094,7 +1098,7 @@
       "transectCode": "EBMS:Portugal:56",
       "transectName": "ICNF MNPR Trilho da Mina de Ouro no Conhal",
       "isActive": true,
-      "totalSpecies": 43,
+      "totalSpecies": 42,
       "totalVisits": 68,
       "totalAbundance": 1618,
       "avgVisitsPerYear": 11.3,
@@ -1134,8 +1138,7 @@
         "Pieris brassicae",
         "Pieris napi",
         "Pieris rapae",
-        "Polyommatus celina",
-        "Polyommatus icarus",
+        "Polyommatus icarus/celina",
         "Pontia daplidice",
         "Pyronia bathseba",
         "Pyronia cecilia",
@@ -1154,8 +1157,8 @@
       "responsavel": "Ana Cavaco",
       "entidade": "ICNF",
       "coordinates": {
-        "lat": 39.638963129958626,
-        "lon": -7.683375367082464
+        "lat": 39.634871554384205,
+        "lon": -7.682649150349588
       },
       "protectedArea": "Portas de Rodão",
       "length": 720
@@ -1191,7 +1194,7 @@
         "Pieris brassicae",
         "Pieris napi",
         "Pieris rapae",
-        "Polyommatus icarus",
+        "Polyommatus icarus/celina",
         "Pyronia cecilia",
         "Pyronia tithonus",
         "Vanessa cardui"
@@ -1203,8 +1206,8 @@
       "responsavel": "Diogo Mina",
       "entidade": "ICNF",
       "coordinates": {
-        "lat": 40.17842139047347,
-        "lon": -8.543961278595637
+        "lat": 40.182617524537804,
+        "lon": -8.55078494979658
       },
       "protectedArea": null,
       "length": 1063
@@ -1252,8 +1255,8 @@
       "responsavel": "",
       "entidade": "ICNF",
       "coordinates": {
-        "lat": 38.473510087848545,
-        "lon": -8.980680963084444
+        "lat": 38.47002459045377,
+        "lon": -8.984819774859886
       },
       "protectedArea": "Arrábida",
       "length": 1014
@@ -1265,7 +1268,7 @@
       "isActive": true,
       "totalSpecies": 39,
       "totalVisits": 157,
-      "totalAbundance": 4673,
+      "totalAbundance": 4682,
       "avgVisitsPerYear": 26.2,
       "avgButterfliesPerVisit": 29.8,
       "yearsActive": 6,
@@ -1300,7 +1303,7 @@
         "Pieris brassicae",
         "Pieris napi",
         "Pieris rapae",
-        "Polyommatus icarus",
+        "Polyommatus icarus/celina",
         "Pontia daplidice",
         "Pyronia bathseba",
         "Pyronia cecilia",
@@ -1319,8 +1322,8 @@
       "responsavel": "Ana Sofia Palma",
       "entidade": "ICNF",
       "coordinates": {
-        "lat": 38.5641299409615,
-        "lon": -8.916386922185803
+        "lat": 38.56330319285188,
+        "lon": -8.918896068999588
       },
       "protectedArea": "Arrábida",
       "length": 1064
@@ -1389,7 +1392,7 @@
         "Pieris napi",
         "Pieris rapae",
         "Plebejus argus",
-        "Polyommatus icarus",
+        "Polyommatus icarus/celina",
         "Pontia daplidice",
         "Pseudophilotes baton",
         "Pyrgus malvoides",
@@ -1409,8 +1412,8 @@
       "responsavel": "João Pargana",
       "entidade": "ICNF",
       "coordinates": {
-        "lat": 41.33073400352044,
-        "lon": -7.804284067582317
+        "lat": 41.34097826178536,
+        "lon": -7.804951364265705
       },
       "protectedArea": "Alvão",
       "length": 1390
@@ -1422,9 +1425,9 @@
       "isActive": true,
       "totalSpecies": 56,
       "totalVisits": 48,
-      "totalAbundance": 3453,
+      "totalAbundance": 3456,
       "avgVisitsPerYear": 12,
-      "avgButterfliesPerVisit": 71.9,
+      "avgButterfliesPerVisit": 72,
       "yearsActive": 4,
       "firstMonitoringYear": 2020,
       "lastMonitoringYear": 2025,
@@ -1476,7 +1479,7 @@
         "Pieris napi",
         "Pieris rapae",
         "Plebejus argus",
-        "Polyommatus icarus",
+        "Polyommatus icarus/celina",
         "Pontia daplidice",
         "Pyrgus malvoides",
         "Pyronia cecilia",
@@ -1493,8 +1496,8 @@
       "responsavel": "Helena Paulino",
       "entidade": "ICNF",
       "coordinates": {
-        "lat": 41.37367548121088,
-        "lon": -7.804101248769507
+        "lat": 41.37462579506984,
+        "lon": -7.795120414556847
       },
       "protectedArea": "Alvão",
       "length": 1241
@@ -1570,8 +1573,8 @@
       "responsavel": "Carlos Santos",
       "entidade": "ICNF",
       "coordinates": {
-        "lat": 41.322341292107566,
-        "lon": -6.527747796561849
+        "lat": 41.314905008938034,
+        "lon": -6.526696967660464
       },
       "protectedArea": "Douro Internacional",
       "length": 1096
@@ -1581,11 +1584,11 @@
       "transectCode": "EBMS:Portugal:88",
       "transectName": "ICNF PNDI Vila Ala",
       "isActive": true,
-      "totalSpecies": 55,
+      "totalSpecies": 56,
       "totalVisits": 100,
-      "totalAbundance": 4198,
+      "totalAbundance": 4211,
       "avgVisitsPerYear": 16.7,
-      "avgButterfliesPerVisit": 42,
+      "avgButterfliesPerVisit": 42.1,
       "yearsActive": 6,
       "firstMonitoringYear": 2020,
       "lastMonitoringYear": 2025,
@@ -1634,6 +1637,7 @@
         "Pieris napi",
         "Pieris rapae",
         "Polygonia c-album",
+        "Polyommatus icarus/celina",
         "Pontia daplidice",
         "Pyronia bathseba",
         "Pyronia cecilia",
@@ -1653,10 +1657,10 @@
       "responsavel": "Carlos Santos",
       "entidade": "ICNF",
       "coordinates": {
-        "lat": 41.329604938331585,
-        "lon": -6.5912799294411455
+        "lat": 41.325084312646176,
+        "lon": -6.598320130265287
       },
-      "protectedArea": null,
+      "protectedArea": "Douro Internacional",
       "length": 1002
     },
     {
@@ -1666,9 +1670,9 @@
       "isActive": true,
       "totalSpecies": 26,
       "totalVisits": 121,
-      "totalAbundance": 1973,
+      "totalAbundance": 1982,
       "avgVisitsPerYear": 20.2,
-      "avgButterfliesPerVisit": 16.3,
+      "avgButterfliesPerVisit": 16.4,
       "yearsActive": 6,
       "firstMonitoringYear": 2020,
       "lastMonitoringYear": 2025,
@@ -1692,7 +1696,7 @@
         "Pieris brassicae",
         "Pieris napi",
         "Pieris rapae",
-        "Polyommatus icarus",
+        "Polyommatus icarus/celina",
         "Pontia daplidice",
         "Pyronia bathseba",
         "Pyronia cecilia",
@@ -1707,8 +1711,8 @@
       "responsavel": "Belmiro Viana",
       "entidade": "ICNF",
       "coordinates": {
-        "lat": 41.507377515871234,
-        "lon": -8.75810464759997
+        "lat": 41.51438129110484,
+        "lon": -8.75324487664485
       },
       "protectedArea": null,
       "length": 614
@@ -1747,7 +1751,7 @@
         "Pieris napi",
         "Pieris rapae",
         "Polygonia c-album",
-        "Polyommatus celina",
+        "Polyommatus icarus/celina",
         "Pyronia cecilia",
         "Pyronia tithonus"
       ],
@@ -1758,8 +1762,8 @@
       "responsavel": "Ema Veiga",
       "entidade": "ICNF",
       "coordinates": {
-        "lat": 41.836928506637264,
-        "lon": -6.732594421366795
+        "lat": 41.838721948465384,
+        "lon": -6.747160252282976
       },
       "protectedArea": null,
       "length": 1025
@@ -1807,10 +1811,10 @@
       "responsavel": "Ema Veiga",
       "entidade": "ICNF",
       "coordinates": {
-        "lat": 41.81671167146873,
-        "lon": -6.811141549010144
+        "lat": 41.824212244906214,
+        "lon": -6.823275395563736
       },
-      "protectedArea": null,
+      "protectedArea": "Montesinho",
       "length": 674
     },
     {
@@ -1861,7 +1865,7 @@
         "Pieris napi",
         "Pieris rapae",
         "Polygonia c-album",
-        "Polyommatus icarus",
+        "Polyommatus icarus/celina",
         "Pyronia bathseba",
         "Pyronia cecilia",
         "Pyronia tithonus",
@@ -1876,10 +1880,10 @@
       "responsavel": "PNPG Vidoeiro",
       "entidade": "ICNF",
       "coordinates": {
-        "lat": 41.7395915998818,
-        "lon": -8.20207570738956
+        "lat": 41.74220007902706,
+        "lon": -8.20588797936562
       },
-      "protectedArea": "Peneda-Gerês",
+      "protectedArea": null,
       "length": 1013
     },
     {
@@ -1908,8 +1912,8 @@
       "responsavel": "",
       "entidade": "",
       "coordinates": {
-        "lat": 41.75099476266046,
-        "lon": -8.201371519614163
+        "lat": 41.75057692970014,
+        "lon": -8.197243989261118
       },
       "protectedArea": null,
       "length": 1014
@@ -1945,8 +1949,8 @@
       "responsavel": "Armando Moura",
       "entidade": "ICNF",
       "coordinates": {
-        "lat": 37.026494151516,
-        "lon": -7.817413808355022
+        "lat": 37.03795836096914,
+        "lon": -7.8199057481945555
       },
       "protectedArea": "Ria Formosa",
       "length": 1089
@@ -1958,9 +1962,9 @@
       "isActive": true,
       "totalSpecies": 39,
       "totalVisits": 59,
-      "totalAbundance": 2164,
+      "totalAbundance": 2181,
       "avgVisitsPerYear": 14.8,
-      "avgButterfliesPerVisit": 36.7,
+      "avgButterfliesPerVisit": 37,
       "yearsActive": 4,
       "firstMonitoringYear": 2022,
       "lastMonitoringYear": 2025,
@@ -1991,7 +1995,7 @@
         "Pieris brassicae",
         "Pieris napi",
         "Pieris rapae",
-        "Polyommatus icarus",
+        "Polyommatus icarus/celina",
         "Pontia daplidice",
         "Pyrgus malvoides",
         "Pyronia bathseba",
@@ -2012,8 +2016,8 @@
       "responsavel": "Florbela Queirós",
       "entidade": "ICNF",
       "coordinates": {
-        "lat": 39.36629923338352,
-        "lon": -8.949901467579918
+        "lat": 39.363975527542685,
+        "lon": -8.951151436021462
       },
       "protectedArea": "Serras de Aire e Candeeiros",
       "length": 1097
@@ -2025,9 +2029,9 @@
       "isActive": true,
       "totalSpecies": 47,
       "totalVisits": 61,
-      "totalAbundance": 3251,
+      "totalAbundance": 3265,
       "avgVisitsPerYear": 15.3,
-      "avgButterfliesPerVisit": 53.3,
+      "avgButterfliesPerVisit": 53.5,
       "yearsActive": 4,
       "firstMonitoringYear": 2022,
       "lastMonitoringYear": 2025,
@@ -2066,7 +2070,7 @@
         "Pieris brassicae",
         "Pieris napi",
         "Pieris rapae",
-        "Polyommatus icarus",
+        "Polyommatus icarus/celina",
         "Pontia daplidice",
         "Pyronia bathseba",
         "Pyronia cecilia",
@@ -2087,8 +2091,8 @@
       "responsavel": "Sofia Quaresma",
       "entidade": "ICNF",
       "coordinates": {
-        "lat": 39.51262977456141,
-        "lon": -8.702691405470732
+        "lat": 39.513883641794635,
+        "lon": -8.704173908491006
       },
       "protectedArea": "Serras de Aire e Candeeiros",
       "length": 1013
@@ -2100,7 +2104,7 @@
       "isActive": false,
       "totalSpecies": 34,
       "totalVisits": 31,
-      "totalAbundance": 1813,
+      "totalAbundance": 1814,
       "avgVisitsPerYear": 15.5,
       "avgButterfliesPerVisit": 58.5,
       "yearsActive": 2,
@@ -2131,7 +2135,7 @@
         "Pararge aegeria",
         "Pieris brassicae",
         "Pieris rapae",
-        "Polyommatus icarus",
+        "Polyommatus icarus/celina",
         "Pyronia bathseba",
         "Pyronia cecilia",
         "Pyronia tithonus",
@@ -2149,8 +2153,8 @@
       "responsavel": "Pedro Alverca",
       "entidade": "ICNF",
       "coordinates": {
-        "lat": 37.69645898827744,
-        "lon": -8.67763011932398
+        "lat": 37.68603290504983,
+        "lon": -8.676517927377525
       },
       "protectedArea": "Sudoeste Alentejano e Costa Vicentina",
       "length": 991
@@ -2197,7 +2201,7 @@
         "Pieris brassicae",
         "Pieris napi",
         "Pieris rapae",
-        "Polyommatus icarus",
+        "Polyommatus icarus/celina",
         "Pontia daplidice",
         "Pyrgus malvoides",
         "Pyrgus serratulae",
@@ -2220,8 +2224,8 @@
       "responsavel": "Alexandre Cabrita",
       "entidade": "ICNF",
       "coordinates": {
-        "lat": 37.1847963897821,
-        "lon": -8.697045676895199
+        "lat": 37.182793331315196,
+        "lon": -8.696586781758928
       },
       "protectedArea": null,
       "length": 893
@@ -2231,11 +2235,11 @@
       "transectCode": "EBMS:Portugal:49",
       "transectName": "ICNF PNSACV EBIO Ribeira do Torgal",
       "isActive": true,
-      "totalSpecies": 25,
+      "totalSpecies": 26,
       "totalVisits": 27,
-      "totalAbundance": 510,
+      "totalAbundance": 514,
       "avgVisitsPerYear": 6.8,
-      "avgButterfliesPerVisit": 18.9,
+      "avgButterfliesPerVisit": 19,
       "yearsActive": 4,
       "firstMonitoringYear": 2022,
       "lastMonitoringYear": 2025,
@@ -2259,6 +2263,7 @@
         "Pieris brassicae",
         "Pieris napi",
         "Pieris rapae",
+        "Polyommatus icarus/celina",
         "Pyronia bathseba",
         "Pyronia cecilia",
         "Pyronia tithonus",
@@ -2273,8 +2278,8 @@
       "responsavel": "Ana Macedo",
       "entidade": "ICNF",
       "coordinates": {
-        "lat": 37.63818846301242,
-        "lon": -8.611550175135475
+        "lat": 37.6482999949969,
+        "lon": -8.62080169046753
       },
       "protectedArea": null,
       "length": 940
@@ -2286,9 +2291,9 @@
       "isActive": false,
       "totalSpecies": 42,
       "totalVisits": 33,
-      "totalAbundance": 1003,
+      "totalAbundance": 1005,
       "avgVisitsPerYear": 16.5,
-      "avgButterfliesPerVisit": 30.4,
+      "avgButterfliesPerVisit": 30.5,
       "yearsActive": 2,
       "firstMonitoringYear": 2020,
       "lastMonitoringYear": 2021,
@@ -2323,7 +2328,7 @@
         "Pararge aegeria",
         "Pieris brassicae",
         "Pieris rapae",
-        "Polyommatus icarus",
+        "Polyommatus icarus/celina",
         "Pontia daplidice",
         "Pyronia bathseba",
         "Pyronia cecilia",
@@ -2343,8 +2348,8 @@
       "responsavel": "Pedro Alverca",
       "entidade": "ICNF",
       "coordinates": {
-        "lat": 37.758425232823306,
-        "lon": -8.719390830169639
+        "lat": 37.75698856141148,
+        "lon": -8.71482970867077
       },
       "protectedArea": null,
       "length": 933
@@ -2399,7 +2404,7 @@
         "Pieris brassicae",
         "Pieris napi",
         "Pieris rapae",
-        "Polyommatus icarus",
+        "Polyommatus icarus/celina",
         "Pontia daplidice",
         "Pyronia cecilia",
         "Pyronia tithonus",
@@ -2417,8 +2422,8 @@
       "responsavel": "Henrique Domingues",
       "entidade": "ICNF",
       "coordinates": {
-        "lat": 40.38933070165274,
-        "lon": -7.706913942046037
+        "lat": 40.39173898837036,
+        "lon": -7.706908459310134
       },
       "protectedArea": "Serra da Estrela",
       "length": 1057
@@ -2430,9 +2435,9 @@
       "isActive": true,
       "totalSpecies": 48,
       "totalVisits": 29,
-      "totalAbundance": 745,
+      "totalAbundance": 752,
       "avgVisitsPerYear": 7.3,
-      "avgButterfliesPerVisit": 25.7,
+      "avgButterfliesPerVisit": 25.9,
       "yearsActive": 4,
       "firstMonitoringYear": 2022,
       "lastMonitoringYear": 2025,
@@ -2474,7 +2479,7 @@
         "Pieris napi",
         "Pieris rapae",
         "Plebejus argus",
-        "Polyommatus icarus",
+        "Polyommatus icarus/celina",
         "Pyrgus malvoides",
         "Pyronia cecilia",
         "Pyronia tithonus",
@@ -2493,8 +2498,8 @@
       "responsavel": "Henrique Domingues",
       "entidade": "ICNF",
       "coordinates": {
-        "lat": 40.39552100215705,
-        "lon": -7.574549576442595
+        "lat": 40.3990442060572,
+        "lon": -7.562947854926262
       },
       "protectedArea": "Serra da Estrela",
       "length": 746
@@ -2504,11 +2509,11 @@
       "transectCode": "EBMS:Portugal:107",
       "transectName": "ICNF PNSE Vale do Zêzere",
       "isActive": true,
-      "totalSpecies": 43,
+      "totalSpecies": 44,
       "totalVisits": 20,
-      "totalAbundance": 963,
+      "totalAbundance": 965,
       "avgVisitsPerYear": 10,
-      "avgButterfliesPerVisit": 48.2,
+      "avgButterfliesPerVisit": 48.3,
       "yearsActive": 2,
       "firstMonitoringYear": 2024,
       "lastMonitoringYear": 2025,
@@ -2550,6 +2555,7 @@
         "Pieris napi",
         "Pieris rapae",
         "Plebejus argus",
+        "Polyommatus icarus/celina",
         "Pontia daplidice",
         "Pyronia cecilia",
         "Pyronia tithonus",
@@ -2564,8 +2570,8 @@
       "responsavel": "",
       "entidade": "ICNF",
       "coordinates": {
-        "lat": 40.36156706262197,
-        "lon": -7.5589583793693
+        "lat": 40.363793717125866,
+        "lon": -7.565265328062632
       },
       "protectedArea": "Serra da Estrela",
       "length": 973
@@ -2575,11 +2581,11 @@
       "transectCode": "EBMS:Portugal:6",
       "transectName": "ICNF PNSSM Cerejeirinha - Marvão",
       "isActive": true,
-      "totalSpecies": 45,
+      "totalSpecies": 46,
       "totalVisits": 103,
-      "totalAbundance": 6401,
+      "totalAbundance": 6405,
       "avgVisitsPerYear": 14.7,
-      "avgButterfliesPerVisit": 62.1,
+      "avgButterfliesPerVisit": 62.2,
       "yearsActive": 7,
       "firstMonitoringYear": 2019,
       "lastMonitoringYear": 2025,
@@ -2619,6 +2625,7 @@
         "Pieris napi",
         "Pieris rapae",
         "Polygonia c-album",
+        "Polyommatus icarus/celina",
         "Pontia daplidice",
         "Pyronia bathseba",
         "Pyronia cecilia",
@@ -2637,8 +2644,8 @@
       "responsavel": "Conceição Conde",
       "entidade": "ICNF",
       "coordinates": {
-        "lat": 39.36319202801159,
-        "lon": -7.418454269662659
+        "lat": 39.36161091607333,
+        "lon": -7.425505503107535
       },
       "protectedArea": "Serra de São Mamede",
       "length": 1025
@@ -2650,7 +2657,7 @@
       "isActive": true,
       "totalSpecies": 37,
       "totalVisits": 63,
-      "totalAbundance": 1771,
+      "totalAbundance": 1773,
       "avgVisitsPerYear": 10.5,
       "avgButterfliesPerVisit": 28.1,
       "yearsActive": 6,
@@ -2683,7 +2690,7 @@
         "Pieris brassicae",
         "Pieris napi",
         "Pieris rapae",
-        "Polyommatus icarus",
+        "Polyommatus icarus/celina",
         "Pyronia bathseba",
         "Pyronia cecilia",
         "Pyronia tithonus",
@@ -2702,8 +2709,8 @@
       "responsavel": "Ana Cavaco",
       "entidade": "ICNF",
       "coordinates": {
-        "lat": 39.18403997995124,
-        "lon": -7.263828765025799
+        "lat": 39.1878528589357,
+        "lon": -7.270777379624994
       },
       "protectedArea": "Serra de São Mamede",
       "length": 1043
@@ -2715,9 +2722,9 @@
       "isActive": false,
       "totalSpecies": 28,
       "totalVisits": 5,
-      "totalAbundance": 310,
+      "totalAbundance": 369,
       "avgVisitsPerYear": 5,
-      "avgButterfliesPerVisit": 62,
+      "avgButterfliesPerVisit": 73.8,
       "yearsActive": 1,
       "firstMonitoringYear": 2021,
       "lastMonitoringYear": 2021,
@@ -2740,7 +2747,7 @@
         "Muschampia proto",
         "Nymphalis polychloros",
         "Pieris rapae",
-        "Polyommatus celina",
+        "Polyommatus icarus/celina",
         "Pontia daplidice",
         "Pyronia bathseba",
         "Pyronia cecilia",
@@ -2758,8 +2765,8 @@
       "responsavel": "Beatriz Machado",
       "entidade": "ICNF",
       "coordinates": {
-        "lat": 37.49331032356984,
-        "lon": -7.6998849093517165
+        "lat": 37.50407207026327,
+        "lon": -7.70463023664184
       },
       "protectedArea": null,
       "length": 1223
@@ -2769,11 +2776,11 @@
       "transectCode": "EBMS:Portugal:76",
       "transectName": "ICNF PPAFCC Mata dos Medos",
       "isActive": true,
-      "totalSpecies": 24,
+      "totalSpecies": 25,
       "totalVisits": 57,
-      "totalAbundance": 584,
+      "totalAbundance": 588,
       "avgVisitsPerYear": 9.5,
-      "avgButterfliesPerVisit": 10.2,
+      "avgButterfliesPerVisit": 10.3,
       "yearsActive": 6,
       "firstMonitoringYear": 2020,
       "lastMonitoringYear": 2025,
@@ -2799,6 +2806,7 @@
         "Pieris brassicae",
         "Pieris napi",
         "Pieris rapae",
+        "Polyommatus icarus/celina",
         "Pontia daplidice",
         "Vanessa atalanta",
         "Vanessa cardui"
@@ -2810,10 +2818,10 @@
       "responsavel": "Teresa Morais",
       "entidade": "ICNF",
       "coordinates": {
-        "lat": 38.557564447111126,
-        "lon": -9.178906832782337
+        "lat": 38.55888242200356,
+        "lon": -9.180624669614689
       },
-      "protectedArea": null,
+      "protectedArea": "Arriba Fossil da Costa da Caparica",
       "length": 1270
     },
     {
@@ -2860,7 +2868,7 @@
         "Pieris napi",
         "Pieris rapae",
         "Polygonia c-album",
-        "Polyommatus icarus",
+        "Polyommatus icarus/celina",
         "Pyronia bathseba",
         "Pyronia cecilia",
         "Pyronia tithonus",
@@ -2874,10 +2882,10 @@
       "responsavel": "",
       "entidade": "ICNF",
       "coordinates": {
-        "lat": 40.217621953173115,
-        "lon": -7.919765872941159
+        "lat": 40.21964494618311,
+        "lon": -7.919889539404256
       },
-      "protectedArea": "Serra do Açor",
+      "protectedArea": null,
       "length": 1061
     },
     {
@@ -2918,7 +2926,7 @@
         "Pieris brassicae",
         "Pieris napi",
         "Pieris rapae",
-        "Polyommatus icarus",
+        "Polyommatus icarus/celina",
         "Pyronia bathseba",
         "Pyronia cecilia",
         "Satyrium esculi",
@@ -2937,8 +2945,8 @@
       "responsavel": "Sofia Quaresma",
       "entidade": "ICNF",
       "coordinates": {
-        "lat": 39.18559026380918,
-        "lon": -9.054093889002374
+        "lat": 39.18326462913544,
+        "lon": -9.055039346744026
       },
       "protectedArea": "Serra de Montejunto",
       "length": 817
@@ -2987,10 +2995,10 @@
       "responsavel": "Rosa Serôdio",
       "entidade": "ICNF",
       "coordinates": {
-        "lat": 40.68745299498237,
-        "lon": -8.717361597584727
+        "lat": 40.695826263875844,
+        "lon": -8.72421739413753
       },
-      "protectedArea": null,
+      "protectedArea": "Dunas de São Jacinto",
       "length": 1193
     },
     {
@@ -3000,7 +3008,7 @@
       "isActive": true,
       "totalSpecies": 25,
       "totalVisits": 170,
-      "totalAbundance": 2018,
+      "totalAbundance": 2019,
       "avgVisitsPerYear": 28.3,
       "avgButterfliesPerVisit": 11.9,
       "yearsActive": 6,
@@ -3024,7 +3032,7 @@
         "Pieris brassicae",
         "Pieris napi",
         "Pieris rapae",
-        "Polyommatus icarus",
+        "Polyommatus icarus/celina",
         "Pyronia bathseba",
         "Pyronia cecilia",
         "Pyronia tithonus",
@@ -3040,8 +3048,8 @@
       "responsavel": "Maria do Céu Guerra",
       "entidade": "ICNF",
       "coordinates": {
-        "lat": 38.54679918727071,
-        "lon": -8.790827979991622
+        "lat": 38.5586483473802,
+        "lon": -8.779415111724138
       },
       "protectedArea": "Estuário do Sado",
       "length": 1099
@@ -3051,11 +3059,11 @@
       "transectCode": "EBMS:Portugal:41",
       "transectName": "ICNF RNLSAS Salgueiral da Galiza",
       "isActive": true,
-      "totalSpecies": 40,
+      "totalSpecies": 39,
       "totalVisits": 135,
-      "totalAbundance": 2957,
+      "totalAbundance": 2993,
       "avgVisitsPerYear": 27,
-      "avgButterfliesPerVisit": 21.9,
+      "avgButterfliesPerVisit": 22.2,
       "yearsActive": 5,
       "firstMonitoringYear": 2021,
       "lastMonitoringYear": 2025,
@@ -3087,8 +3095,7 @@
         "Pieris brassicae",
         "Pieris napi",
         "Pieris rapae",
-        "Polyommatus celina",
-        "Polyommatus icarus",
+        "Polyommatus icarus/celina",
         "Pontia daplidice",
         "Pyronia bathseba",
         "Pyronia cecilia",
@@ -3108,10 +3115,10 @@
       "responsavel": "Isa Figueiras",
       "entidade": "ICNF",
       "coordinates": {
-        "lat": 38.072140154631995,
-        "lon": -8.778333349493725
+        "lat": 38.08501216869628,
+        "lon": -8.773796281181939
       },
-      "protectedArea": null,
+      "protectedArea": "Lagoas de Santo André e da Sancha",
       "length": 1271
     },
     {
@@ -3158,8 +3165,8 @@
       "responsavel": "Sónia Casemiro",
       "entidade": "ICNF",
       "coordinates": {
-        "lat": 39.404615638222474,
-        "lon": -8.532484409545281
+        "lat": 39.404849976163106,
+        "lon": -8.535080929435152
       },
       "protectedArea": "Paul do Boquilobo",
       "length": 934
@@ -3169,11 +3176,11 @@
       "transectCode": "EBMS:Portugal:128",
       "transectName": "ICNF RNSCMVRSA",
       "isActive": true,
-      "totalSpecies": 19,
+      "totalSpecies": 20,
       "totalVisits": 20,
-      "totalAbundance": 568,
+      "totalAbundance": 571,
       "avgVisitsPerYear": 10,
-      "avgButterfliesPerVisit": 28.4,
+      "avgButterfliesPerVisit": 28.6,
       "yearsActive": 2,
       "firstMonitoringYear": 2024,
       "lastMonitoringYear": 2025,
@@ -3192,6 +3199,7 @@
         "Papilio machaon",
         "Pieris brassicae",
         "Pieris rapae",
+        "Polyommatus icarus/celina",
         "Pyronia cecilia",
         "Thymelicus acteon",
         "Thymelicus sylvestris",
@@ -3205,8 +3213,8 @@
       "responsavel": "Pedro Castelão",
       "entidade": "ICNF",
       "coordinates": {
-        "lat": 37.22889382529609,
-        "lon": -7.419618450779968
+        "lat": 37.232324720421104,
+        "lon": -7.426981418275533
       },
       "protectedArea": "Sapal de Castro Marim e Vila Real de Santo António",
       "length": 1030
@@ -3259,7 +3267,7 @@
         "Pieris brassicae",
         "Pieris napi",
         "Pieris rapae",
-        "Polyommatus icarus",
+        "Polyommatus icarus/celina",
         "Pontia daplidice",
         "Pyronia bathseba",
         "Pyronia tithonus",
@@ -3274,8 +3282,8 @@
       "responsavel": "Henrique Furriel",
       "entidade": "ICNF",
       "coordinates": {
-        "lat": 40.28099679697361,
-        "lon": -6.982503322317602
+        "lat": 40.29499661570053,
+        "lon": -6.973545786577968
       },
       "protectedArea": "Serra Malcata",
       "length": 1019
@@ -3309,7 +3317,7 @@
         "Pararge aegeria",
         "Pieris brassicae",
         "Pieris rapae",
-        "Polyommatus icarus",
+        "Polyommatus icarus/celina",
         "Pontia daplidice",
         "Pyronia bathseba",
         "Pyronia cecilia",
@@ -3327,8 +3335,8 @@
       "responsavel": "Isa Teixeira",
       "entidade": "ICNF",
       "coordinates": {
-        "lat": 39.16657862381058,
-        "lon": -9.346318403059493
+        "lat": 39.17484444359759,
+        "lon": -9.356142142508036
       },
       "protectedArea": null,
       "length": 1254
@@ -3360,7 +3368,7 @@
         "Pararge aegeria",
         "Pieris brassicae",
         "Pieris rapae",
-        "Polyommatus icarus",
+        "Polyommatus icarus/celina",
         "Pyronia cecilia",
         "Vanessa atalanta",
         "Vanessa cardui"
@@ -3372,8 +3380,8 @@
       "responsavel": "Albano Soares",
       "entidade": "Particular",
       "coordinates": {
-        "lat": 38.758805908094764,
-        "lon": -9.138740775997547
+        "lat": 38.75732203892236,
+        "lon": -9.125933421884776
       },
       "protectedArea": null,
       "length": 816
@@ -3408,7 +3416,7 @@
         "Pararge aegeria",
         "Pieris brassicae",
         "Pieris rapae",
-        "Polyommatus icarus",
+        "Polyommatus icarus/celina",
         "Pyronia bathseba",
         "Pyronia cecilia",
         "Satyrium esculi",
@@ -3423,8 +3431,8 @@
       "responsavel": "Orkhan Abbasov",
       "entidade": "Particular",
       "coordinates": {
-        "lat": 38.793358688755106,
-        "lon": -9.258397442550418
+        "lat": 38.787861327148356,
+        "lon": -9.259483619765163
       },
       "protectedArea": null,
       "length": 1354
@@ -3471,7 +3479,7 @@
         "Pieris napi",
         "Pieris rapae",
         "Polygonia c-album",
-        "Polyommatus icarus",
+        "Polyommatus icarus/celina",
         "Pyronia bathseba",
         "Pyronia cecilia",
         "Vanessa atalanta",
@@ -3485,8 +3493,8 @@
       "responsavel": "Filipa Coelho",
       "entidade": "ONGA",
       "coordinates": {
-        "lat": 39.60543043199192,
-        "lon": -8.419482802679772
+        "lat": 39.59689010057137,
+        "lon": -8.42158737328448
       },
       "protectedArea": null,
       "length": 815
@@ -3496,11 +3504,11 @@
       "transectCode": "EBMS:Portugal:132",
       "transectName": "Mato do Leirão",
       "isActive": true,
-      "totalSpecies": 22,
+      "totalSpecies": 23,
       "totalVisits": 15,
-      "totalAbundance": 373,
+      "totalAbundance": 387,
       "avgVisitsPerYear": 5,
-      "avgButterfliesPerVisit": 24.9,
+      "avgButterfliesPerVisit": 25.8,
       "yearsActive": 3,
       "firstMonitoringYear": 2023,
       "lastMonitoringYear": 2025,
@@ -3520,6 +3528,7 @@
         "Pararge aegeria",
         "Pieris brassicae",
         "Pieris rapae",
+        "Polyommatus icarus/celina",
         "Pyronia bathseba",
         "Pyronia cecilia",
         "Satyrium esculi",
@@ -3535,8 +3544,8 @@
       "responsavel": "Francisco Aguilar",
       "entidade": "Particular",
       "coordinates": {
-        "lat": 38.72895227939671,
-        "lon": -9.312186046359448
+        "lat": 38.721164126599135,
+        "lon": -9.310509412254234
       },
       "protectedArea": null,
       "length": 1158
@@ -3565,7 +3574,7 @@
         "Maniola jurtina",
         "Melanargia ines",
         "Pieris rapae",
-        "Polyommatus celina",
+        "Polyommatus icarus/celina",
         "Pyronia cecilia",
         "Vanessa atalanta",
         "Vanessa cardui"
@@ -3577,8 +3586,8 @@
       "responsavel": "",
       "entidade": "",
       "coordinates": {
-        "lat": 37.90181030074144,
-        "lon": -8.032736092374307
+        "lat": 37.90113153579793,
+        "lon": -8.034537856243116
       },
       "protectedArea": null,
       "length": 2435
@@ -3654,8 +3663,8 @@
       "responsavel": "",
       "entidade": "Particular",
       "coordinates": {
-        "lat": 41.05655858335143,
-        "lon": -7.84845497771222
+        "lat": 41.05045235777433,
+        "lon": -7.844709564075814
       },
       "protectedArea": null,
       "length": 1770
@@ -3700,8 +3709,8 @@
       "responsavel": "Pedro Borges",
       "entidade": "ONGA",
       "coordinates": {
-        "lat": 39.620451384066065,
-        "lon": -8.393951433024847
+        "lat": 39.620242975605066,
+        "lon": -8.392291256573474
       },
       "protectedArea": null,
       "length": 700
@@ -3743,8 +3752,8 @@
       "responsavel": "Daniele Cataldo",
       "entidade": "Particular",
       "coordinates": {
-        "lat": 41.76153410356843,
-        "lon": -7.4410566934536835
+        "lat": 41.769272774256976,
+        "lon": -7.44161216763391
       },
       "protectedArea": null,
       "length": 1001
@@ -3789,7 +3798,7 @@
         "Pararge aegeria",
         "Pieris brassicae",
         "Pieris rapae",
-        "Polyommatus celina",
+        "Polyommatus icarus/celina",
         "Pontia daplidice",
         "Pyronia bathseba",
         "Pyronia cecilia",
@@ -3808,8 +3817,8 @@
       "responsavel": "Sónia Mendes",
       "entidade": "Município",
       "coordinates": {
-        "lat": 39.44168918995247,
-        "lon": -8.323934596037004
+        "lat": 39.4446864197947,
+        "lon": -8.31784748428385
       },
       "protectedArea": null,
       "length": 589
@@ -3863,8 +3872,8 @@
       "responsavel": "Jorge Gomes",
       "entidade": "Município",
       "coordinates": {
-        "lat": 41.101247069358735,
-        "lon": -8.551070992680978
+        "lat": 41.092960617376484,
+        "lon": -8.560202377610487
       },
       "protectedArea": null,
       "length": 875
@@ -3908,8 +3917,8 @@
       "responsavel": "Jorge Gomes",
       "entidade": "Município",
       "coordinates": {
-        "lat": 41.1059281720327,
-        "lon": -8.553247436204062
+        "lat": 41.10690549164099,
+        "lon": -8.549427429448823
       },
       "protectedArea": null,
       "length": 430
@@ -3956,8 +3965,8 @@
       "responsavel": "Guimarães",
       "entidade": "Município",
       "coordinates": {
-        "lat": 41.44260977543621,
-        "lon": -8.27668799625838
+        "lat": 41.442921822875064,
+        "lon": -8.280565477901389
       },
       "protectedArea": null,
       "length": 854
@@ -3991,7 +4000,7 @@
         "Pararge aegeria",
         "Pieris brassicae",
         "Pieris rapae",
-        "Polyommatus icarus",
+        "Polyommatus icarus/celina",
         "Pontia daplidice",
         "Thymelicus sylvestris",
         "Vanessa atalanta",
@@ -4004,8 +4013,8 @@
       "responsavel": "Eva Monteiro",
       "entidade": "Particular",
       "coordinates": {
-        "lat": 38.730846877739594,
-        "lon": -9.179572528676916
+        "lat": 38.743442900530546,
+        "lon": -9.174926194629798
       },
       "protectedArea": null,
       "length": 1157
@@ -4039,7 +4048,7 @@
         "Pieris brassicae",
         "Pieris rapae",
         "Polygonia c-album",
-        "Polyommatus icarus",
+        "Polyommatus icarus/celina",
         "Vanessa cardui"
       ],
       "tipologia": "Parque Urbano",
@@ -4049,8 +4058,8 @@
       "responsavel": "Darinka Gonçalves",
       "entidade": "Município",
       "coordinates": {
-        "lat": 41.29281699208305,
-        "lon": -7.738606355994234
+        "lat": 41.29385507138526,
+        "lon": -7.740138530093359
       },
       "protectedArea": null,
       "length": 1319
@@ -4060,11 +4069,11 @@
       "transectCode": "EBMS:Portugal:54",
       "transectName": "Parque Ecológico da Várzea da Quinta do Conde",
       "isActive": true,
-      "totalSpecies": 27,
+      "totalSpecies": 26,
       "totalVisits": 61,
-      "totalAbundance": 1381,
+      "totalAbundance": 1391,
       "avgVisitsPerYear": 10.2,
-      "avgButterfliesPerVisit": 22.6,
+      "avgButterfliesPerVisit": 22.8,
       "yearsActive": 6,
       "firstMonitoringYear": 2020,
       "lastMonitoringYear": 2025,
@@ -4087,8 +4096,7 @@
         "Pieris brassicae",
         "Pieris napi",
         "Pieris rapae",
-        "Polyommatus celina",
-        "Polyommatus icarus",
+        "Polyommatus icarus/celina",
         "Pontia daplidice",
         "Pyronia bathseba",
         "Pyronia cecilia",
@@ -4104,8 +4112,8 @@
       "responsavel": "Fernando Pinto",
       "entidade": "Município",
       "coordinates": {
-        "lat": 38.5707731516432,
-        "lon": -9.039534718861765
+        "lat": 38.56735629850623,
+        "lon": -9.037235460967073
       },
       "protectedArea": null,
       "length": 745
@@ -4146,8 +4154,8 @@
       "responsavel": "Letícia Figueiredo",
       "entidade": "Particular",
       "coordinates": {
-        "lat": 41.56239177630967,
-        "lon": -8.39476773842032
+        "lat": 41.56044775356504,
+        "lon": -8.40127453772843
       },
       "protectedArea": null,
       "length": 958
@@ -4179,7 +4187,7 @@
         "Pararge aegeria",
         "Pieris brassicae",
         "Pieris rapae",
-        "Polyommatus icarus",
+        "Polyommatus icarus/celina",
         "Pontia daplidice",
         "Spialia sertorius",
         "Thymelicus sylvestris",
@@ -4192,8 +4200,8 @@
       "responsavel": "Julieta Costa",
       "entidade": "ONGA",
       "coordinates": {
-        "lat": 38.74856820997608,
-        "lon": -9.13511001222773
+        "lat": 38.74936982344923,
+        "lon": -9.123418398508617
       },
       "protectedArea": null,
       "length": 851
@@ -4203,11 +4211,11 @@
       "transectCode": "EBMS:Portugal:149",
       "transectName": "Penude",
       "isActive": true,
-      "totalSpecies": 50,
+      "totalSpecies": 51,
       "totalVisits": 17,
-      "totalAbundance": 1812,
+      "totalAbundance": 1839,
       "avgVisitsPerYear": 8.5,
-      "avgButterfliesPerVisit": 106.6,
+      "avgButterfliesPerVisit": 108.2,
       "yearsActive": 2,
       "firstMonitoringYear": 2024,
       "lastMonitoringYear": 2025,
@@ -4252,6 +4260,7 @@
         "Pieris napi",
         "Pieris rapae",
         "Polygonia c-album",
+        "Polyommatus icarus/celina",
         "Pontia daplidice",
         "Pyronia cecilia",
         "Pyronia tithonus",
@@ -4270,8 +4279,8 @@
       "responsavel": "",
       "entidade": "Particular",
       "coordinates": {
-        "lat": 41.08288605538018,
-        "lon": -7.849082819915632
+        "lat": 41.08682631929903,
+        "lon": -7.8569783292755115
       },
       "protectedArea": null,
       "length": 1431
@@ -4310,7 +4319,7 @@
         "Pieris brassicae",
         "Pieris napi",
         "Pieris rapae",
-        "Polyommatus icarus",
+        "Polyommatus icarus/celina",
         "Pyronia bathseba",
         "Pyronia tithonus",
         "Vanessa atalanta",
@@ -4323,8 +4332,8 @@
       "responsavel": "Scott Forbes",
       "entidade": "Particular",
       "coordinates": {
-        "lat": 40.22069623641198,
-        "lon": -8.284729493707994
+        "lat": 40.21312857227613,
+        "lon": -8.285867099892707
       },
       "protectedArea": null,
       "length": 1082
@@ -4363,7 +4372,7 @@
         "Pieris napi",
         "Pieris rapae",
         "Polygonia c-album",
-        "Polyommatus icarus",
+        "Polyommatus icarus/celina",
         "Pyronia cecilia",
         "Pyronia tithonus",
         "Satyrium spini",
@@ -4378,8 +4387,8 @@
       "responsavel": "Soraia Castro",
       "entidade": "Município",
       "coordinates": {
-        "lat": 41.69280710886625,
-        "lon": -8.817416987226515
+        "lat": 41.69358614252365,
+        "lon": -8.82359453280835
       },
       "protectedArea": null,
       "length": 1238
@@ -4414,7 +4423,7 @@
         "Pararge aegeria",
         "Pieris brassicae",
         "Pieris rapae",
-        "Polyommatus icarus",
+        "Polyommatus icarus/celina",
         "Pyronia bathseba",
         "Thymelicus sylvestris",
         "Vanessa atalanta",
@@ -4427,8 +4436,8 @@
       "responsavel": "",
       "entidade": "Particular",
       "coordinates": {
-        "lat": 39.93356107809236,
-        "lon": -8.453802965552132
+        "lat": 39.91955644787852,
+        "lon": -8.457358858779603
       },
       "protectedArea": null,
       "length": 1030
@@ -4458,7 +4467,7 @@
         "Pararge aegeria",
         "Pieris brassicae",
         "Pieris rapae",
-        "Polyommatus icarus",
+        "Polyommatus icarus/celina",
         "Pyronia bathseba",
         "Pyronia cecilia",
         "Satyrium esculi",
@@ -4476,8 +4485,8 @@
       "responsavel": "Hélder Cardoso",
       "entidade": "ONGA",
       "coordinates": {
-        "lat": 39.293596719210264,
-        "lon": -9.223981471766155
+        "lat": 39.3021283603941,
+        "lon": -9.216940421599602
       },
       "protectedArea": null,
       "length": 1242
@@ -4521,7 +4530,7 @@
         "Pieris brassicae",
         "Pieris napi",
         "Pieris rapae",
-        "Polyommatus icarus",
+        "Polyommatus icarus/celina",
         "Pyronia bathseba",
         "Pyronia cecilia",
         "Pyronia tithonus",
@@ -4539,10 +4548,10 @@
       "responsavel": "Luis Jordão",
       "entidade": "Particular",
       "coordinates": {
-        "lat": 38.804065036850524,
-        "lon": -9.371824236806674
+        "lat": 38.79456372922619,
+        "lon": -9.377174868881296
       },
-      "protectedArea": null,
+      "protectedArea": "Sintra-Cascais",
       "length": 1023
     },
     {
@@ -4582,7 +4591,7 @@
         "Pieris brassicae",
         "Pieris napi",
         "Pieris rapae",
-        "Polyommatus icarus",
+        "Polyommatus icarus/celina",
         "Pontia daplidice",
         "Pyronia cecilia",
         "Satyrium esculi",
@@ -4598,8 +4607,8 @@
       "responsavel": "Diogo Silva",
       "entidade": "Município",
       "coordinates": {
-        "lat": 38.772520937885616,
-        "lon": -9.45905745753107
+        "lat": 38.76476149408737,
+        "lon": -9.458927169251163
       },
       "protectedArea": "Sintra-Cascais",
       "length": 1122
@@ -4640,7 +4649,7 @@
         "Pieris brassicae",
         "Pieris napi",
         "Pieris rapae",
-        "Polyommatus icarus",
+        "Polyommatus icarus/celina",
         "Pontia daplidice",
         "Pyronia bathseba",
         "Pyronia cecilia",
@@ -4659,8 +4668,8 @@
       "responsavel": "Diogo Silva",
       "entidade": "Município",
       "coordinates": {
-        "lat": 38.759684609110735,
-        "lon": -9.452313211001062
+        "lat": 38.76917709422666,
+        "lon": -9.45157173248364
       },
       "protectedArea": "Sintra-Cascais",
       "length": 1091
@@ -4707,7 +4716,7 @@
         "Pieris brassicae",
         "Pieris napi",
         "Pieris rapae",
-        "Polyommatus icarus",
+        "Polyommatus icarus/celina",
         "Pyronia bathseba",
         "Pyronia cecilia",
         "Satyrium esculi",
@@ -4723,8 +4732,8 @@
       "responsavel": "Diogo Silva",
       "entidade": "Município",
       "coordinates": {
-        "lat": 38.74374379621626,
-        "lon": -9.42928265421136
+        "lat": 38.75583844740155,
+        "lon": -9.426160674533008
       },
       "protectedArea": "Sintra-Cascais",
       "length": 1188
@@ -4762,7 +4771,7 @@
         "Pararge aegeria",
         "Pieris brassicae",
         "Pieris rapae",
-        "Polyommatus icarus",
+        "Polyommatus icarus/celina",
         "Pyronia bathseba",
         "Pyronia cecilia",
         "Satyrium esculi",
@@ -4779,8 +4788,8 @@
       "responsavel": "Diogo Silva",
       "entidade": "Município",
       "coordinates": {
-        "lat": 38.74844463825491,
-        "lon": -9.412269564304193
+        "lat": 38.75428391219498,
+        "lon": -9.423282030639472
       },
       "protectedArea": "Sintra-Cascais",
       "length": 1112
@@ -4823,7 +4832,7 @@
         "Pieris brassicae",
         "Pieris napi",
         "Pieris rapae",
-        "Polyommatus icarus",
+        "Polyommatus icarus/celina",
         "Pyronia bathseba",
         "Pyronia cecilia",
         "Satyrium esculi",
@@ -4839,8 +4848,8 @@
       "responsavel": "Diogo Silva",
       "entidade": "Município",
       "coordinates": {
-        "lat": 38.76325981286795,
-        "lon": -9.42114507541978
+        "lat": 38.76281476509519,
+        "lon": -9.42200232807576
       },
       "protectedArea": "Sintra-Cascais",
       "length": 947
@@ -4850,11 +4859,11 @@
       "transectCode": "EBMS:Portugal:62",
       "transectName": "Ribeira de Marim - Vita Nativa",
       "isActive": false,
-      "totalSpecies": 24,
+      "totalSpecies": 25,
       "totalVisits": 16,
-      "totalAbundance": 629,
+      "totalAbundance": 668,
       "avgVisitsPerYear": 16,
-      "avgButterfliesPerVisit": 39.3,
+      "avgButterfliesPerVisit": 41.8,
       "yearsActive": 1,
       "firstMonitoringYear": 2021,
       "lastMonitoringYear": 2021,
@@ -4877,6 +4886,7 @@
         "Pararge aegeria",
         "Pieris brassicae",
         "Pieris rapae",
+        "Polyommatus icarus/celina",
         "Pyronia cecilia",
         "Spialia sertorius",
         "Thymelicus acteon",
@@ -4891,8 +4901,8 @@
       "responsavel": "",
       "entidade": "ONGA",
       "coordinates": {
-        "lat": 37.037200432358034,
-        "lon": -7.816050123889298
+        "lat": 37.039531790999476,
+        "lon": -7.80603322010377
       },
       "protectedArea": "Ria Formosa",
       "length": 1028
@@ -4902,11 +4912,11 @@
       "transectCode": "EBMS:Portugal:131",
       "transectName": "Ribeira do Almadafe Molhado",
       "isActive": true,
-      "totalSpecies": 31,
+      "totalSpecies": 32,
       "totalVisits": 71,
-      "totalAbundance": 1648,
+      "totalAbundance": 1689,
       "avgVisitsPerYear": 23.7,
-      "avgButterfliesPerVisit": 23.2,
+      "avgButterfliesPerVisit": 23.8,
       "yearsActive": 3,
       "firstMonitoringYear": 2023,
       "lastMonitoringYear": 2025,
@@ -4933,6 +4943,7 @@
         "Pararge aegeria",
         "Pieris brassicae",
         "Pieris rapae",
+        "Polyommatus icarus/celina",
         "Pontia daplidice",
         "Pyronia cecilia",
         "Satyrium esculi",
@@ -4950,8 +4961,8 @@
       "responsavel": "Joaquim Pífano",
       "entidade": "Particular",
       "coordinates": {
-        "lat": 38.919315411058555,
-        "lon": -7.8103075340189045
+        "lat": 38.92798292886713,
+        "lon": -7.799709664764565
       },
       "protectedArea": null,
       "length": 1107
@@ -4961,11 +4972,11 @@
       "transectCode": "EBMS:Portugal:119",
       "transectName": "Ribeira do Almadafe Seco",
       "isActive": true,
-      "totalSpecies": 28,
+      "totalSpecies": 29,
       "totalVisits": 72,
-      "totalAbundance": 2032,
+      "totalAbundance": 2057,
       "avgVisitsPerYear": 24,
-      "avgButterfliesPerVisit": 28.2,
+      "avgButterfliesPerVisit": 28.6,
       "yearsActive": 3,
       "firstMonitoringYear": 2023,
       "lastMonitoringYear": 2025,
@@ -4989,6 +5000,7 @@
         "Pararge aegeria",
         "Pieris brassicae",
         "Pieris rapae",
+        "Polyommatus icarus/celina",
         "Pontia daplidice",
         "Pyronia cecilia",
         "Satyrium esculi",
@@ -5006,8 +5018,8 @@
       "responsavel": "Joaquim Pífano",
       "entidade": "Particular",
       "coordinates": {
-        "lat": 38.899789779324415,
-        "lon": -7.78764945019226
+        "lat": 38.90677343543323,
+        "lon": -7.790431953619734
       },
       "protectedArea": null,
       "length": 1303
@@ -5059,8 +5071,8 @@
       "responsavel": "",
       "entidade": "Empresa",
       "coordinates": {
-        "lat": 37.07286816682785,
-        "lon": -8.825981082221006
+        "lat": 37.07367336933784,
+        "lon": -8.83271243885266
       },
       "protectedArea": "Sudoeste Alentejano e Costa Vicentina",
       "length": 1040
@@ -5092,8 +5104,8 @@
       "responsavel": "Joana Barata",
       "entidade": "Particular",
       "coordinates": {
-        "lat": 38.64896060155664,
-        "lon": -9.232624589211412
+        "lat": 38.645869077722615,
+        "lon": -9.236429817797314
       },
       "protectedArea": null,
       "length": 1049
@@ -5105,7 +5117,7 @@
       "isActive": false,
       "totalSpecies": 65,
       "totalVisits": 60,
-      "totalAbundance": 2585,
+      "totalAbundance": 2587,
       "avgVisitsPerYear": 12,
       "avgButterfliesPerVisit": 43.1,
       "yearsActive": 5,
@@ -5165,7 +5177,7 @@
         "Pieris napi",
         "Pieris rapae",
         "Polygonia c-album",
-        "Polyommatus icarus",
+        "Polyommatus icarus/celina",
         "Pontia daplidice",
         "Pyronia bathseba",
         "Pyronia cecilia",
@@ -5185,8 +5197,8 @@
       "responsavel": "Ângela Cordeiro",
       "entidade": "Município",
       "coordinates": {
-        "lat": 41.63592327415126,
-        "lon": -6.454542126430115
+        "lat": 41.631450708458594,
+        "lon": -6.450955563788687
       },
       "protectedArea": null,
       "length": 837
@@ -5230,7 +5242,7 @@
         "Pieris brassicae",
         "Pieris rapae",
         "Polygonia c-album",
-        "Polyommatus icarus",
+        "Polyommatus icarus/celina",
         "Pyronia bathseba",
         "Pyronia cecilia",
         "Satyrium esculi",
@@ -5247,8 +5259,8 @@
       "responsavel": "Raquel Eiró",
       "entidade": "Particular",
       "coordinates": {
-        "lat": 38.79290179280828,
-        "lon": -9.257050973872797
+        "lat": 38.78912715568296,
+        "lon": -9.268391240894777
       },
       "protectedArea": null,
       "length": 1475
@@ -5289,8 +5301,8 @@
       "responsavel": "",
       "entidade": "Particular",
       "coordinates": {
-        "lat": 41.15302422182735,
-        "lon": -8.489145438890224
+        "lat": 41.14629060766124,
+        "lon": -8.479816813979976
       },
       "protectedArea": "Parque das Serras do Porto",
       "length": 916
@@ -5344,8 +5356,8 @@
       "responsavel": "",
       "entidade": "Particular",
       "coordinates": {
-        "lat": 41.12698224311022,
-        "lon": -8.477772271058013
+        "lat": 41.12508345444474,
+        "lon": -8.483559424202616
       },
       "protectedArea": "Parque das Serras do Porto",
       "length": 931
@@ -5389,7 +5401,7 @@
         "Pieris napi",
         "Pieris rapae",
         "Polygonia c-album",
-        "Polyommatus icarus",
+        "Polyommatus icarus/celina",
         "Pontia daplidice",
         "Pyronia cecilia",
         "Pyronia tithonus",
@@ -5408,8 +5420,8 @@
       "responsavel": "Armindo Paulo Salvador",
       "entidade": "Particular",
       "coordinates": {
-        "lat": 41.566670784089624,
-        "lon": -8.408648793177788
+        "lat": 41.57371061840296,
+        "lon": -8.407647386058848
       },
       "protectedArea": null,
       "length": 1153
@@ -5419,11 +5431,11 @@
       "transectCode": "EBMS:Portugal:9",
       "transectName": "Telheiras",
       "isActive": true,
-      "totalSpecies": 14,
-      "totalVisits": 46,
-      "totalAbundance": 171,
-      "avgVisitsPerYear": 6.6,
-      "avgButterfliesPerVisit": 3.7,
+      "totalSpecies": 15,
+      "totalVisits": 48,
+      "totalAbundance": 174,
+      "avgVisitsPerYear": 6.9,
+      "avgButterfliesPerVisit": 3.6,
       "yearsActive": 7,
       "firstMonitoringYear": 2019,
       "lastMonitoringYear": 2025,
@@ -5440,6 +5452,7 @@
         "Pieris brassicae",
         "Pieris napi",
         "Pieris rapae",
+        "Polyommatus icarus/celina",
         "Vanessa atalanta",
         "Vanessa cardui"
       ],
@@ -5450,8 +5463,8 @@
       "responsavel": "Julieta Costa",
       "entidade": "Particular",
       "coordinates": {
-        "lat": 38.75764066256645,
-        "lon": -9.16595005388637
+        "lat": 38.76700672159126,
+        "lon": -9.17214753052977
       },
       "protectedArea": null,
       "length": 1214
@@ -5461,11 +5474,11 @@
       "transectCode": "EBMS:Portugal:154",
       "transectName": "Trilho do Sacarrabos",
       "isActive": true,
-      "totalSpecies": 29,
+      "totalSpecies": 30,
       "totalVisits": 10,
-      "totalAbundance": 565,
+      "totalAbundance": 571,
       "avgVisitsPerYear": 5,
-      "avgButterfliesPerVisit": 56.5,
+      "avgButterfliesPerVisit": 57.1,
       "yearsActive": 2,
       "firstMonitoringYear": 2024,
       "lastMonitoringYear": 2025,
@@ -5495,6 +5508,7 @@
         "Pieris brassicae",
         "Pieris napi",
         "Pieris rapae",
+        "Polyommatus icarus/celina",
         "Pontia daplidice",
         "Pyronia tithonus",
         "Thymelicus acteon",
@@ -5507,8 +5521,8 @@
       "responsavel": "",
       "entidade": "Particular",
       "coordinates": {
-        "lat": 41.07820319309155,
-        "lon": -7.830799804893987
+        "lat": 41.08006117199353,
+        "lon": -7.829830529163626
       },
       "protectedArea": null,
       "length": 667
@@ -5518,11 +5532,11 @@
       "transectCode": "EBMS:Portugal:42",
       "transectName": "Vale da Fonte Quente",
       "isActive": false,
-      "totalSpecies": 20,
+      "totalSpecies": 21,
       "totalVisits": 10,
-      "totalAbundance": 217,
+      "totalAbundance": 218,
       "avgVisitsPerYear": 5,
-      "avgButterfliesPerVisit": 21.7,
+      "avgButterfliesPerVisit": 21.8,
       "yearsActive": 2,
       "firstMonitoringYear": 2020,
       "lastMonitoringYear": 2023,
@@ -5540,6 +5554,7 @@
         "Pararge aegeria",
         "Pieris brassicae",
         "Pieris rapae",
+        "Polyommatus icarus/celina",
         "Pyronia bathseba",
         "Pyronia cecilia",
         "Satyrium esculi",
@@ -5555,8 +5570,8 @@
       "responsavel": "Hélder Cardoso",
       "entidade": "ONGA",
       "coordinates": {
-        "lat": 39.29816125158833,
-        "lon": -9.220834438294771
+        "lat": 39.310293746905096,
+        "lon": -9.216209328838586
       },
       "protectedArea": null,
       "length": 1006
@@ -5566,11 +5581,11 @@
       "transectCode": "EBMS:Portugal:133",
       "transectName": "Venda Seca - Moinhos da Miraldina na Serra da Carregueira via Rua de Bomjardim",
       "isActive": false,
-      "totalSpecies": 25,
+      "totalSpecies": 26,
       "totalVisits": 7,
-      "totalAbundance": 458,
+      "totalAbundance": 459,
       "avgVisitsPerYear": 3.5,
-      "avgButterfliesPerVisit": 65.4,
+      "avgButterfliesPerVisit": 65.6,
       "yearsActive": 2,
       "firstMonitoringYear": 2023,
       "lastMonitoringYear": 2024,
@@ -5594,6 +5609,7 @@
         "Pararge aegeria",
         "Pieris brassicae",
         "Pieris rapae",
+        "Polyommatus icarus/celina",
         "Pyronia bathseba",
         "Pyronia cecilia",
         "Satyrium esculi",
@@ -5608,8 +5624,8 @@
       "responsavel": "Orkhan Abbasov",
       "entidade": "Particular",
       "coordinates": {
-        "lat": 38.7885993959079,
-        "lon": -9.268070570872654
+        "lat": 38.78153226340944,
+        "lon": -9.27728670564058
       },
       "protectedArea": null,
       "length": 1061
@@ -5621,9 +5637,9 @@
       "isActive": false,
       "totalSpecies": 51,
       "totalVisits": 31,
-      "totalAbundance": 1095,
+      "totalAbundance": 1098,
       "avgVisitsPerYear": 10.3,
-      "avgButterfliesPerVisit": 35.3,
+      "avgButterfliesPerVisit": 35.4,
       "yearsActive": 3,
       "firstMonitoringYear": 2021,
       "lastMonitoringYear": 2024,
@@ -5670,7 +5686,7 @@
         "Pieris napi",
         "Pieris rapae",
         "Polygonia c-album",
-        "Polyommatus icarus",
+        "Polyommatus icarus/celina",
         "Pontia daplidice",
         "Pyronia bathseba",
         "Pyronia tithonus",
@@ -5687,8 +5703,8 @@
       "responsavel": "Isabel Sá",
       "entidade": "ONGA",
       "coordinates": {
-        "lat": 41.52609857022889,
-        "lon": -6.504696556584888
+        "lat": 41.53541545109819,
+        "lon": -6.499495091795713
       },
       "protectedArea": null,
       "length": 849
@@ -5698,7 +5714,7 @@
     "totalValidTransects": 99,
     "activeTransects": 67,
     "inactiveTransects": 32,
-    "filteredSpeciesCount": 95,
+    "filteredSpeciesCount": 94,
     "filteredSpecies": [
       {
         "species": "Acontia lucida",
@@ -6066,11 +6082,6 @@
         "totalIndividuals": 2
       },
       {
-        "species": "Polyommatus icarus/celina",
-        "recordCount": 244,
-        "totalIndividuals": 469
-      },
-      {
         "species": "Polyommatus icarus/thersites",
         "recordCount": 6,
         "totalIndividuals": 5
@@ -6176,10 +6187,20 @@
         "totalIndividuals": 1
       }
     ],
-    "totalButterfliesValidSpecies": 123538,
+    "totalButterfliesValidSpecies": 124007,
     "totalButterfliesAllSpecies": 136644,
-    "correctedRecords": 6,
+    "correctedRecords": 694,
     "corrections": [
+      {
+        "from": "Polyommatus icarus",
+        "to": "Polyommatus icarus/celina",
+        "count": 587
+      },
+      {
+        "from": "Polyommatus celina",
+        "to": "Polyommatus icarus/celina",
+        "count": 101
+      },
       {
         "from": "Apatura iris",
         "to": "Apatura ilia",

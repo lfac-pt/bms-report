@@ -1,4 +1,4 @@
-import type { TransectStats } from '../types/transectStats';
+import type { TransectStats } from "../types/transectStats";
 
 // Rarity levels based on observation frequency in municipality
 export interface RarityLevel {
@@ -8,11 +8,11 @@ export interface RarityLevel {
 }
 
 const RARITY_LEVELS: RarityLevel[] = [
-  { label: 'Muito Comum', color: '#52c41a', percentageThreshold: 80 }, // >80% of transects
-  { label: 'Comum', color: '#95de64', percentageThreshold: 60 }, // 60-80%
-  { label: 'Pouco Comum', color: '#ffd666', percentageThreshold: 40 }, // 40-60%
-  { label: 'Rara', color: '#ff9c6e', percentageThreshold: 20 }, // 20-40%
-  { label: 'Muito Rara', color: '#ff4d4f', percentageThreshold: 0 }, // <20%
+  { label: "Muito Comum", color: "#52c41a", percentageThreshold: 80 }, // >80% of transects
+  { label: "Comum", color: "#95de64", percentageThreshold: 60 }, // 60-80%
+  { label: "Pouco Comum", color: "#ffd666", percentageThreshold: 40 }, // 40-60%
+  { label: "Rara", color: "#ff9c6e", percentageThreshold: 20 }, // 20-40%
+  { label: "Muito Rara", color: "#ff4d4f", percentageThreshold: 0 }, // <20%
 ];
 
 export interface RarityData {
@@ -145,7 +145,7 @@ export function averageFlightCurves(
     years.forEach(year => {
       const abundance = curves[year].abundance[i];
       // Skip NA values or non-numeric values
-      if (typeof abundance === 'number' && !isNaN(abundance)) {
+      if (typeof abundance === "number" && !isNaN(abundance)) {
         sum += abundance;
         count++;
       }
@@ -166,12 +166,12 @@ export function averageFlightCurves(
  */
 export function getConservationDescription(status: string): string {
   const descriptions: Record<string, string> = {
-    CR: 'Criticamente Em Perigo',
-    EN: 'Em Perigo',
-    VU: 'Vulnerável',
-    NT: 'Quase Ameaçada',
-    DD: 'Dados Insuficientes',
-    LC: 'Pouco Preocupante',
+    CR: "Criticamente Em Perigo",
+    EN: "Em Perigo",
+    VU: "Vulnerável",
+    NT: "Quase Ameaçada",
+    DD: "Dados Insuficientes",
+    LC: "Pouco Preocupante",
   };
   return descriptions[status] || status;
 }

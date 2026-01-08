@@ -1,16 +1,14 @@
-import { Space, Tag, Typography, Avatar, Card } from 'antd';
-import { BugOutlined } from '@ant-design/icons';
-import { Link } from 'react-router-dom';
-import RarityBadge from './RarityBadge';
-import TrendBadge from './TrendBadge';
-import SpeciesSparkline from './SpeciesSparkline';
-import {
-  calculateRarity,
-  getLastYearFlightCurve,
-} from '../utils/speciesCardUtils';
-import endangeredPT from '../utils/endangered_pt';
-import endangeredEU from '../utils/endangered_eu';
-import type { TransectStats } from '../types/transectStats';
+import React from "react";
+import { Space, Tag, Typography, Avatar, Card } from "antd";
+import { BugOutlined } from "@ant-design/icons";
+import { Link } from "react-router-dom";
+import RarityBadge from "./RarityBadge";
+import TrendBadge from "./TrendBadge";
+import SpeciesSparkline from "./SpeciesSparkline";
+import { calculateRarity, getLastYearFlightCurve } from "../utils/speciesCardUtils";
+import endangeredPT from "../utils/endangered_pt";
+import endangeredEU from "../utils/endangered_eu";
+import type { TransectStats } from "../types/transectStats";
 
 const { Text } = Typography;
 
@@ -44,33 +42,28 @@ const SpeciesCard: React.FC<SpeciesCardProps> = ({
   const flightCurve = getLastYearFlightCurve(speciesName, climaticRegion, flightCurvesData);
 
   // Get trend classification, default to "Uncertain" if not available
-  const trendCategory = flightCurvesData?.species?.[speciesName]?.trendClassification?.category || 'Uncertain';
+  const trendCategory =
+    flightCurvesData?.species?.[speciesName]?.trendClassification?.category || "Uncertain";
 
   // Construct image path
   const imagePath = `imgs/sp/${family}/${speciesName}.jpg`;
 
   return (
-    <Card
-      size="small"
-      styles={{ body: { padding: 12 } }}
-    >
-      <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
+    <Card size="small" styles={{ body: { padding: 12 } }}>
+      <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
         {/* Photo - 50px thumbnail */}
         <Avatar
           size={50}
           src={imagePath}
           icon={<BugOutlined />}
-          style={{ backgroundColor: '#f0f0f0', color: '#8c8c8c', flexShrink: 0 }}
+          style={{ backgroundColor: "#f0f0f0", color: "#8c8c8c", flexShrink: 0 }}
           aria-label={`Fotografia de ${speciesName}`}
         />
 
         {/* Names and info */}
         <div style={{ flex: 1, minWidth: 0 }}>
           <div style={{ marginBottom: 4 }}>
-            <Link
-              to={`/species/${encodeURIComponent(speciesName)}`}
-              style={{ color: 'inherit' }}
-            >
+            <Link to={`/species/${encodeURIComponent(speciesName)}`} style={{ color: "inherit" }}>
               <Text italic strong style={{ fontSize: 14 }}>
                 {speciesName}
               </Text>

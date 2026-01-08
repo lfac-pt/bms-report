@@ -122,11 +122,17 @@ function MunicipalityPage() {
       // eslint-disable-next-line no-undef
       fetch("data/processed-transects.json").then(res => res.json()),
       // eslint-disable-next-line no-undef
-      fetch("data/common-names.json").then(res => res.json()).catch(() => ({})),
+      fetch("data/common-names.json")
+        .then(res => res.json())
+        .catch(() => ({})),
       // eslint-disable-next-line no-undef
-      fetch("data/flight-curves-data.json").then(res => res.json()).catch(() => null),
+      fetch("data/flight-curves-data.json")
+        .then(res => res.json())
+        .catch(() => null),
       // eslint-disable-next-line no-undef
-      fetch("data/timeline-data.json").then(res => res.json()).catch(() => null),
+      fetch("data/timeline-data.json")
+        .then(res => res.json())
+        .catch(() => null),
     ])
       .then(([geoJsonData, transectsData, commonNames, flightCurves, timeline]) => {
         setGeoData(geoJsonData);
@@ -205,7 +211,7 @@ function MunicipalityPage() {
 
   // Determine municipality's climatic region from first transect
   const firstTransect = municipalityTransects.find(t => t.climaticRegion);
-  const municipalityClimaticRegion = firstTransect?.climaticRegion || 'Lusitânico'; // Default fallback
+  const municipalityClimaticRegion = firstTransect?.climaticRegion || "Lusitânico"; // Default fallback
 
   // Filter transects with coordinates
   const transectsWithCoords = municipalityTransects.filter(t => t.coordinates !== null);
@@ -426,7 +432,9 @@ function MunicipalityPage() {
           <Space direction="vertical" size="middle" style={{ width: "100%" }}>
             {sortedFamilies.map(family => (
               <div key={family}>
-                <Title level={4} style={{ marginBottom: 12 }}>{family}</Title>
+                <Title level={4} style={{ marginBottom: 12 }}>
+                  {family}
+                </Title>
                 <div
                   style={{
                     display: "grid",

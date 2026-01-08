@@ -1,5 +1,6 @@
-import { Tag } from 'antd';
-import { ArrowUpOutlined, ArrowDownOutlined, MinusOutlined } from '@ant-design/icons';
+import React from "react";
+import { Tag } from "antd";
+import { ArrowUpOutlined, ArrowDownOutlined, MinusOutlined } from "@ant-design/icons";
 
 interface TrendBadgeProps {
   category: string;
@@ -7,34 +8,34 @@ interface TrendBadgeProps {
 
 const getTrendConfig = (category: string) => {
   const configs: Record<string, { color: string; icon: React.ReactNode; label: string }> = {
-    'Strong increase': {
-      color: '#52c41a',
+    "Strong increase": {
+      color: "#52c41a",
       icon: <ArrowUpOutlined />,
-      label: 'Aumento Forte',
+      label: "Aumento Forte",
     },
-    'Moderate increase': {
-      color: '#95de64',
+    "Moderate increase": {
+      color: "#95de64",
       icon: <ArrowUpOutlined />,
-      label: 'Aumento Moderado',
+      label: "Aumento Moderado",
     },
-    'Uncertain': {
-      color: '#d9d9d9',
+    Uncertain: {
+      color: "#d9d9d9",
       icon: <MinusOutlined />,
-      label: 'Incerto',
+      label: "Incerto",
     },
-    'Moderate decline': {
-      color: '#faad14',
+    "Moderate decline": {
+      color: "#faad14",
       icon: <ArrowDownOutlined />,
-      label: 'Declínio Moderado',
+      label: "Declínio Moderado",
     },
-    'Strong decline': {
-      color: '#ff4d4f',
+    "Strong decline": {
+      color: "#ff4d4f",
       icon: <ArrowDownOutlined />,
-      label: 'Declínio Forte',
+      label: "Declínio Forte",
     },
   };
 
-  return configs[category] || configs['Uncertain'];
+  return configs[category] || configs["Uncertain"];
 };
 
 const TrendBadge: React.FC<TrendBadgeProps> = ({ category }) => {

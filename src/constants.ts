@@ -13,7 +13,7 @@
 export const MIN_VISITS_FOR_FLIGHT_CURVE = 3; // Minimum visits required for GAM flight curve
 
 // Baseline year for index normalization (all indices are normalized to this year = 100)
-export const BASELINE_YEAR = 2021;
+export const BASELINE_YEAR = 2020;
 
 // Monitoring season definition
 export const MONITORING_START_MONTH = 3; // March (1-indexed)
@@ -74,6 +74,7 @@ export const SPECIES_FAMILIES: Record<string, string> = {
   "Plebejus argus": "Lycaenidae",
   "Polyommatus celina": "Lycaenidae",
   "Polyommatus icarus": "Lycaenidae",
+  "Polyommatus icarus/celina": "Lycaenidae",
   "Polyommatus semiargus": "Lycaenidae",
   "Cyaniris semiargus": "Lycaenidae", // Synonym for Polyommatus semiargus
   "Polyommatus thersites": "Lycaenidae",
@@ -182,7 +183,7 @@ export const GRASSLAND_SPECIES = {
     "Lycaena phlaeas",
     "Maniola jurtina",
     "Ochlodes sylvanus",
-    "Polyommatus icarus",
+    "Polyommatus icarus/celina",
   ]),
   // Specialist species (7)
   specialist: new Set([
@@ -252,7 +253,7 @@ export function groupSpeciesByFamily(speciesList: string[]): Record<string, stri
 }
 
 // Data quality criteria for transect filtering
-export const MIN_YEARS_ACTIVE = 6; // Minimum number of years a transect must be active
+export const MIN_YEARS_ACTIVE = 2; // Minimum number of years a transect must be active
 export const MIN_VISITS_PER_YEAR = 5; // Minimum average visits per year
 
 // Helper function to filter for quality active transects
@@ -264,7 +265,6 @@ export function getQualityFilteredTransects<
   },
 >(transects: T[]): T[] {
   return transects.filter(
-    t =>
-      t.yearsActive >= MIN_YEARS_ACTIVE && t.avgVisitsPerYear >= MIN_VISITS_PER_YEAR && t.isActive
+    t => t.yearsActive >= MIN_YEARS_ACTIVE && t.avgVisitsPerYear >= MIN_VISITS_PER_YEAR
   );
 }

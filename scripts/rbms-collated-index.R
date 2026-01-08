@@ -883,8 +883,8 @@ if (exists("collated_result_all") && !is.null(collated_result_all) && nrow(colla
   dir.create(bootstrap_output_dir, recursive = TRUE, showWarnings = FALSE)
   cat(sprintf("  Bootstrap output dir: %s\n", bootstrap_output_dir))
 
-  # Create safe filename from species name
-  species_safe <- gsub(" ", "_", tolower(species_name))
+  # Create safe filename from species name (remove special characters including slashes)
+  species_safe <- gsub("[^a-z0-9]+", "_", tolower(species_name))
   bootstrap_file <- file.path(bootstrap_output_dir, paste0(species_safe, "_boot.rds"))
 
   # Prepare data for MSI: Add SPECIES column and keep only necessary columns
@@ -908,7 +908,75 @@ data_quality <- list(
   baseline_year = baseline_year_used
 )
 
-# Step 13: Create output structure
+# Step 13: Prepare site indices for output (transect-level indices per year)
+site_indices_output <- NULL
+if (site_index_success && exists("site_indices") && nrow(site_indices) > 0) {
+  # Extract relevant columns: SITE_ID, M_YEAR, SINDEX
+  # SINDEX is already normalized to 1-km transect length
+  site_indices_df <- data.frame(
+    site_id = as.character(site_indices$SITE_ID),
+    year = as.integer(site_indices$M_YEAR),
+    index = as.numeric(site_indices$SINDEX)
+  )
+
+  # Convert to list format for JSON
+  site_indices_output <- split(site_indices_df, site_indices_df$site_id)
+  site_indices_output <- lapply(site_indices_output, function(site_data) {
+    # Create year -> index mapping
+    indices_by_year <- setNames(
+      as.list(site_data$index),
+      as.character(site_data$year)
+    )
+    return(indices_by_year)
+  })
+
+  cat(paste("Prepared site indices for", length(site_indices_output), "transects\n"))
+}
+
+# Step 13b: Prepare raw count totals by site and year (monitoring season only)
+site_raw_counts_output <- NULL
+if (nrow(counts) > 0) {
+  # Filter counts to monitoring season only (March-September, same as rbms)
+  counts_season <- counts
+  counts_season$DATE <- as.Date(counts_season$DATE)
+  counts_season$year <- as.integer(format(counts_season$DATE, "%Y"))
+  counts_season$month <- as.integer(format(counts_season$DATE, "%m"))
+
+  # Keep only counts from monitoring season (months 3-9)
+  counts_season <- counts_season[counts_season$month >= 3 & counts_season$month <= 9, ]
+
+  if (nrow(counts_season) > 0) {
+    # Aggregate raw counts by site and year (monitoring season only)
+    raw_counts_df <- aggregate(
+      COUNT ~ SITE_ID + year,
+      data = counts_season,
+      FUN = sum
+    )
+
+    raw_counts_df <- data.frame(
+      site_id = as.character(raw_counts_df$SITE_ID),
+      year = as.integer(raw_counts_df$year),
+      count = as.integer(raw_counts_df$COUNT)
+    )
+
+    # Convert to list format for JSON
+    site_raw_counts_output <- split(raw_counts_df, raw_counts_df$site_id)
+    site_raw_counts_output <- lapply(site_raw_counts_output, function(site_data) {
+      # Create year -> count mapping
+      counts_by_year <- setNames(
+        as.list(site_data$count),
+        as.character(site_data$year)
+      )
+      return(counts_by_year)
+    })
+
+    cat(paste("Prepared raw counts (monitoring season only) for", length(site_raw_counts_output), "transects\n"))
+  } else {
+    cat("Warning: No counts found in monitoring season (March-September)\n")
+  }
+}
+
+# Step 14: Create output structure
 output <- list(
   species = species_name,
   collated_indices = normalized_indices,
@@ -916,6 +984,8 @@ output <- list(
   trend_statistics = trend_statistics,
   trend_line = if(length(trend_line) > 0) trend_line else NULL,
   regional_phenology_curves = if(length(regional_pheno_curves) > 0) regional_pheno_curves else NULL,
+  site_indices = if(!is.null(site_indices_output)) site_indices_output else NULL,
+  site_raw_counts = if(!is.null(site_raw_counts_output)) site_raw_counts_output else NULL,
   data_quality = data_quality,
   processing_info = list(
     method = "rbms (regional GAM flight curves + GLM collated index + bootstrap CI + linear trend + transect length normalization)",
@@ -925,7 +995,7 @@ output <- list(
   )
 )
 
-# Step 14: Write JSON output
+# Step 15: Write JSON output
 cat(paste("Writing output to:", output_file, "\n"))
 json_output <- jsonlite::toJSON(output, pretty = TRUE, auto_unbox = TRUE)
 write(json_output, file = output_file)
