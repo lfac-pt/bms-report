@@ -1,5 +1,7 @@
 import { Line, Bar } from "react-chartjs-2";
-import { Card, Alert, Collapse, Row, Col, Divider, Typography } from "antd";
+import { Card, Alert, Collapse, Row, Col, Divider, Typography, Tooltip } from "antd";
+import { ExportOutlined } from "@ant-design/icons";
+import { Link } from "react-router-dom";
 import { GBIData, RegionalGBICollection } from "../../types/gbiData";
 import { BASELINE_YEAR, getTrendColor, TREND_COLORS, TREND_LABELS } from "../../constants";
 import { RegionalGBITrends } from "./RegionalGBITrends";
@@ -665,7 +667,24 @@ function GrasslandButterflyIndex({
               <Row gutter={[16, 16]}>
                 {widespreadSpecies.map(species => (
                   <Col span={8} key={species}>
-                    <Card size="small" title={<span style={{ fontSize: 12 }}>{species}</span>}>
+                    <Card
+                      size="small"
+                      title={
+                        <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
+                          <span style={{ fontSize: 12, fontStyle: "italic" }}>{species}</span>
+                          <Tooltip title="Abrir página da espécie em novo separador">
+                            <Link
+                              to={`/species/${encodeURIComponent(species)}`}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              style={{ color: "#1890ff", fontSize: 11 }}
+                            >
+                              <ExportOutlined />
+                            </Link>
+                          </Tooltip>
+                        </div>
+                      }
+                    >
                       <div style={{ height: "200px" }}>
                         <Line
                           options={createMiniChartOptions(species)}
@@ -685,7 +704,24 @@ function GrasslandButterflyIndex({
               <Row gutter={[16, 16]}>
                 {specialistSpecies.map(species => (
                   <Col span={8} key={species}>
-                    <Card size="small" title={<span style={{ fontSize: 12 }}>{species}</span>}>
+                    <Card
+                      size="small"
+                      title={
+                        <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
+                          <span style={{ fontSize: 12, fontStyle: "italic" }}>{species}</span>
+                          <Tooltip title="Abrir página da espécie em novo separador">
+                            <Link
+                              to={`/species/${encodeURIComponent(species)}`}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              style={{ color: "#1890ff", fontSize: 11 }}
+                            >
+                              <ExportOutlined />
+                            </Link>
+                          </Tooltip>
+                        </div>
+                      }
+                    >
                       <div style={{ height: "200px" }}>
                         <Line
                           options={createMiniChartOptions(species)}
