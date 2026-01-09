@@ -12,6 +12,7 @@ import {
 } from "../../src/constants";
 import { getYearFromDate, getMonthFromDate } from "../utils";
 import { findProtectedArea } from "../protected-areas-utils";
+import { findRedeNatura2000Site } from "../rede-natura-2000-utils";
 import * as fs from "fs";
 import * as path from "path";
 import { parse } from "csv-parse/sync";
@@ -191,6 +192,12 @@ export function calculateTransectStats(
     protectedArea = findProtectedArea(coords.lon, coords.lat);
   }
 
+  // Check if transect is inside a Rede Natura 2000 site
+  let redeNatura2000Site: string | null = null;
+  if (coords && coords.lat !== null && coords.lon !== null) {
+    redeNatura2000Site = findRedeNatura2000Site(coords.lon, coords.lat);
+  }
+
   // Get transect length from metadata
   const lengthMap = loadTransectMetadata();
   const transectCode = metadata["Transect Code"] || "";
@@ -226,6 +233,8 @@ export function calculateTransectStats(
     coordinates: coords,
     // Protected area (if transect is inside one)
     protectedArea: protectedArea,
+    // Rede Natura 2000 site (if transect is inside one)
+    redeNatura2000Site: redeNatura2000Site,
     // Transect length in meters
     length: length,
   };
