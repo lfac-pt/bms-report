@@ -52,8 +52,8 @@
       "responsavel": "Paula Canha",
       "entidade": "ONGA",
       "coordinates": {
-        "lat": 37.13823698172988,
-        "lon": -8.613535401522896
+        "lat": 37.149039568389206,
+        "lon": -8.612391986820848
       },
       "protectedArea": null,
       "redeNatura2000Site": "Ria de Alvor",
@@ -108,8 +108,8 @@
       "responsavel": "Paula Canha",
       "entidade": "ONGA",
       "coordinates": {
-        "lat": 37.14426099230869,
-        "lon": -8.60832624655835
+        "lat": 37.13753695254355,
+        "lon": -8.604709408153086
       },
       "protectedArea": null,
       "redeNatura2000Site": "Ria de Alvor",
@@ -153,8 +153,8 @@
       "responsavel": "",
       "entidade": "Particular",
       "coordinates": {
-        "lat": 41.123356177351994,
-        "lon": -8.442548021770667
+        "lat": 41.12549333583568,
+        "lon": -8.44122691597566
       },
       "protectedArea": "Parque das Serras do Porto",
       "redeNatura2000Site": null,
@@ -211,10 +211,10 @@
       "responsavel": "Luis Gaifan",
       "entidade": "ONGA",
       "coordinates": {
-        "lat": 41.544286253394176,
-        "lon": -8.78422355219087
+        "lat": 41.553586106553176,
+        "lon": -8.784472652904537
       },
-      "protectedArea": null,
+      "protectedArea": "Litoral Norte",
       "redeNatura2000Site": null,
       "length": 1130
     },
@@ -262,8 +262,8 @@
       "responsavel": "",
       "entidade": "Particular",
       "coordinates": {
-        "lat": 39.055200373010244,
-        "lon": -7.896360359977535
+        "lat": 39.05136912445962,
+        "lon": -7.884166357142326
       },
       "protectedArea": null,
       "redeNatura2000Site": null,
@@ -323,8 +323,8 @@
       "responsavel": "Antóno Xeria",
       "entidade": "Particular",
       "coordinates": {
-        "lat": 39.04703569981805,
-        "lon": -7.818600001494883
+        "lat": 39.051498637929406,
+        "lon": -7.815864426998105
       },
       "protectedArea": null,
       "redeNatura2000Site": null,
@@ -381,8 +381,8 @@
       "responsavel": "",
       "entidade": "",
       "coordinates": {
-        "lat": 40.217097646732064,
-        "lon": -8.211146902177402
+        "lat": 40.22078589700758,
+        "lon": -8.216249065323876
       },
       "protectedArea": null,
       "redeNatura2000Site": null,
@@ -452,8 +452,8 @@
       "responsavel": "",
       "entidade": "Particular",
       "coordinates": {
-        "lat": 41.03404567377248,
-        "lon": -7.895746261175492
+        "lat": 41.029241074931434,
+        "lon": -7.885707136306585
       },
       "protectedArea": null,
       "redeNatura2000Site": "Montemuro",
@@ -502,8 +502,8 @@
       "responsavel": "Rafael Pinto",
       "entidade": "Universidade de Braga",
       "coordinates": {
-        "lat": 41.56442439864522,
-        "lon": -8.402057050480664
+        "lat": 41.55703029819459,
+        "lon": -8.392505564202011
       },
       "protectedArea": null,
       "redeNatura2000Site": null,
@@ -555,8 +555,8 @@
       "responsavel": "Paula Coelho",
       "entidade": "Particular",
       "coordinates": {
-        "lat": 38.8230200072053,
-        "lon": -9.169909131088737
+        "lat": 38.815603154050805,
+        "lon": -9.16707084480374
       },
       "protectedArea": null,
       "redeNatura2000Site": null,
@@ -591,8 +591,8 @@
       "responsavel": "Rui Laureano",
       "entidade": "Particular",
       "coordinates": {
-        "lat": 38.636491113198794,
-        "lon": -9.12131045767814
+        "lat": 38.63229531930893,
+        "lon": -9.129885172897422
       },
       "protectedArea": null,
       "redeNatura2000Site": null,
@@ -648,8 +648,8 @@
       "responsavel": "Paulo Alves",
       "entidade": "Particular",
       "coordinates": {
-        "lat": 39.450481218359265,
-        "lon": -8.069645548537016
+        "lat": 39.456577442844285,
+        "lon": -8.077569772239867
       },
       "protectedArea": null,
       "redeNatura2000Site": null,
@@ -694,8 +694,8 @@
       "responsavel": "Rafael Pinto",
       "entidade": "Particular",
       "coordinates": {
-        "lat": 41.374903048265075,
-        "lon": -8.419397863776306
+        "lat": 41.37432166690811,
+        "lon": -8.42067945867966
       },
       "protectedArea": null,
       "redeNatura2000Site": null,
@@ -746,8 +746,8 @@
       "responsavel": "Diogo Silva",
       "entidade": "Município",
       "coordinates": {
-        "lat": 38.73102473863722,
-        "lon": -9.472573210418762
+        "lat": 38.72640927821628,
+        "lon": -9.472275717432835
       },
       "protectedArea": "Sintra-Cascais",
       "redeNatura2000Site": "Sintra/Cascais",
@@ -816,8 +816,8 @@
       "responsavel": "Isa Teixeira",
       "entidade": "Particular",
       "coordinates": {
-        "lat": 39.9841460025664,
-        "lon": -8.5583720307844
+        "lat": 39.98342061119599,
+        "lon": -8.553671230360253
       },
       "protectedArea": null,
       "redeNatura2000Site": "Sicó/Alvaiazere",
@@ -855,8 +855,8 @@
       "responsavel": "Julieta Costa",
       "entidade": "Particular",
       "coordinates": {
-        "lat": 38.752995109395506,
-        "lon": -9.163500482007791
+        "lat": 38.748297930316006,
+        "lon": -9.167247868327514
       },
       "protectedArea": null,
       "redeNatura2000Site": null,
@@ -926,8 +926,8 @@
       "responsavel": "",
       "entidade": "Município",
       "coordinates": {
-        "lat": 41.797052014175364,
-        "lon": -6.760615666061537
+        "lat": 41.79849949996058,
+        "lon": -6.753723176080949
       },
       "protectedArea": null,
       "redeNatura2000Site": null,
@@ -976,8 +976,8 @@
       "responsavel": "Sílvia Pina",
       "entidade": "Particular",
       "coordinates": {
-        "lat": 38.53398311100131,
-        "lon": -9.010421265227112
+        "lat": 38.52730326001133,
+        "lon": -8.998644580435597
       },
       "protectedArea": null,
       "redeNatura2000Site": null,
@@ -1049,8 +1049,8 @@
       "responsavel": "Luis Cardoso",
       "entidade": "Particular",
       "coordinates": {
-        "lat": 40.06477079638936,
-        "lon": -8.384508494045692
+        "lat": 40.06337288538758,
+        "lon": -8.389671796170829
       },
       "protectedArea": null,
       "redeNatura2000Site": null,
@@ -1106,8 +1106,8 @@
       "responsavel": "André Oliveira",
       "entidade": "Universidade de Évora",
       "coordinates": {
-        "lat": 38.51686920914123,
-        "lon": -8.029587189408652
+        "lat": 38.52310465363444,
+        "lon": -8.01747883936113
       },
       "protectedArea": null,
       "redeNatura2000Site": null,
@@ -1177,11 +1177,11 @@
       "responsavel": "Ana Cavaco",
       "entidade": "ICNF",
       "coordinates": {
-        "lat": 39.63657979756269,
-        "lon": -7.695278463124226
+        "lat": 39.64597358714187,
+        "lon": -7.683976339597777
       },
       "protectedArea": "Portas de Rodão",
-      "redeNatura2000Site": "São Mamede",
+      "redeNatura2000Site": null,
       "length": 720
     },
     {
@@ -1227,11 +1227,11 @@
       "responsavel": "Diogo Mina",
       "entidade": "ICNF",
       "coordinates": {
-        "lat": 40.180811972861264,
-        "lon": -8.554887428733775
+        "lat": 40.17197605573702,
+        "lon": -8.542836348425773
       },
-      "protectedArea": "Paul de Arzila",
-      "redeNatura2000Site": "Paul de Arzila",
+      "protectedArea": null,
+      "redeNatura2000Site": null,
       "length": 1063
     },
     {
@@ -1277,8 +1277,8 @@
       "responsavel": "",
       "entidade": "ICNF",
       "coordinates": {
-        "lat": 38.48362974711111,
-        "lon": -8.978458867747685
+        "lat": 38.48303009457504,
+        "lon": -8.976647398006465
       },
       "protectedArea": "Arrábida",
       "redeNatura2000Site": "Arrábida/Espichel",
@@ -1345,8 +1345,8 @@
       "responsavel": "Ana Sofia Palma",
       "entidade": "ICNF",
       "coordinates": {
-        "lat": 38.56454552569229,
-        "lon": -8.912702960334116
+        "lat": 38.56602227884604,
+        "lon": -8.916142411850505
       },
       "protectedArea": "Arrábida",
       "redeNatura2000Site": "Arrábida/Espichel",
@@ -1436,8 +1436,8 @@
       "responsavel": "João Pargana",
       "entidade": "ICNF",
       "coordinates": {
-        "lat": 41.33940006739652,
-        "lon": -7.807240906722345
+        "lat": 41.341003334728896,
+        "lon": -7.807866292763975
       },
       "protectedArea": "Alvão",
       "redeNatura2000Site": "Alvão/Marão",
@@ -1521,8 +1521,8 @@
       "responsavel": "Helena Paulino",
       "entidade": "ICNF",
       "coordinates": {
-        "lat": 41.3694557158288,
-        "lon": -7.795502432884821
+        "lat": 41.365583456278735,
+        "lon": -7.805013682960769
       },
       "protectedArea": "Alvão",
       "redeNatura2000Site": "Alvão/Marão",
@@ -1599,8 +1599,8 @@
       "responsavel": "Carlos Santos",
       "entidade": "ICNF",
       "coordinates": {
-        "lat": 41.32695678602994,
-        "lon": -6.519485477746746
+        "lat": 41.317128741694944,
+        "lon": -6.5199304093505726
       },
       "protectedArea": "Douro Internacional",
       "redeNatura2000Site": "Douro Internacional e Vale do Rio Águeda",
@@ -1684,8 +1684,8 @@
       "responsavel": "Carlos Santos",
       "entidade": "ICNF",
       "coordinates": {
-        "lat": 41.32573818894603,
-        "lon": -6.595103655159943
+        "lat": 41.32799849272969,
+        "lon": -6.601332903498038
       },
       "protectedArea": null,
       "redeNatura2000Site": null,
@@ -1739,10 +1739,10 @@
       "responsavel": "Belmiro Viana",
       "entidade": "ICNF",
       "coordinates": {
-        "lat": 41.513952206964966,
-        "lon": -8.74991442046791
+        "lat": 41.51204350661814,
+        "lon": -8.759529797505133
       },
-      "protectedArea": null,
+      "protectedArea": "Litoral Norte",
       "redeNatura2000Site": null,
       "length": 614
     },
@@ -1791,8 +1791,8 @@
       "responsavel": "Ema Veiga",
       "entidade": "ICNF",
       "coordinates": {
-        "lat": 41.837651292883656,
-        "lon": -6.737413282762901
+        "lat": 41.83953622111597,
+        "lon": -6.744608522335936
       },
       "protectedArea": null,
       "redeNatura2000Site": "Montesinho/Nogueira",
@@ -1841,10 +1841,10 @@
       "responsavel": "Ema Veiga",
       "entidade": "ICNF",
       "coordinates": {
-        "lat": 41.822919809480915,
-        "lon": -6.822379484485183
+        "lat": 41.825165607327754,
+        "lon": -6.8152763044559395
       },
-      "protectedArea": "Montesinho",
+      "protectedArea": null,
       "redeNatura2000Site": "Montesinho/Nogueira",
       "length": 674
     },
@@ -1911,8 +1911,8 @@
       "responsavel": "PNPG Vidoeiro",
       "entidade": "ICNF",
       "coordinates": {
-        "lat": 41.74070045652851,
-        "lon": -8.201814603994613
+        "lat": 41.74263039264531,
+        "lon": -8.20384585651041
       },
       "protectedArea": "Peneda-Gerês",
       "redeNatura2000Site": "Peneda-Gerês",
@@ -1944,8 +1944,8 @@
       "responsavel": "",
       "entidade": "",
       "coordinates": {
-        "lat": 41.74347710581703,
-        "lon": -8.197969460261977
+        "lat": 41.737893224215185,
+        "lon": -8.194665473710932
       },
       "protectedArea": "Peneda-Gerês",
       "redeNatura2000Site": "Peneda-Gerês",
@@ -1982,11 +1982,11 @@
       "responsavel": "Armando Moura",
       "entidade": "ICNF",
       "coordinates": {
-        "lat": 37.029120951658406,
-        "lon": -7.817652278334032
+        "lat": 37.03698464085088,
+        "lon": -7.810614229851593
       },
       "protectedArea": "Ria Formosa",
-      "redeNatura2000Site": "Ria Formosa",
+      "redeNatura2000Site": null,
       "length": 1089
     },
     {
@@ -2050,11 +2050,11 @@
       "responsavel": "Florbela Queirós",
       "entidade": "ICNF",
       "coordinates": {
-        "lat": 39.36107923323574,
-        "lon": -8.957577720303615
+        "lat": 39.35524201093781,
+        "lon": -8.94577039479122
       },
-      "protectedArea": "Serras de Aire e Candeeiros",
-      "redeNatura2000Site": "Serras de Aire e Candeeiros",
+      "protectedArea": null,
+      "redeNatura2000Site": null,
       "length": 1097
     },
     {
@@ -2126,8 +2126,8 @@
       "responsavel": "Sofia Quaresma",
       "entidade": "ICNF",
       "coordinates": {
-        "lat": 39.52109129494415,
-        "lon": -8.698473710447134
+        "lat": 39.51185363710652,
+        "lon": -8.703801253009015
       },
       "protectedArea": "Serras de Aire e Candeeiros",
       "redeNatura2000Site": "Serras de Aire e Candeeiros",
@@ -2189,8 +2189,8 @@
       "responsavel": "Pedro Alverca",
       "entidade": "ICNF",
       "coordinates": {
-        "lat": 37.68660550324359,
-        "lon": -8.678973573599945
+        "lat": 37.68948139557194,
+        "lon": -8.6805504455868
       },
       "protectedArea": "Sudoeste Alentejano e Costa Vicentina",
       "redeNatura2000Site": "Costa Sudoeste",
@@ -2261,8 +2261,8 @@
       "responsavel": "Alexandre Cabrita",
       "entidade": "ICNF",
       "coordinates": {
-        "lat": 37.180511451224426,
-        "lon": -8.698481308143956
+        "lat": 37.19089421621059,
+        "lon": -8.688893046157318
       },
       "protectedArea": null,
       "redeNatura2000Site": null,
@@ -2316,8 +2316,8 @@
       "responsavel": "Ana Macedo",
       "entidade": "ICNF",
       "coordinates": {
-        "lat": 37.64819738751792,
-        "lon": -8.623592427178703
+        "lat": 37.644782616728584,
+        "lon": -8.617482014817668
       },
       "protectedArea": null,
       "redeNatura2000Site": "Costa Sudoeste",
@@ -2387,8 +2387,8 @@
       "responsavel": "Pedro Alverca",
       "entidade": "ICNF",
       "coordinates": {
-        "lat": 37.75906552910564,
-        "lon": -8.710058186763545
+        "lat": 37.757588949651364,
+        "lon": -8.720786875402606
       },
       "protectedArea": null,
       "redeNatura2000Site": "Costa Sudoeste",
@@ -2462,8 +2462,8 @@
       "responsavel": "Henrique Domingues",
       "entidade": "ICNF",
       "coordinates": {
-        "lat": 40.38947714745912,
-        "lon": -7.701950978318256
+        "lat": 40.39418787966773,
+        "lon": -7.700829972545868
       },
       "protectedArea": "Serra da Estrela",
       "redeNatura2000Site": "Serra da Estrela",
@@ -2539,8 +2539,8 @@
       "responsavel": "Henrique Domingues",
       "entidade": "ICNF",
       "coordinates": {
-        "lat": 40.39662948888684,
-        "lon": -7.568093145128442
+        "lat": 40.40025222021148,
+        "lon": -7.572752557273434
       },
       "protectedArea": "Serra da Estrela",
       "redeNatura2000Site": "Serra da Estrela",
@@ -2612,8 +2612,8 @@
       "responsavel": "",
       "entidade": "ICNF",
       "coordinates": {
-        "lat": 40.36245073418194,
-        "lon": -7.557067550276211
+        "lat": 40.35309641431094,
+        "lon": -7.555194072448025
       },
       "protectedArea": "Serra da Estrela",
       "redeNatura2000Site": "Serra da Estrela",
@@ -2687,8 +2687,8 @@
       "responsavel": "Conceição Conde",
       "entidade": "ICNF",
       "coordinates": {
-        "lat": 39.36511835954706,
-        "lon": -7.413680063049043
+        "lat": 39.369293330563885,
+        "lon": -7.421181835717963
       },
       "protectedArea": "Serra de São Mamede",
       "redeNatura2000Site": "São Mamede",
@@ -2753,8 +2753,8 @@
       "responsavel": "Ana Cavaco",
       "entidade": "ICNF",
       "coordinates": {
-        "lat": 39.1932230316515,
-        "lon": -7.2589568203843555
+        "lat": 39.19208815560274,
+        "lon": -7.265153387549577
       },
       "protectedArea": "Serra de São Mamede",
       "redeNatura2000Site": "São Mamede",
@@ -2810,11 +2810,11 @@
       "responsavel": "Beatriz Machado",
       "entidade": "ICNF",
       "coordinates": {
-        "lat": 37.50170041998327,
-        "lon": -7.698570079720426
+        "lat": 37.50582211474862,
+        "lon": -7.702984712573269
       },
       "protectedArea": null,
-      "redeNatura2000Site": "Guadiana",
+      "redeNatura2000Site": null,
       "length": 1223
     },
     {
@@ -2864,8 +2864,8 @@
       "responsavel": "Teresa Morais",
       "entidade": "ICNF",
       "coordinates": {
-        "lat": 38.561466107230196,
-        "lon": -9.189792339831968
+        "lat": 38.55683007359452,
+        "lon": -9.180035357934692
       },
       "protectedArea": "Arriba Fossil da Costa da Caparica",
       "redeNatura2000Site": null,
@@ -2929,8 +2929,8 @@
       "responsavel": "",
       "entidade": "ICNF",
       "coordinates": {
-        "lat": 40.21150067452527,
-        "lon": -7.921715735591645
+        "lat": 40.21805692334815,
+        "lon": -7.920277668328531
       },
       "protectedArea": "Serra do Açor",
       "redeNatura2000Site": "Complexo do Açor",
@@ -2993,10 +2993,10 @@
       "responsavel": "Sofia Quaresma",
       "entidade": "ICNF",
       "coordinates": {
-        "lat": 39.17988254437014,
-        "lon": -9.053346660197665
+        "lat": 39.17786309939941,
+        "lon": -9.051811901343537
       },
-      "protectedArea": "Serra de Montejunto",
+      "protectedArea": null,
       "redeNatura2000Site": "Serra de Montejunto",
       "length": 817
     },
@@ -3044,8 +3044,8 @@
       "responsavel": "Rosa Serôdio",
       "entidade": "ICNF",
       "coordinates": {
-        "lat": 40.69681965457048,
-        "lon": -8.724709473280624
+        "lat": 40.692562171472076,
+        "lon": -8.725016018310397
       },
       "protectedArea": "Dunas de São Jacinto",
       "redeNatura2000Site": "Ria de Aveiro",
@@ -3098,11 +3098,11 @@
       "responsavel": "Maria do Céu Guerra",
       "entidade": "ICNF",
       "coordinates": {
-        "lat": 38.56011859881148,
-        "lon": -8.788570290280939
+        "lat": 38.55660968258396,
+        "lon": -8.781474996158524
       },
-      "protectedArea": null,
-      "redeNatura2000Site": null,
+      "protectedArea": "Estuário do Sado",
+      "redeNatura2000Site": "Estuário do Sado",
       "length": 1099
     },
     {
@@ -3166,11 +3166,11 @@
       "responsavel": "Isa Figueiras",
       "entidade": "ICNF",
       "coordinates": {
-        "lat": 38.08498004238011,
-        "lon": -8.772404692012786
+        "lat": 38.08624915518739,
+        "lon": -8.783559839704452
       },
-      "protectedArea": null,
-      "redeNatura2000Site": null,
+      "protectedArea": "Lagoas de Santo André e da Sancha",
+      "redeNatura2000Site": "Comporta/Galé",
       "length": 1271
     },
     {
@@ -3217,10 +3217,10 @@
       "responsavel": "Sónia Casemiro",
       "entidade": "ICNF",
       "coordinates": {
-        "lat": 39.41062948793025,
-        "lon": -8.523692733086456
+        "lat": 39.406851769334025,
+        "lon": -8.530549707515718
       },
-      "protectedArea": null,
+      "protectedArea": "Paul do Boquilobo",
       "redeNatura2000Site": null,
       "length": 934
     },
@@ -3266,8 +3266,8 @@
       "responsavel": "Pedro Castelão",
       "entidade": "ICNF",
       "coordinates": {
-        "lat": 37.23474180514136,
-        "lon": -7.426301010037617
+        "lat": 37.22567179031997,
+        "lon": -7.4290861291269366
       },
       "protectedArea": "Sapal de Castro Marim e Vila Real de Santo António",
       "redeNatura2000Site": "Ria Formosa/Castro Marim",
@@ -3336,8 +3336,8 @@
       "responsavel": "Henrique Furriel",
       "entidade": "ICNF",
       "coordinates": {
-        "lat": 40.284883853727344,
-        "lon": -6.978147788747286
+        "lat": 40.283721517189704,
+        "lon": -6.986920920657753
       },
       "protectedArea": "Serra Malcata",
       "redeNatura2000Site": "Malcata",
@@ -3390,8 +3390,8 @@
       "responsavel": "Isa Teixeira",
       "entidade": "ICNF",
       "coordinates": {
-        "lat": 39.17795940154502,
-        "lon": -9.355467887165394
+        "lat": 39.16570851514166,
+        "lon": -9.356965979709246
       },
       "protectedArea": null,
       "redeNatura2000Site": "Peniche/Santa Cruz",
@@ -3436,8 +3436,8 @@
       "responsavel": "Albano Soares",
       "entidade": "Particular",
       "coordinates": {
-        "lat": 38.75360657413523,
-        "lon": -9.135523876263324
+        "lat": 38.75676413379862,
+        "lon": -9.136374387715975
       },
       "protectedArea": null,
       "redeNatura2000Site": null,
@@ -3488,8 +3488,8 @@
       "responsavel": "Orkhan Abbasov",
       "entidade": "Particular",
       "coordinates": {
-        "lat": 38.7905589077635,
-        "lon": -9.261533378432677
+        "lat": 38.78264062482749,
+        "lon": -9.269682244749438
       },
       "protectedArea": null,
       "redeNatura2000Site": null,
@@ -3551,8 +3551,8 @@
       "responsavel": "Filipa Coelho",
       "entidade": "ONGA",
       "coordinates": {
-        "lat": 39.60388242929821,
-        "lon": -8.417205951582124
+        "lat": 39.59627469001616,
+        "lon": -8.422629832695344
       },
       "protectedArea": null,
       "redeNatura2000Site": null,
@@ -3603,8 +3603,8 @@
       "responsavel": "Francisco Aguilar",
       "entidade": "Particular",
       "coordinates": {
-        "lat": 38.73070443118851,
-        "lon": -9.30785381562815
+        "lat": 38.720695112128524,
+        "lon": -9.310231133824843
       },
       "protectedArea": null,
       "redeNatura2000Site": null,
@@ -3646,8 +3646,8 @@
       "responsavel": "",
       "entidade": "",
       "coordinates": {
-        "lat": 37.9012477196512,
-        "lon": -8.034268807527084
+        "lat": 37.904397533209824,
+        "lon": -8.034791019944613
       },
       "protectedArea": null,
       "redeNatura2000Site": null,
@@ -3724,8 +3724,8 @@
       "responsavel": "",
       "entidade": "Particular",
       "coordinates": {
-        "lat": 41.059983518243925,
-        "lon": -7.843519451531089
+        "lat": 41.0535926819602,
+        "lon": -7.8501779210334455
       },
       "protectedArea": null,
       "redeNatura2000Site": "Montemuro",
@@ -3771,8 +3771,8 @@
       "responsavel": "Pedro Borges",
       "entidade": "ONGA",
       "coordinates": {
-        "lat": 39.618012660778824,
-        "lon": -8.386628229495251
+        "lat": 39.626597955783154,
+        "lon": -8.388269556219626
       },
       "protectedArea": null,
       "redeNatura2000Site": null,
@@ -3815,8 +3815,8 @@
       "responsavel": "Daniele Cataldo",
       "entidade": "Particular",
       "coordinates": {
-        "lat": 41.7622023797087,
-        "lon": -7.440915829688096
+        "lat": 41.76643923877621,
+        "lon": -7.436606941963897
       },
       "protectedArea": null,
       "redeNatura2000Site": null,
@@ -3881,8 +3881,8 @@
       "responsavel": "Sónia Mendes",
       "entidade": "Município",
       "coordinates": {
-        "lat": 39.44773490944829,
-        "lon": -8.311097176437066
+        "lat": 39.44032361759928,
+        "lon": -8.313553756123712
       },
       "protectedArea": null,
       "redeNatura2000Site": null,
@@ -3937,8 +3937,8 @@
       "responsavel": "Jorge Gomes",
       "entidade": "Município",
       "coordinates": {
-        "lat": 41.09218302372583,
-        "lon": -8.561891474682236
+        "lat": 41.09385442544057,
+        "lon": -8.55540444562439
       },
       "protectedArea": null,
       "redeNatura2000Site": null,
@@ -3983,8 +3983,8 @@
       "responsavel": "Jorge Gomes",
       "entidade": "Município",
       "coordinates": {
-        "lat": 41.106187316663515,
-        "lon": -8.550531931408187
+        "lat": 41.094483667495524,
+        "lon": -8.55733300876711
       },
       "protectedArea": null,
       "redeNatura2000Site": null,
@@ -4032,8 +4032,8 @@
       "responsavel": "Guimarães",
       "entidade": "Município",
       "coordinates": {
-        "lat": 41.45066675806367,
-        "lon": -8.286170574735772
+        "lat": 41.44750528404921,
+        "lon": -8.283342349925116
       },
       "protectedArea": null,
       "redeNatura2000Site": null,
@@ -4081,8 +4081,8 @@
       "responsavel": "Eva Monteiro",
       "entidade": "Particular",
       "coordinates": {
-        "lat": 38.730441944252874,
-        "lon": -9.177927928224856
+        "lat": 38.73182158863531,
+        "lon": -9.17248903405859
       },
       "protectedArea": null,
       "redeNatura2000Site": null,
@@ -4127,8 +4127,8 @@
       "responsavel": "Darinka Gonçalves",
       "entidade": "Município",
       "coordinates": {
-        "lat": 41.3043923967807,
-        "lon": -7.7370639324022905
+        "lat": 41.29086333527914,
+        "lon": -7.745653510584969
       },
       "protectedArea": null,
       "redeNatura2000Site": null,
@@ -4182,8 +4182,8 @@
       "responsavel": "Fernando Pinto",
       "entidade": "Município",
       "coordinates": {
-        "lat": 38.562339667893916,
-        "lon": -9.030995228723226
+        "lat": 38.57327905386494,
+        "lon": -9.031320098946992
       },
       "protectedArea": null,
       "redeNatura2000Site": null,
@@ -4225,8 +4225,8 @@
       "responsavel": "Letícia Figueiredo",
       "entidade": "Particular",
       "coordinates": {
-        "lat": 41.555431288102554,
-        "lon": -8.403029265642942
+        "lat": 41.55183543328988,
+        "lon": -8.392875655013112
       },
       "protectedArea": null,
       "redeNatura2000Site": null,
@@ -4272,8 +4272,8 @@
       "responsavel": "Julieta Costa",
       "entidade": "ONGA",
       "coordinates": {
-        "lat": 38.747184062768,
-        "lon": -9.126762294574876
+        "lat": 38.74135230852977,
+        "lon": -9.13162517697315
       },
       "protectedArea": null,
       "redeNatura2000Site": null,
@@ -4352,11 +4352,11 @@
       "responsavel": "",
       "entidade": "Particular",
       "coordinates": {
-        "lat": 41.0773561722767,
-        "lon": -7.849935865248647
+        "lat": 41.08797282832811,
+        "lon": -7.861393714606724
       },
       "protectedArea": null,
-      "redeNatura2000Site": null,
+      "redeNatura2000Site": "Montemuro",
       "length": 1431
     },
     {
@@ -4406,8 +4406,8 @@
       "responsavel": "Scott Forbes",
       "entidade": "Particular",
       "coordinates": {
-        "lat": 40.210764885340964,
-        "lon": -8.287762985218384
+        "lat": 40.2205923693838,
+        "lon": -8.293634193854809
       },
       "protectedArea": null,
       "redeNatura2000Site": null,
@@ -4462,8 +4462,8 @@
       "responsavel": "Soraia Castro",
       "entidade": "Município",
       "coordinates": {
-        "lat": 41.69727739406802,
-        "lon": -8.810193184113299
+        "lat": 41.70390656857343,
+        "lon": -8.824569544350604
       },
       "protectedArea": null,
       "redeNatura2000Site": null,
@@ -4512,11 +4512,11 @@
       "responsavel": "",
       "entidade": "Particular",
       "coordinates": {
-        "lat": 39.9313478824448,
-        "lon": -8.457394872186644
+        "lat": 39.921608448846136,
+        "lon": -8.450644168463867
       },
       "protectedArea": null,
-      "redeNatura2000Site": null,
+      "redeNatura2000Site": "Sicó/Alvaiazere",
       "length": 1030
     },
     {
@@ -4562,8 +4562,8 @@
       "responsavel": "Hélder Cardoso",
       "entidade": "ONGA",
       "coordinates": {
-        "lat": 39.30350161414793,
-        "lon": -9.217806103849627
+        "lat": 39.296263882081654,
+        "lon": -9.220489677088166
       },
       "protectedArea": null,
       "redeNatura2000Site": null,
@@ -4626,8 +4626,8 @@
       "responsavel": "Luis Jordão",
       "entidade": "Particular",
       "coordinates": {
-        "lat": 38.796960522138505,
-        "lon": -9.37296783600212
+        "lat": 38.79787493168492,
+        "lon": -9.371183984538908
       },
       "protectedArea": null,
       "redeNatura2000Site": null,
@@ -4686,8 +4686,8 @@
       "responsavel": "Diogo Silva",
       "entidade": "Município",
       "coordinates": {
-        "lat": 38.76880812501036,
-        "lon": -9.462941832401178
+        "lat": 38.76303526856979,
+        "lon": -9.460797996630903
       },
       "protectedArea": "Sintra-Cascais",
       "redeNatura2000Site": "Sintra/Cascais",
@@ -4748,8 +4748,8 @@
       "responsavel": "Diogo Silva",
       "entidade": "Município",
       "coordinates": {
-        "lat": 38.769803714504434,
-        "lon": -9.4518742288373
+        "lat": 38.76431471085563,
+        "lon": -9.457492375503323
       },
       "protectedArea": "Sintra-Cascais",
       "redeNatura2000Site": "Sintra/Cascais",
@@ -4813,8 +4813,8 @@
       "responsavel": "Diogo Silva",
       "entidade": "Município",
       "coordinates": {
-        "lat": 38.74796607629748,
-        "lon": -9.416565025770474
+        "lat": 38.74763994765712,
+        "lon": -9.427404854657704
       },
       "protectedArea": "Sintra-Cascais",
       "redeNatura2000Site": "Sintra/Cascais",
@@ -4870,8 +4870,8 @@
       "responsavel": "Diogo Silva",
       "entidade": "Município",
       "coordinates": {
-        "lat": 38.742092335957786,
-        "lon": -9.423171340690258
+        "lat": 38.74772115074708,
+        "lon": -9.41111679318311
       },
       "protectedArea": "Sintra-Cascais",
       "redeNatura2000Site": "Sintra/Cascais",
@@ -4931,8 +4931,8 @@
       "responsavel": "Diogo Silva",
       "entidade": "Município",
       "coordinates": {
-        "lat": 38.760432684196225,
-        "lon": -9.415614433018435
+        "lat": 38.753286203075916,
+        "lon": -9.418772788454286
       },
       "protectedArea": "Sintra-Cascais",
       "redeNatura2000Site": "Sintra/Cascais",
@@ -4985,10 +4985,10 @@
       "responsavel": "",
       "entidade": "ONGA",
       "coordinates": {
-        "lat": 37.03933460392792,
-        "lon": -7.807251617906718
+        "lat": 37.04549263044919,
+        "lon": -7.810493091873267
       },
-      "protectedArea": "Ria Formosa",
+      "protectedArea": null,
       "redeNatura2000Site": null,
       "length": 1028
     },
@@ -5046,8 +5046,8 @@
       "responsavel": "Joaquim Pífano",
       "entidade": "Particular",
       "coordinates": {
-        "lat": 38.91943787484932,
-        "lon": -7.805472966577187
+        "lat": 38.92077369054691,
+        "lon": -7.806742965975233
       },
       "protectedArea": null,
       "redeNatura2000Site": null,
@@ -5104,8 +5104,8 @@
       "responsavel": "Joaquim Pífano",
       "entidade": "Particular",
       "coordinates": {
-        "lat": 38.9129154462943,
-        "lon": -7.792992152237069
+        "lat": 38.89995699961821,
+        "lon": -7.790507588164724
       },
       "protectedArea": null,
       "redeNatura2000Site": null,
@@ -5158,8 +5158,8 @@
       "responsavel": "",
       "entidade": "Empresa",
       "coordinates": {
-        "lat": 37.071740565787614,
-        "lon": -8.831090590002601
+        "lat": 37.07915538232899,
+        "lon": -8.83393061221415
       },
       "protectedArea": "Sudoeste Alentejano e Costa Vicentina",
       "redeNatura2000Site": "Costa Sudoeste",
@@ -5192,8 +5192,8 @@
       "responsavel": "Joana Barata",
       "entidade": "Particular",
       "coordinates": {
-        "lat": 38.65563974052624,
-        "lon": -9.244672611112993
+        "lat": 38.65076841930084,
+        "lon": -9.235863840164317
       },
       "protectedArea": null,
       "redeNatura2000Site": null,
@@ -5286,8 +5286,8 @@
       "responsavel": "Ângela Cordeiro",
       "entidade": "Município",
       "coordinates": {
-        "lat": 41.62918340367817,
-        "lon": -6.4608429670630105
+        "lat": 41.629330386676926,
+        "lon": -6.46096270530303
       },
       "protectedArea": null,
       "redeNatura2000Site": "Rios Sabor e Maçãs",
@@ -5349,8 +5349,8 @@
       "responsavel": "Raquel Eiró",
       "entidade": "Particular",
       "coordinates": {
-        "lat": 38.79037943244658,
-        "lon": -9.25790887272638
+        "lat": 38.78718742871086,
+        "lon": -9.268593499722794
       },
       "protectedArea": null,
       "redeNatura2000Site": null,
@@ -5392,8 +5392,8 @@
       "responsavel": "",
       "entidade": "Particular",
       "coordinates": {
-        "lat": 41.15319314366004,
-        "lon": -8.478605333109108
+        "lat": 41.14340022731005,
+        "lon": -8.488331233552085
       },
       "protectedArea": "Parque das Serras do Porto",
       "redeNatura2000Site": "Valongo",
@@ -5448,8 +5448,8 @@
       "responsavel": "",
       "entidade": "Particular",
       "coordinates": {
-        "lat": 41.12398696670346,
-        "lon": -8.483188077662128
+        "lat": 41.129267671767515,
+        "lon": -8.485287523459881
       },
       "protectedArea": "Parque das Serras do Porto",
       "redeNatura2000Site": null,
@@ -5513,8 +5513,8 @@
       "responsavel": "Armindo Paulo Salvador",
       "entidade": "Particular",
       "coordinates": {
-        "lat": 41.56952193320688,
-        "lon": -8.404932186543059
+        "lat": 41.571161572240456,
+        "lon": -8.405042286081112
       },
       "protectedArea": null,
       "redeNatura2000Site": null,
@@ -5557,8 +5557,8 @@
       "responsavel": "Julieta Costa",
       "entidade": "Particular",
       "coordinates": {
-        "lat": 38.759741447281534,
-        "lon": -9.167675802607183
+        "lat": 38.75752507464346,
+        "lon": -9.171618619932248
       },
       "protectedArea": null,
       "redeNatura2000Site": null,
@@ -5616,8 +5616,8 @@
       "responsavel": "",
       "entidade": "Particular",
       "coordinates": {
-        "lat": 41.07877039971186,
-        "lon": -7.831876542151449
+        "lat": 41.08376425657237,
+        "lon": -7.834235832596053
       },
       "protectedArea": null,
       "redeNatura2000Site": null,
@@ -5666,8 +5666,8 @@
       "responsavel": "Hélder Cardoso",
       "entidade": "ONGA",
       "coordinates": {
-        "lat": 39.30521835480629,
-        "lon": -9.222106303927138
+        "lat": 39.29727565852765,
+        "lon": -9.21314972598264
       },
       "protectedArea": null,
       "redeNatura2000Site": null,
@@ -5721,8 +5721,8 @@
       "responsavel": "Orkhan Abbasov",
       "entidade": "Particular",
       "coordinates": {
-        "lat": 38.77707225426838,
-        "lon": -9.27420477655337
+        "lat": 38.77973875471845,
+        "lon": -9.279113481062861
       },
       "protectedArea": null,
       "redeNatura2000Site": null,
@@ -5801,11 +5801,11 @@
       "responsavel": "Isabel Sá",
       "entidade": "ONGA",
       "coordinates": {
-        "lat": 41.52309942569753,
-        "lon": -6.508934062640375
+        "lat": 41.526917418040206,
+        "lon": -6.503048659887561
       },
       "protectedArea": null,
-      "redeNatura2000Site": "Rios Sabor e Maçãs",
+      "redeNatura2000Site": "Minas de St. Adriao",
       "length": 849
     }
   ],

@@ -179,6 +179,32 @@ function GeographicCoverageDetails({
   );
 }
 
+/**
+ * Helper function to check if a transect matches site-based filters
+ * (e.g., Protected Areas, Rede Natura 2000)
+ *
+ * @param filters - Array of filter values (may include "inside", "outside", or specific site names)
+ * @param siteValue - The site value from the transect (null or string)
+ * @returns true if the transect matches the filter criteria
+ */
+function matchesSiteFilter(filters: string[], siteValue: string | null): boolean {
+  if (filters.length === 0) {
+    return true; // No filter applied
+  }
+
+  const hasInside = filters.includes("inside");
+  const hasOutside = filters.includes("outside");
+  const specificSites = filters.filter(f => f !== "inside" && f !== "outside");
+
+  const isTransectInside = Boolean(siteValue && siteValue !== "");
+
+  return (
+    (hasInside && isTransectInside) ||
+    (hasOutside && !isTransectInside) ||
+    (isTransectInside && siteValue !== null && specificSites.includes(siteValue))
+  );
+}
+
 function ButterflyTransects() {
   const [data, setData] = useState<TransectStats[]>([]);
   const [metadata, setMetadata] = useState<ProcessingMetadata | null>(null);
@@ -333,43 +359,13 @@ function ButterflyTransects() {
     }
 
     // Protected Area filter
-    if (protectedAreaFilters.length > 0) {
-      const hasInside = protectedAreaFilters.includes("inside");
-      const hasOutside = protectedAreaFilters.includes("outside");
-      const specificAreas = protectedAreaFilters.filter(f => f !== "inside" && f !== "outside");
-
-      const isTransectInside = transect.protectedArea && transect.protectedArea !== "";
-
-      const matchesFilter =
-        (hasInside && isTransectInside) ||
-        (hasOutside && !isTransectInside) ||
-        (isTransectInside &&
-          transect.protectedArea &&
-          specificAreas.includes(transect.protectedArea));
-
-      if (!matchesFilter) {
-        return false;
-      }
+    if (!matchesSiteFilter(protectedAreaFilters, transect.protectedArea)) {
+      return false;
     }
 
     // Rede Natura 2000 filter
-    if (redeNatura2000Filters.length > 0) {
-      const hasInside = redeNatura2000Filters.includes("inside");
-      const hasOutside = redeNatura2000Filters.includes("outside");
-      const specificSites = redeNatura2000Filters.filter(f => f !== "inside" && f !== "outside");
-
-      const isTransectInside = transect.redeNatura2000Site && transect.redeNatura2000Site !== "";
-
-      const matchesFilter =
-        (hasInside && isTransectInside) ||
-        (hasOutside && !isTransectInside) ||
-        (isTransectInside &&
-          transect.redeNatura2000Site &&
-          specificSites.includes(transect.redeNatura2000Site));
-
-      if (!matchesFilter) {
-        return false;
-      }
+    if (!matchesSiteFilter(redeNatura2000Filters, transect.redeNatura2000Site)) {
+      return false;
     }
 
     return true;
