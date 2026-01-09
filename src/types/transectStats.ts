@@ -23,6 +23,8 @@ export interface TransectStats {
   coordinates: { lat: number; lon: number } | null;
   // Protected area (if transect is inside one)
   protectedArea: string | null;
+  // Rede Natura 2000 site (if transect is inside one)
+  redeNatura2000Site: string | null;
   // Transect length in meters
   length: number | null;
 }

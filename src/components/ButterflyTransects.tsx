@@ -179,6 +179,32 @@ function GeographicCoverageDetails({
   );
 }
 
+/**
+ * Helper function to check if a transect matches site-based filters
+ * (e.g., Protected Areas, Rede Natura 2000)
+ *
+ * @param filters - Array of filter values (may include "inside", "outside", or specific site names)
+ * @param siteValue - The site value from the transect (null or string)
+ * @returns true if the transect matches the filter criteria
+ */
+function matchesSiteFilter(filters: string[], siteValue: string | null): boolean {
+  if (filters.length === 0) {
+    return true; // No filter applied
+  }
+
+  const hasInside = filters.includes("inside");
+  const hasOutside = filters.includes("outside");
+  const specificSites = filters.filter(f => f !== "inside" && f !== "outside");
+
+  const isTransectInside = Boolean(siteValue && siteValue !== "");
+
+  return (
+    (hasInside && isTransectInside) ||
+    (hasOutside && !isTransectInside) ||
+    (isTransectInside && siteValue !== null && specificSites.includes(siteValue))
+  );
+}
+
 function ButterflyTransects() {
   const [data, setData] = useState<TransectStats[]>([]);
   const [metadata, setMetadata] = useState<ProcessingMetadata | null>(null);
@@ -191,6 +217,7 @@ function ButterflyTransects() {
   const [climaticRegionFilters, setClimaticRegionFilters] = useState<string[]>([]);
   const [entidadeFilters, setEntidadeFilters] = useState<string[]>([]);
   const [protectedAreaFilters, setProtectedAreaFilters] = useState<string[]>([]);
+  const [redeNatura2000Filters, setRedeNatura2000Filters] = useState<string[]>([]);
   const [pageSize, setPageSize] = useState(20);
   const [currentPage, setCurrentPage] = useState(1);
   const navigate = useNavigate();
@@ -216,6 +243,7 @@ function ButterflyTransects() {
     distrito: false, // Hidden by default
     climaticRegion: true, // BMS environmental zone - shown by default
     length: false, // Hidden by default
+    redeNatura2000Site: false, // Hidden by default
   });
 
   useEffect(() => {
@@ -331,23 +359,13 @@ function ButterflyTransects() {
     }
 
     // Protected Area filter
-    if (protectedAreaFilters.length > 0) {
-      const hasInside = protectedAreaFilters.includes("inside");
-      const hasOutside = protectedAreaFilters.includes("outside");
-      const specificAreas = protectedAreaFilters.filter(f => f !== "inside" && f !== "outside");
+    if (!matchesSiteFilter(protectedAreaFilters, transect.protectedArea)) {
+      return false;
+    }
 
-      const isTransectInside = transect.protectedArea && transect.protectedArea !== "";
-
-      const matchesFilter =
-        (hasInside && isTransectInside) ||
-        (hasOutside && !isTransectInside) ||
-        (isTransectInside &&
-          transect.protectedArea &&
-          specificAreas.includes(transect.protectedArea));
-
-      if (!matchesFilter) {
-        return false;
-      }
+    // Rede Natura 2000 filter
+    if (!matchesSiteFilter(redeNatura2000Filters, transect.redeNatura2000Site)) {
+      return false;
     }
 
     return true;
@@ -495,6 +513,18 @@ function ButterflyTransects() {
     [data]
   );
 
+  const redeNatura2000FilterOptions = useMemo(
+    () => [
+      { text: "Dentro de sítios Rede Natura 2000", value: "inside" },
+      { text: "Fora de sítios Rede Natura 2000", value: "outside" },
+      ...Array.from(new Set(data.map(t => t.redeNatura2000Site)))
+        .filter((s): s is string => s !== null && s !== "")
+        .sort()
+        .map(s => ({ text: s, value: s })),
+    ],
+    [data]
+  );
+
   const columns: ColumnsType<TransectStats> = [
     {
       title: "Transecto",
@@ -623,6 +653,20 @@ function ButterflyTransects() {
       render: (protectedArea: string | null) => protectedArea || "-",
     },
     {
+      title: "Rede Natura 2000",
+      dataIndex: "redeNatura2000Site",
+      key: "redeNatura2000Site",
+      width: 200,
+      filters: redeNatura2000FilterOptions,
+      filteredValue: redeNatura2000Filters,
+      onFilter: (value, record) => {
+        if (value === "inside") return record.redeNatura2000Site !== null;
+        if (value === "outside") return record.redeNatura2000Site === null;
+        return record.redeNatura2000Site === value;
+      },
+      render: (redeNatura2000Site: string | null) => redeNatura2000Site || "-",
+    },
+    {
       title: "Comprimento (m)",
       dataIndex: "length",
       key: "length",
@@ -668,6 +712,7 @@ function ButterflyTransects() {
     concelho: "Concelho",
     distrito: "Distrito",
     climaticRegion: "Região Climática",
+    redeNatura2000Site: "Rede Natura 2000",
     length: "Comprimento (m)",
   };
 
@@ -1058,6 +1103,19 @@ function ButterflyTransects() {
                   JSON.stringify([...protectedAreaFilters].sort());
                 if (changed) {
                   setProtectedAreaFilters(newFilters);
+                  filtersChanged = true;
+                }
+              }
+
+              if (filters.redeNatura2000Site !== undefined) {
+                const newFilters = filters.redeNatura2000Site
+                  ? (filters.redeNatura2000Site as string[])
+                  : [];
+                const changed =
+                  JSON.stringify(newFilters.sort()) !==
+                  JSON.stringify([...redeNatura2000Filters].sort());
+                if (changed) {
+                  setRedeNatura2000Filters(newFilters);
                   filtersChanged = true;
                 }
               }
