@@ -2,6 +2,7 @@ import { MapContainer, TileLayer, CircleMarker, Popup, GeoJSON } from "react-lea
 import { TransectStats } from "../types/transectStats";
 import { useEffect, useState, useMemo } from "react";
 import type { FeatureCollection } from "geojson";
+import { Radio } from "antd";
 import "leaflet/dist/leaflet.css";
 
 interface TransectMapProps {
@@ -24,9 +25,13 @@ const REGION_COLORS: Record<string, string> = {
   "Mediterrânico Montanhoso": "#C299FF", // Light purple - Mountains
 };
 
+type OverlayType = "protectedAreas" | "redeNatura2000";
+
 function TransectMap({ transects }: TransectMapProps) {
   const [protectedAreas, setProtectedAreas] = useState<FeatureCollection | null>(null);
+  const [redeNatura2000, setRedeNatura2000] = useState<FeatureCollection | null>(null);
   const [environmentalZones, setEnvironmentalZones] = useState<FeatureCollection | null>(null);
+  const [overlayType, setOverlayType] = useState<OverlayType>("protectedAreas");
 
   // Load protected areas GeoJSON
   useEffect(() => {
@@ -36,6 +41,16 @@ function TransectMap({ transects }: TransectMapProps) {
       .then(data => setProtectedAreas(data))
       // eslint-disable-next-line no-console
       .catch(err => console.warn("Could not load protected areas:", err));
+  }, []);
+
+  // Load Rede Natura 2000 GeoJSON
+  useEffect(() => {
+    // eslint-disable-next-line no-undef
+    fetch("data/rede-natura-2000.geojson")
+      .then(res => res.json())
+      .then(data => setRedeNatura2000(data))
+      // eslint-disable-next-line no-console
+      .catch(err => console.warn("Could not load Rede Natura 2000:", err));
   }, []);
 
   // Load environmental zones GeoJSON
@@ -127,6 +142,30 @@ function TransectMap({ transects }: TransectMapProps) {
 
   return (
     <div style={{ height: "800px", width: "100%", borderRadius: "8px", overflow: "hidden" }}>
+      {/* Overlay Toggle */}
+      <div
+        style={{
+          position: "absolute",
+          top: 10,
+          left: 10,
+          zIndex: 1000,
+          backgroundColor: "rgba(255, 255, 255, 0.95)",
+          padding: "8px 12px",
+          borderRadius: 6,
+          boxShadow: "0 2px 8px rgba(0, 0, 0, 0.15)",
+          border: "1px solid #d9d9d9",
+        }}
+      >
+        <Radio.Group
+          value={overlayType}
+          onChange={e => setOverlayType(e.target.value)}
+          size="small"
+        >
+          <Radio.Button value="protectedAreas">Áreas Protegidas</Radio.Button>
+          <Radio.Button value="redeNatura2000">Rede Natura 2000</Radio.Button>
+        </Radio.Group>
+      </div>
+
       <div style={{ position: "relative", height: "100%", width: "100%" }}>
         <MapContainer
           center={center}
@@ -159,7 +198,7 @@ function TransectMap({ transects }: TransectMapProps) {
           )}
 
           {/* Protected Areas Layer - rendered behind transects */}
-          {protectedAreas && (
+          {overlayType === "protectedAreas" && protectedAreas && (
             <GeoJSON
               data={protectedAreas}
               style={{
@@ -174,6 +213,30 @@ function TransectMap({ transects }: TransectMapProps) {
                 if (feature.properties && feature.properties.nome_ap) {
                   layer.bindPopup(`
                     <strong>${feature.properties.nome_ap}</strong><br/>
+                    <small>${feature.properties.classifica || ""}</small>
+                  `);
+                }
+              }}
+            />
+          )}
+
+          {/* Rede Natura 2000 Layer - rendered behind transects */}
+          {overlayType === "redeNatura2000" && redeNatura2000 && (
+            <GeoJSON
+              data={redeNatura2000}
+              style={{
+                fillColor: "#1a5490",
+                fillOpacity: 0.25,
+                color: "#1a5490",
+                weight: 2,
+                opacity: 0.6,
+              }}
+              pane="tilePane"
+              onEachFeature={(feature, layer) => {
+                if (feature.properties && feature.properties.nome_ac) {
+                  layer.bindPopup(`
+                    <strong>${feature.properties.nome_ac}</strong><br/>
+                    <small>${feature.properties.codigo_ac || ""}</small><br/>
                     <small>${feature.properties.classifica || ""}</small>
                   `);
                 }
@@ -261,8 +324,8 @@ function TransectMap({ transects }: TransectMapProps) {
             </div>
           )}
 
-          {/* Protected Areas */}
-          {protectedAreas && (
+          {/* Protected Areas - only show if selected */}
+          {overlayType === "protectedAreas" && protectedAreas && (
             <div
               style={{
                 display: "flex",
@@ -282,6 +345,30 @@ function TransectMap({ transects }: TransectMapProps) {
                 }}
               />
               <span>Áreas Protegidas</span>
+            </div>
+          )}
+
+          {/* Rede Natura 2000 - only show if selected */}
+          {overlayType === "redeNatura2000" && redeNatura2000 && (
+            <div
+              style={{
+                display: "flex",
+                alignItems: "center",
+                marginBottom: 6,
+                paddingBottom: 6,
+                borderBottom: "1px solid #f0f0f0",
+              }}
+            >
+              <div
+                style={{
+                  width: 12,
+                  height: 12,
+                  backgroundColor: "rgba(26, 84, 144, 0.25)",
+                  border: "2px solid #1a5490",
+                  marginRight: 6,
+                }}
+              />
+              <span>Rede Natura 2000</span>
             </div>
           )}
 
