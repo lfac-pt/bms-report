@@ -16,6 +16,10 @@
     -->
     <link rel="manifest" href="/manifest.json" />
     <title>BMS Report</title>
+    <% if (process.env.NODE_ENV === 'production') { %>
+    <script data-goatcounter="https://bms-report.goatcounter.com/count"
+            async src="//gc.zgo.at/count.js"></script>
+    <% } %>
   </head>
   <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>
