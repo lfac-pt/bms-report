@@ -2,9 +2,10 @@
   "regions": {
     "Lusitânico": {
       "region": "Lusitânico",
-      "transectCount": 28,
+      "transectCount": 30,
       "transectIds": [
         "314210",
+        "362532",
         "340155",
         "316845",
         "303737",
@@ -14,53 +15,54 @@
         "228413",
         "242415",
         "227678",
+        "363446",
         "295724",
         "298076",
         "304132",
+        "345334",
         "256525",
         "265800",
         "340178",
         "306541",
         "306547",
         "243024",
+        "308543",
         "303743",
         "340164",
         "292171",
         "218548",
-        "241125",
         "336745",
         "222006",
-        "342048",
-        "241113"
+        "342048"
       ],
       "gbiByYear": {
         "2020": {
           "year": 2020,
-          "gbiValue": 100,
-          "ci_lower": 100,
-          "ci_upper": 100,
-          "ci80_lower": 100,
-          "ci80_upper": 100,
-          "ci90_lower": 100,
-          "ci90_upper": 100,
+          "gbiValue": 96.76,
+          "ci_lower": 95.5,
+          "ci_upper": 109.75,
+          "ci80_lower": 96.99,
+          "ci80_upper": 105.87,
+          "ci90_lower": 96.27,
+          "ci90_upper": 107.85,
           "smoothedValue": 100,
           "speciesIndices": [],
           "dataQuality": {
-            "transectCount": 7,
-            "totalVisits": 52,
+            "transectCount": 5,
+            "totalVisits": 47,
             "speciesWithData": 10
           }
         },
         "2021": {
           "year": 2021,
-          "gbiValue": 140.88,
-          "ci_lower": 70.06,
-          "ci_upper": 275.29,
-          "ci80_lower": 88.68,
-          "ci80_upper": 233.36,
-          "ci90_lower": 79.04,
-          "ci90_upper": 258.87,
-          "smoothedValue": 140.88,
+          "gbiValue": 134.28,
+          "ci_lower": 64.96,
+          "ci_upper": 232.6,
+          "ci80_lower": 79.18,
+          "ci80_upper": 190.59,
+          "ci90_lower": 71.78,
+          "ci90_upper": 208.9,
+          "smoothedValue": 122.05,
           "speciesIndices": [],
           "dataQuality": {
             "transectCount": 10,
@@ -70,48 +72,48 @@
         },
         "2022": {
           "year": 2022,
-          "gbiValue": 108.64,
-          "ci_lower": 51.13,
-          "ci_upper": 212.86,
-          "ci80_lower": 62.28,
-          "ci80_upper": 182.13,
-          "ci90_lower": 56.19,
-          "ci90_upper": 205.43,
-          "smoothedValue": 108.64,
+          "gbiValue": 108.23,
+          "ci_lower": 49.02,
+          "ci_upper": 219.82,
+          "ci80_lower": 57.68,
+          "ci80_upper": 177.21,
+          "ci90_lower": 53.02,
+          "ci90_upper": 202.55,
+          "smoothedValue": 108.23,
           "speciesIndices": [],
           "dataQuality": {
             "transectCount": 11,
-            "totalVisits": 88,
+            "totalVisits": 90,
             "speciesWithData": 10
           }
         },
         "2023": {
           "year": 2023,
-          "gbiValue": 111.61,
-          "ci_lower": 51.63,
-          "ci_upper": 248.55,
-          "ci80_lower": 63.7,
-          "ci80_upper": 189.39,
-          "ci90_lower": 58.24,
-          "ci90_upper": 208.67,
-          "smoothedValue": 111.61,
+          "gbiValue": 112.64,
+          "ci_lower": 49.89,
+          "ci_upper": 246.26,
+          "ci80_lower": 61.39,
+          "ci80_upper": 187.41,
+          "ci90_lower": 54.93,
+          "ci90_upper": 214.03,
+          "smoothedValue": 112.64,
           "speciesIndices": [],
           "dataQuality": {
-            "transectCount": 19,
+            "transectCount": 18,
             "totalVisits": 140,
             "speciesWithData": 10
           }
         },
         "2024": {
           "year": 2024,
-          "gbiValue": 111.19,
-          "ci_lower": 52.35,
-          "ci_upper": 217.35,
-          "ci80_lower": 69.49,
-          "ci80_upper": 187.35,
-          "ci90_lower": 61.4,
-          "ci90_upper": 204.7,
-          "smoothedValue": 111.19,
+          "gbiValue": 112.05,
+          "ci_lower": 54.57,
+          "ci_upper": 237.97,
+          "ci80_lower": 65.98,
+          "ci80_upper": 191.62,
+          "ci90_lower": 57.91,
+          "ci90_upper": 212.69,
+          "smoothedValue": 112.05,
           "speciesIndices": [],
           "dataQuality": {
             "transectCount": 24,
@@ -121,18 +123,35 @@
         },
         "2025": {
           "year": 2025,
-          "gbiValue": 122.83,
-          "ci_lower": 53.86,
-          "ci_upper": 247.16,
-          "ci80_lower": 75.62,
-          "ci80_upper": 204.45,
-          "ci90_lower": 63.32,
-          "ci90_upper": 227.83,
-          "smoothedValue": 122.83,
+          "gbiValue": 103.57,
+          "ci_lower": 54.21,
+          "ci_upper": 249.13,
+          "ci80_lower": 67.33,
+          "ci80_upper": 188.58,
+          "ci90_lower": 59.06,
+          "ci90_upper": 213.26,
+          "smoothedValue": 112.23,
           "speciesIndices": [],
           "dataQuality": {
-            "transectCount": 23,
-            "totalVisits": 126,
+            "transectCount": 27,
+            "totalVisits": 135,
+            "speciesWithData": 10
+          }
+        },
+        "2026": {
+          "year": 2026,
+          "gbiValue": 153.81,
+          "ci_lower": 73.36,
+          "ci_upper": 327.38,
+          "ci80_lower": 92.83,
+          "ci80_upper": 252.65,
+          "ci90_lower": 79.36,
+          "ci90_upper": 284.95,
+          "smoothedValue": 151.54,
+          "speciesIndices": [],
+          "dataQuality": {
+            "transectCount": 19,
+            "totalVisits": 147,
             "speciesWithData": 10
           }
         }
@@ -143,24 +162,25 @@
         2022,
         2023,
         2024,
-        2025
+        2025,
+        2026
       ],
       "gbiTrend": {
         "category": "Uncertain",
-        "rate": 1.0099,
+        "rate": 1.0406,
         "rateCI": {
-          "lower": 0.8905,
-          "upper": 1.1322
+          "lower": 0.9485,
+          "upper": 1.1495
         },
-        "pcn": 5.06,
+        "pcn": 26.96,
         "pcnCI": {
-          "lower": -44,
-          "upper": 86.02
+          "lower": -27.17,
+          "upper": 130.75
         },
-        "pc1": 0.99,
+        "pc1": 4.06,
         "pc1CI": {
-          "lower": -10.95,
-          "upper": 13.22
+          "lower": -5.15,
+          "upper": 14.95
         }
       },
       "dataQuality": {
@@ -172,11 +192,12 @@
     },
     "Mediterrânico Norte": {
       "region": "Mediterrânico Norte",
-      "transectCount": 40,
+      "transectCount": 42,
       "transectIds": [
         "341825",
         "309311",
         "315938",
+        "366442",
         "254989",
         "228038",
         "336687",
@@ -184,6 +205,7 @@
         "243747",
         "338236",
         "256572",
+        "377001",
         "244448",
         "265806",
         "265814",
@@ -218,13 +240,13 @@
       "gbiByYear": {
         "2020": {
           "year": 2020,
-          "gbiValue": 100,
-          "ci_lower": 100,
-          "ci_upper": 100,
-          "ci80_lower": 100,
-          "ci80_upper": 100,
-          "ci90_lower": 100,
-          "ci90_upper": 100,
+          "gbiValue": 96.69,
+          "ci_lower": 95.64,
+          "ci_upper": 109.13,
+          "ci80_lower": 97.24,
+          "ci80_upper": 104.79,
+          "ci90_lower": 96.26,
+          "ci90_upper": 107.49,
           "smoothedValue": 100,
           "speciesIndices": [],
           "dataQuality": {
@@ -235,14 +257,14 @@
         },
         "2021": {
           "year": 2021,
-          "gbiValue": 140.85,
-          "ci_lower": 90.51,
-          "ci_upper": 305.5,
-          "ci80_lower": 106.96,
-          "ci80_upper": 258.81,
-          "ci90_lower": 98.32,
-          "ci90_upper": 277.82,
-          "smoothedValue": 140.85,
+          "gbiValue": 133.79,
+          "ci_lower": 81.71,
+          "ci_upper": 257.34,
+          "ci80_lower": 100.02,
+          "ci80_upper": 208.8,
+          "ci90_lower": 91.04,
+          "ci90_upper": 227.89,
+          "smoothedValue": 121.28,
           "speciesIndices": [],
           "dataQuality": {
             "transectCount": 25,
@@ -252,14 +274,14 @@
         },
         "2022": {
           "year": 2022,
-          "gbiValue": 104.96,
-          "ci_lower": 68.39,
-          "ci_upper": 227.14,
-          "ci80_lower": 82.02,
-          "ci80_upper": 200.04,
-          "ci90_lower": 75.8,
-          "ci90_upper": 218.46,
-          "smoothedValue": 104.96,
+          "gbiValue": 104.4,
+          "ci_lower": 66.98,
+          "ci_upper": 250.47,
+          "ci80_lower": 81.48,
+          "ci80_upper": 198.99,
+          "ci90_lower": 73.52,
+          "ci90_upper": 226.13,
+          "smoothedValue": 104.4,
           "speciesIndices": [],
           "dataQuality": {
             "transectCount": 25,
@@ -269,14 +291,14 @@
         },
         "2023": {
           "year": 2023,
-          "gbiValue": 103.13,
-          "ci_lower": 65.71,
-          "ci_upper": 221.06,
-          "ci80_lower": 80.67,
-          "ci80_upper": 188.75,
-          "ci90_lower": 73.47,
-          "ci90_upper": 204.7,
-          "smoothedValue": 103.13,
+          "gbiValue": 104.72,
+          "ci_lower": 65.02,
+          "ci_upper": 239.74,
+          "ci80_lower": 78.99,
+          "ci80_upper": 188.61,
+          "ci90_lower": 70.66,
+          "ci90_upper": 220.61,
+          "smoothedValue": 104.72,
           "speciesIndices": [],
           "dataQuality": {
             "transectCount": 33,
@@ -286,14 +308,14 @@
         },
         "2024": {
           "year": 2024,
-          "gbiValue": 104.1,
-          "ci_lower": 69.44,
-          "ci_upper": 225.64,
-          "ci80_lower": 79.66,
-          "ci80_upper": 192.99,
-          "ci90_lower": 74.3,
-          "ci90_upper": 210.72,
-          "smoothedValue": 104.1,
+          "gbiValue": 105,
+          "ci_lower": 65.49,
+          "ci_upper": 242,
+          "ci80_lower": 81.24,
+          "ci80_upper": 192.62,
+          "ci90_lower": 72.8,
+          "ci90_upper": 214.49,
+          "smoothedValue": 105,
           "speciesIndices": [],
           "dataQuality": {
             "transectCount": 38,
@@ -303,18 +325,35 @@
         },
         "2025": {
           "year": 2025,
-          "gbiValue": 113.42,
-          "ci_lower": 70.32,
-          "ci_upper": 257.58,
-          "ci80_lower": 87.14,
-          "ci80_upper": 211.53,
-          "ci90_lower": 76.8,
-          "ci90_upper": 244.53,
-          "smoothedValue": 113.42,
+          "gbiValue": 94.48,
+          "ci_lower": 66.62,
+          "ci_upper": 251.15,
+          "ci80_lower": 82.03,
+          "ci80_upper": 194.97,
+          "ci90_lower": 74.78,
+          "ci90_upper": 216.16,
+          "smoothedValue": 104.88,
           "speciesIndices": [],
           "dataQuality": {
-            "transectCount": 31,
-            "totalVisits": 132,
+            "transectCount": 35,
+            "totalVisits": 143,
+            "speciesWithData": 9
+          }
+        },
+        "2026": {
+          "year": 2026,
+          "gbiValue": 153.17,
+          "ci_lower": 93.42,
+          "ci_upper": 345.26,
+          "ci80_lower": 115.09,
+          "ci80_upper": 268.39,
+          "ci90_lower": 105.11,
+          "ci90_upper": 308.25,
+          "smoothedValue": 150.44,
+          "speciesIndices": [],
+          "dataQuality": {
+            "transectCount": 34,
+            "totalVisits": 149,
             "speciesWithData": 9
           }
         }
@@ -325,24 +364,25 @@
         2022,
         2023,
         2024,
-        2025
+        2025,
+        2026
       ],
       "gbiTrend": {
         "category": "Uncertain",
-        "rate": 0.9916,
+        "rate": 1.0342,
         "rateCI": {
-          "lower": 0.9182,
-          "upper": 1.1299
+          "lower": 0.9687,
+          "upper": 1.1417
         },
-        "pcn": -4.13,
+        "pcn": 22.33,
         "pcnCI": {
-          "lower": -34.74,
-          "upper": 84.19
+          "lower": -17.37,
+          "upper": 121.44
         },
-        "pc1": -0.84,
+        "pc1": 3.42,
         "pc1CI": {
-          "lower": -8.18,
-          "upper": 12.99
+          "lower": -3.13,
+          "upper": 14.17
         }
       },
       "dataQuality": {
@@ -370,13 +410,13 @@
       "gbiByYear": {
         "2020": {
           "year": 2020,
-          "gbiValue": 100,
-          "ci_lower": 100,
-          "ci_upper": 100,
-          "ci80_lower": 100,
-          "ci80_upper": 100,
-          "ci90_lower": 100,
-          "ci90_upper": 100,
+          "gbiValue": 96.39,
+          "ci_lower": 96.14,
+          "ci_upper": 105.17,
+          "ci80_lower": 97.24,
+          "ci80_upper": 103.1,
+          "ci90_lower": 96.73,
+          "ci90_upper": 104.33,
           "smoothedValue": 100,
           "speciesIndices": [],
           "dataQuality": {
@@ -387,14 +427,14 @@
         },
         "2021": {
           "year": 2021,
-          "gbiValue": 166.88,
-          "ci_lower": 100.37,
-          "ci_upper": 272.58,
-          "ci80_lower": 120.33,
-          "ci80_upper": 216,
-          "ci90_lower": 111.79,
-          "ci90_upper": 238.67,
-          "smoothedValue": 166.88,
+          "gbiValue": 163.81,
+          "ci_lower": 93.43,
+          "ci_upper": 246.81,
+          "ci80_lower": 112.63,
+          "ci80_upper": 194.59,
+          "ci90_lower": 102.68,
+          "ci90_upper": 219.67,
+          "smoothedValue": 150.19,
           "speciesIndices": [],
           "dataQuality": {
             "transectCount": 7,
@@ -404,14 +444,14 @@
         },
         "2022": {
           "year": 2022,
-          "gbiValue": 146.13,
-          "ci_lower": 77.42,
-          "ci_upper": 280.28,
-          "ci80_lower": 97.65,
-          "ci80_upper": 199.34,
-          "ci90_lower": 85.57,
-          "ci90_upper": 222.06,
-          "smoothedValue": 146.13,
+          "gbiValue": 148.19,
+          "ci_lower": 82.91,
+          "ci_upper": 273.16,
+          "ci80_lower": 102.62,
+          "ci80_upper": 208.54,
+          "ci90_lower": 91.25,
+          "ci90_upper": 237.37,
+          "smoothedValue": 148.19,
           "speciesIndices": [],
           "dataQuality": {
             "transectCount": 6,
@@ -421,14 +461,14 @@
         },
         "2023": {
           "year": 2023,
-          "gbiValue": 150.67,
-          "ci_lower": 78.08,
-          "ci_upper": 285.57,
-          "ci80_lower": 101.63,
-          "ci80_upper": 207.91,
-          "ci90_lower": 91.02,
-          "ci90_upper": 242.88,
-          "smoothedValue": 150.67,
+          "gbiValue": 154.28,
+          "ci_lower": 86.08,
+          "ci_upper": 293.71,
+          "ci80_lower": 110.14,
+          "ci80_upper": 218.18,
+          "ci90_lower": 95.33,
+          "ci90_upper": 248.29,
+          "smoothedValue": 154.28,
           "speciesIndices": [],
           "dataQuality": {
             "transectCount": 6,
@@ -438,14 +478,14 @@
         },
         "2024": {
           "year": 2024,
-          "gbiValue": 137.34,
-          "ci_lower": 72.45,
-          "ci_upper": 284.16,
-          "ci80_lower": 91.14,
-          "ci80_upper": 188.96,
-          "ci90_lower": 80.34,
-          "ci90_upper": 227.55,
-          "smoothedValue": 137.34,
+          "gbiValue": 142.86,
+          "ci_lower": 76.86,
+          "ci_upper": 274.04,
+          "ci80_lower": 101.41,
+          "ci80_upper": 204.76,
+          "ci90_lower": 88.75,
+          "ci90_upper": 234.58,
+          "smoothedValue": 142.86,
           "speciesIndices": [],
           "dataQuality": {
             "transectCount": 8,
@@ -455,18 +495,35 @@
         },
         "2025": {
           "year": 2025,
-          "gbiValue": 179.28,
-          "ci_lower": 99.18,
-          "ci_upper": 330.27,
-          "ci80_lower": 119.97,
-          "ci80_upper": 242.1,
-          "ci90_lower": 107.21,
-          "ci90_upper": 278.74,
-          "smoothedValue": 179.28,
+          "gbiValue": 159.76,
+          "ci_lower": 86.74,
+          "ci_upper": 309.34,
+          "ci80_lower": 112.53,
+          "ci80_upper": 229.77,
+          "ci90_lower": 98.13,
+          "ci90_upper": 251.97,
+          "smoothedValue": 157.48,
           "speciesIndices": [],
           "dataQuality": {
             "transectCount": 8,
-            "totalVisits": 70,
+            "totalVisits": 75,
+            "speciesWithData": 5
+          }
+        },
+        "2026": {
+          "year": 2026,
+          "gbiValue": 187.5,
+          "ci_lower": 101.42,
+          "ci_upper": 347.98,
+          "ci80_lower": 129.98,
+          "ci80_upper": 266.37,
+          "ci90_lower": 115.98,
+          "ci90_upper": 312.23,
+          "smoothedValue": 188.09,
+          "speciesIndices": [],
+          "dataQuality": {
+            "transectCount": 7,
+            "totalVisits": 67,
             "speciesWithData": 5
           }
         }
@@ -477,24 +534,25 @@
         2022,
         2023,
         2024,
-        2025
+        2025,
+        2026
       ],
       "gbiTrend": {
         "category": "Uncertain",
-        "rate": 1.0699,
+        "rate": 1.0723,
         "rateCI": {
-          "lower": 0.9655,
-          "upper": 1.1902
+          "lower": 0.9922,
+          "upper": 1.1595
         },
-        "pcn": 40.19,
+        "pcn": 51.98,
         "pcnCI": {
-          "lower": -16.1,
-          "upper": 138.85
+          "lower": -4.57,
+          "upper": 143.06
         },
-        "pc1": 6.99,
+        "pc1": 7.23,
         "pc1CI": {
-          "lower": -3.45,
-          "upper": 19.02
+          "lower": -0.78,
+          "upper": 15.95
         }
       },
       "dataQuality": {
@@ -506,7 +564,7 @@
     }
   },
   "metadata": {
-    "calculatedAt": "2026-01-09T23:24:44.467Z",
+    "calculatedAt": "2026-10-19T13:36:55.767Z",
     "baselineYear": 2020,
     "minimumTransects": 3,
     "minimumYears": 3

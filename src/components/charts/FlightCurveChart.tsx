@@ -17,6 +17,7 @@ const YEAR_COLORS = {
   "2023": "rgb(251, 146, 60)", // Orange
   "2024": "rgb(139, 92, 246)", // Purple
   "2025": "rgb(236, 72, 153)", // Pink
+  "2026": "rgb(14, 165, 233)", // Cyan / Sky Blue
 };
 
 const FlightCurveChart: React.FC<FlightCurveChartProps> = ({ region, regionalData, yAxisMax }) => {

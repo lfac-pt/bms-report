@@ -57,7 +57,7 @@ function loadTransectMetadata(): Map<string, number> {
 
     // Extract Site Code and Overall Length (m) from each record
     for (const record of records) {
-      const siteCode = record["Site Code"];
+      const siteCode = record["Transect Code"] || record["Site Code"];
       const lengthStr = record["Overall Length (m)"];
 
       if (siteCode && lengthStr) {
