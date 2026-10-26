@@ -1,6 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import { HashRouter, Routes, Route, useNavigate, useLocation, Navigate } from "react-router-dom";
+import AnnualResultsPage from "./components/AnnualResultsPage";
 import MyApp from "./components/App";
 import SpeciesPage from "./components/SpeciesPage";
 import MunicipalityPage from "./components/MunicipalityPage";
@@ -43,7 +44,9 @@ function AppHeader() {
   // Determine current route
   const currentPath = location.pathname;
   let currentValue = "diurnal";
-  if (currentPath === "/nocturnal" || currentPath.startsWith("/nocturnal/")) {
+  if (currentPath === "/results/2026") {
+    currentValue = "results/2026";
+  } else if (currentPath === "/nocturnal" || currentPath.startsWith("/nocturnal/")) {
     currentValue = "nocturnal";
   } else if (currentPath === "/transects" || currentPath.startsWith("/transects/")) {
     currentValue = "transects";
@@ -62,6 +65,7 @@ function AppHeader() {
         }}
         buttonStyle="solid"
       >
+        <Radio.Button value="results/2026">Resultados 2026</Radio.Button>
         <Radio.Button value="diurnal">Borboletas Diurnas</Radio.Button>
         <Radio.Button value="nocturnal">Borboletas Noturnas</Radio.Button>
       </Radio.Group>
@@ -76,6 +80,7 @@ function AppContent() {
       <Route path="/diurnal" element={<MyApp datasetType="diurnal" />} />
       <Route path="/nocturnal" element={<MyApp datasetType="nocturnal" />} />
       <Route path="/transects" element={<MyApp datasetType="transects" />} />
+      <Route path="/results/2026" element={<AnnualResultsPage />} />
       <Route path="/gbi" element={<GBIPage />} />
       <Route path="/species/:speciesName" element={<SpeciesPage />} />
       <Route path="/municipality/:municipalityName" element={<MunicipalityPage />} />
