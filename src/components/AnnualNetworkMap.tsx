@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Checkbox, Empty, Space, Typography } from "antd";
 import { MapContainer, TileLayer, CircleMarker, Popup } from "react-leaflet";
-import { Link } from "react-router-dom";
+import Link from "./ReportLink";
 import { NetworkTransect } from "../utils/annualHighlights";
 import "leaflet/dist/leaflet.css";
 

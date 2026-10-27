@@ -1,6 +1,7 @@
+import { scrollToReportSection } from "../utils/reportNavigation";
 import { useMemo } from "react";
 import { Card, Col, Empty, Row, Tag, Typography } from "antd";
-import { Link } from "react-router-dom";
+import Link from "./ReportLink";
 import { TimelineData } from "../types/timelineData";
 import { TransectData } from "../types/transectStats";
 import { annualHighlights } from "../utils/annualHighlights";
@@ -50,7 +51,7 @@ export default function AnnualOverview({ timeline, transects, names, credits }: 
           href="#/results/2026#discoveries"
           onClick={event => {
             event.preventDefault();
-            document.getElementById("annual-discoveries")?.scrollIntoView({ block: "start" });
+            scrollToReportSection("annual-discoveries");
           }}
         >
           <strong>{highlights.discoveries.length}</strong>
@@ -61,7 +62,7 @@ export default function AnnualOverview({ timeline, transects, names, credits }: 
           href="#/results/2026#network"
           onClick={event => {
             event.preventDefault();
-            document.getElementById("annual-network")?.scrollIntoView({ block: "start" });
+            scrollToReportSection("annual-network");
           }}
         >
           <strong>{highlights.newCount}</strong>
@@ -72,7 +73,7 @@ export default function AnnualOverview({ timeline, transects, names, credits }: 
           href="#/results/2026#network"
           onClick={event => {
             event.preventDefault();
-            document.getElementById("annual-network")?.scrollIntoView({ block: "start" });
+            scrollToReportSection("annual-network");
           }}
         >
           <strong>{highlights.veteranCount}</strong>
@@ -237,7 +238,7 @@ export default function AnnualOverview({ timeline, transects, names, credits }: 
                       href="#/results/2026#discoveries"
                       onClick={event => {
                         event.preventDefault();
-                        document.getElementById("annual-discoveries")?.scrollIntoView();
+                        scrollToReportSection("annual-discoveries");
                       }}
                     >
                       Também entre os primeiros registos deste ano ↑

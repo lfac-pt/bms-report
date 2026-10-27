@@ -1,0 +1,35 @@
+html,
+body {
+  margin: 0;
+  background: #fff;
+}
+.embedded-report {
+  padding: 0 16px 16px;
+  box-sizing: border-box;
+  display: flow-root;
+}
+.embedded-report .annual-page {
+  padding-top: 12px;
+}
+.embedded-report-footer {
+  border-top: 1px solid #e5ebe6;
+  padding-top: 16px;
+  color: #64748b;
+  font-size: 12px;
+  line-height: 1.8;
+}
+@media (max-width: 600px) {
+  .embedded-report {
+    padding: 0 8px 12px;
+  }
+  .embedded-report .wave-card .ant-card-head {
+    flex-wrap: wrap;
+  }
+  .embedded-report .wave-card .ant-card-head-wrapper {
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+  .embedded-report .annual-story-card .ant-card-head-title {
+    white-space: normal;
+  }
+}

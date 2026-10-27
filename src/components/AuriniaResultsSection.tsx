@@ -1,6 +1,6 @@
 import { useMemo } from "react";
 import { Card, Col, Row, Tag, Typography } from "antd";
-import { Link } from "react-router-dom";
+import Link from "./ReportLink";
 import { Line } from "react-chartjs-2";
 import { AnnualStoryProps } from "./AnnualOverview";
 import AnnualSpeciesPhoto from "./AnnualSpeciesPhoto";

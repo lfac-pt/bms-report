@@ -1,5 +1,5 @@
 import { Typography } from "antd";
-import { Link } from "react-router-dom";
+import Link from "./ReportLink";
 
 interface SpeciesLinkProps {
   species: string;

@@ -8,32 +8,8 @@ import MunicipalityPage from "./components/MunicipalityPage";
 import GBIPage from "./components/GBIPage";
 import reportWebVitals from "./reportWebVitals";
 import { App, Layout, Radio } from "antd";
-import {
-  Chart as ChartJS,
-  CategoryScale,
-  LinearScale,
-  BarElement,
-  LineElement,
-  PointElement,
-  Title,
-  Tooltip,
-  Legend,
-  Filler,
-} from "chart.js";
-
+import "./registerCharts";
 import "./index.css";
-
-ChartJS.register(
-  CategoryScale,
-  LinearScale,
-  BarElement,
-  LineElement,
-  PointElement,
-  Title,
-  Tooltip,
-  Legend,
-  Filler
-);
 
 const { Header, Content, Footer } = Layout;
 

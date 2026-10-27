@@ -1,7 +1,8 @@
+import { scrollToReportSection } from "../utils/reportNavigation";
 import { useMemo } from "react";
 import { Card, Col, Row, Statistic, Table, Typography } from "antd";
 import { Bar } from "react-chartjs-2";
-import { Link } from "react-router-dom";
+import Link from "./ReportLink";
 import { TimelineData } from "../types/timelineData";
 import { TransectData } from "../types/transectStats";
 import { icnfResults } from "../utils/icnfResults";
@@ -172,7 +173,7 @@ export default function ICNFResultsSection({
                 href="#/results/2026#discoveries"
                 onClick={event => {
                   event.preventDefault();
-                  document.getElementById("annual-discoveries")?.scrollIntoView();
+                  scrollToReportSection("annual-discoveries");
                 }}
               >
                 Rever as descobertas ↑

@@ -34,7 +34,9 @@
     "format": "prettier --write \"{src,scripts}/**/*.{js,jsx,ts,tsx,json,css,scss,md}\"",
     "format:check": "prettier --check \"{src,scripts}/**/*.{js,jsx,ts,tsx,json,css,scss,md}\"",
     "process-data": "tsx scripts/process-butterfly-data.ts",
-    "reprocess": "rm -rf .cache/rbms && npm run process-data"
+    "reprocess": "rm -rf .cache/rbms && npm run process-data",
+    "build:report": "rsbuild build --config rsbuild.report.config.ts",
+    "export:report": "npm run build:report && node scripts/package-report.mjs"
   },
   "devDependencies": {
     "@eslint/js": "^9.39.1",

@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { Alert, Card, Col, Row, Spin, Statistic, Typography } from "antd";
-import { Link } from "react-router-dom";
+import Link from "./ReportLink";
 import { TimelineData } from "../types/timelineData";
 import { TransectData } from "../types/transectStats";
 import { RESULTS_YEAR, summarizeYear, mainlandResultsTimeline } from "../utils/annualResults";
@@ -13,7 +13,7 @@ import "./AnnualResultsPage.css";
 import VanessaWaveSection from "./VanessaWaveSection";
 
 const { Title, Paragraph, Text } = Typography;
-export default function AnnualResultsPage() {
+export default function AnnualResultsPage({ embedded = false }: { embedded?: boolean }) {
   const [data, setData] = useState<{ timeline: TimelineData; transects: TransectData } | null>(
     null
   );
@@ -94,7 +94,7 @@ export default function AnnualResultsPage() {
   return (
     <main className="annual-page">
       <header className="annual-page-header">
-        <Link to="/transects">← Visão geral dos transectos</Link>
+        {!embedded && <Link to="/transects">← Visão geral dos transectos</Link>}
         <Title>Resultados de {RESULTS_YEAR}</Title>
         <Paragraph>
           Percursos que se repetem, descobertas que se somam. De março a setembro, cada visita ajuda

@@ -1,7 +1,7 @@
 import { useEffect, useMemo, useState } from "react";
 import { Button, Card, Col, Empty, Row, Slider, Space, Typography } from "antd";
 import { LeftOutlined, PauseOutlined, PlayCircleOutlined, RightOutlined } from "@ant-design/icons";
-import { Link } from "react-router-dom";
+import Link from "./ReportLink";
 import { Line } from "react-chartjs-2";
 import { CircleMarker, MapContainer, Popup, TileLayer } from "react-leaflet";
 import { TimelineData } from "../types/timelineData";
