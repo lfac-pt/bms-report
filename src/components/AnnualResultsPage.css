@@ -1,0 +1,299 @@
+.annual-page {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  padding: 28px 0;
+}
+.annual-page-header {
+  max-width: 920px;
+}
+.annual-page-header h1.ant-typography {
+  font-family: Georgia, serif;
+  font-size: clamp(34px, 4vw, 52px);
+  font-weight: 500;
+  margin-top: 20px;
+  margin-bottom: 12px;
+}
+.annual-page-header .ant-typography {
+  font-size: 16px;
+  line-height: 1.8;
+}
+.annual-eyebrow {
+  color: #166553;
+  font-size: 12px;
+  font-weight: 650;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+.annual-story-card {
+  scroll-margin-top: 24px;
+  overflow: hidden;
+}
+.annual-story-card h2.ant-typography,
+.annual-participation h2.ant-typography {
+  font-family: Georgia, serif;
+  font-weight: 500;
+  font-size: clamp(26px, 2.8vw, 34px);
+  margin-top: 10px;
+}
+.annual-lead {
+  max-width: 900px;
+  font-size: 16px;
+  line-height: 1.8;
+}
+.annual-note.ant-typography {
+  font-size: 12px;
+  color: #64748b;
+  margin: 16px 0 0;
+}
+.annual-highlights {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1px;
+  background: #d9e6de;
+  border: 1px solid #d9e6de;
+  border-radius: 12px;
+  overflow: hidden;
+}
+.annual-highlights a {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  color: #165744;
+  background: #f1f7f2;
+  padding: 22px 24px;
+}
+.annual-highlights a:hover {
+  background: #e4f0e7;
+}
+.annual-highlights strong {
+  font-size: 32px;
+  font-weight: 550;
+}
+.annual-highlights span {
+  font-size: 14px;
+}
+.annual-highlights span:last-child {
+  margin-left: auto;
+}
+.annual-species-story {
+  height: 100%;
+  border: 1px solid #e5ebe6;
+  border-radius: 10px;
+  overflow: hidden;
+}
+.annual-species-photo {
+  margin: 0;
+}
+.annual-species-photo img {
+  display: block;
+  width: 100%;
+  height: 235px;
+  object-fit: cover;
+}
+.annual-species-photo figcaption {
+  font-size: 10px;
+  color: #64748b;
+  line-height: 1.5;
+  padding: 6px 12px;
+}
+.annual-species-photo figcaption a {
+  color: inherit;
+  text-decoration: underline;
+}
+.annual-photo-fallback {
+  height: 235px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: #eef3ee;
+  color: #63786a;
+  gap: 12px;
+}
+.annual-photo-fallback .anticon {
+  font-size: 40px;
+}
+.annual-species-copy {
+  padding: 18px 20px;
+}
+.annual-species-copy h3.ant-typography {
+  margin-top: 12px;
+  margin-bottom: 4px;
+}
+.annual-species-copy h3 .ant-typography {
+  font-size: 23px;
+}
+.annual-species-copy > .ant-typography {
+  margin-top: 12px;
+}
+.annual-ranking {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.annual-ranking > li {
+  border-bottom: 1px solid #e7ede9;
+  padding: 14px 0;
+}
+.annual-ranking > li:first-child {
+  padding-top: 0;
+}
+.annual-ranking-row {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+}
+.annual-rank-number {
+  flex: 0 0 36px;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: #eef5ef;
+  display: grid;
+  place-items: center;
+  color: #166553;
+  font-weight: 600;
+}
+.annual-ranking-name {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  flex: 1;
+}
+.annual-ranking-name > strong {
+  font-size: 16px;
+}
+.annual-ranking-name > span {
+  color: #64748b;
+  font-size: 12px;
+}
+.annual-ranking-count {
+  display: flex;
+  flex-direction: column;
+  text-align: right;
+  color: #166553;
+}
+.annual-ranking-count strong {
+  font-size: 29px;
+  line-height: 1.2;
+}
+.annual-ranking-count span {
+  color: #64748b;
+  font-size: 12px;
+}
+.annual-ranking-species {
+  margin-left: 52px;
+  margin-top: 6px;
+  font-size: 12px;
+}
+.annual-ranking-species summary {
+  cursor: pointer;
+  color: #64748b;
+}
+.annual-ranking-species > div {
+  padding-top: 12px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 14px;
+}
+.annual-conservation-story {
+  border-radius: 10px;
+  background: #f8faf8;
+  height: 100%;
+  overflow: hidden;
+}
+.annual-conservation-story .annual-species-photo img {
+  height: 250px;
+}
+.annual-network-callout {
+  display: flex;
+  flex-direction: column;
+  color: #166553;
+  padding: 0 0 20px;
+}
+.annual-network-callout strong {
+  font-size: 30px;
+}
+.annual-network-callout span {
+  font-size: 13px;
+}
+.annual-map-dot {
+  display: inline-block;
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  margin-right: 7px;
+}
+.annual-aurinia-data {
+  margin-top: 24px;
+}
+.annual-evidence {
+  background: #eef5ef;
+  border-left: 3px solid #166553;
+  padding: 18px 20px;
+  margin-top: 24px;
+  border-radius: 0 8px 8px 0;
+}
+.annual-evidence .ant-typography {
+  margin: 8px 0 0;
+}
+.annual-participation {
+  background: #edf5ef;
+  border-color: #d6e6d9;
+}
+.annual-participation .ant-btn-primary {
+  background: #166553;
+}
+.annual-participation .ant-btn-primary:hover {
+  background: #104d3e !important;
+}
+.annual-coverage {
+  margin: 24px 0;
+  padding: 20px;
+  border: 1px solid #d6e6d9;
+  background: #ffffffb3;
+  border-radius: 10px;
+}
+.annual-selection {
+  margin-top: 12px;
+}
+.annual-steps {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 28px;
+  padding-left: 20px;
+  margin: 28px 0;
+}
+.annual-steps li {
+  padding-left: 4px;
+  color: #166553;
+}
+.annual-steps strong,
+.annual-steps span {
+  display: block;
+}
+.annual-steps span {
+  margin-top: 6px;
+  color: #486454;
+  font-size: 13px;
+}
+@media (max-width: 767px) {
+  .annual-highlights {
+    grid-template-columns: 1fr;
+  }
+  .annual-highlights a {
+    padding: 14px 20px;
+  }
+  .annual-steps {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+  .annual-story-card > .ant-card-body,
+  .annual-participation > .ant-card-body {
+    padding: 18px;
+  }
+  .annual-species-photo img {
+    height: 250px;
+  }
+}

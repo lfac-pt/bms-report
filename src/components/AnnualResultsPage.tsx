@@ -1,9 +1,14 @@
 import { useEffect, useState } from "react";
-import { Alert, Card, Col, Row, Space, Spin, Statistic, Typography } from "antd";
+import { Alert, Card, Col, Row, Spin, Statistic, Typography } from "antd";
 import { Link } from "react-router-dom";
 import { TimelineData } from "../types/timelineData";
 import { TransectData } from "../types/transectStats";
 import { RESULTS_YEAR, summarizeYear } from "../utils/annualResults";
+import AnnualOverview from "./AnnualOverview";
+import AuriniaResultsSection from "./AuriniaResultsSection";
+import AnnualParticipation, { MunicipalityCoverage } from "./AnnualParticipation";
+import { PhotoCredit } from "./AnnualSpeciesPhoto";
+import "./AnnualResultsPage.css";
 import VanessaWaveSection from "./VanessaWaveSection";
 
 const { Title, Paragraph, Text } = Typography;
@@ -11,6 +16,11 @@ export default function AnnualResultsPage() {
   const [data, setData] = useState<{ timeline: TimelineData; transects: TransectData } | null>(
     null
   );
+  const [extras, setExtras] = useState<{
+    names: Record<string, string>;
+    credits: Record<string, PhotoCredit>;
+    coverage: MunicipalityCoverage[] | null;
+  }>({ names: {}, credits: {}, coverage: null });
   const [error, setError] = useState(false);
   useEffect(() => {
     let cancelled = false;
@@ -28,6 +38,25 @@ export default function AnnualResultsPage() {
         if (!cancelled) setError(true);
       }
     }
+    // Editorial assets are optional: core results remain available if any fail to load.
+    const optional = async (file: string) => {
+      try {
+        const response = await window.fetch(`data/${file}`);
+        if (!response.ok) return null;
+        return await response.json();
+      } catch {
+        return null;
+      }
+    };
+    void Promise.all([
+      optional("common-names.json"),
+      optional("photo-credits.json"),
+      optional("results-photo-credits.json"),
+      optional("municipality-coverage.json"),
+    ]).then(([names, credits, resultsCredits, coverage]) => {
+      if (!cancelled)
+        setExtras({ names: names || {}, credits: { ...credits, ...resultsCredits }, coverage });
+    });
     void load();
     return () => {
       cancelled = true;
@@ -53,15 +82,16 @@ export default function AnnualResultsPage() {
     ["Transectos ativos", "transects"],
   ] as const;
   return (
-    <Space direction="vertical" size="large" style={{ width: "100%", padding: "24px 0" }}>
-      <div>
+    <main className="annual-page">
+      <header className="annual-page-header">
         <Link to="/transects">← Visão geral dos transectos</Link>
         <Title>Resultados de {RESULTS_YEAR}</Title>
         <Paragraph>
-          Uma época de monitorização de borboletas em Portugal. Comparação com {RESULTS_YEAR - 1},
-          de março a setembro, nos dois anos.
+          Percursos que se repetem, descobertas que se somam. De março a setembro, cada visita ajuda
+          a conhecer as borboletas de Portugal e os habitats de que dependem. Estes são os registos
+          de 2026, em comparação com 2025.
         </Paragraph>
-      </div>
+      </header>
       {!current && (
         <Alert
           type="info"
@@ -100,7 +130,24 @@ export default function AnnualResultsPage() {
         transecto numa data; várias secções contam como uma visita. Transectos ativos: com registos
         nessa época. Os totais dependem dos dados submetidos e do esforço de amostragem.
       </Paragraph>
+      {current && (
+        <AnnualOverview
+          timeline={data.timeline}
+          transects={data.transects}
+          names={extras.names}
+          credits={extras.credits}
+        />
+      )}
       <VanessaWaveSection timeline={data.timeline} transects={data.transects} />
-    </Space>
+      {current && (
+        <AuriniaResultsSection
+          timeline={data.timeline}
+          transects={data.transects}
+          names={extras.names}
+          credits={extras.credits}
+        />
+      )}
+      <AnnualParticipation coverage={extras.coverage} />
+    </main>
   );
 }

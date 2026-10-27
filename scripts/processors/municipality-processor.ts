@@ -257,6 +257,21 @@ export function processMunicipalityGeoJSON(
   console.log(`Writing municipality species map to ${MUNICIPALITY_GEOJSON_OUTPUT}...`);
   fs.writeFileSync(MUNICIPALITY_GEOJSON_OUTPUT, JSON.stringify(geoJSON), "utf-8");
 
+  // A lightweight coverage index avoids loading the full geometry on the annual results page.
+  fs.writeFileSync(
+    MUNICIPALITY_GEOJSON_OUTPUT.replace(
+      "municipalities-species-map.geojson",
+      "municipality-coverage.json"
+    ),
+    JSON.stringify(
+      geoJSON.features.map(feature => ({
+        Concelho: feature.properties.Concelho,
+        transectCount: feature.properties.transectCount,
+      }))
+    ),
+    "utf-8"
+  );
+
   const outputSize = fs.statSync(MUNICIPALITY_GEOJSON_OUTPUT).size;
   const inputSize = fs.statSync(MUNICIPALITY_GEOJSON_INPUT).size;
   const compressionRatio = ((1 - outputSize / inputSize) * 100).toFixed(1);

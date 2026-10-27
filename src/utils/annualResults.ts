@@ -41,11 +41,15 @@ export function timelineForMonth(
   };
 }
 
-export function monthlySpeciesAbundance(timeline: TimelineData, year: number): number[] {
+export function monthlySpeciesAbundance(
+  timeline: TimelineData,
+  year: number,
+  speciesName = WAVE_SPECIES
+): number[] {
   return MONTH_NAMES.map((_, index) =>
     Object.values(timelineForMonth(timeline, year, index + 3).observationsByYearDate[year])
       .flat()
-      .reduce((sum, [, species, count]) => sum + (species === WAVE_SPECIES ? count : 0), 0)
+      .reduce((sum, [, species, count]) => sum + (species === speciesName ? count : 0), 0)
   );
 }
 
@@ -89,7 +93,11 @@ export function timelineForWeek(
 }
 
 /** Count effort across all observations, including visits without the focal species. */
-export function summarizeSpeciesPeriod(timeline: TimelineData, year: number) {
+export function summarizeSpeciesPeriod(
+  timeline: TimelineData,
+  year: number,
+  speciesName = WAVE_SPECIES
+) {
   const visited = new Set<string>();
   const visits = new Set<string>();
   const counts = new Map<string, number>();
@@ -98,7 +106,7 @@ export function summarizeSpeciesPeriod(timeline: TimelineData, year: number) {
     observations.forEach(([id, species, count]) => {
       visited.add(id);
       visits.add(`${id}:${date}`);
-      if (species === WAVE_SPECIES) {
+      if (species === speciesName) {
         counts.set(id, (counts.get(id) || 0) + count);
         individuals += count;
       }

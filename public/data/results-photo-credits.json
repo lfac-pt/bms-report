@@ -1,0 +1,34 @@
+{
+  "Brenthis daphne": {
+    "src": "imgs/results/brenthis-daphne.jpg",
+    "photographer": "Siga",
+    "license": "Public domain",
+    "licenseUrl": "https://creativecommons.org/publicdomain/mark/1.0/",
+    "url": "https://commons.wikimedia.org/wiki/File:Brenthis_daphne.jpg",
+    "changes": "Miniatura redimensionada; enquadramento ajustado na apresentação."
+  },
+  "Euchloe tagis": {
+    "src": "imgs/results/euchloe-tagis.jpg",
+    "photographer": "Marabeat",
+    "license": "CC BY-SA 3.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0",
+    "url": "https://commons.wikimedia.org/wiki/File:Euchloe-tagisEM.JPG",
+    "changes": "Miniatura redimensionada; enquadramento ajustado na apresentação."
+  },
+  "Pseudophilotes panoptes": {
+    "src": "imgs/results/pseudophilotes-panoptes.jpg",
+    "photographer": "Mike Darlow from UK",
+    "license": "CC BY 2.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by/2.0",
+    "url": "https://commons.wikimedia.org/wiki/File:Panoptes_Blue_(7163743031).jpg",
+    "changes": "Miniatura redimensionada; enquadramento ajustado na apresentação."
+  },
+  "Phengaris alcon": {
+    "src": "imgs/results/phengaris-alcon.jpg",
+    "photographer": "Rob Zweers from Arnhem, Netherlands",
+    "license": "CC BY 2.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by/2.0",
+    "url": "https://commons.wikimedia.org/wiki/File:Gentiaanblauwtje_-_Phengaris_alcon_(14848903723).jpg",
+    "changes": "Miniatura redimensionada; enquadramento ajustado na apresentação."
+  }
+}
