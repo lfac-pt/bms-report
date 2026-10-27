@@ -1,0 +1,32 @@
+.icnf-metrics {
+  margin-top: 24px;
+  margin-bottom: 28px;
+}
+.icnf-metrics .ant-col > div {
+  padding: 18px 20px;
+  background: #f1f7f3;
+  border-radius: 10px;
+  height: 100%;
+  box-sizing: border-box;
+}
+.icnf-metrics .ant-statistic-content {
+  color: #166553;
+}
+.icnf-metrics .ant-typography {
+  font-size: 12px;
+}
+.icnf-effort-chart {
+  height: 280px;
+}
+.icnf-all-transects {
+  margin-top: 24px;
+}
+.icnf-all-transects > summary {
+  cursor: pointer;
+  color: #166553;
+  font-weight: 600;
+  padding: 12px 0;
+}
+.icnf-all-transects .ant-table-wrapper {
+  margin-top: 12px;
+}

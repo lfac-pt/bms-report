@@ -1,5 +1,6 @@
 import {
   monitoringWeeks,
+  mainlandResultsTimeline,
   timelineForWeek,
   monthlySpeciesAbundance,
   summarizeYear,
@@ -91,4 +92,46 @@ test("species summaries include visits without detections and aggregate sections
     0
   );
   expect(weeklyTotal).toBe(summary.individuals);
+});
+
+test("mainland scope excludes island observations and derived data across every year", () => {
+  const input: TimelineData = {
+    ...timeline,
+    years: [2024, 2025, 2026],
+    observationsByYearDate: {
+      2024: { "01/03/2024": [["madeira", "Vanessa cardui", 12]] },
+      2025: {
+        "01/03/2025": [
+          ["a", "Vanessa cardui", 2],
+          ["madeira", "Euchloe tagis", 5],
+        ],
+      },
+      2026: {
+        "01/03/2026": [
+          ["a", "Vanessa cardui", 3],
+          ["madeira", "Vanessa cardui", 9],
+        ],
+        "02/03/2026": [["madeira", "Euchloe tagis", 1]],
+        "03/03/2026": [["b", "Pieris rapae", 0]],
+      },
+    },
+  };
+  const filtered = mainlandResultsTimeline(input, new Set(["a", "b"]));
+  expect(filtered.years).toEqual([2025, 2026]);
+  expect(summarizeYear(filtered, 2026)).toEqual({
+    species: 1,
+    individuals: 3,
+    visits: 2,
+    transects: 2,
+  });
+  expect(summarizeYear(filtered, 2025)?.individuals).toBe(2);
+  expect(summarizeSpeciesPeriod(filtered, 2026).individuals).toBe(3);
+  expect(filtered.transectsByYear[2026]).toEqual(["a", "b"]);
+  expect(filtered.butterflyFrequencyByYear[2026]).toEqual([
+    { species: "Vanessa cardui", frequency: 50, visitCount: 1, totalVisits: 2 },
+  ]);
+  expect(filtered.transectDiversityByYear[2026]).toEqual([
+    { transectId: "a", diversityCount: 1, speciesList: ["Vanessa cardui"] },
+  ]);
+  expect(input.observationsByYearDate[2026]["01/03/2026"]).toHaveLength(2);
 });

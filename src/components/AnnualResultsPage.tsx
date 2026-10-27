@@ -3,8 +3,9 @@ import { Alert, Card, Col, Row, Spin, Statistic, Typography } from "antd";
 import { Link } from "react-router-dom";
 import { TimelineData } from "../types/timelineData";
 import { TransectData } from "../types/transectStats";
-import { RESULTS_YEAR, summarizeYear } from "../utils/annualResults";
+import { RESULTS_YEAR, summarizeYear, mainlandResultsTimeline } from "../utils/annualResults";
 import AnnualOverview from "./AnnualOverview";
+import ICNFResultsSection from "./ICNFResultsSection";
 import AuriniaResultsSection from "./AuriniaResultsSection";
 import AnnualParticipation, { MunicipalityCoverage } from "./AnnualParticipation";
 import { PhotoCredit } from "./AnnualSpeciesPhoto";
@@ -33,7 +34,16 @@ export default function AnnualResultsPage() {
             return response.json();
           })
         );
-        if (!cancelled) setData({ timeline, transects });
+        if (!cancelled)
+          setData({
+            timeline: mainlandResultsTimeline(
+              timeline,
+              new Set<string>(
+                transects.transects.map((item: { transectId: string }) => item.transectId)
+              )
+            ),
+            transects,
+          });
       } catch {
         if (!cancelled) setError(true);
       }
@@ -88,8 +98,9 @@ export default function AnnualResultsPage() {
         <Title>Resultados de {RESULTS_YEAR}</Title>
         <Paragraph>
           Percursos que se repetem, descobertas que se somam. De março a setembro, cada visita ajuda
-          a conhecer as borboletas de Portugal e os habitats de que dependem. Estes são os registos
-          de 2026, em comparação com 2025.
+          a conhecer as borboletas de Portugal continental e os habitats de que dependem. Estes são
+          os registos de 2026, em comparação com 2025, excluindo os transectos da Madeira nos dois
+          anos.
         </Paragraph>
       </header>
       {!current && (
@@ -138,6 +149,7 @@ export default function AnnualResultsPage() {
           credits={extras.credits}
         />
       )}
+      {current && <ICNFResultsSection timeline={data.timeline} transects={data.transects} />}
       <VanessaWaveSection timeline={data.timeline} transects={data.transects} />
       {current && (
         <AuriniaResultsSection

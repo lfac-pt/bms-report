@@ -114,3 +114,68 @@ export function summarizeSpeciesPeriod(
   });
   return { visited, visits: visits.size, counts, individuals };
 }
+
+/** Apply the same transect eligibility as the processed mainland overview to every year. */
+export function mainlandResultsTimeline(
+  timeline: TimelineData,
+  transectIds: Set<string>
+): TimelineData {
+  const observationsByYearDate: TimelineData["observationsByYearDate"] = {};
+  const transectsByYear: TimelineData["transectsByYear"] = {};
+  const butterflyFrequencyByYear: TimelineData["butterflyFrequencyByYear"] = {};
+  const transectDiversityByYear: TimelineData["transectDiversityByYear"] = {};
+
+  for (const [yearString, dates] of Object.entries(timeline.observationsByYearDate)) {
+    const year = Number(yearString);
+    const filteredDates = Object.fromEntries(
+      Object.entries(dates)
+        .map(
+          ([date, observations]) =>
+            [date, observations.filter(([id]) => transectIds.has(id))] as const
+        )
+        .filter(([, observations]) => observations.length > 0)
+    );
+    if (!Object.keys(filteredDates).length) continue;
+    observationsByYearDate[year] = filteredDates;
+    const ids = new Set<string>();
+    const speciesDates = new Map<string, Set<string>>();
+    const transectSpecies = new Map<string, Set<string>>();
+    Object.entries(filteredDates).forEach(([date, observations]) =>
+      observations.forEach(([id, species, count]) => {
+        ids.add(id);
+        if (count <= 0 || !VALID_SPECIES.has(species)) return;
+        if (!speciesDates.has(species)) speciesDates.set(species, new Set());
+        speciesDates.get(species)!.add(date);
+        if (!transectSpecies.has(id)) transectSpecies.set(id, new Set());
+        transectSpecies.get(id)!.add(species);
+      })
+    );
+    transectsByYear[year] = [...ids];
+    const totalVisits = Object.keys(filteredDates).length;
+    // Preserve the timeline's existing date-based frequency convention.
+    butterflyFrequencyByYear[year] = [...speciesDates]
+      .map(([species, visits]) => ({
+        species,
+        frequency: (visits.size / totalVisits) * 100,
+        visitCount: visits.size,
+        totalVisits,
+      }))
+      .sort((a, b) => b.frequency - a.frequency);
+    transectDiversityByYear[year] = [...transectSpecies]
+      .map(([transectId, species]) => ({
+        transectId,
+        diversityCount: species.size,
+        speciesList: [...species].sort(),
+      }))
+      .sort((a, b) => b.diversityCount - a.diversityCount);
+  }
+  return {
+    years: Object.keys(observationsByYearDate)
+      .map(Number)
+      .sort((a, b) => a - b),
+    observationsByYearDate,
+    transectsByYear,
+    butterflyFrequencyByYear,
+    transectDiversityByYear,
+  };
+}
