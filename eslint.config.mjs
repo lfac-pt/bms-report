@@ -100,6 +100,14 @@ export default [
     },
   },
   {
-    ignores: ["dist", "dist-report", "node_modules", "build", "coverage", "*.config.ts", "*.config.js"],
+    ignores: [
+      "dist",
+      "dist-report",
+      "node_modules",
+      "build",
+      "coverage",
+      "*.config.ts",
+      "*.config.js",
+    ],
   },
 ];
