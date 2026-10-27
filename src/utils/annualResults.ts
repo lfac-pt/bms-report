@@ -87,3 +87,22 @@ export function timelineForWeek(
     },
   };
 }
+
+/** Count effort across all observations, including visits without the focal species. */
+export function summarizeSpeciesPeriod(timeline: TimelineData, year: number) {
+  const visited = new Set<string>();
+  const visits = new Set<string>();
+  const counts = new Map<string, number>();
+  let individuals = 0;
+  Object.entries(timeline.observationsByYearDate[year] || {}).forEach(([date, observations]) => {
+    observations.forEach(([id, species, count]) => {
+      visited.add(id);
+      visits.add(`${id}:${date}`);
+      if (species === WAVE_SPECIES) {
+        counts.set(id, (counts.get(id) || 0) + count);
+        individuals += count;
+      }
+    });
+  });
+  return { visited, visits: visits.size, counts, individuals };
+}

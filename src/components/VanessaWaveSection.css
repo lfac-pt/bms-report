@@ -1,0 +1,243 @@
+.wave-card {
+  overflow: hidden;
+}
+.wave-card .ant-card-head-title {
+  white-space: normal;
+}
+.wave-intro {
+  padding: 8px 0 12px;
+}
+.wave-eyebrow {
+  color: #96501d;
+  font-size: 12px;
+  font-weight: 650;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+}
+.wave-intro h2.ant-typography {
+  margin-top: 12px;
+  font-family: Georgia, serif;
+  font-size: clamp(28px, 3vw, 40px);
+  font-weight: 500;
+  line-height: 1.15;
+}
+.wave-photo {
+  margin: 0;
+}
+.wave-photo img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+}
+.wave-photo figcaption {
+  color: #64748b;
+  font-size: 12px;
+  margin-top: 8px;
+}
+.wave-context {
+  background: #fff8ed;
+  border-left: 3px solid #d97706;
+  padding: 16px 18px;
+  margin: 20px 0 12px;
+  border-radius: 0 8px 8px 0;
+}
+.wave-context .ant-typography:last-child {
+  margin: 6px 0 0;
+}
+.wave-sources {
+  color: #64748b;
+  font-size: 12px;
+  line-height: 1.8;
+}
+.wave-sources summary {
+  cursor: pointer;
+}
+.wave-chapter {
+  margin-top: 32px;
+  padding-top: 32px;
+  border-top: 1px solid #e6e9ed;
+}
+.wave-chapter h3.ant-typography {
+  margin-top: 8px;
+}
+.wave-explorer {
+  overflow: hidden;
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+}
+.wave-toolbar {
+  padding: 16px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+  background: #fafbfc;
+}
+.wave-date {
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+.wave-date strong {
+  font-size: 20px;
+  font-variant-numeric: tabular-nums;
+}
+.wave-date span {
+  color: #64748b;
+  font-size: 12px;
+}
+.wave-play.ant-btn-primary {
+  background: #b45309;
+  box-shadow: none;
+}
+.wave-play.ant-btn-primary:hover {
+  background: #92400e !important;
+}
+.wave-stats,
+.wave-history-summary {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 24px;
+}
+.wave-stats {
+  padding: 20px 24px;
+  border-bottom: 1px solid #e2e8f0;
+}
+.wave-stats > div,
+.wave-history-summary > div {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+.wave-stats strong,
+.wave-history-summary strong {
+  color: #92400e;
+  font-size: 28px;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+}
+.wave-stats span,
+.wave-history-summary span {
+  color: #64748b;
+  font-size: 13px;
+}
+.wave-timeline {
+  padding: 18px 24px 20px;
+  background: #fffdf9;
+}
+.wave-timeline-heading {
+  display: flex;
+  justify-content: space-between;
+  gap: 8px;
+  flex-wrap: wrap;
+  font-size: 12px;
+}
+.wave-bars {
+  display: grid;
+  grid-template-columns: repeat(31, minmax(0, 1fr));
+  height: 100px;
+  gap: 3px;
+  margin-top: 18px;
+}
+.wave-bar {
+  display: flex;
+  align-items: flex-end;
+  border: 0;
+  background: transparent;
+  padding: 0;
+  cursor: pointer;
+  border-radius: 3px;
+  min-width: 0;
+}
+.wave-bar > span {
+  display: block;
+  width: 100%;
+  background: #ead7bd;
+  border-radius: 3px 3px 0 0;
+  transition: background 0.15s;
+}
+.wave-bar:hover > span {
+  background: #cf9d59;
+}
+.wave-bar.is-selected > span {
+  background: #b45309;
+}
+.wave-bar.is-selected {
+  background: #fef0da;
+}
+.wave-bar.is-missing > span {
+  background: transparent;
+  border-top: 2px dashed #94a3b8;
+  box-sizing: border-box;
+}
+.wave-bar:focus-visible {
+  outline: 2px solid #92400e;
+  outline-offset: 2px;
+}
+.wave-timeline .ant-slider {
+  margin: 6px calc(100% / 62) 30px;
+}
+.wave-timeline .ant-slider-track {
+  background: #c88943;
+}
+.wave-timeline-note {
+  color: #64748b;
+  font-size: 12px;
+}
+.wave-footnote.ant-typography {
+  font-size: 12px;
+  color: #64748b;
+  margin: 12px 0 0;
+}
+.wave-history-summary {
+  background: #fafbfc;
+  border-radius: 10px;
+  padding: 20px 24px;
+  margin: 24px 0;
+}
+.wave-history-chart {
+  height: 340px;
+}
+@media (max-width: 600px) {
+  .wave-card > .ant-card-body {
+    padding: 16px;
+  }
+  .wave-card .ant-card-head {
+    padding: 0 16px;
+  }
+  .wave-card .ant-card-extra {
+    font-size: 12px;
+  }
+  .wave-toolbar,
+  .wave-stats,
+  .wave-timeline {
+    padding-left: 12px;
+    padding-right: 12px;
+  }
+  .wave-stats,
+  .wave-history-summary {
+    gap: 12px;
+  }
+  .wave-stats strong,
+  .wave-history-summary strong {
+    font-size: 21px;
+  }
+  .wave-history-summary {
+    grid-template-columns: 1fr;
+    padding: 16px;
+  }
+  .wave-bars {
+    gap: 2px;
+  }
+  .wave-timeline .ant-slider-mark-text {
+    font-size: 10px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .wave-bar > span {
+    transition: none;
+  }
+}

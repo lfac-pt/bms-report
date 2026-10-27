@@ -3,6 +3,7 @@ import {
   timelineForWeek,
   monthlySpeciesAbundance,
   summarizeYear,
+  summarizeSpeciesPeriod,
   timelineForMonth,
 } from "./annualResults";
 import { TimelineData } from "../types/timelineData";
@@ -72,4 +73,22 @@ test("weekly windows cover the season once, including month boundaries and the l
   expect(Object.keys(timelineForWeek(input, 2026, 0).observationsByYearDate[2026])).toEqual([
     "07/03/2026",
   ]);
+});
+
+test("species summaries include visits without detections and aggregate sections", () => {
+  const summary = summarizeSpeciesPeriod(timeline, 2026);
+  expect(summary.individuals).toBe(6);
+  expect(summary.visits).toBe(3);
+  expect([...summary.visited]).toEqual(["a", "b"]);
+  expect([...summary.counts.entries()]).toEqual([
+    ["a", 6],
+    ["b", 0],
+  ]);
+  expect(summarizeSpeciesPeriod(timeline, 2025).visits).toBe(0);
+  const weeklyTotal = monitoringWeeks(2026).reduce(
+    (sum, _, index) =>
+      sum + summarizeSpeciesPeriod(timelineForWeek(timeline, 2026, index), 2026).individuals,
+    0
+  );
+  expect(weeklyTotal).toBe(summary.individuals);
 });
