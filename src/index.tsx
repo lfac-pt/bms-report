@@ -42,6 +42,7 @@ function AppHeader() {
         buttonStyle="solid"
       >
         <Radio.Button value="results/2026">Resultados 2026</Radio.Button>
+        <Radio.Button value="transects">Transectos</Radio.Button>
         <Radio.Button value="diurnal">Borboletas Diurnas</Radio.Button>
         <Radio.Button value="nocturnal">Borboletas Noturnas</Radio.Button>
       </Radio.Group>
