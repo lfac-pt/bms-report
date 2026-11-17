@@ -136,6 +136,9 @@ build
 
 raw-data
 
-# Generated standalone interactive report artifacts
+# Generated reports and recipient contact details
 output/
+tmp/pdfs/
+
+# Standalone interactive report build
 dist-report/

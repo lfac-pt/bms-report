@@ -1,5 +1,12 @@
 # Data Processing Scripts
 
+## PDF season reports by transect
+
+Run `npm run reports:transects -- --year 2026` to create a PDF recap per transect and
+a recipient manifest. Optional contact and visit logs support multiple recipients
+and visits without sightings. See [the report generator guide](transect-reports/README.md)
+for inputs, analytical definitions, limitations and examples.
+
 ## process-butterfly-data.js
 
 This script processes raw butterfly monitoring data from the EBMS (European Butterfly Monitoring Scheme) Portugal project.
