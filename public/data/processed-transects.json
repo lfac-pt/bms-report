@@ -52,8 +52,8 @@
       "responsavel": "Paula Canha",
       "entidade": "ONGA",
       "coordinates": {
-        "lat": 37.13693683536924,
-        "lon": -8.601678171808118
+        "lat": 37.146816938021765,
+        "lon": -8.607143993269649
       },
       "protectedArea": null,
       "redeNatura2000Site": "Ria de Alvor",
@@ -108,8 +108,8 @@
       "responsavel": "Paula Canha",
       "entidade": "ONGA",
       "coordinates": {
-        "lat": 37.1454770964686,
-        "lon": -8.607329950916208
+        "lat": 37.150429628849686,
+        "lon": -8.609140019689038
       },
       "protectedArea": null,
       "redeNatura2000Site": "Ria de Alvor",
@@ -153,11 +153,11 @@
       "responsavel": "",
       "entidade": "Particular",
       "coordinates": {
-        "lat": 41.12515743043448,
-        "lon": -8.441681183262077
+        "lat": 41.12965138619185,
+        "lon": -8.435838628074453
       },
       "protectedArea": "Parque das Serras do Porto",
-      "redeNatura2000Site": null,
+      "redeNatura2000Site": "Valongo",
       "length": 1038
     },
     {
@@ -215,10 +215,10 @@
       "responsavel": "Luis Gaifan",
       "entidade": "ONGA",
       "coordinates": {
-        "lat": 41.54446441344874,
-        "lon": -8.795157954860938
+        "lat": 41.54695816373755,
+        "lon": -8.786814471695209
       },
-      "protectedArea": "Litoral Norte",
+      "protectedArea": null,
       "redeNatura2000Site": null,
       "length": 1130
     },
@@ -266,8 +266,8 @@
       "responsavel": "",
       "entidade": "Particular",
       "coordinates": {
-        "lat": 39.05336451358479,
-        "lon": -7.8899127286705895
+        "lat": 39.05446449982127,
+        "lon": -7.884839066591557
       },
       "protectedArea": null,
       "redeNatura2000Site": null,
@@ -331,8 +331,8 @@
       "responsavel": "Antóno Xeria",
       "entidade": "Particular",
       "coordinates": {
-        "lat": 39.05325891924625,
-        "lon": -7.817232584101148
+        "lat": 39.045926818092255,
+        "lon": -7.813551830915984
       },
       "protectedArea": null,
       "redeNatura2000Site": null,
@@ -396,8 +396,8 @@
       "responsavel": "",
       "entidade": "",
       "coordinates": {
-        "lat": 40.21289838505808,
-        "lon": -8.218354493076783
+        "lat": 40.216360679519596,
+        "lon": -8.212702581548658
       },
       "protectedArea": null,
       "redeNatura2000Site": null,
@@ -477,8 +477,8 @@
       "responsavel": "",
       "entidade": "Particular",
       "coordinates": {
-        "lat": 41.03172690118465,
-        "lon": -7.8939998060588925
+        "lat": 41.03741631870911,
+        "lon": -7.896611099129931
       },
       "protectedArea": null,
       "redeNatura2000Site": "Montemuro",
@@ -490,10 +490,10 @@
       "transectName": "BFF - Arelho",
       "isActive": true,
       "totalSpecies": 12,
-      "totalVisits": 6,
-      "totalAbundance": 72,
-      "avgVisitsPerYear": 6,
-      "avgButterfliesPerVisit": 12,
+      "totalVisits": 7,
+      "totalAbundance": 78,
+      "avgVisitsPerYear": 7,
+      "avgButterfliesPerVisit": 11.1,
       "yearsActive": 1,
       "firstMonitoringYear": 2026,
       "lastMonitoringYear": 2026,
@@ -518,8 +518,8 @@
       "responsavel": "",
       "entidade": "BFF",
       "coordinates": {
-        "lat": 39.37560693749427,
-        "lon": -9.206175115492389
+        "lat": 39.38354309372992,
+        "lon": -9.202766685935304
       },
       "protectedArea": null,
       "redeNatura2000Site": null,
@@ -531,10 +531,10 @@
       "transectName": "BFF - Cabeco de Deus",
       "isActive": true,
       "totalSpecies": 20,
-      "totalVisits": 9,
-      "totalAbundance": 246,
-      "avgVisitsPerYear": 9,
-      "avgButterfliesPerVisit": 27.3,
+      "totalVisits": 10,
+      "totalAbundance": 281,
+      "avgVisitsPerYear": 10,
+      "avgButterfliesPerVisit": 28.1,
       "yearsActive": 1,
       "firstMonitoringYear": 2026,
       "lastMonitoringYear": 2026,
@@ -567,8 +567,8 @@
       "responsavel": "",
       "entidade": "BFF",
       "coordinates": {
-        "lat": 39.54429979542577,
-        "lon": -8.983807682178057
+        "lat": 39.542609989402344,
+        "lon": -8.98654668428511
       },
       "protectedArea": null,
       "redeNatura2000Site": null,
@@ -580,10 +580,10 @@
       "transectName": "BFF - Casal da Pousada",
       "isActive": true,
       "totalSpecies": 13,
-      "totalVisits": 8,
-      "totalAbundance": 114,
-      "avgVisitsPerYear": 8,
-      "avgButterfliesPerVisit": 14.3,
+      "totalVisits": 9,
+      "totalAbundance": 115,
+      "avgVisitsPerYear": 9,
+      "avgButterfliesPerVisit": 12.8,
       "yearsActive": 1,
       "firstMonitoringYear": 2026,
       "lastMonitoringYear": 2026,
@@ -609,8 +609,8 @@
       "responsavel": "",
       "entidade": "BFF",
       "coordinates": {
-        "lat": 39.509140764565274,
-        "lon": -9.026415199940072
+        "lat": 39.511882135081386,
+        "lon": -9.02929021305532
       },
       "protectedArea": null,
       "redeNatura2000Site": null,
@@ -621,11 +621,11 @@
       "transectCode": "EBMS:Portugal:182",
       "transectName": "BFF - Casal Ortiga",
       "isActive": true,
-      "totalSpecies": 22,
-      "totalVisits": 9,
-      "totalAbundance": 328,
-      "avgVisitsPerYear": 9,
-      "avgButterfliesPerVisit": 36.4,
+      "totalSpecies": 23,
+      "totalVisits": 10,
+      "totalAbundance": 338,
+      "avgVisitsPerYear": 10,
+      "avgButterfliesPerVisit": 33.8,
       "yearsActive": 1,
       "firstMonitoringYear": 2026,
       "lastMonitoringYear": 2026,
@@ -639,6 +639,7 @@
         "Lampides boeticus",
         "Leptotes pirithous",
         "Lycaena phlaeas",
+        "Lysandra bellargus",
         "Maniola jurtina",
         "Papilio machaon",
         "Pararge aegeria",
@@ -660,8 +661,8 @@
       "responsavel": "",
       "entidade": "BFF",
       "coordinates": {
-        "lat": 39.54822965708248,
-        "lon": -8.95694638361201
+        "lat": 39.53976595247352,
+        "lon": -8.9670787930021
       },
       "protectedArea": null,
       "redeNatura2000Site": null,
@@ -672,17 +673,18 @@
       "transectCode": "EBMS:Portugal:178",
       "transectName": "BFF - Greensanus",
       "isActive": true,
-      "totalSpecies": 19,
-      "totalVisits": 9,
-      "totalAbundance": 350,
-      "avgVisitsPerYear": 9,
-      "avgButterfliesPerVisit": 38.9,
+      "totalSpecies": 20,
+      "totalVisits": 10,
+      "totalAbundance": 370,
+      "avgVisitsPerYear": 10,
+      "avgButterfliesPerVisit": 37,
       "yearsActive": 1,
       "firstMonitoringYear": 2026,
       "lastMonitoringYear": 2026,
       "speciesList": [
         "Aricia cramera",
         "Carcharodus alceae",
+        "Celastrina argiolus",
         "Colias crocea",
         "Iphiclides feisthamelii",
         "Lampides boeticus",
@@ -708,8 +710,8 @@
       "responsavel": "",
       "entidade": "BFF",
       "coordinates": {
-        "lat": 39.5168133591179,
-        "lon": -8.989823426642747
+        "lat": 39.526813793764326,
+        "lon": -8.99643770169637
       },
       "protectedArea": null,
       "redeNatura2000Site": null,
@@ -720,11 +722,11 @@
       "transectCode": "EBMS:Portugal:172",
       "transectName": "BFF - Paul Frubaca",
       "isActive": true,
-      "totalSpecies": 12,
-      "totalVisits": 9,
-      "totalAbundance": 226,
-      "avgVisitsPerYear": 9,
-      "avgButterfliesPerVisit": 25.1,
+      "totalSpecies": 13,
+      "totalVisits": 10,
+      "totalAbundance": 246,
+      "avgVisitsPerYear": 10,
+      "avgButterfliesPerVisit": 24.6,
       "yearsActive": 1,
       "firstMonitoringYear": 2026,
       "lastMonitoringYear": 2026,
@@ -740,7 +742,8 @@
         "Polyommatus icarus/celina",
         "Pontia daplidice",
         "Vanessa atalanta",
-        "Vanessa cardui"
+        "Vanessa cardui",
+        "Zizeeria knysna"
       ],
       "tipologia": "",
       "concelho": "Alcobaça",
@@ -749,8 +752,8 @@
       "responsavel": "",
       "entidade": "BFF",
       "coordinates": {
-        "lat": 39.592166658584894,
-        "lon": -8.99234446001817
+        "lat": 39.59186412151055,
+        "lon": -8.993040975469297
       },
       "protectedArea": null,
       "redeNatura2000Site": null,
@@ -761,11 +764,11 @@
       "transectCode": "EBMS:Portugal:189",
       "transectName": "BFF - Piolho",
       "isActive": true,
-      "totalSpecies": 8,
-      "totalVisits": 6,
-      "totalAbundance": 49,
-      "avgVisitsPerYear": 6,
-      "avgButterfliesPerVisit": 8.2,
+      "totalSpecies": 9,
+      "totalVisits": 7,
+      "totalAbundance": 51,
+      "avgVisitsPerYear": 7,
+      "avgButterfliesPerVisit": 7.3,
       "yearsActive": 1,
       "firstMonitoringYear": 2026,
       "lastMonitoringYear": 2026,
@@ -774,6 +777,7 @@
         "Colias crocea",
         "Lycaena phlaeas",
         "Papilio machaon",
+        "Pararge aegeria",
         "Pieris rapae",
         "Polyommatus icarus/celina",
         "Vanessa atalanta",
@@ -786,8 +790,8 @@
       "responsavel": "",
       "entidade": "BFF",
       "coordinates": {
-        "lat": 39.279008813490314,
-        "lon": -9.076395973372978
+        "lat": 39.27695346077609,
+        "lon": -9.071861241895451
       },
       "protectedArea": null,
       "redeNatura2000Site": null,
@@ -799,10 +803,10 @@
       "transectName": "BFF - Pomobrix Acipreste",
       "isActive": true,
       "totalSpecies": 15,
-      "totalVisits": 9,
-      "totalAbundance": 183,
-      "avgVisitsPerYear": 9,
-      "avgButterfliesPerVisit": 20.3,
+      "totalVisits": 10,
+      "totalAbundance": 197,
+      "avgVisitsPerYear": 10,
+      "avgButterfliesPerVisit": 19.7,
       "yearsActive": 1,
       "firstMonitoringYear": 2026,
       "lastMonitoringYear": 2026,
@@ -830,8 +834,8 @@
       "responsavel": "",
       "entidade": "BFF",
       "coordinates": {
-        "lat": 39.51109106346281,
-        "lon": -9.012160883823292
+        "lat": 39.51748377070837,
+        "lon": -9.016109063069106
       },
       "protectedArea": null,
       "redeNatura2000Site": null,
@@ -843,10 +847,10 @@
       "transectName": "BFF - Quinta da Capeleira",
       "isActive": true,
       "totalSpecies": 15,
-      "totalVisits": 9,
-      "totalAbundance": 112,
-      "avgVisitsPerYear": 9,
-      "avgButterfliesPerVisit": 12.4,
+      "totalVisits": 10,
+      "totalAbundance": 115,
+      "avgVisitsPerYear": 10,
+      "avgButterfliesPerVisit": 11.5,
       "yearsActive": 1,
       "firstMonitoringYear": 2026,
       "lastMonitoringYear": 2026,
@@ -874,8 +878,8 @@
       "responsavel": "",
       "entidade": "BFF",
       "coordinates": {
-        "lat": 39.35300036986272,
-        "lon": -9.151641759747662
+        "lat": 39.35037794043708,
+        "lon": -9.154578141734847
       },
       "protectedArea": null,
       "redeNatura2000Site": null,
@@ -919,8 +923,8 @@
       "responsavel": "",
       "entidade": "BFF",
       "coordinates": {
-        "lat": 39.43127640628383,
-        "lon": -9.103177334975317
+        "lat": 39.42658057796881,
+        "lon": -9.102838353996821
       },
       "protectedArea": null,
       "redeNatura2000Site": null,
@@ -960,8 +964,8 @@
       "responsavel": "",
       "entidade": "BFF",
       "coordinates": {
-        "lat": 39.48616637666204,
-        "lon": -9.063600808678851
+        "lat": 39.476310641406776,
+        "lon": -9.060601750580886
       },
       "protectedArea": null,
       "redeNatura2000Site": null,
@@ -972,11 +976,11 @@
       "transectCode": "EBMS:Portugal:184",
       "transectName": "BFF - Vale da Fonte",
       "isActive": true,
-      "totalSpecies": 18,
-      "totalVisits": 10,
-      "totalAbundance": 268,
-      "avgVisitsPerYear": 10,
-      "avgButterfliesPerVisit": 26.8,
+      "totalSpecies": 19,
+      "totalVisits": 11,
+      "totalAbundance": 284,
+      "avgVisitsPerYear": 11,
+      "avgButterfliesPerVisit": 25.8,
       "yearsActive": 1,
       "firstMonitoringYear": 2026,
       "lastMonitoringYear": 2026,
@@ -989,6 +993,7 @@
         "Lasiommata megera",
         "Leptotes pirithous",
         "Lycaena phlaeas",
+        "Lysandra bellargus",
         "Maniola jurtina",
         "Papilio machaon",
         "Pararge aegeria",
@@ -1007,8 +1012,8 @@
       "responsavel": "",
       "entidade": "BFF",
       "coordinates": {
-        "lat": 39.27717162462569,
-        "lon": -9.214663986198541
+        "lat": 39.26829759481483,
+        "lon": -9.210144863801126
       },
       "protectedArea": null,
       "redeNatura2000Site": null,
@@ -1020,10 +1025,10 @@
       "transectName": "BFF - Vimeiro",
       "isActive": true,
       "totalSpecies": 13,
-      "totalVisits": 9,
-      "totalAbundance": 173,
-      "avgVisitsPerYear": 9,
-      "avgButterfliesPerVisit": 19.2,
+      "totalVisits": 10,
+      "totalAbundance": 178,
+      "avgVisitsPerYear": 10,
+      "avgButterfliesPerVisit": 17.8,
       "yearsActive": 1,
       "firstMonitoringYear": 2026,
       "lastMonitoringYear": 2026,
@@ -1049,8 +1054,8 @@
       "responsavel": "",
       "entidade": "BFF",
       "coordinates": {
-        "lat": 39.49269196853541,
-        "lon": -9.013979338499263
+        "lat": 39.492741001633114,
+        "lon": -9.026029654176535
       },
       "protectedArea": null,
       "redeNatura2000Site": null,
@@ -1107,8 +1112,8 @@
       "responsavel": "",
       "entidade": "",
       "coordinates": {
-        "lat": 40.139599833120315,
-        "lon": -8.451378614043152
+        "lat": 40.13748746140143,
+        "lon": -8.457802559634862
       },
       "protectedArea": null,
       "redeNatura2000Site": null,
@@ -1157,8 +1162,8 @@
       "responsavel": "Rafael Pinto",
       "entidade": "Universidade de Braga",
       "coordinates": {
-        "lat": 41.56491716162728,
-        "lon": -8.395924296968511
+        "lat": 41.556619431357504,
+        "lon": -8.395183774843833
       },
       "protectedArea": null,
       "redeNatura2000Site": null,
@@ -1211,8 +1216,8 @@
       "responsavel": "Paula Coelho",
       "entidade": "Particular",
       "coordinates": {
-        "lat": 38.82308424942739,
-        "lon": -9.17158082969536
+        "lat": 38.81493397610609,
+        "lon": -9.178147541877081
       },
       "protectedArea": null,
       "redeNatura2000Site": null,
@@ -1247,8 +1252,8 @@
       "responsavel": "Rui Laureano",
       "entidade": "Particular",
       "coordinates": {
-        "lat": 38.63790196494572,
-        "lon": -9.121409872402575
+        "lat": 38.63308474902046,
+        "lon": -9.119369049639303
       },
       "protectedArea": null,
       "redeNatura2000Site": null,
@@ -1308,8 +1313,8 @@
       "responsavel": "",
       "entidade": "",
       "coordinates": {
-        "lat": 38.727782497142535,
-        "lon": -9.237421851964374
+        "lat": 38.728120421618044,
+        "lon": -9.24748611794306
       },
       "protectedArea": null,
       "redeNatura2000Site": null,
@@ -1365,8 +1370,8 @@
       "responsavel": "Paulo Alves",
       "entidade": "Particular",
       "coordinates": {
-        "lat": 39.454084775634925,
-        "lon": -8.071317374085417
+        "lat": 39.4491910939882,
+        "lon": -8.077712590905614
       },
       "protectedArea": null,
       "redeNatura2000Site": null,
@@ -1425,8 +1430,8 @@
       "responsavel": "",
       "entidade": "",
       "coordinates": {
-        "lat": 41.16226920981943,
-        "lon": -8.489896893748886
+        "lat": 41.15585052666888,
+        "lon": -8.491524152687331
       },
       "protectedArea": "Parque das Serras do Porto",
       "redeNatura2000Site": "Valongo",
@@ -1471,8 +1476,8 @@
       "responsavel": "Rafael Pinto",
       "entidade": "Particular",
       "coordinates": {
-        "lat": 41.38470962286374,
-        "lon": -8.42299933352201
+        "lat": 41.38279068669205,
+        "lon": -8.410677337361216
       },
       "protectedArea": null,
       "redeNatura2000Site": null,
@@ -1484,10 +1489,10 @@
       "transectName": "Duna_Cresmina",
       "isActive": true,
       "totalSpecies": 25,
-      "totalVisits": 44,
-      "totalAbundance": 572,
-      "avgVisitsPerYear": 6.3,
-      "avgButterfliesPerVisit": 13,
+      "totalVisits": 46,
+      "totalAbundance": 620,
+      "avgVisitsPerYear": 6.6,
+      "avgButterfliesPerVisit": 13.5,
       "yearsActive": 7,
       "firstMonitoringYear": 2020,
       "lastMonitoringYear": 2026,
@@ -1525,8 +1530,8 @@
       "responsavel": "Diogo Silva",
       "entidade": "Município",
       "coordinates": {
-        "lat": 38.72767291645457,
-        "lon": -9.474977597509474
+        "lat": 38.722548257362064,
+        "lon": -9.469347170321035
       },
       "protectedArea": "Sintra-Cascais",
       "redeNatura2000Site": "Sintra/Cascais",
@@ -1595,8 +1600,8 @@
       "responsavel": "Isa Teixeira",
       "entidade": "Particular",
       "coordinates": {
-        "lat": 39.98982021512779,
-        "lon": -8.550603332362
+        "lat": 39.98513913164021,
+        "lon": -8.560462253800926
       },
       "protectedArea": null,
       "redeNatura2000Site": "Sicó/Alvaiazere",
@@ -1634,8 +1639,8 @@
       "responsavel": "Julieta Costa",
       "entidade": "Particular",
       "coordinates": {
-        "lat": 38.762614025474775,
-        "lon": -9.16165304013907
+        "lat": 38.75659649077276,
+        "lon": -9.16021852340543
       },
       "protectedArea": null,
       "redeNatura2000Site": null,
@@ -1646,11 +1651,11 @@
       "transectCode": "EBMS:Portugal:139",
       "transectName": "Fervença",
       "isActive": true,
-      "totalSpecies": 45,
-      "totalVisits": 24,
-      "totalAbundance": 832,
-      "avgVisitsPerYear": 8,
-      "avgButterfliesPerVisit": 34.7,
+      "totalSpecies": 51,
+      "totalVisits": 31,
+      "totalAbundance": 971,
+      "avgVisitsPerYear": 10.3,
+      "avgButterfliesPerVisit": 31.3,
       "yearsActive": 3,
       "firstMonitoringYear": 2024,
       "lastMonitoringYear": 2026,
@@ -1661,13 +1666,17 @@
         "Anthocharis euphenoides",
         "Argynnis pandora",
         "Aricia cramera",
+        "Callophrys rubi",
         "Celastrina argiolus",
         "Coenonympha pamphilus",
         "Colias crocea",
         "Cupido minimus",
+        "Euchloe belemia",
         "Euchloe crameri",
+        "Glaucopsyche alexis",
         "Glaucopsyche melanops",
         "Gonepteryx rhamni",
+        "Hipparchia fidia",
         "Iphiclides feisthamelii",
         "Issoria lathonia",
         "Laeosopis roboris",
@@ -1696,9 +1705,11 @@
         "Pyronia bathseba",
         "Pyronia cecilia",
         "Pyronia tithonus",
+        "Spialia sertorius",
         "Thymelicus acteon",
         "Thymelicus sylvestris",
         "Vanessa atalanta",
+        "Vanessa cardui",
         "Zerynthia rumina"
       ],
       "tipologia": "",
@@ -1708,8 +1719,8 @@
       "responsavel": "",
       "entidade": "Município",
       "coordinates": {
-        "lat": 41.8020006240237,
-        "lon": -6.765281930539551
+        "lat": 41.808545954409446,
+        "lon": -6.754106262093102
       },
       "protectedArea": null,
       "redeNatura2000Site": null,
@@ -1758,8 +1769,8 @@
       "responsavel": "Sílvia Pina",
       "entidade": "Particular",
       "coordinates": {
-        "lat": 38.525458490127114,
-        "lon": -9.001282410903467
+        "lat": 38.535624139443485,
+        "lon": -9.011785434542254
       },
       "protectedArea": null,
       "redeNatura2000Site": null,
@@ -1771,10 +1782,10 @@
       "transectName": "Gateira",
       "isActive": true,
       "totalSpecies": 47,
-      "totalVisits": 143,
-      "totalAbundance": 4443,
-      "avgVisitsPerYear": 47.7,
-      "avgButterfliesPerVisit": 31.1,
+      "totalVisits": 146,
+      "totalAbundance": 4487,
+      "avgVisitsPerYear": 48.7,
+      "avgButterfliesPerVisit": 30.7,
       "yearsActive": 3,
       "firstMonitoringYear": 2024,
       "lastMonitoringYear": 2026,
@@ -1834,8 +1845,8 @@
       "responsavel": "Luis Cardoso",
       "entidade": "Particular",
       "coordinates": {
-        "lat": 40.066757430432055,
-        "lon": -8.385947129974666
+        "lat": 40.06977499302245,
+        "lon": -8.393820589089492
       },
       "protectedArea": null,
       "redeNatura2000Site": null,
@@ -1895,8 +1906,8 @@
       "responsavel": "André Oliveira",
       "entidade": "Universidade de Évora",
       "coordinates": {
-        "lat": 38.524418569059485,
-        "lon": -8.01766144668188
+        "lat": 38.523703116923166,
+        "lon": -8.029514122458892
       },
       "protectedArea": null,
       "redeNatura2000Site": null,
@@ -1928,8 +1939,8 @@
       "responsavel": "",
       "entidade": "ICNF",
       "coordinates": {
-        "lat": 39.42011941260339,
-        "lon": -9.516066053174129
+        "lat": 39.409370594971094,
+        "lon": -9.50347470331298
       },
       "protectedArea": "Berlengas",
       "redeNatura2000Site": "Ilhas Berlengas",
@@ -2000,8 +2011,8 @@
       "responsavel": "Ana Cavaco",
       "entidade": "ICNF",
       "coordinates": {
-        "lat": 39.638894353893576,
-        "lon": -7.6893106156932856
+        "lat": 39.636655192474365,
+        "lon": -7.688099004577921
       },
       "protectedArea": "Portas de Rodão",
       "redeNatura2000Site": "São Mamede",
@@ -2050,11 +2061,11 @@
       "responsavel": "Diogo Mina",
       "entidade": "ICNF",
       "coordinates": {
-        "lat": 40.18030888267834,
-        "lon": -8.55605529878075
+        "lat": 40.18271482938466,
+        "lon": -8.54900733502582
       },
-      "protectedArea": "Paul de Arzila",
-      "redeNatura2000Site": "Paul de Arzila",
+      "protectedArea": null,
+      "redeNatura2000Site": null,
       "length": 1063
     },
     {
@@ -2062,11 +2073,11 @@
       "transectCode": "EBMS:Portugal:147",
       "transectName": "ICNF PNA Portinho",
       "isActive": true,
-      "totalSpecies": 22,
-      "totalVisits": 37,
-      "totalAbundance": 644,
-      "avgVisitsPerYear": 12.3,
-      "avgButterfliesPerVisit": 17.4,
+      "totalSpecies": 24,
+      "totalVisits": 56,
+      "totalAbundance": 893,
+      "avgVisitsPerYear": 18.7,
+      "avgButterfliesPerVisit": 15.9,
       "yearsActive": 3,
       "firstMonitoringYear": 2024,
       "lastMonitoringYear": 2026,
@@ -2076,10 +2087,12 @@
         "Callophrys rubi",
         "Charaxes jasius",
         "Colias crocea",
+        "Euchloe crameri",
         "Gonepteryx cleopatra",
         "Gonepteryx rhamni",
         "Hipparchia fidia",
         "Lasiommata megera",
+        "Leptotes pirithous",
         "Lycaena alciphron",
         "Lycaena phlaeas",
         "Maniola jurtina",
@@ -2101,8 +2114,8 @@
       "responsavel": "",
       "entidade": "ICNF",
       "coordinates": {
-        "lat": 38.476660166518734,
-        "lon": -8.988750213458564
+        "lat": 38.48067514008474,
+        "lon": -8.981740754814528
       },
       "protectedArea": "Arrábida",
       "redeNatura2000Site": "Arrábida/Espichel",
@@ -2114,10 +2127,10 @@
       "transectName": "ICNF PNA Serra do Louro",
       "isActive": true,
       "totalSpecies": 40,
-      "totalVisits": 182,
-      "totalAbundance": 5222,
-      "avgVisitsPerYear": 26,
-      "avgButterfliesPerVisit": 28.7,
+      "totalVisits": 184,
+      "totalAbundance": 5242,
+      "avgVisitsPerYear": 26.3,
+      "avgButterfliesPerVisit": 28.5,
       "yearsActive": 7,
       "firstMonitoringYear": 2020,
       "lastMonitoringYear": 2026,
@@ -2170,8 +2183,8 @@
       "responsavel": "Ana Sofia Palma",
       "entidade": "ICNF",
       "coordinates": {
-        "lat": 38.56763648815338,
-        "lon": -8.91893998131747
+        "lat": 38.570883986025045,
+        "lon": -8.908693471816983
       },
       "protectedArea": null,
       "redeNatura2000Site": null,
@@ -2182,11 +2195,11 @@
       "transectCode": "EBMS:Portugal:168",
       "transectName": "ICNF PNA Serra do Risco",
       "isActive": true,
-      "totalSpecies": 33,
-      "totalVisits": 25,
-      "totalAbundance": 468,
-      "avgVisitsPerYear": 12.5,
-      "avgButterfliesPerVisit": 18.7,
+      "totalSpecies": 34,
+      "totalVisits": 26,
+      "totalAbundance": 471,
+      "avgVisitsPerYear": 13,
+      "avgButterfliesPerVisit": 18.1,
       "yearsActive": 2,
       "firstMonitoringYear": 2025,
       "lastMonitoringYear": 2026,
@@ -2206,6 +2219,7 @@
         "Hipparchia statilinus",
         "Lasiommata megera",
         "Leptidea sinapis",
+        "Leptotes pirithous",
         "Lycaena phlaeas",
         "Maniola jurtina",
         "Melanargia occitanica",
@@ -2232,8 +2246,8 @@
       "responsavel": "",
       "entidade": "",
       "coordinates": {
-        "lat": 38.45268922203023,
-        "lon": -9.018655707442862
+        "lat": 38.45377028070284,
+        "lon": -9.025685971086132
       },
       "protectedArea": "Arrábida",
       "redeNatura2000Site": "Arrábida/Espichel",
@@ -2329,8 +2343,8 @@
       "responsavel": "João Pargana",
       "entidade": "ICNF",
       "coordinates": {
-        "lat": 41.3352041215951,
-        "lon": -7.80497423111045
+        "lat": 41.340402635459334,
+        "lon": -7.814561076486741
       },
       "protectedArea": "Alvão",
       "redeNatura2000Site": "Alvão/Marão",
@@ -2422,8 +2436,8 @@
       "responsavel": "Helena Paulino",
       "entidade": "ICNF",
       "coordinates": {
-        "lat": 41.36704583672485,
-        "lon": -7.797439943546126
+        "lat": 41.36305391090369,
+        "lon": -7.800327474834628
       },
       "protectedArea": "Alvão",
       "redeNatura2000Site": "Alvão/Marão",
@@ -2501,8 +2515,8 @@
       "responsavel": "Carlos Santos",
       "entidade": "ICNF",
       "coordinates": {
-        "lat": 41.32762447782251,
-        "lon": -6.530900103275059
+        "lat": 41.314023906510194,
+        "lon": -6.519855322608922
       },
       "protectedArea": "Douro Internacional",
       "redeNatura2000Site": "Douro Internacional e Vale do Rio Águeda",
@@ -2586,8 +2600,8 @@
       "responsavel": "Carlos Santos",
       "entidade": "ICNF",
       "coordinates": {
-        "lat": 41.330651851678795,
-        "lon": -6.603207992422507
+        "lat": 41.32986718932252,
+        "lon": -6.5913825485932005
       },
       "protectedArea": null,
       "redeNatura2000Site": null,
@@ -2599,9 +2613,9 @@
       "transectName": "ICNF PNLN",
       "isActive": true,
       "totalSpecies": 27,
-      "totalVisits": 136,
-      "totalAbundance": 2252,
-      "avgVisitsPerYear": 19.4,
+      "totalVisits": 137,
+      "totalAbundance": 2274,
+      "avgVisitsPerYear": 19.6,
       "avgButterfliesPerVisit": 16.6,
       "yearsActive": 7,
       "firstMonitoringYear": 2020,
@@ -2642,8 +2656,8 @@
       "responsavel": "Belmiro Viana",
       "entidade": "ICNF",
       "coordinates": {
-        "lat": 41.504572279063744,
-        "lon": -8.759982240215294
+        "lat": 41.514320906566965,
+        "lon": -8.749434061601754
       },
       "protectedArea": null,
       "redeNatura2000Site": null,
@@ -2694,10 +2708,10 @@
       "responsavel": "Ema Veiga",
       "entidade": "ICNF",
       "coordinates": {
-        "lat": 41.83779942025629,
-        "lon": -6.741381960727938
+        "lat": 41.84713358652302,
+        "lon": -6.735586750061646
       },
-      "protectedArea": null,
+      "protectedArea": "Montesinho",
       "redeNatura2000Site": "Montesinho/Nogueira",
       "length": 1025
     },
@@ -2746,8 +2760,8 @@
       "responsavel": "Ema Veiga",
       "entidade": "ICNF",
       "coordinates": {
-        "lat": 41.82152210343661,
-        "lon": -6.811006517313082
+        "lat": 41.81212268616379,
+        "lon": -6.812958456799029
       },
       "protectedArea": null,
       "redeNatura2000Site": null,
@@ -2816,8 +2830,8 @@
       "responsavel": "PNPG Vidoeiro",
       "entidade": "ICNF",
       "coordinates": {
-        "lat": 41.75119331793257,
-        "lon": -8.194360426871611
+        "lat": 41.74762307308721,
+        "lon": -8.196761014795596
       },
       "protectedArea": "Peneda-Gerês",
       "redeNatura2000Site": "Peneda-Gerês",
@@ -2828,32 +2842,44 @@
       "transectCode": "EBMS:Portugal:160",
       "transectName": "ICNF PNPG Ramil II",
       "isActive": true,
-      "totalSpecies": 31,
-      "totalVisits": 18,
-      "totalAbundance": 373,
-      "avgVisitsPerYear": 9,
-      "avgButterfliesPerVisit": 20.7,
+      "totalSpecies": 44,
+      "totalVisits": 29,
+      "totalAbundance": 778,
+      "avgVisitsPerYear": 14.5,
+      "avgButterfliesPerVisit": 26.8,
       "yearsActive": 2,
       "firstMonitoringYear": 2025,
       "lastMonitoringYear": 2026,
       "speciesList": [
         "Anthocharis cardamines",
+        "Apatura ilia",
+        "Aporia crataegi",
         "Argynnis paphia",
+        "Aricia cramera",
         "Boloria selene",
         "Callophrys rubi",
         "Celastrina argiolus",
         "Coenonympha arcania",
+        "Coenonympha dorus",
+        "Coenonympha pamphilus",
         "Colias crocea",
+        "Euphydryas aurinia",
+        "Favonius quercus",
         "Glaucopsyche melanops",
         "Gonepteryx rhamni",
+        "Hipparchia fidia",
         "Hipparchia hermione",
         "Hipparchia semele",
         "Hipparchia statilinus",
         "Iphiclides feisthamelii",
         "Lampides boeticus",
         "Lasiommata maera",
+        "Lasiommata megera",
         "Leptidea sinapis",
         "Leptotes pirithous",
+        "Limenitis camilla",
+        "Lycaena bleusei",
+        "Lycaena phlaeas",
         "Maniola jurtina",
         "Melanargia lachesis",
         "Melitaea deione",
@@ -2867,7 +2893,8 @@
         "Polyommatus thersites",
         "Pontia daplidice",
         "Pyronia tithonus",
-        "Thymelicus sylvestris"
+        "Thymelicus sylvestris",
+        "Vanessa cardui"
       ],
       "tipologia": "",
       "concelho": "Terras de Bouro",
@@ -2876,8 +2903,8 @@
       "responsavel": "",
       "entidade": "",
       "coordinates": {
-        "lat": 41.737352654207236,
-        "lon": -8.201722170835053
+        "lat": 41.74227722267124,
+        "lon": -8.201853805605847
       },
       "protectedArea": "Peneda-Gerês",
       "redeNatura2000Site": "Peneda-Gerês",
@@ -2914,11 +2941,11 @@
       "responsavel": "Armando Moura",
       "entidade": "ICNF",
       "coordinates": {
-        "lat": 37.037083278503815,
-        "lon": -7.817861710689005
+        "lat": 37.028717672648874,
+        "lon": -7.822557221058684
       },
       "protectedArea": "Ria Formosa",
-      "redeNatura2000Site": null,
+      "redeNatura2000Site": "Ria Formosa",
       "length": 1089
     },
     {
@@ -2981,8 +3008,8 @@
       "responsavel": "Florbela Queirós",
       "entidade": "ICNF",
       "coordinates": {
-        "lat": 39.36147181412149,
-        "lon": -8.958149441161828
+        "lat": 39.35757567909264,
+        "lon": -8.946084303190315
       },
       "protectedArea": "Serras de Aire e Candeeiros",
       "redeNatura2000Site": "Serras de Aire e Candeeiros",
@@ -3056,8 +3083,8 @@
       "responsavel": "Sofia Quaresma",
       "entidade": "ICNF",
       "coordinates": {
-        "lat": 39.5104496067712,
-        "lon": -8.70399024191099
+        "lat": 39.515414843856064,
+        "lon": -8.702075181481764
       },
       "protectedArea": "Serras de Aire e Candeeiros",
       "redeNatura2000Site": "Serras de Aire e Candeeiros",
@@ -3119,8 +3146,8 @@
       "responsavel": "Pedro Alverca",
       "entidade": "ICNF",
       "coordinates": {
-        "lat": 37.690977346134716,
-        "lon": -8.679487631215734
+        "lat": 37.69989140738633,
+        "lon": -8.677040747826076
       },
       "protectedArea": "Sudoeste Alentejano e Costa Vicentina",
       "redeNatura2000Site": "Costa Sudoeste",
@@ -3132,9 +3159,9 @@
       "transectName": "ICNF PNSACV EBIO Barragem da Bravura",
       "isActive": true,
       "totalSpecies": 44,
-      "totalVisits": 68,
-      "totalAbundance": 986,
-      "avgVisitsPerYear": 11.3,
+      "totalVisits": 69,
+      "totalAbundance": 1000,
+      "avgVisitsPerYear": 11.5,
       "avgButterfliesPerVisit": 14.5,
       "yearsActive": 6,
       "firstMonitoringYear": 2021,
@@ -3192,8 +3219,8 @@
       "responsavel": "Alexandre Cabrita",
       "entidade": "ICNF",
       "coordinates": {
-        "lat": 37.18338373041635,
-        "lon": -8.6869828362541
+        "lat": 37.18561171885698,
+        "lon": -8.693213222112705
       },
       "protectedArea": null,
       "redeNatura2000Site": null,
@@ -3247,8 +3274,8 @@
       "responsavel": "Ana Macedo",
       "entidade": "ICNF",
       "coordinates": {
-        "lat": 37.63972427937637,
-        "lon": -8.61309111374594
+        "lat": 37.64635402529547,
+        "lon": -8.625504603382625
       },
       "protectedArea": null,
       "redeNatura2000Site": "Costa Sudoeste",
@@ -3318,8 +3345,8 @@
       "responsavel": "Pedro Alverca",
       "entidade": "ICNF",
       "coordinates": {
-        "lat": 37.74674635821165,
-        "lon": -8.721925202028865
+        "lat": 37.756283726684124,
+        "lon": -8.71017339046177
       },
       "protectedArea": null,
       "redeNatura2000Site": "Costa Sudoeste",
@@ -3397,8 +3424,8 @@
       "responsavel": "Henrique Domingues",
       "entidade": "ICNF",
       "coordinates": {
-        "lat": 40.38313054528506,
-        "lon": -7.697010004147437
+        "lat": 40.38934335241452,
+        "lon": -7.70953067507749
       },
       "protectedArea": "Serra da Estrela",
       "redeNatura2000Site": "Serra da Estrela",
@@ -3410,10 +3437,10 @@
       "transectName": "ICNF PNSE Vale das Éguas",
       "isActive": true,
       "totalSpecies": 53,
-      "totalVisits": 37,
-      "totalAbundance": 1059,
-      "avgVisitsPerYear": 7.4,
-      "avgButterfliesPerVisit": 28.6,
+      "totalVisits": 38,
+      "totalAbundance": 1066,
+      "avgVisitsPerYear": 7.6,
+      "avgButterfliesPerVisit": 28.1,
       "yearsActive": 5,
       "firstMonitoringYear": 2022,
       "lastMonitoringYear": 2026,
@@ -3479,8 +3506,8 @@
       "responsavel": "Henrique Domingues",
       "entidade": "ICNF",
       "coordinates": {
-        "lat": 40.39774351429615,
-        "lon": -7.571728364761578
+        "lat": 40.39981731065042,
+        "lon": -7.569953445050393
       },
       "protectedArea": "Serra da Estrela",
       "redeNatura2000Site": "Serra da Estrela",
@@ -3492,10 +3519,10 @@
       "transectName": "ICNF PNSE Vale do Zêzere",
       "isActive": true,
       "totalSpecies": 47,
-      "totalVisits": 29,
-      "totalAbundance": 1334,
-      "avgVisitsPerYear": 9.7,
-      "avgButterfliesPerVisit": 46,
+      "totalVisits": 30,
+      "totalAbundance": 1348,
+      "avgVisitsPerYear": 10,
+      "avgButterfliesPerVisit": 44.9,
       "yearsActive": 3,
       "firstMonitoringYear": 2024,
       "lastMonitoringYear": 2026,
@@ -3555,8 +3582,8 @@
       "responsavel": "",
       "entidade": "ICNF",
       "coordinates": {
-        "lat": 40.360789702412156,
-        "lon": -7.565815674387523
+        "lat": 40.35287555196529,
+        "lon": -7.563204700119279
       },
       "protectedArea": "Serra da Estrela",
       "redeNatura2000Site": "Serra da Estrela",
@@ -3631,8 +3658,8 @@
       "responsavel": "Conceição Conde",
       "entidade": "ICNF",
       "coordinates": {
-        "lat": 39.362565069148786,
-        "lon": -7.413041322686509
+        "lat": 39.36752440248164,
+        "lon": -7.414189078940973
       },
       "protectedArea": "Serra de São Mamede",
       "redeNatura2000Site": "São Mamede",
@@ -3699,8 +3726,8 @@
       "responsavel": "Ana Cavaco",
       "entidade": "ICNF",
       "coordinates": {
-        "lat": 39.19112118764807,
-        "lon": -7.270526047274764
+        "lat": 39.18490180798746,
+        "lon": -7.263677389125167
       },
       "protectedArea": "Serra de São Mamede",
       "redeNatura2000Site": "São Mamede",
@@ -3744,10 +3771,10 @@
       "responsavel": "",
       "entidade": "ICNF",
       "coordinates": {
-        "lat": 39.742254660848836,
-        "lon": -7.472105186628131
+        "lat": 39.741897319692576,
+        "lon": -7.466446208074157
       },
-      "protectedArea": "Tejo Internacional",
+      "protectedArea": null,
       "redeNatura2000Site": "Tejo Internacional, Erges e Pônsul",
       "length": 1380
     },
@@ -3801,11 +3828,11 @@
       "responsavel": "Beatriz Machado",
       "entidade": "ICNF",
       "coordinates": {
-        "lat": 37.50367843967085,
-        "lon": -7.697821781058873
+        "lat": 37.495931653765915,
+        "lon": -7.695115697184099
       },
       "protectedArea": null,
-      "redeNatura2000Site": "Guadiana",
+      "redeNatura2000Site": null,
       "length": 1223
     },
     {
@@ -3856,8 +3883,8 @@
       "responsavel": "Teresa Morais",
       "entidade": "ICNF",
       "coordinates": {
-        "lat": 38.557501555827486,
-        "lon": -9.180679752493546
+        "lat": 38.56370744599337,
+        "lon": -9.183950651368118
       },
       "protectedArea": "Arriba Fossil da Costa da Caparica",
       "redeNatura2000Site": null,
@@ -3927,8 +3954,8 @@
       "responsavel": "",
       "entidade": "ICNF",
       "coordinates": {
-        "lat": 40.21236952755165,
-        "lon": -7.921687348585948
+        "lat": 40.2197249906177,
+        "lon": -7.928604369837621
       },
       "protectedArea": "Serra do Açor",
       "redeNatura2000Site": "Complexo do Açor",
@@ -3992,8 +4019,8 @@
       "responsavel": "Sofia Quaresma",
       "entidade": "ICNF",
       "coordinates": {
-        "lat": 39.18495720423378,
-        "lon": -9.054840082154879
+        "lat": 39.185859046159614,
+        "lon": -9.05271595855405
       },
       "protectedArea": "Serra de Montejunto",
       "redeNatura2000Site": "Serra de Montejunto",
@@ -4005,9 +4032,9 @@
       "transectName": "ICNF RNDSJ Dunas S. Jacinto",
       "isActive": true,
       "totalSpecies": 22,
-      "totalVisits": 113,
-      "totalAbundance": 1594,
-      "avgVisitsPerYear": 22.6,
+      "totalVisits": 114,
+      "totalAbundance": 1602,
+      "avgVisitsPerYear": 22.8,
       "avgButterfliesPerVisit": 14.1,
       "yearsActive": 5,
       "firstMonitoringYear": 2022,
@@ -4043,10 +4070,10 @@
       "responsavel": "Rosa Serôdio",
       "entidade": "ICNF",
       "coordinates": {
-        "lat": 40.69656009618217,
-        "lon": -8.728057126689924
+        "lat": 40.6884383468539,
+        "lon": -8.714017014467032
       },
-      "protectedArea": "Dunas de São Jacinto",
+      "protectedArea": null,
       "redeNatura2000Site": "Ria de Aveiro",
       "length": 1193
     },
@@ -4055,11 +4082,11 @@
       "transectCode": "EBMS:Portugal:97",
       "transectName": "ICNF RNES Gambia",
       "isActive": true,
-      "totalSpecies": 26,
-      "totalVisits": 200,
-      "totalAbundance": 2256,
-      "avgVisitsPerYear": 28.6,
-      "avgButterfliesPerVisit": 11.3,
+      "totalSpecies": 27,
+      "totalVisits": 202,
+      "totalAbundance": 2263,
+      "avgVisitsPerYear": 28.9,
+      "avgButterfliesPerVisit": 11.2,
       "yearsActive": 7,
       "firstMonitoringYear": 2020,
       "lastMonitoringYear": 2026,
@@ -4075,6 +4102,7 @@
         "Lasiommata megera",
         "Leptotes pirithous",
         "Lycaena phlaeas",
+        "Lysandra bellargus",
         "Maniola jurtina",
         "Papilio machaon",
         "Pararge aegeria",
@@ -4098,8 +4126,8 @@
       "responsavel": "Maria do Céu Guerra",
       "entidade": "ICNF",
       "coordinates": {
-        "lat": 38.56018996111113,
-        "lon": -8.779061546626316
+        "lat": 38.55658247977788,
+        "lon": -8.786154050446306
       },
       "protectedArea": "Estuário do Sado",
       "redeNatura2000Site": "Estuário do Sado",
@@ -4137,8 +4165,8 @@
       "responsavel": "",
       "entidade": "ICNF",
       "coordinates": {
-        "lat": 38.84913641974364,
-        "lon": -8.904598004088342
+        "lat": 38.857124617475655,
+        "lon": -8.912076192359454
       },
       "protectedArea": null,
       "redeNatura2000Site": "Estuário do Tejo",
@@ -4186,8 +4214,8 @@
       "responsavel": "",
       "entidade": "",
       "coordinates": {
-        "lat": 38.78264993266175,
-        "lon": -8.924951555187484
+        "lat": 38.788981001549196,
+        "lon": -8.92354048622344
       },
       "protectedArea": "Estuário do Tejo",
       "redeNatura2000Site": "Estuário do Tejo",
@@ -4256,8 +4284,8 @@
       "responsavel": "Isa Figueiras",
       "entidade": "ICNF",
       "coordinates": {
-        "lat": 38.0730802285253,
-        "lon": -8.778539189331086
+        "lat": 38.07547070277425,
+        "lon": -8.771119753557175
       },
       "protectedArea": null,
       "redeNatura2000Site": null,
@@ -4311,10 +4339,10 @@
       "responsavel": "Sónia Casemiro",
       "entidade": "ICNF",
       "coordinates": {
-        "lat": 39.41436868589263,
-        "lon": -8.532736950822652
+        "lat": 39.4070412113611,
+        "lon": -8.529411290748893
       },
-      "protectedArea": null,
+      "protectedArea": "Paul do Boquilobo",
       "redeNatura2000Site": null,
       "length": 934
     },
@@ -4360,8 +4388,8 @@
       "responsavel": "Pedro Castelão",
       "entidade": "ICNF",
       "coordinates": {
-        "lat": 37.23005848798581,
-        "lon": -7.427906731461172
+        "lat": 37.22916784753602,
+        "lon": -7.423621375144459
       },
       "protectedArea": "Sapal de Castro Marim e Vila Real de Santo António",
       "redeNatura2000Site": "Ria Formosa/Castro Marim",
@@ -4430,8 +4458,8 @@
       "responsavel": "Henrique Furriel",
       "entidade": "ICNF",
       "coordinates": {
-        "lat": 40.282371325290164,
-        "lon": -6.986016869013478
+        "lat": 40.29131003186632,
+        "lon": -6.980745266031564
       },
       "protectedArea": "Serra Malcata",
       "redeNatura2000Site": "Malcata",
@@ -4484,11 +4512,11 @@
       "responsavel": "Isa Teixeira",
       "entidade": "ICNF",
       "coordinates": {
-        "lat": 39.17126811827032,
-        "lon": -9.346807142762184
+        "lat": 39.177620532293076,
+        "lon": -9.352646969738535
       },
       "protectedArea": null,
-      "redeNatura2000Site": null,
+      "redeNatura2000Site": "Peniche/Santa Cruz",
       "length": 1254
     },
     {
@@ -4530,8 +4558,8 @@
       "responsavel": "Albano Soares",
       "entidade": "Particular",
       "coordinates": {
-        "lat": 38.758342877853075,
-        "lon": -9.126223684084325
+        "lat": 38.757301267113846,
+        "lon": -9.136379048909902
       },
       "protectedArea": null,
       "redeNatura2000Site": null,
@@ -4582,8 +4610,8 @@
       "responsavel": "Orkhan Abbasov",
       "entidade": "Particular",
       "coordinates": {
-        "lat": 38.79268506107711,
-        "lon": -9.266171170880401
+        "lat": 38.78333614674738,
+        "lon": -9.264162625256072
       },
       "protectedArea": null,
       "redeNatura2000Site": null,
@@ -4646,8 +4674,8 @@
       "responsavel": "Filipa Coelho",
       "entidade": "ONGA",
       "coordinates": {
-        "lat": 39.60854663815693,
-        "lon": -8.411028785096432
+        "lat": 39.59426328455408,
+        "lon": -8.41314996174329
       },
       "protectedArea": null,
       "redeNatura2000Site": null,
@@ -4657,18 +4685,19 @@
       "transectId": "319947",
       "transectCode": "EBMS:Portugal:132",
       "transectName": "Mato do Leirão",
-      "isActive": false,
-      "totalSpecies": 23,
-      "totalVisits": 15,
-      "totalAbundance": 387,
-      "avgVisitsPerYear": 5,
-      "avgButterfliesPerVisit": 25.8,
-      "yearsActive": 3,
+      "isActive": true,
+      "totalSpecies": 24,
+      "totalVisits": 17,
+      "totalAbundance": 461,
+      "avgVisitsPerYear": 4.3,
+      "avgButterfliesPerVisit": 27.1,
+      "yearsActive": 4,
       "firstMonitoringYear": 2023,
-      "lastMonitoringYear": 2025,
+      "lastMonitoringYear": 2026,
       "speciesList": [
         "Aricia cramera",
         "Cacyreus marshalli",
+        "Carcharodus alceae",
         "Carcharodus tripolinus",
         "Colias crocea",
         "Danaus plexippus",
@@ -4698,8 +4727,8 @@
       "responsavel": "Francisco Aguilar",
       "entidade": "Particular",
       "coordinates": {
-        "lat": 38.723447111139166,
-        "lon": -9.305418741141251
+        "lat": 38.73190721648623,
+        "lon": -9.312300395551432
       },
       "protectedArea": null,
       "redeNatura2000Site": null,
@@ -4741,8 +4770,8 @@
       "responsavel": "",
       "entidade": "",
       "coordinates": {
-        "lat": 37.90399452167288,
-        "lon": -8.044121999395248
+        "lat": 37.908550940877575,
+        "lon": -8.040764581219983
       },
       "protectedArea": null,
       "redeNatura2000Site": null,
@@ -4826,8 +4855,8 @@
       "responsavel": "",
       "entidade": "Particular",
       "coordinates": {
-        "lat": 41.056018846733934,
-        "lon": -7.841411607705869
+        "lat": 41.053936727797115,
+        "lon": -7.850536272502864
       },
       "protectedArea": null,
       "redeNatura2000Site": "Montemuro",
@@ -4879,8 +4908,8 @@
       "responsavel": "",
       "entidade": "",
       "coordinates": {
-        "lat": 39.999287054293504,
-        "lon": -8.449348274779009
+        "lat": 39.99837403483509,
+        "lon": -8.447034026897402
       },
       "protectedArea": null,
       "redeNatura2000Site": null,
@@ -4926,8 +4955,8 @@
       "responsavel": "Pedro Borges",
       "entidade": "ONGA",
       "coordinates": {
-        "lat": 39.61637891387651,
-        "lon": -8.383056814925776
+        "lat": 39.62532502702099,
+        "lon": -8.386258912135258
       },
       "protectedArea": null,
       "redeNatura2000Site": null,
@@ -4970,8 +4999,8 @@
       "responsavel": "Daniele Cataldo",
       "entidade": "Particular",
       "coordinates": {
-        "lat": 41.767116054232524,
-        "lon": -7.436433656002038
+        "lat": 41.76786555015933,
+        "lon": -7.441648737140233
       },
       "protectedArea": null,
       "redeNatura2000Site": null,
@@ -4983,10 +5012,10 @@
       "transectName": "Parque Ambiental de Santa Margarida",
       "isActive": true,
       "totalSpecies": 37,
-      "totalVisits": 129,
-      "totalAbundance": 1954,
-      "avgVisitsPerYear": 18.4,
-      "avgButterfliesPerVisit": 15.1,
+      "totalVisits": 147,
+      "totalAbundance": 2284,
+      "avgVisitsPerYear": 21,
+      "avgButterfliesPerVisit": 15.5,
       "yearsActive": 7,
       "firstMonitoringYear": 2020,
       "lastMonitoringYear": 2026,
@@ -5036,8 +5065,8 @@
       "responsavel": "Sónia Mendes",
       "entidade": "Município",
       "coordinates": {
-        "lat": 39.44704060015227,
-        "lon": -8.322930968727883
+        "lat": 39.440465712448855,
+        "lon": -8.314223239591872
       },
       "protectedArea": null,
       "redeNatura2000Site": null,
@@ -5049,9 +5078,9 @@
       "transectName": "Parque Biológico de Gaia I",
       "isActive": true,
       "totalSpecies": 28,
-      "totalVisits": 144,
-      "totalAbundance": 846,
-      "avgVisitsPerYear": 36,
+      "totalVisits": 146,
+      "totalAbundance": 856,
+      "avgVisitsPerYear": 36.5,
       "avgButterfliesPerVisit": 5.9,
       "yearsActive": 4,
       "firstMonitoringYear": 2023,
@@ -5093,8 +5122,8 @@
       "responsavel": "Jorge Gomes",
       "entidade": "Município",
       "coordinates": {
-        "lat": 41.10332331605788,
-        "lon": -8.563628346035514
+        "lat": 41.09418078268331,
+        "lon": -8.557627012918076
       },
       "protectedArea": null,
       "redeNatura2000Site": null,
@@ -5106,10 +5135,10 @@
       "transectName": "Parque Biológico de Gaia II",
       "isActive": true,
       "totalSpecies": 17,
-      "totalVisits": 121,
-      "totalAbundance": 418,
-      "avgVisitsPerYear": 30.3,
-      "avgButterfliesPerVisit": 3.5,
+      "totalVisits": 123,
+      "totalAbundance": 424,
+      "avgVisitsPerYear": 30.8,
+      "avgButterfliesPerVisit": 3.4,
       "yearsActive": 4,
       "firstMonitoringYear": 2023,
       "lastMonitoringYear": 2026,
@@ -5139,8 +5168,8 @@
       "responsavel": "Jorge Gomes",
       "entidade": "Município",
       "coordinates": {
-        "lat": 41.10223814947939,
-        "lon": -8.549375518805078
+        "lat": 41.097146446252445,
+        "lon": -8.55451274493655
       },
       "protectedArea": null,
       "redeNatura2000Site": null,
@@ -5188,8 +5217,8 @@
       "responsavel": "Guimarães",
       "entidade": "Município",
       "coordinates": {
-        "lat": 41.44023611921371,
-        "lon": -8.286851483294644
+        "lat": 41.438964000822125,
+        "lon": -8.281354303290858
       },
       "protectedArea": null,
       "redeNatura2000Site": null,
@@ -5237,8 +5266,8 @@
       "responsavel": "Eva Monteiro",
       "entidade": "Particular",
       "coordinates": {
-        "lat": 38.73622913047343,
-        "lon": -9.165166056278768
+        "lat": 38.73472483434246,
+        "lon": -9.167938696532296
       },
       "protectedArea": null,
       "redeNatura2000Site": null,
@@ -5291,8 +5320,8 @@
       "responsavel": "Darinka Gonçalves",
       "entidade": "Município",
       "coordinates": {
-        "lat": 41.297015660995754,
-        "lon": -7.744848474794928
+        "lat": 41.29203974122347,
+        "lon": -7.746572694466632
       },
       "protectedArea": null,
       "redeNatura2000Site": null,
@@ -5327,8 +5356,8 @@
       "responsavel": "",
       "entidade": "",
       "coordinates": {
-        "lat": 38.76600893118771,
-        "lon": -9.119395858714784
+        "lat": 38.75947684769816,
+        "lon": -9.12307520741056
       },
       "protectedArea": null,
       "redeNatura2000Site": null,
@@ -5382,8 +5411,8 @@
       "responsavel": "Fernando Pinto",
       "entidade": "Município",
       "coordinates": {
-        "lat": 38.57264002841712,
-        "lon": -9.028174839209303
+        "lat": 38.560733508643324,
+        "lon": -9.038425617068796
       },
       "protectedArea": null,
       "redeNatura2000Site": null,
@@ -5425,8 +5454,8 @@
       "responsavel": "Letícia Figueiredo",
       "entidade": "Particular",
       "coordinates": {
-        "lat": 41.55353688463613,
-        "lon": -8.38995540909863
+        "lat": 41.555293927307204,
+        "lon": -8.395077306691697
       },
       "protectedArea": null,
       "redeNatura2000Site": null,
@@ -5472,8 +5501,8 @@
       "responsavel": "Julieta Costa",
       "entidade": "ONGA",
       "coordinates": {
-        "lat": 38.74616169030316,
-        "lon": -9.133584707463084
+        "lat": 38.752444200332015,
+        "lon": -9.127762267727029
       },
       "protectedArea": null,
       "redeNatura2000Site": null,
@@ -5509,8 +5538,8 @@
       "responsavel": "",
       "entidade": "",
       "coordinates": {
-        "lat": 38.748960058861705,
-        "lon": -9.129158670494983
+        "lat": 38.7443546114217,
+        "lon": -9.12900958724598
       },
       "protectedArea": null,
       "redeNatura2000Site": null,
@@ -5593,11 +5622,11 @@
       "responsavel": "",
       "entidade": "Particular",
       "coordinates": {
-        "lat": 41.077144849305476,
-        "lon": -7.85229734893834
+        "lat": 41.08677789086794,
+        "lon": -7.859585345657578
       },
       "protectedArea": null,
-      "redeNatura2000Site": null,
+      "redeNatura2000Site": "Montemuro",
       "length": 1431
     },
     {
@@ -5647,8 +5676,8 @@
       "responsavel": "Scott Forbes",
       "entidade": "Particular",
       "coordinates": {
-        "lat": 40.220490433279686,
-        "lon": -8.281599334771219
+        "lat": 40.218187561012776,
+        "lon": -8.286334961355324
       },
       "protectedArea": null,
       "redeNatura2000Site": null,
@@ -5658,17 +5687,18 @@
       "transectId": "218548",
       "transectCode": "EBMS:Portugal:8",
       "transectName": "PEUVC",
-      "isActive": false,
-      "totalSpecies": 27,
-      "totalVisits": 65,
-      "totalAbundance": 1187,
-      "avgVisitsPerYear": 9.3,
-      "avgButterfliesPerVisit": 18.3,
-      "yearsActive": 7,
+      "isActive": true,
+      "totalSpecies": 28,
+      "totalVisits": 76,
+      "totalAbundance": 1380,
+      "avgVisitsPerYear": 9.5,
+      "avgButterfliesPerVisit": 18.2,
+      "yearsActive": 8,
       "firstMonitoringYear": 2019,
-      "lastMonitoringYear": 2025,
+      "lastMonitoringYear": 2026,
       "speciesList": [
         "Apatura ilia",
+        "Aricia cramera",
         "Cacyreus marshalli",
         "Celastrina argiolus",
         "Charaxes jasius",
@@ -5703,11 +5733,11 @@
       "responsavel": "Soraia Castro",
       "entidade": "Município",
       "coordinates": {
-        "lat": 41.70346876764802,
-        "lon": -8.823448860772077
+        "lat": 41.69424902510594,
+        "lon": -8.8134393203665
       },
       "protectedArea": null,
-      "redeNatura2000Site": null,
+      "redeNatura2000Site": "Rio Lima",
       "length": 1238
     },
     {
@@ -5755,11 +5785,11 @@
       "responsavel": "",
       "entidade": "Particular",
       "coordinates": {
-        "lat": 39.9282297247355,
-        "lon": -8.451380412678535
+        "lat": 39.93037996111384,
+        "lon": -8.460703278232803
       },
       "protectedArea": null,
-      "redeNatura2000Site": null,
+      "redeNatura2000Site": "Sicó/Alvaiazere",
       "length": 1030
     },
     {
@@ -5792,8 +5822,8 @@
       "responsavel": "",
       "entidade": "#N/A",
       "coordinates": {
-        "lat": 38.74484682891469,
-        "lon": -9.197136480821921
+        "lat": 38.74121294416289,
+        "lon": -9.183710581929095
       },
       "protectedArea": null,
       "redeNatura2000Site": null,
@@ -5843,8 +5873,8 @@
       "responsavel": "Hélder Cardoso",
       "entidade": "ONGA",
       "coordinates": {
-        "lat": 39.30748160902469,
-        "lon": -9.229545188535628
+        "lat": 39.298440207261045,
+        "lon": -9.230006212586312
       },
       "protectedArea": null,
       "redeNatura2000Site": null,
@@ -5905,8 +5935,8 @@
       "responsavel": "",
       "entidade": "ICNF",
       "coordinates": {
-        "lat": 39.462892803922756,
-        "lon": -8.810650367352775
+        "lat": 39.46955021304255,
+        "lon": -8.805702469285714
       },
       "protectedArea": "Serras de Aire e Candeeiros",
       "redeNatura2000Site": "Serras de Aire e Candeeiros",
@@ -5918,10 +5948,10 @@
       "transectName": "Portela de Sintra",
       "isActive": true,
       "totalSpecies": 36,
-      "totalVisits": 191,
-      "totalAbundance": 3005,
-      "avgVisitsPerYear": 27.3,
-      "avgButterfliesPerVisit": 15.7,
+      "totalVisits": 195,
+      "totalAbundance": 3040,
+      "avgVisitsPerYear": 27.9,
+      "avgButterfliesPerVisit": 15.6,
       "yearsActive": 7,
       "firstMonitoringYear": 2020,
       "lastMonitoringYear": 2026,
@@ -5970,8 +6000,8 @@
       "responsavel": "Luis Jordão",
       "entidade": "Particular",
       "coordinates": {
-        "lat": 38.79996863116892,
-        "lon": -9.378309234570805
+        "lat": 38.7981105805915,
+        "lon": -9.369052805945271
       },
       "protectedArea": null,
       "redeNatura2000Site": null,
@@ -5982,11 +6012,11 @@
       "transectCode": "EBMS:Portugal:31",
       "transectName": "Qta_PeninhaT1",
       "isActive": true,
-      "totalSpecies": 31,
-      "totalVisits": 44,
-      "totalAbundance": 2467,
-      "avgVisitsPerYear": 6.3,
-      "avgButterfliesPerVisit": 56.1,
+      "totalSpecies": 32,
+      "totalVisits": 46,
+      "totalAbundance": 2493,
+      "avgVisitsPerYear": 6.6,
+      "avgButterfliesPerVisit": 54.2,
       "yearsActive": 7,
       "firstMonitoringYear": 2020,
       "lastMonitoringYear": 2026,
@@ -5998,6 +6028,7 @@
         "Colias crocea",
         "Euphydryas aurinia",
         "Gonepteryx cleopatra",
+        "Gonepteryx rhamni",
         "Hipparchia fidia",
         "Iphiclides feisthamelii",
         "Lampides boeticus",
@@ -6030,8 +6061,8 @@
       "responsavel": "Diogo Silva",
       "entidade": "Município",
       "coordinates": {
-        "lat": 38.75894951564137,
-        "lon": -9.468303624915313
+        "lat": 38.76817359019997,
+        "lon": -9.45635265001365
       },
       "protectedArea": "Sintra-Cascais",
       "redeNatura2000Site": "Sintra/Cascais",
@@ -6043,10 +6074,10 @@
       "transectName": "Qta_PeninhaT2",
       "isActive": true,
       "totalSpecies": 33,
-      "totalVisits": 46,
-      "totalAbundance": 2936,
-      "avgVisitsPerYear": 6.6,
-      "avgButterfliesPerVisit": 63.8,
+      "totalVisits": 48,
+      "totalAbundance": 2972,
+      "avgVisitsPerYear": 6.9,
+      "avgButterfliesPerVisit": 61.9,
       "yearsActive": 7,
       "firstMonitoringYear": 2020,
       "lastMonitoringYear": 2026,
@@ -6092,8 +6123,8 @@
       "responsavel": "Diogo Silva",
       "entidade": "Município",
       "coordinates": {
-        "lat": 38.76970549551329,
-        "lon": -9.454232412610887
+        "lat": 38.759415321988726,
+        "lon": -9.45828171153192
       },
       "protectedArea": "Sintra-Cascais",
       "redeNatura2000Site": "Sintra/Cascais",
@@ -6105,10 +6136,10 @@
       "transectName": "Qta_PisaoT1",
       "isActive": true,
       "totalSpecies": 36,
-      "totalVisits": 62,
-      "totalAbundance": 1184,
-      "avgVisitsPerYear": 8.9,
-      "avgButterfliesPerVisit": 19.1,
+      "totalVisits": 63,
+      "totalAbundance": 1190,
+      "avgVisitsPerYear": 9,
+      "avgButterfliesPerVisit": 18.9,
       "yearsActive": 7,
       "firstMonitoringYear": 2020,
       "lastMonitoringYear": 2026,
@@ -6157,8 +6188,8 @@
       "responsavel": "Diogo Silva",
       "entidade": "Município",
       "coordinates": {
-        "lat": 38.7511628661233,
-        "lon": -9.428446116028622
+        "lat": 38.745986656133,
+        "lon": -9.421216860900028
       },
       "protectedArea": "Sintra-Cascais",
       "redeNatura2000Site": "Sintra/Cascais",
@@ -6170,10 +6201,10 @@
       "transectName": "Qta_PisaoT2",
       "isActive": true,
       "totalSpecies": 29,
-      "totalVisits": 57,
-      "totalAbundance": 676,
-      "avgVisitsPerYear": 8.1,
-      "avgButterfliesPerVisit": 11.9,
+      "totalVisits": 58,
+      "totalAbundance": 678,
+      "avgVisitsPerYear": 8.3,
+      "avgButterfliesPerVisit": 11.7,
       "yearsActive": 7,
       "firstMonitoringYear": 2020,
       "lastMonitoringYear": 2026,
@@ -6215,8 +6246,8 @@
       "responsavel": "Diogo Silva",
       "entidade": "Município",
       "coordinates": {
-        "lat": 38.75354780592622,
-        "lon": -9.413284005273658
+        "lat": 38.742069230690674,
+        "lon": -9.4170226565847
       },
       "protectedArea": "Sintra-Cascais",
       "redeNatura2000Site": "Sintra/Cascais",
@@ -6228,10 +6259,10 @@
       "transectName": "Qta_PisaoT3",
       "isActive": true,
       "totalSpecies": 34,
-      "totalVisits": 62,
-      "totalAbundance": 766,
-      "avgVisitsPerYear": 8.9,
-      "avgButterfliesPerVisit": 12.4,
+      "totalVisits": 63,
+      "totalAbundance": 778,
+      "avgVisitsPerYear": 9,
+      "avgButterfliesPerVisit": 12.3,
       "yearsActive": 7,
       "firstMonitoringYear": 2020,
       "lastMonitoringYear": 2026,
@@ -6278,8 +6309,8 @@
       "responsavel": "Diogo Silva",
       "entidade": "Município",
       "coordinates": {
-        "lat": 38.752603769410065,
-        "lon": -9.412792025505244
+        "lat": 38.74902822812938,
+        "lon": -9.424138525529134
       },
       "protectedArea": "Sintra-Cascais",
       "redeNatura2000Site": "Sintra/Cascais",
@@ -6332,11 +6363,11 @@
       "responsavel": "",
       "entidade": "ONGA",
       "coordinates": {
-        "lat": 37.03916259997423,
-        "lon": -7.804513582424816
+        "lat": 37.04879624849946,
+        "lon": -7.804994613168561
       },
-      "protectedArea": "Ria Formosa",
-      "redeNatura2000Site": "Ria Formosa",
+      "protectedArea": null,
+      "redeNatura2000Site": null,
       "length": 1028
     },
     {
@@ -6393,8 +6424,8 @@
       "responsavel": "Joaquim Pífano",
       "entidade": "Particular",
       "coordinates": {
-        "lat": 38.927239620788576,
-        "lon": -7.801999805261219
+        "lat": 38.92302452863864,
+        "lon": -7.800554517432559
       },
       "protectedArea": null,
       "redeNatura2000Site": null,
@@ -6451,8 +6482,8 @@
       "responsavel": "Joaquim Pífano",
       "entidade": "Particular",
       "coordinates": {
-        "lat": 38.90386980902124,
-        "lon": -7.791044012051289
+        "lat": 38.91153518754282,
+        "lon": -7.783916739507053
       },
       "protectedArea": null,
       "redeNatura2000Site": null,
@@ -6464,10 +6495,10 @@
       "transectName": "Salema Eco Camp",
       "isActive": true,
       "totalSpecies": 32,
-      "totalVisits": 70,
-      "totalAbundance": 1446,
-      "avgVisitsPerYear": 23.3,
-      "avgButterfliesPerVisit": 20.7,
+      "totalVisits": 72,
+      "totalAbundance": 1469,
+      "avgVisitsPerYear": 24,
+      "avgButterfliesPerVisit": 20.4,
       "yearsActive": 3,
       "firstMonitoringYear": 2024,
       "lastMonitoringYear": 2026,
@@ -6512,10 +6543,10 @@
       "responsavel": "",
       "entidade": "Empresa",
       "coordinates": {
-        "lat": 37.081881834260315,
-        "lon": -8.83534280531194
+        "lat": 37.077507702447676,
+        "lon": -8.83088053143197
       },
-      "protectedArea": null,
+      "protectedArea": "Sudoeste Alentejano e Costa Vicentina",
       "redeNatura2000Site": "Costa Sudoeste",
       "length": 1040
     },
@@ -6546,8 +6577,8 @@
       "responsavel": "Joana Barata",
       "entidade": "Particular",
       "coordinates": {
-        "lat": 38.648375763125536,
-        "lon": -9.237488323027275
+        "lat": 38.64738132020927,
+        "lon": -9.2333777551205
       },
       "protectedArea": null,
       "redeNatura2000Site": null,
@@ -6559,10 +6590,10 @@
       "transectName": "São João das Lampas",
       "isActive": true,
       "totalSpecies": 28,
-      "totalVisits": 19,
-      "totalAbundance": 879,
-      "avgVisitsPerYear": 19,
-      "avgButterfliesPerVisit": 46.3,
+      "totalVisits": 20,
+      "totalAbundance": 891,
+      "avgVisitsPerYear": 20,
+      "avgButterfliesPerVisit": 44.6,
       "yearsActive": 1,
       "firstMonitoringYear": 2026,
       "lastMonitoringYear": 2026,
@@ -6603,8 +6634,8 @@
       "responsavel": "",
       "entidade": "",
       "coordinates": {
-        "lat": 38.87610178847161,
-        "lon": -9.40700623156929
+        "lat": 38.87377172163755,
+        "lon": -9.403600762055298
       },
       "protectedArea": "Sintra-Cascais",
       "redeNatura2000Site": null,
@@ -6654,11 +6685,11 @@
       "responsavel": "",
       "entidade": "",
       "coordinates": {
-        "lat": 41.1252405972988,
-        "lon": -8.4337714847189
+        "lat": 41.130373654888736,
+        "lon": -8.433265542076672
       },
       "protectedArea": "Parque das Serras do Porto",
-      "redeNatura2000Site": null,
+      "redeNatura2000Site": "Valongo",
       "length": 1025
     },
     {
@@ -6751,8 +6782,8 @@
       "responsavel": "Ângela Cordeiro",
       "entidade": "Município",
       "coordinates": {
-        "lat": 41.624225710462305,
-        "lon": -6.453623996982329
+        "lat": 41.636958960820884,
+        "lon": -6.4509259272826105
       },
       "protectedArea": null,
       "redeNatura2000Site": "Rios Sabor e Maçãs",
@@ -6814,8 +6845,8 @@
       "responsavel": "Raquel Eiró",
       "entidade": "Particular",
       "coordinates": {
-        "lat": 38.790918738964905,
-        "lon": -9.269981372821311
+        "lat": 38.79055645187812,
+        "lon": -9.259543042068655
       },
       "protectedArea": null,
       "redeNatura2000Site": null,
@@ -6857,8 +6888,8 @@
       "responsavel": "",
       "entidade": "Particular",
       "coordinates": {
-        "lat": 41.14658638574291,
-        "lon": -8.48554440752421
+        "lat": 41.141317722592255,
+        "lon": -8.485660767326946
       },
       "protectedArea": "Parque das Serras do Porto",
       "redeNatura2000Site": "Valongo",
@@ -6918,8 +6949,8 @@
       "responsavel": "",
       "entidade": "Particular",
       "coordinates": {
-        "lat": 41.131294411982815,
-        "lon": -8.489315899982449
+        "lat": 41.120772859156034,
+        "lon": -8.479825427563275
       },
       "protectedArea": null,
       "redeNatura2000Site": null,
@@ -6985,8 +7016,8 @@
       "responsavel": "Armindo Paulo Salvador",
       "entidade": "Particular",
       "coordinates": {
-        "lat": 41.56897948217315,
-        "lon": -8.402844600459106
+        "lat": 41.565254791593915,
+        "lon": -8.40109378953479
       },
       "protectedArea": null,
       "redeNatura2000Site": null,
@@ -7049,8 +7080,8 @@
       "responsavel": "",
       "entidade": "",
       "coordinates": {
-        "lat": 40.279935814141155,
-        "lon": -8.413176965732621
+        "lat": 40.280813930690414,
+        "lon": -8.412626621698028
       },
       "protectedArea": null,
       "redeNatura2000Site": null,
@@ -7062,10 +7093,10 @@
       "transectName": "Telheiras",
       "isActive": true,
       "totalSpecies": 15,
-      "totalVisits": 58,
-      "totalAbundance": 202,
-      "avgVisitsPerYear": 7.3,
-      "avgButterfliesPerVisit": 3.5,
+      "totalVisits": 61,
+      "totalAbundance": 210,
+      "avgVisitsPerYear": 7.6,
+      "avgButterfliesPerVisit": 3.4,
       "yearsActive": 8,
       "firstMonitoringYear": 2019,
       "lastMonitoringYear": 2026,
@@ -7093,8 +7124,8 @@
       "responsavel": "Julieta Costa",
       "entidade": "Particular",
       "coordinates": {
-        "lat": 38.75827173405502,
-        "lon": -9.17137791822819
+        "lat": 38.7641691184468,
+        "lon": -9.165810285569735
       },
       "protectedArea": null,
       "redeNatura2000Site": null,
@@ -7152,8 +7183,8 @@
       "responsavel": "",
       "entidade": "Particular",
       "coordinates": {
-        "lat": 41.08555639552526,
-        "lon": -7.8286488054968855
+        "lat": 41.085892309665795,
+        "lon": -7.829297367799805
       },
       "protectedArea": null,
       "redeNatura2000Site": null,
@@ -7203,8 +7234,8 @@
       "responsavel": "Hélder Cardoso",
       "entidade": "ONGA",
       "coordinates": {
-        "lat": 39.30023509506961,
-        "lon": -9.214274038062163
+        "lat": 39.3087588468257,
+        "lon": -9.22321878443562
       },
       "protectedArea": null,
       "redeNatura2000Site": null,
@@ -7258,8 +7289,8 @@
       "responsavel": "Orkhan Abbasov",
       "entidade": "Particular",
       "coordinates": {
-        "lat": 38.78708412027452,
-        "lon": -9.274221796935679
+        "lat": 38.777039538344106,
+        "lon": -9.267278789298201
       },
       "protectedArea": null,
       "redeNatura2000Site": null,
@@ -7338,8 +7369,8 @@
       "responsavel": "Isabel Sá",
       "entidade": "ONGA",
       "coordinates": {
-        "lat": 41.53300914480673,
-        "lon": -6.50529544150186
+        "lat": 41.524225289286576,
+        "lon": -6.505522352684015
       },
       "protectedArea": null,
       "redeNatura2000Site": "Rios Sabor e Maçãs",
@@ -7348,9 +7379,9 @@
   ],
   "metadata": {
     "totalValidTransects": 128,
-    "activeTransects": 88,
-    "inactiveTransects": 40,
-    "filteredSpeciesCount": 114,
+    "activeTransects": 90,
+    "inactiveTransects": 38,
+    "filteredSpeciesCount": 116,
     "filteredSpecies": [
       {
         "species": "Acontia lucida",
@@ -7391,6 +7422,11 @@
         "species": "Aplasta ononaria",
         "recordCount": 2,
         "totalIndividuals": 6
+      },
+      {
+        "species": "Arctia villica",
+        "recordCount": 1,
+        "totalIndividuals": 1
       },
       {
         "species": "Aristotelia ericinella",
@@ -7759,8 +7795,8 @@
       },
       {
         "species": "Palpita vitrealis",
-        "recordCount": 21,
-        "totalIndividuals": 28
+        "recordCount": 22,
+        "totalIndividuals": 29
       },
       {
         "species": "Pediasia ribbeellus",
@@ -7784,8 +7820,8 @@
       },
       {
         "species": "Pieris napi/rapae",
-        "recordCount": 336,
-        "totalIndividuals": 996
+        "recordCount": 341,
+        "totalIndividuals": 1001
       },
       {
         "species": "Pieris rapae/brassicae",
@@ -7796,6 +7832,11 @@
         "species": "Pleurota bicostella",
         "recordCount": 2,
         "totalIndividuals": 2
+      },
+      {
+        "species": "Polygonia c-album/egea",
+        "recordCount": 1,
+        "totalIndividuals": 1
       },
       {
         "species": "Polyommatus icarus/thersites",
@@ -7829,8 +7870,8 @@
       },
       {
         "species": "Rhodometra sacraria",
-        "recordCount": 48,
-        "totalIndividuals": 76
+        "recordCount": 52,
+        "totalIndividuals": 81
       },
       {
         "species": "Rhoptria asperaria",
@@ -7923,19 +7964,19 @@
         "totalIndividuals": 3
       }
     ],
-    "totalButterfliesValidSpecies": 163840,
-    "totalButterfliesAllSpecies": 177674,
-    "correctedRecords": 770,
+    "totalButterfliesValidSpecies": 165725,
+    "totalButterfliesAllSpecies": 179701,
+    "correctedRecords": 781,
     "corrections": [
       {
         "from": "Polyommatus icarus",
         "to": "Polyommatus icarus/celina",
-        "count": 662
+        "count": 667
       },
       {
         "from": "Polyommatus celina",
         "to": "Polyommatus icarus/celina",
-        "count": 105
+        "count": 111
       },
       {
         "from": "Colias sp.",

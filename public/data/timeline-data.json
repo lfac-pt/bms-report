@@ -493,7 +493,9 @@
       "243747",
       "243847",
       "396405",
-      "222006"
+      "222006",
+      "319947",
+      "218548"
     ]
   },
   "butterflyFrequencyByYear": {
@@ -4084,651 +4086,657 @@
     "2026": [
       {
         "species": "Pararge aegeria",
-        "frequency": 89.79591836734694,
-        "visitCount": 176,
-        "totalVisits": 196
+        "frequency": 89.9497487437186,
+        "visitCount": 179,
+        "totalVisits": 199
       },
       {
         "species": "Pieris rapae",
-        "frequency": 79.08163265306123,
-        "visitCount": 155,
-        "totalVisits": 196
+        "frequency": 81.4070351758794,
+        "visitCount": 162,
+        "totalVisits": 199
       },
       {
         "species": "Pieris brassicae",
-        "frequency": 78.06122448979592,
-        "visitCount": 153,
-        "totalVisits": 196
+        "frequency": 77.88944723618091,
+        "visitCount": 155,
+        "totalVisits": 199
       },
       {
         "species": "Maniola jurtina",
-        "frequency": 71.42857142857143,
-        "visitCount": 140,
-        "totalVisits": 196
+        "frequency": 71.85929648241206,
+        "visitCount": 143,
+        "totalVisits": 199
       },
       {
         "species": "Colias crocea",
-        "frequency": 68.87755102040816,
-        "visitCount": 135,
-        "totalVisits": 196
+        "frequency": 71.35678391959799,
+        "visitCount": 142,
+        "totalVisits": 199
       },
       {
         "species": "Lycaena phlaeas",
-        "frequency": 67.3469387755102,
-        "visitCount": 132,
-        "totalVisits": 196
+        "frequency": 69.34673366834171,
+        "visitCount": 138,
+        "totalVisits": 199
       },
       {
         "species": "Vanessa cardui",
-        "frequency": 63.775510204081634,
-        "visitCount": 125,
-        "totalVisits": 196
+        "frequency": 63.81909547738693,
+        "visitCount": 127,
+        "totalVisits": 199
       },
       {
         "species": "Lasiommata megera",
-        "frequency": 57.14285714285714,
-        "visitCount": 112,
-        "totalVisits": 196
-      },
-      {
-        "species": "Papilio machaon",
-        "frequency": 56.12244897959183,
-        "visitCount": 110,
-        "totalVisits": 196
+        "frequency": 58.79396984924623,
+        "visitCount": 117,
+        "totalVisits": 199
       },
       {
         "species": "Aricia cramera",
-        "frequency": 56.12244897959183,
-        "visitCount": 110,
-        "totalVisits": 196
+        "frequency": 56.78391959798995,
+        "visitCount": 113,
+        "totalVisits": 199
+      },
+      {
+        "species": "Papilio machaon",
+        "frequency": 56.28140703517588,
+        "visitCount": 112,
+        "totalVisits": 199
       },
       {
         "species": "Leptotes pirithous",
-        "frequency": 51.02040816326531,
-        "visitCount": 100,
-        "totalVisits": 196
-      },
-      {
-        "species": "Coenonympha pamphilus",
-        "frequency": 51.02040816326531,
-        "visitCount": 100,
-        "totalVisits": 196
+        "frequency": 52.76381909547738,
+        "visitCount": 105,
+        "totalVisits": 199
       },
       {
         "species": "Iphiclides feisthamelii",
-        "frequency": 50.51020408163265,
-        "visitCount": 99,
-        "totalVisits": 196
+        "frequency": 52.26130653266332,
+        "visitCount": 104,
+        "totalVisits": 199
+      },
+      {
+        "species": "Coenonympha pamphilus",
+        "frequency": 51.256281407035175,
+        "visitCount": 102,
+        "totalVisits": 199
       },
       {
         "species": "Pyronia cecilia",
-        "frequency": 50.51020408163265,
-        "visitCount": 99,
-        "totalVisits": 196
+        "frequency": 50.753768844221106,
+        "visitCount": 101,
+        "totalVisits": 199
       },
       {
         "species": "Vanessa atalanta",
-        "frequency": 46.93877551020408,
-        "visitCount": 92,
-        "totalVisits": 196
+        "frequency": 50.25125628140703,
+        "visitCount": 100,
+        "totalVisits": 199
       },
       {
         "species": "Gonepteryx cleopatra",
-        "frequency": 46.93877551020408,
-        "visitCount": 92,
-        "totalVisits": 196
+        "frequency": 47.23618090452261,
+        "visitCount": 94,
+        "totalVisits": 199
       },
       {
         "species": "Polyommatus icarus/celina",
-        "frequency": 41.83673469387755,
-        "visitCount": 82,
-        "totalVisits": 196
+        "frequency": 41.70854271356784,
+        "visitCount": 83,
+        "totalVisits": 199
       },
       {
         "species": "Celastrina argiolus",
-        "frequency": 39.795918367346935,
-        "visitCount": 78,
-        "totalVisits": 196
+        "frequency": 40.7035175879397,
+        "visitCount": 81,
+        "totalVisits": 199
       },
       {
         "species": "Lampides boeticus",
-        "frequency": 37.244897959183675,
-        "visitCount": 73,
-        "totalVisits": 196
+        "frequency": 39.698492462311556,
+        "visitCount": 79,
+        "totalVisits": 199
       },
       {
         "species": "Gonepteryx rhamni",
-        "frequency": 32.142857142857146,
-        "visitCount": 63,
-        "totalVisits": 196
-      },
-      {
-        "species": "Pieris napi",
-        "frequency": 27.040816326530614,
-        "visitCount": 53,
-        "totalVisits": 196
-      },
-      {
-        "species": "Pontia daplidice",
-        "frequency": 26.53061224489796,
-        "visitCount": 52,
-        "totalVisits": 196
+        "frequency": 32.1608040201005,
+        "visitCount": 64,
+        "totalVisits": 199
       },
       {
         "species": "Pyronia tithonus",
-        "frequency": 26.53061224489796,
-        "visitCount": 52,
-        "totalVisits": 196
+        "frequency": 29.64824120603015,
+        "visitCount": 59,
+        "totalVisits": 199
       },
       {
-        "species": "Pyronia bathseba",
-        "frequency": 25.510204081632654,
-        "visitCount": 50,
-        "totalVisits": 196
+        "species": "Pieris napi",
+        "frequency": 29.145728643216078,
+        "visitCount": 58,
+        "totalVisits": 199
+      },
+      {
+        "species": "Pontia daplidice",
+        "frequency": 28.14070351758794,
+        "visitCount": 56,
+        "totalVisits": 199
       },
       {
         "species": "Charaxes jasius",
-        "frequency": 23.46938775510204,
-        "visitCount": 46,
-        "totalVisits": 196
+        "frequency": 26.13065326633166,
+        "visitCount": 52,
+        "totalVisits": 199
+      },
+      {
+        "species": "Pyronia bathseba",
+        "frequency": 25.125628140703515,
+        "visitCount": 50,
+        "totalVisits": 199
       },
       {
         "species": "Carcharodus alceae",
-        "frequency": 22.448979591836736,
-        "visitCount": 44,
-        "totalVisits": 196
+        "frequency": 23.115577889447238,
+        "visitCount": 46,
+        "totalVisits": 199
       },
       {
         "species": "Euphydryas aurinia",
-        "frequency": 20.918367346938776,
-        "visitCount": 41,
-        "totalVisits": 196
-      },
-      {
-        "species": "Callophrys rubi",
-        "frequency": 19.897959183673468,
-        "visitCount": 39,
-        "totalVisits": 196
+        "frequency": 21.105527638190953,
+        "visitCount": 42,
+        "totalVisits": 199
       },
       {
         "species": "Satyrium esculi",
-        "frequency": 19.897959183673468,
-        "visitCount": 39,
-        "totalVisits": 196
+        "frequency": 20.603015075376884,
+        "visitCount": 41,
+        "totalVisits": 199
       },
       {
         "species": "Hipparchia statilinus",
-        "frequency": 19.897959183673468,
+        "frequency": 20.100502512562816,
+        "visitCount": 40,
+        "totalVisits": 199
+      },
+      {
+        "species": "Callophrys rubi",
+        "frequency": 19.597989949748744,
         "visitCount": 39,
-        "totalVisits": 196
+        "totalVisits": 199
       },
       {
         "species": "Brintesia circe",
-        "frequency": 18.877551020408163,
+        "frequency": 18.592964824120603,
         "visitCount": 37,
-        "totalVisits": 196
-      },
-      {
-        "species": "Thymelicus sylvestris",
-        "frequency": 17.346938775510203,
-        "visitCount": 34,
-        "totalVisits": 196
+        "totalVisits": 199
       },
       {
         "species": "Hipparchia fidia",
-        "frequency": 16.83673469387755,
-        "visitCount": 33,
-        "totalVisits": 196
+        "frequency": 18.090452261306535,
+        "visitCount": 36,
+        "totalVisits": 199
       },
       {
-        "species": "Zerynthia rumina",
-        "frequency": 15.816326530612246,
-        "visitCount": 31,
-        "totalVisits": 196
-      },
-      {
-        "species": "Lysandra bellargus",
-        "frequency": 15.816326530612246,
-        "visitCount": 31,
-        "totalVisits": 196
-      },
-      {
-        "species": "Thymelicus acteon",
-        "frequency": 15.816326530612246,
-        "visitCount": 31,
-        "totalVisits": 196
+        "species": "Thymelicus sylvestris",
+        "frequency": 17.587939698492463,
+        "visitCount": 35,
+        "totalVisits": 199
       },
       {
         "species": "Melanargia lachesis",
-        "frequency": 15.816326530612246,
+        "frequency": 17.587939698492463,
+        "visitCount": 35,
+        "totalVisits": 199
+      },
+      {
+        "species": "Lysandra bellargus",
+        "frequency": 16.582914572864322,
+        "visitCount": 33,
+        "totalVisits": 199
+      },
+      {
+        "species": "Zerynthia rumina",
+        "frequency": 15.577889447236181,
         "visitCount": 31,
-        "totalVisits": 196
+        "totalVisits": 199
       },
       {
         "species": "Spialia sertorius",
-        "frequency": 15.306122448979592,
-        "visitCount": 30,
-        "totalVisits": 196
+        "frequency": 15.577889447236181,
+        "visitCount": 31,
+        "totalVisits": 199
+      },
+      {
+        "species": "Thymelicus acteon",
+        "frequency": 15.577889447236181,
+        "visitCount": 31,
+        "totalVisits": 199
       },
       {
         "species": "Euchloe crameri",
-        "frequency": 14.795918367346939,
+        "frequency": 14.572864321608039,
         "visitCount": 29,
-        "totalVisits": 196
-      },
-      {
-        "species": "Carcharodus tripolinus",
-        "frequency": 14.285714285714285,
-        "visitCount": 28,
-        "totalVisits": 196
+        "totalVisits": 199
       },
       {
         "species": "Leptidea sinapis",
-        "frequency": 13.26530612244898,
-        "visitCount": 26,
-        "totalVisits": 196
+        "frequency": 14.572864321608039,
+        "visitCount": 29,
+        "totalVisits": 199
+      },
+      {
+        "species": "Carcharodus tripolinus",
+        "frequency": 14.07035175879397,
+        "visitCount": 28,
+        "totalVisits": 199
       },
       {
         "species": "Melitaea deione",
-        "frequency": 12.755102040816327,
-        "visitCount": 25,
-        "totalVisits": 196
-      },
-      {
-        "species": "Issoria lathonia",
-        "frequency": 12.244897959183673,
-        "visitCount": 24,
-        "totalVisits": 196
+        "frequency": 13.06532663316583,
+        "visitCount": 26,
+        "totalVisits": 199
       },
       {
         "species": "Anthocharis cardamines",
-        "frequency": 10.714285714285714,
-        "visitCount": 21,
-        "totalVisits": 196
+        "frequency": 12.562814070351758,
+        "visitCount": 25,
+        "totalVisits": 199
+      },
+      {
+        "species": "Issoria lathonia",
+        "frequency": 12.562814070351758,
+        "visitCount": 25,
+        "totalVisits": 199
       },
       {
         "species": "Argynnis pandora",
-        "frequency": 10.714285714285714,
-        "visitCount": 21,
-        "totalVisits": 196
-      },
-      {
-        "species": "Polygonia c-album",
-        "frequency": 9.693877551020408,
-        "visitCount": 19,
-        "totalVisits": 196
-      },
-      {
-        "species": "Melitaea phoebe",
-        "frequency": 9.693877551020408,
-        "visitCount": 19,
-        "totalVisits": 196
-      },
-      {
-        "species": "Plebejus argus",
-        "frequency": 9.183673469387756,
-        "visitCount": 18,
-        "totalVisits": 196
-      },
-      {
-        "species": "Lycaena alciphron",
-        "frequency": 9.183673469387756,
-        "visitCount": 18,
-        "totalVisits": 196
-      },
-      {
-        "species": "Aglais io",
-        "frequency": 8.16326530612245,
-        "visitCount": 16,
-        "totalVisits": 196
+        "frequency": 12.060301507537687,
+        "visitCount": 24,
+        "totalVisits": 199
       },
       {
         "species": "Glaucopsyche melanops",
-        "frequency": 8.16326530612245,
-        "visitCount": 16,
-        "totalVisits": 196
+        "frequency": 10.050251256281408,
+        "visitCount": 20,
+        "totalVisits": 199
       },
       {
-        "species": "Coenonympha dorus",
-        "frequency": 8.16326530612245,
-        "visitCount": 16,
-        "totalVisits": 196
+        "species": "Melitaea phoebe",
+        "frequency": 10.050251256281408,
+        "visitCount": 20,
+        "totalVisits": 199
+      },
+      {
+        "species": "Polygonia c-album",
+        "frequency": 9.547738693467336,
+        "visitCount": 19,
+        "totalVisits": 199
+      },
+      {
+        "species": "Plebejus argus",
+        "frequency": 9.045226130653267,
+        "visitCount": 18,
+        "totalVisits": 199
+      },
+      {
+        "species": "Lycaena alciphron",
+        "frequency": 9.045226130653267,
+        "visitCount": 18,
+        "totalVisits": 199
+      },
+      {
+        "species": "Aglais io",
+        "frequency": 8.542713567839195,
+        "visitCount": 17,
+        "totalVisits": 199
       },
       {
         "species": "Lycaena bleusei",
-        "frequency": 7.653061224489796,
-        "visitCount": 15,
-        "totalVisits": 196
+        "frequency": 8.542713567839195,
+        "visitCount": 17,
+        "totalVisits": 199
       },
       {
         "species": "Favonius quercus",
-        "frequency": 7.653061224489796,
-        "visitCount": 15,
-        "totalVisits": 196
+        "frequency": 8.040201005025125,
+        "visitCount": 16,
+        "totalVisits": 199
+      },
+      {
+        "species": "Coenonympha dorus",
+        "frequency": 8.040201005025125,
+        "visitCount": 16,
+        "totalVisits": 199
       },
       {
         "species": "Cacyreus marshalli",
-        "frequency": 7.142857142857142,
-        "visitCount": 14,
-        "totalVisits": 196
-      },
-      {
-        "species": "Nymphalis polychloros",
-        "frequency": 6.63265306122449,
-        "visitCount": 13,
-        "totalVisits": 196
-      },
-      {
-        "species": "Pyrgus malvoides",
-        "frequency": 6.63265306122449,
-        "visitCount": 13,
-        "totalVisits": 196
+        "frequency": 7.537688442211055,
+        "visitCount": 15,
+        "totalVisits": 199
       },
       {
         "species": "Satyrium spini",
-        "frequency": 6.63265306122449,
-        "visitCount": 13,
-        "totalVisits": 196
-      },
-      {
-        "species": "Muschampia proto",
-        "frequency": 6.122448979591836,
-        "visitCount": 12,
-        "totalVisits": 196
-      },
-      {
-        "species": "Melanargia ines",
-        "frequency": 5.612244897959184,
-        "visitCount": 11,
-        "totalVisits": 196
-      },
-      {
-        "species": "Cupido lorquinii",
-        "frequency": 5.612244897959184,
-        "visitCount": 11,
-        "totalVisits": 196
-      },
-      {
-        "species": "Melitaea celadussa",
-        "frequency": 5.612244897959184,
-        "visitCount": 11,
-        "totalVisits": 196
-      },
-      {
-        "species": "Ochlodes sylvanus",
-        "frequency": 5.612244897959184,
-        "visitCount": 11,
-        "totalVisits": 196
-      },
-      {
-        "species": "Hipparchia semele",
-        "frequency": 5.612244897959184,
-        "visitCount": 11,
-        "totalVisits": 196
+        "frequency": 7.537688442211055,
+        "visitCount": 15,
+        "totalVisits": 199
       },
       {
         "species": "Zizeeria knysna",
-        "frequency": 5.612244897959184,
-        "visitCount": 11,
-        "totalVisits": 196
+        "frequency": 7.035175879396985,
+        "visitCount": 14,
+        "totalVisits": 199
       },
       {
-        "species": "Laeosopis roboris",
-        "frequency": 5.1020408163265305,
-        "visitCount": 10,
-        "totalVisits": 196
+        "species": "Nymphalis polychloros",
+        "frequency": 6.532663316582915,
+        "visitCount": 13,
+        "totalVisits": 199
       },
       {
-        "species": "Euchloe belemia",
-        "frequency": 4.591836734693878,
-        "visitCount": 9,
-        "totalVisits": 196
+        "species": "Muschampia proto",
+        "frequency": 6.532663316582915,
+        "visitCount": 13,
+        "totalVisits": 199
       },
       {
-        "species": "Melitaea trivia",
-        "frequency": 4.591836734693878,
-        "visitCount": 9,
-        "totalVisits": 196
+        "species": "Pyrgus malvoides",
+        "frequency": 6.532663316582915,
+        "visitCount": 13,
+        "totalVisits": 199
+      },
+      {
+        "species": "Ochlodes sylvanus",
+        "frequency": 6.030150753768844,
+        "visitCount": 12,
+        "totalVisits": 199
+      },
+      {
+        "species": "Hipparchia semele",
+        "frequency": 6.030150753768844,
+        "visitCount": 12,
+        "totalVisits": 199
       },
       {
         "species": "Hipparchia hermione",
-        "frequency": 4.591836734693878,
-        "visitCount": 9,
-        "totalVisits": 196
+        "frequency": 6.030150753768844,
+        "visitCount": 12,
+        "totalVisits": 199
       },
       {
-        "species": "Melanargia occitanica",
-        "frequency": 3.061224489795918,
-        "visitCount": 6,
-        "totalVisits": 196
+        "species": "Melanargia ines",
+        "frequency": 5.527638190954774,
+        "visitCount": 11,
+        "totalVisits": 199
+      },
+      {
+        "species": "Cupido lorquinii",
+        "frequency": 5.527638190954774,
+        "visitCount": 11,
+        "totalVisits": 199
+      },
+      {
+        "species": "Melitaea celadussa",
+        "frequency": 5.527638190954774,
+        "visitCount": 11,
+        "totalVisits": 199
+      },
+      {
+        "species": "Euchloe belemia",
+        "frequency": 5.025125628140704,
+        "visitCount": 10,
+        "totalVisits": 199
+      },
+      {
+        "species": "Laeosopis roboris",
+        "frequency": 5.025125628140704,
+        "visitCount": 10,
+        "totalVisits": 199
+      },
+      {
+        "species": "Melitaea trivia",
+        "frequency": 4.522613065326634,
+        "visitCount": 9,
+        "totalVisits": 199
       },
       {
         "species": "Aporia crataegi",
-        "frequency": 2.5510204081632653,
-        "visitCount": 5,
-        "totalVisits": 196
+        "frequency": 3.015075376884422,
+        "visitCount": 6,
+        "totalVisits": 199
       },
       {
-        "species": "Danaus plexippus",
-        "frequency": 2.5510204081632653,
-        "visitCount": 5,
-        "totalVisits": 196
-      },
-      {
-        "species": "Melitaea cinxia",
-        "frequency": 2.5510204081632653,
-        "visitCount": 5,
-        "totalVisits": 196
-      },
-      {
-        "species": "Vanessa virginiensis",
-        "frequency": 2.0408163265306123,
-        "visitCount": 4,
-        "totalVisits": 196
-      },
-      {
-        "species": "Cyaniris semiargus",
-        "frequency": 2.0408163265306123,
-        "visitCount": 4,
-        "totalVisits": 196
+        "species": "Melanargia occitanica",
+        "frequency": 3.015075376884422,
+        "visitCount": 6,
+        "totalVisits": 199
       },
       {
         "species": "Coenonympha arcania",
-        "frequency": 2.0408163265306123,
-        "visitCount": 4,
-        "totalVisits": 196
+        "frequency": 3.015075376884422,
+        "visitCount": 6,
+        "totalVisits": 199
       },
       {
-        "species": "Coenonympha glycerion",
-        "frequency": 2.0408163265306123,
-        "visitCount": 4,
-        "totalVisits": 196
+        "species": "Danaus plexippus",
+        "frequency": 2.512562814070352,
+        "visitCount": 5,
+        "totalVisits": 199
       },
       {
-        "species": "Fabriciana adippe",
-        "frequency": 2.0408163265306123,
-        "visitCount": 4,
-        "totalVisits": 196
-      },
-      {
-        "species": "Callophrys avis",
-        "frequency": 1.530612244897959,
-        "visitCount": 3,
-        "totalVisits": 196
-      },
-      {
-        "species": "Nymphalis antiopa",
-        "frequency": 1.530612244897959,
-        "visitCount": 3,
-        "totalVisits": 196
-      },
-      {
-        "species": "Pseudophilotes baton",
-        "frequency": 1.530612244897959,
-        "visitCount": 3,
-        "totalVisits": 196
+        "species": "Melitaea cinxia",
+        "frequency": 2.512562814070352,
+        "visitCount": 5,
+        "totalVisits": 199
       },
       {
         "species": "Lycaena tityrus",
-        "frequency": 1.530612244897959,
-        "visitCount": 3,
-        "totalVisits": 196
-      },
-      {
-        "species": "Fabriciana niobe",
-        "frequency": 1.530612244897959,
-        "visitCount": 3,
-        "totalVisits": 196
-      },
-      {
-        "species": "Melitaea parthenoides",
-        "frequency": 1.530612244897959,
-        "visitCount": 3,
-        "totalVisits": 196
-      },
-      {
-        "species": "Aricia montensis",
-        "frequency": 1.530612244897959,
-        "visitCount": 3,
-        "totalVisits": 196
-      },
-      {
-        "species": "Arethusana arethusa",
-        "frequency": 1.530612244897959,
-        "visitCount": 3,
-        "totalVisits": 196
-      },
-      {
-        "species": "Tomares ballus",
-        "frequency": 1.0204081632653061,
-        "visitCount": 2,
-        "totalVisits": 196
-      },
-      {
-        "species": "Anthocharis euphenoides",
-        "frequency": 1.0204081632653061,
-        "visitCount": 2,
-        "totalVisits": 196
-      },
-      {
-        "species": "Euchloe tagis",
-        "frequency": 1.0204081632653061,
-        "visitCount": 2,
-        "totalVisits": 196
-      },
-      {
-        "species": "Lasiommata maera",
-        "frequency": 1.0204081632653061,
-        "visitCount": 2,
-        "totalVisits": 196
-      },
-      {
-        "species": "Apatura ilia",
-        "frequency": 1.0204081632653061,
-        "visitCount": 2,
-        "totalVisits": 196
-      },
-      {
-        "species": "Thymelicus lineola",
-        "frequency": 1.0204081632653061,
-        "visitCount": 2,
-        "totalVisits": 196
-      },
-      {
-        "species": "Limenitis reducta",
-        "frequency": 1.0204081632653061,
-        "visitCount": 2,
-        "totalVisits": 196
-      },
-      {
-        "species": "Speyeria aglaja",
-        "frequency": 1.0204081632653061,
-        "visitCount": 2,
-        "totalVisits": 196
-      },
-      {
-        "species": "Phengaris alcon",
-        "frequency": 1.0204081632653061,
-        "visitCount": 2,
-        "totalVisits": 196
-      },
-      {
-        "species": "Polyommatus thersites",
-        "frequency": 0.5102040816326531,
-        "visitCount": 1,
-        "totalVisits": 196
-      },
-      {
-        "species": "Glaucopsyche alexis",
-        "frequency": 0.5102040816326531,
-        "visitCount": 1,
-        "totalVisits": 196
-      },
-      {
-        "species": "Pseudophilotes panoptes",
-        "frequency": 0.5102040816326531,
-        "visitCount": 1,
-        "totalVisits": 196
-      },
-      {
-        "species": "Satyrium ilicis",
-        "frequency": 0.5102040816326531,
-        "visitCount": 1,
-        "totalVisits": 196
-      },
-      {
-        "species": "Libythea celtis",
-        "frequency": 0.5102040816326531,
-        "visitCount": 1,
-        "totalVisits": 196
-      },
-      {
-        "species": "Melitaea didyma",
-        "frequency": 0.5102040816326531,
-        "visitCount": 1,
-        "totalVisits": 196
-      },
-      {
-        "species": "Brenthis daphne",
-        "frequency": 0.5102040816326531,
-        "visitCount": 1,
-        "totalVisits": 196
+        "frequency": 2.512562814070352,
+        "visitCount": 5,
+        "totalVisits": 199
       },
       {
         "species": "Argynnis paphia",
-        "frequency": 0.5102040816326531,
+        "frequency": 2.512562814070352,
+        "visitCount": 5,
+        "totalVisits": 199
+      },
+      {
+        "species": "Vanessa virginiensis",
+        "frequency": 2.0100502512562812,
+        "visitCount": 4,
+        "totalVisits": 199
+      },
+      {
+        "species": "Cyaniris semiargus",
+        "frequency": 2.0100502512562812,
+        "visitCount": 4,
+        "totalVisits": 199
+      },
+      {
+        "species": "Coenonympha glycerion",
+        "frequency": 2.0100502512562812,
+        "visitCount": 4,
+        "totalVisits": 199
+      },
+      {
+        "species": "Fabriciana adippe",
+        "frequency": 2.0100502512562812,
+        "visitCount": 4,
+        "totalVisits": 199
+      },
+      {
+        "species": "Callophrys avis",
+        "frequency": 1.507537688442211,
+        "visitCount": 3,
+        "totalVisits": 199
+      },
+      {
+        "species": "Nymphalis antiopa",
+        "frequency": 1.507537688442211,
+        "visitCount": 3,
+        "totalVisits": 199
+      },
+      {
+        "species": "Pseudophilotes baton",
+        "frequency": 1.507537688442211,
+        "visitCount": 3,
+        "totalVisits": 199
+      },
+      {
+        "species": "Fabriciana niobe",
+        "frequency": 1.507537688442211,
+        "visitCount": 3,
+        "totalVisits": 199
+      },
+      {
+        "species": "Apatura ilia",
+        "frequency": 1.507537688442211,
+        "visitCount": 3,
+        "totalVisits": 199
+      },
+      {
+        "species": "Limenitis reducta",
+        "frequency": 1.507537688442211,
+        "visitCount": 3,
+        "totalVisits": 199
+      },
+      {
+        "species": "Melitaea parthenoides",
+        "frequency": 1.507537688442211,
+        "visitCount": 3,
+        "totalVisits": 199
+      },
+      {
+        "species": "Aricia montensis",
+        "frequency": 1.507537688442211,
+        "visitCount": 3,
+        "totalVisits": 199
+      },
+      {
+        "species": "Arethusana arethusa",
+        "frequency": 1.507537688442211,
+        "visitCount": 3,
+        "totalVisits": 199
+      },
+      {
+        "species": "Tomares ballus",
+        "frequency": 1.0050251256281406,
+        "visitCount": 2,
+        "totalVisits": 199
+      },
+      {
+        "species": "Anthocharis euphenoides",
+        "frequency": 1.0050251256281406,
+        "visitCount": 2,
+        "totalVisits": 199
+      },
+      {
+        "species": "Euchloe tagis",
+        "frequency": 1.0050251256281406,
+        "visitCount": 2,
+        "totalVisits": 199
+      },
+      {
+        "species": "Glaucopsyche alexis",
+        "frequency": 1.0050251256281406,
+        "visitCount": 2,
+        "totalVisits": 199
+      },
+      {
+        "species": "Lasiommata maera",
+        "frequency": 1.0050251256281406,
+        "visitCount": 2,
+        "totalVisits": 199
+      },
+      {
+        "species": "Thymelicus lineola",
+        "frequency": 1.0050251256281406,
+        "visitCount": 2,
+        "totalVisits": 199
+      },
+      {
+        "species": "Speyeria aglaja",
+        "frequency": 1.0050251256281406,
+        "visitCount": 2,
+        "totalVisits": 199
+      },
+      {
+        "species": "Phengaris alcon",
+        "frequency": 1.0050251256281406,
+        "visitCount": 2,
+        "totalVisits": 199
+      },
+      {
+        "species": "Polyommatus thersites",
+        "frequency": 0.5025125628140703,
         "visitCount": 1,
-        "totalVisits": 196
+        "totalVisits": 199
+      },
+      {
+        "species": "Pseudophilotes panoptes",
+        "frequency": 0.5025125628140703,
+        "visitCount": 1,
+        "totalVisits": 199
+      },
+      {
+        "species": "Satyrium ilicis",
+        "frequency": 0.5025125628140703,
+        "visitCount": 1,
+        "totalVisits": 199
+      },
+      {
+        "species": "Libythea celtis",
+        "frequency": 0.5025125628140703,
+        "visitCount": 1,
+        "totalVisits": 199
+      },
+      {
+        "species": "Melitaea didyma",
+        "frequency": 0.5025125628140703,
+        "visitCount": 1,
+        "totalVisits": 199
+      },
+      {
+        "species": "Brenthis daphne",
+        "frequency": 0.5025125628140703,
+        "visitCount": 1,
+        "totalVisits": 199
       },
       {
         "species": "Melanargia russiae",
-        "frequency": 0.5102040816326531,
+        "frequency": 0.5025125628140703,
         "visitCount": 1,
-        "totalVisits": 196
+        "totalVisits": 199
       },
       {
         "species": "Hesperia comma",
-        "frequency": 0.5102040816326531,
+        "frequency": 0.5025125628140703,
         "visitCount": 1,
-        "totalVisits": 196
+        "totalVisits": 199
       },
       {
         "species": "Satyrus actaea",
-        "frequency": 0.5102040816326531,
+        "frequency": 0.5025125628140703,
         "visitCount": 1,
-        "totalVisits": 196
+        "totalVisits": 199
       },
       {
         "species": "Erynnis tages",
-        "frequency": 0.5102040816326531,
+        "frequency": 0.5025125628140703,
         "visitCount": 1,
-        "totalVisits": 196
+        "totalVisits": 199
       },
       {
         "species": "Gegenes nostrodamus",
-        "frequency": 0.5102040816326531,
+        "frequency": 0.5025125628140703,
         "visitCount": 1,
-        "totalVisits": 196
+        "totalVisits": 199
+      },
+      {
+        "species": "Limenitis camilla",
+        "frequency": 0.5025125628140703,
+        "visitCount": 1,
+        "totalVisits": 199
       }
     ]
   },
@@ -14707,6 +14715,52 @@
         ]
       },
       {
+        "transectId": "336687",
+        "diversityCount": 40,
+        "speciesList": [
+          "Aglais io",
+          "Anthocharis cardamines",
+          "Anthocharis euphenoides",
+          "Argynnis pandora",
+          "Aricia cramera",
+          "Callophrys rubi",
+          "Celastrina argiolus",
+          "Coenonympha pamphilus",
+          "Colias crocea",
+          "Euchloe belemia",
+          "Euchloe crameri",
+          "Glaucopsyche alexis",
+          "Gonepteryx rhamni",
+          "Hipparchia fidia",
+          "Iphiclides feisthamelii",
+          "Issoria lathonia",
+          "Lasiommata megera",
+          "Leptidea sinapis",
+          "Limenitis reducta",
+          "Lycaena bleusei",
+          "Lycaena phlaeas",
+          "Lycaena tityrus",
+          "Maniola jurtina",
+          "Melanargia lachesis",
+          "Melitaea deione",
+          "Muschampia proto",
+          "Nymphalis polychloros",
+          "Pararge aegeria",
+          "Pieris brassicae",
+          "Pieris napi",
+          "Pieris rapae",
+          "Polygonia c-album",
+          "Polyommatus icarus/celina",
+          "Pyronia bathseba",
+          "Pyronia cecilia",
+          "Pyronia tithonus",
+          "Spialia sertorius",
+          "Vanessa atalanta",
+          "Vanessa cardui",
+          "Zerynthia rumina"
+        ]
+      },
+      {
         "transectId": "298076",
         "diversityCount": 40,
         "speciesList": [
@@ -14885,6 +14939,49 @@
         ]
       },
       {
+        "transectId": "363446",
+        "diversityCount": 37,
+        "speciesList": [
+          "Anthocharis cardamines",
+          "Apatura ilia",
+          "Aporia crataegi",
+          "Argynnis paphia",
+          "Aricia cramera",
+          "Callophrys rubi",
+          "Celastrina argiolus",
+          "Coenonympha arcania",
+          "Coenonympha dorus",
+          "Coenonympha pamphilus",
+          "Colias crocea",
+          "Euphydryas aurinia",
+          "Favonius quercus",
+          "Glaucopsyche melanops",
+          "Gonepteryx rhamni",
+          "Hipparchia fidia",
+          "Hipparchia hermione",
+          "Hipparchia semele",
+          "Iphiclides feisthamelii",
+          "Lampides boeticus",
+          "Lasiommata megera",
+          "Leptidea sinapis",
+          "Leptotes pirithous",
+          "Limenitis camilla",
+          "Lycaena bleusei",
+          "Lycaena phlaeas",
+          "Maniola jurtina",
+          "Melanargia lachesis",
+          "Melitaea phoebe",
+          "Ochlodes sylvanus",
+          "Pararge aegeria",
+          "Pieris brassicae",
+          "Pieris napi",
+          "Pieris rapae",
+          "Pontia daplidice",
+          "Pyronia tithonus",
+          "Vanessa cardui"
+        ]
+      },
+      {
         "transectId": "330931",
         "diversityCount": 35,
         "speciesList": [
@@ -15005,6 +15102,45 @@
         ]
       },
       {
+        "transectId": "304132",
+        "diversityCount": 33,
+        "speciesList": [
+          "Anthocharis cardamines",
+          "Aricia cramera",
+          "Brintesia circe",
+          "Callophrys rubi",
+          "Celastrina argiolus",
+          "Coenonympha pamphilus",
+          "Colias crocea",
+          "Euphydryas aurinia",
+          "Glaucopsyche melanops",
+          "Gonepteryx cleopatra",
+          "Gonepteryx rhamni",
+          "Hipparchia fidia",
+          "Hipparchia hermione",
+          "Hipparchia statilinus",
+          "Issoria lathonia",
+          "Lampides boeticus",
+          "Lasiommata megera",
+          "Leptotes pirithous",
+          "Lycaena alciphron",
+          "Maniola jurtina",
+          "Melanargia lachesis",
+          "Melitaea celadussa",
+          "Melitaea deione",
+          "Melitaea phoebe",
+          "Pararge aegeria",
+          "Pieris brassicae",
+          "Pieris napi",
+          "Pieris rapae",
+          "Polyommatus icarus/celina",
+          "Pontia daplidice",
+          "Pyronia tithonus",
+          "Thymelicus sylvestris",
+          "Vanessa cardui"
+        ]
+      },
+      {
         "transectId": "362532",
         "diversityCount": 32,
         "speciesList": [
@@ -15039,44 +15175,6 @@
           "Spialia sertorius",
           "Thymelicus sylvestris",
           "Vanessa atalanta",
-          "Vanessa cardui"
-        ]
-      },
-      {
-        "transectId": "304132",
-        "diversityCount": 32,
-        "speciesList": [
-          "Anthocharis cardamines",
-          "Aricia cramera",
-          "Brintesia circe",
-          "Callophrys rubi",
-          "Celastrina argiolus",
-          "Coenonympha pamphilus",
-          "Colias crocea",
-          "Euphydryas aurinia",
-          "Glaucopsyche melanops",
-          "Gonepteryx cleopatra",
-          "Gonepteryx rhamni",
-          "Hipparchia fidia",
-          "Hipparchia statilinus",
-          "Issoria lathonia",
-          "Lampides boeticus",
-          "Lasiommata megera",
-          "Leptotes pirithous",
-          "Lycaena alciphron",
-          "Maniola jurtina",
-          "Melanargia lachesis",
-          "Melitaea celadussa",
-          "Melitaea deione",
-          "Melitaea phoebe",
-          "Pararge aegeria",
-          "Pieris brassicae",
-          "Pieris napi",
-          "Pieris rapae",
-          "Polyommatus icarus/celina",
-          "Pontia daplidice",
-          "Pyronia tithonus",
-          "Thymelicus sylvestris",
           "Vanessa cardui"
         ]
       },
@@ -15604,6 +15702,37 @@
         ]
       },
       {
+        "transectId": "240301",
+        "diversityCount": 25,
+        "speciesList": [
+          "Aricia cramera",
+          "Callophrys rubi",
+          "Charaxes jasius",
+          "Coenonympha pamphilus",
+          "Colias crocea",
+          "Gonepteryx cleopatra",
+          "Iphiclides feisthamelii",
+          "Lampides boeticus",
+          "Lasiommata megera",
+          "Leptotes pirithous",
+          "Lycaena phlaeas",
+          "Maniola jurtina",
+          "Papilio machaon",
+          "Pararge aegeria",
+          "Pieris brassicae",
+          "Pieris rapae",
+          "Polyommatus icarus/celina",
+          "Pontia daplidice",
+          "Pyronia bathseba",
+          "Pyronia cecilia",
+          "Pyronia tithonus",
+          "Satyrium esculi",
+          "Thymelicus sylvestris",
+          "Vanessa atalanta",
+          "Vanessa cardui"
+        ]
+      },
+      {
         "transectId": "291783",
         "diversityCount": 24,
         "speciesList": [
@@ -15634,31 +15763,32 @@
         ]
       },
       {
-        "transectId": "336687",
-        "diversityCount": 22,
+        "transectId": "396636",
+        "diversityCount": 23,
         "speciesList": [
-          "Aglais io",
-          "Anthocharis cardamines",
-          "Anthocharis euphenoides",
-          "Celastrina argiolus",
-          "Coenonympha pamphilus",
+          "Aricia cramera",
+          "Cacyreus marshalli",
+          "Carcharodus alceae",
           "Colias crocea",
           "Euchloe crameri",
-          "Gonepteryx rhamni",
           "Iphiclides feisthamelii",
-          "Issoria lathonia",
-          "Lasiommata megera",
-          "Leptidea sinapis",
+          "Lampides boeticus",
+          "Leptotes pirithous",
           "Lycaena phlaeas",
-          "Melitaea deione",
-          "Muschampia proto",
-          "Nymphalis polychloros",
+          "Lysandra bellargus",
+          "Maniola jurtina",
+          "Papilio machaon",
           "Pararge aegeria",
           "Pieris brassicae",
-          "Pieris napi",
           "Pieris rapae",
-          "Polygonia c-album",
-          "Zerynthia rumina"
+          "Polyommatus icarus/celina",
+          "Pontia daplidice",
+          "Pyrgus malvoides",
+          "Pyronia cecilia",
+          "Satyrium esculi",
+          "Vanessa atalanta",
+          "Vanessa cardui",
+          "Zizeeria knysna"
         ]
       },
       {
@@ -15687,34 +15817,6 @@
           "Thymelicus acteon",
           "Vanessa atalanta",
           "Vanessa cardui"
-        ]
-      },
-      {
-        "transectId": "396636",
-        "diversityCount": 22,
-        "speciesList": [
-          "Aricia cramera",
-          "Cacyreus marshalli",
-          "Carcharodus alceae",
-          "Colias crocea",
-          "Euchloe crameri",
-          "Iphiclides feisthamelii",
-          "Lampides boeticus",
-          "Leptotes pirithous",
-          "Lycaena phlaeas",
-          "Maniola jurtina",
-          "Papilio machaon",
-          "Pararge aegeria",
-          "Pieris brassicae",
-          "Pieris rapae",
-          "Polyommatus icarus/celina",
-          "Pontia daplidice",
-          "Pyrgus malvoides",
-          "Pyronia cecilia",
-          "Satyrium esculi",
-          "Vanessa atalanta",
-          "Vanessa cardui",
-          "Zizeeria knysna"
         ]
       },
       {
@@ -15904,6 +16006,32 @@
         ]
       },
       {
+        "transectId": "396488",
+        "diversityCount": 20,
+        "speciesList": [
+          "Aricia cramera",
+          "Carcharodus alceae",
+          "Celastrina argiolus",
+          "Colias crocea",
+          "Iphiclides feisthamelii",
+          "Lampides boeticus",
+          "Lasiommata megera",
+          "Leptotes pirithous",
+          "Lycaena phlaeas",
+          "Maniola jurtina",
+          "Papilio machaon",
+          "Pararge aegeria",
+          "Pieris brassicae",
+          "Pieris rapae",
+          "Polyommatus icarus/celina",
+          "Pontia daplidice",
+          "Pyrgus malvoides",
+          "Pyronia cecilia",
+          "Vanessa atalanta",
+          "Vanessa cardui"
+        ]
+      },
+      {
         "transectId": "243008",
         "diversityCount": 19,
         "speciesList": [
@@ -15929,7 +16057,7 @@
         ]
       },
       {
-        "transectId": "396488",
+        "transectId": "396663",
         "diversityCount": 19,
         "speciesList": [
           "Aricia cramera",
@@ -15940,31 +16068,7 @@
           "Lasiommata megera",
           "Leptotes pirithous",
           "Lycaena phlaeas",
-          "Maniola jurtina",
-          "Papilio machaon",
-          "Pararge aegeria",
-          "Pieris brassicae",
-          "Pieris rapae",
-          "Polyommatus icarus/celina",
-          "Pontia daplidice",
-          "Pyrgus malvoides",
-          "Pyronia cecilia",
-          "Vanessa atalanta",
-          "Vanessa cardui"
-        ]
-      },
-      {
-        "transectId": "396663",
-        "diversityCount": 18,
-        "speciesList": [
-          "Aricia cramera",
-          "Carcharodus alceae",
-          "Colias crocea",
-          "Iphiclides feisthamelii",
-          "Lampides boeticus",
-          "Lasiommata megera",
-          "Leptotes pirithous",
-          "Lycaena phlaeas",
+          "Lysandra bellargus",
           "Maniola jurtina",
           "Papilio machaon",
           "Pararge aegeria",
@@ -16203,6 +16307,72 @@
         ]
       },
       {
+        "transectId": "227933",
+        "diversityCount": 16,
+        "speciesList": [
+          "Aricia cramera",
+          "Callophrys rubi",
+          "Colias crocea",
+          "Euphydryas aurinia",
+          "Hipparchia fidia",
+          "Lampides boeticus",
+          "Lasiommata megera",
+          "Leptotes pirithous",
+          "Lycaena phlaeas",
+          "Lysandra bellargus",
+          "Papilio machaon",
+          "Pararge aegeria",
+          "Pieris napi",
+          "Pyronia cecilia",
+          "Vanessa cardui",
+          "Zerynthia rumina"
+        ]
+      },
+      {
+        "transectId": "338236",
+        "diversityCount": 16,
+        "speciesList": [
+          "Anthocharis cardamines",
+          "Charaxes jasius",
+          "Euchloe crameri",
+          "Gonepteryx cleopatra",
+          "Hipparchia fidia",
+          "Lasiommata megera",
+          "Leptotes pirithous",
+          "Maniola jurtina",
+          "Papilio machaon",
+          "Pararge aegeria",
+          "Pieris brassicae",
+          "Pieris rapae",
+          "Satyrium esculi",
+          "Satyrium spini",
+          "Vanessa atalanta",
+          "Vanessa cardui"
+        ]
+      },
+      {
+        "transectId": "218548",
+        "diversityCount": 16,
+        "speciesList": [
+          "Aricia cramera",
+          "Coenonympha pamphilus",
+          "Colias crocea",
+          "Gonepteryx rhamni",
+          "Lampides boeticus",
+          "Leptotes pirithous",
+          "Papilio machaon",
+          "Pararge aegeria",
+          "Pieris brassicae",
+          "Pieris napi",
+          "Pieris rapae",
+          "Polyommatus icarus/celina",
+          "Pyronia cecilia",
+          "Vanessa atalanta",
+          "Vanessa cardui",
+          "Zizeeria knysna"
+        ]
+      },
+      {
         "transectId": "256525",
         "diversityCount": 15,
         "speciesList": [
@@ -16266,24 +16436,24 @@
         ]
       },
       {
-        "transectId": "227933",
+        "transectId": "228032",
         "diversityCount": 15,
         "speciesList": [
-          "Aricia cramera",
           "Callophrys rubi",
+          "Carcharodus tripolinus",
           "Colias crocea",
           "Euphydryas aurinia",
-          "Hipparchia fidia",
-          "Lampides boeticus",
+          "Gonepteryx cleopatra",
+          "Gonepteryx rhamni",
           "Lasiommata megera",
           "Lycaena phlaeas",
           "Lysandra bellargus",
-          "Papilio machaon",
+          "Maniola jurtina",
           "Pararge aegeria",
+          "Pieris brassicae",
           "Pieris napi",
-          "Pyronia cecilia",
-          "Vanessa cardui",
-          "Zerynthia rumina"
+          "Pieris rapae",
+          "Vanessa cardui"
         ]
       },
       {
@@ -16367,26 +16537,6 @@
         ]
       },
       {
-        "transectId": "228032",
-        "diversityCount": 14,
-        "speciesList": [
-          "Callophrys rubi",
-          "Carcharodus tripolinus",
-          "Colias crocea",
-          "Euphydryas aurinia",
-          "Gonepteryx cleopatra",
-          "Gonepteryx rhamni",
-          "Lasiommata megera",
-          "Lycaena phlaeas",
-          "Maniola jurtina",
-          "Pararge aegeria",
-          "Pieris brassicae",
-          "Pieris napi",
-          "Pieris rapae",
-          "Vanessa cardui"
-        ]
-      },
-      {
         "transectId": "216727",
         "diversityCount": 13,
         "speciesList": [
@@ -16403,6 +16553,25 @@
           "Pieris rapae",
           "Vanessa atalanta",
           "Vanessa cardui"
+        ]
+      },
+      {
+        "transectId": "393238",
+        "diversityCount": 13,
+        "speciesList": [
+          "Aricia cramera",
+          "Carcharodus alceae",
+          "Colias crocea",
+          "Lampides boeticus",
+          "Leptotes pirithous",
+          "Lycaena phlaeas",
+          "Pararge aegeria",
+          "Pieris rapae",
+          "Polyommatus icarus/celina",
+          "Pontia daplidice",
+          "Vanessa atalanta",
+          "Vanessa cardui",
+          "Zizeeria knysna"
         ]
       },
       {
@@ -16440,25 +16609,6 @@
           "Pieris rapae",
           "Polyommatus icarus/celina",
           "Vanessa atalanta",
-          "Vanessa cardui"
-        ]
-      },
-      {
-        "transectId": "240301",
-        "diversityCount": 13,
-        "speciesList": [
-          "Aricia cramera",
-          "Coenonympha pamphilus",
-          "Iphiclides feisthamelii",
-          "Lampides boeticus",
-          "Lasiommata megera",
-          "Lycaena phlaeas",
-          "Maniola jurtina",
-          "Pieris rapae",
-          "Polyommatus icarus/celina",
-          "Pontia daplidice",
-          "Pyronia cecilia",
-          "Pyronia tithonus",
           "Vanessa cardui"
         ]
       },
@@ -16513,24 +16663,6 @@
           "Pieris rapae",
           "Pyronia cecilia",
           "Thymelicus acteon",
-          "Vanessa atalanta",
-          "Vanessa cardui"
-        ]
-      },
-      {
-        "transectId": "393238",
-        "diversityCount": 12,
-        "speciesList": [
-          "Aricia cramera",
-          "Carcharodus alceae",
-          "Colias crocea",
-          "Lampides boeticus",
-          "Leptotes pirithous",
-          "Lycaena phlaeas",
-          "Pararge aegeria",
-          "Pieris rapae",
-          "Polyommatus icarus/celina",
-          "Pontia daplidice",
           "Vanessa atalanta",
           "Vanessa cardui"
         ]
@@ -16606,19 +16738,19 @@
         ]
       },
       {
-        "transectId": "363446",
+        "transectId": "319947",
         "diversityCount": 10,
         "speciesList": [
-          "Anthocharis cardamines",
-          "Callophrys rubi",
-          "Colias crocea",
-          "Glaucopsyche melanops",
-          "Gonepteryx rhamni",
+          "Cacyreus marshalli",
+          "Carcharodus alceae",
+          "Hipparchia fidia",
           "Iphiclides feisthamelii",
-          "Leptidea sinapis",
+          "Maniola jurtina",
+          "Papilio machaon",
           "Pararge aegeria",
-          "Pieris brassicae",
-          "Pieris napi"
+          "Pieris rapae",
+          "Pyronia cecilia",
+          "Vanessa cardui"
         ]
       },
       {
@@ -16634,6 +16766,21 @@
           "Pieris rapae",
           "Vanessa cardui",
           "Zerynthia rumina"
+        ]
+      },
+      {
+        "transectId": "402279",
+        "diversityCount": 9,
+        "speciesList": [
+          "Carcharodus alceae",
+          "Colias crocea",
+          "Lycaena phlaeas",
+          "Papilio machaon",
+          "Pararge aegeria",
+          "Pieris rapae",
+          "Polyommatus icarus/celina",
+          "Vanessa atalanta",
+          "Vanessa cardui"
         ]
       },
       {
@@ -16672,20 +16819,6 @@
           "Iphiclides feisthamelii",
           "Papilio machaon",
           "Pararge aegeria",
-          "Pieris rapae",
-          "Polyommatus icarus/celina",
-          "Vanessa atalanta",
-          "Vanessa cardui"
-        ]
-      },
-      {
-        "transectId": "402279",
-        "diversityCount": 8,
-        "speciesList": [
-          "Carcharodus alceae",
-          "Colias crocea",
-          "Lycaena phlaeas",
-          "Papilio machaon",
           "Pieris rapae",
           "Polyommatus icarus/celina",
           "Vanessa atalanta",
@@ -16811,14 +16944,6 @@
         "speciesList": [
           "Colias crocea",
           "Lycaena phlaeas",
-          "Pararge aegeria"
-        ]
-      },
-      {
-        "transectId": "338236",
-        "diversityCount": 2,
-        "speciesList": [
-          "Charaxes jasius",
           "Pararge aegeria"
         ]
       }
@@ -257335,6 +257460,36 @@
           "362532",
           "Gonepteryx rhamni",
           2
+        ],
+        [
+          "338236",
+          "Anthocharis cardamines",
+          4
+        ],
+        [
+          "338236",
+          "Lasiommata megera",
+          4
+        ],
+        [
+          "338236",
+          "Papilio machaon",
+          1
+        ],
+        [
+          "338236",
+          "Pieris brassicae",
+          1
+        ],
+        [
+          "338236",
+          "Vanessa atalanta",
+          2
+        ],
+        [
+          "338236",
+          "Lasiommata megera",
+          1
         ]
       ],
       "07/03/2026": [
@@ -257714,6 +257869,41 @@
           "243847",
           "Coenonympha pamphilus",
           1
+        ],
+        [
+          "240301",
+          "Pieris brassicae",
+          2
+        ],
+        [
+          "240301",
+          "Pieris brassicae",
+          1
+        ],
+        [
+          "240301",
+          "Pieris rapae",
+          1
+        ],
+        [
+          "240301",
+          "Papilio machaon",
+          2
+        ],
+        [
+          "240301",
+          "Pieris brassicae",
+          1
+        ],
+        [
+          "240301",
+          "Callophrys rubi",
+          2
+        ],
+        [
+          "240301",
+          "Vanessa atalanta",
+          1
         ]
       ],
       "10/03/2026": [
@@ -257927,6 +258117,31 @@
         [
           "243747",
           "Pararge aegeria",
+          1
+        ],
+        [
+          "338236",
+          "Anthocharis cardamines",
+          5
+        ],
+        [
+          "338236",
+          "Lycaenidae",
+          1
+        ],
+        [
+          "338236",
+          "Pieris brassicae",
+          2
+        ],
+        [
+          "338236",
+          "Vanessa atalanta",
+          1
+        ],
+        [
+          "338236",
+          "Lycaenidae",
           1
         ]
       ],
@@ -258858,6 +259073,71 @@
         [
           "227921",
           "Gonepteryx rhamni",
+          1
+        ],
+        [
+          "338236",
+          "Anthocharis cardamines",
+          3
+        ],
+        [
+          "338236",
+          "Pararge aegeria",
+          1
+        ],
+        [
+          "338236",
+          "Lasiommata megera",
+          2
+        ],
+        [
+          "338236",
+          "Pieris brassicae",
+          3
+        ],
+        [
+          "338236",
+          "Lycaenidae",
+          3
+        ],
+        [
+          "338236",
+          "Pieris brassicae",
+          1
+        ],
+        [
+          "338236",
+          "Lycaenidae",
+          1
+        ],
+        [
+          "240301",
+          "Callophrys rubi",
+          1
+        ],
+        [
+          "240301",
+          "Pararge aegeria",
+          1
+        ],
+        [
+          "240301",
+          "Callophrys rubi",
+          2
+        ],
+        [
+          "240301",
+          "Pieris brassicae",
+          2
+        ],
+        [
+          "240301",
+          "Papilio machaon",
+          1
+        ],
+        [
+          "240301",
+          "Pieris rapae",
           1
         ]
       ],
@@ -260476,6 +260756,61 @@
           "308805",
           "Euchloe crameri",
           1
+        ],
+        [
+          "338236",
+          "Leptotes pirithous",
+          1
+        ],
+        [
+          "338236",
+          "Pieris napi/rapae",
+          1
+        ],
+        [
+          "338236",
+          "Vanessa cardui",
+          1
+        ],
+        [
+          "338236",
+          "Lycaenidae",
+          1
+        ],
+        [
+          "338236",
+          "Euchloe crameri",
+          1
+        ],
+        [
+          "338236",
+          "Euchloe crameri",
+          1
+        ],
+        [
+          "338236",
+          "Vanessa atalanta",
+          1
+        ],
+        [
+          "338236",
+          "Pieris brassicae",
+          2
+        ],
+        [
+          "338236",
+          "Pararge aegeria",
+          1
+        ],
+        [
+          "338236",
+          "Pieris napi/rapae",
+          1
+        ],
+        [
+          "338236",
+          "Nymphalidae",
+          1
         ]
       ],
       "19/03/2026": [
@@ -260859,6 +261194,31 @@
         [
           "228032",
           "Gonepteryx rhamni",
+          2
+        ],
+        [
+          "240301",
+          "Vanessa atalanta",
+          1
+        ],
+        [
+          "240301",
+          "Pieris rapae",
+          1
+        ],
+        [
+          "240301",
+          "Lasiommata megera",
+          1
+        ],
+        [
+          "240301",
+          "Callophrys rubi",
+          2
+        ],
+        [
+          "240301",
+          "Pieris rapae",
           2
         ]
       ],
@@ -262095,6 +262455,36 @@
           "240222",
           "Pieris brassicae",
           1
+        ],
+        [
+          "218548",
+          "Papilio machaon",
+          1
+        ],
+        [
+          "218548",
+          "Vanessa atalanta",
+          1
+        ],
+        [
+          "218548",
+          "Pararge aegeria",
+          2
+        ],
+        [
+          "218548",
+          "Gonepteryx rhamni",
+          2
+        ],
+        [
+          "218548",
+          "Pieris rapae",
+          1
+        ],
+        [
+          "218548",
+          "Pararge aegeria",
+          2
         ]
       ],
       "31/03/2026": [
@@ -263181,6 +263571,26 @@
           "396405",
           "Lycaenidae",
           4
+        ],
+        [
+          "338236",
+          "Pieris brassicae",
+          6
+        ],
+        [
+          "338236",
+          "Anthocharis cardamines",
+          1
+        ],
+        [
+          "338236",
+          "Lycaenidae",
+          1
+        ],
+        [
+          "338236",
+          "Pieris brassicae",
+          3
         ]
       ],
       "03/04/2026": [
@@ -264523,6 +264933,56 @@
           "222006",
           "Zerynthia rumina",
           3
+        ],
+        [
+          "338236",
+          "Nymphalidae",
+          1
+        ],
+        [
+          "338236",
+          "Pieris brassicae",
+          6
+        ],
+        [
+          "338236",
+          "Pararge aegeria",
+          3
+        ],
+        [
+          "338236",
+          "Pyronia",
+          1
+        ],
+        [
+          "338236",
+          "Anthocharis cardamines",
+          2
+        ],
+        [
+          "338236",
+          "Vanessa cardui",
+          3
+        ],
+        [
+          "338236",
+          "Lasiommata megera",
+          4
+        ],
+        [
+          "338236",
+          "Lycaenidae",
+          1
+        ],
+        [
+          "338236",
+          "Pararge aegeria",
+          1
+        ],
+        [
+          "338236",
+          "Anthocharis cardamines",
+          2
         ]
       ],
       "10/04/2026": [
@@ -266210,6 +266670,26 @@
           "362532",
           "Papilio machaon",
           2
+        ],
+        [
+          "338236",
+          "Pieris rapae",
+          3
+        ],
+        [
+          "338236",
+          "Pieris brassicae",
+          2
+        ],
+        [
+          "338236",
+          "Lycaenidae",
+          1
+        ],
+        [
+          "338236",
+          "Nymphalidae",
+          1
         ]
       ],
       "17/04/2026": [
@@ -268232,6 +268712,41 @@
           "362532",
           "Vanessa cardui",
           1
+        ],
+        [
+          "338236",
+          "Vanessa cardui",
+          1
+        ],
+        [
+          "338236",
+          "Pieris brassicae",
+          4
+        ],
+        [
+          "338236",
+          "Pararge aegeria",
+          3
+        ],
+        [
+          "338236",
+          "Vanessa cardui",
+          1
+        ],
+        [
+          "338236",
+          "Pieris brassicae",
+          2
+        ],
+        [
+          "338236",
+          "Lycaenidae",
+          1
+        ],
+        [
+          "338236",
+          "Nymphalidae",
+          2
         ]
       ],
       "23/04/2026": [
@@ -268824,6 +269339,66 @@
           "396405",
           "Colias crocea",
           1
+        ],
+        [
+          "336687",
+          "Vanessa cardui",
+          1
+        ],
+        [
+          "336687",
+          "Pieris brassicae",
+          1
+        ],
+        [
+          "336687",
+          "Iphiclides feisthamelii",
+          1
+        ],
+        [
+          "336687",
+          "Callophrys rubi",
+          1
+        ],
+        [
+          "336687",
+          "Lycaena tityrus",
+          1
+        ],
+        [
+          "336687",
+          "Spialia sertorius",
+          1
+        ],
+        [
+          "336687",
+          "Iphiclides feisthamelii",
+          1
+        ],
+        [
+          "336687",
+          "Anthocharis cardamines",
+          2
+        ],
+        [
+          "336687",
+          "Vanessa cardui",
+          2
+        ],
+        [
+          "336687",
+          "Pieris brassicae",
+          2
+        ],
+        [
+          "336687",
+          "Anthocharis cardamines",
+          1
+        ],
+        [
+          "336687",
+          "Lycaena tityrus",
+          1
         ]
       ],
       "24/04/2026": [
@@ -269141,6 +269716,36 @@
           "362532",
           "Lampides boeticus",
           2
+        ],
+        [
+          "218548",
+          "Pieris",
+          2
+        ],
+        [
+          "218548",
+          "Pararge aegeria",
+          1
+        ],
+        [
+          "218548",
+          "Colias crocea",
+          1
+        ],
+        [
+          "218548",
+          "Pararge aegeria",
+          11
+        ],
+        [
+          "218548",
+          "Vanessa cardui",
+          1
+        ],
+        [
+          "218548",
+          "Pieris rapae",
+          1
         ]
       ],
       "26/04/2026": [
@@ -270384,6 +270989,76 @@
           "362532",
           "Lasiommata megera",
           1
+        ],
+        [
+          "336687",
+          "Anthocharis cardamines",
+          1
+        ],
+        [
+          "336687",
+          "Pieris brassicae",
+          1
+        ],
+        [
+          "336687",
+          "Coenonympha pamphilus",
+          1
+        ],
+        [
+          "336687",
+          "Anthocharis cardamines",
+          1
+        ],
+        [
+          "336687",
+          "Anthocharis cardamines",
+          4
+        ],
+        [
+          "336687",
+          "Lasiommata megera",
+          1
+        ],
+        [
+          "336687",
+          "Vanessa cardui",
+          1
+        ],
+        [
+          "336687",
+          "Aricia cramera",
+          2
+        ],
+        [
+          "336687",
+          "Glaucopsyche alexis",
+          1
+        ],
+        [
+          "336687",
+          "Issoria lathonia",
+          2
+        ],
+        [
+          "336687",
+          "Lycaena tityrus",
+          1
+        ],
+        [
+          "336687",
+          "Polyommatus icarus/celina",
+          1
+        ],
+        [
+          "336687",
+          "Pieris brassicae",
+          1
+        ],
+        [
+          "336687",
+          "Pararge aegeria",
+          1
         ]
       ],
       "13/04/2026": [
@@ -271175,6 +271850,41 @@
           "396380",
           "Pieris rapae",
           1
+        ],
+        [
+          "338236",
+          "Gonepteryx cleopatra",
+          2
+        ],
+        [
+          "338236",
+          "Pieris brassicae",
+          3
+        ],
+        [
+          "338236",
+          "Vanessa cardui",
+          2
+        ],
+        [
+          "338236",
+          "Nymphalidae",
+          4
+        ],
+        [
+          "338236",
+          "Maniola jurtina",
+          2
+        ],
+        [
+          "338236",
+          "Lycaenidae",
+          1
+        ],
+        [
+          "338236",
+          "Nymphalidae",
+          2
         ]
       ],
       "04/05/2026": [
@@ -272186,6 +272896,56 @@
           "396488",
           "Vanessa cardui",
           1
+        ],
+        [
+          "338236",
+          "Satyrium esculi",
+          3
+        ],
+        [
+          "338236",
+          "Satyrium spini",
+          2
+        ],
+        [
+          "338236",
+          "Nymphalidae",
+          7
+        ],
+        [
+          "338236",
+          "Pieris brassicae",
+          3
+        ],
+        [
+          "338236",
+          "Pieris rapae",
+          6
+        ],
+        [
+          "338236",
+          "Gonepteryx cleopatra",
+          1
+        ],
+        [
+          "338236",
+          "Pieris brassicae",
+          3
+        ],
+        [
+          "338236",
+          "Gonepteryx cleopatra",
+          1
+        ],
+        [
+          "338236",
+          "Lycaenidae",
+          1
+        ],
+        [
+          "363446",
+          "Vanessa cardui",
+          1
         ]
       ],
       "07/05/2026": [
@@ -272738,6 +273498,31 @@
           "396515",
           "Vanessa cardui",
           2
+        ],
+        [
+          "240301",
+          "Maniola jurtina",
+          4
+        ],
+        [
+          "240301",
+          "Papilio machaon",
+          1
+        ],
+        [
+          "240301",
+          "Pyronia bathseba",
+          3
+        ],
+        [
+          "240301",
+          "Lycaena phlaeas",
+          1
+        ],
+        [
+          "240301",
+          "Vanessa atalanta",
+          1
         ]
       ],
       "08/05/2026": [
@@ -273207,6 +273992,31 @@
         [
           "309311",
           "Lycaena phlaeas",
+          1
+        ],
+        [
+          "363446",
+          "Pieris napi",
+          1
+        ],
+        [
+          "363446",
+          "Euphydryas aurinia",
+          4
+        ],
+        [
+          "363446",
+          "Euphydryas aurinia",
+          1
+        ],
+        [
+          "363446",
+          "Vanessa cardui",
+          1
+        ],
+        [
+          "363446",
+          "Glaucopsyche melanops",
           1
         ]
       ],
@@ -274449,6 +275259,56 @@
           "243747",
           "Pararge aegeria",
           4
+        ],
+        [
+          "240301",
+          "Pieris brassicae",
+          1
+        ],
+        [
+          "240301",
+          "Pieris rapae",
+          1
+        ],
+        [
+          "240301",
+          "Leptotes pirithous",
+          1
+        ],
+        [
+          "240301",
+          "Papilio machaon",
+          1
+        ],
+        [
+          "240301",
+          "Lycaena phlaeas",
+          1
+        ],
+        [
+          "240301",
+          "Satyrium esculi",
+          1
+        ],
+        [
+          "240301",
+          "Lampides boeticus",
+          1
+        ],
+        [
+          "240301",
+          "Charaxes jasius",
+          1
+        ],
+        [
+          "240301",
+          "Pyronia bathseba",
+          1
+        ],
+        [
+          "240301",
+          "Maniola jurtina",
+          7
         ]
       ],
       "17/05/2026": [
@@ -275619,6 +276479,51 @@
         [
           "396380",
           "Pyronia bathseba",
+          1
+        ],
+        [
+          "338236",
+          "Pieris brassicae",
+          11
+        ],
+        [
+          "338236",
+          "Lycaenidae",
+          2
+        ],
+        [
+          "338236",
+          "Gonepteryx cleopatra",
+          2
+        ],
+        [
+          "338236",
+          "Lasiommata megera",
+          4
+        ],
+        [
+          "338236",
+          "Nymphalidae",
+          1
+        ],
+        [
+          "338236",
+          "Pieris brassicae",
+          1
+        ],
+        [
+          "338236",
+          "Gonepteryx cleopatra",
+          1
+        ],
+        [
+          "338236",
+          "Lasiommata megera",
+          3
+        ],
+        [
+          "338236",
+          "Nymphalidae",
           1
         ]
       ],
@@ -279609,6 +280514,141 @@
           "396663",
           "Lycaena phlaeas",
           1
+        ],
+        [
+          "338236",
+          "Satyrium spini",
+          4
+        ],
+        [
+          "338236",
+          "Gonepteryx cleopatra",
+          10
+        ],
+        [
+          "338236",
+          "Pararge aegeria",
+          4
+        ],
+        [
+          "338236",
+          "Lycaenidae",
+          1
+        ],
+        [
+          "338236",
+          "Charaxes jasius",
+          1
+        ],
+        [
+          "338236",
+          "Pieris rapae",
+          4
+        ],
+        [
+          "338236",
+          "Pieris brassicae",
+          2
+        ],
+        [
+          "338236",
+          "Pyronia",
+          1
+        ],
+        [
+          "338236",
+          "Satyrium spini",
+          1
+        ],
+        [
+          "338236",
+          "Gonepteryx cleopatra",
+          6
+        ],
+        [
+          "338236",
+          "Lycaenidae",
+          1
+        ],
+        [
+          "338236",
+          "Charaxes jasius",
+          3
+        ],
+        [
+          "338236",
+          "Pieris rapae",
+          1
+        ],
+        [
+          "338236",
+          "Pieris brassicae",
+          4
+        ],
+        [
+          "338236",
+          "Papilio machaon",
+          2
+        ],
+        [
+          "240301",
+          "Pararge aegeria",
+          1
+        ],
+        [
+          "240301",
+          "Colias crocea",
+          1
+        ],
+        [
+          "240301",
+          "Pieris rapae",
+          1
+        ],
+        [
+          "240301",
+          "Leptotes pirithous",
+          2
+        ],
+        [
+          "240301",
+          "Colias crocea",
+          1
+        ],
+        [
+          "240301",
+          "Gonepteryx cleopatra",
+          1
+        ],
+        [
+          "240301",
+          "Lycaena phlaeas",
+          6
+        ],
+        [
+          "240301",
+          "Satyrium esculi",
+          19
+        ],
+        [
+          "240301",
+          "Maniola jurtina",
+          9
+        ],
+        [
+          "240301",
+          "Pyronia cecilia",
+          3
+        ],
+        [
+          "240301",
+          "Pyronia tithonus",
+          1
+        ],
+        [
+          "240301",
+          "Thymelicus sylvestris",
+          1
         ]
       ],
       "29/05/2026": [
@@ -280910,6 +281950,71 @@
         [
           "243847",
           "Colias crocea",
+          1
+        ],
+        [
+          "363446",
+          "Euphydryas aurinia",
+          1
+        ],
+        [
+          "363446",
+          "Pieris napi",
+          1
+        ],
+        [
+          "363446",
+          "Euphydryas aurinia",
+          5
+        ],
+        [
+          "363446",
+          "Pieris napi",
+          2
+        ],
+        [
+          "363446",
+          "Euphydryas aurinia",
+          33
+        ],
+        [
+          "363446",
+          "Pieris napi",
+          2
+        ],
+        [
+          "363446",
+          "Pararge aegeria",
+          3
+        ],
+        [
+          "363446",
+          "Apatura ilia",
+          1
+        ],
+        [
+          "363446",
+          "Coenonympha pamphilus",
+          1
+        ],
+        [
+          "363446",
+          "Glaucopsyche melanops",
+          7
+        ],
+        [
+          "363446",
+          "Euphydryas aurinia",
+          14
+        ],
+        [
+          "363446",
+          "Pieris napi",
+          1
+        ],
+        [
+          "363446",
+          "Pontia daplidice",
           1
         ]
       ],
@@ -282811,6 +283916,111 @@
           "243747",
           "Papilio machaon",
           1
+        ],
+        [
+          "336687",
+          "Vanessa cardui",
+          1
+        ],
+        [
+          "336687",
+          "Vanessa cardui",
+          1
+        ],
+        [
+          "336687",
+          "Pieris rapae",
+          5
+        ],
+        [
+          "336687",
+          "Colias crocea",
+          2
+        ],
+        [
+          "336687",
+          "Euchloe belemia",
+          1
+        ],
+        [
+          "336687",
+          "Lycaena phlaeas",
+          2
+        ],
+        [
+          "336687",
+          "Vanessa cardui",
+          4
+        ],
+        [
+          "336687",
+          "Pieris rapae",
+          1
+        ],
+        [
+          "336687",
+          "Colias crocea",
+          3
+        ],
+        [
+          "336687",
+          "Pieris brassicae",
+          2
+        ],
+        [
+          "336687",
+          "Pararge aegeria",
+          1
+        ],
+        [
+          "336687",
+          "Lycaena phlaeas",
+          2
+        ],
+        [
+          "336687",
+          "Pyronia bathseba",
+          1
+        ],
+        [
+          "336687",
+          "Vanessa atalanta",
+          1
+        ],
+        [
+          "218548",
+          "Pieris brassicae",
+          1
+        ],
+        [
+          "218548",
+          "Pararge aegeria",
+          2
+        ],
+        [
+          "218548",
+          "Vanessa cardui",
+          1
+        ],
+        [
+          "218548",
+          "Pararge aegeria",
+          2
+        ],
+        [
+          "218548",
+          "Vanessa cardui",
+          1
+        ],
+        [
+          "218548",
+          "Vanessa atalanta",
+          1
+        ],
+        [
+          "218548",
+          "Vanessa cardui",
+          1
         ]
       ],
       "02/06/2026": [
@@ -283153,6 +284363,26 @@
           "255958",
           "Pyronia cecilia",
           2
+        ],
+        [
+          "218548",
+          "Pararge aegeria",
+          3
+        ],
+        [
+          "218548",
+          "Pieris napi",
+          1
+        ],
+        [
+          "218548",
+          "Pieris rapae",
+          1
+        ],
+        [
+          "218548",
+          "Coenonympha pamphilus",
+          1
         ]
       ],
       "03/06/2026": [
@@ -284341,6 +285571,86 @@
           "307951",
           "Pararge aegeria",
           3
+        ],
+        [
+          "240301",
+          "Pararge aegeria",
+          1
+        ],
+        [
+          "240301",
+          "Satyrium esculi",
+          1
+        ],
+        [
+          "240301",
+          "Colias crocea",
+          1
+        ],
+        [
+          "240301",
+          "Pyronia tithonus",
+          1
+        ],
+        [
+          "240301",
+          "Leptotes pirithous",
+          2
+        ],
+        [
+          "240301",
+          "Pararge aegeria",
+          1
+        ],
+        [
+          "240301",
+          "Leptotes pirithous",
+          2
+        ],
+        [
+          "240301",
+          "Satyrium esculi",
+          6
+        ],
+        [
+          "240301",
+          "Pyronia tithonus",
+          6
+        ],
+        [
+          "240301",
+          "Lycaena phlaeas",
+          5
+        ],
+        [
+          "240301",
+          "Maniola jurtina",
+          3
+        ],
+        [
+          "240301",
+          "Pyronia cecilia",
+          5
+        ],
+        [
+          "240301",
+          "Lasiommata megera",
+          1
+        ],
+        [
+          "240301",
+          "Papilio machaon",
+          1
+        ],
+        [
+          "240301",
+          "Iphiclides feisthamelii",
+          1
+        ],
+        [
+          "240301",
+          "Coenonympha pamphilus",
+          1
         ]
       ],
       "07/06/2026": [
@@ -286993,6 +288303,66 @@
           "243747",
           "Pieridae",
           1
+        ],
+        [
+          "218548",
+          "Pararge aegeria",
+          3
+        ],
+        [
+          "218548",
+          "Pieris napi",
+          1
+        ],
+        [
+          "218548",
+          "Pieris rapae",
+          2
+        ],
+        [
+          "240301",
+          "Pieris rapae",
+          1
+        ],
+        [
+          "240301",
+          "Lycaena phlaeas",
+          1
+        ],
+        [
+          "240301",
+          "Iphiclides feisthamelii",
+          1
+        ],
+        [
+          "240301",
+          "Maniola jurtina",
+          1
+        ],
+        [
+          "240301",
+          "Leptotes pirithous",
+          1
+        ],
+        [
+          "240301",
+          "Pyronia tithonus",
+          2
+        ],
+        [
+          "240301",
+          "Maniola jurtina",
+          3
+        ],
+        [
+          "240301",
+          "Satyrium esculi",
+          1
+        ],
+        [
+          "240301",
+          "Pyronia cecilia",
+          1
         ]
       ],
       "12/06/2026": [
@@ -287274,6 +288644,126 @@
         [
           "265814",
           "Thymelicus",
+          1
+        ],
+        [
+          "338236",
+          "Charaxes jasius",
+          2
+        ],
+        [
+          "338236",
+          "Pararge aegeria",
+          1
+        ],
+        [
+          "338236",
+          "Gonepteryx cleopatra",
+          2
+        ],
+        [
+          "338236",
+          "Satyrium spini",
+          3
+        ],
+        [
+          "338236",
+          "Pieris rapae",
+          3
+        ],
+        [
+          "338236",
+          "Charaxes jasius",
+          2
+        ],
+        [
+          "338236",
+          "Gonepteryx cleopatra",
+          2
+        ],
+        [
+          "338236",
+          "Satyrium spini",
+          1
+        ],
+        [
+          "338236",
+          "Pieris rapae",
+          4
+        ],
+        [
+          "338236",
+          "Lasiommata megera",
+          1
+        ],
+        [
+          "363446",
+          "Maniola jurtina",
+          1
+        ],
+        [
+          "363446",
+          "Euphydryas aurinia",
+          1
+        ],
+        [
+          "363446",
+          "Leptidea sinapis",
+          1
+        ],
+        [
+          "363446",
+          "Aporia crataegi",
+          1
+        ],
+        [
+          "363446",
+          "Euphydryas aurinia",
+          1
+        ],
+        [
+          "363446",
+          "Coenonympha arcania",
+          1
+        ],
+        [
+          "363446",
+          "Euphydryas aurinia",
+          2
+        ],
+        [
+          "363446",
+          "Leptidea sinapis",
+          2
+        ],
+        [
+          "363446",
+          "Lycaena bleusei",
+          1
+        ],
+        [
+          "363446",
+          "Lycaena phlaeas",
+          1
+        ],
+        [
+          "363446",
+          "Celastrina argiolus",
+          1
+        ],
+        [
+          "363446",
+          "Maniola jurtina",
+          5
+        ],
+        [
+          "363446",
+          "Leptidea sinapis",
+          1
+        ],
+        [
+          "363446",
+          "Colias crocea",
           1
         ]
       ],
@@ -291505,6 +292995,61 @@
           "362532",
           "Lampides boeticus",
           1
+        ],
+        [
+          "338236",
+          "Hesperiidae",
+          1
+        ],
+        [
+          "338236",
+          "Satyrium spini",
+          2
+        ],
+        [
+          "338236",
+          "Gonepteryx cleopatra",
+          3
+        ],
+        [
+          "338236",
+          "Pieris rapae",
+          2
+        ],
+        [
+          "338236",
+          "Maniola jurtina",
+          1
+        ],
+        [
+          "338236",
+          "Pararge aegeria",
+          1
+        ],
+        [
+          "338236",
+          "Charaxes jasius",
+          1
+        ],
+        [
+          "338236",
+          "Nymphalidae",
+          1
+        ],
+        [
+          "338236",
+          "Pieris rapae",
+          8
+        ],
+        [
+          "338236",
+          "Pararge aegeria",
+          1
+        ],
+        [
+          "338236",
+          "Charaxes jasius",
+          1
         ]
       ],
       "18/06/2026": [
@@ -292280,6 +293825,61 @@
         ],
         [
           "256572",
+          "Pyronia bathseba",
+          1
+        ],
+        [
+          "336687",
+          "Gonepteryx rhamni",
+          1
+        ],
+        [
+          "336687",
+          "Pieris rapae",
+          1
+        ],
+        [
+          "336687",
+          "Pieris brassicae",
+          2
+        ],
+        [
+          "336687",
+          "Maniola jurtina",
+          1
+        ],
+        [
+          "336687",
+          "Aglais io",
+          1
+        ],
+        [
+          "336687",
+          "Pieris rapae",
+          1
+        ],
+        [
+          "336687",
+          "Muschampia proto",
+          1
+        ],
+        [
+          "336687",
+          "Melanargia lachesis",
+          6
+        ],
+        [
+          "336687",
+          "Maniola jurtina",
+          2
+        ],
+        [
+          "336687",
+          "Pyronia cecilia",
+          1
+        ],
+        [
+          "336687",
           "Pyronia bathseba",
           1
         ]
@@ -293116,6 +294716,111 @@
           "240301",
           "Lycaena phlaeas",
           1
+        ],
+        [
+          "363446",
+          "Hipparchia hermione",
+          2
+        ],
+        [
+          "363446",
+          "Leptidea sinapis",
+          2
+        ],
+        [
+          "363446",
+          "Leptotes pirithous",
+          1
+        ],
+        [
+          "363446",
+          "Argynnis paphia",
+          2
+        ],
+        [
+          "363446",
+          "Melanargia lachesis",
+          1
+        ],
+        [
+          "363446",
+          "Leptidea sinapis",
+          2
+        ],
+        [
+          "363446",
+          "Melanargia lachesis",
+          4
+        ],
+        [
+          "363446",
+          "Maniola jurtina",
+          4
+        ],
+        [
+          "363446",
+          "Leptidea sinapis",
+          5
+        ],
+        [
+          "363446",
+          "Leptotes pirithous",
+          2
+        ],
+        [
+          "363446",
+          "Argynnis paphia",
+          1
+        ],
+        [
+          "363446",
+          "Melanargia lachesis",
+          17
+        ],
+        [
+          "363446",
+          "Maniola jurtina",
+          3
+        ],
+        [
+          "363446",
+          "Pieris napi",
+          5
+        ],
+        [
+          "363446",
+          "Coenonympha dorus",
+          1
+        ],
+        [
+          "363446",
+          "Pieris brassicae",
+          1
+        ],
+        [
+          "363446",
+          "Coenonympha arcania",
+          1
+        ],
+        [
+          "363446",
+          "Leptidea sinapis",
+          1
+        ],
+        [
+          "363446",
+          "Melanargia lachesis",
+          3
+        ],
+        [
+          "363446",
+          "Pararge aegeria",
+          1
+        ],
+        [
+          "363446",
+          "Glaucopsyche melanops",
+          2
         ]
       ],
       "20/06/2026": [
@@ -294798,6 +296503,31 @@
           "243847",
           "Pyronia cecilia",
           3
+        ],
+        [
+          "338236",
+          "Charaxes jasius",
+          1
+        ],
+        [
+          "338236",
+          "Papilio machaon",
+          1
+        ],
+        [
+          "338236",
+          "Pararge aegeria",
+          1
+        ],
+        [
+          "338236",
+          "Pararge aegeria",
+          1
+        ],
+        [
+          "338236",
+          "Gonepteryx cleopatra",
+          2
         ]
       ],
       "27/06/2026": [
@@ -298150,6 +299880,36 @@
           "396663",
           "Vanessa cardui",
           1
+        ],
+        [
+          "338236",
+          "Gonepteryx cleopatra",
+          1
+        ],
+        [
+          "338236",
+          "Vanessa cardui",
+          1
+        ],
+        [
+          "338236",
+          "Lycaenidae",
+          1
+        ],
+        [
+          "338236",
+          "Pararge aegeria",
+          3
+        ],
+        [
+          "338236",
+          "Gonepteryx cleopatra",
+          2
+        ],
+        [
+          "338236",
+          "Pararge aegeria",
+          1
         ]
       ],
       "02/07/2026": [
@@ -298512,6 +300272,161 @@
           "396488",
           "Lycaena phlaeas",
           1
+        ],
+        [
+          "363446",
+          "Leptotes pirithous",
+          4
+        ],
+        [
+          "363446",
+          "Melanargia lachesis",
+          6
+        ],
+        [
+          "363446",
+          "Leptidea sinapis",
+          5
+        ],
+        [
+          "363446",
+          "Argynnis paphia",
+          5
+        ],
+        [
+          "363446",
+          "Pyronia tithonus",
+          2
+        ],
+        [
+          "363446",
+          "Colias crocea",
+          1
+        ],
+        [
+          "363446",
+          "Hipparchia hermione",
+          1
+        ],
+        [
+          "363446",
+          "Gonepteryx rhamni",
+          1
+        ],
+        [
+          "363446",
+          "Pieris napi",
+          1
+        ],
+        [
+          "363446",
+          "Coenonympha arcania",
+          1
+        ],
+        [
+          "363446",
+          "Hipparchia semele",
+          1
+        ],
+        [
+          "363446",
+          "Leptidea sinapis",
+          1
+        ],
+        [
+          "363446",
+          "Melanargia lachesis",
+          1
+        ],
+        [
+          "363446",
+          "Leptotes pirithous",
+          2
+        ],
+        [
+          "363446",
+          "Ochlodes sylvanus",
+          1
+        ],
+        [
+          "363446",
+          "Aricia cramera",
+          1
+        ],
+        [
+          "363446",
+          "Hipparchia semele",
+          1
+        ],
+        [
+          "363446",
+          "Lasiommata megera",
+          1
+        ],
+        [
+          "363446",
+          "Limenitis camilla",
+          1
+        ],
+        [
+          "363446",
+          "Favonius quercus",
+          1
+        ],
+        [
+          "363446",
+          "Hipparchia hermione",
+          1
+        ],
+        [
+          "363446",
+          "Pontia daplidice",
+          1
+        ],
+        [
+          "363446",
+          "Leptidea sinapis",
+          2
+        ],
+        [
+          "363446",
+          "Gonepteryx rhamni",
+          1
+        ],
+        [
+          "363446",
+          "Pieris napi",
+          3
+        ],
+        [
+          "363446",
+          "Leptotes pirithous",
+          4
+        ],
+        [
+          "363446",
+          "Argynnis paphia",
+          3
+        ],
+        [
+          "363446",
+          "Melanargia lachesis",
+          4
+        ],
+        [
+          "363446",
+          "Favonius quercus",
+          1
+        ],
+        [
+          "363446",
+          "Leptotes pirithous",
+          5
+        ],
+        [
+          "363446",
+          "Pyronia tithonus",
+          3
         ]
       ],
       "05/07/2026": [
@@ -299062,6 +300977,46 @@
         [
           "243847",
           "Pyronia cecilia",
+          1
+        ],
+        [
+          "218548",
+          "Pararge aegeria",
+          1
+        ],
+        [
+          "218548",
+          "Pieris napi",
+          2
+        ],
+        [
+          "218548",
+          "Pararge aegeria",
+          2
+        ],
+        [
+          "218548",
+          "Leptotes pirithous",
+          1
+        ],
+        [
+          "218548",
+          "Leptotes pirithous",
+          1
+        ],
+        [
+          "218548",
+          "Vanessa atalanta",
+          1
+        ],
+        [
+          "218548",
+          "Vanessa cardui",
+          1
+        ],
+        [
+          "218548",
+          "Aricia cramera",
           1
         ]
       ],
@@ -299937,6 +301892,26 @@
           "396365",
           "Pyronia cecilia",
           1
+        ],
+        [
+          "338236",
+          "Pieris rapae",
+          3
+        ],
+        [
+          "338236",
+          "Pararge aegeria",
+          2
+        ],
+        [
+          "338236",
+          "Nymphalidae",
+          2
+        ],
+        [
+          "338236",
+          "Pieris rapae",
+          2
         ]
       ],
       "11/07/2026": [
@@ -301590,6 +303565,151 @@
           "222006",
           "Polygonia c-album",
           2
+        ],
+        [
+          "319947",
+          "Pieris rapae",
+          10
+        ],
+        [
+          "319947",
+          "Carcharodus alceae",
+          1
+        ],
+        [
+          "319947",
+          "Pyronia cecilia",
+          3
+        ],
+        [
+          "319947",
+          "Pararge aegeria",
+          5
+        ],
+        [
+          "319947",
+          "Maniola jurtina",
+          4
+        ],
+        [
+          "319947",
+          "Cacyreus marshalli",
+          1
+        ],
+        [
+          "319947",
+          "Hipparchia fidia",
+          1
+        ],
+        [
+          "319947",
+          "Pieris rapae",
+          6
+        ],
+        [
+          "319947",
+          "Vanessa cardui",
+          8
+        ],
+        [
+          "319947",
+          "Pyronia cecilia",
+          12
+        ],
+        [
+          "319947",
+          "Papilio machaon",
+          1
+        ],
+        [
+          "319947",
+          "Maniola jurtina",
+          2
+        ],
+        [
+          "319947",
+          "Hipparchia fidia",
+          3
+        ],
+        [
+          "319947",
+          "Iphiclides feisthamelii",
+          2
+        ],
+        [
+          "240301",
+          "Aricia cramera",
+          2
+        ],
+        [
+          "240301",
+          "Maniola jurtina",
+          2
+        ],
+        [
+          "240301",
+          "Lycaena phlaeas",
+          3
+        ],
+        [
+          "240301",
+          "Aricia cramera",
+          1
+        ],
+        [
+          "240301",
+          "Maniola jurtina",
+          2
+        ],
+        [
+          "240301",
+          "Aricia cramera",
+          1
+        ],
+        [
+          "240301",
+          "Maniola jurtina",
+          7
+        ],
+        [
+          "240301",
+          "Pyronia cecilia",
+          3
+        ],
+        [
+          "240301",
+          "Iphiclides feisthamelii",
+          1
+        ],
+        [
+          "363446",
+          "Pyronia tithonus",
+          3
+        ],
+        [
+          "363446",
+          "Pyronia tithonus",
+          8
+        ],
+        [
+          "363446",
+          "Leptotes pirithous",
+          1
+        ],
+        [
+          "363446",
+          "Melanargia lachesis",
+          3
+        ],
+        [
+          "363446",
+          "Maniola jurtina",
+          1
+        ],
+        [
+          "363446",
+          "Pyronia tithonus",
+          5
         ]
       ],
       "15/07/2026": [
@@ -302761,6 +304881,11 @@
           "306739",
           "Vanessa cardui",
           1
+        ],
+        [
+          "338236",
+          "Gonepteryx cleopatra",
+          1
         ]
       ],
       "19/07/2026": [
@@ -303306,6 +305431,41 @@
         [
           "256572",
           "Pyronia",
+          1
+        ],
+        [
+          "218548",
+          "Pieris rapae",
+          3
+        ],
+        [
+          "218548",
+          "Vanessa atalanta",
+          1
+        ],
+        [
+          "218548",
+          "Pieris rapae",
+          1
+        ],
+        [
+          "218548",
+          "Colias crocea",
+          1
+        ],
+        [
+          "218548",
+          "Leptotes pirithous",
+          3
+        ],
+        [
+          "218548",
+          "Pararge aegeria",
+          1
+        ],
+        [
+          "218548",
+          "Pieris rapae",
           1
         ]
       ],
@@ -304533,6 +306693,66 @@
           "243747",
           "Coenonympha pamphilus",
           9
+        ],
+        [
+          "240301",
+          "Lycaena phlaeas",
+          3
+        ],
+        [
+          "240301",
+          "Aricia cramera",
+          3
+        ],
+        [
+          "240301",
+          "Vanessa cardui",
+          1
+        ],
+        [
+          "240301",
+          "Polyommatus icarus/celina",
+          1
+        ],
+        [
+          "240301",
+          "Pieris brassicae",
+          1
+        ],
+        [
+          "240301",
+          "Lycaena phlaeas",
+          3
+        ],
+        [
+          "240301",
+          "Aricia cramera",
+          3
+        ],
+        [
+          "240301",
+          "Maniola jurtina",
+          12
+        ],
+        [
+          "240301",
+          "Pyronia cecilia",
+          2
+        ],
+        [
+          "240301",
+          "Iphiclides feisthamelii",
+          1
+        ],
+        [
+          "240301",
+          "Papilio machaon",
+          1
+        ],
+        [
+          "240301",
+          "Lasiommata megera",
+          1
         ]
       ],
       "23/07/2026": [
@@ -306664,6 +308884,201 @@
         [
           "222006",
           "Vanessa cardui",
+          1
+        ],
+        [
+          "240301",
+          "Lycaena phlaeas",
+          3
+        ],
+        [
+          "240301",
+          "Polyommatus icarus/celina",
+          1
+        ],
+        [
+          "240301",
+          "Maniola jurtina",
+          2
+        ],
+        [
+          "240301",
+          "Lasiommata megera",
+          1
+        ],
+        [
+          "240301",
+          "Pyronia cecilia",
+          1
+        ],
+        [
+          "240301",
+          "Vanessa atalanta",
+          1
+        ],
+        [
+          "240301",
+          "Aricia cramera",
+          1
+        ],
+        [
+          "240301",
+          "Polyommatus icarus/celina",
+          1
+        ],
+        [
+          "240301",
+          "Maniola jurtina",
+          2
+        ],
+        [
+          "240301",
+          "Polyommatus icarus/celina",
+          4
+        ],
+        [
+          "240301",
+          "Maniola jurtina",
+          13
+        ],
+        [
+          "240301",
+          "Aricia cramera",
+          2
+        ],
+        [
+          "363446",
+          "Leptotes pirithous",
+          1
+        ],
+        [
+          "363446",
+          "Lampides boeticus",
+          1
+        ],
+        [
+          "363446",
+          "Argynnis paphia",
+          1
+        ],
+        [
+          "363446",
+          "Hipparchia fidia",
+          1
+        ],
+        [
+          "363446",
+          "Pyronia tithonus",
+          1
+        ],
+        [
+          "363446",
+          "Pieris napi",
+          1
+        ],
+        [
+          "363446",
+          "Leptotes pirithous",
+          1
+        ],
+        [
+          "363446",
+          "Lampides boeticus",
+          3
+        ],
+        [
+          "363446",
+          "Pyronia tithonus",
+          5
+        ],
+        [
+          "363446",
+          "Pieris rapae",
+          1
+        ],
+        [
+          "363446",
+          "Leptotes pirithous",
+          8
+        ],
+        [
+          "363446",
+          "Argynnis paphia",
+          8
+        ],
+        [
+          "363446",
+          "Pyronia tithonus",
+          23
+        ],
+        [
+          "363446",
+          "Pieris napi",
+          1
+        ],
+        [
+          "363446",
+          "Colias crocea",
+          3
+        ],
+        [
+          "363446",
+          "Pararge aegeria",
+          4
+        ],
+        [
+          "363446",
+          "Melanargia lachesis",
+          3
+        ],
+        [
+          "363446",
+          "Leptidea sinapis",
+          3
+        ],
+        [
+          "363446",
+          "Celastrina argiolus",
+          3
+        ],
+        [
+          "363446",
+          "Maniola jurtina",
+          1
+        ],
+        [
+          "363446",
+          "Iphiclides feisthamelii",
+          1
+        ],
+        [
+          "363446",
+          "Melitaea phoebe",
+          1
+        ],
+        [
+          "363446",
+          "Leptotes pirithous",
+          1
+        ],
+        [
+          "363446",
+          "Argynnis paphia",
+          2
+        ],
+        [
+          "363446",
+          "Pyronia tithonus",
+          4
+        ],
+        [
+          "363446",
+          "Maniola jurtina",
+          1
+        ],
+        [
+          "363446",
+          "Iphiclides feisthamelii",
           1
         ]
       ],
@@ -308881,6 +311296,126 @@
           "222006",
           "Pyronia tithonus",
           1
+        ],
+        [
+          "218548",
+          "Vanessa cardui",
+          1
+        ],
+        [
+          "218548",
+          "Pyronia cecilia",
+          1
+        ],
+        [
+          "218548",
+          "Lampides boeticus",
+          3
+        ],
+        [
+          "218548",
+          "Leptotes pirithous",
+          6
+        ],
+        [
+          "218548",
+          "Lycaenidae",
+          5
+        ],
+        [
+          "218548",
+          "Pararge aegeria",
+          5
+        ],
+        [
+          "218548",
+          "Polygonia c-album/egea",
+          1
+        ],
+        [
+          "218548",
+          "Leptotes pirithous",
+          4
+        ],
+        [
+          "218548",
+          "Colias crocea",
+          1
+        ],
+        [
+          "218548",
+          "Pieris",
+          1
+        ],
+        [
+          "218548",
+          "Polyommatus icarus/celina",
+          2
+        ],
+        [
+          "218548",
+          "Vanessa atalanta",
+          1
+        ],
+        [
+          "218548",
+          "Leptotes pirithous",
+          12
+        ],
+        [
+          "218548",
+          "Pararge aegeria",
+          1
+        ],
+        [
+          "240301",
+          "Polyommatus icarus/celina",
+          4
+        ],
+        [
+          "240301",
+          "Lycaena phlaeas",
+          4
+        ],
+        [
+          "240301",
+          "Maniola jurtina",
+          1
+        ],
+        [
+          "240301",
+          "Lycaena phlaeas",
+          6
+        ],
+        [
+          "240301",
+          "Maniola jurtina",
+          7
+        ],
+        [
+          "240301",
+          "Pyronia tithonus",
+          1
+        ],
+        [
+          "240301",
+          "Lasiommata megera",
+          1
+        ],
+        [
+          "240301",
+          "Pyronia cecilia",
+          4
+        ],
+        [
+          "240301",
+          "Iphiclides feisthamelii",
+          2
+        ],
+        [
+          "240301",
+          "Aricia cramera",
+          6
         ]
       ],
       "09/08/2026": [
@@ -310768,6 +313303,41 @@
           "243747",
           "Coenonympha pamphilus",
           2
+        ],
+        [
+          "338236",
+          "Nymphalidae",
+          1
+        ],
+        [
+          "240301",
+          "Lycaena phlaeas",
+          3
+        ],
+        [
+          "240301",
+          "Maniola jurtina",
+          4
+        ],
+        [
+          "240301",
+          "Pyronia tithonus",
+          2
+        ],
+        [
+          "240301",
+          "Aricia cramera",
+          2
+        ],
+        [
+          "240301",
+          "Iphiclides feisthamelii",
+          3
+        ],
+        [
+          "240301",
+          "Lasiommata megera",
+          2
         ]
       ],
       "14/08/2026": [
@@ -310980,6 +313550,96 @@
           "243847",
           "Lycaena phlaeas",
           3
+        ],
+        [
+          "363446",
+          "Argynnis paphia",
+          3
+        ],
+        [
+          "363446",
+          "Pieris brassicae",
+          1
+        ],
+        [
+          "363446",
+          "Pyronia tithonus",
+          1
+        ],
+        [
+          "363446",
+          "Leptotes pirithous",
+          1
+        ],
+        [
+          "363446",
+          "Pararge aegeria",
+          1
+        ],
+        [
+          "363446",
+          "Maniola jurtina",
+          1
+        ],
+        [
+          "363446",
+          "Argynnis paphia",
+          3
+        ],
+        [
+          "363446",
+          "Pieris brassicae",
+          1
+        ],
+        [
+          "363446",
+          "Pyronia tithonus",
+          8
+        ],
+        [
+          "363446",
+          "Leptotes pirithous",
+          15
+        ],
+        [
+          "363446",
+          "Pararge aegeria",
+          1
+        ],
+        [
+          "363446",
+          "Maniola jurtina",
+          3
+        ],
+        [
+          "363446",
+          "Lampides boeticus",
+          1
+        ],
+        [
+          "363446",
+          "Leptotes pirithous",
+          3
+        ],
+        [
+          "363446",
+          "Pararge aegeria",
+          1
+        ],
+        [
+          "363446",
+          "Maniola jurtina",
+          2
+        ],
+        [
+          "363446",
+          "Lampides boeticus",
+          1
+        ],
+        [
+          "363446",
+          "Pontia daplidice",
+          1
         ]
       ],
       "15/08/2026": [
@@ -311771,6 +314431,41 @@
           "216760",
           "Coenonympha pamphilus",
           1
+        ],
+        [
+          "218548",
+          "Pararge aegeria",
+          5
+        ],
+        [
+          "218548",
+          "Leptotes pirithous",
+          5
+        ],
+        [
+          "218548",
+          "Pieris rapae",
+          2
+        ],
+        [
+          "218548",
+          "Leptotes pirithous",
+          5
+        ],
+        [
+          "218548",
+          "Leptotes pirithous",
+          22
+        ],
+        [
+          "218548",
+          "Pieris rapae",
+          2
+        ],
+        [
+          "218548",
+          "Colias crocea",
+          1
         ]
       ],
       "19/08/2026": [
@@ -312177,6 +314872,31 @@
           "256525",
           "Leptotes pirithous",
           1
+        ],
+        [
+          "240301",
+          "Lampides boeticus",
+          1
+        ],
+        [
+          "240301",
+          "Lycaena phlaeas",
+          1
+        ],
+        [
+          "240301",
+          "Lycaena phlaeas",
+          2
+        ],
+        [
+          "240301",
+          "Maniola jurtina",
+          2
+        ],
+        [
+          "240301",
+          "Aricia cramera",
+          5
         ]
       ],
       "22/08/2026": [
@@ -313405,6 +316125,56 @@
           "243847",
           "Aricia cramera",
           1
+        ],
+        [
+          "336687",
+          "Pieris brassicae",
+          1
+        ],
+        [
+          "336687",
+          "Pieris rapae",
+          2
+        ],
+        [
+          "336687",
+          "Lycaena phlaeas",
+          1
+        ],
+        [
+          "336687",
+          "Celastrina argiolus",
+          2
+        ],
+        [
+          "336687",
+          "Pieris brassicae",
+          4
+        ],
+        [
+          "336687",
+          "Argynnis pandora",
+          3
+        ],
+        [
+          "336687",
+          "Pieris rapae",
+          4
+        ],
+        [
+          "336687",
+          "Lycaena phlaeas",
+          1
+        ],
+        [
+          "336687",
+          "Celastrina argiolus",
+          1
+        ],
+        [
+          "216728",
+          "Pieris rapae",
+          1
         ]
       ],
       "30/08/2026": [
@@ -313796,6 +316566,41 @@
           "306541",
           "Pieris brassicae",
           1
+        ],
+        [
+          "218548",
+          "Pieris",
+          1
+        ],
+        [
+          "218548",
+          "Pararge aegeria",
+          1
+        ],
+        [
+          "218548",
+          "Leptotes pirithous",
+          1
+        ],
+        [
+          "218548",
+          "Leptotes pirithous",
+          11
+        ],
+        [
+          "218548",
+          "Colias crocea",
+          1
+        ],
+        [
+          "218548",
+          "Leptotes pirithous",
+          3
+        ],
+        [
+          "218548",
+          "Coenonympha pamphilus",
+          6
         ]
       ],
       "02/09/2026": [
@@ -313902,6 +316707,16 @@
         [
           "338236",
           "Pararge aegeria",
+          1
+        ],
+        [
+          "338236",
+          "Charaxes jasius",
+          1
+        ],
+        [
+          "338236",
+          "Hipparchia fidia",
           1
         ],
         [
@@ -315720,6 +318535,51 @@
           "314210",
           "Lycaenidae",
           4
+        ],
+        [
+          "338236",
+          "Charaxes jasius",
+          3
+        ],
+        [
+          "338236",
+          "Charaxes jasius",
+          2
+        ],
+        [
+          "338236",
+          "Hipparchia fidia",
+          1
+        ],
+        [
+          "338236",
+          "Nymphalidae",
+          1
+        ],
+        [
+          "363446",
+          "Leptotes pirithous",
+          11
+        ],
+        [
+          "363446",
+          "Pararge aegeria",
+          2
+        ],
+        [
+          "363446",
+          "Maniola jurtina",
+          1
+        ],
+        [
+          "363446",
+          "Leptotes pirithous",
+          3
+        ],
+        [
+          "363446",
+          "Maniola jurtina",
+          2
         ]
       ],
       "11/09/2026": [
@@ -317072,6 +319932,61 @@
           "216760",
           "Lasiommata megera",
           1
+        ],
+        [
+          "240301",
+          "Iphiclides feisthamelii",
+          1
+        ],
+        [
+          "240301",
+          "Leptotes pirithous",
+          1
+        ],
+        [
+          "240301",
+          "Pyronia tithonus",
+          1
+        ],
+        [
+          "240301",
+          "Maniola jurtina",
+          1
+        ],
+        [
+          "240301",
+          "Polyommatus icarus/celina",
+          3
+        ],
+        [
+          "240301",
+          "Iphiclides feisthamelii",
+          1
+        ],
+        [
+          "240301",
+          "Lycaena phlaeas",
+          3
+        ],
+        [
+          "240301",
+          "Aricia cramera",
+          1
+        ],
+        [
+          "240301",
+          "Charaxes jasius",
+          1
+        ],
+        [
+          "240301",
+          "Pontia daplidice",
+          1
+        ],
+        [
+          "240301",
+          "Papilio machaon",
+          1
         ]
       ],
       "18/09/2026": [
@@ -317168,6 +320083,46 @@
         [
           "389307",
           "Maniola jurtina",
+          1
+        ],
+        [
+          "218548",
+          "Leptotes pirithous",
+          7
+        ],
+        [
+          "218548",
+          "Pieris brassicae",
+          1
+        ],
+        [
+          "218548",
+          "Colias crocea",
+          1
+        ],
+        [
+          "218548",
+          "Pararge aegeria",
+          3
+        ],
+        [
+          "218548",
+          "Leptotes pirithous",
+          3
+        ],
+        [
+          "218548",
+          "Vanessa atalanta",
+          1
+        ],
+        [
+          "218548",
+          "Leptotes pirithous",
+          8
+        ],
+        [
+          "218548",
+          "Zizeeria knysna",
           1
         ]
       ],
@@ -317959,6 +320914,66 @@
           "241378",
           "Colias crocea",
           1
+        ],
+        [
+          "298076",
+          "Nymphalidae",
+          2
+        ],
+        [
+          "298076",
+          "Lasiommata megera",
+          2
+        ],
+        [
+          "298076",
+          "Polyommatus icarus/celina",
+          1
+        ],
+        [
+          "298076",
+          "Colias crocea",
+          1
+        ],
+        [
+          "298076",
+          "Hipparchia semele",
+          2
+        ],
+        [
+          "298076",
+          "Hipparchia statilinus",
+          1
+        ],
+        [
+          "304132",
+          "Pontia daplidice",
+          1
+        ],
+        [
+          "304132",
+          "Colias crocea",
+          2
+        ],
+        [
+          "304132",
+          "Pontia daplidice",
+          3
+        ],
+        [
+          "304132",
+          "Brintesia circe",
+          5
+        ],
+        [
+          "304132",
+          "Hipparchia fidia",
+          2
+        ],
+        [
+          "304132",
+          "Hipparchia hermione",
+          1
         ]
       ],
       "24/09/2026": [
@@ -318196,6 +321211,211 @@
           "362532",
           "Lampides boeticus",
           2
+        ],
+        [
+          "396695",
+          "Vanessa atalanta",
+          1
+        ],
+        [
+          "396529",
+          "Pieris rapae",
+          2
+        ],
+        [
+          "396529",
+          "Colias crocea",
+          1
+        ],
+        [
+          "396529",
+          "Lycaenidae",
+          1
+        ],
+        [
+          "396529",
+          "Colias crocea",
+          1
+        ],
+        [
+          "396529",
+          "Leptotes pirithous",
+          1
+        ],
+        [
+          "393252",
+          "Pieridae",
+          1
+        ],
+        [
+          "393252",
+          "Pieridae",
+          1
+        ],
+        [
+          "393252",
+          "Pararge aegeria",
+          2
+        ],
+        [
+          "393252",
+          "Carcharodus alceae",
+          1
+        ],
+        [
+          "393252",
+          "Carcharodus alceae",
+          1
+        ],
+        [
+          "393252",
+          "Carcharodus alceae",
+          1
+        ],
+        [
+          "393252",
+          "Leptotes pirithous",
+          1
+        ],
+        [
+          "393252",
+          "Lampides boeticus",
+          1
+        ],
+        [
+          "393252",
+          "Polyommatus icarus/celina",
+          1
+        ],
+        [
+          "393252",
+          "Pararge aegeria",
+          2
+        ],
+        [
+          "393252",
+          "Pararge aegeria",
+          2
+        ],
+        [
+          "393252",
+          "Lycaenidae",
+          2
+        ],
+        [
+          "393252",
+          "Pieris rapae",
+          1
+        ],
+        [
+          "393252",
+          "Polyommatus icarus/celina",
+          1
+        ],
+        [
+          "393252",
+          "Lycaenidae",
+          1
+        ],
+        [
+          "396488",
+          "Colias crocea",
+          2
+        ],
+        [
+          "396488",
+          "Polyommatus icarus/celina",
+          1
+        ],
+        [
+          "396488",
+          "Maniola jurtina",
+          1
+        ],
+        [
+          "396488",
+          "Lycaenidae",
+          1
+        ],
+        [
+          "396488",
+          "Colias crocea",
+          1
+        ],
+        [
+          "396488",
+          "Pieridae",
+          1
+        ],
+        [
+          "396488",
+          "Pieris rapae",
+          1
+        ],
+        [
+          "396488",
+          "Lycaenidae",
+          2
+        ],
+        [
+          "396488",
+          "Pieris rapae",
+          3
+        ],
+        [
+          "396488",
+          "Carcharodus alceae",
+          1
+        ],
+        [
+          "396488",
+          "Carcharodus alceae",
+          1
+        ],
+        [
+          "396488",
+          "Pieris rapae",
+          2
+        ],
+        [
+          "396488",
+          "Pieris rapae",
+          1
+        ],
+        [
+          "396488",
+          "Pieris rapae",
+          1
+        ],
+        [
+          "396488",
+          "Lycaenidae",
+          1
+        ],
+        [
+          "396488",
+          "Maniola jurtina",
+          1
+        ],
+        [
+          "396488",
+          "Colias crocea",
+          1
+        ],
+        [
+          "396488",
+          "Lampides boeticus",
+          1
+        ],
+        [
+          "396488",
+          "Carcharodus alceae",
+          1
+        ],
+        [
+          "396488",
+          "Celastrina argiolus",
+          1
         ]
       ],
       "14/09/2026": [
@@ -318414,6 +321634,16 @@
         [
           "256572",
           "Vanessa atalanta",
+          1
+        ],
+        [
+          "240301",
+          "Maniola jurtina",
+          1
+        ],
+        [
+          "240301",
+          "Papilio machaon",
           1
         ]
       ],
@@ -318657,6 +321887,366 @@
           "243847",
           "Aricia cramera",
           1
+        ],
+        [
+          "396636",
+          "Zizeeria knysna",
+          1
+        ],
+        [
+          "396636",
+          "Lycaenidae",
+          1
+        ],
+        [
+          "396636",
+          "Lycaenidae",
+          1
+        ],
+        [
+          "396636",
+          "Zizeeria knysna",
+          2
+        ],
+        [
+          "396636",
+          "Lysandra bellargus",
+          1
+        ],
+        [
+          "396636",
+          "Papilio machaon",
+          1
+        ],
+        [
+          "396636",
+          "Pararge aegeria",
+          1
+        ],
+        [
+          "396636",
+          "Pieris rapae",
+          2
+        ],
+        [
+          "396636",
+          "Lycaenidae",
+          2
+        ],
+        [
+          "396636",
+          "Carcharodus alceae",
+          2
+        ],
+        [
+          "393238",
+          "Pieridae",
+          1
+        ],
+        [
+          "393238",
+          "Vanessa atalanta",
+          1
+        ],
+        [
+          "393238",
+          "Zizeeria knysna",
+          1
+        ],
+        [
+          "393238",
+          "Carcharodus alceae",
+          1
+        ],
+        [
+          "393238",
+          "Colias crocea",
+          1
+        ],
+        [
+          "393238",
+          "Zizeeria knysna",
+          3
+        ],
+        [
+          "393238",
+          "Zizeeria knysna",
+          1
+        ],
+        [
+          "393238",
+          "Carcharodus alceae",
+          1
+        ],
+        [
+          "393238",
+          "Pieris rapae",
+          1
+        ],
+        [
+          "393238",
+          "Pieris rapae",
+          2
+        ],
+        [
+          "393238",
+          "Vanessa cardui",
+          1
+        ],
+        [
+          "393238",
+          "Pieris rapae",
+          1
+        ],
+        [
+          "393238",
+          "Zizeeria knysna",
+          2
+        ],
+        [
+          "393238",
+          "Pieris rapae",
+          2
+        ],
+        [
+          "393238",
+          "Polyommatus icarus/celina",
+          1
+        ],
+        [
+          "393238",
+          "Carcharodus alceae",
+          1
+        ],
+        [
+          "396502",
+          "Polyommatus icarus/celina",
+          2
+        ],
+        [
+          "396502",
+          "Polyommatus icarus/celina",
+          2
+        ],
+        [
+          "396502",
+          "Lampides boeticus",
+          1
+        ],
+        [
+          "396502",
+          "Maniola jurtina",
+          1
+        ],
+        [
+          "396502",
+          "Carcharodus alceae",
+          1
+        ],
+        [
+          "396502",
+          "Carcharodus alceae",
+          1
+        ],
+        [
+          "396502",
+          "Pararge aegeria",
+          3
+        ],
+        [
+          "396502",
+          "Lycaenidae",
+          2
+        ],
+        [
+          "396502",
+          "Polyommatus icarus/celina",
+          2
+        ],
+        [
+          "396502",
+          "Charaxes jasius",
+          1
+        ],
+        [
+          "396502",
+          "Lycaenidae",
+          1
+        ],
+        [
+          "396502",
+          "Lycaenidae",
+          2
+        ],
+        [
+          "396502",
+          "Pararge aegeria",
+          2
+        ],
+        [
+          "396502",
+          "Lycaena phlaeas",
+          1
+        ],
+        [
+          "396502",
+          "Lycaenidae",
+          1
+        ],
+        [
+          "396502",
+          "Lycaena phlaeas",
+          1
+        ],
+        [
+          "396502",
+          "Vanessa atalanta",
+          1
+        ],
+        [
+          "396502",
+          "Maniola jurtina",
+          1
+        ],
+        [
+          "396502",
+          "Pararge aegeria",
+          1
+        ],
+        [
+          "396502",
+          "Pararge aegeria",
+          3
+        ],
+        [
+          "396502",
+          "Pieridae",
+          1
+        ],
+        [
+          "396502",
+          "Polyommatus icarus/celina",
+          2
+        ],
+        [
+          "396502",
+          "Carcharodus alceae",
+          1
+        ],
+        [
+          "396502",
+          "Polyommatus icarus/celina",
+          1
+        ],
+        [
+          "396502",
+          "Maniola jurtina",
+          1
+        ],
+        [
+          "396502",
+          "Carcharodus alceae",
+          3
+        ],
+        [
+          "396502",
+          "Leptotes pirithous",
+          1
+        ],
+        [
+          "396502",
+          "Pararge aegeria",
+          2
+        ],
+        [
+          "403981",
+          "Lycaenidae",
+          1
+        ],
+        [
+          "227933",
+          "Leptotes pirithous",
+          2
+        ],
+        [
+          "228032",
+          "Pieris rapae",
+          1
+        ],
+        [
+          "228032",
+          "Lysandra bellargus",
+          1
+        ],
+        [
+          "228032",
+          "Pieris napi",
+          1
+        ],
+        [
+          "228038",
+          "Lampides boeticus",
+          2
+        ],
+        [
+          "228038",
+          "Leptotes pirithous",
+          1
+        ],
+        [
+          "228038",
+          "Pontia daplidice",
+          1
+        ],
+        [
+          "228038",
+          "Pontia daplidice",
+          1
+        ],
+        [
+          "228038",
+          "Pieris rapae",
+          1
+        ],
+        [
+          "228038",
+          "Vanessa cardui",
+          2
+        ],
+        [
+          "228038",
+          "Colias crocea",
+          1
+        ],
+        [
+          "228038",
+          "Lampides boeticus",
+          1
+        ],
+        [
+          "228038",
+          "Leptotes pirithous",
+          1
+        ],
+        [
+          "228038",
+          "Lampides boeticus",
+          2
+        ],
+        [
+          "228038",
+          "Leptotes pirithous",
+          1
+        ],
+        [
+          "363446",
+          "Leptotes pirithous",
+          3
+        ],
+        [
+          "363446",
+          "Glaucopsyche melanops",
+          2
         ]
       ],
       "27/09/2026": [
@@ -319164,6 +322754,282 @@
           "396405",
           "Satyrium esculi",
           11
+        ]
+      ],
+      "04/07/2026": [
+        [
+          "336687",
+          "Melanargia lachesis",
+          2
+        ],
+        [
+          "336687",
+          "Iphiclides feisthamelii",
+          1
+        ],
+        [
+          "336687",
+          "Pieris brassicae",
+          1
+        ],
+        [
+          "336687",
+          "Argynnis pandora",
+          1
+        ],
+        [
+          "336687",
+          "Pieris brassicae",
+          1
+        ],
+        [
+          "336687",
+          "Melitaea deione",
+          1
+        ],
+        [
+          "336687",
+          "Hipparchia fidia",
+          1
+        ],
+        [
+          "336687",
+          "Pyronia tithonus",
+          3
+        ],
+        [
+          "336687",
+          "Colias crocea",
+          1
+        ],
+        [
+          "336687",
+          "Lycaena bleusei",
+          1
+        ],
+        [
+          "336687",
+          "Celastrina argiolus",
+          1
+        ],
+        [
+          "336687",
+          "Iphiclides feisthamelii",
+          4
+        ],
+        [
+          "336687",
+          "Maniola jurtina",
+          3
+        ],
+        [
+          "336687",
+          "Pieris rapae",
+          2
+        ]
+      ],
+      "01/08/2026": [
+        [
+          "336687",
+          "Pieris brassicae",
+          2
+        ],
+        [
+          "336687",
+          "Pieris brassicae",
+          2
+        ],
+        [
+          "336687",
+          "Pieris rapae",
+          1
+        ],
+        [
+          "336687",
+          "Limenitis reducta",
+          1
+        ],
+        [
+          "336687",
+          "Argynnis pandora",
+          1
+        ],
+        [
+          "336687",
+          "Pieris rapae",
+          1
+        ],
+        [
+          "336687",
+          "Pieris brassicae",
+          1
+        ],
+        [
+          "336687",
+          "Lycaena phlaeas",
+          2
+        ],
+        [
+          "336687",
+          "Limenitis reducta",
+          1
+        ],
+        [
+          "336687",
+          "Pararge aegeria",
+          1
+        ],
+        [
+          "336687",
+          "Pyronia tithonus",
+          5
+        ]
+      ],
+      "26/09/2026": [
+        [
+          "396515",
+          "Pararge aegeria",
+          1
+        ],
+        [
+          "396515",
+          "Pararge aegeria",
+          1
+        ],
+        [
+          "396515",
+          "Pararge aegeria",
+          1
+        ],
+        [
+          "402291",
+          "Pieridae",
+          1
+        ],
+        [
+          "402291",
+          "Nymphalidae",
+          1
+        ],
+        [
+          "402291",
+          "Pararge aegeria",
+          1
+        ],
+        [
+          "402291",
+          "Nymphalidae",
+          1
+        ],
+        [
+          "402291",
+          "Pieridae",
+          1
+        ],
+        [
+          "402291",
+          "Carcharodus alceae",
+          1
+        ],
+        [
+          "402291",
+          "Maniola jurtina",
+          1
+        ],
+        [
+          "402291",
+          "Zizeeria knysna",
+          2
+        ],
+        [
+          "402291",
+          "Pieris rapae",
+          1
+        ],
+        [
+          "396663",
+          "Leptotes pirithous",
+          1
+        ],
+        [
+          "396663",
+          "Lysandra bellargus",
+          2
+        ],
+        [
+          "396663",
+          "Vanessa atalanta",
+          1
+        ],
+        [
+          "396663",
+          "Lycaena phlaeas",
+          1
+        ],
+        [
+          "396663",
+          "Colias crocea",
+          1
+        ],
+        [
+          "396663",
+          "Pieris rapae",
+          1
+        ],
+        [
+          "396663",
+          "Carcharodus alceae",
+          1
+        ],
+        [
+          "396663",
+          "Colias crocea",
+          2
+        ],
+        [
+          "396663",
+          "Colias crocea",
+          1
+        ],
+        [
+          "396663",
+          "Pieris rapae",
+          1
+        ],
+        [
+          "396663",
+          "Lampides boeticus",
+          1
+        ],
+        [
+          "396663",
+          "Carcharodus alceae",
+          1
+        ],
+        [
+          "396663",
+          "Pieris rapae",
+          1
+        ],
+        [
+          "396663",
+          "Pararge aegeria",
+          1
+        ],
+        [
+          "402279",
+          "Pieris rapae",
+          1
+        ],
+        [
+          "402279",
+          "Lycaenidae",
+          1
+        ],
+        [
+          "402279",
+          "Pararge aegeria",
+          1
         ]
       ]
     }
