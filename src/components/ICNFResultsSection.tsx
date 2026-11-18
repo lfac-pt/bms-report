@@ -51,10 +51,12 @@ export default function ICNFResultsSection({
   return (
     <Card className="annual-story-card icnf-results" id="annual-icnf">
       <span className="annual-eyebrow">ICNF / Conhecer para conservar</span>
-      <Title level={2}>Percursos que acompanham a natureza</Title>
+      <Title level={2}>ICNF: percursos que acompanham a natureza</Title>
       <Paragraph className="annual-lead">
-        Nos transectos associados ao ICNF, voltar ao terreno ao longo da época permite acompanhar
-        diferentes comunidades de borboletas. Em 2026, estes percursos contribuíram com{" "}
+        Nos transectos associados ao{" "}
+        <strong>Instituto da Conservação da Natureza e das Florestas (ICNF)</strong>, voltar ao
+        terreno ao longo da época permite acompanhar diferentes comunidades de borboletas. Em 2026,
+        estes percursos contribuíram com{" "}
         <strong>
           {((results.current.visits / totalVisits) * 100).toLocaleString("pt-PT", {
             maximumFractionDigits: 1,
