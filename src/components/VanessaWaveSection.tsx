@@ -12,7 +12,6 @@ import {
   RESULTS_YEAR,
   WAVE_SPECIES,
   monitoringWeeks,
-  monthlySpeciesAbundance,
   summarizeSpeciesPeriod,
   timelineForMonth,
   timelineForWeek,
@@ -319,8 +318,9 @@ export default function VanessaWaveSection({
           Como se compara 2026 com outros anos?
         </Title>
         <Paragraph>
-          Depois do detalhe semanal, uma perspetiva de toda a época. A linha laranja destaca 2026;
-          selecione os anos na legenda para comparar a intensidade e o momento dos picos.
+          Depois do detalhe semanal, uma perspetiva de toda a época: a média de indivíduos por
+          visita em cada mês. A linha laranja destaca 2026; selecione os anos na legenda para
+          comparar a intensidade e o momento dos picos.
         </Paragraph>
         <div className="wave-history-summary">
           <div>
@@ -349,19 +349,19 @@ export default function VanessaWaveSection({
         </div>
         <div className="wave-history-chart">
           <Line
-            aria-label="Comparação das contagens mensais de Vanessa cardui entre anos"
+            aria-label="Comparação da média mensal de indivíduos de Vanessa cardui por visita entre anos"
             role="img"
             data={{
               labels: MONTH_NAMES,
               datasets: years.map((year, index) => ({
                 label: String(year),
-                data: monthlySpeciesAbundance(timeline, year).map((value, index) =>
-                  Object.keys(
-                    timelineForMonth(timeline, year, index + 3).observationsByYearDate[year]
-                  ).length
-                    ? value
-                    : null
-                ),
+                data: MONTH_NAMES.map((_, monthIndex) => {
+                  const period = summarizeSpeciesPeriod(
+                    timelineForMonth(timeline, year, monthIndex + 3),
+                    year
+                  );
+                  return period.visits > 0 ? period.individuals / period.visits : null;
+                }),
                 borderColor: year === RESULTS_YEAR ? "#b45309" : COLORS[index % COLORS.length],
                 backgroundColor: year === RESULTS_YEAR ? "#b45309" : COLORS[index % COLORS.length],
                 borderWidth: year === RESULTS_YEAR ? 4 : 1.5,
@@ -377,17 +377,18 @@ export default function VanessaWaveSection({
               scales: {
                 y: {
                   beginAtZero: true,
-                  title: { display: true, text: "Indivíduos contados por mês" },
+                  title: { display: true, text: "Média de indivíduos por visita" },
                 },
               },
             }}
           />
         </div>
         <Paragraph className="wave-footnote">
-          Contagens de março a setembro, sem correção pelo esforço de amostragem. O número de
-          visitas e de transectos varia entre anos: mais indivíduos contados não significa, por si
-          só, um aumento populacional equivalente. A média por visita inclui visitas sem registos da
-          espécie. Meses sem visitas aparecem como lacunas.
+          Em cada mês, o total de indivíduos é dividido pelo número de visitas a todos os
+          transectos, incluindo visitas sem registos da espécie. Cada transecto numa data conta como
+          uma visita. Meses sem visitas aparecem como lacunas. Esta média ajusta a comparação ao
+          número de visitas, mas não às diferenças de duração, habitats ou transectos amostrados;
+          não representa, por si só, uma tendência populacional.
         </Paragraph>
       </section>
     </Card>

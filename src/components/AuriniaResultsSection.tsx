@@ -10,7 +10,6 @@ import { compareSpeciesOnSharedTransects } from "../utils/annualHighlights";
 import {
   MONTH_NAMES,
   RESULTS_YEAR,
-  monthlySpeciesAbundance,
   summarizeSpeciesPeriod,
   timelineForMonth,
 } from "../utils/annualResults";
@@ -77,22 +76,23 @@ export default function AuriniaResultsSection({ timeline, transects, credits }: 
       </Row>
       <Row gutter={[32, 24]} className="annual-aurinia-data">
         <Col xs={24} lg={14}>
-          <Title level={3}>Mais indivíduos, sobretudo na primavera</Title>
+          <Title level={3}>Abundância média por visita ao longo da época</Title>
           <div style={{ height: 280 }}>
             <Line
-              aria-label="Contagens mensais de Euphydryas aurinia em 2025 e 2026"
+              aria-label="Média mensal de indivíduos de Euphydryas aurinia por visita em 2025 e 2026"
               role="img"
               data={{
                 labels: MONTH_NAMES,
                 datasets: [RESULTS_YEAR - 1, RESULTS_YEAR].map(year => ({
                   label: String(year),
-                  data: monthlySpeciesAbundance(timeline, year, SPECIES).map((count, index) =>
-                    Object.keys(
-                      timelineForMonth(timeline, year, index + 3).observationsByYearDate[year]
-                    ).length
-                      ? count
-                      : null
-                  ),
+                  data: MONTH_NAMES.map((_, monthIndex) => {
+                    const period = summarizeSpeciesPeriod(
+                      timelineForMonth(timeline, year, monthIndex + 3),
+                      year,
+                      SPECIES
+                    );
+                    return period.visits > 0 ? period.individuals / period.visits : null;
+                  }),
                   borderColor: year === RESULTS_YEAR ? "#166553" : "#95a6a0",
                   backgroundColor: year === RESULTS_YEAR ? "#166553" : "#95a6a0",
                   borderWidth: year === RESULTS_YEAR ? 3 : 2,
@@ -104,7 +104,10 @@ export default function AuriniaResultsSection({ timeline, transects, credits }: 
                 maintainAspectRatio: false,
                 plugins: { legend: { position: "bottom" } },
                 scales: {
-                  y: { beginAtZero: true, title: { display: true, text: "Indivíduos contados" } },
+                  y: {
+                    beginAtZero: true,
+                    title: { display: true, text: "Média de indivíduos por visita" },
+                  },
                 },
               }}
             />
@@ -137,9 +140,12 @@ export default function AuriniaResultsSection({ timeline, transects, credits }: 
         </div>
       )}
       <Paragraph className="annual-note">
-        Comparação descritiva entre março e setembro, sem ajuste pela distribuição das visitas ao
-        longo da época, clima ou detetabilidade. As contagens não demonstram, por si só, uma
-        recuperação populacional ou a sua causa. Meses sem visitas aparecem como lacunas.
+        No gráfico, o total de indivíduos de cada mês é dividido pelo número de visitas a todos os
+        transectos, incluindo visitas sem registos da espécie. Cada transecto numa data conta como
+        uma visita. Meses sem visitas aparecem como lacunas. Esta média ajusta a comparação ao
+        número de visitas, mas não às diferenças de duração, habitats ou transectos amostrados,
+        clima ou detetabilidade. Não demonstra, por si só, uma recuperação populacional ou a sua
+        causa.
       </Paragraph>
     </Card>
   );
