@@ -33,3 +33,56 @@ body {
     white-space: normal;
   }
 }
+
+/* Tagis theme: scoped to the standalone entry so the regular app keeps its design. */
+.embedded-report {
+  font-family: "Raleway", Arial, sans-serif;
+  color: #818181;
+}
+.embedded-report .annual-page > :is(.annual-story-card, .wave-card, .annual-participation) {
+  --section-accent: #5cbce0;
+  border-radius: 4px;
+  border-color: #e3e3e3;
+  border-top-color: #5cbce0;
+  box-shadow: none;
+}
+.embedded-report .annual-page :is(h1, h2, h3).ant-typography {
+  font-family: "Raleway", Arial, sans-serif;
+  color: #3698bc;
+  font-weight: 400;
+}
+.embedded-report .annual-page-header h1.ant-typography {
+  font-size: clamp(30px, 4vw, 42px);
+}
+.embedded-report :is(.annual-lead, .annual-page-header .ant-typography) {
+  line-height: 1.65;
+}
+.embedded-report
+  :is(.annual-eyebrow, .wave-eyebrow, .annual-network-callout, .annual-ranking-count) {
+  color: #3698bc;
+}
+.embedded-report .annual-page .annual-story-card .annual-eyebrow {
+  color: #3698bc;
+  border-color: #5cbce0;
+}
+.embedded-report :is(.annual-highlights, .annual-coverage) {
+  border-color: #d7eaf1;
+}
+.embedded-report :is(.annual-highlights a, .annual-participation, .annual-evidence, .wave-context) {
+  background: #f2f9fc;
+  color: #54717c;
+}
+.embedded-report :is(.annual-evidence, .wave-context) {
+  border-left-color: #5cbce0;
+}
+.embedded-report .embedded-participation-prompt {
+  padding: 20px 0 0;
+  border-top: 1px solid #c8e3ed;
+  font-size: 16px;
+}
+.embedded-participation-prompt strong {
+  display: block;
+  color: #3698bc;
+  font-size: 22px;
+  margin-bottom: 8px;
+}

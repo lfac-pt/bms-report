@@ -4,16 +4,9 @@ import { ReportEmbedContext } from "../contexts/ReportEmbedContext";
 
 export default function ReportLink(props: LinkProps) {
   const applicationUrl = useContext(ReportEmbedContext);
-  if (applicationUrl && typeof props.to === "string") {
-    const { to, ...anchorProps } = props;
-    return (
-      <a
-        {...anchorProps}
-        href={`${applicationUrl.replace(/#.*$/, "")}#${to}`}
-        target="_blank"
-        rel="noopener noreferrer"
-      />
-    );
+  if (applicationUrl) {
+    if (typeof props.children === "string" && props.children.startsWith("Ver espécie")) return null;
+    return <span className={props.className}>{props.children}</span>;
   }
   return <Link {...props} />;
 }

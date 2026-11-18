@@ -1,3 +1,4 @@
+import ReportAnchor from "./ReportAnchor";
 import { scrollToReportSection } from "../utils/reportNavigation";
 import { useMemo } from "react";
 import { Card, Col, Empty, Row, Tag, Typography } from "antd";
@@ -47,7 +48,7 @@ export default function AnnualOverview({ timeline, transects, names, credits }: 
   return (
     <>
       <nav className="annual-highlights" aria-label="Destaques de 2026">
-        <a
+        <ReportAnchor
           href="#/results/2026#discoveries"
           onClick={event => {
             event.preventDefault();
@@ -57,8 +58,8 @@ export default function AnnualOverview({ timeline, transects, names, credits }: 
           <strong>{highlights.discoveries.length}</strong>
           <span>espécies novas nos registos disponíveis</span>
           <span aria-hidden="true">↗</span>
-        </a>
-        <a
+        </ReportAnchor>
+        <ReportAnchor
           href="#/results/2026#network"
           onClick={event => {
             event.preventDefault();
@@ -68,8 +69,8 @@ export default function AnnualOverview({ timeline, transects, names, credits }: 
           <strong>{highlights.newCount}</strong>
           <span>transectos na sua primeira época</span>
           <span aria-hidden="true">↗</span>
-        </a>
-        <a
+        </ReportAnchor>
+        <ReportAnchor
           href="#/results/2026#network"
           onClick={event => {
             event.preventDefault();
@@ -79,7 +80,7 @@ export default function AnnualOverview({ timeline, transects, names, credits }: 
           <strong>{highlights.veteranCount}</strong>
           <span>transectos ativos com 5 ou mais épocas</span>
           <span aria-hidden="true">↗</span>
-        </a>
+        </ReportAnchor>
       </nav>
 
       <Card id="annual-network" className="annual-story-card">
@@ -255,7 +256,7 @@ export default function AnnualOverview({ timeline, transects, names, credits }: 
                       "O acompanhamento regular permite documentar a presença desta espécie e apoiar o conhecimento dos seus habitats."}
                   </Paragraph>
                   {highlights.discoveries.some(discovery => discovery.species === item.species) && (
-                    <a
+                    <ReportAnchor
                       href="#/results/2026#discoveries"
                       onClick={event => {
                         event.preventDefault();
@@ -263,7 +264,7 @@ export default function AnnualOverview({ timeline, transects, names, credits }: 
                       }}
                     >
                       Também entre os primeiros registos deste ano ↑
-                    </a>
+                    </ReportAnchor>
                   )}
                 </div>
               </article>
@@ -274,29 +275,29 @@ export default function AnnualOverview({ timeline, transects, names, credits }: 
           Categorias nacionais CR, EN e VU, segundo a lista de conservação utilizada no projeto.
           Estatuto de ameaça e proteção legal são conceitos distintos. Não são apresentadas
           localizações detalhadas nesta secção. Fontes:{" "}
-          <a
+          <ReportAnchor
             href="https://lvinvertebrados.uac.pt/docs/Livro-Vermelho-dos-Invertebrados-de-Portugal-Continental.pdf"
             target="_blank"
             rel="noopener noreferrer"
           >
             Livro Vermelho dos Invertebrados de Portugal Continental
-          </a>
+          </ReportAnchor>
           ,{" "}
-          <a
+          <ReportAnchor
             href="https://webstorage.cienciaviva.pt/public/pt.cienciaviva.io/recursos/files/insetos_em_ordem_3517648335f7ca.pdf"
             target="_blank"
             rel="noopener noreferrer"
           >
             Ciência Viva: a relação com as formigas
-          </a>{" "}
+          </ReportAnchor>{" "}
           e{" "}
-          <a
+          <ReportAnchor
             href="https://www.first-nature.com/insects/lb-euchloe-tagis.php"
             target="_blank"
             rel="noopener noreferrer"
           >
             plantas hospedeiras de Euchloe tagis
-          </a>
+          </ReportAnchor>
           .
         </Paragraph>
       </Card>

@@ -1,4 +1,4 @@
 import { createContext } from "react";
 
-// Null keeps normal in-app routing; embedded reports link out to the complete application.
+// Null preserves the regular app; a value enables the standalone report presentation.
 export const ReportEmbedContext = createContext<string | null>(null);

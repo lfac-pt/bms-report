@@ -1,3 +1,4 @@
+import ReportAnchor from "./ReportAnchor";
 import { scrollToReportSection } from "../utils/reportNavigation";
 import { useMemo } from "react";
 import { Card, Col, Row, Statistic, Table, Typography } from "antd";
@@ -171,7 +172,7 @@ export default function ICNFResultsSection({
               ))}{" "}
               também {discoveries.length === 1 ? "surge" : "surgem"} entre os primeiros registos
               disponíveis na rede em 2026.{" "}
-              <a
+              <ReportAnchor
                 href="#/results/2026#discoveries"
                 onClick={event => {
                   event.preventDefault();
@@ -179,7 +180,7 @@ export default function ICNFResultsSection({
                 }}
               >
                 Rever as descobertas ↑
-              </a>
+              </ReportAnchor>
             </Paragraph>
           )}
         </div>

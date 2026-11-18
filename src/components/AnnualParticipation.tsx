@@ -1,4 +1,5 @@
-import { useMemo, useState } from "react";
+import { ReportEmbedContext } from "../contexts/ReportEmbedContext";
+import { useContext, useMemo, useState } from "react";
 import { Button, Card, Select, Typography } from "antd";
 import { municipalityGaps } from "../utils/annualHighlights";
 
@@ -12,6 +13,7 @@ export default function AnnualParticipation({
 }: {
   coverage: MunicipalityCoverage[] | null;
 }) {
+  const embedded = useContext(ReportEmbedContext);
   const gaps = useMemo(() => (coverage ? municipalityGaps(coverage) : []), [coverage]);
   const [chosen, setChosen] = useState<string>();
   const examples = ["Águeda", "Cantanhede", "Figueira da Foz"].filter(name => gaps.includes(name));
@@ -67,15 +69,23 @@ export default function AnnualParticipation({
           <span>A regularidade das visitas transforma observações em conhecimento.</span>
         </li>
       </ol>
-      <Button
-        type="primary"
-        size="large"
-        href="https://www.tagis.pt/censos-de-borboletas.html"
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        Quero começar um transecto →
-      </Button>
+      {embedded ? (
+        <Paragraph className="embedded-participation-prompt">
+          <strong>Como participar ↓</strong>
+          Continue a fazer scroll: as orientações para participar estão logo a seguir a este
+          relatório.
+        </Paragraph>
+      ) : (
+        <Button
+          type="primary"
+          size="large"
+          href="https://www.tagis.pt/censos-de-borboletas.html"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Quero começar um transecto →
+        </Button>
+      )}
       <Paragraph className="annual-note">
         Orientações de participação: Tagis · Censos de Borboletas de Portugal. Pode preparar o seu
         percurso antes da próxima primavera.

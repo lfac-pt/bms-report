@@ -1,3 +1,4 @@
+import ReportAnchor from "./ReportAnchor";
 import { useEffect, useMemo, useState } from "react";
 import { Button, Card, Col, Empty, Row, Slider, Space, Typography } from "antd";
 import { LeftOutlined, PauseOutlined, PlayCircleOutlined, RightOutlined } from "@ant-design/icons";
@@ -125,37 +126,37 @@ export default function VanessaWaveSection({
             </div>
             <details className="wave-sources">
               <summary>Fontes sobre migração e chuva</summary>
-              <a
+              <ReportAnchor
                 href="https://www.nature.com/articles/s41467-025-67185-7"
                 target="_blank"
                 rel="noopener noreferrer"
               >
                 Nature Communications (2025)
-              </a>
+              </ReportAnchor>
               {" · "}
-              <a
+              <ReportAnchor
                 href="https://pmc.ncbi.nlm.nih.gov/articles/PMC5095192/"
                 target="_blank"
                 rel="noopener noreferrer"
               >
                 Migração transaariana (2016)
-              </a>
+              </ReportAnchor>
               {" · "}
-              <a
+              <ReportAnchor
                 href="https://climate.copernicus.eu/exceptional-rainfall-and-flooding-parts-europe-and-north-africa-february"
                 target="_blank"
                 rel="noopener noreferrer"
               >
                 Copernicus: chuvas de 2026
-              </a>
+              </ReportAnchor>
               {" · "}
-              <a
+              <ReportAnchor
                 href="https://butterfly-conservation.org/news-and-blog/have-you-spotted-a-painted-lady"
                 target="_blank"
                 rel="noopener noreferrer"
               >
                 Butterfly Conservation
-              </a>
+              </ReportAnchor>
             </details>
           </Col>
         </Row>
@@ -209,7 +210,7 @@ export default function VanessaWaveSection({
               style={{ height: 450, width: "100%" }}
             >
               <TileLayer
-                attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+                attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</ReportAnchor> contributors'
                 url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
               />
               {markers

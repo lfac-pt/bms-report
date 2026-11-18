@@ -3,7 +3,7 @@ import { MemoryRouter } from "react-router-dom";
 import ReportLink from "./ReportLink";
 import { ReportEmbedContext } from "../contexts/ReportEmbedContext";
 
-test("embedded detail links open the full application outside the report", () => {
+test("embedded detail names remain visible without navigation", () => {
   render(
     <MemoryRouter>
       <ReportEmbedContext.Provider value="https://example.org/bms/">
@@ -11,12 +11,8 @@ test("embedded detail links open the full application outside the report", () =>
       </ReportEmbedContext.Provider>
     </MemoryRouter>
   );
-  expect(screen.getByRole("link")).toHaveAttribute(
-    "href",
-    "https://example.org/bms/#/species/Vanessa%20cardui"
-  );
-  expect(screen.getByRole("link")).toHaveAttribute("target", "_blank");
-  expect(screen.getByRole("link")).toHaveAttribute("rel", "noopener noreferrer");
+  expect(screen.getByText("Species")).toBeInTheDocument();
+  expect(screen.queryByRole("link")).not.toBeInTheDocument();
 });
 test("normal application links preserve internal routing", () => {
   render(

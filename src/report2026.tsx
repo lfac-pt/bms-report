@@ -2,7 +2,7 @@
 import React, { useEffect, useRef } from "react";
 import { createRoot } from "react-dom/client";
 import { HashRouter } from "react-router-dom";
-import { App } from "antd";
+import { App, ConfigProvider } from "antd";
 import AnnualResultsPage from "./components/AnnualResultsPage";
 import { ReportEmbedContext } from "./contexts/ReportEmbedContext";
 import { connectReportEmbed } from "./utils/reportEmbed";
@@ -16,16 +16,6 @@ function EmbeddedReport() {
   return (
     <div ref={root} className="embedded-report">
       <AnnualResultsPage embedded />
-      <footer className="embedded-report-footer">
-        Censos de Borboletas de Portugal · Resultados de 2026 ·{" "}
-        <a
-          href="https://lfac-pt.github.io/bms-report/#/results/2026"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Abrir relatório completo ↗
-        </a>
-      </footer>
     </div>
   );
 }
@@ -35,11 +25,23 @@ if (!root) throw new Error("Root element not found");
 createRoot(root).render(
   <React.StrictMode>
     <HashRouter>
-      <App>
-        <ReportEmbedContext.Provider value="https://lfac-pt.github.io/bms-report/">
-          <EmbeddedReport />
-        </ReportEmbedContext.Provider>
-      </App>
+      <ConfigProvider
+        theme={{
+          token: {
+            fontFamily: '"Raleway", Arial, sans-serif',
+            colorPrimary: "#5cbce0",
+            colorText: "#818181",
+            colorTextHeading: "#3698bc",
+            borderRadius: 4,
+          },
+        }}
+      >
+        <App>
+          <ReportEmbedContext.Provider value="https://lfac-pt.github.io/bms-report/">
+            <EmbeddedReport />
+          </ReportEmbedContext.Provider>
+        </App>
+      </ConfigProvider>
     </HashRouter>
   </React.StrictMode>
 );

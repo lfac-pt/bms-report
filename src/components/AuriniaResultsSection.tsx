@@ -1,3 +1,4 @@
+import ReportAnchor from "./ReportAnchor";
 import { useMemo } from "react";
 import { Card, Col, Row, Tag, Typography } from "antd";
 import Link from "./ReportLink";
@@ -63,13 +64,13 @@ export default function AuriniaResultsSection({ timeline, transects, credits }: 
           <Tag color="green">Anexo II da Diretiva Habitats</Tag>
           <Paragraph className="annual-note">
             A proteção legal não equivale a uma categoria de ameaça.{" "}
-            <a
+            <ReportAnchor
               href="https://lvinvertebrados.pt/especies-protegidas/euphydryas-aurinia/"
               target="_blank"
               rel="noopener noreferrer"
             >
               Ecologia e proteção da espécie
-            </a>
+            </ReportAnchor>
             .
           </Paragraph>
         </Col>
