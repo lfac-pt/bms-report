@@ -7,6 +7,39 @@ a recipient manifest. Optional contact and visit logs support multiple recipient
 and visits without sightings. See [the report generator guide](transect-reports/README.md)
 for inputs, analytical definitions, limitations and examples.
 
+## Import of 17 November 2026
+
+The exports supplied in `Desktop/candida` were imported into the local, Git-ignored
+`raw-data/` directory:
+
+| Project file | Contents |
+| --- | --- |
+| `all.csv` | 63,651 transect observations through 12 November 2026; 990 added, all previous records unchanged |
+| `visits.csv` | 24,821 section-visit rows representing 6,276 transect visits |
+| `raw transects metadata.csv` | 152 transects, including lengths and habitats |
+| `transect-sections.csv` | 638 transect sections |
+| `timed-count-observations.csv` | 33,875 observations from the separate timed-count survey |
+| `timed-count-visits.csv` | 2,869 timed-count visits |
+
+The curated `metadata.csv` is preserved. Replaced files are backed up under
+`raw-data/import-backups/2026-11-17-candida/`; source filenames, row counts and
+SHA-256 hashes are recorded in `raw-data/candida-import-2026-11-17.json`.
+Five observation rows lack a transect ID and remain in the source data; the PDF
+generator skips and reports them. The visit export adds 327 visits with no
+observation rows. Section rows are grouped by transect sample ID in PDF reports.
+
+Include the visit log explicitly when generating a report:
+
+```bash
+npm run reports:transects -- --year 2026 --transect 330931 \
+  --visits raw-data/visits.csv --out-dir output/pdf/gateira-2026-with-visits
+```
+
+The dashboard processing pipeline still derives visits from observation records.
+The section and timed-count exports are retained as separate inputs; the current
+dashboard and transect reports do not consume them. Timed counts must not be
+appended to `all.csv`, because they use a different survey protocol and schema.
+
 ## process-butterfly-data.js
 
 This script processes raw butterfly monitoring data from the EBMS (European Butterfly Monitoring Scheme) Portugal project.
