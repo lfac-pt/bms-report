@@ -170,7 +170,7 @@ export default function AnnualOverview({ timeline, transects, names, credits }: 
         </Paragraph>
       </Card>
 
-      <Card className="annual-story-card">
+      <Card id="annual-places" className="annual-story-card">
         <Row gutter={[40, 24]}>
           <Col xs={24} lg={8}>
             <span className="annual-eyebrow">Explorar / Os lugares da diversidade</span>
@@ -223,7 +223,7 @@ export default function AnnualOverview({ timeline, transects, names, credits }: 
         </Row>
       </Card>
 
-      <Card className="annual-story-card">
+      <Card id="annual-conservation" className="annual-story-card">
         <span className="annual-eyebrow">Conservar / Cada registo conta</span>
         <Title level={2}>
           {highlights.threatened.length} espécies ameaçadas em Portugal acompanhadas em 2026

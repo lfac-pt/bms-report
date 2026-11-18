@@ -29,6 +29,48 @@
   scroll-margin-top: 24px;
   overflow: hidden;
 }
+.annual-page > :is(.annual-story-card, .wave-card, .annual-participation) {
+  --section-accent: #166553;
+  margin-top: 20px;
+  border: 1px solid #d6e1db;
+  border-top: 5px solid var(--section-accent);
+  border-radius: 14px;
+  box-shadow: 0 5px 18px #183c2910;
+}
+.annual-page > :is(.annual-story-card, .wave-card, .annual-participation) > .ant-card-body {
+  padding: 32px;
+}
+.annual-page #annual-discoveries {
+  --section-accent: #356a8a;
+}
+.annual-page #annual-places {
+  --section-accent: #596b38;
+}
+.annual-page #annual-conservation {
+  --section-accent: #80556c;
+}
+.annual-page #annual-icnf {
+  --section-accent: #165744;
+}
+.annual-page .wave-card {
+  --section-accent: #a75c25;
+}
+.annual-page #annual-aurinia {
+  --section-accent: #7c652e;
+}
+.annual-page .annual-story-card .annual-eyebrow {
+  display: inline-block;
+  color: var(--section-accent);
+  border-bottom: 2px solid var(--section-accent);
+  padding-bottom: 8px;
+  margin-bottom: 8px;
+}
+.annual-page :is(.wave-card, #annual-aurinia) > .ant-card-head {
+  background: #f8faf8;
+  border-bottom-color: #d6e1db;
+  padding: 0 32px;
+  min-height: 72px;
+}
 .annual-story-card h2.ant-typography,
 .annual-participation h2.ant-typography {
   font-family: Georgia, serif;
@@ -279,6 +321,15 @@
   font-size: 13px;
 }
 @media (max-width: 767px) {
+  .annual-page > :is(.annual-story-card, .wave-card, .annual-participation) {
+    margin-top: 12px;
+  }
+  .annual-page > :is(.annual-story-card, .wave-card, .annual-participation) > .ant-card-body {
+    padding: 18px;
+  }
+  .annual-page :is(.wave-card, #annual-aurinia) > .ant-card-head {
+    padding: 0 18px;
+  }
   .annual-highlights {
     grid-template-columns: 1fr;
   }

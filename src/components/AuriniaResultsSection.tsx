@@ -34,6 +34,7 @@ export default function AuriniaResultsSection({ timeline, transects, credits }: 
   return (
     <Card
       className="annual-story-card"
+      id="annual-aurinia"
       extra={<Link to={`/species/${encodeURIComponent(SPECIES)}`}>Ver espécie →</Link>}
       title={
         <span>
