@@ -82,6 +82,27 @@ export default function AnnualOverview({ timeline, transects, names, credits }: 
         </a>
       </nav>
 
+      <Card id="annual-network" className="annual-story-card">
+        <Row gutter={[32, 16]} align="bottom">
+          <Col xs={24} lg={16}>
+            <span className="annual-eyebrow">Voltar / A força de uma rede</span>
+            <Title level={2}>Uma rede que cresce e continua a voltar</Title>
+            <Paragraph>
+              Os novos percursos alargam o nosso olhar. Os percursos acompanhados durante vários
+              anos dão profundidade à história: só voltando ao mesmo lugar podemos distinguir uma
+              época excecional de uma mudança duradoura.
+            </Paragraph>
+          </Col>
+          <Col xs={24} lg={8}>
+            <div className="annual-network-callout">
+              <strong>{highlights.newCount} novos</strong>
+              <span>e {highlights.veteranCount} com pelo menos cinco épocas</span>
+            </div>
+          </Col>
+        </Row>
+        <AnnualNetworkMap network={highlights.network} />
+      </Card>
+
       <Card id="annual-discoveries" className="annual-story-card">
         <span className="annual-eyebrow">Descobrir / A diversidade que se revela</span>
         <Title level={2}>Novos olhares, novas descobertas</Title>
@@ -278,27 +299,6 @@ export default function AnnualOverview({ timeline, transects, names, credits }: 
           </a>
           .
         </Paragraph>
-      </Card>
-
-      <Card id="annual-network" className="annual-story-card">
-        <Row gutter={[32, 16]} align="bottom">
-          <Col xs={24} lg={16}>
-            <span className="annual-eyebrow">Voltar / A força de uma rede</span>
-            <Title level={2}>Uma rede que cresce e continua a voltar</Title>
-            <Paragraph>
-              Os novos percursos alargam o nosso olhar. Os percursos acompanhados durante vários
-              anos dão profundidade à história: só voltando ao mesmo lugar podemos distinguir uma
-              época excecional de uma mudança duradoura.
-            </Paragraph>
-          </Col>
-          <Col xs={24} lg={8}>
-            <div className="annual-network-callout">
-              <strong>{highlights.newCount} novos</strong>
-              <span>e {highlights.veteranCount} com pelo menos cinco épocas</span>
-            </div>
-          </Col>
-        </Row>
-        <AnnualNetworkMap network={highlights.network} />
       </Card>
     </>
   );
