@@ -7,6 +7,43 @@ a recipient manifest. Optional contact and visit logs support multiple recipient
 and visits without sightings. See [the report generator guide](transect-reports/README.md)
 for inputs, analytical definitions, limitations and examples.
 
+## Import of 22 November 2026
+
+The replacement exports in `Desktop/candida` add 84 observations (207 individuals)
+from 2026 across A Rocha Cruzinha I, A Rocha Cruzinha II and Baldios de São Miguel
+de Poiares. `raw-data/all.csv` now contains 63,735 observations; every previous
+observation is unchanged. The site, section-definition and timed-count exports
+are byte-for-byte unchanged from the previous import.
+
+The new `raw-data/transect-visits.csv` preserves the original transect-level export:
+6,306 visits, all with a populated `Recorded by` field. Its 254 distinct labels
+include spelling/order variants, teams and organizations; they are not a count of
+unique people. Names are retained as supplied, without splitting on commas or
+overwriting curated owners or volunteer credits.
+
+`raw-data/section-visits.csv` preserves the 24,846 section-visit rows. The combined
+`raw-data/visits.csv` contains one row per transect/sample ID, links the recorder
+and visit details from the transect export, and includes 21 visits without section
+rows. Pass it to the PDF generator with `--visits raw-data/visits.csv`. Recorder
+information stays in the Git-ignored raw inputs; it is not added to public JSON.
+
+Four sample IDs have conflicting parent/section dates. The combined visit log
+retains the section dates already used in observations and the previous import.
+`Exported Transect Date` retains the parent date and `Visit Date Source` records
+the choice. These discrepancies still need confirmation from the data provider:
+
+| Transect | Sample ID | Transect export date | Retained section date |
+| --- | --- | --- | --- |
+| Oficina Abelha | 14138174 | 11/04/2021 | 12/04/2021 |
+| Parque Urbano do Vale da Montanha | 24869570 | 23/11/2023 | 04/02/2024 |
+| Azenhas do Ervedal | 25659204 | 08/05/2024 | 09/05/2024 |
+| Aguiar de Sousa | 26598075 | 13/07/2024 | 14/07/2024 |
+
+The curated `metadata.csv` remains unchanged. Replaced inputs are backed up under
+`raw-data/import-backups/2026-11-22-candida/`; source filenames, hashes, row counts
+and the date discrepancies are recorded in `raw-data/candida-import-2026-11-22.json`.
+Dashboard visit calculations retain their existing observation-based definitions.
+
 ## Import of 17 November 2026
 
 The exports supplied in `Desktop/candida` were imported into the local, Git-ignored
