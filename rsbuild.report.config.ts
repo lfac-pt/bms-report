@@ -26,6 +26,14 @@ export default defineConfig({
       { from: "public/imgs/results", to: "imgs/results" },
       { from: "public/imgs/vanessa-cardui-swarm.jpg", to: "imgs/vanessa-cardui-swarm.jpg" },
       {
+        from: "public/imgs/sp/Lycaenidae/Pseudophilotes panoptes.jpg",
+        to: "imgs/sp/Lycaenidae/Pseudophilotes panoptes.jpg",
+      },
+      {
+        from: "public/imgs/sp/Nymphalidae/Brenthis daphne.jpg",
+        to: "imgs/sp/Nymphalidae/Brenthis daphne.jpg",
+      },
+      {
         from: "public/imgs/sp/Nymphalidae/Euphydryas aurinia.jpg",
         to: "imgs/sp/Nymphalidae/Euphydryas aurinia.jpg",
       },
