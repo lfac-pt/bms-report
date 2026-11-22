@@ -3,7 +3,6 @@ import { render, screen, fireEvent } from "@testing-library/react";
 import { MemoryRouter } from "react-router-dom";
 import VanessaWaveSection from "./VanessaWaveSection";
 import { TimelineData } from "../types/timelineData";
-import { TransectData } from "../types/transectStats";
 
 jest.mock("react-leaflet", () => ({
   MapContainer: ({ children }: { children: ReactNode }) => <div>{children}</div>,
@@ -24,12 +23,11 @@ const timeline: TimelineData = {
     },
   },
 };
-const transects: TransectData = { transects: [], metadata: {} as TransectData["metadata"] };
 
 test("weekly abundance bars and keyboard slider share the map period selection", () => {
   render(
     <MemoryRouter>
-      <VanessaWaveSection timeline={timeline} transects={transects} />
+      <VanessaWaveSection timeline={timeline} transects={[]} />
     </MemoryRouter>
   );
   const secondWeek = screen.getByRole("button", { name: "08/03 – 14/03: 10 indivíduos" });

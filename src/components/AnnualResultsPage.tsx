@@ -5,7 +5,8 @@ import { Alert, Card, Col, Row, Spin, Statistic, Typography } from "antd";
 import Link from "./ReportLink";
 import { TimelineData } from "../types/timelineData";
 import { TransectData } from "../types/transectStats";
-import { RESULTS_YEAR, summarizeYear, mainlandResultsTimeline } from "../utils/annualResults";
+import { RESULTS_YEAR, summarizeYear, scopeResultsTimeline } from "../utils/annualResults";
+import { AnnualTransect, madeiraTransects } from "../data/madeiraTransects";
 import AnnualOverview from "./AnnualOverview";
 import ICNFResultsSection from "./ICNFResultsSection";
 import AuriniaResultsSection from "./AuriniaResultsSection";
@@ -16,7 +17,7 @@ import VanessaWaveSection from "./VanessaWaveSection";
 
 const { Title, Paragraph, Text } = Typography;
 export default function AnnualResultsPage({ embedded = false }: { embedded?: boolean }) {
-  const [data, setData] = useState<{ timeline: TimelineData; transects: TransectData } | null>(
+  const [data, setData] = useState<{ timeline: TimelineData; transects: AnnualTransect[] } | null>(
     null
   );
   const [extras, setExtras] = useState<{
@@ -30,20 +31,21 @@ export default function AnnualResultsPage({ embedded = false }: { embedded?: boo
     let cancelled = false;
     async function load() {
       try {
-        const [timeline, transects] = await Promise.all(
-          ["timeline-data.json", "processed-transects.json"].map(async file => {
-            const response = await window.fetch(`data/${file}`);
-            if (!response.ok) throw new Error("Erro ao carregar dados");
-            return response.json();
-          })
-        );
+        async function fetchData<T>(file: string): Promise<T> {
+          const response = await window.fetch(`data/${file}`);
+          if (!response.ok) throw new Error("Erro ao carregar dados");
+          return response.json();
+        }
+        const [timeline, mainland] = await Promise.all([
+          fetchData<TimelineData>("timeline-data.json"),
+          fetchData<TransectData>("processed-transects.json"),
+        ]);
+        const transects = [...mainland.transects, ...madeiraTransects];
         if (!cancelled)
           setData({
-            timeline: mainlandResultsTimeline(
+            timeline: scopeResultsTimeline(
               timeline,
-              new Set<string>(
-                transects.transects.map((item: { transectId: string }) => item.transectId)
-              )
+              new Set(transects.map(item => item.transectId))
             ),
             transects,
           });
@@ -107,9 +109,8 @@ export default function AnnualResultsPage({ embedded = false }: { embedded?: boo
         <Title>Resultados de {RESULTS_YEAR}</Title>
         <Paragraph>
           Percursos que se repetem, descobertas que se somam. De março a setembro, cada visita ajuda
-          a conhecer as borboletas de Portugal continental e os habitats de que dependem. Estes são
-          os registos de 2026, em comparação com 2025, excluindo os transectos da Madeira nos dois
-          anos.
+          a conhecer as borboletas de Portugal continental e da Madeira e os habitats de que
+          dependem. Estes são os registos de 2026, em comparação com 2025.
         </Paragraph>
       </header>
       {!current && (
@@ -169,7 +170,14 @@ export default function AnnualResultsPage({ embedded = false }: { embedded?: boo
         />
       )}
       {extras.timed && <TimedCountsResultsSection data={extras.timed} />}
-      <AnnualParticipation coverage={extras.coverage} />
+      <AnnualParticipation
+        coverage={
+          extras.timed?.municipalities.features.map(({ properties }) => ({
+            Concelho: properties.name,
+            transectCount: Number(properties.hasTransect),
+          })) ?? extras.coverage
+        }
+      />
     </main>
   );
 }

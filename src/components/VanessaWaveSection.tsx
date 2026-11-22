@@ -6,8 +6,9 @@ import Link from "./ReportLink";
 import { Line } from "react-chartjs-2";
 import { CircleMarker, MapContainer, Popup, TileLayer } from "react-leaflet";
 import { TimelineData } from "../types/timelineData";
-import { TransectData } from "../types/transectStats";
+import { AnnualTransect } from "../data/madeiraTransects";
 import { calculateSpeciesPresenceByYear } from "../utils/speciesMapUtils";
+import { annualMapView } from "../utils/annualMapView";
 import {
   MONTH_NAMES,
   RESULTS_YEAR,
@@ -30,7 +31,7 @@ export default function VanessaWaveSection({
   transects,
 }: {
   timeline: TimelineData;
-  transects: TransectData;
+  transects: AnnualTransect[];
 }) {
   const [week, setWeek] = useState(0);
   const [playing, setPlaying] = useState(false);
@@ -55,13 +56,7 @@ export default function VanessaWaveSection({
   );
   const max = Math.max(1, ...periods.map(period => period.individuals));
   const markers = useMemo(
-    () =>
-      calculateSpeciesPresenceByYear(
-        WAVE_SPECIES,
-        RESULTS_YEAR,
-        selected.timeline,
-        transects.transects
-      ),
+    () => calculateSpeciesPresenceByYear(WAVE_SPECIES, RESULTS_YEAR, selected.timeline, transects),
     [selected, transects]
   );
   const chooseWeek = (index: number) => {
@@ -204,13 +199,12 @@ export default function VanessaWaveSection({
           </div>
           <div className="wave-map">
             <MapContainer
-              center={[39.6, -8]}
-              zoom={6}
+              {...annualMapView}
               scrollWheelZoom={false}
               style={{ height: 450, width: "100%" }}
             >
               <TileLayer
-                attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</ReportAnchor> contributors'
+                attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
                 url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
               />
               {markers

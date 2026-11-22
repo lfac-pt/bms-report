@@ -4,10 +4,10 @@ import { useMemo } from "react";
 import { Card, Col, Empty, Row, Tag, Typography } from "antd";
 import Link from "./ReportLink";
 import { TimelineData } from "../types/timelineData";
-import { TransectData } from "../types/transectStats";
+import { AnnualTransect, madeiraTransectIds } from "../data/madeiraTransects";
 import { annualHighlights } from "../utils/annualHighlights";
-import { RESULTS_YEAR } from "../utils/annualResults";
-import { VALID_SPECIES } from "../constants";
+import { RESULTS_YEAR, isAnnualSpecies } from "../utils/annualResults";
+
 import endangeredPT from "../utils/endangered_pt";
 import SpeciesLink from "./SpeciesLink";
 import AnnualNetworkMap from "./AnnualNetworkMap";
@@ -28,17 +28,17 @@ const ECOLOGY: Record<string, string> = {
 
 export interface AnnualStoryProps {
   timeline: TimelineData;
-  transects: TransectData;
+  transects: AnnualTransect[];
   names: Record<string, string>;
   credits: Record<string, PhotoCredit>;
 }
 
 export default function AnnualOverview({ timeline, transects, names, credits }: AnnualStoryProps) {
   const highlights = useMemo(
-    () => annualHighlights(timeline, RESULTS_YEAR, transects.transects),
+    () => annualHighlights(timeline, RESULTS_YEAR, transects),
     [timeline, transects]
   );
-  const metadata = new Map(transects.transects.map(item => [item.transectId, item]));
+  const metadata = new Map(transects.map(item => [item.transectId, item]));
   const years = timeline.years.filter(year => year <= RESULTS_YEAR);
   const priorYears = years.filter(year => year < RESULTS_YEAR);
   const top = highlights.network.slice(0, 5);
@@ -141,10 +141,7 @@ export default function AnnualOverview({ timeline, transects, names, credits }: 
                             {index > 0 && "; "}
                             {location ? (
                               <>
-                                {location.transectName} ·{" "}
-                                <Link to={`/municipality/${encodeURIComponent(location.concelho)}`}>
-                                  {location.concelho}
-                                </Link>
+                                {location.transectName} · <AnnualMunicipality transect={location} />
                               </>
                             ) : (
                               `Transecto ${item.transectIds[index]} (localização indisponível)`
@@ -195,11 +192,7 @@ export default function AnnualOverview({ timeline, transects, names, credits }: 
                     <span className="annual-rank-number">{top.indexOf(item) + 1}</span>
                     <div className="annual-ranking-name">
                       <strong>{item.metadata?.transectName || `Transecto ${item.id}`}</strong>
-                      {item.metadata && (
-                        <Link to={`/municipality/${encodeURIComponent(item.metadata.concelho)}`}>
-                          {item.metadata.concelho}
-                        </Link>
-                      )}
+                      {item.metadata && <AnnualMunicipality transect={item.metadata} />}
                       <span>{item.visits} visitas</span>
                     </div>
                     <div className="annual-ranking-count">
@@ -227,7 +220,8 @@ export default function AnnualOverview({ timeline, transects, names, credits }: 
       <Card id="annual-conservation" className="annual-story-card">
         <span className="annual-eyebrow">Conservar / Cada registo conta</span>
         <Title level={2}>
-          {highlights.threatened.length} espécies ameaçadas em Portugal acompanhadas em 2026
+          {highlights.threatened.length} espécies ameaçadas em Portugal continental acompanhadas em
+          2026
         </Title>
         <Paragraph className="annual-lead">
           Entre as borboletas observadas estão espécies cujos habitats precisam de especial atenção.
@@ -240,7 +234,8 @@ export default function AnnualOverview({ timeline, transects, names, credits }: 
                 <AnnualSpeciesPhoto species={item.species} credits={credits} />
                 <div className="annual-species-copy">
                   <Tag color={endangeredPT[item.species] === "VU" ? "orange" : "red"}>
-                    Portugal · {STATUS[endangeredPT[item.species]]} ({endangeredPT[item.species]})
+                    Portugal continental · {STATUS[endangeredPT[item.species]]} (
+                    {endangeredPT[item.species]})
                   </Tag>
                   <Title level={3}>
                     <SpeciesLink species={item.species} />
@@ -305,6 +300,13 @@ export default function AnnualOverview({ timeline, transects, names, credits }: 
   );
 }
 
+function AnnualMunicipality({ transect }: { transect: AnnualTransect }) {
+  if (madeiraTransectIds.has(transect.transectId)) return <span>{transect.concelho}, Madeira</span>;
+  return (
+    <Link to={`/municipality/${encodeURIComponent(transect.concelho)}`}>{transect.concelho}</Link>
+  );
+}
+
 function speciesNamesForTransect(timeline: TimelineData, id: string) {
   return [
     ...new Set(
@@ -312,7 +314,7 @@ function speciesNamesForTransect(timeline: TimelineData, id: string) {
         .flat()
         .filter(([tid, , count]) => tid === id && count > 0)
         .map(([, species]) => species)
-        .filter(species => VALID_SPECIES.has(species))
+        .filter(species => isAnnualSpecies(species))
     ),
   ].sort();
 }

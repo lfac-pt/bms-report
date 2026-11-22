@@ -7,6 +7,7 @@ import { AnnualStoryProps } from "./AnnualOverview";
 import AnnualSpeciesPhoto from "./AnnualSpeciesPhoto";
 import SpeciesMap from "./SpeciesMap";
 import { calculateSpeciesPresenceByYear } from "../utils/speciesMapUtils";
+import { annualMapView } from "../utils/annualMapView";
 import { compareSpeciesOnSharedTransects } from "../utils/annualHighlights";
 import {
   MONTH_NAMES,
@@ -26,7 +27,7 @@ export default function AuriniaResultsSection({ timeline, transects, credits }: 
     [timeline]
   );
   const presence = useMemo(
-    () => calculateSpeciesPresenceByYear(SPECIES, RESULTS_YEAR, timeline, transects.transects),
+    () => calculateSpeciesPresenceByYear(SPECIES, RESULTS_YEAR, timeline, transects),
     [timeline, transects]
   );
   const occupied = [...current.counts.values()].filter(count => count > 0).length;
@@ -121,6 +122,7 @@ export default function AuriniaResultsSection({ timeline, transects, credits }: 
             speciesName={SPECIES}
             year={RESULTS_YEAR}
             timelineData={timeline}
+            view={annualMapView}
           />
           <Paragraph className="annual-note">
             Azul: presença da espécie; cinzento: sem registos da espécie. Localizações aproximadas,

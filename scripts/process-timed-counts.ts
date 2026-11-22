@@ -7,6 +7,7 @@ import { FeatureCollection, MultiPolygon, Polygon } from "geojson";
 import { summarizeTimedCounts, LocatedTimedVisit } from "../src/utils/timedCounts";
 import { TimedCountResults } from "../src/types/timedCounts";
 import { RESULTS_YEAR } from "../src/utils/annualResults";
+import { madeiraTransects } from "../src/data/madeiraTransects";
 
 /** Export only municipality aggregates: never recorder names, sample IDs or point locations. */
 export function processTimedCounts(root = process.cwd()) {
@@ -27,10 +28,11 @@ export function processTimedCounts(root = process.cwd()) {
     skip_empty_lines: true,
   });
   // This existing output is already reprojected to WGS84. Locate before simplifying boundaries.
-  const boundaries: FeatureCollection<Polygon | MultiPolygon, { Concelho: string }> = JSON.parse(
-    read("public/data/municipalities-species-map.geojson")
-  );
-  const indexed = boundaries.features.map(feature => ({ feature, box: bbox(feature) }));
+  type Boundaries = FeatureCollection<Polygon | MultiPolygon, { Concelho: string }>;
+  const mainland: Boundaries = JSON.parse(read("public/data/municipalities-species-map.geojson"));
+  const madeira: Boundaries = JSON.parse(read("scripts/data/madeira-municipalities.geojson"));
+  const boundaries = [...mainland.features, ...madeira.features];
+  const indexed = boundaries.map(feature => ({ feature, box: bbox(feature) }));
   const located: LocatedTimedVisit[] = [];
   for (const visit of visits) {
     const match = /^\s*(?:~\s*)?([\d.]+)([NS])\s+([\d.]+)([EW])\s*$/.exec(
@@ -61,8 +63,10 @@ export function processTimedCounts(root = process.cwd()) {
       .normalize("NFD")
       .replace(/[\u0300-\u036f]/g, "")
       .toLocaleLowerCase("pt-PT");
-  const network = new Set(transects.transects.map(item => normalize(item.concelho || "")));
-  const displayGeometry = (feature: (typeof boundaries.features)[number]) => {
+  const network = new Set(
+    [...transects.transects, ...madeiraTransects].map(item => normalize(item.concelho || ""))
+  );
+  const displayGeometry = (feature: Boundaries["features"][number]) => {
     try {
       return simplify(feature, { tolerance: 0.002, highQuality: true }).geometry;
     } catch {
@@ -74,7 +78,7 @@ export function processTimedCounts(root = process.cwd()) {
     years: Object.fromEntries(years.map((year, index) => [year, summaries[index].summary])),
     municipalities: {
       type: "FeatureCollection",
-      features: boundaries.features.map(feature => ({
+      features: boundaries.map(feature => ({
         type: "Feature" as const,
         geometry: displayGeometry(feature),
         properties: {
@@ -91,7 +95,10 @@ export function processTimedCounts(root = process.cwd()) {
     },
   };
   fs.writeFileSync(path.join(root, "public/data/timed-count-results.json"), JSON.stringify(output));
-  console.log("Timed counts (mainland, March–September):", JSON.stringify(output.years));
+  console.log(
+    "Timed counts (mainland and Madeira, March–September):",
+    JSON.stringify(output.years)
+  );
 }
 
 if (process.argv[1] && path.resolve(process.argv[1]) === fileURLToPath(import.meta.url))

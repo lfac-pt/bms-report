@@ -4,6 +4,7 @@ import { Line } from "react-chartjs-2";
 import { GeoJSON, MapContainer, TileLayer } from "react-leaflet";
 import { TimedCountResults } from "../types/timedCounts";
 import { MONTH_NAMES, RESULTS_YEAR } from "../utils/annualResults";
+import { annualMapView } from "../utils/annualMapView";
 import ReportAnchor from "./ReportAnchor";
 import "./TimedCountsResultsSection.css";
 
@@ -47,7 +48,7 @@ export default function TimedCountsResultsSection({ data }: { data: TimedCountRe
         Os transectos contam a história de voltar ao mesmo lugar. As contagens de 15 minutos
         permitem levar a observação a outros percursos, áreas ou pontos, com a aplicação
         ButterflyCount. Juntas, estas formas de participar ajudam a conhecer mais lugares de
-        Portugal continental.
+        Portugal continental e da Madeira.
       </Paragraph>
       <Row gutter={[16, 20]} className="timed-counts-metrics">
         {metrics.map(metric => (
@@ -58,10 +59,10 @@ export default function TimedCountsResultsSection({ data }: { data: TimedCountRe
         ))}
       </Row>
       <Paragraph className="annual-note">
-        Março–setembro, Portugal continental. Das {current.species} espécies identificadas em 2026,{" "}
-        {current.acceptedSpecies} têm pelo menos um registo aceite; as restantes aguardam validação.
-        Os totais incluem {number(current.pendingRecords)} registos de observação por confirmar.
-        Estes resultados são apresentados separadamente dos totais dos transectos.
+        Março–setembro, Portugal continental e Madeira. Das {current.species} espécies identificadas
+        em 2026, {current.acceptedSpecies} têm pelo menos um registo aceite; as restantes aguardam
+        validação. Os totais incluem {number(current.pendingRecords)} registos de observação por
+        confirmar. Estes resultados são apresentados separadamente dos totais dos transectos.
       </Paragraph>
 
       <section className="timed-counts-chapter" aria-labelledby="timed-coverage-title">
@@ -82,12 +83,7 @@ export default function TimedCountsResultsSection({ data }: { data: TimedCountRe
             </span>
           ))}
         </div>
-        <MapContainer
-          center={[39.6, -8]}
-          zoom={6}
-          scrollWheelZoom={false}
-          className="timed-counts-map"
-        >
+        <MapContainer {...annualMapView} scrollWheelZoom={false} className="timed-counts-map">
           <TileLayer
             attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
             url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
@@ -216,10 +212,10 @@ export default function TimedCountsResultsSection({ data }: { data: TimedCountRe
           usam a mesma lista de nomes válidos dos transectos.
         </Paragraph>
         <Paragraph>
-          As visitas são localizadas nos concelhos de Portugal continental. Observações sem uma
-          visita correspondente não entram nos totais. Os registos por confirmar não devem ser
-          interpretados como novas ocorrências confirmadas. A duração nominal de 15 minutos não é
-          inferida pela diferença entre início e fim, pois a aplicação permite pausas.
+          As visitas são localizadas nos concelhos de Portugal continental e da Madeira. Observações
+          sem uma visita correspondente não entram nos totais. Os registos por confirmar não devem
+          ser interpretados como novas ocorrências confirmadas. A duração nominal de 15 minutos não
+          é inferida pela diferença entre início e fim, pois a aplicação permite pausas.
         </Paragraph>
         <Paragraph>
           Método:{" "}
@@ -229,6 +225,17 @@ export default function TimedCountsResultsSection({ data }: { data: TimedCountRe
             rel="noopener noreferrer"
           >
             eBMS · Contagens de 15 minutos
+          </ReportAnchor>
+          .
+        </Paragraph>
+        <Paragraph>
+          Limites dos concelhos da Madeira da{" "}
+          <ReportAnchor
+            href="https://infogeo.dgterritorio.gov.pt/arcgis/rest/services/Hosted/Concelhos_Arquip%C3%A9lago_da_Madeira/FeatureServer/2"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Direção-Geral do Território · CAOP 2022
           </ReportAnchor>
           .
         </Paragraph>

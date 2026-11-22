@@ -17,7 +17,7 @@ const snippet = readFileSync("docs/weebly-embed-2026.html", "utf8")
 writeFileSync(join(root, "weebly-embed.html"), snippet);
 writeFileSync(
   join(root, "README.txt"),
-  `Relatório interativo 2026 — Portugal continental\n\nGerado em ${new Date().toISOString()}.\n\n1. Alojar todo o conteúdo desta pasta num servidor HTTPS estático.\n2. Abrir index.html através do servidor (não diretamente como ficheiro local).\n3. Em weebly-embed.html, substituir https://YOUR-REPORT-HOST pelo endereço público da pasta.\n4. No Weebly: Embed Code > Edit Custom HTML; colar o bloco completo.\n5. Publicar e testar a página em computador e telemóvel.\n\nOs dados e fotografias são uma cópia dos ficheiros disponíveis na data de geração.\nOs fundos dos mapas precisam de internet. Os links de espécies e concelhos abrem a aplicação completa numa nova janela.\nOs créditos das fotografias são apresentados no relatório.\n`
+  `Relatório interativo 2026 · Portugal continental e Madeira\n\nGerado em ${new Date().toISOString()}.\n\n1. Alojar todo o conteúdo desta pasta num servidor HTTPS estático.\n2. Abrir index.html através do servidor (não diretamente como ficheiro local).\n3. Em weebly-embed.html, substituir https://YOUR-REPORT-HOST pelo endereço público da pasta.\n4. No Weebly: Embed Code > Edit Custom HTML; colar o bloco completo.\n5. Publicar e testar a página em computador e telemóvel.\n\nOs dados e fotografias são uma cópia dos ficheiros disponíveis na data de geração.\nOs fundos dos mapas precisam de internet. Os links de espécies e concelhos abrem a aplicação completa numa nova janela.\nOs créditos das fotografias são apresentados no relatório.\n`
 );
 function files(directory) {
   return readdirSync(directory, { withFileTypes: true }).flatMap(entry => {

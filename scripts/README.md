@@ -141,8 +141,9 @@ npm run process-data
 
 Run `npm run process:timed-counts` to rebuild
 `public/data/timed-count-results.json` from the two timed-count CSV exports,
-`processed-transects.json` and the existing WGS84
-`municipalities-species-map.geojson`. The full processing pipeline also calls
+`processed-transects.json`, the Madeira transect catalogue in
+`src/data/madeiraTransects.ts` and the mainland and Madeira municipality boundaries.
+The full processing pipeline also calls
 this step after regenerating the municipality data. No R analyses or PDF
 reports are needed for the standalone command. If either raw timed-count CSV
 is unavailable, the existing generated summary is retained.
@@ -160,12 +161,15 @@ The standalone report export copies the summary alongside its other data files.
 - Include adult butterflies (or an unspecified stage), with positive numeric
   counts and `Accepted` or `Unconfirmed` status. Exclude other insects,
   immature stages and rejected observations. Species richness uses
-  `VALID_SPECIES`; individual totals also include broader identifications.
+  the annual report's species list, including Madeira species. Individual totals
+  also include broader identifications.
 - Report distinct species separately from distinct species with at least one
   accepted observation. Unconfirmed record counts are also shown to readers.
-- Locate the visit centroid within the existing mainland municipality polygons,
-  before simplifying the map display boundaries. Outside-mainland and
-  unlocatable visits are excluded. Observations without a matching visit are
+- Locate the visit centroid within the mainland or Madeira municipality polygons
+  before simplifying the map display boundaries. The Madeira input in
+  `scripts/data/madeira-municipalities.geojson` is a simplified WGS84 export
+  from the [DGT CAOP 2022 Madeira municipality layer](https://infogeo.dgterritorio.gov.pt/arcgis/rest/services/Hosted/Concelhos_Arquip%C3%A9lago_da_Madeira/FeatureServer/2).
+  Visits outside these polygons are excluded. Observations without a matching visit are
   excluded; the only such 2026 observation in the November import is a bumblebee.
 - Compare municipality names after case, accent and whitespace normalization.
   Transect coverage refers to the processed catalogue across all years, including

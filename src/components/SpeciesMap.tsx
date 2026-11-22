@@ -2,6 +2,7 @@ import { MapContainer, TileLayer, CircleMarker, Popup, GeoJSON } from "react-lea
 import { Bar } from "react-chartjs-2";
 import { useEffect, useState } from "react";
 import type { FeatureCollection } from "geojson";
+import type { MapContainerProps } from "react-leaflet";
 import {
   SpeciesTransectData,
   MonthlyAbundance,
@@ -15,6 +16,7 @@ interface SpeciesMapProps {
   speciesName: string;
   year: number;
   timelineData: TimelineData;
+  view?: Pick<MapContainerProps, "bounds" | "boundsOptions" | "zoomSnap">;
 }
 
 // Mapping from zone numbers (DN) to Portuguese region names
@@ -77,7 +79,7 @@ function MonthlyAbundanceChart({ monthlyData }: MonthlyChartProps) {
   );
 }
 
-function SpeciesMap({ transects, speciesName, year, timelineData }: SpeciesMapProps) {
+function SpeciesMap({ transects, speciesName, year, timelineData, view }: SpeciesMapProps) {
   const [environmentalZones, setEnvironmentalZones] = useState<FeatureCollection | null>(null);
 
   // Load environmental zones GeoJSON
@@ -111,7 +113,10 @@ function SpeciesMap({ transects, speciesName, year, timelineData }: SpeciesMapPr
 
   return (
     <div>
-      <MapContainer center={[avgLat, avgLon]} zoom={6} style={{ height: "300px", width: "100%" }}>
+      <MapContainer
+        {...(view ?? { center: [avgLat, avgLon], zoom: 6 })}
+        style={{ height: "300px", width: "100%" }}
+      >
         <TileLayer
           attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"

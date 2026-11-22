@@ -1,8 +1,10 @@
 import { useState } from "react";
-import { Checkbox, Empty, Space, Typography } from "antd";
+import { Button, Checkbox, Empty, Space, Typography } from "antd";
 import { MapContainer, TileLayer, CircleMarker, Popup } from "react-leaflet";
 import Link from "./ReportLink";
 import { NetworkTransect } from "../utils/annualHighlights";
+import { annualMapView } from "../utils/annualMapView";
+import { madeiraTransectIds } from "../data/madeiraTransects";
 import "leaflet/dist/leaflet.css";
 
 const GROUPS = {
@@ -16,8 +18,10 @@ const groupOf = (item: NetworkTransect): Group =>
 
 export default function AnnualNetworkMap({ network }: { network: NetworkTransect[] }) {
   const [groups, setGroups] = useState<Group[]>(["new", "veteran", "other"]);
+  const [showMadeira, setShowMadeira] = useState(false);
   const mappable = network.filter(item => item.metadata?.coordinates);
   const visible = mappable.filter(item => groups.includes(groupOf(item)));
+  const hasMadeira = mappable.some(item => madeiraTransectIds.has(item.id));
   return (
     <div>
       <Space wrap size={[20, 12]} style={{ marginBottom: 16 }}>
@@ -35,11 +39,16 @@ export default function AnnualNetworkMap({ network }: { network: NetworkTransect
             {GROUPS[group].label} ({network.filter(item => groupOf(item) === group).length})
           </Checkbox>
         ))}
+        {hasMadeira && (
+          <Button size="small" onClick={() => setShowMadeira(value => !value)}>
+            {showMadeira ? "Ver toda a rede" : "Ver Madeira"}
+          </Button>
+        )}
       </Space>
       {network.length > 0 ? (
         <MapContainer
-          center={[39.6, -8]}
-          zoom={6}
+          key={String(showMadeira)}
+          {...(showMadeira ? { center: [32.72, -16.91], zoom: 11 } : annualMapView)}
           scrollWheelZoom={false}
           style={{ height: 460, width: "100%", borderRadius: 10 }}
         >
@@ -63,14 +72,17 @@ export default function AnnualNetworkMap({ network }: { network: NetworkTransect
                 <strong>{item.metadata!.transectName}</strong>
                 <br />
                 {item.metadata!.concelho}
+                {madeiraTransectIds.has(item.id) && ", Madeira"}
                 <br />
                 {GROUPS[groupOf(item)].label} · {item.years.length} épocas com registos
                 <br />
                 {item.speciesCount} espécies · {item.visits} visitas em 2026
                 <br />
-                <Link to={`/municipality/${encodeURIComponent(item.metadata!.concelho)}`}>
-                  Explorar o concelho
-                </Link>
+                {!madeiraTransectIds.has(item.id) && (
+                  <Link to={`/municipality/${encodeURIComponent(item.metadata!.concelho)}`}>
+                    Explorar o concelho
+                  </Link>
+                )}
               </Popup>
             </CircleMarker>
           ))}

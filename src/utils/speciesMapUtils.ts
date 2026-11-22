@@ -26,7 +26,7 @@ export function calculateSpeciesPresenceByYear(
   speciesName: string,
   year: number,
   timelineData: TimelineData,
-  transects: TransectStats[]
+  transects: Pick<TransectStats, "transectId" | "transectName" | "coordinates">[]
 ): SpeciesTransectData[] {
   const observationsByDate = timelineData.observationsByYearDate[year] || {};
   const transectsThisYear = new Set(timelineData.transectsByYear[year] || []);

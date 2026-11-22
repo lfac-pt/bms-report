@@ -1,4 +1,4 @@
-import { VALID_SPECIES } from "../constants";
+import { isAnnualSpecies } from "./annualResults";
 import { TimedCountYear } from "../types/timedCounts";
 
 type ExportRow = Record<string, string>;
@@ -74,7 +74,7 @@ export function summarizeTimedCounts(
       for (const period of [periods[0], periods[month - 2]]) {
         period.individuals += count;
         if (row["Record status"] === "Unconfirmed") period.pendingRecords++;
-        if (VALID_SPECIES.has(species)) {
+        if (isAnnualSpecies(species)) {
           period.species.add(species);
           if (row["Record status"] === "Accepted") period.accepted.add(species);
         }

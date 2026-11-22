@@ -1,6 +1,6 @@
-import { VALID_SPECIES } from "../constants";
+import { isAnnualSpecies } from "./annualResults";
 import { TimelineData } from "../types/timelineData";
-import { TransectStats } from "../types/transectStats";
+import { AnnualTransect } from "../data/madeiraTransects";
 import endangeredPT from "./endangered_pt";
 
 export interface AnnualSpecies {
@@ -19,7 +19,7 @@ export function speciesInYear(timeline: TimelineData, year: number): AnnualSpeci
   const dateKey = (date: string) => date.split("/").reverse().join("-");
   Object.entries(timeline.observationsByYearDate[year] || {}).forEach(([date, observations]) => {
     observations.forEach(([id, name, count]) => {
-      if (count <= 0 || !VALID_SPECIES.has(name)) return;
+      if (count <= 0 || !isAnnualSpecies(name)) return;
       const item = species.get(name) || {
         individuals: 0,
         transects: new Set<string>(),
@@ -42,7 +42,7 @@ export function speciesInYear(timeline: TimelineData, year: number): AnnualSpeci
 }
 
 /** Network membership is derived from visits, including those without positive species counts. */
-export function annualNetwork(timeline: TimelineData, year: number, transects: TransectStats[]) {
+export function annualNetwork(timeline: TimelineData, year: number, transects: AnnualTransect[]) {
   const seasons = new Map<string, Set<number>>();
   Object.entries(timeline.observationsByYearDate).forEach(([yearString, dates]) => {
     const season = Number(yearString);
@@ -61,7 +61,7 @@ export function annualNetwork(timeline: TimelineData, year: number, transects: T
     observations.forEach(([id, name, count]) => {
       if (!visits.has(id)) visits.set(id, new Set());
       visits.get(id)!.add(date);
-      if (count > 0 && VALID_SPECIES.has(name)) {
+      if (count > 0 && isAnnualSpecies(name)) {
         if (!species.has(id)) species.set(id, new Set());
         species.get(id)!.add(name);
       }
@@ -87,7 +87,11 @@ export function annualNetwork(timeline: TimelineData, year: number, transects: T
 
 export type NetworkTransect = ReturnType<typeof annualNetwork>[number];
 
-export function annualHighlights(timeline: TimelineData, year: number, transects: TransectStats[]) {
+export function annualHighlights(
+  timeline: TimelineData,
+  year: number,
+  transects: AnnualTransect[]
+) {
   const current = speciesInYear(timeline, year);
   const previousSpecies = new Set(
     Object.keys(timeline.observationsByYearDate)

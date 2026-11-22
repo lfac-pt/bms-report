@@ -1,9 +1,9 @@
 import { TimelineData } from "../types/timelineData";
-import { TransectStats } from "../types/transectStats";
+import { AnnualTransect } from "../data/madeiraTransects";
 import { annualHighlights, annualNetwork } from "./annualHighlights";
-import { mainlandResultsTimeline, summarizeYear } from "./annualResults";
+import { scopeResultsTimeline, summarizeYear } from "./annualResults";
 
-export function icnfIdentification(transect: TransectStats): "entity" | "name" | null {
+export function icnfIdentification(transect: AnnualTransect): "entity" | "name" | null {
   const entity = transect.entidade.trim().toUpperCase();
   if (entity === "ICNF") return "entity";
   // Use the name only when institutional metadata is missing, never overrule another entity.
@@ -12,9 +12,9 @@ export function icnfIdentification(transect: TransectStats): "entity" | "name" |
   return null;
 }
 
-export function icnfResults(timeline: TimelineData, transects: TransectStats[], year: number) {
+export function icnfResults(timeline: TimelineData, transects: AnnualTransect[], year: number) {
   const metadata = transects.filter(transect => icnfIdentification(transect));
-  const scoped = mainlandResultsTimeline(
+  const scoped = scopeResultsTimeline(
     timeline,
     new Set(metadata.map(transect => transect.transectId))
   );

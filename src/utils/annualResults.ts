@@ -5,6 +5,17 @@ export const RESULTS_YEAR = 2026;
 export const WAVE_SPECIES = "Vanessa cardui";
 export const MONTH_NAMES = ["Mar", "Abr", "Mai", "Jun", "Jul", "Ago", "Set"];
 
+const MADEIRA_SPECIES = new Set([
+  "Gonepteryx maderensis",
+  "Hipparchia maderensis",
+  "Pararge xiphia",
+  "Vanessa vulcania",
+]);
+
+export function isAnnualSpecies(name: string) {
+  return VALID_SPECIES.has(name) || MADEIRA_SPECIES.has(name);
+}
+
 export function summarizeYear(timeline: TimelineData, year: number) {
   const dates = timeline.observationsByYearDate[year];
   if (!dates || Object.keys(dates).length === 0) return null;
@@ -16,7 +27,7 @@ export function summarizeYear(timeline: TimelineData, year: number) {
     observations.forEach(([id, name, count]) => {
       transects.add(id);
       visits.add(`${id}:${date}`);
-      if (count > 0 && VALID_SPECIES.has(name)) species.add(name);
+      if (count > 0 && isAnnualSpecies(name)) species.add(name);
       individuals += count;
     });
   });
@@ -115,8 +126,8 @@ export function summarizeSpeciesPeriod(
   return { visited, visits: visits.size, counts, individuals };
 }
 
-/** Apply the same transect eligibility as the processed mainland overview to every year. */
-export function mainlandResultsTimeline(
+/** Filter all years and their derived data to the selected transects. */
+export function scopeResultsTimeline(
   timeline: TimelineData,
   transectIds: Set<string>
 ): TimelineData {
@@ -143,7 +154,7 @@ export function mainlandResultsTimeline(
     Object.entries(filteredDates).forEach(([date, observations]) =>
       observations.forEach(([id, species, count]) => {
         ids.add(id);
-        if (count <= 0 || !VALID_SPECIES.has(species)) return;
+        if (count <= 0 || !isAnnualSpecies(species)) return;
         if (!speciesDates.has(species)) speciesDates.set(species, new Set());
         speciesDates.get(species)!.add(date);
         if (!transectSpecies.has(id)) transectSpecies.set(id, new Set());

@@ -5,7 +5,7 @@ import { Card, Col, Row, Statistic, Table, Typography } from "antd";
 import { Bar } from "react-chartjs-2";
 import Link from "./ReportLink";
 import { TimelineData } from "../types/timelineData";
-import { TransectData } from "../types/transectStats";
+import { AnnualTransect } from "../data/madeiraTransects";
 import { icnfResults } from "../utils/icnfResults";
 import { MONTH_NAMES, RESULTS_YEAR, summarizeYear, timelineForMonth } from "../utils/annualResults";
 import { annualHighlights, NetworkTransect } from "../utils/annualHighlights";
@@ -20,14 +20,14 @@ export default function ICNFResultsSection({
   transects,
 }: {
   timeline: TimelineData;
-  transects: TransectData;
+  transects: AnnualTransect[];
 }) {
   const results = useMemo(
-    () => icnfResults(timeline, transects.transects, RESULTS_YEAR),
+    () => icnfResults(timeline, transects, RESULTS_YEAR),
     [timeline, transects]
   );
   const allHighlights = useMemo(
-    () => annualHighlights(timeline, RESULTS_YEAR, transects.transects),
+    () => annualHighlights(timeline, RESULTS_YEAR, transects),
     [timeline, transects]
   );
   const totalVisits = summarizeYear(timeline, RESULTS_YEAR)?.visits || 0;
@@ -64,7 +64,7 @@ export default function ICNFResultsSection({
           })}
           % das visitas
         </strong>{" "}
-        registadas na rede continental.
+        registadas na rede em Portugal continental e na Madeira.
       </Paragraph>
       <Row gutter={[16, 16]} className="icnf-metrics">
         {metrics.map(([label, key]) => (

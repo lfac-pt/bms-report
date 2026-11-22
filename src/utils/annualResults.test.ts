@@ -1,6 +1,6 @@
 import {
   monitoringWeeks,
-  mainlandResultsTimeline,
+  scopeResultsTimeline,
   timelineForWeek,
   monthlySpeciesAbundance,
   summarizeYear,
@@ -8,6 +8,7 @@ import {
   timelineForMonth,
 } from "./annualResults";
 import { TimelineData } from "../types/timelineData";
+import { madeiraTransectIds } from "../data/madeiraTransects";
 
 const timeline: TimelineData = {
   years: [2025, 2026],
@@ -94,29 +95,31 @@ test("species summaries include visits without detections and aggregate sections
   expect(weeklyTotal).toBe(summary.individuals);
 });
 
-test("mainland scope excludes island observations and derived data across every year", () => {
+test("annual scope adds Madeira across comparison and historical seasons", () => {
+  const [madeira] = madeiraTransectIds;
   const input: TimelineData = {
     ...timeline,
     years: [2024, 2025, 2026],
     observationsByYearDate: {
-      2024: { "01/03/2024": [["madeira", "Vanessa cardui", 12]] },
+      2024: { "01/03/2024": [[madeira, "Hipparchia maderensis", 12]] },
       2025: {
         "01/03/2025": [
           ["a", "Vanessa cardui", 2],
-          ["madeira", "Euchloe tagis", 5],
+          [madeira, "Hipparchia maderensis", 5],
         ],
       },
       2026: {
         "01/03/2026": [
           ["a", "Vanessa cardui", 3],
-          ["madeira", "Vanessa cardui", 9],
+          [madeira, "Vanessa cardui", 9],
+          ["excluded", "Euchloe tagis", 6],
         ],
-        "02/03/2026": [["madeira", "Euchloe tagis", 1]],
+        "02/03/2026": [[madeira, "Hipparchia maderensis", 1]],
         "03/03/2026": [["b", "Pieris rapae", 0]],
       },
     },
   };
-  const filtered = mainlandResultsTimeline(input, new Set(["a", "b"]));
+  const filtered = scopeResultsTimeline(input, new Set(["a", "b"]));
   expect(filtered.years).toEqual([2025, 2026]);
   expect(summarizeYear(filtered, 2026)).toEqual({
     species: 1,
@@ -133,5 +136,24 @@ test("mainland scope excludes island observations and derived data across every 
   expect(filtered.transectDiversityByYear[2026]).toEqual([
     { transectId: "a", diversityCount: 1, speciesList: ["Vanessa cardui"] },
   ]);
-  expect(input.observationsByYearDate[2026]["01/03/2026"]).toHaveLength(2);
+  const report = scopeResultsTimeline(input, new Set(["a", "b", ...madeiraTransectIds]));
+  expect(report.years).toEqual([2024, 2025, 2026]);
+  expect(summarizeYear(report, 2025)).toEqual({
+    species: 2,
+    individuals: 7,
+    visits: 2,
+    transects: 2,
+  });
+  expect(summarizeYear(report, 2026)).toEqual({
+    species: 2,
+    individuals: 13,
+    visits: 4,
+    transects: 3,
+  });
+  expect(report.transectDiversityByYear[2026][0]).toEqual({
+    transectId: madeira,
+    diversityCount: 2,
+    speciesList: ["Hipparchia maderensis", "Vanessa cardui"],
+  });
+  expect(input.observationsByYearDate[2026]["01/03/2026"]).toHaveLength(3);
 });
