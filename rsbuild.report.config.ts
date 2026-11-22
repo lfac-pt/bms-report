@@ -4,6 +4,7 @@ import { pluginTypeCheck } from "@rsbuild/plugin-type-check";
 
 const dataFiles = [
   "timeline-data.json",
+  "timed-count-results.json",
   "processed-transects.json",
   "common-names.json",
   "photo-credits.json",

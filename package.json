@@ -33,6 +33,7 @@
     "lint:fix": "eslint . --ext .js,.jsx,.ts,.tsx --fix",
     "format": "prettier --write \"{src,scripts}/**/*.{js,jsx,ts,tsx,json,css,scss,md}\"",
     "format:check": "prettier --check \"{src,scripts}/**/*.{js,jsx,ts,tsx,json,css,scss,md}\"",
+    "process:timed-counts": "tsx scripts/process-timed-counts.ts",
     "process-data": "tsx scripts/process-butterfly-data.ts",
     "reports:transects": "node --import tsx scripts/generate-transect-reports.ts",
     "test:transect-reports": "node --import tsx --test scripts/transect-reports/*.test.ts",

@@ -1,3 +1,4 @@
+import { processTimedCounts } from "./process-timed-counts";
 /**
  * Main butterfly data processing script
  * Coordinates all data processing, analysis, and output generation
@@ -396,6 +397,7 @@ async function processData(): Promise<void> {
 
   // Process municipality species map
   processMunicipalityGeoJSON(results, allData);
+  processTimedCounts();
 
   console.log("\n✓ Processing complete!");
   console.log(`\nSummary:`);

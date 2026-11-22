@@ -1,3 +1,5 @@
+import TimedCountsResultsSection from "./TimedCountsResultsSection";
+import { TimedCountResults } from "../types/timedCounts";
 import { useEffect, useState } from "react";
 import { Alert, Card, Col, Row, Spin, Statistic, Typography } from "antd";
 import Link from "./ReportLink";
@@ -21,7 +23,8 @@ export default function AnnualResultsPage({ embedded = false }: { embedded?: boo
     names: Record<string, string>;
     credits: Record<string, PhotoCredit>;
     coverage: MunicipalityCoverage[] | null;
-  }>({ names: {}, credits: {}, coverage: null });
+    timed: TimedCountResults | null;
+  }>({ names: {}, credits: {}, coverage: null, timed: null });
   const [error, setError] = useState(false);
   useEffect(() => {
     let cancelled = false;
@@ -63,9 +66,15 @@ export default function AnnualResultsPage({ embedded = false }: { embedded?: boo
       optional("photo-credits.json"),
       optional("results-photo-credits.json"),
       optional("municipality-coverage.json"),
-    ]).then(([names, credits, resultsCredits, coverage]) => {
+      optional("timed-count-results.json"),
+    ]).then(([names, credits, resultsCredits, coverage, timed]) => {
       if (!cancelled)
-        setExtras({ names: names || {}, credits: { ...credits, ...resultsCredits }, coverage });
+        setExtras({
+          names: names || {},
+          credits: { ...credits, ...resultsCredits },
+          coverage,
+          timed,
+        });
     });
     void load();
     return () => {
@@ -159,6 +168,7 @@ export default function AnnualResultsPage({ embedded = false }: { embedded?: boo
           credits={extras.credits}
         />
       )}
+      {extras.timed && <TimedCountsResultsSection data={extras.timed} />}
       <AnnualParticipation coverage={extras.coverage} />
     </main>
   );
