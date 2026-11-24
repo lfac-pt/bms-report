@@ -1,8 +1,7 @@
 import { daysBetween, seasonBounds, TransectReport } from "./model";
 
 export function volunteerCredit(names: string[]): string {
-  if (!names.length) return "";
-  return `${names.length === 1 ? "Voluntário" : "Voluntários"}: ${names.join("; ")}`;
+  return new Intl.ListFormat("pt-PT").format(names);
 }
 
 /** A supportive coverage indicator, using the reporting window rather than just the busy period. */
@@ -30,7 +29,7 @@ export function visitFrequency(report: TransectReport) {
     "Fantástico, continue assim!",
   ];
   const messages = [
-    "Partilhar as visitas com outra pessoa pode ajudar a acompanhar toda a época.",
+    "Partilhar as contagens com outra pessoa pode ajudar a acompanhar toda a época.",
     "Tente encurtar as pausas entre visitas, sempre que as condições o permitam.",
     "Está no bom caminho. Procure manter as visitas a cada duas semanas.",
     "Acompanhou toda a época sem pausas superiores a duas semanas. Obrigado pela dedicação.",
@@ -73,7 +72,7 @@ export function seasonHighlights(report: TransectReport): string[] {
     );
   else if (gaps)
     lines.push(
-      `Houve ${gaps === 1 ? "uma pausa superior" : `${gaps} pausas superiores`} a 14 dias. Partilhar as visitas pode ajudar a manter o ritmo.`
+      `Houve ${gaps === 1 ? "uma pausa superior" : `${gaps} pausas superiores`} a 14 dias. Partilhar as contagens com outra pessoa pode ajudar a manter o ritmo.`
     );
   if (report.municipalityTransectCount === 1 && report.municipality.trim())
     lines.push(

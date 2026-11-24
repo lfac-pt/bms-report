@@ -2,9 +2,10 @@
 
 ## PDF season reports by transect
 
-Run `npm run reports:transects -- --year 2026` to create a PDF recap per transect and
-a recipient manifest. Optional contact and visit logs support multiple recipients
-and visits without sightings. See [the report generator guide](transect-reports/README.md)
+Run `npm run reports:transects -- --year 2026 --visits raw-data/visits.csv` to
+create a PDF recap per transect and a recipient manifest. The visit log supplies
+recorder names and visits without sightings. An optional contact log supports
+multiple recipients. See [the report generator guide](transect-reports/README.md)
 for inputs, analytical definitions, limitations and examples.
 
 ## Import of 22 November 2026

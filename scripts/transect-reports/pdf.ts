@@ -14,6 +14,8 @@ const PAPER = "#FAF8F1";
 const PALE = "#EAF0E9";
 const PARCHMENT = "#F2E8C2";
 const BUTTERFLY = fs.readFileSync(path.join(__dirname, "assets/butterfly-engraving.png"));
+const TAGIS_LOGO = fs.readFileSync(path.join(__dirname, "assets/tagis-logo.png"));
+const EBMS_LOGO = fs.readFileSync(path.join(__dirname, "assets/ebms-logo.png"));
 const M = 18;
 const W = 174;
 const MONTHS = ["JAN", "FEV", "MAR", "ABR", "MAI", "JUN", "JUL", "AGO", "SET", "OUT", "NOV", "DEZ"];
@@ -23,6 +25,7 @@ const fmt = (value: number, digits = 0) =>
     .replace(/\u00a0|\u202f/g, " ");
 const date = (value: string) => value.split("-").reverse().join("/");
 const shortDate = (value: string) => value.slice(5).split("-").reverse().join("/");
+const dayMonth = (value: string) => shortDate(value).replace("/", ".");
 const STATUS: Record<string, string> = {
   CR: "Criticamente em Perigo",
   EN: "Em Perigo",
@@ -39,21 +42,29 @@ export function renderReport(report: TransectReport): Buffer {
     creator: "bms-report / transect-reports",
   });
   let y = 0;
-  const headerCode = report.code.replace(/:\d+$/, "");
+  const [seasonStart, seasonEnd] = seasonBounds(report.current.year, report.window);
+  const pagesWithMissingData = new Set<number>();
+  const missingData = "s/d";
   function text(value: string, x: number, top: number, size = 10, color = INK, bold = false) {
     pdf.setFont("helvetica", bold ? "bold" : "normal");
     pdf.setFontSize(size);
     pdf.setTextColor(color);
     pdf.text(value, x, top);
   }
-  function page() {
-    if (pdf.getNumberOfPages() > 0 && y > 0) pdf.addPage();
+  function drawPageHeader() {
     pdf.setFillColor(PAPER);
     pdf.rect(0, 0, 210, 297, "F");
-    text("TAGIS  /  CENSOS DE BORBOLETAS DE PORTUGAL", M, 14, 8, GREEN, true);
-    text(`${report.current.year}  |  ${headerCode}`, M, 21, 8, MUTED);
+    pdf.setFillColor("#FFFFFF");
+    pdf.rect(0, 0, 210, 26, "F");
+    text(`CENSOS DE BORBOLETAS  |  RELATÓRIO ANUAL ${report.current.year}`, M, 16, 8, GREEN, true);
+    pdf.addImage(TAGIS_LOGO, "PNG", 135, 4, (17 * 118) / 112, 17, "tagis-logo");
+    pdf.addImage(EBMS_LOGO, "PNG", 157, 3.5, (19 * 1174) / 614, 19, "ebms-logo");
     pdf.setDrawColor("#D8DFD3");
     pdf.line(M, 26, 192, 26);
+  }
+  function page() {
+    if (y > 0) pdf.addPage();
+    drawPageHeader();
     y = 37;
   }
   function ensure(height: number) {
@@ -82,7 +93,6 @@ export function renderReport(report: TransectReport): Buffer {
   }
   function table(headers: string[], rows: string[][], widths?: number[], flightCharts = false) {
     ensure(22);
-    const [seasonStart, seasonEnd] = seasonBounds(report.current.year, report.window);
     const seasonDays = daysBetween(seasonStart, seasonEnd) + 1;
     const fraction = (day: string) => daysBetween(seasonStart, day) / seasonDays;
     const months = report.monthly.map(month => {
@@ -128,6 +138,9 @@ export function renderReport(report: TransectReport): Buffer {
         if (flightCharts && data.section === "head" && data.column.index === 3) data.cell.text = [];
       },
       didDrawCell: data => {
+        if (data.section === "body" && data.cell.raw === missingData) {
+          pagesWithMissingData.add(pdf.getNumberOfPages());
+        }
         if (!flightCharts || data.column.index !== 3) return;
         const { cell } = data;
         const chartX = cell.x + 2;
@@ -173,14 +186,7 @@ export function renderReport(report: TransectReport): Buffer {
         });
       },
       willDrawPage: data => {
-        if (data.pageNumber > 1) {
-          pdf.setFillColor(PAPER);
-          pdf.rect(0, 0, 210, 297, "F");
-          text("TAGIS  /  CENSOS DE BORBOLETAS DE PORTUGAL", M, 14, 8, GREEN, true);
-          text(`${report.current.year}  |  ${headerCode}  |  Continuação`, M, 21, 8, MUTED);
-          pdf.setDrawColor("#D8DFD3");
-          pdf.line(M, 26, 192, 26);
-        }
+        if (data.pageNumber > 1) drawPageHeader();
       },
     });
     y = (pdf as jsPDF & { lastAutoTable: { finalY: number } }).lastAutoTable.finalY + 8;
@@ -297,8 +303,8 @@ export function renderReport(report: TransectReport): Buffer {
     pdf.setFontSize(volunteerSize);
     volunteerLines = pdf.splitTextToSize(volunteerLabel, 137);
   }
-  if (volunteerLines.length > 3)
-    throw new Error(`Volunteer list too long for the cover: ${report.id}`);
+  const volunteerContinuation = volunteerLines.slice(3).join(" ");
+  volunteerLines = volunteerLines.slice(0, 3);
   pdf.setFont("helvetica", "bold");
   pdf.setFontSize(titleSize);
   const titleHeight = volunteerLines.length
@@ -315,7 +321,7 @@ export function renderReport(report: TransectReport): Buffer {
     text(line, M, volunteerTop + i * volunteerSize * 0.44, volunteerSize, MUTED)
   );
   text(
-    `${report.municipality || "Portugal"}  |  ${shortDate(`${report.current.year}-${report.window.start}`)} a ${date(`${report.current.year}-${report.window.end}`)}`,
+    `${report.municipality || "Portugal"}  |  ${shortDate(seasonStart)} a ${date(seasonEnd)}`,
     M,
     93,
     9,
@@ -323,14 +329,13 @@ export function renderReport(report: TransectReport): Buffer {
   );
   pdf.addImage(BUTTERFLY, "PNG", 154, 46, 51, 34, "butterfly-engraving", "SLOW");
   y = 112;
+  const meanPerVisit = report.current.meanPerVisit;
+  if (meanPerVisit === null) pagesWithMissingData.add(1);
   const metrics = [
     [fmt(report.current.visits), "VISITAS"],
     [fmt(report.current.speciesCount), "ESPÉCIES"],
     [fmt(report.current.individuals), "INDIVÍDUOS"],
-    [
-      report.current.meanPerVisit === null ? "s/d" : fmt(report.current.meanPerVisit, 1),
-      "POR VISITA",
-    ],
+    [meanPerVisit === null ? missingData : fmt(meanPerVisit, 1), "Nº MÉDIO INDIVÍDUOS/VISITA"],
   ];
   metrics.forEach(([value, label], index) => {
     const x = M + index * 45;
@@ -339,12 +344,12 @@ export function renderReport(report: TransectReport): Buffer {
   });
   y = 134;
   paragraph(
-    "Obrigado por dar tempo às borboletas. Cada visita ajuda os Censos de Borboletas de Portugal, coordenados pelo TAGIS, a conhecer melhor as espécies e os seus habitats.",
+    "Obrigado por dar tempo às borboletas. Cada visita contribui para os projetos Censos de Borboletas de Portugal e European Butterfly Monitoring Scheme, ajudando a conhecer melhor as espécies e os seus habitats.",
     10,
     INK
   );
   section("01 / Ritmo da época", "Borboletas ao longo dos meses");
-  paragraph("Média de indivíduos por visita. Os meses sem visita ficam sem estimativa.", 9);
+  paragraph("Média de indivíduos por visita. Os meses sem visita (s/v) ficam sem estimativa.", 9);
   const chartTop = y + 3;
   const chartHeight = 30;
   const max = Math.max(1, ...report.monthly.map(month => month.mean || 0));
@@ -374,17 +379,22 @@ export function renderReport(report: TransectReport): Buffer {
   paragraph(seasonHighlights(report).join(" "), 9, INK);
 
   page();
+  if (volunteerContinuation) {
+    paragraph(volunteerContinuation, 9);
+  }
   section("02 / Continuidade", "Cada visita conta");
   paragraph(
     report.current.dates.length
-      ? `As ${report.current.visits} visitas distribuem-se por ${report.current.dates.length} dias, de ${date(report.current.dates[0])} a ${date(report.current.dates[report.current.dates.length - 1])}.`
+      ? report.current.dates.length === 1
+        ? `${fmt(report.current.visits)} ${report.current.visits === 1 ? "visita realizada" : "visitas realizadas"} em ${date(report.current.dates[0])}.`
+        : `${fmt(report.current.visits)} visitas realizadas de ${date(report.current.dates[0])} a ${date(report.current.dates[report.current.dates.length - 1])}.`
       : "Não existem visitas na janela escolhida. A ausência de visitas não significa ausência de borboletas."
   );
   const frequency = visitFrequency(report);
   ensure(57);
   pdf.setFillColor(PALE);
   pdf.roundedRect(M, y - 3, W, 43, 2, 2, "F");
-  text("O RITMO DAS SUAS VISITAS", M + 4, y + 2, 8, GREEN, true);
+  text("PAUSAS ENTRE VISITAS", M + 4, y + 2, 8, GREEN, true);
   text(frequency.label, M + 4, y + 10, 14, INK, true);
   pdf.setFontSize(9);
   pdf.setFont("helvetica", "normal");
@@ -396,14 +406,14 @@ export function renderReport(report: TransectReport): Buffer {
   frequencyLabels.forEach((label, i) => {
     const x = M + 4 + i * (segmentWidth + 3);
     const active = i === frequency.level;
+    text(frequencyThresholds[i], x, y + 25, 7, active ? INK : MUTED, active);
     pdf.setFillColor(active ? GREEN : "#D3DDD1");
-    pdf.roundedRect(x, y + 25, segmentWidth, active ? 3 : 2, 0.7, 0.7, "F");
-    text(label, x, y + 32, 7.5, active ? INK : MUTED, active);
-    text(frequencyThresholds[i], x, y + 37, 7, MUTED);
+    pdf.roundedRect(x, y + 28, segmentWidth, active ? 3 : 2, 0.7, 0.7, "F");
+    text(label, x, y + 37, 7.5, active ? INK : MUTED, active);
   });
   y += 47;
   paragraph(
-    `Maior pausa na época: ${frequency.longestGapDays} dias, incluindo o início e o fim. A escala considera a janela escolhida; adapte-a à época de voo local.`,
+    `Maior pausa na época: ${frequency.longestGapDays} dias, considerando todo o período de monitorização (${dayMonth(seasonStart)} a ${dayMonth(seasonEnd)}).`,
     8
   );
   table(
@@ -411,8 +421,8 @@ export function renderReport(report: TransectReport): Buffer {
     report.monthly.map(month => [
       MONTHS[Number(month.month.slice(5)) - 1],
       fmt(month.visits),
-      month.visits ? fmt(month.species) : "s/d",
-      month.mean === null ? "s/d" : fmt(month.mean, 1),
+      month.visits ? fmt(month.species) : missingData,
+      month.mean === null ? missingData : fmt(month.mean, 1),
     ]),
     [40, 32, 35, 67]
   );
@@ -426,7 +436,7 @@ export function renderReport(report: TransectReport): Buffer {
   );
   if (report.gaps.length) {
     paragraph(
-      "São sinalizadas pausas superiores a 14 dias. O início e o fim da época aparecem separadamente, pois podem refletir a época de voo local.",
+      "São sinalizados os períodos com pausas superiores a 14 dias. As pausas antes da primeira visita e depois da última são indicadas separadamente.",
       9
     );
     const kinds = {
@@ -448,24 +458,24 @@ export function renderReport(report: TransectReport): Buffer {
     );
   else paragraph("Continue a registar visitas para acompanhar a época e avaliar a regularidade.");
   ensure(21 + Math.min(report.history.length + 2, 10) * 7.3 + 8);
-  section("03 / Perspetiva", "A época face aos anos anteriores");
+  section("03 / Perspetiva", "Comparação com os anos anteriores");
   const seasonRow = (season: SeasonSummary) => [
     String(season.year),
     fmt(season.visits),
     fmt(season.speciesCount),
     fmt(season.individuals),
-    season.meanPerVisit === null ? "s/d" : fmt(season.meanPerVisit, 1),
+    season.meanPerVisit === null ? missingData : fmt(season.meanPerVisit, 1),
   ];
   if (report.history.length) {
     table(
-      ["Ano", "Visitas", "Espécies", "Indivíduos", "Por visita"],
-      [...report.history, report.current].map(seasonRow)
+      ["Ano", "Visitas", "Espécies", "Indivíduos", "Indivíduos / visita"],
+      [report.current, ...report.history.slice().reverse()].map(seasonRow)
     );
     const previous = report.history[report.history.length - 1];
     if (previous.meanPerVisit && report.current.meanPerVisit !== null) {
       const change = (report.current.meanPerVisit / previous.meanPerVisit - 1) * 100;
       paragraph(
-        `Face a ${previous.year}, a média por visita ${change >= 0 ? "aumentou" : "diminuiu"} ${fmt(Math.abs(change), 1)}%. Trata-se de uma comparação descritiva, sensível às datas, ao clima e ao esforço de amostragem.`,
+        `Face a ${previous.year}, o número médio de indivíduos por visita ${change >= 0 ? "aumentou" : "diminuiu"} ${fmt(Math.abs(change), 1)}%. Trata-se de uma comparação descritiva, sensível às datas, ao clima e ao esforço de amostragem.`,
         9
       );
     }
@@ -524,7 +534,7 @@ export function renderReport(report: TransectReport): Buffer {
   section("05 / Caderno de campo", "Todas as espécies da época");
   if (report.species.length) {
     paragraph(
-      "Visitas indica em quantas visitas a espécie foi observada, face ao total. Indivíduos são a soma das contagens; a mesma borboleta pode ser contada em visitas diferentes.",
+      "As espécies são apresentadas por ordem decrescente de abundância. A abundância é o número total de indivíduos registados ao longo da época. A mesma espécie pode ser contada em visitas diferentes. A frequência indica em quantas visitas a espécie foi observada, face ao total.",
       8
     );
     paragraph(
@@ -532,7 +542,7 @@ export function renderReport(report: TransectReport): Buffer {
       8
     );
     table(
-      ["Espécie", "Indiv.", "Visitas", "Voo observado", "Destaque"],
+      ["Espécie", "Abundância", "Frequência", "Voo observado", "Destaque"],
       report.species.map(item => [
         item.name,
         fmt(item.individuals),
@@ -540,16 +550,16 @@ export function renderReport(report: TransectReport): Buffer {
         "",
         [item.isNew ? "Nova" : "", item.statusPT || ""].filter(Boolean).join(" / ") || "-",
       ]),
-      [56, 16, 18, 65, 19],
+      [48, 23, 19, 65, 19],
       true
     );
   } else paragraph("Não há contagens positivas de espécies reconhecidas na janela escolhida.");
 
-  ensure(120);
+  ensure(75);
   section("06 / Próxima época", "Continuar a construir este retrato");
   if (report.peak && report.peak.individuals > 0)
     paragraph(
-      `O dia com maior contagem foi ${date(report.peak.date)}, com ${fmt(report.peak.individuals)} indivíduos no conjunto das visitas desse dia.`,
+      `O dia de maior abundância foi ${date(report.peak.date)}, com ${fmt(report.peak.individuals)} ${report.peak.individuals === 1 ? "indivíduo registado" : "indivíduos registados"}.`,
       10,
       INK
     );
@@ -558,52 +568,23 @@ export function renderReport(report: TransectReport): Buffer {
       ? "Tente reforçar as visitas nos períodos com intervalos longos, com boas condições meteorológicas. Confirme os registos pendentes e anote alterações no habitat ou cortes de vegetação."
       : "Mantenha a regularidade e registe também as visitas sem borboletas. Confirme os registos pendentes e anote alterações no habitat ou cortes de vegetação."
   );
-  section("Notas de leitura", "Dados e método");
   paragraph(
-    `Visitas únicas pelo Transect Sample ID; na sua ausência usa-se a data (${report.quality.dateFallbacks} visita(s) deste ano). As secções não são contadas como visitas distintas. ${report.quality.supplementalVisits ? "Inclui o ficheiro suplementar de visitas." : "O ficheiro de ocorrências pode omitir visitas sem registos; acrescente um ficheiro de visitas para as incluir."}`,
-    8
+    volunteerLabel ? `Muito obrigada, ${volunteerLabel}!` : "Muito obrigada pela sua participação!",
+    12,
+    INK
   );
   paragraph(
-    `${report.quality.acceptedOnly ? "Apenas contagens com estatuto Accepted." : "Inclui contagens aceites e ainda não confirmadas."} ${report.quality.pendingRecords} registo(s) pendente(s) na janela; ${report.quality.rejectedRecords} rejeitado(s), excluído(s) das contagens. ${report.quality.unidentifiedIndividuals} indivíduo(s) sem identificação na lista de espécies reconhecidas, fora dos totais de espécies e indivíduos apresentados. As visitas continuam a contar.`,
-    8
+    `Esperamos contar ${report.volunteers.length > 1 ? "convosco" : "consigo"} na abertura da época de ${report.current.year + 1}!`,
+    10,
+    INK
   );
-  paragraph(
-    `${report.quality.outOfWindowVisits} visita(s) fora da janela neste ano, excluída(s) do resumo. Os nomes das espécies seguem a taxonomia usada pelo projeto. Novas espécies: apenas contagens positivas, comparadas com anos anteriores disponíveis.`,
-    8
-  );
-  // Source links live on the cover, keeping short reports free of an orphan closing page.
-  pdf.setPage(1);
-  text("TAGIS - Centro de Conservação das Borboletas de Portugal", M, 253, 8, INK, true);
-  let sourceY = 259;
-  const sources = [
-    [
-      "Projeto e orientações: www.tagis.pt/censos-de-borboletas.html",
-      "https://www.tagis.pt/censos-de-borboletas.html",
-    ],
-    [
-      "Manual dos Censos de Borboletas de Portugal (TAGIS)",
-      "https://www.tagis.pt/uploads/4/7/9/5/47950987/manual_censos_de_borboletas.pdf",
-    ],
-    ["Conservação: lvinvertebrados.pt", "https://lvinvertebrados.pt/"],
-  ];
-  for (const [label, url] of sources) {
-    text(label, M, sourceY, 7.5, GREEN);
-    pdf.link(M, sourceY - 3, W, 4, { url });
-    sourceY += 4;
-  }
 
   const count = pdf.getNumberOfPages();
   for (let p = 1; p <= count; p++) {
     pdf.setPage(p);
     pdf.setDrawColor("#D8DFD3");
     pdf.line(M, 280, 192, 280);
-    text(
-      `Censos de Borboletas de Portugal  |  ${report.current.year}  |  Resumo do transecto`,
-      M,
-      286,
-      7,
-      MUTED
-    );
+    if (pagesWithMissingData.has(p)) text(`${missingData} - sem dados`, M, 286, 7, MUTED);
     text(`${p} / ${count}`, 181, 286, 8, INK);
   }
   return Buffer.from(pdf.output("arraybuffer"));

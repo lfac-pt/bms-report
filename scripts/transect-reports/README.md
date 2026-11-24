@@ -7,7 +7,7 @@ Node 18.19+ is required for `--import tsx`.
 
 ```bash
 npm ci
-npm run reports:transects -- --year 2026
+npm run reports:transects -- --year 2026 --visits raw-data/visits.csv
 ```
 
 The default inputs are `raw-data/all.csv`, `raw-data/metadata.csv` and the bundled
@@ -18,7 +18,8 @@ All inputs are validated and the complete batch is staged before publication.
 
 ```bash
 # One transect, for design review; use the internal Transect ID, not its code/name.
-npm run reports:transects -- --year 2026 --transect 340178 --out-dir output/pdf/review-2026
+npm run reports:transects -- --year 2026 --visits raw-data/visits.csv \
+  --transect 340178 --out-dir output/pdf/review-2026
 
 # A fresh batch with recipient addresses and a complete visit log.
 npm run reports:transects -- --year 2026 \
@@ -40,20 +41,22 @@ excluded. Run `npm run reports:transects -- --help` for all input path options.
 ## Outputs
 
 - One searchable A4 PDF per transect: forest green and warm parchment design, a
-  sepia butterfly engraving, TAGIS and Censos de Borboletas de Portugal attribution,
-  running headers, numbered pages and source links. Length adapts to the data.
+  sepia butterfly engraving, running headers with the Tagis and eBMS logos, and
+  numbered pages. Length adapts to the data.
 - `recipients.csv`: one row per transect/recipient pair, with year, transect ID/code/name,
   relative PDF filename, recipient name/email, contact source and delivery status.
   Includes visit/species/highlight/gap counts for a quick coordination review.
-- `season-summary.json`: the exact metrics used to build each PDF.
+- `season-summary.json`: the exact metrics used to build each PDF and per-transect
+  data-quality details.
 - `run.json`: generation timestamp, season/filter settings, report counts, input SHA-256
   hashes, conservation table hash and records of duplicate occurrences, missing transect
   IDs and data transects absent from metadata.
 
 Reports include the seasonal overview, monthly mean count per visit, effort, gaps over
-14 days, earlier season comparisons, first local records, nationally threatened species,
-full species inventory with encounter frequency and weekly flight charts, busiest observation day,
-data-quality notes and suggestions for the next season.
+14 days, earlier season comparisons in descending year order, first local records,
+nationally threatened species, the species inventory in descending abundance order
+with encounter frequency and weekly flight charts, the day with the most individuals
+recorded, and a closing thank-you and invitation to the next season.
 
 The species inventory replaces the first/last-date column with inline weekly flight
 charts. Every row shares the same season axis, with month labels repeated on table
@@ -80,9 +83,9 @@ The visit-frequency card provides supportive feedback using the longest gap in t
 chosen season, including its start and end: up to 14 days is "Fantástico", 15-21 is
 "Bom ritmo", 22-28 is "Ganhar ritmo", and over 28 suggests sharing visits with a team.
 At least two distinct visit dates are required for a rating. This is a descriptive
-coverage aid, not an official project grade; the PDF reminds readers to adapt the
-window to the local flight season. Season-wide coverage without long gaps is celebrated;
-short clusters also receive a reminder to cover the start and end of the season.
+coverage aid. The PDF states the dates used for the assessment. Season-wide coverage
+without long gaps is celebrated. Short clusters receive a reminder to cover the start
+and end of the season.
 New local species receive positive wording, and the cover mentions threatened species
 only when any were recorded.
 
@@ -104,12 +107,15 @@ Generated output is ignored by Git and should be kept outside `public/`, because
 manifest and JSON summaries may contain personal contact information. PDF filenames
 contain the season, transect name and stable ID, with no recipient details.
 
-The cover credits volunteers directly below the transect title. Add an optional
-`Voluntários` column to the metadata CSV, separating team members with semicolons
-(for example, `Ana Silva; Rui Santos`). When absent or blank, the report uses
-`Responsável`. Names are not inferred from email recipients, who may be coordinators.
-Routes without either field omit the credit; `run.json` counts them in
-`reportsWithoutVolunteerNames`. Full teams wrap onto up to three lines on the cover.
+The cover credits volunteers directly below the transect title and the closing thank-you
+uses the same names. The metadata CSV can list a team in the optional semicolon-delimited
+`Voluntários` column
+(for example, `Ana Silva; Rui Santos`), with `Responsável` as a fallback.
+When the `--visits` CSV includes `Recorded by`, the report adds recorder names
+from visits within that transect's reporting window and combines duplicate names.
+Names come from the metadata and visit log. Routes with no names omit the credit
+and are counted in `reportsWithoutVolunteerNames` in `run.json`. Long teams
+continue on the next page.
 
 ## Recipient mapping
 

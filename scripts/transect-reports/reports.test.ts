@@ -8,6 +8,7 @@ import { parse } from "csv-parse/sync";
 import {
   buildReport,
   parseObservations,
+  parseVisits,
   parseDate,
   seasonBounds,
   countTransectsInMunicipality,
@@ -78,6 +79,20 @@ test("volunteer credits prefer an explicit team, deduplicate names and fall back
   );
 });
 
+test("volunteer credits include only recorders for the transect and season window", () => {
+  const visits = parseVisits([
+    { "Transect ID": "T1", Date: "01/03/2026", "Recorded by": "Silva, Luís; Ana Costa" },
+    { "Transect ID": "T1", Date: "30/09/2026", "Recorded by": "Luis Silva; Rui Santos" },
+    { "Transect ID": "T1", Date: "01/10/2026", "Recorded by": "Outside the window" },
+    { "Transect ID": "T1", Date: "01/03/2025", "Recorded by": "Previous year" },
+    { "Transect ID": "T2", Date: "01/03/2026", "Recorded by": "Other route" },
+    { "Transect ID": "T1", Date: "08/03/2026" },
+  ]);
+  const result = buildReport({ ...metadata, Voluntários: "Ana Costa" }, [], visits, 2026, window);
+  assert.deepEqual(result.volunteers, ["Ana Costa", "Luís Silva", "Rui Santos"]);
+  assert.equal(result.current.visits, 3);
+});
+
 test("strict dates and UTC gaps handle leap years without date rollover", () => {
   assert.equal(parseDate("29/02/2024"), "2024-02-29");
   for (const value of ["29/02/2025", "31/04/2026", "1/03/2026", "2026-03-01"])
@@ -85,9 +100,9 @@ test("strict dates and UTC gaps handle leap years without date rollover", () => 
   assert.throws(() => seasonBounds(2026, { start: "09-30", end: "03-01" }));
 });
 
-test("reader-facing copy celebrates discoveries, omits zero threatened counts and uses singular/plural credits", () => {
-  assert.equal(volunteerCredit(["Luis Cardoso"]), "Voluntário: Luis Cardoso");
-  assert.equal(volunteerCredit(["Ana", "Rui"]), "Voluntários: Ana; Rui");
+test("reader-facing copy celebrates discoveries, omits zero threatened counts and credits volunteers by name", () => {
+  assert.equal(volunteerCredit(["Luis Cardoso"]), "Luis Cardoso");
+  assert.equal(volunteerCredit(["Ana", "Rui", "Luís"]), "Ana, Rui e Luís");
   assert.equal(volunteerCredit([]), "");
   const result = report([
     observation("2025-03-01"),
@@ -497,7 +512,14 @@ test("CLI generates only the selected Gateira fixture with correctly mapped reci
       path.join(temp, "contacts.csv"),
       encodeCsv([
         ["transect_id", "name", "email"],
-        ["330931", "Ana", "ana@example.org"],
+        ["330931", "Coordenadora", "ana@example.org"],
+      ])
+    );
+    fs.writeFileSync(
+      path.join(temp, "visits.csv"),
+      encodeCsv([
+        ["Transect ID", "Date", "Recorded by"],
+        ["330931", "01/03/2026", "Santos, Rui"],
       ])
     );
     const output = path.join(temp, "output");
@@ -515,6 +537,8 @@ test("CLI generates only the selected Gateira fixture with correctly mapped reci
       path.join(temp, "metadata.csv"),
       "--contacts",
       path.join(temp, "contacts.csv"),
+      "--visits",
+      path.join(temp, "visits.csv"),
       "--out-dir",
       output,
     ];
@@ -533,10 +557,11 @@ test("CLI generates only the selected Gateira fixture with correctly mapped reci
     assert.equal(recipients[0].recipient_email, "ana@example.org");
     assert.equal(recipients[0].report_file, pdfs[0]);
     const provenance = JSON.parse(fs.readFileSync(path.join(output, "run.json"), "utf8"));
-    assert.equal(provenance.inputs.length, 4);
+    assert.equal(provenance.inputs.length, 5);
     assert.equal(provenance.reportCount, 1);
     const summary = JSON.parse(fs.readFileSync(path.join(output, "season-summary.json"), "utf8"));
     assert.equal(summary[0].municipalityTransectCount, 2); // Counts the unselected route too.
+    assert.deepEqual(summary[0].volunteers, ["Ana", "Rui Santos"]);
     assert.equal(run().status, 1);
     assert.equal(
       fs.readdirSync(temp).filter(file => file.startsWith(".transect-reports-")).length,

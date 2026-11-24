@@ -128,6 +128,7 @@ export interface Visit {
   transectId: string;
   date: string;
   sampleId: string;
+  recordedBy?: string;
 }
 
 export function parseVisits(rows: Row[]): Visit[] {
@@ -137,8 +138,22 @@ export function parseVisits(rows: Row[]): Visit[] {
       transectId: row["Transect ID"].trim(),
       date: parseDate(row.Date?.trim() || ""),
       sampleId: row["Transect Sample ID"]?.trim() || "",
+      recordedBy: row["Recorded by"]?.trim(),
     };
   });
+}
+
+function recorderName(label: string): string {
+  // The export uses "surname, given name" for individual accounts.
+  const person = /^[\p{L}\p{M}][\p{L}\p{M} .'’-]*$/u;
+  const parts = label.split(",").map(part => part.trim());
+  if (
+    parts.length === 2 &&
+    parts.every(part => person.test(part) && !part.includes(" - ") && !/\s+e\s+/i.test(part))
+  ) {
+    return `${parts[1]} ${parts[0]}`;
+  }
+  return label;
 }
 
 export interface SpeciesSummary {
@@ -215,7 +230,8 @@ export function buildReport(
 ): TransectReport {
   const id = metadata["Transect ID"].trim();
   const observations = allObservations.filter(row => row.transectId === id);
-  const inputVisits = [...observations, ...supplemental.filter(row => row.transectId === id)];
+  const supplementalVisits = supplemental.filter(row => row.transectId === id);
+  const inputVisits = [...observations, ...supplementalVisits];
   const sampleDates = new Map<string, string>();
   const dateSamples = new Map<string, Set<string>>();
   for (const visit of inputVisits) {
@@ -265,6 +281,23 @@ export function buildReport(
     };
   };
   const [start, end] = seasonBounds(year, window);
+  const credited = (metadata["Voluntários"]?.trim() || metadata["Responsável"] || "").split(
+    /[;\n]/
+  );
+  const recorded = supplementalVisits
+    .filter(visit => inSeason(visit.date, year))
+    .flatMap(visit => visit.recordedBy?.split(/[;\n]/) ?? [])
+    .map(label => recorderName(label.trim()));
+  const volunteers = new Map<string, string>();
+  for (const label of [...credited, ...recorded]) {
+    const name = label.trim().replace(/\s+/g, " ");
+    const key = name
+      .normalize("NFD")
+      .replace(/\p{M}/gu, "")
+      .replace(/\.$/, "")
+      .toLocaleLowerCase("pt-PT");
+    if (key && !volunteers.has(key)) volunteers.set(key, name);
+  }
   const historyYears = [...new Set(inputVisits.map(row => Number(row.date.slice(0, 4))))]
     .filter(season => season < year)
     .sort((a, b) => a - b);
@@ -367,14 +400,7 @@ export function buildReport(
     municipality: metadata.Concelho || "",
     municipalityTransectCount,
     owner: metadata["Responsável"] || "",
-    volunteers: [
-      ...new Set(
-        (metadata["Voluntários"]?.trim() || metadata["Responsável"] || "")
-          .split(/[;\n]/)
-          .map(name => name.trim())
-          .filter(Boolean)
-      ),
-    ],
+    volunteers: [...volunteers.values()],
     entity: metadata.Entidade || "",
     window,
     current,
