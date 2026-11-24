@@ -127,11 +127,20 @@
 .annual-species-photo {
   margin: 0;
 }
-.annual-species-photo img {
+.annual-species-photo-image {
+  height: 235px;
+  overflow: hidden;
+}
+.annual-species-photo-image img {
   display: block;
   width: 100%;
-  height: 235px;
+  height: 100%;
   object-fit: cover;
+}
+.annual-species-photo-image img[alt="Brenthis daphne"] {
+  object-position: 54% 58%;
+  transform-origin: 54% 58%;
+  transform: translate(-4%, -8%) scale(1.2);
 }
 .annual-species-photo figcaption {
   font-size: 10px;
@@ -245,7 +254,7 @@
   height: 100%;
   overflow: hidden;
 }
-.annual-conservation-story .annual-species-photo img {
+.annual-conservation-story .annual-species-photo-image {
   height: 250px;
 }
 .annual-network-callout {
@@ -344,7 +353,7 @@
   .annual-participation > .ant-card-body {
     padding: 18px;
   }
-  .annual-species-photo img {
+  .annual-species-photo-image {
     height: 250px;
   }
 }

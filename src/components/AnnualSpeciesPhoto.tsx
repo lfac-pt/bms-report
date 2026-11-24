@@ -31,7 +31,9 @@ export default function AnnualSpeciesPhoto({
           <span>Fotografia não disponível</span>
         </div>
       ) : (
-        <img src={source} alt={species} loading="lazy" onError={() => setFailedSource(source)} />
+        <div className="annual-species-photo-image">
+          <img src={source} alt={species} loading="lazy" onError={() => setFailedSource(source)} />
+        </div>
       )}
       {!failed && credit && (
         <figcaption>
