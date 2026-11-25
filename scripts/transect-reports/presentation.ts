@@ -50,7 +50,6 @@ export function seasonHighlights(report: TransectReport): string[] {
   const threatened = report.species.filter(species =>
     ["CR", "EN", "VU"].includes(species.statusPT || "")
   ).length;
-  const gaps = report.gaps.filter(gap => gap.kind === "between").length;
   const lines: string[] = [];
   if (report.firstSeason)
     lines.push(
@@ -63,16 +62,6 @@ export function seasonHighlights(report: TransectReport): string[] {
   if (threatened)
     lines.push(
       `Registou ${threatened} ${threatened === 1 ? "espécie ameaçada" : "espécies ameaçadas"} em Portugal continental.`
-    );
-  if (visitFrequency(report).level === 3)
-    lines.push("Excelente regularidade: nenhuma pausa superior a 14 dias entre visitas.");
-  else if (report.current.dates.length >= 2 && !gaps)
-    lines.push(
-      "As visitas mantiveram intervalos de até 14 dias. Na próxima época, procure também acompanhar o início e o fim da temporada."
-    );
-  else if (gaps)
-    lines.push(
-      `Houve ${gaps === 1 ? "uma pausa superior" : `${gaps} pausas superiores`} a 14 dias. Partilhar as contagens com outra pessoa pode ajudar a manter o ritmo.`
     );
   if (report.municipalityTransectCount === 1 && report.municipality.trim())
     lines.push(

@@ -43,7 +43,6 @@ export function renderReport(report: TransectReport): Buffer {
   });
   let y = 0;
   const [seasonStart, seasonEnd] = seasonBounds(report.current.year, report.window);
-  const pagesWithMissingData = new Set<number>();
   const missingData = "s/d";
   function text(value: string, x: number, top: number, size = 10, color = INK, bold = false) {
     pdf.setFont("helvetica", bold ? "bold" : "normal");
@@ -93,6 +92,7 @@ export function renderReport(report: TransectReport): Buffer {
   }
   function table(headers: string[], rows: string[][], widths?: number[], flightCharts = false) {
     ensure(22);
+    const hasMissingData = rows.some(row => row.includes(missingData));
     const seasonDays = daysBetween(seasonStart, seasonEnd) + 1;
     const fraction = (day: string) => daysBetween(seasonStart, day) / seasonDays;
     const months = report.monthly.map(month => {
@@ -109,7 +109,7 @@ export function renderReport(report: TransectReport): Buffer {
       startY: y,
       head: [headers],
       body: rows,
-      margin: { top: 34, bottom: 24, left: M, right: M },
+      margin: { top: 34, bottom: hasMissingData ? 29 : 24, left: M, right: M },
       tableWidth: W,
       theme: "plain",
       styles: {
@@ -138,9 +138,6 @@ export function renderReport(report: TransectReport): Buffer {
         if (flightCharts && data.section === "head" && data.column.index === 3) data.cell.text = [];
       },
       didDrawCell: data => {
-        if (data.section === "body" && data.cell.raw === missingData) {
-          pagesWithMissingData.add(pdf.getNumberOfPages());
-        }
         if (!flightCharts || data.column.index !== 3) return;
         const { cell } = data;
         const chartX = cell.x + 2;
@@ -190,6 +187,10 @@ export function renderReport(report: TransectReport): Buffer {
       },
     });
     y = (pdf as jsPDF & { lastAutoTable: { finalY: number } }).lastAutoTable.finalY + 8;
+    if (hasMissingData) {
+      text(`${missingData} - sem dados`, M, y - 3, 7, MUTED);
+      y += 5;
+    }
   }
   function photoCards(items: { species: SpeciesSummary; photo: SpeciesPhoto }[]) {
     const width = (W - 6) / 2;
@@ -286,9 +287,6 @@ export function renderReport(report: TransectReport): Buffer {
 
   page();
   // A natural-history plate: warm paper, dark type and a delicate sepia engraving.
-  pdf.setFillColor(PARCHMENT);
-  pdf.rect(0, 29, 210, 72, "F");
-  text(`O SEU TRANSECTO  /  ÉPOCA ${report.current.year}`, M, 41, 9, GREEN, true);
   pdf.setFont("helvetica", "bold");
   pdf.setFontSize(25);
   let titleSize = 25;
@@ -315,43 +313,51 @@ export function renderReport(report: TransectReport): Buffer {
     pdf.setFontSize(titleSize);
     titles = pdf.splitTextToSize(report.name, 137);
   }
-  titles.forEach((line, i) => text(line, M, 54 + i * (titleSize * 0.42), titleSize, INK, true));
-  const volunteerTop = 54 + (titles.length - 1) * titleSize * 0.42 + 8;
+  const titleTop = 51;
+  const titleBottom = titleTop + (titles.length - 1) * titleSize * 0.42;
+  const volunteerTop = titleBottom + 8;
+  const detailsTop = Math.max(77, titleBottom + volunteerLines.length * volunteerSize * 0.44 + 12);
+  pdf.setFillColor(PARCHMENT);
+  pdf.rect(0, 29, 210, detailsTop + 8 - 29, "F");
+  text(`O SEU TRANSECTO  /  ÉPOCA ${report.current.year}`, M, 39, 9, GREEN, true);
+  titles.forEach((line, i) => text(line, M, titleTop + i * titleSize * 0.42, titleSize, INK, true));
   volunteerLines.forEach((line, i) =>
     text(line, M, volunteerTop + i * volunteerSize * 0.44, volunteerSize, MUTED)
   );
   text(
     `${report.municipality || "Portugal"}  |  ${shortDate(seasonStart)} a ${date(seasonEnd)}`,
     M,
-    93,
+    detailsTop,
     9,
     MUTED
   );
-  pdf.addImage(BUTTERFLY, "PNG", 154, 46, 51, 34, "butterfly-engraving", "SLOW");
-  y = 112;
+  pdf.addImage(BUTTERFLY, "PNG", 154, 38, 51, 34, "butterfly-engraving", "SLOW");
+  y = detailsTop + 19;
   const meanPerVisit = report.current.meanPerVisit;
-  if (meanPerVisit === null) pagesWithMissingData.add(1);
   const metrics = [
     [fmt(report.current.visits), "VISITAS"],
     [fmt(report.current.speciesCount), "ESPÉCIES"],
     [fmt(report.current.individuals), "INDIVÍDUOS"],
-    [meanPerVisit === null ? missingData : fmt(meanPerVisit, 1), "Nº MÉDIO INDIVÍDUOS/VISITA"],
+    [meanPerVisit === null ? "Sem dados" : fmt(meanPerVisit, 1), "Nº MÉDIO INDIVÍDUOS/VISITA"],
   ];
   metrics.forEach(([value, label], index) => {
     const x = M + index * 45;
     text(value, x, y, 23, INK, true);
     text(label, x, y + 7, 7.5, MUTED, true);
   });
-  y = 134;
+  y = detailsTop + 38;
   paragraph(
-    "Obrigado por dar tempo às borboletas. Cada visita contribui para os projetos Censos de Borboletas de Portugal e European Butterfly Monitoring Scheme, ajudando a conhecer melhor as espécies e os seus habitats.",
+    [
+      "Obrigado por dar tempo às borboletas. Cada visita contribui para os projetos Censos de Borboletas de Portugal e European Butterfly Monitoring Scheme, ajudando a conhecer melhor as espécies e os seus habitats.",
+      ...seasonHighlights(report),
+    ].join(" "),
     10,
     INK
   );
   section("01 / Ritmo da época", "Borboletas ao longo dos meses");
   paragraph("Média de indivíduos por visita. Os meses sem visita (s/v) ficam sem estimativa.", 9);
   const chartTop = y + 3;
-  const chartHeight = 30;
+  const chartHeight = 24;
   const max = Math.max(1, ...report.monthly.map(month => month.mean || 0));
   const slot = W / report.monthly.length;
   report.monthly.forEach((month, i) => {
@@ -370,19 +376,27 @@ export function renderReport(report: TransectReport): Buffer {
     text(MONTHS[Number(month.month.slice(5)) - 1], x, chartTop + chartHeight + 6, 8, INK, true);
     text(`${month.visits} vis.`, x, chartTop + chartHeight + 12, 7, MUTED);
   });
-  y = chartTop + chartHeight + 24;
-  const newSpecies = report.species.filter(item => item.isNew);
-  const threatened = report.species.filter(item =>
-    ["VU", "EN", "CR"].includes(item.statusPT || "")
+  y = chartTop + chartHeight + 17;
+  const monthlyNoteHeight = report.monthly.some(month => month.mean === null) ? 5 : 0;
+  ensure((report.monthly.length + 1) * 7.3 + monthlyNoteHeight);
+  table(
+    ["Mês", "Visitas", "Espécies", "Indivíduos / visita"],
+    report.monthly.map(month => [
+      MONTHS[Number(month.month.slice(5)) - 1],
+      fmt(month.visits),
+      month.visits ? fmt(month.species) : missingData,
+      month.mean === null ? missingData : fmt(month.mean, 1),
+    ]),
+    [40, 32, 35, 67]
   );
-  const internalGaps = report.gaps.filter(gap => gap.kind === "between");
-  paragraph(seasonHighlights(report).join(" "), 9, INK);
 
-  page();
   if (volunteerContinuation) {
+    page();
     paragraph(volunteerContinuation, 9);
   }
-  section("02 / Continuidade", "Cada visita conta");
+  ensure(88);
+  text("Cada visita conta", M, y + 6, 18, INK, true);
+  y += 15;
   paragraph(
     report.current.dates.length
       ? report.current.dates.length === 1
@@ -416,16 +430,6 @@ export function renderReport(report: TransectReport): Buffer {
     `Maior pausa na época: ${frequency.longestGapDays} dias, considerando todo o período de monitorização (${dayMonth(seasonStart)} a ${dayMonth(seasonEnd)}).`,
     8
   );
-  table(
-    ["Mês", "Visitas", "Espécies", "Indivíduos / visita"],
-    report.monthly.map(month => [
-      MONTHS[Number(month.month.slice(5)) - 1],
-      fmt(month.visits),
-      month.visits ? fmt(month.species) : missingData,
-      month.mean === null ? missingData : fmt(month.mean, 1),
-    ]),
-    [40, 32, 35, 67]
-  );
   section(
     "Continuidade ao longo da época",
     report.gaps.length
@@ -458,7 +462,7 @@ export function renderReport(report: TransectReport): Buffer {
     );
   else paragraph("Continue a registar visitas para acompanhar a época e avaliar a regularidade.");
   ensure(21 + Math.min(report.history.length + 2, 10) * 7.3 + 8);
-  section("03 / Perspetiva", "Comparação com os anos anteriores");
+  section("02 / Perspetiva", "Comparação com os anos anteriores");
   const seasonRow = (season: SeasonSummary) => [
     String(season.year),
     fmt(season.visits),
@@ -485,53 +489,9 @@ export function renderReport(report: TransectReport): Buffer {
     9
   );
 
-  section("04 / Descobertas", "O que merece um olhar mais atento");
-  if (report.firstSeason)
-    paragraph(
-      "Na primeira época disponível não se classificam espécies como novas. Os registos deste ano passam a ser a referência local."
-    );
-  else if (newSpecies.length) {
-    paragraph(
-      "Primeiros registos disponíveis neste transecto face a todos os anos anteriores. Não implicam uma colonização recente ou uma novidade nacional.",
-      9
-    );
-  } else
-    paragraph(
-      "Todas as espécies observadas já tinham registos em anos anteriores neste transecto."
-    );
-  if (!threatened.length)
-    paragraph("Este ano, não observou espécies consideradas ameaçadas em Portugal continental.", 9);
-  const illustrated = report.species
-    .filter(species => species.isNew || threatened.some(item => item.name === species.name))
-    .map(species => ({ species, photo: speciesPhoto(species.name) }))
-    .filter(
-      (item): item is { species: SpeciesSummary; photo: SpeciesPhoto } => item.photo !== null
-    );
-  if (illustrated.length) photoCards(illustrated);
-  const illustratedNames = new Set(illustrated.map(item => item.species.name));
-  const remainingDiscoveries = newSpecies.filter(item => !illustratedNames.has(item.name));
-  const remainingThreatened = threatened.filter(item => !illustratedNames.has(item.name));
-  if (remainingDiscoveries.length) {
-    table(
-      ["Espécie nova no histórico local", "Indivíduos", "Primeira observação"],
-      remainingDiscoveries.map(item => [item.name, fmt(item.individuals), date(item.firstDate)]),
-      [89, 30, 55]
-    );
-  }
-  if (remainingThreatened.length) {
-    table(
-      ["Espécie", "Estatuto em Portugal continental", "Indivíduos"],
-      remainingThreatened.map(item => [
-        item.name,
-        `${item.statusPT} - ${STATUS[item.statusPT!]}`,
-        fmt(item.individuals),
-      ]),
-      [76, 70, 28]
-    );
-  }
   // Keep the inventory title, its legend and the first few chart rows on the same page.
   ensure(report.species.length ? 83 : 35);
-  section("05 / Caderno de campo", "Todas as espécies da época");
+  section("03 / Caderno de campo", `Todas as espécies da época de ${report.current.year}`);
   if (report.species.length) {
     paragraph(
       "As espécies são apresentadas por ordem decrescente de abundância. A abundância é o número total de indivíduos registados ao longo da época. A mesma espécie pode ser contada em visitas diferentes. A frequência indica em quantas visitas a espécie foi observada, face ao total.",
@@ -555,8 +515,57 @@ export function renderReport(report: TransectReport): Buffer {
     );
   } else paragraph("Não há contagens positivas de espécies reconhecidas na janela escolhida.");
 
-  ensure(75);
-  section("06 / Próxima época", "Continuar a construir este retrato");
+  const newSpecies = report.species.filter(item => item.isNew);
+  const threatened = report.species.filter(item =>
+    ["VU", "EN", "CR"].includes(item.statusPT || "")
+  );
+  const illustrated = report.species
+    .filter(species => species.isNew || threatened.some(item => item.name === species.name))
+    .map(species => ({ species, photo: speciesPhoto(species.name) }))
+    .filter(
+      (item): item is { species: SpeciesSummary; photo: SpeciesPhoto } => item.photo !== null
+    );
+  ensure(illustrated.length ? 148 : 56);
+  section("04 / Descobertas", "O que merece um olhar mais atento");
+  if (report.firstSeason)
+    paragraph(
+      "Na primeira época disponível não se classificam espécies como novas. Os registos deste ano passam a ser a referência local."
+    );
+  else if (newSpecies.length) {
+    paragraph(
+      "Primeiros registos disponíveis neste transecto face a todos os anos anteriores. Não implicam uma colonização recente ou uma novidade nacional.",
+      9
+    );
+  } else
+    paragraph(
+      "Todas as espécies observadas já tinham registos em anos anteriores neste transecto."
+    );
+  if (!threatened.length)
+    paragraph("Este ano, não observou espécies consideradas ameaçadas em Portugal continental.", 9);
+  if (illustrated.length) photoCards(illustrated);
+  const illustratedNames = new Set(illustrated.map(item => item.species.name));
+  const remainingDiscoveries = newSpecies.filter(item => !illustratedNames.has(item.name));
+  const remainingThreatened = threatened.filter(item => !illustratedNames.has(item.name));
+  if (remainingDiscoveries.length) {
+    table(
+      ["Espécie nova no histórico local", "Indivíduos", "Primeira observação"],
+      remainingDiscoveries.map(item => [item.name, fmt(item.individuals), date(item.firstDate)]),
+      [89, 30, 55]
+    );
+  }
+  if (remainingThreatened.length) {
+    table(
+      ["Espécie", "Estatuto em Portugal continental", "Indivíduos"],
+      remainingThreatened.map(item => [
+        item.name,
+        `${item.statusPT} - ${STATUS[item.statusPT!]}`,
+        fmt(item.individuals),
+      ]),
+      [76, 70, 28]
+    );
+  }
+  ensure(120);
+  section("05 / Próxima época", "Continuar a construir este retrato");
   if (report.peak && report.peak.individuals > 0)
     paragraph(
       `O dia de maior abundância foi ${date(report.peak.date)}, com ${fmt(report.peak.individuals)} ${report.peak.individuals === 1 ? "indivíduo registado" : "indivíduos registados"}.`,
@@ -564,7 +573,7 @@ export function renderReport(report: TransectReport): Buffer {
       INK
     );
   paragraph(
-    internalGaps.length
+    report.gaps.some(gap => gap.kind === "between")
       ? "Tente reforçar as visitas nos períodos com intervalos longos, com boas condições meteorológicas. Confirme os registos pendentes e anote alterações no habitat ou cortes de vegetação."
       : "Mantenha a regularidade e registe também as visitas sem borboletas. Confirme os registos pendentes e anote alterações no habitat ou cortes de vegetação."
   );
@@ -579,12 +588,35 @@ export function renderReport(report: TransectReport): Buffer {
     INK
   );
 
+  const contactEmail = "censosborboletasdeportugal@gmail.com";
+  ensure(41);
+  y = Math.max(y + 5, 233);
+  pdf.setDrawColor("#D8DFD3");
+  pdf.line(M, y - 6, M + W, y - 6);
+  text("Censos de Borboletas de Portugal", M, y, 10, INK, true);
+  text("Coordenação nacional pelo Tagis no âmbito da rede eBMS.", M, y + 6, 9, MUTED);
+  const projectLinks = [
+    [`Contacto: ${contactEmail}`, `mailto:${contactEmail}`],
+    ["Projeto e participação", "https://www.tagis.pt/censos-de-borboletas.html"],
+    [
+      "Manual de monitorização",
+      "https://www.tagis.pt/uploads/4/7/9/5/47950987/manual_censos_de_borboletas_final.pdf",
+    ],
+  ];
+  projectLinks.forEach(([label, url], index) => {
+    const top = y + 12 + index * 5;
+    text(label, M, top, 9, GREEN);
+    pdf.link(M, top - 3.5, pdf.getTextWidth(label), 4.5, { url });
+  });
+  pdf.setFont("helvetica", "normal");
+  pdf.setFontSize(7);
+  const footerName: string[] = pdf.splitTextToSize(report.name, W - 55);
   const count = pdf.getNumberOfPages();
   for (let p = 1; p <= count; p++) {
     pdf.setPage(p);
     pdf.setDrawColor("#D8DFD3");
     pdf.line(M, 280, 192, 280);
-    if (pagesWithMissingData.has(p)) text(`${missingData} - sem dados`, M, 286, 7, MUTED);
+    footerName.slice(0, 2).forEach((line, index) => text(line, M, 286 + index * 4, 7, MUTED));
     text(`${p} / ${count}`, 181, 286, 8, INK);
   }
   return Buffer.from(pdf.output("arraybuffer"));

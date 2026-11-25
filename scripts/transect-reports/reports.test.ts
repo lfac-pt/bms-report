@@ -111,9 +111,7 @@ test("reader-facing copy celebrates discoveries, omits zero threatened counts an
   ]);
   const copy = seasonHighlights(result).join(" ");
   assert.match(copy, /2 novas espécies/);
-  assert.match(copy, /intervalos de até 14 dias/);
-  assert.doesNotMatch(copy, /Excelente regularidade/);
-  assert.doesNotMatch(copy, /ameaçada|0 intervalo|\(s\)/);
+  assert.doesNotMatch(copy, /ameaçada|intervalo|regularidade|pausa|\(s\)/i);
   assert.equal(copy.includes("!"), false);
   const threatened = report([observation("2026-03-01", "Euchloe tagis")]);
   assert.match(seasonHighlights(threatened).join(" "), /1 espécie ameaçada/);
@@ -255,10 +253,6 @@ test("frequency grading cannot award a high rating to a short cluster or insuffi
   const cluster = visitFrequency(report([observation("2026-04-01"), observation("2026-04-08")]));
   assert.equal(cluster.level, 0);
   assert.match(cluster.label, /equipa/);
-  assert.doesNotMatch(
-    seasonHighlights(report([observation("2026-04-01"), observation("2026-04-08")])).join(" "),
-    /Excelente regularidade/
-  );
 });
 
 test("sections share visits, separate sample IDs on one date remain separate", () => {

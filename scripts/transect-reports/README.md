@@ -42,7 +42,7 @@ excluded. Run `npm run reports:transects -- --help` for all input path options.
 
 - One searchable A4 PDF per transect: forest green and warm parchment design, a
   sepia butterfly engraving, running headers with the Tagis and eBMS logos, and
-  numbered pages. Length adapts to the data.
+  numbered pages with the transect name. Length adapts to the data.
 - `recipients.csv`: one row per transect/recipient pair, with year, transect ID/code/name,
   relative PDF filename, recipient name/email, contact source and delivery status.
   Includes visit/species/highlight/gap counts for a quick coordination review.
@@ -52,11 +52,13 @@ excluded. Run `npm run reports:transects -- --help` for all input path options.
   hashes, conservation table hash and records of duplicate occurrences, missing transect
   IDs and data transects absent from metadata.
 
-Reports include the seasonal overview, monthly mean count per visit, effort, gaps over
-14 days, earlier season comparisons in descending year order, first local records,
-nationally threatened species, the species inventory in descending abundance order
-with encounter frequency and weekly flight charts, the day with the most individuals
-recorded, and a closing thank-you and invitation to the next season.
+The seasonal section places the monthly table immediately after the monthly chart
+and then covers visits and gaps over 14 days. The historical comparison comes
+before the inventory for the reporting year, which lists species in descending
+abundance order with encounter frequency and weekly flight charts. The discoveries
+section follows the inventory, covering first local records and nationally threatened
+species. The closing section includes a thank-you, an invitation to the next season,
+and project information and contact links.
 
 The species inventory replaces the first/last-date column with inline weekly flight
 charts. Every row shares the same season axis, with month labels repeated on table
