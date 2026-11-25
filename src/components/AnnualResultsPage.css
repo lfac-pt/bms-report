@@ -142,6 +142,16 @@
   transform-origin: 54% 58%;
   transform: translate(-4%, -8%) scale(1.2);
 }
+.annual-species-photo-image img[alt="Phengaris alcon"] {
+  object-position: 55% 48%;
+  transform-origin: 55% 48%;
+  transform: translate(-5%, 2%) scale(1.12);
+}
+.annual-species-photo-image img[alt="Euchloe tagis"] {
+  object-position: 60% 44%;
+  transform-origin: 60% 44%;
+  transform: translate(-10%, 6%) scale(1.25);
+}
 .annual-species-photo figcaption {
   font-size: 10px;
   color: #64748b;
@@ -255,7 +265,14 @@
   overflow: hidden;
 }
 .annual-conservation-story .annual-species-photo-image {
-  height: 250px;
+  position: relative;
+  height: auto;
+  min-height: 250px;
+  aspect-ratio: 1.9;
+}
+.annual-conservation-story .annual-species-photo-image img {
+  position: absolute;
+  inset: 0;
 }
 .annual-network-callout {
   display: flex;

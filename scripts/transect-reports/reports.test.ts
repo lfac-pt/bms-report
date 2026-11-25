@@ -55,7 +55,8 @@ test("highlight photos use existing local files and credits, with supplementary 
   const alcon = speciesPhoto("Phengaris alcon");
   assert.ok(alcon);
   assert.ok(alcon.filename.endsWith("imgs/results/phengaris-alcon.jpg"));
-  assert.equal(alcon.credit?.license, "CC BY 2.0");
+  assert.equal(alcon.credit?.photographer, "Albano Soares");
+  assert.equal(alcon.credit?.license, null);
   assert.ok(
     speciesPhoto("Polyommatus icarus/celina")?.filename.endsWith("Polyommatus icarus_celina.jpg")
   );
